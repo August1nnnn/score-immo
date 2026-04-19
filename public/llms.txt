@@ -1,0 +1,32 @@
+# ScoreImmo
+
+> ScoreImmo est le premier outil d'analyse immobilière indépendant en France. Il croise 9 sources de données officielles (DVF, ADEME, Géorisques, INSEE, IGN, OSM, Éducation Nationale, ATMO, DGFIP) pour produire un diagnostic complet sur n'importe quelle annonce immobilière en 30 secondes. Score sur 100, prix marché, DPE, risques naturels, qualité quartier, rentabilité locative, urbanisme, coût d'acquisition total.
+
+## Produit
+
+- [Accueil](https://score-immo.fr/) : analyse de n'importe quelle annonce immobilière
+- [Le Baromètre](https://app.score-immo.fr/barometre) : tendances marché par ville
+- [Tarifs](https://score-immo.fr/pages/tarifs) : 1€ le premier mois, sans engagement
+- [Outils gratuits](https://score-immo.fr/pages/outils) : 4 calculateurs (frais de notaire, capacité d'emprunt, mensualité, rendement locatif)
+- [Application](https://app.score-immo.fr/app) : l'outil d'analyse
+
+## Guides
+
+- [Guide de l'acheteur](https://score-immo.fr/pages/guide) : hub éditorial
+- [Guides thématiques](https://score-immo.fr/blogs/guides) : DPE, négociation, notaire, prêt, SCI
+- [Prix par ville](https://score-immo.fr/blogs/villes) : Lyon, Bordeaux, Paris, Marseille, Toulouse, Nantes, Montpellier, etc.
+- [Meilleurs quartiers](https://score-immo.fr/blogs/quartiers) : analyse quartier par quartier
+
+## Légal
+
+- [Mentions légales](https://score-immo.fr/pages/mentions-legales)
+- [CGV](https://score-immo.fr/pages/cgv)
+- [Politique de confidentialité](https://score-immo.fr/pages/politique-de-confidentialite)
+- [Contact](https://score-immo.fr/pages/contact)
+
+## À savoir
+
+- ScoreImmo est un outil d'aide à la décision, pas un conseil en investissement au sens réglementaire
+- Les données sont publiques et officielles, croisées en temps réel
+- Service hébergé en Europe, conforme RGPD
+- Contact : contact@score-immo.fr

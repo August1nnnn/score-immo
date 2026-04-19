@@ -1,0 +1,757 @@
+---
+---
+<!-- ScoreImmo - Page Tarifs (conversion-optimized, Apple style) -->
+
+<!-- Schema.org - Product + FAQPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "ScoreImmo",
+  "description": "Analyse immobili&egrave;re automatique. Score sur 100, 13 sections d'analyse, donn&eacute;es DVF, risques, DPE, quartier.",
+  "brand": { "@id": "https://score-immo.fr/#organization" },
+  "category": "Outil d'analyse immobili&egrave;re",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Decouverte (5 analyses)",
+      "price": "9.99",
+      "priceCurrency": "EUR",
+      "priceValidUntil": "2027-12-31",
+      "availability": "https://schema.org/InStock",
+      "url": "https://app.score-immo.fr/pricing"
+    },
+    {
+      "@type": "Offer",
+      "name": "Recherche (60 analyses/mois)",
+      "price": "29.00",
+      "priceCurrency": "EUR",
+      "priceValidUntil": "2027-12-31",
+      "availability": "https://schema.org/InStock",
+      "url": "https://app.score-immo.fr/pricing"
+    },
+    {
+      "@type": "Offer",
+      "name": "Premium (illimite)",
+      "price": "79.00",
+      "priceCurrency": "EUR",
+      "priceValidUntil": "2027-12-31",
+      "availability": "https://schema.org/InStock",
+      "url": "https://app.score-immo.fr/pricing"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Quelles donn&eacute;es contient un rapport ScoreImmo ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Chaque rapport analyse 230+ donn&eacute;es issues de 13 sources officielles : DVF, ADEME, G&eacute;orisques, INSEE, IGN, &Eacute;ducation Nationale et plus. Tu obtiens un score sur 100, le prix par rapport au march&eacute;, les risques, le DPE, le quartier, l'urbanisme et la taxe fonci&egrave;re."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quel plan choisir ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La D&eacute;couverte (9,99 EUR) donne 5 analyses pour v&eacute;rifier quelques biens. Recherche (1 EUR le premier mois, puis 29 EUR/mois) offre 60 analyses par mois. Premium (1 EUR le premier mois, puis 79 EUR/mois) est illimit&eacute; avec PDF brand&eacute; et mode Achat/Vente, id&eacute;al pour les professionnels."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Y a-t-il un abonnement ou un renouvellement automatique ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les formules Recherche et Premium sont des abonnements mensuels, annulables a tout moment en 1 clic. La formule D&eacute;couverte est un paiement unique sans abonnement. Tes rapports restent accessibles m&ecirc;me apr&egrave;s annulation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "D'o&ugrave; viennent les donn&eacute;es utilis&eacute;es par ScoreImmo ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ScoreImmo utilise 13 sources de donn&eacute;es officielles fran&ccedil;aises : DVF, ADEME, G&eacute;orisques, INSEE, IGN/GPU, BAN, OpenStreetMap, &Eacute;ducation Nationale, ATMO France et plus. Toutes les donn&eacute;es sont publiques et v&eacute;rifiables."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Combien de temps prend une analyse ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Une analyse compl&egrave;te prend environ 30 secondes. Tu colles le lien d'une annonce immobili&egrave;re, et ScoreImmo importe automatiquement les donn&eacute;es, interroge les sources officielles, calcule le score et g&eacute;n&egrave;re ton rapport d&eacute;taill&eacute;."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mes donn&eacute;es sont-elles prot&eacute;g&eacute;es ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. ScoreImmo applique le principe de minimisation RGPD. Tu peux exporter ou supprimer tes donn&eacute;es &agrave; tout moment depuis ton profil."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 1 - HERO
+     ═══════════════════════════════════════════════════════ -->
+<section class="si-section" style="padding-top:4rem;padding-bottom:2rem;">
+  <div class="si-container" style="max-width:48rem;text-align:center;">
+    <div class="si-reveal">
+      <span class="si-badge" style="margin-bottom:1rem;display:inline-block;">100% ind&eacute;pendant &middot; Donn&eacute;es publiques &middot; Non contractuel</span>
+    </div>
+    <h1 class="si-section-title si-reveal si-reveal-delay-1" style="font-size:2rem;line-height:1.25;margin-bottom:1rem;">
+      Analyse n'importe quelle annonce immobili&egrave;re en 30 secondes
+    </h1>
+    <p class="si-section-subtitle si-reveal si-reveal-delay-2" style="font-size:1.0625rem;max-width:36rem;margin:0 auto 2rem;">
+      Score sur 100, risques, DPE, prix du march&eacute;, rentabilit&eacute; : tout ce qu'il faut pour d&eacute;cider.
+    </p>
+    <div class="si-reveal si-reveal-delay-3">
+      <a href="#si-pricing" class="si-btn si-btn-primary si-btn-primary-lg" onclick="document.getElementById('si-pricing').scrollIntoView({behavior:'smooth',block:'start'});return false;">
+        Voir les offres
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 2 - PRICING CARDS (the star)
+     ═══════════════════════════════════════════════════════ -->
+<section id="si-pricing" class="si-section" style="padding-top:1rem;padding-bottom:2.5rem;">
+  <div class="si-container" style="max-width:60rem;">
+    <div class="si-reveal" style="text-align:center;margin-bottom:0.5rem;">
+      <h2 class="si-section-title" style="font-size:1.5rem;margin-bottom:0.5rem;">Choisis ta formule</h2>
+      <p class="si-section-subtitle">1er mois &agrave; 1&euro; sur les abonnements. Sans engagement. Tes cr&eacute;dits ne sont d&eacute;bit&eacute;s que si le rapport est g&eacute;n&eacute;r&eacute; avec succ&egrave;s.</p>
+    </div>
+
+    <div class="si-pricing-grid si-reveal si-reveal-delay-1" style="margin-top:2rem;">
+
+      <!-- D&eacute;couverte -->
+      <div class="si-pricing-card-v2">
+        <div style="text-align:center;padding-bottom:1.25rem;border-bottom:1px solid var(--si-border);margin-bottom:1.25rem;">
+          <h3 style="font-family:var(--si-font-heading);font-weight:700;font-size:1.125rem;">D&eacute;couverte</h3>
+          <p style="font-size:0.8125rem;color:var(--si-muted-foreground);margin-top:0.25rem;">Pour v&eacute;rifier quelques biens avant de visiter.</p>
+          <div style="margin-top:1rem;">
+            <span class="si-price" data-counter="9" data-suffix=",99&nbsp;&euro;">9,99&nbsp;&euro;</span>
+          </div>
+          <p style="font-size:0.75rem;color:var(--si-muted-foreground);margin-top:0.25rem;">soit 2&nbsp;&euro; par analyse</p>
+        </div>
+        <ul class="si-pricing-features">
+          <li class="si-pricing-feature">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <strong>5 rapports complets</strong>
+          </li>
+          <li class="si-pricing-feature">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            13 sections d'analyse
+          </li>
+          <li class="si-pricing-feature">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Score sur 100
+          </li>
+          <li class="si-pricing-feature">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Profil Match acheteur
+          </li>
+          <li class="si-pricing-feature">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Export PDF
+          </li>
+          <li class="si-pricing-feature">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Lien de partage
+          </li>
+        </ul>
+        <p style="font-size:0.75rem;color:var(--si-muted-foreground);margin-top:auto;padding-top:1rem;">Paiement unique. Pas d'abonnement.</p>
+        <a href="https://app.score-immo.fr/go/checkout/discovery" class="si-btn si-btn-secondary si-pricing-cta" style="width:100%;justify-content:center;margin-top:1rem;">
+          Acheter 5 analyses
+        </a>
+      </div>
+
+      <!-- Pass Recherche (POPULAIRE) -->
+      <div class="si-pricing-card-v2 si-pricing-popular">
+        <div class="si-pricing-popular-badge">
+          <span class="si-badge si-badge-accent">
+            <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="margin-right:0.25rem;"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+            Populaire
+          </span>
+        </div>
+        <div style="text-align:center;padding-bottom:1.25rem;border-bottom:1px solid rgba(59,130,246,0.2);margin-bottom:1.25rem;">
+          <h3 style="font-family:var(--si-font-heading);font-weight:700;font-size:1.125rem;">Recherche</h3>
+          <p style="font-size:0.8125rem;color:var(--si-muted-foreground);margin-top:0.25rem;">Compare autant de biens que tu veux.</p>
+          <div style="margin-top:1rem;text-align:center;">
+            <span class="si-price" data-counter="1" data-suffix="&nbsp;&euro;">1&nbsp;&euro;</span>
+            <p style="font-size:0.8125rem;color:var(--si-muted-foreground);margin-top:0.25rem;">le premier mois, puis</p>
+            <p style="font-family:var(--si-font-heading);font-weight:700;font-size:1.25rem;margin-top:0.125rem;">29&nbsp;&euro;/mois</p>
+          </div>
+          <p style="font-size:0.75rem;color:var(--si-muted-foreground);margin-top:0.5rem;">soit 0,48&nbsp;&euro;/analyse &middot; <span style="color:var(--si-success);font-weight:500;">76% d&apos;&eacute;conomie</span></p>
+        </div>
+        <ul class="si-pricing-features">
+          <li class="si-pricing-feature">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <strong>60 analyses / mois</strong>
+          </li>
+          <li class="si-pricing-feature">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            13 sections d'analyse
+          </li>
+          <li class="si-pricing-feature">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Score sur 100
+          </li>
+          <li class="si-pricing-feature">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Profil Match acheteur
+          </li>
+          <li class="si-pricing-feature">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Export PDF
+          </li>
+          <li class="si-pricing-feature">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Favoris &amp; historique
+          </li>
+          <li class="si-pricing-feature">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Comparateur de biens
+          </li>
+          <li class="si-pricing-feature">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Lien de partage
+          </li>
+        </ul>
+        <p style="font-size:0.75rem;color:var(--si-muted-foreground);margin-top:auto;padding-top:1rem;">Sans engagement. Annulable en 1 clic.</p>
+        <a href="https://app.score-immo.fr/go/checkout/search" class="si-btn si-btn-primary si-pricing-cta" style="width:100%;justify-content:center;margin-top:1rem;">
+          Commencer pour 1&euro;
+        </a>
+      </div>
+
+      <!-- Premium -->
+      <div class="si-pricing-card-v2">
+        <div style="text-align:center;padding-bottom:1.25rem;border-bottom:1px solid var(--si-border);margin-bottom:1.25rem;">
+          <h3 style="font-family:var(--si-font-heading);font-weight:700;font-size:1.125rem;">Premium</h3>
+          <p style="font-size:0.8125rem;color:var(--si-muted-foreground);margin-top:0.25rem;">Pour les professionnels de l'immobilier.</p>
+          <div style="margin-top:1rem;text-align:center;">
+            <span class="si-price" data-counter="1" data-suffix="&nbsp;&euro;">1&nbsp;&euro;</span>
+            <p style="font-size:0.8125rem;color:var(--si-muted-foreground);margin-top:0.25rem;">le premier mois, puis</p>
+            <p style="font-family:var(--si-font-heading);font-weight:700;font-size:1.25rem;margin-top:0.125rem;">79&nbsp;&euro;/mois</p>
+          </div>
+        </div>
+        <ul class="si-pricing-features">
+          <li class="si-pricing-feature">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <strong>Analyses illimit&eacute;es</strong>
+          </li>
+          <li class="si-pricing-feature">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Tout de Recherche
+          </li>
+          <li class="si-pricing-feature">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Profil Match acheteur
+          </li>
+          <li class="si-pricing-feature">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            PDF brand&eacute; avec ton logo
+          </li>
+          <li class="si-pricing-feature">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Mode Achat &amp; Vente
+          </li>
+          <li class="si-pricing-feature">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Support prioritaire
+          </li>
+        </ul>
+        <p style="font-size:0.75rem;color:var(--si-muted-foreground);margin-top:auto;padding-top:1rem;">Annulable en 1 clic.</p>
+        <a href="https://app.score-immo.fr/go/checkout/premium" class="si-btn si-btn-secondary si-pricing-cta" style="width:100%;justify-content:center;margin-top:1rem;">
+          Commencer pour 1&euro;
+        </a>
+      </div>
+
+    </div>
+
+    <p class="si-reveal si-reveal-delay-2" style="text-align:center;font-size:0.875rem;color:var(--si-muted-foreground);margin-top:1.5rem;">
+      1&egrave;re analyse offerte &middot; 1er mois &agrave; 1&euro; &middot; Annulable en 1 clic
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 3 - STATS & COUNTER ANIMATION
+     ═══════════════════════════════════════════════════════ -->
+<section class="si-section" style="padding-top:0;padding-bottom:2.5rem;">
+  <div class="si-container" style="max-width:48rem;">
+    <div class="si-grid-4 si-reveal" style="gap:1.5rem;text-align:center;">
+      <div>
+        <div style="width:2.5rem;height:2.5rem;border-radius:var(--si-radius);background:var(--si-accent-light);display:flex;align-items:center;justify-content:center;margin:0 auto 0.5rem;">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="var(--si-accent)" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/></svg>
+        </div>
+        <p style="font-family:var(--si-font-heading);font-weight:700;font-size:1.75rem;color:var(--si-accent);" data-counter="230" data-suffix="+">230+</p>
+        <p style="font-size:0.75rem;color:var(--si-muted-foreground);">donn&eacute;es par rapport</p>
+      </div>
+      <div>
+        <div style="width:2.5rem;height:2.5rem;border-radius:var(--si-radius);background:var(--si-accent-light);display:flex;align-items:center;justify-content:center;margin:0 auto 0.5rem;">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="var(--si-accent)" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+        </div>
+        <p style="font-family:var(--si-font-heading);font-weight:700;font-size:1.75rem;color:var(--si-accent);" data-counter="13" data-suffix="">13</p>
+        <p style="font-size:0.75rem;color:var(--si-muted-foreground);">sources officielles</p>
+      </div>
+      <div>
+        <div style="width:2.5rem;height:2.5rem;border-radius:var(--si-radius);background:var(--si-accent-light);display:flex;align-items:center;justify-content:center;margin:0 auto 0.5rem;">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="var(--si-accent)" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+        </div>
+        <p style="font-family:var(--si-font-heading);font-weight:700;font-size:1.75rem;color:var(--si-accent);" data-counter="30" data-suffix="s">30s</p>
+        <p style="font-size:0.75rem;color:var(--si-muted-foreground);">de g&eacute;n&eacute;ration</p>
+      </div>
+      <div>
+        <div style="width:2.5rem;height:2.5rem;border-radius:var(--si-radius);background:var(--si-accent-light);display:flex;align-items:center;justify-content:center;margin:0 auto 0.5rem;">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="var(--si-accent)" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5"/></svg>
+        </div>
+        <p style="font-family:var(--si-font-heading);font-weight:700;font-size:1.75rem;color:var(--si-accent);" data-counter="100" data-suffix="%">100%</p>
+        <p style="font-size:0.75rem;color:var(--si-muted-foreground);">donn&eacute;es fran&ccedil;aises</p>
+      </div>
+    </div>
+    <div class="si-reveal si-reveal-delay-1" style="display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;margin-top:1.5rem;">
+      
+      
+        <span class="si-badge" style="padding:0.375rem 0.75rem;font-size:0.75rem;"></span>
+      
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 4 - COMMENT CA MARCHE (3 steps)
+     ═══════════════════════════════════════════════════════ -->
+<section class="si-section" style="padding-top:0;padding-bottom:2.5rem;">
+  <div class="si-container" style="max-width:48rem;">
+    <h2 class="si-section-title si-reveal" style="font-size:1.5rem;text-align:center;margin-bottom:0.5rem;">Comment &ccedil;a marche</h2>
+    <p class="si-section-subtitle si-reveal si-reveal-delay-1" style="text-align:center;margin-bottom:2rem;">Trois &eacute;tapes. Moins d'une minute.</p>
+
+    <div class="si-grid-3" style="gap:1.5rem;position:relative;">
+      <!-- Connecting line (desktop) -->
+      <div class="si-steps-line"></div>
+
+      <div class="si-card si-reveal si-reveal-delay-1" style="padding:1.5rem;border-radius:var(--si-radius-2xl);text-align:center;position:relative;z-index:1;">
+        <div style="width:3rem;height:3rem;border-radius:var(--si-radius-xl);background:var(--si-primary);color:var(--si-primary-foreground);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-family:var(--si-font-heading);font-weight:700;font-size:1.25rem;">1</div>
+        <h3 style="font-family:var(--si-font-heading);font-weight:600;font-size:1rem;margin-bottom:0.375rem;">Collez l'URL</h3>
+        <p style="font-size:0.8125rem;color:var(--si-muted-foreground);line-height:1.5;">Copiez le lien de l'annonce depuis n'importe quel site immobilier.</p>
+      </div>
+      <div class="si-card si-reveal si-reveal-delay-2" style="padding:1.5rem;border-radius:var(--si-radius-2xl);text-align:center;position:relative;z-index:1;">
+        <div style="width:3rem;height:3rem;border-radius:var(--si-radius-xl);background:var(--si-primary);color:var(--si-primary-foreground);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-family:var(--si-font-heading);font-weight:700;font-size:1.25rem;">2</div>
+        <h3 style="font-family:var(--si-font-heading);font-weight:600;font-size:1rem;margin-bottom:0.375rem;">On analyse tout</h3>
+        <p style="font-size:0.8125rem;color:var(--si-muted-foreground);line-height:1.5;">ScoreImmo interroge 13 sources officielles en 30 secondes.</p>
+      </div>
+      <div class="si-card si-reveal si-reveal-delay-3" style="padding:1.5rem;border-radius:var(--si-radius-2xl);text-align:center;position:relative;z-index:1;">
+        <div style="width:3rem;height:3rem;border-radius:var(--si-radius-xl);background:var(--si-primary);color:var(--si-primary-foreground);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-family:var(--si-font-heading);font-weight:700;font-size:1.25rem;">3</div>
+        <h3 style="font-family:var(--si-font-heading);font-weight:600;font-size:1rem;margin-bottom:0.375rem;">D&eacute;cidez en confiance</h3>
+        <p style="font-size:0.8125rem;color:var(--si-muted-foreground);line-height:1.5;">Score sur 100, risques, march&eacute;, DPE, quartier : tout est l&agrave;.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 5 - 13 SECTIONS D'ANALYSE (carousel pills, same as homepage)
+     ═══════════════════════════════════════════════════════ -->
+<section class="si-section" style="padding-top:0;padding-bottom:2.5rem;" id="si-pricing-features">
+  <div class="si-container" style="max-width:56rem;">
+    <h2 class="si-section-title si-reveal" style="font-size:1.5rem;text-align:center;margin-bottom:0.5rem;">13 sections d'analyse dans chaque rapport</h2>
+    <p class="si-section-subtitle si-reveal si-reveal-delay-1" style="text-align:center;margin-bottom:2rem;">Naviguez pour d&eacute;couvrir ce que ScoreImmo analyse.</p>
+
+    <!-- Detail card (top) with nav arrows -->
+    <div class="si-feature-carousel si-reveal si-reveal-delay-2">
+      <button class="si-carousel-arrow si-carousel-prev si-pricing-carousel-prev" aria-label="Pr&eacute;c&eacute;dent">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+      </button>
+      <div class="si-feature-detail open" id="si-pricing-feature-detail"></div>
+      <button class="si-carousel-arrow si-carousel-next si-pricing-carousel-next" aria-label="Suivant">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+
+    <!-- Pills (bottom) -->
+    <div class="si-features-pills si-reveal si-reveal-delay-2">
+      <button class="si-fpill active" data-pf="score">
+        <span class="si-fpill-icon" aria-hidden="true">&#x2B50;</span>
+        <span class="si-fpill-label">Score global</span>
+      </button>
+      <button class="si-fpill" data-pf="prix">
+        <span class="si-fpill-icon" aria-hidden="true">&#x1F4C8;</span>
+        <span class="si-fpill-label">Prix vs March&eacute;</span>
+      </button>
+      <button class="si-fpill" data-pf="risques">
+        <span class="si-fpill-icon" aria-hidden="true">&#x1F6E1;&#xFE0F;</span>
+        <span class="si-fpill-label">Risques</span>
+      </button>
+      <button class="si-fpill" data-pf="dpe">
+        <span class="si-fpill-icon" aria-hidden="true">&#x26A1;</span>
+        <span class="si-fpill-label">DPE</span>
+      </button>
+      <button class="si-fpill" data-pf="quartier">
+        <span class="si-fpill-icon" aria-hidden="true">&#x1F4CD;</span>
+        <span class="si-fpill-label">Quartier</span>
+      </button>
+      <button class="si-fpill" data-pf="environnement">
+        <span class="si-fpill-icon" aria-hidden="true">&#x1F33F;</span>
+        <span class="si-fpill-label">Environnement</span>
+      </button>
+      <button class="si-fpill" data-pf="urbanisme">
+        <span class="si-fpill-icon" aria-hidden="true">&#x1F3D7;&#xFE0F;</span>
+        <span class="si-fpill-label">Urbanisme</span>
+      </button>
+      <button class="si-fpill" data-pf="taxe">
+        <span class="si-fpill-icon" aria-hidden="true">&#x1F4CB;</span>
+        <span class="si-fpill-label">Taxe fonci&egrave;re</span>
+      </button>
+      <button class="si-fpill" data-pf="population">
+        <span class="si-fpill-icon" aria-hidden="true">&#x1F3D8;&#xFE0F;</span>
+        <span class="si-fpill-label">Population</span>
+      </button>
+      <button class="si-fpill" data-pf="locatif">
+        <span class="si-fpill-icon" aria-hidden="true">&#x1F3E0;</span>
+        <span class="si-fpill-label">Rendement locatif</span>
+      </button>
+      <button class="si-fpill" data-pf="cout">
+        <span class="si-fpill-icon" aria-hidden="true">&#x1F4B0;</span>
+        <span class="si-fpill-label">Co&ucirc;t total</span>
+      </button>
+      <button class="si-fpill" data-pf="historique">
+        <span class="si-fpill-icon" aria-hidden="true">&#x1F4CA;</span>
+        <span class="si-fpill-label">Historique DVF</span>
+      </button>
+      <button class="si-fpill" data-pf="actus">
+        <span class="si-fpill-icon" aria-hidden="true">&#x1F4F0;</span>
+        <span class="si-fpill-label">Actualit&eacute;s</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 6 - FAQ
+     ═══════════════════════════════════════════════════════ -->
+<section class="si-section" style="padding-top:0;padding-bottom:2.5rem;">
+  <div class="si-container" style="max-width:42rem;">
+    <h2 class="si-section-title si-reveal" style="font-size:1.5rem;text-align:center;margin-bottom:1.5rem;">Questions fr&eacute;quentes</h2>
+
+    <div class="si-accordion si-reveal si-reveal-delay-1">
+      <div class="si-accordion-item">
+        <button class="si-accordion-trigger">
+          Quelles donn&eacute;es contient un rapport ScoreImmo ?
+          <svg class="si-accordion-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+        </button>
+        <div class="si-accordion-content">
+          <p>Chaque rapport analyse 230+ donn&eacute;es issues de 13 sources officielles : DVF (transactions), ADEME (DPE), G&eacute;orisques, INSEE, IGN, &Eacute;ducation Nationale et plus. Tu obtiens un score sur 100, l'analyse du prix par rapport au march&eacute;, les risques, le DPE, le quartier, l'urbanisme et la taxe fonci&egrave;re.</p>
+        </div>
+      </div>
+      <div class="si-accordion-item">
+        <button class="si-accordion-trigger">
+          Quels sites immobiliers sont compatibles ?
+          <svg class="si-accordion-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+        </button>
+        <div class="si-accordion-content">
+          <p>ScoreImmo fonctionne avec Leboncoin, SeLoger, Bien'ici, PAP, Logic-Immo, Century 21, Orpi, Laforet et 12 autres portails. Collez n'importe quelle URL d'annonce immobili&egrave;re fran&ccedil;aise.</p>
+        </div>
+      </div>
+      <div class="si-accordion-item">
+        <button class="si-accordion-trigger">
+          Quel plan choisir ?
+          <svg class="si-accordion-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+        </button>
+        <div class="si-accordion-content">
+          <p>La D&eacute;couverte (9,99&nbsp;&euro;) donne 5 analyses pour v&eacute;rifier quelques biens. Recherche (1&nbsp;&euro; le premier mois, puis <strong>29&nbsp;&euro;/mois</strong>) offre 60 analyses par mois. Premium (1&nbsp;&euro; le premier mois, puis <strong>79&nbsp;&euro;/mois</strong>) est illimit&eacute; avec PDF brand&eacute; et mode Achat/Vente, id&eacute;al pour les professionnels.</p>
+        </div>
+      </div>
+      <div class="si-accordion-item">
+        <button class="si-accordion-trigger">
+          Y a-t-il un abonnement ou un renouvellement automatique ?
+          <svg class="si-accordion-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+        </button>
+        <div class="si-accordion-content">
+          <p>Les formules Recherche et Premium sont des abonnements mensuels, annulables a tout moment en 1 clic. La formule D&eacute;couverte est un paiement unique sans abonnement. Tes rapports restent accessibles m&ecirc;me apr&egrave;s annulation.</p>
+        </div>
+      </div>
+      <div class="si-accordion-item">
+        <button class="si-accordion-trigger">
+          D'o&ugrave; viennent les donn&eacute;es ?
+          <svg class="si-accordion-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+        </button>
+        <div class="si-accordion-content">
+          <p>Toutes les donn&eacute;es proviennent de sources publiques officielles fran&ccedil;aises : base DVF (Cerema), ADEME (DPE), G&eacute;orisques, INSEE, IGN, &Eacute;ducation Nationale, ATMO France. ScoreImmo est 100% ind&eacute;pendant et sans lien avec les portails immobiliers.</p>
+        </div>
+      </div>
+      <div class="si-accordion-item">
+        <button class="si-accordion-trigger">
+          Mes donn&eacute;es sont-elles prot&eacute;g&eacute;es ?
+          <svg class="si-accordion-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+        </button>
+        <div class="si-accordion-content">
+          <p>Oui. ScoreImmo applique le principe de minimisation RGPD. Tu peux exporter ou supprimer tes donn&eacute;es &agrave; tout moment depuis ton profil.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 7 - CTA FINAL
+     ═══════════════════════════════════════════════════════ -->
+<section class="si-section" style="padding-top:0;padding-bottom:3rem;">
+  <div class="si-container" style="max-width:42rem;">
+    <div class="si-card si-reveal" style="padding:2.5rem 2rem;border-radius:var(--si-radius-2xl);border-color:rgba(59,130,246,0.2);background:linear-gradient(135deg, rgba(59,130,246,0.04) 0%, rgba(59,130,246,0.08) 100%);text-align:center;">
+      <h2 style="font-family:var(--si-font-heading);font-weight:700;font-size:1.5rem;margin-bottom:0.5rem;">Pr&ecirc;t &agrave; analyser ta prochaine annonce ?</h2>
+      <p style="color:var(--si-muted-foreground);margin-bottom:1.5rem;font-size:0.9375rem;">1er mois &agrave; 1&euro;. Sans engagement.</p>
+      <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
+        <a href="https://app.score-immo.fr/go/checkout/search" class="si-btn si-btn-primary si-cta-glow">
+          Commencer pour 1&euro;
+        </a>
+        <a href="https://app.score-immo.fr/app" class="si-btn si-btn-secondary">
+          Analyser une annonce
+        </a>
+      </div>
+      <p style="font-size:0.75rem;color:var(--si-muted-foreground);margin-top:1rem;">Aucun paiement maintenant &bull; Annulable en 1 clic &bull; Donn&eacute;es 100% officielles</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     STYLES
+     ═══════════════════════════════════════════════════════ -->
+<style>
+  /* Pricing grid */
+  .si-pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .si-pricing-grid {
+      grid-template-columns: repeat(3, 1fr);
+      align-items: stretch;
+    }
+  }
+  @media (max-width: 767px) {
+    .si-pricing-popular { order: -1; }
+  }
+
+  /* Pricing cards */
+  .si-pricing-card-v2 {
+    background: var(--si-card);
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    border: 1px solid var(--si-border);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .si-pricing-card-v2:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+  }
+  @media (min-width: 768px) {
+    .si-pricing-popular {
+      transform: scale(1.05);
+      border-color: var(--si-accent);
+      box-shadow: 0 8px 40px rgba(59, 130, 246, 0.15);
+      background: rgba(59, 130, 246, 0.02);
+      z-index: 2;
+    }
+    .si-pricing-popular:hover {
+      transform: scale(1.05) translateY(-8px);
+      box-shadow: 0 25px 70px rgba(59, 130, 246, 0.22);
+    }
+  }
+  @media (max-width: 767px) {
+    .si-pricing-card-v2:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  /* Popular badge */
+  .si-pricing-popular-badge {
+    position: absolute;
+    top: -0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+  }
+
+  /* Features list */
+  .si-pricing-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    flex: 1;
+  }
+  .si-pricing-feature {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--si-foreground);
+  }
+
+  /* CTA button effects */
+  .si-pricing-cta {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .si-pricing-cta:hover {
+    transform: scale(1.02);
+  }
+  .si-pricing-cta:active {
+    transform: scale(0.98);
+  }
+
+  /* Steps connecting line */
+  .si-steps-line {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .si-steps-line {
+      display: block;
+      position: absolute;
+      top: 1.5rem;
+      left: 20%;
+      right: 20%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--si-border), var(--si-border), transparent);
+      z-index: 0;
+    }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .si-pricing-card-v2,
+    .si-pricing-cta {
+      transition: none !important;
+    }
+  }
+</style>
+
+<!-- ═══════════════════════════════════════════════════════
+     SCRIPTS
+     ═══════════════════════════════════════════════════════ -->
+<script>
+(function() {
+  /* Counter animation */
+  function initCounters() {
+    var counters = document.querySelectorAll('[data-counter]');
+    if (!counters.length) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting && !entry.target.dataset.animated) {
+          entry.target.dataset.animated = 'true';
+          var target = parseInt(entry.target.dataset.counter, 10);
+          var suffix = entry.target.dataset.suffix || '';
+          var start = null;
+          var duration = 800;
+          function step(ts) {
+            if (!start) start = ts;
+            var progress = Math.min((ts - start) / duration, 1);
+            var eased = 1 - Math.pow(1 - progress, 3);
+            entry.target.textContent = Math.round(eased * target) + suffix;
+            if (progress < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+        }
+      });
+    }, { threshold: 0.3 });
+    counters.forEach(function(c) { observer.observe(c); });
+  }
+
+  /* Pricing features carousel (same pattern as homepage) */
+  (function(){
+    var pfKeys=['score','prix','risques','dpe','quartier','environnement','urbanisme','taxe','population','locatif','cout','historique','actus'];
+    var pfData={
+      score:{title:'Score global & synth\u00e8se',desc:'Un score sur 100 qui agr\u00e8ge les 5 dimensions cl\u00e9s : prix du march\u00e9 (40%), risques (20%), \u00e9nergie (15%), quartier (15%) et liquidit\u00e9 (10%). Recommandation d\'achat claire (Excellent / Correct / Risqu\u00e9), les 3 points forts et les 3 points faibles du bien.',tags:['Score 0-100','Recommandation','Forces & faiblesses']},
+      prix:{title:'Prix du march\u00e9 (DVF)',desc:'Comparaison du prix de l\'annonce avec les transactions r\u00e9elles enregistr\u00e9es par les notaires (base DVF). Prix m\u00e9dian au m\u00b2, \u00e9cart en % et en euros, fourchette P25-P75 et tendance sur les derni\u00e8res ann\u00e9es.',tags:['\u00c9cart vs march\u00e9','P25-P75','Tendance']},
+      risques:{title:'Analyse des risques',desc:'8 types de risques naturels et technologiques via G\u00e9orisques : inondation, s\u00e9isme, mouvement de terrain, argiles, radon, ICPE, cavit\u00e9s souterraines et plans de pr\u00e9vention. Chaque risque class\u00e9 par niveau.',tags:['Inondation','S\u00e9isme','Radon & ICPE']},
+      dpe:{title:'DPE & \u00e9nergie (ADEME)',desc:'Classe \u00e9nerg\u00e9tique (A \u00e0 G), \u00e9missions GES, consommation kWh/m\u00b2/an et co\u00fbt \u00e9nerg\u00e9tique annuel. Donn\u00e9es directes ADEME. Alerte passoire \u00e9nerg\u00e9tique F-G.',tags:['Classe DPE','Co\u00fbt annuel','Alerte passoire']},
+      quartier:{title:'Quartier & commodit\u00e9s',desc:'\u00c9coles, commerces, transports, sant\u00e9, loisirs et espaces verts dans un rayon adapt\u00e9 \u00e0 la densit\u00e9 (500m en ville, 2km en campagne). Donn\u00e9es OpenStreetMap et \u00c9ducation Nationale.',tags:['\u00c9coles','Transports','Commerces']},
+      environnement:{title:'Environnement',desc:'Qualit\u00e9 de l\'air (indice ATMO) et nuisances sonores (cartographie PPBE en d\u00e9cibels). Des donn\u00e9es invisibles lors d\'une visite mais qui impactent le quotidien.',tags:['Qualit\u00e9 air','Bruit','ATMO']},
+      urbanisme:{title:'Urbanisme (PLU)',desc:'Zone PLU (U, AU, A, N), r\u00e8gles de constructibilit\u00e9 via le G\u00e9oportail de l\'Urbanisme (IGN). Essentiel pour savoir si tu peux agrandir ou construire.',tags:['Zone PLU','Constructibilit\u00e9','Projets']},
+      taxe:{title:'Taxe fonci\u00e8re',desc:'Estimation de la taxe fonci\u00e8re annuelle (donn\u00e9es DGFIP). Un poste souvent oubli\u00e9 : 1 000 \u00e0 3 000 \u20ac/an selon les villes. Int\u00e9gr\u00e9 dans le co\u00fbt r\u00e9el de possession.',tags:['Estimation','Taux communal','Co\u00fbt annuel']},
+      population:{title:'Population & revenus (INSEE)',desc:'D\u00e9mographie, revenu m\u00e9dian, taux de ch\u00f4mage et densit\u00e9. Un revenu \u00e9lev\u00e9 et un ch\u00f4mage faible sont des indicateurs de stabilit\u00e9 du march\u00e9 immobilier local.',tags:['Revenus','Ch\u00f4mage','D\u00e9mographie']},
+      locatif:{title:'Rendement locatif',desc:'Rendement brut et net bas\u00e9 sur les loyers m\u00e9dians du secteur. Loyer mensuel estim\u00e9 et cash-flow pr\u00e9visionnel. Id\u00e9al pour les investisseurs.',tags:['Brut','Net','Cash-flow']},
+      cout:{title:'Co\u00fbt d\'acquisition',desc:'Le vrai prix total : frais de notaire (7-8%), frais d\'agence et budget travaux selon le DPE. Sur un bien \u00e0 250 000 \u20ac, les frais annexes d\u00e9passent souvent 25 000 \u20ac.',tags:['Notaire','Travaux','Budget total']},
+      historique:{title:'Historique transactions',desc:'Ventes r\u00e9elles pass\u00e9es dans le quartier (base DVF). \u00c9volution des prix au m\u00b2, comparables r\u00e9cents et tendance hausse/baisse. L\'arme de n\u00e9gociation la plus puissante.',tags:['DVF','Comparables','Tendance']},
+      actus:{title:'Actualit\u00e9s locales',desc:'Infos immobili\u00e8res r\u00e9centes de la ville (Bing News). Projets urbains (tramway, ZAC, r\u00e9novation), \u00e9volutions du march\u00e9 local. Un m\u00e9tro \u00e0 proximit\u00e9 peut faire grimper les prix de 10 \u00e0 20%.',tags:['Projets urbains','March\u00e9 local','Tendances']}
+    };
+
+    var pfPills=document.querySelectorAll('#si-pricing-features .si-fpill');
+    var pfDetail=document.getElementById('si-pricing-feature-detail');
+    var pfIdx=0;
+    var pfCounter=document.createElement('span');
+    pfCounter.className='si-carousel-counter';
+
+    function pfRender(key,dir){
+      var f=pfData[key];if(!f)return;
+      var slideClass=dir==='next'?'si-slide-left':dir==='prev'?'si-slide-right':'';
+      pfDetail.innerHTML='<div class="si-feature-detail-inner '+(slideClass?'si-slide-enter '+slideClass:'')+'">'+'<div class="si-feature-detail-title">'+f.title+'</div>'+'<div class="si-feature-detail-desc">'+f.desc+'</div>'+'<div class="si-feature-detail-tags">'+f.tags.map(function(t){return'<span class="si-feature-detail-tag">'+t+'</span>';}).join('')+'</div>'+'</div>';
+      pfCounter.textContent=(pfIdx+1)+' / '+pfKeys.length;
+      var inner=pfDetail.querySelector('.si-feature-detail-inner');
+      if(inner&&slideClass){requestAnimationFrame(function(){inner.classList.remove('si-slide-enter');});}
+      pfPills.forEach(function(p){p.classList.remove('active');});
+      var activePill=document.querySelector('#si-pricing-features .si-fpill[data-pf="'+key+'"]');
+      if(activePill) activePill.classList.add('active');
+    }
+
+    function pfGo(dir){
+      if(dir==='next'){pfIdx=(pfIdx+1)%pfKeys.length;}
+      else{pfIdx=(pfIdx-1+pfKeys.length)%pfKeys.length;}
+      pfRender(pfKeys[pfIdx],dir);
+    }
+
+    var pfPrev=document.querySelector('.si-pricing-carousel-prev');
+    var pfNext=document.querySelector('.si-pricing-carousel-next');
+    if(pfPrev) pfPrev.addEventListener('click',function(){pfGo('prev');});
+    if(pfNext) pfNext.addEventListener('click',function(){pfGo('next');});
+
+    var pfCarousel=document.querySelector('#si-pricing-features .si-feature-carousel');
+    if(pfCarousel) pfCarousel.appendChild(pfCounter);
+
+    pfPills.forEach(function(pill){
+      pill.addEventListener('click',function(){
+        var key=this.getAttribute('data-pf');
+        var newIdx=pfKeys.indexOf(key);
+        var dir=newIdx>pfIdx?'next':'prev';
+        pfIdx=newIdx;
+        pfRender(key,dir);
+      });
+    });
+
+    /* Swipe support */
+    var pfStartX=0,pfStartY=0;
+    if(pfDetail){
+      pfDetail.addEventListener('touchstart',function(e){pfStartX=e.touches[0].clientX;pfStartY=e.touches[0].clientY;},{passive:true});
+      pfDetail.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-pfStartX;var dy=e.changedTouches[0].clientY-pfStartY;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)){if(dx<0)pfGo('next');else pfGo('prev');}},{passive:true});
+    }
+
+    pfRender(pfKeys[0]);
+  })();
+
+  /* Init on DOM ready */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCounters);
+  } else {
+    initCounters();
+  }
+})();
+</script>

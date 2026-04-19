@@ -1,0 +1,74 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  return [
+    { params: { blog: 'guides' } },
+    { params: { blog: 'villes' } },
+    { params: { blog: 'quartiers' } },
+  ];
+}
+
+const { blog } = Astro.params;
+const articles = (await getCollection('articles', (e) => e.data.blog === blog))
+  .sort((a, b) => new Date(b.data.published_at).getTime() - new Date(a.data.published_at).getTime());
+
+const titles: Record<string, string> = {
+  guides: "Le Guide de l'Acheteur - Conseils immobiliers",
+  villes: "Prix Immobilier par Ville - Analyses 2026",
+  quartiers: "Meilleurs Quartiers pour Acheter - Guide 2026",
+};
+const descriptions: Record<string, string> = {
+  guides: "Nos guides pratiques pour acheter en confiance : DPE, négociation, frais de notaire, prêt, SCI, premier achat. Conseils concrets et chiffrés.",
+  villes: "Analyse du marché immobilier par ville : Lyon, Paris, Marseille, Bordeaux, Nantes, Toulouse et plus. Prix au m², tendances 2026.",
+  quartiers: "Les meilleurs quartiers pour acheter : analyses détaillées par ville. Où investir, où habiter, qualité de vie et prix.",
+};
+
+const title = `${titles[blog!]} | ScoreImmo`;
+const description = descriptions[blog!];
+
+const labels: Record<string, string> = {
+  guides: "Guide de l'acheteur",
+  villes: 'Prix par ville',
+  quartiers: 'Meilleurs quartiers',
+};
+---
+<BaseLayout {title} {description}>
+  <section class="si-section">
+    <div class="si-container">
+      <div class="si-blog-header">
+        <h1 class="si-section-title">{labels[blog!]}</h1>
+        <p class="si-section-subtitle">{descriptions[blog!]}</p>
+      </div>
+
+      <div class="si-grid-3">
+        {articles.map((a) => (
+          <a href={`/blogs/${a.data.blog}/${a.data.handle}`} class="si-blog-card">
+            {a.data.image?.src && (
+              <img
+                src={a.data.image.src}
+                alt={a.data.image.alt || a.data.title}
+                loading="lazy"
+                width="600"
+                height="400"
+              />
+            )}
+            <div class="si-blog-card-body">
+              <h3 class="si-blog-card-title">{a.data.title}</h3>
+              <p class="si-blog-card-excerpt">{a.data.meta_description?.slice(0, 150)}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .si-blog-header {
+    text-align: center;
+    max-width: 40rem;
+    margin: 0 auto 3rem;
+  }
+</style>

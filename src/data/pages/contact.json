@@ -1,0 +1,13 @@
+{
+  "id": 717134954821,
+  "title": "Contact",
+  "shop_id": 103881900357,
+  "handle": "contact",
+  "body_html": "<h2>Contactez-nous</h2><p>Pour toute question, écrivez-nous à <strong>contact@score-immo.fr</strong> ou appelez-nous au <strong>07 69 81 21 90</strong>.</p><p>Nous répondons sous 48h.</p>",
+  "author": null,
+  "created_at": "2026-02-23T19:35:27+01:00",
+  "updated_at": "2026-03-28T18:48:17+01:00",
+  "published_at": "2026-02-23T19:35:27+01:00",
+  "template_suffix": "contact-scoreimmo",
+  "admin_graphql_api_id": "gid://shopify/Page/717134954821"
+}

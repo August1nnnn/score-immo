@@ -1,0 +1,97 @@
+---
+// Cookie banner RGPD (règle STACK-2026)
+// CNIL : 3 boutons équilibrés, consent 13 mois, analytics gated
+---
+<div id="si-cookie-banner" class="si-cookie-banner" hidden>
+  <div class="si-cookie-inner">
+    <div class="si-cookie-text">
+      <h2 class="si-cookie-title">Cookies et confidentialité</h2>
+      <p>Nous utilisons des cookies pour mesurer l'audience du site et améliorer ton expérience. Tu peux accepter, refuser, ou en savoir plus. Ton choix est conservé 13 mois.</p>
+    </div>
+    <div class="si-cookie-actions">
+      <button type="button" id="si-cookie-reject" class="si-btn si-btn-ghost">Refuser</button>
+      <a href="/pages/politique-de-confidentialite" class="si-btn si-btn-secondary">En savoir plus</a>
+      <button type="button" id="si-cookie-accept" class="si-btn si-btn-primary">Accepter</button>
+    </div>
+  </div>
+</div>
+
+<style>
+.si-cookie-banner {
+  position: fixed;
+  inset: auto 1rem 1rem 1rem;
+  max-width: 960px;
+  margin-inline: auto;
+  background: var(--si-glass-bg-elevated, rgba(255,255,255,0.95));
+  backdrop-filter: blur(var(--si-glass-blur, 20px));
+  -webkit-backdrop-filter: blur(var(--si-glass-blur, 20px));
+  border: 1px solid var(--si-glass-border, rgba(255,255,255,0.3));
+  border-radius: var(--si-radius-xl, 1rem);
+  box-shadow: var(--si-glass-shadow-elevated, 0 12px 40px rgba(0,0,0,0.1));
+  padding: 1.25rem 1.5rem;
+  z-index: 9999;
+  display: block;
+}
+.si-cookie-banner[hidden] { display: none; }
+.si-cookie-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+@media (min-width: 768px) {
+  .si-cookie-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+.si-cookie-title {
+  font-family: var(--si-font-heading, 'DM Sans', sans-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+  color: var(--si-foreground, #0F172A);
+}
+.si-cookie-text p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--si-muted-foreground, #64748B);
+  line-height: 1.5;
+}
+.si-cookie-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.si-cookie-actions .si-btn { font-size: 0.875rem; padding: 0.5rem 1rem; }
+</style>
+
+<script is:inline>
+(function(){
+  const KEY = 'si_cookie_consent';
+  const now = Date.now();
+  const THIRTEEN_MONTHS = 13 * 30 * 24 * 60 * 60 * 1000;
+
+  function getConsent(){
+    try { const v = JSON.parse(localStorage.getItem(KEY) || 'null');
+      if (!v || !v.ts || (now - v.ts) > THIRTEEN_MONTHS) return null;
+      return v;
+    } catch { return null; }
+  }
+  function setConsent(status){
+    localStorage.setItem(KEY, JSON.stringify({ status, ts: now }));
+    window.dispatchEvent(new CustomEvent('si:consent', { detail: { status } }));
+  }
+  function show(){ document.getElementById('si-cookie-banner')?.removeAttribute('hidden'); }
+  function hide(){ document.getElementById('si-cookie-banner')?.setAttribute('hidden',''); }
+
+  const existing = getConsent();
+  if (!existing) show();
+
+  document.getElementById('si-cookie-accept')?.addEventListener('click', () => { setConsent('accepted'); hide(); });
+  document.getElementById('si-cookie-reject')?.addEventListener('click', () => { setConsent('rejected'); hide(); });
+
+  // Expose re-open
+  window.siOpenCookieBanner = show;
+})();
+</script>

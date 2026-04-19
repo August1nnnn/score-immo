@@ -1,0 +1,170 @@
+---
+---
+<!-- ScoreImmo - Ce que ScoreImmo analyse (13 features - pills interactives) -->
+<section id="features" class="si-section" aria-label="Fonctionnalit&eacute;s d'analyse immobili&egrave;re ScoreImmo">
+  <div class="si-container">
+    <div style="text-align:center;margin-bottom:2rem;" class="si-reveal">
+      <h2 class="si-section-title">Tout ce qu'il faut pour d&eacute;cider sereinement</h2>
+      <p class="si-section-subtitle">ScoreImmo agr&egrave;ge 9+ sources publiques fran&ccedil;aises pour tu donner une vision compl&egrave;te et neutre de chaque bien.</p>
+    </div>
+
+    <!-- Detail card (top) with nav arrows -->
+    <div class="si-feature-carousel si-reveal">
+      <button class="si-carousel-arrow si-carousel-prev" aria-label="Pr&eacute;c&eacute;dent">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+      </button>
+      <div class="si-feature-detail open" id="si-feature-detail"></div>
+      <button class="si-carousel-arrow si-carousel-next" aria-label="Suivant">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+
+    <!-- Pills (bottom) - scatter/gather on scroll -->
+    <div class="si-features-pills si-reveal">
+      <button class="si-fpill active" data-feature="prix">
+        <span class="si-fpill-icon" aria-hidden="true">&#x1F4C8;</span>
+        <span class="si-fpill-label">Prix vs March&eacute;</span>
+      </button>
+      <button class="si-fpill" data-feature="risques">
+        <span class="si-fpill-icon" aria-hidden="true">&#x1F6E1;&#xFE0F;</span>
+        <span class="si-fpill-label">Risques</span>
+      </button>
+      <button class="si-fpill" data-feature="quartier">
+        <span class="si-fpill-icon" aria-hidden="true">&#x1F4CD;</span>
+        <span class="si-fpill-label">Quartier</span>
+      </button>
+      <button class="si-fpill" data-feature="dpe">
+        <span class="si-fpill-icon" aria-hidden="true">&#x26A1;</span>
+        <span class="si-fpill-label">DPE</span>
+      </button>
+      <button class="si-fpill" data-feature="pdf">
+        <span class="si-fpill-icon" aria-hidden="true">&#x1F4C4;</span>
+        <span class="si-fpill-label">Rapport PDF</span>
+      </button>
+      <button class="si-fpill" data-feature="import">
+        <span class="si-fpill-icon" aria-hidden="true">&#x1F517;</span>
+        <span class="si-fpill-label">Import 1 clic</span>
+      </button>
+      <button class="si-fpill" data-feature="cout">
+        <span class="si-fpill-icon" aria-hidden="true">&#x1F4B0;</span>
+        <span class="si-fpill-label">Cout total</span>
+      </button>
+      <button class="si-fpill" data-feature="locatif">
+        <span class="si-fpill-icon" aria-hidden="true">&#x1F3E0;</span>
+        <span class="si-fpill-label">Estimation locative</span>
+      </button>
+      <button class="si-fpill" data-feature="urbanisme">
+        <span class="si-fpill-icon" aria-hidden="true">&#x1F3D7;&#xFE0F;</span>
+        <span class="si-fpill-label">Urbanisme</span>
+      </button>
+      <button class="si-fpill" data-feature="taxe">
+        <span class="si-fpill-icon" aria-hidden="true">&#x1F4CB;</span>
+        <span class="si-fpill-label">Taxe fonciere</span>
+      </button>
+      <button class="si-fpill" data-feature="environnement">
+        <span class="si-fpill-icon" aria-hidden="true">&#x1F33F;</span>
+        <span class="si-fpill-label">Environnement</span>
+      </button>
+      <button class="si-fpill" data-feature="vie">
+        <span class="si-fpill-icon" aria-hidden="true">&#x1F3D8;&#xFE0F;</span>
+        <span class="si-fpill-label">Vie de quartier</span>
+      </button>
+      <button class="si-fpill" data-feature="checklist">
+        <span class="si-fpill-icon" aria-hidden="true">&#x2705;</span>
+        <span class="si-fpill-label">Checklist visite</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var keys=['prix','risques','quartier','dpe','pdf','import','cout','locatif','urbanisme','taxe','environnement','vie','checklist'];
+  var features={
+    prix:{title:'Prix vs March\u00e9',desc:'Compare le prix au m\u00b2 avec les transactions r\u00e9elles (DVF) du quartier. Historique des prix, \u00e9volution et tendance du march\u00e9 local.',tags:['Prix hier','Prix actuel','Tendance','DVF']},
+    risques:{title:'Risques & Obligations',desc:'Inondation, sismicit\u00e9, radon, ICPE : donn\u00e9es G\u00e9orisques officielles. Identifiez tous les risques naturels et technologiques autour du bien.',tags:['Inondation','Sismicit\u00e9','Radon & ICPE']},
+    quartier:{title:'Quartier & Services',desc:'\u00c9coles, transports, commerces, loisirs, d\u00e9linquance, QPV. Tout ce qui d\u00e9finit la qualit\u00e9 de vie autour du bien.',tags:['\u00c9coles','Transports','Commerces','QPV']},
+    dpe:{title:'Performance \u00c9nerg\u00e9tique',desc:'DPE, alertes passoire \u00e9nerg\u00e9tique, estimation co\u00fbt travaux et aides disponibles (MaPrimeR\u00e9nov, CEE).',tags:['Classe DPE','Co\u00fbt travaux','Alerte passoire']},
+    pdf:{title:'Rapport Complet PDF',desc:'Partagez le rapport avec ton entourage, conseiller ou artisan. Export PDF professionnel avec toutes les donn\u00e9es.',tags:['Export PDF','Lien partageable','Donn\u00e9es compl\u00e8tes']},
+    import:{title:'Import en 1 Clic',desc:'Collez un lien depuis LeBonCoin, SeLoger, PAP, Bien\'ici et bien d\'autres. Extraction automatique des donn\u00e9es de l\'annonce.',tags:['Collez l\'URL','Extraction auto','R\u00e9sultat en 30s']},
+    cout:{title:'Co\u00fbt Total d\'Acquisition',desc:'Frais de notaire, travaux, ameublement : calculez le vrai co\u00fbt total de ton achat, pas seulement le prix affich\u00e9.',tags:['Frais notaire','Travaux','Budget total']},
+    locatif:{title:'Estimation Locative',desc:'Estimation du loyer potentiel et calcul du rendement locatif brut. Id\u00e9al pour les investisseurs.',tags:['Loyer estim\u00e9','Rendement brut','Comparaison']},
+    urbanisme:{title:'Urbanisme & PLU',desc:'Plan Local d\'Urbanisme, zone constructible, servitudes et projets d\'am\u00e9nagement \u00e0 proximit\u00e9.',tags:['Zone PLU','Servitudes','Projets']},
+    taxe:{title:'Taxe Fonci\u00e8re',desc:'Estimation de la taxe fonci\u00e8re bas\u00e9e sur les taux communaux et la valeur locative cadastrale.',tags:['Taux communal','Estimation','Historique']},
+    environnement:{title:'Environnement',desc:'Qualit\u00e9 de l\'air, bruit, antennes relais, sites pollu\u00e9s (BASOL/BASIAS). Donn\u00e9es officielles.',tags:['Qualit\u00e9 air','Bruit','Sites pollu\u00e9s']},
+    vie:{title:'Vie de Quartier',desc:'D\u00e9mographie, revenus m\u00e9dians, taux de ch\u00f4mage, s\u00e9curit\u00e9. Portrait socio-\u00e9conomique du quartier.',tags:['Population','Revenus','S\u00e9curit\u00e9']},
+    checklist:{title:'Checklist Visite',desc:'Liste de v\u00e9rification personnalis\u00e9e pour ne rien oublier lors de tes visites immobili\u00e8res.',tags:['Points \u00e0 v\u00e9rifier','Personnalis\u00e9e','Partageable']}
+  };
+
+  var pills=document.querySelectorAll('.si-fpill');
+  var detail=document.getElementById('si-feature-detail');
+  var idx=0;
+  var counter=document.createElement('span');
+  counter.className='si-carousel-counter';
+
+  function render(key,dir){
+    var f=features[key];if(!f)return;
+    var slideClass=dir==='next'?'si-slide-left':dir==='prev'?'si-slide-right':'';
+    detail.innerHTML='<div class="si-feature-detail-inner '+(slideClass?'si-slide-enter '+slideClass:'')+'">'+
+      '<div class="si-feature-detail-title">'+f.title+'</div>'+
+      '<div class="si-feature-detail-desc">'+f.desc+'</div>'+
+      '<div class="si-feature-detail-tags">'+f.tags.map(function(t){return'<span class="si-feature-detail-tag">'+t+'</span>';}).join('')+'</div>'+
+    '</div>';
+    counter.textContent=(idx+1)+' / '+keys.length;
+    /* Trigger enter animation */
+    var inner=detail.querySelector('.si-feature-detail-inner');
+    if(inner&&slideClass){requestAnimationFrame(function(){inner.classList.remove('si-slide-enter');});}
+    /* Sync active pill */
+    pills.forEach(function(p){p.classList.remove('active');});
+    var activePill=document.querySelector('.si-fpill[data-feature="'+key+'"]');
+    if(activePill) activePill.classList.add('active');
+  }
+
+  function go(dir){
+    if(dir==='next'){idx=(idx+1)%keys.length;}
+    else{idx=(idx-1+keys.length)%keys.length;}
+    render(keys[idx],dir);
+  }
+
+  /* Arrow buttons */
+  var prevBtn=document.querySelector('.si-carousel-prev');
+  var nextBtn=document.querySelector('.si-carousel-next');
+  if(prevBtn) prevBtn.addEventListener('click',function(){go('prev');});
+  if(nextBtn) nextBtn.addEventListener('click',function(){go('next');});
+
+  /* Insert counter */
+  var carousel=document.querySelector('.si-feature-carousel');
+  if(carousel) carousel.appendChild(counter);
+
+  /* Pill click */
+  pills.forEach(function(pill,i){
+    pill.addEventListener('click',function(){
+      var key=this.getAttribute('data-feature');
+      var newIdx=keys.indexOf(key);
+      var dir=newIdx>idx?'next':'prev';
+      idx=newIdx;
+      render(key,dir);
+    });
+  });
+
+  /* Swipe support on detail card */
+  var startX=0,startY=0;
+  if(detail){
+    detail.addEventListener('touchstart',function(e){
+      startX=e.touches[0].clientX;
+      startY=e.touches[0].clientY;
+    },{passive:true});
+    detail.addEventListener('touchend',function(e){
+      var dx=e.changedTouches[0].clientX-startX;
+      var dy=e.changedTouches[0].clientY-startY;
+      if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)){
+        if(dx<0) go('next'); else go('prev');
+      }
+    },{passive:true});
+  }
+
+  /* Init first card */
+  render(keys[0]);
+})();
+
+</script>

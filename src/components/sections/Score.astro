@@ -1,0 +1,361 @@
+---
+---
+<!-- ScoreImmo - Le Score Global (Carrousel 4 cartes) -->
+<section class="si-section" aria-label="Le score ScoreImmo : notation 0 a 100">
+  <div class="si-container" style="max-width:48rem;">
+    <div class="si-reveal">
+      <h2 class="si-section-title">Un score clair, un avis tranch&eacute;</h2>
+      <p class="si-section-subtitle">ScoreImmo ne tu donne pas juste des donn&eacute;es, il tu donne un avis.</p>
+    </div>
+
+    <div style="margin-top:2.5rem;position:relative;" class="si-reveal si-reveal-delay-1">
+      <!-- Carousel container -->
+      <div class="si-score-carousel" id="si-score-carousel">
+        <div class="si-score-track" id="si-score-track">
+
+          <!-- Card 1: Appartement Lyon 7e - 78/100 Excellent -->
+          <div class="si-score-slide">
+            <div class="si-card si-score-card" data-score="78" data-color="var(--si-success)">
+              <div class="si-score-card-top">
+                <div class="si-score-gauge si-score-gauge-sm">
+                  <svg viewBox="0 0 100 100">
+                    <circle class="si-gauge-bg" cx="50" cy="50" r="40"/>
+                    <circle class="si-gauge-fill" cx="50" cy="50" r="40" stroke="var(--si-success)"
+                      stroke-dasharray="251.33" stroke-dashoffset="55.29"/>
+                  </svg>
+                  <div class="si-score-value">
+                    <span class="si-score-number" style="color:var(--si-success);">78</span>
+                  </div>
+                </div>
+                <span class="si-score-label" style="color:var(--si-success);">Excellent</span>
+              </div>
+              <div class="si-score-card-info">
+                <p class="si-score-card-type">Appartement T3 &bull; 68 m&sup2;</p>
+                <p class="si-score-card-city">Lyon 7e (69007)</p>
+                <p class="si-score-card-price">245 000 &euro;</p>
+              </div>
+              <div class="si-score-card-tags">
+                <span class="si-score-tag si-score-tag-good">Prix -12% vs march&eacute;</span>
+                <span class="si-score-tag si-score-tag-good">DPE C</span>
+                <span class="si-score-tag si-score-tag-warn">1 risque mod&eacute;r&eacute;</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Maison Bordeaux - 52/100 Correct -->
+          <div class="si-score-slide">
+            <div class="si-card si-score-card" data-score="52" data-color="var(--si-warning)">
+              <div class="si-score-card-top">
+                <div class="si-score-gauge si-score-gauge-sm">
+                  <svg viewBox="0 0 100 100">
+                    <circle class="si-gauge-bg" cx="50" cy="50" r="40"/>
+                    <circle class="si-gauge-fill" cx="50" cy="50" r="40" stroke="var(--si-warning)"
+                      stroke-dasharray="251.33" stroke-dashoffset="120.64"/>
+                  </svg>
+                  <div class="si-score-value">
+                    <span class="si-score-number" style="color:var(--si-warning);">52</span>
+                  </div>
+                </div>
+                <span class="si-score-label" style="color:var(--si-warning);">Correct</span>
+              </div>
+              <div class="si-score-card-info">
+                <p class="si-score-card-type">Maison 5 pi&egrave;ces &bull; 120 m&sup2;</p>
+                <p class="si-score-card-city">Bordeaux (33000)</p>
+                <p class="si-score-card-price">389 000 &euro;</p>
+              </div>
+              <div class="si-score-card-tags">
+                <span class="si-score-tag si-score-tag-warn">Prix +5% vs march&eacute;</span>
+                <span class="si-score-tag si-score-tag-good">DPE D</span>
+                <span class="si-score-tag si-score-tag-bad">Zone inondable</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Studio Paris 11e - 34/100 Risque -->
+          <div class="si-score-slide">
+            <div class="si-card si-score-card" data-score="34" data-color="var(--si-destructive)">
+              <div class="si-score-card-top">
+                <div class="si-score-gauge si-score-gauge-sm">
+                  <svg viewBox="0 0 100 100">
+                    <circle class="si-gauge-bg" cx="50" cy="50" r="40"/>
+                    <circle class="si-gauge-fill" cx="50" cy="50" r="40" stroke="var(--si-destructive)"
+                      stroke-dasharray="251.33" stroke-dashoffset="165.87"/>
+                  </svg>
+                  <div class="si-score-value">
+                    <span class="si-score-number" style="color:var(--si-destructive);">34</span>
+                  </div>
+                </div>
+                <span class="si-score-label" style="color:var(--si-destructive);">Risqu&eacute;</span>
+              </div>
+              <div class="si-score-card-info">
+                <p class="si-score-card-type">Studio &bull; 22 m&sup2;</p>
+                <p class="si-score-card-city">Paris 11e (75011)</p>
+                <p class="si-score-card-price">215 000 &euro;</p>
+              </div>
+              <div class="si-score-card-tags">
+                <span class="si-score-tag si-score-tag-bad">Prix +22% vs march&eacute;</span>
+                <span class="si-score-tag si-score-tag-bad">DPE F</span>
+                <span class="si-score-tag si-score-tag-warn">Bruit &eacute;lev&eacute;</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: Maison Nantes - 85/100 Excellent -->
+          <div class="si-score-slide">
+            <div class="si-card si-score-card" data-score="85" data-color="var(--si-success)">
+              <div class="si-score-card-top">
+                <div class="si-score-gauge si-score-gauge-sm">
+                  <svg viewBox="0 0 100 100">
+                    <circle class="si-gauge-bg" cx="50" cy="50" r="40"/>
+                    <circle class="si-gauge-fill" cx="50" cy="50" r="40" stroke="var(--si-success)"
+                      stroke-dasharray="251.33" stroke-dashoffset="37.70"/>
+                  </svg>
+                  <div class="si-score-value">
+                    <span class="si-score-number" style="color:var(--si-success);">85</span>
+                  </div>
+                </div>
+                <span class="si-score-label" style="color:var(--si-success);">Excellent</span>
+              </div>
+              <div class="si-score-card-info">
+                <p class="si-score-card-type">Maison 4 pi&egrave;ces &bull; 95 m&sup2;</p>
+                <p class="si-score-card-city">Nantes (44000)</p>
+                <p class="si-score-card-price">298 000 &euro;</p>
+              </div>
+              <div class="si-score-card-tags">
+                <span class="si-score-tag si-score-tag-good">Prix -18% vs march&eacute;</span>
+                <span class="si-score-tag si-score-tag-good">DPE B</span>
+                <span class="si-score-tag si-score-tag-good">0 risque</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Dots -->
+      <div class="si-score-dots" id="si-score-dots">
+        <button class="si-score-dot active" data-index="0" aria-label="Slide 1"></button>
+        <button class="si-score-dot" data-index="1" aria-label="Slide 2"></button>
+        <button class="si-score-dot" data-index="2" aria-label="Slide 3"></button>
+        <button class="si-score-dot" data-index="3" aria-label="Slide 4"></button>
+      </div>
+
+      <!-- Score range legend -->
+      <div style="display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;margin-top:1.5rem;">
+        <div style="display:flex;align-items:center;gap:0.375rem;">
+          <div style="width:0.75rem;height:0.75rem;border-radius:50%;background:var(--si-success);"></div>
+          <span style="font-size:0.8125rem;color:var(--si-muted-foreground);">70-100 : Excellent</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.375rem;">
+          <div style="width:0.75rem;height:0.75rem;border-radius:50%;background:var(--si-warning);"></div>
+          <span style="font-size:0.8125rem;color:var(--si-muted-foreground);">40-69 : Correct</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.375rem;">
+          <div style="width:0.75rem;height:0.75rem;border-radius:50%;background:var(--si-destructive);"></div>
+          <span style="font-size:0.8125rem;color:var(--si-muted-foreground);">0-39 : Risqu&eacute;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .si-score-carousel {
+    overflow: hidden;
+    border-radius: var(--si-radius-2xl);
+  }
+  .si-score-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .si-score-slide {
+    min-width: 100%;
+    padding: 0 0.25rem;
+    box-sizing: border-box;
+  }
+  .si-score-card {
+    padding: 2rem;
+    border-radius: var(--si-radius-2xl);
+    border: 2px solid var(--si-accent);
+    background: rgba(59,130,246,0.02);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    transition: transform 0.15s ease;
+  }
+  .si-score-card-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .si-score-gauge-sm {
+    width: 7rem;
+    height: 7rem;
+  }
+  .si-score-card-info {
+    text-align: center;
+  }
+  .si-score-card-type {
+    font-family: var(--si-font-heading);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--si-foreground);
+  }
+  .si-score-card-city {
+    font-size: 0.875rem;
+    color: var(--si-muted-foreground);
+    margin-top: 0.125rem;
+  }
+  .si-score-card-price {
+    font-family: var(--si-font-heading);
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: var(--si-accent);
+    margin-top: 0.375rem;
+  }
+  .si-score-card-tags {
+    display: flex;
+    gap: 0.375rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .si-score-tag {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    padding: 0.25rem 0.625rem;
+    border-radius: 9999px;
+    white-space: nowrap;
+  }
+  .si-score-tag-good {
+    background: rgba(22, 163, 74, 0.1);
+    color: var(--si-success);
+  }
+  .si-score-tag-warn {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--si-warning);
+  }
+  .si-score-tag-bad {
+    background: rgba(220, 38, 38, 0.1);
+    color: var(--si-destructive);
+  }
+  .si-score-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+  }
+  .si-score-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    border: none;
+    background: var(--si-border);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .si-score-dot.active {
+    background: var(--si-accent);
+    transform: scale(1.25);
+  }
+  @media (max-width: 767px) {
+    .si-score-card { padding: 1.5rem 1rem; }
+    .si-score-gauge-sm { width: 5.5rem; height: 5.5rem; }
+  }
+</style>
+
+<script>
+(function() {
+  var carousel = document.getElementById('si-score-carousel');
+  var track = document.getElementById('si-score-track');
+  var dotsContainer = document.getElementById('si-score-dots');
+  if (!carousel || !track || !dotsContainer) return;
+
+  var dots = dotsContainer.querySelectorAll('.si-score-dot');
+  var current = 0;
+  var total = 4;
+  var autoInterval = null;
+  var paused = false;
+
+  function goTo(index) {
+    current = ((index % total) + total) % total;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    dots.forEach(function(d, i) {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  function next() {
+    goTo(current + 1);
+  }
+
+  function startAuto() {
+    stopAuto();
+    autoInterval = setInterval(function() {
+      if (!paused) next();
+    }, 4000);
+  }
+
+  function stopAuto() {
+    if (autoInterval) clearInterval(autoInterval);
+  }
+
+  /* Dot clicks */
+  dots.forEach(function(dot) {
+    dot.addEventListener('click', function() {
+      goTo(parseInt(dot.getAttribute('data-index'), 10));
+      startAuto();
+    });
+  });
+
+  /* Pause on hover (desktop) */
+  carousel.addEventListener('mouseenter', function() { paused = true; });
+  carousel.addEventListener('mouseleave', function() { paused = false; });
+
+  /* Tilt parallax on desktop */
+  carousel.addEventListener('mousemove', function(e) {
+    var rect = carousel.getBoundingClientRect();
+    var x = (e.clientX - rect.left) / rect.width - 0.5;
+    var y = (e.clientY - rect.top) / rect.height - 0.5;
+    var slide = track.children[current];
+    if (slide) {
+      var card = slide.querySelector('.si-score-card');
+      if (card) {
+        card.style.transform = 'perspective(600px) rotateY(' + (x * 4) + 'deg) rotateX(' + (-y * 4) + 'deg)';
+      }
+    }
+  });
+  carousel.addEventListener('mouseleave', function() {
+    var slide = track.children[current];
+    if (slide) {
+      var card = slide.querySelector('.si-score-card');
+      if (card) card.style.transform = '';
+    }
+  });
+
+  /* Swipe on mobile */
+  var startX = 0;
+  var startY = 0;
+  var isDragging = false;
+  carousel.addEventListener('touchstart', function(e) {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    isDragging = true;
+  }, { passive: true });
+  carousel.addEventListener('touchend', function(e) {
+    if (!isDragging) return;
+    isDragging = false;
+    var dx = e.changedTouches[0].clientX - startX;
+    var dy = e.changedTouches[0].clientY - startY;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+      if (dx < 0) goTo(current + 1);
+      else goTo(current - 1);
+      startAuto();
+    }
+  }, { passive: true });
+
+  startAuto();
+})();
+</script>

@@ -1,0 +1,220 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles');
+  return articles.map((entry) => ({
+    params: { blog: entry.data.blog, slug: entry.data.handle },
+    props: { article: entry.data },
+  }));
+}
+
+const { article } = Astro.props;
+
+const title = article.meta_title || `${article.title} | ScoreImmo`;
+const description = article.meta_description || article.title;
+const image = article.image?.src;
+const canonical = `https://score-immo.fr/blogs/${article.blog}/${article.handle}`;
+
+const blogLabels: Record<string, string> = {
+  guides: "Guide de l'acheteur",
+  villes: 'Prix par ville',
+  quartiers: 'Meilleurs quartiers',
+};
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.title,
+    description,
+    image: image ? [image] : undefined,
+    datePublished: article.published_at,
+    dateModified: article.updated_at || article.published_at,
+    author: {
+      '@type': 'Organization',
+      name: 'ScoreImmo',
+      url: 'https://score-immo.fr',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'ScoreImmo',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://score-immo.fr/favicon.svg',
+      },
+    },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+    inLanguage: 'fr-FR',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://score-immo.fr/' },
+      { '@type': 'ListItem', position: 2, name: blogLabels[article.blog], item: `https://score-immo.fr/blogs/${article.blog}` },
+      { '@type': 'ListItem', position: 3, name: article.title, item: canonical },
+    ],
+  },
+];
+
+const publishedFr = article.published_at
+  ? new Date(article.published_at).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })
+  : '';
+---
+<BaseLayout
+  {title}
+  {description}
+  image={image}
+  {canonical}
+  {jsonLd}
+  articleMeta={{
+    publishedTime: article.published_at,
+    modifiedTime: article.updated_at || article.published_at,
+    author: 'ScoreImmo',
+  }}
+>
+  <section class="si-section">
+    <div class="si-container">
+      <nav class="si-breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a>
+        <span> &rsaquo; </span>
+        <a href={`/blogs/${article.blog}`}>{blogLabels[article.blog]}</a>
+        <span> &rsaquo; </span>
+        <span>{article.title}</span>
+      </nav>
+
+      <article class="si-article">
+        <header class="si-article-header">
+          <h1 class="si-article-title">{article.title}</h1>
+          <div class="si-article-meta">
+            <span>Par ScoreImmo</span>
+            <span>&middot;</span>
+            <time datetime={article.published_at}>{publishedFr}</time>
+          </div>
+          {image && (
+            <img
+              src={image}
+              alt={article.image?.alt || article.title}
+              width={article.image?.width || 1200}
+              height={article.image?.height || 630}
+              class="si-article-hero"
+              loading="eager"
+              fetchpriority="high"
+            />
+          )}
+        </header>
+
+        <div class="si-article-body" set:html={article.body_html}></div>
+
+        <footer class="si-article-footer">
+          <div class="si-cta-box">
+            <h3>Prêt à analyser ton futur bien ?</h3>
+            <p>Colle le lien d'une annonce, reçois le rapport complet en 30 secondes.</p>
+            <a href="https://app.score-immo.fr/app" class="si-btn si-btn-primary si-btn-primary-lg">
+              Analyser une annonce
+            </a>
+          </div>
+        </footer>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style is:global>
+  .si-breadcrumb {
+    font-size: 0.875rem;
+    color: var(--si-muted-foreground, #64748B);
+    margin: 1rem 0 2rem;
+  }
+  .si-breadcrumb a { color: var(--si-muted-foreground, #64748B); text-decoration: none; }
+  .si-breadcrumb a:hover { color: var(--si-accent, #3B82F6); }
+
+  .si-article { max-width: 48rem; margin: 0 auto; }
+  .si-article-title {
+    font-family: var(--si-font-heading, 'DM Sans', sans-serif);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    margin: 0 0 1rem;
+    color: var(--si-foreground);
+  }
+  .si-article-meta {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--si-muted-foreground);
+    margin-bottom: 2rem;
+  }
+  .si-article-hero {
+    width: 100%;
+    height: auto;
+    border-radius: var(--si-radius, 0.75rem);
+    margin-bottom: 2rem;
+  }
+  .si-article-body h2 {
+    font-family: var(--si-font-heading);
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    font-weight: 700;
+    margin: 2.5rem 0 1rem;
+    color: var(--si-foreground);
+  }
+  .si-article-body h3 {
+    font-family: var(--si-font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 2rem 0 0.75rem;
+  }
+  .si-article-body p { margin: 0 0 1rem; line-height: 1.75; font-size: 1.05rem; }
+  .si-article-body ul, .si-article-body ol { margin: 0 0 1rem 1.5rem; line-height: 1.75; }
+  .si-article-body li { margin-bottom: 0.5rem; }
+  .si-article-body a { color: var(--si-accent); text-decoration: underline; }
+  .si-article-body blockquote {
+    border-left: 4px solid var(--si-accent);
+    padding: 0.5rem 0 0.5rem 1rem;
+    margin: 1.5rem 0;
+    color: var(--si-muted-foreground);
+    font-style: italic;
+  }
+  .si-article-body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--si-radius);
+    margin: 1.5rem 0;
+  }
+  .si-article-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .si-article-body th,
+  .si-article-body td {
+    padding: 0.75rem;
+    border: 1px solid var(--si-border);
+    text-align: left;
+  }
+  .si-article-body th {
+    background: var(--si-muted);
+    font-weight: 600;
+  }
+
+  .si-cta-box {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--si-primary, #0F172A), #1e293b);
+    color: #fff;
+    border-radius: var(--si-radius-xl, 1rem);
+    text-align: center;
+  }
+  .si-cta-box h3 {
+    font-family: var(--si-font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+    color: #fff;
+  }
+  .si-cta-box p { margin: 0 0 1.5rem; color: rgba(255,255,255,0.85); }
+</style>

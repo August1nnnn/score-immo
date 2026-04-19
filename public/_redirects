@@ -1,0 +1,19 @@
+# ScoreImmo - Cloudflare Pages redirects
+# Format: from to status
+
+# Legacy Shopify sitemap paths (redirect to Astro sitemap)
+/sitemap_pages_1.xml /sitemap-index.xml 301
+/sitemap_collections_1.xml /sitemap-index.xml 301
+/sitemap_blogs_1.xml /sitemap-index.xml 301
+
+# Catch old contact variations
+/contact /pages/contact 301
+/tarifs /pages/tarifs 301
+/pricing /pages/tarifs 301
+/cgv /pages/cgv 301
+/mentions-legales /pages/mentions-legales 301
+
+# /blogs racine -> guide hub
+/blogs /pages/guide 301
+
+# 404 fallback (implicit, Astro builds 404.html)

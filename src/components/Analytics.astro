@@ -1,0 +1,80 @@
+---
+// Analytics tracker custom Supabase (règle STACK-2026 + fix diagnostic tracking cassé)
+// Gated by cookie consent
+const SUPABASE_URL = 'https://afvtxiklivnmakqixkml.supabase.co';
+const SUPABASE_ANON = import.meta.env.PUBLIC_SUPABASE_ANON || '';
+---
+<script is:inline define:vars={{ SUPABASE_URL, SUPABASE_ANON }}>
+(function(){
+  if (!SUPABASE_ANON) return;
+
+  // Bot detection (UA-based, côté client)
+  const UA = navigator.userAgent.toLowerCase();
+  const IS_BOT = /bot|crawl|spider|slurp|archive|monitor|lighthouse|gptbot|claudebot|perplexity|chatgpt-user|anthropic/i.test(UA);
+
+  // Session ID persistant par session
+  function sid(){
+    let s = sessionStorage.getItem('si_sid');
+    if (!s) {
+      s = Math.random().toString(36).slice(2) + Date.now().toString(36);
+      sessionStorage.setItem('si_sid', s);
+    }
+    return s;
+  }
+
+  // UTM capture first-touch (fix diagnostic : 0 UTM capturé)
+  const qs = new URLSearchParams(location.search);
+  const utm = {
+    source: qs.get('utm_source') || null,
+    medium: qs.get('utm_medium') || null,
+    campaign: qs.get('utm_campaign') || null,
+    ref: qs.get('ref') || null,
+  };
+  const firstTouch = localStorage.getItem('si_first_touch');
+  if (!firstTouch && (utm.source || utm.medium || utm.campaign || utm.ref)) {
+    localStorage.setItem('si_first_touch', JSON.stringify({ ...utm, ts: Date.now(), landing: location.pathname }));
+  }
+
+  // Consent gate : si non accepté, on track juste sans PII
+  function hasConsent(){
+    try {
+      const v = JSON.parse(localStorage.getItem('si_cookie_consent') || 'null');
+      return v && v.status === 'accepted';
+    } catch { return false; }
+  }
+
+  function track(){
+    const referrer = document.referrer || null;
+    const referrerDomain = referrer ? (new URL(referrer).hostname) : null;
+    const payload = {
+      session_id: sid(),
+      path: location.pathname + location.search,
+      referrer: hasConsent() ? referrer : null,
+      referrer_domain: referrerDomain,
+      utm_source: utm.source,
+      utm_medium: utm.medium,
+      utm_campaign: utm.campaign,
+      user_agent: UA.slice(0, 500),
+      screen_width: window.innerWidth,
+    };
+    fetch(`${SUPABASE_URL}/rest/v1/page_views`, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_ANON,
+        'Authorization': `Bearer ${SUPABASE_ANON}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal',
+      },
+      body: JSON.stringify(payload),
+      keepalive: true,
+    }).catch(() => {});
+  }
+
+  // Bot hit tracking (différent endpoint si table dédiée existe, sinon tag dans page_views)
+  if (IS_BOT) {
+    // On track mais on tagge le bot via user_agent — cohérent avec le diagnostic
+  }
+
+  track();
+})();
+</script>

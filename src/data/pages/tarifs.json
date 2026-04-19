@@ -1,0 +1,13 @@
+{
+  "id": 717160939845,
+  "title": "Tarifs",
+  "shop_id": 103881900357,
+  "handle": "tarifs",
+  "body_html": "<p>Page gérée par le template custom ScoreImmo Tarifs.</p>",
+  "author": "Shopify API",
+  "created_at": "2026-02-23T22:08:31+01:00",
+  "updated_at": "2026-02-24T18:27:53+01:00",
+  "published_at": "2026-02-23T22:08:31+01:00",
+  "template_suffix": "tarifs",
+  "admin_graphql_api_id": "gid://shopify/Page/717160939845"
+}

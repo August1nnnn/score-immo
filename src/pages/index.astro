@@ -1,0 +1,131 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/sections/Hero.astro';
+import DemoMockup from '@/components/sections/DemoMockup.astro';
+import Features from '@/components/sections/Features.astro';
+import Steps from '@/components/sections/Steps.astro';
+import BehindScenes from '@/components/sections/BehindScenes.astro';
+import Score from '@/components/sections/Score.astro';
+import Stats from '@/components/sections/Stats.astro';
+import Sources from '@/components/sections/Sources.astro';
+import Problem from '@/components/sections/Problem.astro';
+import Blog from '@/components/sections/Blog.astro';
+import Outils from '@/components/sections/Outils.astro';
+import CTA from '@/components/sections/CTA.astro';
+
+const title = "ScoreImmo - Analysez une annonce immobilière en 30 secondes";
+const description = "5 heures d'analyse immobilière en 30 secondes. Collez le lien d'une annonce, découvrez si c'est une bonne affaire. Prix, DPE, risques, quartier : le rapport le plus complet.";
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://score-immo.fr/#organization",
+        "name": "ScoreImmo",
+        "url": "https://score-immo.fr",
+        "description": "ScoreImmo est le premier outil d'analyse immobilière indépendant en France. Collez le lien d'une annonce, obtenez un diagnostic complet en 30 secondes : prix du marché, DPE, risques, quartier, rentabilité.",
+        "foundingDate": "2025",
+        "areaServed": { "@type": "Country", "name": "France" },
+        "knowsAbout": [
+          "Immobilier résidentiel",
+          "Analyse de marché immobilier",
+          "DPE - Diagnostic de Performance Énergétique",
+          "Risques naturels (Géorisques)",
+          "Prix immobilier au m²",
+          "Investissement locatif",
+          "Données DVF",
+          "Urbanisme et PLU"
+        ],
+        "slogan": "5 heures d'analyse immobilière en 30 secondes",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "email": "contact@score-immo.fr",
+          "availableLanguage": "French"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://score-immo.fr/#website",
+        "url": "https://score-immo.fr",
+        "name": "ScoreImmo",
+        "description": "Analyse n'importe quelle annonce immobilière en 30 secondes.",
+        "publisher": { "@id": "https://score-immo.fr/#organization" },
+        "inLanguage": "fr-FR",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://app.score-immo.fr/app?url={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://score-immo.fr/#application",
+        "name": "ScoreImmo",
+        "url": "https://app.score-immo.fr/app",
+        "applicationCategory": "FinanceApplication",
+        "applicationSubCategory": "Real Estate Analysis Tool",
+        "operatingSystem": "Web",
+        "browserRequirements": "Requires JavaScript",
+        "description": "Outil d'analyse immobilière automatique. Collez le lien d'une annonce et obtenez un diagnostic complet.",
+        "offers": [
+          { "@type": "Offer", "name": "Gratuit", "price": "0", "priceCurrency": "EUR", "description": "1 analyse offerte" },
+          { "@type": "Offer", "name": "Recherche", "price": "29", "priceCurrency": "EUR", "description": "60 analyses/mois" },
+          { "@type": "Offer", "name": "Premium", "price": "79", "priceCurrency": "EUR", "description": "Illimité" }
+        ],
+        "creator": { "@id": "https://score-immo.fr/#organization" },
+        "inLanguage": "fr-FR"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "D'où viennent les données de ScoreImmo ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "ScoreImmo croise automatiquement 9 sources de données publiques officielles : DVF (transactions réelles), ADEME (DPE), INSEE, Géorisques, Cadastre, PLU, OpenStreetMap, données locales et actualités." }
+      },
+      {
+        "@type": "Question",
+        "name": "ScoreImmo est-il un conseil en investissement ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Non. ScoreImmo est un outil d'aide à la décision basé sur des données publiques. Il fournit des informations factuelles et un score indicatif. Il ne constitue pas un conseil en investissement au sens réglementaire." }
+      },
+      {
+        "@type": "Question",
+        "name": "Quelles annonces puis-je analyser ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "ScoreImmo analyse les annonces de tous les grands portails immobiliers français : Leboncoin, SeLoger, Bien'ici, PAP, Logic-Immo, et d'autres. Collez simplement le lien de l'annonce." }
+      },
+      {
+        "@type": "Question",
+        "name": "Que débloque l'abonnement ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "L'abonnement débloque les sections complètes du rapport (rendement locatif, coût d'acquisition, historique) et augmente le nombre d'analyses mensuelles. 1€ le premier mois pour tester, sans engagement." }
+      },
+      {
+        "@type": "Question",
+        "name": "Mes données sont-elles protégées ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Oui. ScoreImmo ne conserve que les données nécessaires au fonctionnement du service. Aucune donnée personnelle n'est revendue à des tiers. Le service est hébergé en Europe et conforme au RGPD." }
+      }
+    ]
+  }
+];
+---
+<BaseLayout {title} {description} {jsonLd}>
+  <div id="ScoreImmoHome">
+    <Hero />
+    <DemoMockup />
+    <Features />
+    <Steps />
+    <BehindScenes />
+    <Score />
+    <Stats />
+    <Sources />
+    <Problem />
+    <Blog />
+    <Outils />
+    <CTA />
+  </div>
+</BaseLayout>

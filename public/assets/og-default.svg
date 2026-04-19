@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#EEF0F7"/>
+      <stop offset="0.5" stop-color="#E6F0F7"/>
+      <stop offset="1" stop-color="#F0E6F6"/>
+    </linearGradient>
+    <linearGradient id="logo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#1E3A5F"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="80" y="80" width="140" height="140" rx="28" fill="url(#logo)"/>
+  <text x="150" y="172" text-anchor="middle" font-family="DM Sans,Inter,sans-serif" font-weight="800" font-size="64" fill="#FFFFFF" letter-spacing="-2">SI</text>
+  <circle cx="200" cy="100" r="8" fill="#3B82F6"/>
+  <text x="80" y="320" font-family="DM Sans,Inter,sans-serif" font-weight="700" font-size="72" fill="#0F172A" letter-spacing="-2">ScoreImmo</text>
+  <text x="80" y="400" font-family="Inter,sans-serif" font-weight="500" font-size="36" fill="#64748B">Le rapport d'aide à la décision immobilière</text>
+  <text x="80" y="450" font-family="Inter,sans-serif" font-weight="500" font-size="36" fill="#64748B">le plus complet de France</text>
+  <text x="80" y="540" font-family="Inter,sans-serif" font-weight="600" font-size="28" fill="#3B82F6">230+ données · 9 sources officielles · 30 secondes</text>
+</svg>
