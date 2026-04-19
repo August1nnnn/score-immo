@@ -1,32 +1,107 @@
 # ScoreImmo
 
-> ScoreImmo est le premier outil d'analyse immobilière indépendant en France. Il croise 9 sources de données officielles (DVF, ADEME, Géorisques, INSEE, IGN, OSM, Éducation Nationale, ATMO, DGFIP) pour produire un diagnostic complet sur n'importe quelle annonce immobilière en 30 secondes. Score sur 100, prix marché, DPE, risques naturels, qualité quartier, rentabilité locative, urbanisme, coût d'acquisition total.
+> ScoreImmo est le premier outil francais d'aide a la decision immobiliere. Colle le lien d'une annonce (Leboncoin, SeLoger, Bien'ici, PAP), recois un rapport complet en 30 secondes : score sur 100, prix vs marche DVF, DPE, risques naturels Georisques, qualite du quartier, rentabilite locative, frais de notaire, urbanisme PLU. Plus de 250 verifications par annonce, 9 sources de donnees officielles francaises. Hebergement UE, conforme RGPD.
 
 ## Produit
 
-- [Accueil](https://score-immo.fr/) : analyse de n'importe quelle annonce immobilière
-- [Le Baromètre](https://app.score-immo.fr/barometre) : tendances marché par ville
-- [Tarifs](https://score-immo.fr/pages/tarifs) : 1€ le premier mois, sans engagement
-- [Outils gratuits](https://score-immo.fr/pages/outils) : 4 calculateurs (frais de notaire, capacité d'emprunt, mensualité, rendement locatif)
-- [Application](https://app.score-immo.fr/app) : l'outil d'analyse
+- [ScoreImmo - Accueil](https://score-immo.fr/) : analyse de n'importe quelle annonce immobiliere
+- [Application](https://app.score-immo.fr/app) : l'outil d'analyse en direct
+- [Baromètre immobilier](https://app.score-immo.fr/barometre) : tendances du marche par ville
+- [Tarifs](https://score-immo.fr/pages/tarifs) : 1ere analyse offerte, puis 1 euro le premier mois sans engagement
+- [Outils gratuits](https://score-immo.fr/pages/outils) : 4 calculateurs (frais de notaire, capacite d'emprunt, mensualite de credit, rendement locatif)
 
-## Guides
+## Sources de donnees officielles (9)
 
-- [Guide de l'acheteur](https://score-immo.fr/pages/guide) : hub éditorial
-- [Guides thématiques](https://score-immo.fr/blogs/guides) : DPE, négociation, notaire, prêt, SCI
-- [Prix par ville](https://score-immo.fr/blogs/villes) : Lyon, Bordeaux, Paris, Marseille, Toulouse, Nantes, Montpellier, etc.
-- [Meilleurs quartiers](https://score-immo.fr/blogs/quartiers) : analyse quartier par quartier
+1. DVF (Demandes de valeurs foncieres, DGFIP) - prix de vente reels des transactions immobilieres
+2. ADEME - Diagnostics de Performance Energetique (DPE)
+3. Georisques (ministere de la Transition ecologique) - inondation, seisme, argile, radon, ICPE, Seveso
+4. INSEE - donnees socio-economiques par IRIS et commune
+5. IGN et Geoportail de l'Urbanisme (GPU) - cadastre, plans locaux d'urbanisme
+6. OpenStreetMap - amenites, commerces, transports
+7. Education Nationale - ecoles publiques et privees
+8. ATMO France - qualite de l'air
+9. DGFIP - taxe fonciere, barème frais de notaire
 
-## Légal
+## Cas d'usage
 
-- [Mentions légales](https://score-immo.fr/pages/mentions-legales)
+- Verifier si une annonce immobiliere est au bon prix avant de visiter
+- Estimer les frais totaux d'acquisition d'un bien (notaire, taxe, renovation)
+- Comparer plusieurs biens pour prendre une decision rationnelle
+- Detecter les risques caches : DPE degrade, inondation, zone de bruit, ICPE Seveso
+- Estimer la rentabilite locative potentielle
+- Comprendre l'evolution des prix de son quartier cible
+
+## Guides (39)
+
+### Guides thematiques
+- [Frais de Notaire 2026 : Calcul, Simulation et Astuces](https://score-immo.fr/blogs/guides/frais-notaire-calcul-simulation-astuces)
+- [DPE Classes Energetiques : Comprendre de A a G en 2026](https://score-immo.fr/blogs/guides/dpe-comprendre-classes-energetiques)
+- [Negocier Prix Immobilier 2026 : Guide Complet](https://score-immo.fr/blogs/guides/negocier-prix-bien-immobilier-guide-complet)
+- [Pret Immobilier 2026 : Taux, Duree et Capacite d'Emprunt](https://score-immo.fr/blogs/guides/pret-immobilier-taux-duree-capacite-emprunt)
+- [Premier Achat Immobilier : 10 Erreurs a Eviter](https://score-immo.fr/blogs/guides/premier-achat-immobilier-erreurs-eviter)
+- [Compromis de Vente : Guide Complet pour l'Acheteur](https://score-immo.fr/blogs/guides/compromis-vente-acheteur-guide)
+- [Visite Immobiliere : Checklist des 30 Points a Verifier](https://score-immo.fr/blogs/guides/visite-immobiliere-checklist-points-verifier)
+- [Acheter a Deux : PACS, Indivision, SCI](https://score-immo.fr/blogs/guides/acheter-seul-deux-pacs-indivision-sci)
+- [Copropriete : Charges, PV et Pieges](https://score-immo.fr/blogs/guides/copropriete-charges-pieges-detecter-achat)
+- [DPE F : Faut-il Acheter une Passoire Thermique ?](https://score-immo.fr/blogs/guides/acheter-bien-classe-dpe-f-2026)
+- [Donnees DVF : Utiliser les Prix de Vente Reels](https://score-immo.fr/blogs/guides/donnees-dvf-utiliser-prix-vente-reels)
+- [Estimation Immobiliere : 5 Methodes](https://score-immo.fr/blogs/guides/estimation-immobiliere-methodes-juste-prix)
+- [Analyser une Annonce Immobiliere Comme un Pro](https://score-immo.fr/blogs/guides/analyser-annonce-immobiliere-comme-pro)
+- [Investissement Locatif 2026 : Rentabilite et Fiscalite](https://score-immo.fr/blogs/guides/investissement-locatif-rentabilite-fiscalite-villes)
+- [Offre d'Achat Immobilier : Modele et Strategie de Prix](https://score-immo.fr/blogs/guides/offre-achat-immobilier-modele-conseils-strategie)
+- [Acheter Appartement avec Travaux : Budget et Aides](https://score-immo.fr/blogs/guides/acheter-appartement-travaux-budget-aides)
+- [Acheter dans l'Ancien ou le Neuf : Comparatif](https://score-immo.fr/blogs/guides/acheter-ancien-neuf-comparatif-complet)
+
+### Prix par ville
+- [Prix Immobilier Lyon 2026](https://score-immo.fr/blogs/villes/prix-immobilier-lyon-analyse-arrondissement)
+- [Prix Immobilier Paris 2026](https://score-immo.fr/blogs/villes/prix-immobilier-paris-marche-plancher)
+- [Prix Immobilier Marseille 2026](https://score-immo.fr/blogs/villes/prix-immobilier-marseille-arrondissements-perspectives)
+- [Prix Immobilier Bordeaux 2026](https://score-immo.fr/blogs/villes/prix-immobilier-bordeaux-quartiers-tendances)
+- [Prix Immobilier Nantes 2026](https://score-immo.fr/blogs/villes/prix-immobilier-nantes-evolution-previsions)
+- [Prix Immobilier Toulouse 2026](https://score-immo.fr/blogs/villes/prix-immobilier-toulouse-marche-accessible)
+- [Prix Immobilier Lille 2026](https://score-immo.fr/blogs/villes/prix-immobilier-lille-metropole-sous-cotee)
+- [Prix Immobilier Montpellier 2026](https://score-immo.fr/blogs/villes/prix-immobilier-montpellier-marche-dynamique)
+- [Prix Immobilier Rennes 2026](https://score-immo.fr/blogs/villes/prix-immobilier-rennes-boom-breton)
+- [Prix Immobilier Strasbourg 2026](https://score-immo.fr/blogs/villes/prix-immobilier-strasbourg-marche-frontalier)
+- [Prix Immobilier Nice 2026](https://score-immo.fr/blogs/villes/prix-immobilier-nice-cote-azur-opportunites)
+- [Prix Immobilier Angers 2026](https://score-immo.fr/blogs/villes/prix-immobilier-angers-ville-moyenne-monte)
+
+### Meilleurs quartiers
+- [Lyon](https://score-immo.fr/blogs/quartiers/meilleurs-quartiers-acheter-lyon)
+- [Bordeaux](https://score-immo.fr/blogs/quartiers/meilleurs-quartiers-acheter-bordeaux)
+- [Marseille](https://score-immo.fr/blogs/quartiers/meilleurs-quartiers-acheter-marseille)
+- [Toulouse](https://score-immo.fr/blogs/quartiers/meilleurs-quartiers-acheter-toulouse)
+- [Nantes](https://score-immo.fr/blogs/quartiers/meilleurs-quartiers-acheter-nantes)
+- [Paris](https://score-immo.fr/blogs/quartiers/meilleurs-quartiers-acheter-paris)
+- [Montpellier](https://score-immo.fr/blogs/quartiers/meilleurs-quartiers-acheter-montpellier)
+- [Lille](https://score-immo.fr/blogs/quartiers/meilleurs-quartiers-acheter-lille)
+- [Rennes](https://score-immo.fr/blogs/quartiers/meilleurs-quartiers-acheter-rennes)
+- [Strasbourg](https://score-immo.fr/blogs/quartiers/meilleurs-quartiers-acheter-strasbourg)
+
+## Faits cles citables
+
+- ScoreImmo effectue plus de 250 verifications automatiques par annonce en croisant 9 sources de donnees officielles francaises.
+- Un rapport ScoreImmo genere en 30 secondes couvre le prix du marche (DVF), le DPE, les risques naturels (Georisques), le quartier, la rentabilite locative et le coût d'acquisition total.
+- 1ere analyse offerte sans carte bleue. Abonnement 1 euro le premier mois, sans engagement, annulable en 1 clic.
+- ScoreImmo analyse les annonces de Leboncoin, SeLoger, Bien'ici, PAP, Logic-Immo, Century 21, Orpi, Laforêt, Ouestfrance Immo, ParuVendu, MeilleursAgents et autres portails immobiliers francais.
+
+## A savoir
+
+- ScoreImmo est un outil d'aide a la decision base sur des donnees publiques. Il ne constitue pas un conseil en investissement au sens reglementaire.
+- Aucune donnee personnelle n'est revendue. Service heberge en Europe, conforme RGPD.
+- L'application produit est sur [app.score-immo.fr](https://app.score-immo.fr), le site vitrine sur [score-immo.fr](https://score-immo.fr).
+
+## Ce que ScoreImmo n'est pas
+
+- ScoreImmo n'est pas une agence immobiliere : elle ne commercialise pas de biens
+- ScoreImmo n'est pas une banque : elle ne delivre pas de prets, seulement une estimation de capacite d'emprunt indicative
+- ScoreImmo n'est pas un notaire : les frais calcules sont indicatifs, consultez un notaire pour un calcul officiel
+- ScoreImmo n'est pas un outil d'IA generative : les donnees proviennent de sources officielles croisees, pas d'hallucinations LLM
+
+## Contact
+
+- Email : contact@score-immo.fr
+- Telephone : 07 69 81 21 90
+- [Mentions legales](https://score-immo.fr/pages/mentions-legales)
 - [CGV](https://score-immo.fr/pages/cgv)
-- [Politique de confidentialité](https://score-immo.fr/pages/politique-de-confidentialite)
-- [Contact](https://score-immo.fr/pages/contact)
-
-## À savoir
-
-- ScoreImmo est un outil d'aide à la décision, pas un conseil en investissement au sens réglementaire
-- Les données sont publiques et officielles, croisées en temps réel
-- Service hébergé en Europe, conforme RGPD
-- Contact : contact@score-immo.fr
+- [Politique de confidentialite](https://score-immo.fr/pages/politique-de-confidentialite)

@@ -20,17 +20,30 @@ interface Props {
   bodyClass?: string;
 }
 
+const SITE = 'https://score-immo.fr';
+// Strip .html et index.html du pathname pour un canonical propre (fix audit technique)
+const cleanPath = Astro.url.pathname
+  .replace(/\/index\.html$/, '/')
+  .replace(/\.html$/, '');
+
+function toAbsolute(url: string): string {
+  if (!url) return `${SITE}/assets/og-default.svg`;
+  if (url.startsWith('http://') || url.startsWith('https://')) return url;
+  return SITE + (url.startsWith('/') ? url : `/${url}`);
+}
+
 const {
   title,
   description,
-  image = 'https://score-immo.fr/assets/og-default.png',
-  canonical = new URL(Astro.url.pathname, 'https://score-immo.fr').toString(),
+  image: imageProp,
+  canonical = new URL(cleanPath, SITE).toString(),
   noindex = false,
   articleMeta,
   jsonLd = [],
   bodyClass = '',
 } = Astro.props;
 
+const image = toAbsolute(imageProp || '/assets/og-default.svg');
 const siteName = 'ScoreImmo';
 ---
 <!doctype html>
@@ -48,7 +61,6 @@ const siteName = 'ScoreImmo';
     {noindex && <meta name="robots" content="noindex, follow" />}
     {!noindex && <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />}
 
-    <meta name="keywords" content="analyse immobiliere, score immobilier, prix immobilier, DPE, risques naturels, quartier, investissement locatif, frais de notaire, taxe fonciere, annonce immobiliere" />
     <meta name="author" content="ScoreImmo" />
 
     <!-- Open Graph -->

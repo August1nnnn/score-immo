@@ -1,0 +1,21 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import LandingEfficity from '@/components/sections/LandingEfficity.astro';
+
+const title = "ScoreImmo pour agents Efficity - Offre -50% à vie";
+const description = "ScoreImmo dédiée aux mandataires Efficity. Analysez chaque bien en 30 secondes avec 230+ données. Offre -50% à vie : Recherche 14,50€/mois, Premium 39,50€/mois.";
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://score-immo.fr/" },
+      { "@type": "ListItem", "position": 2, "name": "Efficity", "item": "https://score-immo.fr/pages/efficity" }
+    ]
+  }
+];
+---
+<BaseLayout {title} {description} {jsonLd}>
+  <LandingEfficity />
+</BaseLayout>
