@@ -5,9 +5,9 @@ import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   site: 'https://score-immo.fr',
-  trailingSlash: 'ignore',
+  trailingSlash: 'never',
   build: {
-    format: 'directory',
+    format: 'file',
   },
   integrations: [
     mdx(),
