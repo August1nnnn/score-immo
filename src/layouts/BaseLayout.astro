@@ -63,15 +63,10 @@ const siteName = 'ScoreImmo';
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:wght@600;700;800&display=swap"
-      media="print"
-      onload="this.media='all'"
     />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:wght@600;700;800&display=swap"
-      />
-    </noscript>
+    {articleMeta && imageProp && (
+      <link rel="preload" as="image" href={toAbsolute(imageProp)} fetchpriority="high" />
+    )}
 
     <title>{title}</title>
     <meta name="description" content={description} />
