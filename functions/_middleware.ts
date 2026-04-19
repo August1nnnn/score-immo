@@ -2,8 +2,15 @@
 export const onRequest: PagesFunction = async (context) => {
   const url = new URL(context.request.url);
 
-  // 301 www.score-immo.fr -> score-immo.fr
-  if (url.hostname === 'www.score-immo.fr') {
+  // 301 canonical host : all variants -> score-immo.fr
+  // (www.score-immo.fr, score-immo.com, www.score-immo.com -> score-immo.fr)
+  // score-immo.com est reserve pour version EN future, en attendant on 301 vers .fr
+  const redirectHosts = new Set([
+    'www.score-immo.fr',
+    'score-immo.com',
+    'www.score-immo.com',
+  ]);
+  if (redirectHosts.has(url.hostname)) {
     const target = new URL(context.request.url);
     target.hostname = 'score-immo.fr';
     return Response.redirect(target.toString(), 301);

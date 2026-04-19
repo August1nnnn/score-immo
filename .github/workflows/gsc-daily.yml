@@ -1,0 +1,26 @@
+name: GSC daily check
+
+on:
+  schedule:
+    - cron: '45 8 * * *'  # every day 08:45 UTC (10h45 Paris CEST)
+  workflow_dispatch:
+
+concurrency:
+  group: gsc-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: self-hosted
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run GSC check
+        env:
+          GSC_CLIENT_ID: ${{ secrets.GSC_CLIENT_ID }}
+          GSC_CLIENT_SECRET: ${{ secrets.GSC_CLIENT_SECRET }}
+          GSC_REFRESH_TOKEN: ${{ secrets.GSC_REFRESH_TOKEN }}
+        run: python3 blog-auto/gsc_daily_check.py

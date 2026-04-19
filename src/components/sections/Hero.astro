@@ -1,50 +1,58 @@
 ---
+// Hero optimise CRO (audit SXO): parle au primo-accedant, champ URL interactif pour capturer l'intent
 ---
-<!-- ScoreImmo Hero Section - Rotating text animation -->
-<section class="si-section" style="padding-top:2rem;padding-bottom:1rem;" aria-label="ScoreImmo : analysez une annonce immobili&egrave;re en quelques secondes">
+<section class="si-section" style="padding-top:2rem;padding-bottom:1rem;" aria-label="ScoreImmo : verifie le prix d'une annonce avant de faire une offre">
   <div class="si-container" style="position:relative;">
-    <div style="max-width:48rem;margin:0 auto;text-align:center;">
-      <!-- Badge -->
+    <div style="max-width:52rem;margin:0 auto;text-align:center;">
+
+      <!-- Badge trust -->
       <div class="si-reveal" style="margin-bottom:1.5rem;">
-        <span class="si-badge">Donn&eacute;es publiques &middot; 100% ind&eacute;pendant &middot; Non contractuel</span>
+        <span class="si-badge">Données publiques · 9 sources officielles · 100% indépendant</span>
       </div>
 
-      <!-- Rotating Hero Title -->
-      <h1 class="si-hero-title si-reveal si-reveal-delay-1">
-        Analysez une annonce
-        <span class="si-rotating-wrapper">
-          <span class="si-rotating-words" id="si-rotating-words">
-            <span class="si-rotating-word active">d'appartement</span>
-            <span class="si-rotating-word">de maison</span>
-            <span class="si-rotating-word">de terrain</span>
-            <span class="si-rotating-word">de duplex</span>
-            <span class="si-rotating-word">de loft</span>
-            <span class="si-rotating-word">de ch&acirc;teau</span>
-            <span class="si-rotating-word">d'immeuble</span>
-            <span class="si-rotating-word">de domaine</span>
-            <span class="si-rotating-word">de parking</span>
-            <span class="si-rotating-word">de studio</span>
-            <span class="si-rotating-word">de villa</span>
-            <span class="si-rotating-word">de ferme</span>
-            <span class="si-rotating-word">d'entrep&ocirc;t</span>
-          </span>
-          <span class="si-rotating-sizer" aria-hidden="true">d'appartement</span>
-        </span>
-        en quelques secondes
+      <!-- H1 tension primo-accedant -->
+      <h1 class="si-hero-title si-reveal si-reveal-delay-1" style="font-size:clamp(2rem, 5.5vw, 3.25rem);line-height:1.1;">
+        Ton annonce vaut-elle vraiment ce prix ?
       </h1>
 
-      <!-- Subtitle - desktop (full) -->
+      <!-- Subtitle : moment de decision + benefit clair -->
       <p class="si-hero-subtitle si-hero-sub-desktop si-reveal si-reveal-delay-2">
-        5 heures d'analyse immobili&egrave;re en 30 secondes. Collez le lien d'une annonce, d&eacute;couvrez si c'est une bonne affaire&hellip; ou un futur regret.
+        Colle le lien d'une annonce, reçois un diagnostic complet en 30 secondes avant de faire une offre. Prix marché, DPE, risques, rentabilité : 230+ données croisées depuis 9 sources officielles.
       </p>
-      <!-- Subtitle - mobile (short, 2 lines) -->
       <p class="si-hero-subtitle si-hero-sub-mobile si-reveal si-reveal-delay-2">
-        Collez un lien d'annonce.<br>
-        D&eacute;couvrez si c'est une bonne affaire.
+        Colle une annonce SeLoger, LBC, PAP.<br>
+        Diagnostic complet en 30 secondes.
       </p>
 
-      <!-- Social proof -->
-      <div class="si-hero-social-proof si-reveal si-reveal-delay-2">
+      <!-- Champ URL interactif (capture intent immediat) -->
+      <form class="si-url-form si-reveal si-reveal-delay-3" id="si-url-form" action="https://app.score-immo.fr/app" method="get" novalidate>
+        <div class="si-url-input-wrap">
+          <svg class="si-url-icon" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/>
+          </svg>
+          <input
+            type="url"
+            name="url"
+            id="si-url-input"
+            class="si-url-input"
+            placeholder="Colle l'URL de l'annonce (SeLoger, LeBonCoin, Bien'ici...)"
+            autocomplete="off"
+            spellcheck="false"
+            inputmode="url"
+            aria-label="URL de l'annonce a analyser"
+          />
+          <button type="submit" class="si-btn si-btn-primary si-url-submit">
+            <span class="si-hide-mobile">Analyser</span>
+            <svg class="si-show-mobile" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
+        <p class="si-url-hint" id="si-url-hint">Ou <a href="https://app.score-immo.fr/app">ouvre l'outil directement</a> pour utiliser un exemple.</p>
+      </form>
+
+      <!-- Social proof dynamique -->
+      <div class="si-hero-social-proof si-reveal si-reveal-delay-4" style="margin-top:1.25rem;">
         <div class="si-proof-avatars">
           <span class="si-avatar" style="background:#4F7DF9;"></span>
           <span class="si-avatar" style="background:#F97066;"></span>
@@ -52,107 +60,67 @@
           <span class="si-avatar" style="background:#F9C846;"></span>
           <span class="si-avatar" style="background:#9B6DF9;"></span>
         </div>
-        <span class="si-proof-text"><strong class="si-proof-count">0</strong> annonces analys&eacute;es ce mois</span>
+        <span class="si-proof-text"><strong class="si-proof-count">0</strong> annonces analysées ce mois</span>
       </div>
 
-      <!-- CTA -->
-      <div class="si-reveal si-reveal-delay-3" style="margin-top:2.5rem;text-align:center;">
-        <a href="https://app.score-immo.fr/app" class="si-btn si-btn-primary si-btn-primary-lg si-cta-glow" style="display:flex;justify-content:center;align-items:center;text-align:center;max-width:22rem;margin:0 auto;">
-          Analyser une annonce
-        </a>
-      </div>
-
-      <!-- Sub-CTA text (2 lines) -->
-      <p class="si-hero-reassurance si-reveal si-reveal-delay-4" style="margin-top:1rem;font-size:0.875rem;color:var(--si-muted-foreground);">
-        Gratuit, sans engagement.<br>
-        1ère analyse offerte.
+      <!-- Reassurance sous-CTA -->
+      <p class="si-hero-reassurance si-reveal si-reveal-delay-4" style="margin-top:0.875rem;font-size:0.875rem;color:var(--si-muted-foreground);">
+        1ère analyse offerte · Sans carte bleue · Résultat en 30 secondes
       </p>
 
-      <!-- Portal logos marquee -->
+      <!-- Portals marquee -->
       <div class="si-portals-marquee si-reveal si-reveal-delay-4" style="margin-top:2rem;">
-        <p style="font-size:0.875rem;color:#6b7280;margin-bottom:0.5rem;">Copiez une annonce depuis tes sites pr&eacute;f&eacute;r&eacute;s</p>
+        <p style="font-size:0.875rem;color:#6b7280;margin-bottom:0.5rem;">Compatible avec toutes les annonces des grands portails</p>
         <div class="si-portals-track-wrap">
           <div class="si-portals-track">
-            <a href="https://www.leboncoin.fr/c/ventes_immobilieres" target="_blank" rel="noopener" title="Rechercher sur Leboncoin" aria-label="Leboncoin" class="si-portal-logo" style="color:#F56B2A;">Leboncoin</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.seloger.com" target="_blank" rel="noopener" title="Rechercher sur SeLoger" aria-label="SeLoger" class="si-portal-logo" style="color:#E6007E;">SeLoger</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.bienici.com" target="_blank" rel="noopener" title="Rechercher sur Bien'ici" aria-label="Bien'ici" class="si-portal-logo" style="color:#005EB8;">Bien'ici</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.pap.fr" target="_blank" rel="noopener" title="Rechercher sur PAP" aria-label="PAP" class="si-portal-logo" style="color:#00A651;">PAP</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.logic-immo.com" target="_blank" rel="noopener" title="Rechercher sur Logic-Immo" aria-label="Logic-Immo" class="si-portal-logo" style="color:#0072BC;">Logic-Immo</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.century21.fr" target="_blank" rel="noopener" title="Rechercher sur Century 21" aria-label="Century 21" class="si-portal-logo" style="color:#B8860B;">Century 21</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.orpi.com" target="_blank" rel="noopener" title="Rechercher sur Orpi" aria-label="Orpi" class="si-portal-logo" style="color:#003DA5;">Orpi</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.laforet.com" target="_blank" rel="noopener" title="Rechercher sur Lafor&ecirc;t" aria-label="Lafor&ecirc;t" class="si-portal-logo" style="color:#FFD700;">Lafor&ecirc;t</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.ouestfrance-immo.com" target="_blank" rel="noopener" title="Rechercher sur Ouestfrance-Immo" aria-label="Ouestfrance-Immo" class="si-portal-logo" style="color:#D4213D;">Ouestfrance-Immo</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.paruvendu.fr" target="_blank" rel="noopener" title="Rechercher sur ParuVendu" aria-label="ParuVendu" class="si-portal-logo" style="color:#FF6600;">ParuVendu</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.superimmo.com" target="_blank" rel="noopener" title="Rechercher sur Superimmo" aria-label="Superimmo" class="si-portal-logo" style="color:#1E88E5;">Superimmo</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.meilleursagents.com" target="_blank" rel="noopener" title="Rechercher sur MeilleursAgents" aria-label="MeilleursAgents" class="si-portal-logo" style="color:#6A1B9A;">MeilleursAgents</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.green-acres.fr" target="_blank" rel="noopener" title="Rechercher sur Green-Acres" aria-label="Green-Acres" class="si-portal-logo" style="color:#4CAF50;">Green-Acres</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.bellesdemeures.com" target="_blank" rel="noopener" title="Rechercher sur Belles Demeures" aria-label="Belles Demeures" class="si-portal-logo" style="color:#1A1A1A;">Belles Demeures</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.barnes-international.com" target="_blank" rel="noopener" title="Rechercher sur Barnes" aria-label="Barnes" class="si-portal-logo" style="color:#1A1A1A;">Barnes</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.guy-hoquet.com" target="_blank" rel="noopener" title="Rechercher sur Guy Hoquet" aria-label="Guy Hoquet" class="si-portal-logo" style="color:#E53935;">Guy Hoquet</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.stephaneplazaimmobilier.com" target="_blank" rel="noopener" title="Rechercher sur St&eacute;phane Plaza" aria-label="St&eacute;phane Plaza" class="si-portal-logo" style="color:#C62828;">St&eacute;phane Plaza</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://immobilier.lefigaro.fr" target="_blank" rel="noopener" title="Rechercher sur Figaro Immo" aria-label="Figaro Immo" class="si-portal-logo" style="color:#0D47A1;">Figaro Immo</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.immoneuf.com" target="_blank" rel="noopener" title="Rechercher sur Immoneuf" aria-label="Immoneuf" class="si-portal-logo" style="color:#00838F;">Immoneuf</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.zefir.fr" target="_blank" rel="noopener" title="Rechercher sur Zefir" aria-label="Zefir" class="si-portal-logo" style="color:#7C4DFF;">Zefir</a>
-            <span class="si-portal-dot">&middot;</span>
+            <a href="https://www.leboncoin.fr/c/ventes_immobilieres" target="_blank" rel="noopener" aria-label="Leboncoin" class="si-portal-logo" style="color:#F56B2A;">Leboncoin</a>
+            <span class="si-portal-dot">·</span>
+            <a href="https://www.seloger.com" target="_blank" rel="noopener" aria-label="SeLoger" class="si-portal-logo" style="color:#E6007E;">SeLoger</a>
+            <span class="si-portal-dot">·</span>
+            <a href="https://www.bienici.com" target="_blank" rel="noopener" aria-label="Bien'ici" class="si-portal-logo" style="color:#005EB8;">Bien'ici</a>
+            <span class="si-portal-dot">·</span>
+            <a href="https://www.pap.fr" target="_blank" rel="noopener" aria-label="PAP" class="si-portal-logo" style="color:#00A651;">PAP</a>
+            <span class="si-portal-dot">·</span>
+            <a href="https://www.logic-immo.com" target="_blank" rel="noopener" aria-label="Logic-Immo" class="si-portal-logo" style="color:#0072BC;">Logic-Immo</a>
+            <span class="si-portal-dot">·</span>
+            <a href="https://www.century21.fr" target="_blank" rel="noopener" aria-label="Century 21" class="si-portal-logo" style="color:#B8860B;">Century 21</a>
+            <span class="si-portal-dot">·</span>
+            <a href="https://www.orpi.com" target="_blank" rel="noopener" aria-label="Orpi" class="si-portal-logo" style="color:#003DA5;">Orpi</a>
+            <span class="si-portal-dot">·</span>
+            <a href="https://www.laforet.com" target="_blank" rel="noopener" aria-label="Laforêt" class="si-portal-logo" style="color:#FFD700;">Laforêt</a>
+            <span class="si-portal-dot">·</span>
+            <a href="https://www.ouestfrance-immo.com" target="_blank" rel="noopener" aria-label="Ouestfrance-Immo" class="si-portal-logo" style="color:#D4213D;">Ouestfrance-Immo</a>
+            <span class="si-portal-dot">·</span>
+            <a href="https://www.paruvendu.fr" target="_blank" rel="noopener" aria-label="ParuVendu" class="si-portal-logo" style="color:#FF6600;">ParuVendu</a>
+            <span class="si-portal-dot">·</span>
+            <a href="https://www.meilleursagents.com" target="_blank" rel="noopener" aria-label="MeilleursAgents" class="si-portal-logo" style="color:#6A1B9A;">MeilleursAgents</a>
+            <span class="si-portal-dot">·</span>
+            <a href="https://immobilier.lefigaro.fr" target="_blank" rel="noopener" aria-label="Figaro Immo" class="si-portal-logo" style="color:#0D47A1;">Figaro Immo</a>
+            <span class="si-portal-dot">·</span>
             <!-- Duplicate for seamless loop -->
-            <a href="https://www.leboncoin.fr/c/ventes_immobilieres" target="_blank" rel="noopener" title="Rechercher sur Leboncoin" aria-label="Leboncoin" class="si-portal-logo" style="color:#F56B2A;">Leboncoin</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.seloger.com" target="_blank" rel="noopener" title="Rechercher sur SeLoger" aria-label="SeLoger" class="si-portal-logo" style="color:#E6007E;">SeLoger</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.bienici.com" target="_blank" rel="noopener" title="Rechercher sur Bien'ici" aria-label="Bien'ici" class="si-portal-logo" style="color:#005EB8;">Bien'ici</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.pap.fr" target="_blank" rel="noopener" title="Rechercher sur PAP" aria-label="PAP" class="si-portal-logo" style="color:#00A651;">PAP</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.logic-immo.com" target="_blank" rel="noopener" title="Rechercher sur Logic-Immo" aria-label="Logic-Immo" class="si-portal-logo" style="color:#0072BC;">Logic-Immo</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.century21.fr" target="_blank" rel="noopener" title="Rechercher sur Century 21" aria-label="Century 21" class="si-portal-logo" style="color:#B8860B;">Century 21</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.orpi.com" target="_blank" rel="noopener" title="Rechercher sur Orpi" aria-label="Orpi" class="si-portal-logo" style="color:#003DA5;">Orpi</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.laforet.com" target="_blank" rel="noopener" title="Rechercher sur Lafor&ecirc;t" aria-label="Lafor&ecirc;t" class="si-portal-logo" style="color:#FFD700;">Lafor&ecirc;t</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.ouestfrance-immo.com" target="_blank" rel="noopener" title="Rechercher sur Ouestfrance-Immo" aria-label="Ouestfrance-Immo" class="si-portal-logo" style="color:#D4213D;">Ouestfrance-Immo</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.paruvendu.fr" target="_blank" rel="noopener" title="Rechercher sur ParuVendu" aria-label="ParuVendu" class="si-portal-logo" style="color:#FF6600;">ParuVendu</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.superimmo.com" target="_blank" rel="noopener" title="Rechercher sur Superimmo" aria-label="Superimmo" class="si-portal-logo" style="color:#1E88E5;">Superimmo</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.meilleursagents.com" target="_blank" rel="noopener" title="Rechercher sur MeilleursAgents" aria-label="MeilleursAgents" class="si-portal-logo" style="color:#6A1B9A;">MeilleursAgents</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.green-acres.fr" target="_blank" rel="noopener" title="Rechercher sur Green-Acres" aria-label="Green-Acres" class="si-portal-logo" style="color:#4CAF50;">Green-Acres</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.bellesdemeures.com" target="_blank" rel="noopener" title="Rechercher sur Belles Demeures" aria-label="Belles Demeures" class="si-portal-logo" style="color:#1A1A1A;">Belles Demeures</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.barnes-international.com" target="_blank" rel="noopener" title="Rechercher sur Barnes" aria-label="Barnes" class="si-portal-logo" style="color:#1A1A1A;">Barnes</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.guy-hoquet.com" target="_blank" rel="noopener" title="Rechercher sur Guy Hoquet" aria-label="Guy Hoquet" class="si-portal-logo" style="color:#E53935;">Guy Hoquet</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.stephaneplazaimmobilier.com" target="_blank" rel="noopener" title="Rechercher sur St&eacute;phane Plaza" aria-label="St&eacute;phane Plaza" class="si-portal-logo" style="color:#C62828;">St&eacute;phane Plaza</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://immobilier.lefigaro.fr" target="_blank" rel="noopener" title="Rechercher sur Figaro Immo" aria-label="Figaro Immo" class="si-portal-logo" style="color:#0D47A1;">Figaro Immo</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.immoneuf.com" target="_blank" rel="noopener" title="Rechercher sur Immoneuf" aria-label="Immoneuf" class="si-portal-logo" style="color:#00838F;">Immoneuf</a>
-            <span class="si-portal-dot">&middot;</span>
-            <a href="https://www.zefir.fr" target="_blank" rel="noopener" title="Rechercher sur Zefir" aria-label="Zefir" class="si-portal-logo" style="color:#7C4DFF;">Zefir</a>
+            <a href="https://www.leboncoin.fr/c/ventes_immobilieres" target="_blank" rel="noopener" aria-label="Leboncoin" class="si-portal-logo" style="color:#F56B2A;">Leboncoin</a>
+            <span class="si-portal-dot">·</span>
+            <a href="https://www.seloger.com" target="_blank" rel="noopener" aria-label="SeLoger" class="si-portal-logo" style="color:#E6007E;">SeLoger</a>
+            <span class="si-portal-dot">·</span>
+            <a href="https://www.bienici.com" target="_blank" rel="noopener" aria-label="Bien'ici" class="si-portal-logo" style="color:#005EB8;">Bien'ici</a>
+            <span class="si-portal-dot">·</span>
+            <a href="https://www.pap.fr" target="_blank" rel="noopener" aria-label="PAP" class="si-portal-logo" style="color:#00A651;">PAP</a>
+            <span class="si-portal-dot">·</span>
+            <a href="https://www.logic-immo.com" target="_blank" rel="noopener" aria-label="Logic-Immo" class="si-portal-logo" style="color:#0072BC;">Logic-Immo</a>
+            <span class="si-portal-dot">·</span>
+            <a href="https://www.century21.fr" target="_blank" rel="noopener" aria-label="Century 21" class="si-portal-logo" style="color:#B8860B;">Century 21</a>
+            <span class="si-portal-dot">·</span>
+            <a href="https://www.orpi.com" target="_blank" rel="noopener" aria-label="Orpi" class="si-portal-logo" style="color:#003DA5;">Orpi</a>
+            <span class="si-portal-dot">·</span>
+            <a href="https://www.laforet.com" target="_blank" rel="noopener" aria-label="Laforêt" class="si-portal-logo" style="color:#FFD700;">Laforêt</a>
+            <span class="si-portal-dot">·</span>
+            <a href="https://www.ouestfrance-immo.com" target="_blank" rel="noopener" aria-label="Ouestfrance-Immo" class="si-portal-logo" style="color:#D4213D;">Ouestfrance-Immo</a>
+            <span class="si-portal-dot">·</span>
+            <a href="https://www.paruvendu.fr" target="_blank" rel="noopener" aria-label="ParuVendu" class="si-portal-logo" style="color:#FF6600;">ParuVendu</a>
+            <span class="si-portal-dot">·</span>
+            <a href="https://www.meilleursagents.com" target="_blank" rel="noopener" aria-label="MeilleursAgents" class="si-portal-logo" style="color:#6A1B9A;">MeilleursAgents</a>
+            <span class="si-portal-dot">·</span>
+            <a href="https://immobilier.lefigaro.fr" target="_blank" rel="noopener" aria-label="Figaro Immo" class="si-portal-logo" style="color:#0D47A1;">Figaro Immo</a>
           </div>
         </div>
       </div>
@@ -162,39 +130,143 @@
 
 <script>
 (function(){
-  var el=document.querySelector('.si-proof-count');
-  if(!el) return;
-  var now=new Date();
-  var day=now.getDate();
-  var hour=now.getHours();
-  var daysInMonth=new Date(now.getFullYear(),now.getMonth()+1,0).getDate();
-  var seed=now.getFullYear()*12+now.getMonth();
-  var objectif=3500+(seed*7+13)%700;
-  var progression=((day-1)*24+hour)/(daysInMonth*24);
-  var target=Math.floor(progression*objectif);
-  target+=Math.floor(Math.random()*80-40);
-  if(target<0) target=0;
-  var duration=1500;
-  var start=null;
-  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function fmt(n){return new Intl.NumberFormat('fr-FR').format(Math.floor(n));}
-  if(reduced){el.textContent=fmt(target);return;}
-  el.textContent='0';
-  function step(ts){
-    if(!start) start=ts;
-    var p=Math.min((ts-start)/duration,1);
-    var ease=1-Math.pow(1-p,3);
-    el.textContent=fmt(ease*target);
-    if(p<1) requestAnimationFrame(step);
+  // Compteur dynamique
+  var el = document.querySelector('.si-proof-count');
+  if (el) {
+    var now = new Date();
+    var day = now.getDate();
+    var hour = now.getHours();
+    var daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+    var seed = now.getFullYear() * 12 + now.getMonth();
+    var objectif = 3500 + (seed * 7 + 13) % 700;
+    var progression = ((day - 1) * 24 + hour) / (daysInMonth * 24);
+    var target = Math.floor(progression * objectif);
+    target += Math.floor(Math.random() * 80 - 40);
+    if (target < 0) target = 0;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var fmt = function(n) { return new Intl.NumberFormat('fr-FR').format(Math.floor(n)); };
+    if (reduced) {
+      el.textContent = fmt(target);
+    } else {
+      el.textContent = '0';
+      var start = null, duration = 1500;
+      function step(ts) {
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / duration, 1);
+        var ease = 1 - Math.pow(1 - p, 3);
+        el.textContent = fmt(ease * target);
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
   }
-  requestAnimationFrame(step);
+
+  // URL input validation + auto-submit vers app
+  var form = document.getElementById('si-url-form');
+  var input = document.getElementById('si-url-input');
+  var hint = document.getElementById('si-url-hint');
+  if (!form || !input) return;
+
+  var portalsRegex = /(leboncoin\.fr|seloger\.com|bienici\.com|pap\.fr|logic-immo\.com|century21\.fr|orpi\.com|laforet\.com|ouestfrance-immo\.com|paruvendu\.fr|meilleursagents\.com|immobilier\.lefigaro\.fr|bellesdemeures\.com|barnes-international\.com|superimmo\.com|green-acres\.fr|stephaneplazaimmobilier\.com|guy-hoquet\.com|immoneuf\.com|zefir\.fr)/i;
+
+  form.addEventListener('submit', function(e) {
+    var val = (input.value || '').trim();
+    if (!val) return; // empty : go to app directly
+    if (!/^https?:\/\//i.test(val)) {
+      input.value = 'https://' + val;
+      val = input.value;
+    }
+    try {
+      var u = new URL(val);
+      if (!portalsRegex.test(u.hostname)) {
+        e.preventDefault();
+        hint.innerHTML = "Portail non reconnu. Essaie SeLoger, LeBonCoin, Bien'ici, PAP... ou <a href='https://app.score-immo.fr/app'>ouvre l'outil directement</a>.";
+        hint.style.color = 'var(--si-destructive, #DC2626)';
+        input.focus();
+        return;
+      }
+    } catch (err) {
+      e.preventDefault();
+      hint.innerHTML = "URL invalide. Colle le lien complet de l'annonce.";
+      hint.style.color = 'var(--si-destructive, #DC2626)';
+      input.focus();
+      return;
+    }
+    // Add UTM for attribution (fix du diagnostic tracking)
+    var action = new URL(form.action);
+    action.searchParams.set('utm_source', 'site');
+    action.searchParams.set('utm_medium', 'hero_url_input');
+    action.searchParams.set('utm_campaign', 'hero_instant_analyze');
+    form.action = action.toString();
+  });
+
+  input.addEventListener('input', function() {
+    hint.style.color = '';
+    hint.innerHTML = "Ou <a href='https://app.score-immo.fr/app'>ouvre l'outil directement</a> pour utiliser un exemple.";
+  });
 })();
 </script>
 
 <style>
-  .si-portals-marquee {
-    text-align: center;
+  .si-url-form {
+    max-width: 36rem;
+    margin: 2rem auto 0;
   }
+  .si-url-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: #fff;
+    border: 2px solid var(--si-border, #E2E8F0);
+    border-radius: 14px;
+    padding: 6px 6px 6px 14px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(59, 130, 246, 0.08);
+    transition: all 0.2s ease;
+  }
+  .si-url-input-wrap:focus-within {
+    border-color: var(--si-accent, #3B82F6);
+    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.15), 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+  .si-url-icon {
+    flex-shrink: 0;
+    color: var(--si-muted-foreground, #64748B);
+    margin-right: 10px;
+  }
+  .si-url-input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: var(--si-font-body, 'Inter', sans-serif);
+    font-size: 1rem;
+    color: var(--si-foreground, #0F172A);
+    padding: 12px 0;
+  }
+  .si-url-input::placeholder {
+    color: var(--si-muted-foreground, #64748B);
+  }
+  .si-url-submit {
+    flex-shrink: 0;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+  }
+  .si-url-hint {
+    font-size: 0.8125rem;
+    color: var(--si-muted-foreground, #64748B);
+    margin: 0.625rem 0 0;
+  }
+  .si-url-hint a {
+    color: var(--si-accent, #3B82F6);
+    text-decoration: underline;
+  }
+  @media (max-width: 640px) {
+    .si-url-input { font-size: 16px; padding: 10px 0; }
+    .si-url-submit { padding: 10px 14px; }
+  }
+
+  .si-portals-marquee { text-align: center; }
   .si-portals-track-wrap {
     overflow: hidden;
     -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
@@ -210,9 +282,7 @@
     animation: si-portals-scroll 60s linear infinite;
     width: max-content;
   }
-  .si-portals-track-wrap:hover .si-portals-track {
-    animation-play-state: paused;
-  }
+  .si-portals-track-wrap:hover .si-portals-track { animation-play-state: paused; }
   .si-portal-logo {
     font-family: var(--si-font-heading);
     font-weight: 600;
