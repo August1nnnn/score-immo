@@ -1,0 +1,11 @@
+{
+  "handle": "lea-moreau",
+  "name": "Léa Moreau",
+  "title": "Analyste marché immobilier",
+  "bio": "Léa suit le marché immobilier français depuis 2016. Ancienne analyste chez un bureau d'études CGEDD, elle a épluché plus de 3 000 notices DVF et accompagné une trentaine d'acheteurs dans leur diagnostic de prix. Elle écrit pour ScoreImmo des guides concrets, chiffrés, sourcés.",
+  "expertise": ["Marché immobilier résidentiel", "Analyse DVF", "DPE et rénovation", "Frais d'acquisition", "Urbanisme PLU"],
+  "years_experience": 8,
+  "avatar_initials": "LM",
+  "avatar_color": "#3B82F6",
+  "published_in": ["ScoreImmo", "Le Guide de l'Acheteur Immobilier"]
+}

@@ -16,7 +16,7 @@ const articles = (await getCollection('articles', (e) => e.data.blog === blog))
 
 const titles: Record<string, string> = {
   guides: "Le Guide de l'Acheteur - Conseils immobiliers",
-  villes: "Prix Immobilier par Ville - Analyses 2026",
+  villes: "Prix Immobilier par Ville 2026 - Analyses complètes",
   quartiers: "Meilleurs Quartiers pour Acheter - Guide 2026",
 };
 const descriptions: Record<string, string> = {
@@ -33,8 +33,54 @@ const labels: Record<string, string> = {
   villes: 'Prix par ville',
   quartiers: 'Meilleurs quartiers',
 };
+
+const canonical = `https://score-immo.fr/blogs/${blog}`;
+
+const jsonLd: any[] = [
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": titles[blog!],
+    "description": descriptions[blog!],
+    "url": canonical,
+    "isPartOf": { "@id": "https://score-immo.fr/#website" },
+    "hasPart": articles.map((a) => ({
+      "@type": "Article",
+      "headline": a.data.title,
+      "url": `https://score-immo.fr/blogs/${a.data.blog}/${a.data.handle}`,
+      "datePublished": a.data.published_at,
+    })),
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://score-immo.fr/" },
+      { "@type": "ListItem", "position": 2, "name": labels[blog!], "item": canonical },
+    ],
+  },
+];
+
+if (blog === 'villes') {
+  jsonLd.push({
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "name": "Prix immobilier par ville 2026 - ScoreImmo",
+    "description": "Analyses chiffrées du marché immobilier français par ville. Prix au m², évolution, tendances par arrondissement/quartier. Données sourcées DVF, INSEE, notaires de France.",
+    "url": canonical,
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "creator": { "@id": "https://score-immo.fr/#organization" },
+    "keywords": ["prix immobilier France", "prix m² par ville", "marché immobilier résidentiel", "DVF", "évolution prix immobilier 2026"],
+    "spatialCoverage": { "@type": "Place", "name": "France" },
+    "temporalCoverage": "2025-01-01/2026-12-31",
+    "isBasedOn": [
+      { "@type": "Dataset", "name": "Demandes de valeurs foncières (DVF)", "url": "https://www.data.gouv.fr/fr/datasets/demandes-de-valeurs-foncieres-geolocalisees/" },
+      { "@type": "Dataset", "name": "Recensement INSEE", "url": "https://www.insee.fr/fr/statistiques/serie/001515333" },
+    ],
+  });
+}
 ---
-<BaseLayout {title} {description}>
+<BaseLayout {title} {description} {canonical} {jsonLd}>
   <section class="si-section">
     <div class="si-container">
       <div class="si-blog-header">

@@ -1,0 +1,184 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const authors = await getCollection('authors');
+  return authors.map((a) => ({ params: { handle: a.data.handle }, props: { author: a.data } }));
+}
+
+const { author } = Astro.props;
+
+const articles = (await getCollection('articles', (e) => e.data.author_handle === author.handle))
+  .sort((a, b) => new Date(b.data.published_at).getTime() - new Date(a.data.published_at).getTime());
+
+const title = `${author.name} - ${author.title} | ScoreImmo`;
+const description = `${author.bio.slice(0, 160)}`;
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": author.name,
+    "jobTitle": author.title,
+    "description": author.bio,
+    "knowsAbout": author.expertise,
+    "worksFor": { "@type": "Organization", "@id": "https://score-immo.fr/#organization" },
+    "url": `https://score-immo.fr/pages/auteurs/${author.handle}`,
+    ...(author.linkedin ? { "sameAs": [author.linkedin] } : {}),
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://score-immo.fr/" },
+      { "@type": "ListItem", "position": 2, "name": "Auteurs", "item": "https://score-immo.fr/pages/auteurs" },
+      { "@type": "ListItem", "position": 3, "name": author.name, "item": `https://score-immo.fr/pages/auteurs/${author.handle}` },
+    ],
+  },
+];
+
+const blogLabels: Record<string, string> = {
+  guides: "Guide", villes: "Ville", quartiers: "Quartier",
+};
+---
+<BaseLayout {title} {description} {jsonLd}>
+  <section class="si-section">
+    <div class="si-container" style="max-width:48rem;">
+      <header class="si-author-page-header">
+        <div class="si-author-page-avatar" style={`background:${author.avatar_color};`}>
+          {author.avatar_initials}
+        </div>
+        <h1 class="si-author-page-name">{author.name}</h1>
+        <p class="si-author-page-title">{author.title} · {author.years_experience} ans d'expérience</p>
+        <p class="si-author-page-bio">{author.bio}</p>
+
+        {author.expertise && author.expertise.length > 0 && (
+          <div class="si-author-page-expertise">
+            <p>Domaines d'expertise</p>
+            <div class="si-expertise-tags">
+              {author.expertise.map((e) => <span class="si-expertise-tag">{e}</span>)}
+            </div>
+          </div>
+        )}
+      </header>
+
+      {articles.length > 0 && (
+        <div class="si-author-articles">
+          <h2>Derniers articles signés par {author.name}</h2>
+          <ul class="si-author-articles-list">
+            {articles.slice(0, 12).map((a) => (
+              <li>
+                <a href={`/blogs/${a.data.blog}/${a.data.handle}`}>
+                  <span class="si-author-article-cat">{blogLabels[a.data.blog]}</span>
+                  <strong>{a.data.title}</strong>
+                  <time datetime={a.data.published_at}>
+                    {new Date(a.data.published_at).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  </time>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .si-author-page-header {
+    text-align: center;
+    padding: 2rem 0 3rem;
+  }
+  .si-author-page-avatar {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    font-family: var(--si-font-heading, 'DM Sans', sans-serif);
+    font-weight: 800; font-size: 2rem;
+    margin: 0 auto 1.25rem;
+    letter-spacing: -0.02em;
+  }
+  .si-author-page-name {
+    font-family: var(--si-font-heading);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+    color: var(--si-foreground);
+  }
+  .si-author-page-title {
+    font-size: 1rem;
+    color: var(--si-muted-foreground);
+    margin: 0 0 1.5rem;
+  }
+  .si-author-page-bio {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--si-foreground);
+    max-width: 36rem;
+    margin: 0 auto 2rem;
+  }
+  .si-author-page-expertise { margin-top: 1.5rem; }
+  .si-author-page-expertise p {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--si-muted-foreground);
+    margin: 0 0 0.75rem;
+  }
+  .si-expertise-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+  .si-expertise-tag {
+    padding: 0.375rem 0.875rem;
+    background: var(--si-muted);
+    border: 1px solid var(--si-border);
+    border-radius: 2rem;
+    font-size: 0.8125rem;
+    color: var(--si-foreground);
+  }
+  .si-author-articles { margin-top: 2rem; }
+  .si-author-articles h2 {
+    font-family: var(--si-font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 1.25rem;
+  }
+  .si-author-articles-list { list-style: none; padding: 0; margin: 0; }
+  .si-author-articles-list li { margin: 0 0 0.75rem; }
+  .si-author-articles-list a {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 1rem;
+    align-items: baseline;
+    padding: 1rem 1.25rem;
+    background: var(--si-card, #fff);
+    border: 1px solid var(--si-border);
+    border-radius: var(--si-radius);
+    text-decoration: none;
+    color: var(--si-foreground);
+    transition: all 0.2s;
+  }
+  .si-author-articles-list a:hover {
+    border-color: var(--si-accent);
+    transform: translateY(-1px);
+    box-shadow: var(--si-shadow-sm);
+  }
+  .si-author-article-cat {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--si-accent);
+  }
+  .si-author-articles-list time {
+    font-size: 0.8125rem;
+    color: var(--si-muted-foreground);
+  }
+  @media (max-width: 640px) {
+    .si-author-articles-list a {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+  }
+</style>

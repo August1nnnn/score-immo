@@ -1,0 +1,11 @@
+{
+  "handle": "thomas-varin",
+  "name": "Thomas Varin",
+  "title": "Spécialiste investissement locatif",
+  "bio": "Thomas investit en immobilier depuis 2014 et gère un portefeuille de 14 biens locatifs en France (Nantes, Lyon, Saint-Étienne). Ex-consultant en finance, il décrypte pour ScoreImmo les questions de rentabilité, de fiscalité et de montage d'acquisition.",
+  "expertise": ["Investissement locatif", "Rentabilité nette", "Fiscalité immobilière", "SCI", "Financement"],
+  "years_experience": 10,
+  "avatar_initials": "TV",
+  "avatar_color": "#10B981",
+  "published_in": ["ScoreImmo"]
+}

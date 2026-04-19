@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+import TLDRBox from '@/components/TLDRBox.astro';
+import AuthorCard from '@/components/AuthorCard.astro';
+import SourcesSection from '@/components/SourcesSection.astro';
+import { getCollection, getEntry } from 'astro:content';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles');
@@ -11,6 +14,11 @@ export async function getStaticPaths() {
 }
 
 const { article } = Astro.props;
+
+// Fetch author
+const authorHandle = article.author_handle || 'lea-moreau';
+const authorEntry = await getEntry('authors', authorHandle);
+const author = authorEntry?.data;
 
 const title = article.meta_title || `${article.title} | ScoreImmo`;
 const description = article.meta_description || article.title;
@@ -23,30 +31,39 @@ const blogLabels: Record<string, string> = {
   quartiers: 'Meilleurs quartiers',
 };
 
-const jsonLd = [
+// Build JSON-LD
+const jsonLd: any[] = [
   {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: article.title,
     description,
-    image: image ? [image] : undefined,
+    image: image ? [image.startsWith('http') ? image : `https://score-immo.fr${image}`] : undefined,
     datePublished: article.published_at,
-    dateModified: article.updated_at || article.published_at,
-    author: {
-      '@type': 'Organization',
-      name: 'ScoreImmo',
-      url: 'https://score-immo.fr',
-    },
+    dateModified: article.last_reviewed || article.updated_at || article.published_at,
+    author: author ? {
+      '@type': 'Person',
+      name: author.name,
+      jobTitle: author.title,
+      url: `https://score-immo.fr/pages/auteurs/${author.handle}`,
+      knowsAbout: author.expertise,
+    } : { '@type': 'Organization', name: 'ScoreImmo' },
     publisher: {
       '@type': 'Organization',
       name: 'ScoreImmo',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://score-immo.fr/favicon.svg',
-      },
+      logo: { '@type': 'ImageObject', url: 'https://score-immo.fr/favicon.svg' },
     },
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
     inLanguage: 'fr-FR',
+    ...(article.word_count ? { wordCount: article.word_count } : {}),
+    ...(article.sources && article.sources.length > 0 ? {
+      citation: article.sources.map((s) => ({
+        '@type': 'CreativeWork',
+        name: s.title,
+        url: s.url,
+        ...(s.publisher ? { publisher: { '@type': 'Organization', name: s.publisher } } : {}),
+      })),
+    } : {}),
   },
   {
     '@context': 'https://schema.org',
@@ -58,10 +75,6 @@ const jsonLd = [
     ],
   },
 ];
-
-const publishedFr = article.published_at
-  ? new Date(article.published_at).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })
-  : '';
 ---
 <BaseLayout
   {title}
@@ -71,8 +84,8 @@ const publishedFr = article.published_at
   {jsonLd}
   articleMeta={{
     publishedTime: article.published_at,
-    modifiedTime: article.updated_at || article.published_at,
-    author: 'ScoreImmo',
+    modifiedTime: article.last_reviewed || article.updated_at || article.published_at,
+    author: author?.name || 'ScoreImmo',
   }}
 >
   <section class="si-section">
@@ -88,11 +101,13 @@ const publishedFr = article.published_at
       <article class="si-article">
         <header class="si-article-header">
           <h1 class="si-article-title">{article.title}</h1>
-          <div class="si-article-meta">
-            <span>Par ScoreImmo</span>
-            <span>&middot;</span>
-            <time datetime={article.published_at}>{publishedFr}</time>
-          </div>
+          {author && (
+            <AuthorCard
+              author={author}
+              publishedAt={article.published_at}
+              lastReviewed={article.last_reviewed || article.updated_at}
+            />
+          )}
           {image && (
             <img
               src={image}
@@ -106,7 +121,23 @@ const publishedFr = article.published_at
           )}
         </header>
 
+        {article.tldr && article.tldr.length > 0 && (
+          <TLDRBox items={article.tldr} />
+        )}
+
         <div class="si-article-body" set:html={article.body_html}></div>
+
+        {article.sources && article.sources.length > 0 && (
+          <SourcesSection sources={article.sources} />
+        )}
+
+        {author && (
+          <aside class="si-article-author-footer">
+            <h3>À propos de l'auteur</h3>
+            <AuthorCard author={author} />
+            <p class="si-article-author-bio">{author.bio}</p>
+          </aside>
+        )}
 
         <footer class="si-article-footer">
           <div class="si-cta-box">
@@ -138,21 +169,14 @@ const publishedFr = article.published_at
     font-weight: 700;
     line-height: 1.1;
     letter-spacing: -0.025em;
-    margin: 0 0 1rem;
+    margin: 0 0 1.25rem;
     color: var(--si-foreground);
-  }
-  .si-article-meta {
-    display: flex;
-    gap: 0.5rem;
-    font-size: 0.875rem;
-    color: var(--si-muted-foreground);
-    margin-bottom: 2rem;
   }
   .si-article-hero {
     width: 100%;
     height: auto;
     border-radius: var(--si-radius, 0.75rem);
-    margin-bottom: 2rem;
+    margin: 1.5rem 0 2rem;
   }
   .si-article-body h2 {
     font-family: var(--si-font-heading);
@@ -178,27 +202,36 @@ const publishedFr = article.published_at
     color: var(--si-muted-foreground);
     font-style: italic;
   }
-  .si-article-body img {
-    max-width: 100%;
-    height: auto;
-    border-radius: var(--si-radius);
-    margin: 1.5rem 0;
-  }
-  .si-article-body table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1.5rem 0;
-    font-size: 0.95rem;
-  }
-  .si-article-body th,
-  .si-article-body td {
+  .si-article-body img { max-width: 100%; height: auto; border-radius: var(--si-radius); margin: 1.5rem 0; }
+  .si-article-body table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+  .si-article-body th, .si-article-body td {
     padding: 0.75rem;
     border: 1px solid var(--si-border);
     text-align: left;
   }
-  .si-article-body th {
-    background: var(--si-muted);
-    font-weight: 600;
+  .si-article-body th { background: var(--si-muted); font-weight: 600; }
+
+  .si-article-author-footer {
+    margin-top: 2.5rem;
+    padding: 1.5rem 1.75rem;
+    border: 1px solid var(--si-border);
+    border-radius: var(--si-radius);
+    background: var(--si-card, #fff);
+  }
+  .si-article-author-footer h3 {
+    font-family: var(--si-font-heading);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--si-muted-foreground);
+    margin: 0 0 0.75rem;
+  }
+  .si-article-author-bio {
+    margin: 0.75rem 0 0;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--si-foreground);
   }
 
   .si-cta-box {

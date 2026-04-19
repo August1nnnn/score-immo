@@ -1,0 +1,110 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const authors = (await getCollection('authors')).sort(
+  (a, b) => b.data.years_experience - a.data.years_experience
+);
+
+const title = "Auteurs ScoreImmo - Experts immobilier";
+const description = "Les analystes ScoreImmo : Léa Moreau (marché résidentiel), Thomas Varin (investissement locatif). Guides sourcés, chiffrés, écrits par des experts du secteur.";
+
+const jsonLd = [{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://score-immo.fr/" },
+    { "@type": "ListItem", "position": 2, "name": "Auteurs", "item": "https://score-immo.fr/pages/auteurs" },
+  ],
+}];
+---
+<BaseLayout {title} {description} {jsonLd}>
+  <section class="si-section">
+    <div class="si-container" style="max-width:48rem;">
+      <header class="si-authors-hub-header">
+        <h1>Nos analystes</h1>
+        <p>ScoreImmo s'appuie sur des auteurs reconnus dans leur domaine pour rédiger des guides concrets et sourcés. Pas de contenu anonyme ni d'IA qui hallucine : chaque article est signé par un expert du marché.</p>
+      </header>
+
+      <ul class="si-authors-list">
+        {authors.map((a) => (
+          <li>
+            <a href={`/pages/auteurs/${a.data.handle}`}>
+              <div class="si-authors-avatar" style={`background:${a.data.avatar_color};`}>
+                {a.data.avatar_initials}
+              </div>
+              <div>
+                <strong>{a.data.name}</strong>
+                <span class="si-authors-title">{a.data.title} · {a.data.years_experience} ans d'expérience</span>
+                <p>{a.data.bio}</p>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .si-authors-hub-header { text-align: center; padding: 2rem 0 2.5rem; }
+  .si-authors-hub-header h1 {
+    font-family: var(--si-font-heading);
+    font-size: clamp(2rem, 4.5vw, 2.75rem);
+    font-weight: 700;
+    margin: 0 0 1rem;
+  }
+  .si-authors-hub-header p {
+    font-size: 1.05rem;
+    color: var(--si-muted-foreground);
+    max-width: 36rem;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+  .si-authors-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1rem; }
+  .si-authors-list a {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 1.25rem;
+    align-items: start;
+    padding: 1.5rem;
+    background: var(--si-card, #fff);
+    border: 1px solid var(--si-border);
+    border-radius: var(--si-radius-xl, 1rem);
+    text-decoration: none;
+    color: var(--si-foreground);
+    transition: all 0.2s;
+  }
+  .si-authors-list a:hover {
+    border-color: var(--si-accent);
+    transform: translateY(-2px);
+    box-shadow: var(--si-shadow-lg);
+  }
+  .si-authors-avatar {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    font-family: var(--si-font-heading);
+    font-weight: 800; font-size: 1.25rem;
+  }
+  .si-authors-list strong {
+    font-family: var(--si-font-heading);
+    font-size: 1.125rem;
+    font-weight: 700;
+    display: block;
+    margin: 0 0 0.25rem;
+  }
+  .si-authors-title {
+    display: block;
+    font-size: 0.8125rem;
+    color: var(--si-muted-foreground);
+    margin-bottom: 0.5rem;
+  }
+  .si-authors-list p {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--si-foreground);
+  }
+</style>

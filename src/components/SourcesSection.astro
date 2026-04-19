@@ -1,0 +1,58 @@
+---
+interface Source {
+  title: string;
+  url: string;
+  publisher?: string;
+}
+interface Props {
+  sources: Source[];
+}
+const { sources } = Astro.props;
+---
+{sources && sources.length > 0 && (
+  <section class="si-sources" aria-label="Sources et références">
+    <h2>Sources et références</h2>
+    <ol class="si-sources-list">
+      {sources.map((s) => (
+        <li>
+          <a href={s.url} target="_blank" rel="noopener nofollow">{s.title}</a>
+          {s.publisher && <span class="si-sources-publisher"> · {s.publisher}</span>}
+        </li>
+      ))}
+    </ol>
+  </section>
+)}
+
+<style>
+  .si-sources {
+    margin-top: 3rem;
+    padding: 1.5rem 1.75rem;
+    border: 1px solid var(--si-border, #E2E8F0);
+    border-radius: var(--si-radius, 0.75rem);
+    background: var(--si-muted, #F8FAFC);
+  }
+  .si-sources h2 {
+    font-family: var(--si-font-heading, 'DM Sans', sans-serif);
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin: 0 0 0.75rem;
+    color: var(--si-foreground, #0F172A);
+  }
+  .si-sources-list {
+    margin: 0;
+    padding-left: 1.25rem;
+    font-size: 0.9375rem;
+    line-height: 1.7;
+  }
+  .si-sources-list li { margin-bottom: 0.375rem; color: var(--si-foreground, #0F172A); }
+  .si-sources-list a {
+    color: var(--si-accent, #3B82F6);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+  .si-sources-publisher {
+    color: var(--si-muted-foreground, #64748B);
+    font-size: 0.875rem;
+  }
+</style>

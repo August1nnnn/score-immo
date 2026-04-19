@@ -1,0 +1,58 @@
+---
+interface Props {
+  items: string[];
+  label?: string;
+}
+const { items, label = "L'essentiel en 30 secondes" } = Astro.props;
+---
+{items && items.length > 0 && (
+  <aside class="si-tldr" aria-label={label}>
+    <p class="si-tldr-label">{label}</p>
+    <ul class="si-tldr-list">
+      {items.map((item) => <li>{item}</li>)}
+    </ul>
+  </aside>
+)}
+
+<style>
+  .si-tldr {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.06), rgba(59, 130, 246, 0.02));
+    border: 1px solid rgba(59, 130, 246, 0.18);
+    border-left: 4px solid var(--si-accent, #3B82F6);
+    border-radius: var(--si-radius, 0.75rem);
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .si-tldr-label {
+    font-family: var(--si-font-heading, 'DM Sans', sans-serif);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--si-accent, #3B82F6);
+    margin: 0 0 0.75rem;
+  }
+  .si-tldr-list {
+    margin: 0;
+    padding-left: 1.25rem;
+    list-style: none;
+  }
+  .si-tldr-list li {
+    position: relative;
+    margin: 0 0 0.5rem;
+    padding-left: 1rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--si-foreground, #0F172A);
+  }
+  .si-tldr-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--si-accent, #3B82F6);
+  }
+</style>
