@@ -343,6 +343,7 @@ def main():
     git_commit_push(slug, dry_run=args.dry_run)
 
     log.info(f"  URL future : https://score-immo.fr/blogs/{entry['blog']}/{slug}")
+    submit_url_to_bing(f"https://score-immo.fr/blogs/{entry['blog']}/{slug}")
 
 
 if __name__ == "__main__":
