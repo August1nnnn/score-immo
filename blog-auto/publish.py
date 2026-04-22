@@ -68,6 +68,7 @@ def slugify(title: str, max_len=60, max_words=8) -> str:
     s = s.lower()
     s = re.sub(r"[^a-z0-9]+", "-", s).strip("-")
     words = [w for w in s.split("-") if w and w not in SLUG_STOPS][:max_words]
+    words = list(dict.fromkeys(words))  # dedupe preserving order (STACK-2026 slug fix)
     return "-".join(words)[:max_len].rstrip("-")
 
 
