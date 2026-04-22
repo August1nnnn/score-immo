@@ -347,3 +347,27 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+def submit_url_to_bing(url: str) -> None:
+    """Submit a single URL to Bing via Bing URL Submission API (daily quota shared)."""
+    import os, json as _json, urllib.request as _ur, urllib.error as _ue
+    key = os.environ.get("BING_URL_SUBMISSION_KEY", "").strip()
+    if not key:
+        return
+    site_root = "https://" + url.split("/")[2]
+    body = _json.dumps({"siteUrl": site_root, "url": url}).encode("utf-8")
+    req = _ur.Request(
+        f"https://ssl.bing.com/webmaster/api.svc/json/SubmitUrl?apikey={key}",
+        data=body,
+        headers={"Content-Type": "application/json; charset=utf-8", "User-Agent": "Mozilla/5.0"},
+        method="POST",
+    )
+    try:
+        with _ur.urlopen(req, timeout=15) as r:
+            print(f"[bing] {url} -> {r.status}")
+    except _ue.HTTPError as e:
+        print(f"[bing] {url} -> {e.code} {e.read().decode()[:100]}")
+    except Exception as e:
+        print(f"[bing] {url} -> {e}")
+
