@@ -23,7 +23,9 @@
     "author_handle": "thomas-varin",
     "scheduled_date": "2026-04-22",
     "scheduled_datetime": "2026-04-22T08:04:00+02:00",
-    "published": false
+    "published": true,
+    "slug": "loi-pinel-2026-conditions-plafonds-alternatives",
+    "published_at": "2026-04-22T08:09:23.070776+00:00"
   },
   {
     "index": 3,
