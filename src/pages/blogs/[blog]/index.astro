@@ -44,12 +44,16 @@ const jsonLd: any[] = [
     "description": descriptions[blog!],
     "url": canonical,
     "isPartOf": { "@id": "https://score-immo.fr/#website" },
-    "hasPart": articles.map((a) => ({
-      "@type": "Article",
-      "headline": a.data.title,
-      "url": `https://score-immo.fr/blogs/${a.data.blog}/${a.data.handle}`,
-      "datePublished": a.data.published_at,
-    })),
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": articles.length,
+      "itemListElement": articles.map((a, i) => ({
+        "@type": "ListItem",
+        "position": i + 1,
+        "url": `https://score-immo.fr/blogs/${a.data.blog}/${a.data.handle}`,
+        "name": a.data.title,
+      })),
+    },
   },
   {
     "@context": "https://schema.org",
@@ -69,7 +73,11 @@ if (blog === 'villes') {
     "description": "Analyses chiffrées du marché immobilier français par ville. Prix au m², évolution, tendances par arrondissement/quartier. Données sourcées DVF, INSEE, notaires de France.",
     "url": canonical,
     "license": "https://creativecommons.org/licenses/by/4.0/",
-    "creator": { "@id": "https://score-immo.fr/#organization" },
+    "creator": {
+      "@type": "Organization",
+      "name": "ScoreImmo",
+      "url": "https://score-immo.fr",
+    },
     "keywords": ["prix immobilier France", "prix m² par ville", "marché immobilier résidentiel", "DVF", "évolution prix immobilier 2026"],
     "spatialCoverage": { "@type": "Place", "name": "France" },
     "temporalCoverage": "2025-01-01/2026-12-31",
