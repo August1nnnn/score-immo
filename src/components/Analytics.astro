@@ -72,7 +72,7 @@ const SUPABASE_ANON = import.meta.env.PUBLIC_SUPABASE_ANON || '';
 
   // Bot hit tracking (différent endpoint si table dédiée existe, sinon tag dans page_views)
   if (IS_BOT) {
-    // On track mais on tagge le bot via user_agent — cohérent avec le diagnostic
+    // On track mais on tagge le bot via user_agent · cohérent avec le diagnostic
   }
 
   track();

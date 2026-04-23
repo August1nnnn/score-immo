@@ -29,5 +29,5 @@ Auto-deploy Cloudflare Pages sur push `main`.
 
 ## Brand
 - Tutoiement (sauf pages légales)
-- Aucun tiret cadratin (`—` / `–` interdits)
+- Aucun tiret cadratin (`,` / `-` interdits)
 - Charte éditoriale : ScoreImmo est le premier rapport d'aide à la décision immobilière en France
