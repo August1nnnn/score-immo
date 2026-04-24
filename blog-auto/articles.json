@@ -51,7 +51,9 @@
     "author_handle": "lea-moreau",
     "scheduled_date": "2026-04-24",
     "scheduled_datetime": "2026-04-24T08:12:00+02:00",
-    "published": false
+    "published": true,
+    "slug": "ptz-2026-conditions-montant-beneficiaires",
+    "published_at": "2026-04-24T09:21:19.590900+00:00"
   },
   {
     "index": 5,
