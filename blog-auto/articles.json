@@ -135,7 +135,9 @@
     "author_handle": "lea-moreau",
     "scheduled_date": "2026-05-02",
     "scheduled_datetime": "2026-05-02T08:08:00+02:00",
-    "published": false
+    "published": true,
+    "slug": "diagnostic-amiante-plomb-2026-obligations-impact-prix",
+    "published_at": "2026-05-04T10:02:29.501297+00:00"
   },
   {
     "index": 11,
