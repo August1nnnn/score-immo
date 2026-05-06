@@ -163,7 +163,9 @@
     "author_handle": "thomas-varin",
     "scheduled_date": "2026-05-06",
     "scheduled_datetime": "2026-05-06T08:14:00+02:00",
-    "published": false
+    "published": true,
+    "slug": "lmnp-vs-lmp-choisir-bon-statut-2026",
+    "published_at": "2026-05-06T10:05:01.730329+00:00"
   },
   {
     "index": 13,
