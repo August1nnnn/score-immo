@@ -95,7 +95,7 @@ export const onRequest: PagesFunction<Env> = async (context) => {
         "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
         "font-src 'self' https://fonts.gstatic.com data:",
         "img-src 'self' https: data:",
-        "connect-src 'self' https://afvtxiklivnmakqixkml.supabase.co https://www.google-analytics.com https://*.analytics.google.com https://*.g.doubleclick.net",
+        "connect-src 'self' https://afvtxiklivnmakqixkml.supabase.co https://*.google-analytics.com https://*.analytics.google.com https://*.g.doubleclick.net",
         "frame-ancestors 'none'",
         "base-uri 'self'",
         "form-action 'self' https://app.score-immo.fr",
