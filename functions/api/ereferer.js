@@ -168,11 +168,54 @@ export async function onRequestPost({ request, env }) {
     return bad("supabase_error", e.message, 502);
   }
 
+  // Best-effort email notification. Failure does not block the response.
+  await notifyByEmail(env, row).catch(() => {});
+
   return ok({
     code: "publish_pending",
     message: "Article received, awaiting manual review",
     article_url: articleUrl,
     slug,
+  });
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"]/g, (c) =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]),
+  );
+}
+
+async function notifyByEmail(env, row) {
+  const apiKey = env.RESEND_API_KEY;
+  if (!apiKey) return;
+  const to = env.EREFERER_NOTIFY_TO || "augustin.foucheres@gmail.com";
+  const from = env.EREFERER_NOTIFY_FROM || "Ereferer Push <onboarding@resend.dev>";
+  const refMatch = (env.SUPABASE_URL || "").match(/https?:\/\/([^.]+)/);
+  const ref = refMatch ? refMatch[1] : "unknown";
+  const studioUrl = `https://supabase.com/dashboard/project/${ref}/editor`;
+  let siteHost = "site";
+  try { siteHost = new URL(PUBLIC_URL_PREFIX).host; } catch {}
+
+  const subject = `[Ereferer ${siteHost}] Nouvel article : ${row.post_title.slice(0, 80)}`;
+  const html = `
+    <p>Nouvel article sponsorise recu via Ereferer sur <b>${siteHost}</b>.</p>
+    <table cellpadding="6" style="border-collapse:collapse;border:1px solid #ddd;font-family:system-ui,sans-serif;">
+      <tr><td><b>Titre</b></td><td>${escapeHtml(row.post_title)}</td></tr>
+      <tr><td><b>Slug</b></td><td><code>${escapeHtml(row.slug)}</code></td></tr>
+      <tr><td><b>Ereferer ID</b></td><td>${row.ereferer_id ?? "(none)"}</td></tr>
+      <tr><td><b>URL future</b></td><td><a href="${escapeHtml(row.article_url)}">${escapeHtml(row.article_url)}</a></td></tr>
+      <tr><td><b>Status</b></td><td>${escapeHtml(row.status)}</td></tr>
+    </table>
+    <p><a href="${studioUrl}">Voir dans Supabase Studio &rarr;</a></p>
+  `;
+
+  await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ from, to, subject, html }),
   });
 }
 
