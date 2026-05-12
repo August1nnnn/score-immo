@@ -219,7 +219,9 @@
     "author_handle": "lea-moreau",
     "scheduled_date": "2026-05-12",
     "scheduled_datetime": "2026-05-12T08:03:00+02:00",
-    "published": false
+    "published": true,
+    "slug": "terrain-constructible-plu-permis-pieges-cadastre",
+    "published_at": "2026-05-12T10:14:58.733939+00:00"
   },
   {
     "index": 17,
