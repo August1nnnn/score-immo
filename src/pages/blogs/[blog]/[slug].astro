@@ -31,6 +31,23 @@ const blogLabels: Record<string, string> = {
   quartiers: 'Meilleurs quartiers',
 };
 
+// Extract FAQ pairs from body_html (h2 "FAQ" block, then h3 questions + p answers)
+function extractFaq(html: string): { q: string; a: string }[] {
+  const faqAnchor = html.match(/<h2[^>]*>\s*FAQ[^<]*<\/h2>/i);
+  if (!faqAnchor || faqAnchor.index === undefined) return [];
+  const after = html.slice(faqAnchor.index + faqAnchor[0].length);
+  const pairs: { q: string; a: string }[] = [];
+  const re = /<h3[^>]*>([\s\S]*?)<\/h3>\s*((?:<p[^>]*>[\s\S]*?<\/p>\s*)+)/gi;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(after)) !== null) {
+    const q = m[1].replace(/<[^>]+>/g, '').trim();
+    const a = m[2].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+    if (q && a) pairs.push({ q, a });
+  }
+  return pairs;
+}
+const faqPairs = extractFaq(article.body_html || '');
+
 // Build JSON-LD
 const jsonLd: any[] = [
   {
@@ -74,7 +91,31 @@ const jsonLd: any[] = [
       { '@type': 'ListItem', position: 3, name: article.title, item: canonical },
     ],
   },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': canonical,
+    url: canonical,
+    name: article.meta_title || article.title,
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['.si-article-title', '.si-tldr', '.si-article-body h2', '.si-article-body h3'],
+    },
+    inLanguage: 'fr-FR',
+  },
 ];
+
+if (faqPairs.length > 0) {
+  jsonLd.push({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqPairs.map(({ q, a }) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
+  });
+}
 ---
 <BaseLayout
   {title}
