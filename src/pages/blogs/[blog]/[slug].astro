@@ -72,6 +72,10 @@ const jsonLd: any[] = [
     },
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
     inLanguage: 'fr-FR',
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['.si-article-title', '.si-tldr', '.si-article-body h2', '.si-article-body h3'],
+    },
     ...(article.word_count ? { wordCount: article.word_count } : {}),
     ...(article.sources && article.sources.length > 0 ? {
       citation: article.sources.map((s) => ({
