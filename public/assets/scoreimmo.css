@@ -7,8 +7,7 @@
 /* Hide default Shopify template content on homepage */
 .si-hide-default-content { display: none !important; }
 
-/* --- Google Fonts --- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap');
+/* --- Fonts self-hosted via @fontsource (loaded in BaseLayout) --- */
 
 /* --- Design Tokens (CSS Custom Properties) --- */
 :root {
