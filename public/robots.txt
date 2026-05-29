@@ -42,7 +42,6 @@ Allow: /
 
 # Sitemaps
 Sitemap: https://score-immo.fr/sitemap-index.xml
-Sitemap: https://score-immo.fr/sitemap.xml
 
 # IndexNow key
 # Key: si-scoreimmo-indexnow
