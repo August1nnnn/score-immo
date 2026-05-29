@@ -48,7 +48,7 @@
             </svg>
           </button>
         </div>
-        <p class="si-url-hint" id="si-url-hint">Ou <a href="https://app.score-immo.fr/app">ouvre l'outil directement</a> pour utiliser un exemple.</p>
+        <p class="si-url-hint" id="si-url-hint">Ou <a href="https://app.score-immo.fr/app?utm_source=site&utm_medium=hero">ouvre l'outil directement</a> pour utiliser un exemple.</p>
       </form>
 
       <!-- Social proof dynamique -->
@@ -180,7 +180,7 @@
       var u = new URL(val);
       if (!portalsRegex.test(u.hostname)) {
         e.preventDefault();
-        hint.innerHTML = "Portail non reconnu. Essaie SeLoger, LeBonCoin, Bien'ici, PAP... ou <a href='https://app.score-immo.fr/app'>ouvre l'outil directement</a>.";
+        hint.innerHTML = "Portail non reconnu. Essaie SeLoger, LeBonCoin, Bien'ici, PAP... ou <a href='https://app.score-immo.fr/app?utm_source=site&utm_medium=hero'>ouvre l'outil directement</a>.";
         hint.style.color = 'var(--si-destructive, #DC2626)';
         input.focus();
         return;
@@ -202,7 +202,7 @@
 
   input.addEventListener('input', function() {
     hint.style.color = '';
-    hint.innerHTML = "Ou <a href='https://app.score-immo.fr/app'>ouvre l'outil directement</a> pour utiliser un exemple.";
+    hint.innerHTML = "Ou <a href='https://app.score-immo.fr/app?utm_source=site&utm_medium=hero'>ouvre l'outil directement</a> pour utiliser un exemple.";
   });
 })();
 </script>
