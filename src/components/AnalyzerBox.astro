@@ -1,0 +1,115 @@
+---
+// Inline analyzer box for blog articles. Converts informational SEO intent into an
+// in-context tool trial: paste a listing URL, hand off to app.score-immo.fr/app?url=...
+// (AppHome consomme ?url= et lance l'analyse). DA: reprend exactement le style du Hero.
+interface Props {
+  blog?: string;
+  medium?: string;
+}
+const { blog = 'guides', medium = 'blog_inline' } = Astro.props;
+
+const copy: Record<string, { h: string; p: string }> = {
+  villes: {
+    h: 'Une annonce qui vous intéresse ?',
+    p: "Collez le lien, on vous dit en 30 secondes si elle est au bon prix du marché.",
+  },
+  quartiers: {
+    h: 'Un bien dans le quartier ?',
+    p: "Collez le lien de l'annonce, recevez un rapport complet en 30 secondes.",
+  },
+  guides: {
+    h: 'Mettez ce guide en pratique',
+    p: "Collez le lien d'une annonce, recevez le rapport complet en 30 secondes.",
+  },
+};
+const c = copy[blog] || copy.guides;
+---
+<div class="sib-card">
+  <h3 class="sib-h">{c.h}</h3>
+  <p class="sib-p">{c.p}</p>
+  <form class="sib-form" action="https://app.score-immo.fr/app" method="get" novalidate>
+    <input type="hidden" name="utm_source" value="site" />
+    <input type="hidden" name="utm_medium" value={medium} />
+    <div class="sib-wrap">
+      <svg class="sib-icon" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/>
+      </svg>
+      <input
+        type="url"
+        name="url"
+        class="sib-input"
+        placeholder="Collez l'URL de l'annonce (LeBonCoin, SeLoger, Bien'ici...)"
+        autocomplete="off"
+        spellcheck="false"
+        inputmode="url"
+        aria-label="URL de l'annonce à analyser"
+        required
+      />
+      <button type="submit" class="si-btn si-btn-primary sib-submit">Analyser</button>
+    </div>
+  </form>
+  <p class="sib-hint">Gratuit pour commencer. Données publiques, 100% indépendant.</p>
+</div>
+
+<style>
+  .sib-card {
+    margin: 2.5rem 0;
+    padding: 1.75rem 1.5rem;
+    background: var(--si-card, #fff);
+    border: 1px solid var(--si-border, #E2E8F0);
+    border-radius: var(--si-radius-xl, 1rem);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(59, 130, 246, 0.06);
+    text-align: center;
+  }
+  .sib-h {
+    font-family: var(--si-font-heading, 'DM Sans', sans-serif);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--si-foreground, #0F172A);
+    margin: 0 0 0.375rem;
+  }
+  .sib-p {
+    font-family: var(--si-font-body, 'Inter', sans-serif);
+    font-size: 0.9375rem;
+    color: var(--si-muted-foreground, #64748B);
+    margin: 0 0 1.25rem;
+  }
+  .sib-form { max-width: 36rem; margin: 0 auto; }
+  .sib-wrap {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 2px solid var(--si-border, #E2E8F0);
+    border-radius: 14px;
+    padding: 6px 6px 6px 14px;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.06);
+    transition: all 0.2s ease;
+  }
+  .sib-wrap:focus-within {
+    border-color: var(--si-accent, #3B82F6);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+  .sib-icon { flex-shrink: 0; color: var(--si-muted-foreground, #64748B); margin-right: 10px; }
+  .sib-input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: var(--si-font-body, 'Inter', sans-serif);
+    font-size: 1rem;
+    color: var(--si-foreground, #0F172A);
+    padding: 12px 0;
+  }
+  .sib-input::placeholder { color: var(--si-muted-foreground, #64748B); }
+  .sib-submit { flex-shrink: 0; padding: 12px 24px; border-radius: 10px; font-size: 0.95rem; }
+  .sib-hint {
+    font-size: 0.8125rem;
+    color: var(--si-muted-foreground, #64748B);
+    margin: 0.75rem 0 0;
+  }
+  @media (max-width: 640px) {
+    .sib-input { font-size: 16px; padding: 10px 0; }
+    .sib-submit { padding: 10px 14px; }
+  }
+</style>

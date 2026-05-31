@@ -3,6 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import TLDRBox from '@/components/TLDRBox.astro';
 import AuthorCard from '@/components/AuthorCard.astro';
 import SourcesSection from '@/components/SourcesSection.astro';
+import AnalyzerBox from '@/components/AnalyzerBox.astro';
 import { getCollection, getEntry } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -170,6 +171,8 @@ if (faqPairs.length > 0) {
           <TLDRBox items={article.tldr} />
         )}
 
+        <AnalyzerBox blog={article.blog} medium="blog_top" />
+
         <div class="si-article-body" set:html={article.body_html}></div>
 
         {article.sources && article.sources.length > 0 && (
@@ -185,13 +188,7 @@ if (faqPairs.length > 0) {
         )}
 
         <footer class="si-article-footer">
-          <div class="si-cta-box">
-            <h3>Prêt à analyser ton futur bien ?</h3>
-            <p>Colle le lien d'une annonce, reçois le rapport complet en 30 secondes.</p>
-            <a href="https://app.score-immo.fr/app?utm_source=site&utm_medium=blog" class="si-btn si-btn-primary si-btn-primary-lg">
-              Analyser une annonce
-            </a>
-          </div>
+          <AnalyzerBox blog={article.blog} medium="blog_end" />
         </footer>
       </article>
     </div>
