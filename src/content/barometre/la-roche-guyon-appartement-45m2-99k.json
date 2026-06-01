@@ -1,0 +1,28 @@
+{
+  "slug": "la-roche-guyon-appartement-45m2-99k",
+  "ville": "La Roche Guyon",
+  "code_postal": "99000",
+  "region": "France",
+  "type_bien": "appartement",
+  "surface": 45.42,
+  "prix_demande": 99000,
+  "prix_m2": 2180,
+  "score_global": 70,
+  "score_sections": {
+    "dpe": 5,
+    "prix": 7,
+    "risques": 10,
+    "urbanisme": 5,
+    "environnement": 8
+  },
+  "dpe": "D",
+  "points_forts": [
+    "Aucun risque naturel recensé"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : Aucun risque naturel recensé.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

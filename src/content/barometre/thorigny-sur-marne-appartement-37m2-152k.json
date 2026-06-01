@@ -1,0 +1,30 @@
+{
+  "slug": "thorigny-sur-marne-appartement-37m2-152k",
+  "ville": "Thorigny-sur-Marne",
+  "code_postal": "77400",
+  "region": "Île-de-France",
+  "type_bien": "appartement",
+  "surface": 37,
+  "prix_demande": 152000,
+  "prix_m2": 4108,
+  "score_global": 74,
+  "score_sections": {
+    "dpe": 7,
+    "prix": 5,
+    "risques": 8,
+    "urbanisme": 9,
+    "environnement": 8
+  },
+  "dpe": "C",
+  "points_forts": [
+    "74 commerces et restaurants à proximité",
+    "285 arrêts et gares accessibles",
+    "8 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : 74 commerces et restaurants à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

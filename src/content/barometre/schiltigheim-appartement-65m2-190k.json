@@ -1,0 +1,32 @@
+{
+  "slug": "schiltigheim-appartement-65m2-190k",
+  "ville": "Schiltigheim",
+  "code_postal": "67300",
+  "region": "Grand Est",
+  "type_bien": "appartement",
+  "surface": 65,
+  "prix_demande": 190800,
+  "prix_m2": 2935,
+  "score_global": 70,
+  "score_sections": {
+    "dpe": 1,
+    "prix": 6,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 6
+  },
+  "dpe": "F",
+  "points_forts": [
+    "428 commerces et restaurants à proximité",
+    "708 arrêts et gares accessibles",
+    "20 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [
+    "DPE F, passoire énergétique : travaux à prévoir"
+  ],
+  "verdict": "Bon dossier dans l'ensemble : 428 commerces et restaurants à proximité. Point de vigilance : DPE F, passoire énergétique : travaux à prévoir.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

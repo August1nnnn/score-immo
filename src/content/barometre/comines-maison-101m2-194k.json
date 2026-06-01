@@ -1,0 +1,32 @@
+{
+  "slug": "comines-maison-101m2-194k",
+  "ville": "Comines",
+  "code_postal": "59560",
+  "region": "Hauts-de-France",
+  "type_bien": "maison",
+  "surface": 101,
+  "prix_demande": 194100,
+  "prix_m2": 1922,
+  "score_global": 75,
+  "score_sections": {
+    "dpe": 5,
+    "prix": 7,
+    "risques": 10,
+    "urbanisme": 3,
+    "environnement": 9
+  },
+  "dpe": "D",
+  "points_forts": [
+    "30 commerces et restaurants à proximité",
+    "146 arrêts et gares accessibles",
+    "5 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [
+    "Zone à constructibilité limitée (agricole/naturelle)"
+  ],
+  "verdict": "Bon dossier dans l'ensemble : 30 commerces et restaurants à proximité. Point de vigilance : Zone à constructibilité limitée (agricole/naturelle).",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

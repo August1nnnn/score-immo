@@ -1,0 +1,30 @@
+{
+  "slug": "calvisson-maison-71m2-186k",
+  "ville": "Calvisson",
+  "code_postal": "30420",
+  "region": "Occitanie",
+  "type_bien": "maison",
+  "surface": 71,
+  "prix_demande": 186000,
+  "prix_m2": 2620,
+  "score_global": 77,
+  "score_sections": {
+    "dpe": 5,
+    "prix": 6,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 9
+  },
+  "dpe": "D",
+  "points_forts": [
+    "51 commerces et restaurants à proximité",
+    "116 arrêts et gares accessibles",
+    "6 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : 51 commerces et restaurants à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

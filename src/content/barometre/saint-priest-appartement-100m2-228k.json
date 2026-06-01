@@ -1,0 +1,30 @@
+{
+  "slug": "saint-priest-appartement-100m2-228k",
+  "ville": "Saint-Priest",
+  "code_postal": "69800",
+  "region": "Auvergne-Rhône-Alpes",
+  "type_bien": "appartement",
+  "surface": 100,
+  "prix_demande": 228800,
+  "prix_m2": 2288,
+  "score_global": 79,
+  "score_sections": {
+    "dpe": 9,
+    "prix": 5,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 8
+  },
+  "dpe": "B",
+  "points_forts": [
+    "DPE B, logement économe en énergie",
+    "155 commerces et restaurants à proximité",
+    "391 arrêts et gares accessibles"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : DPE B, logement économe en énergie.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

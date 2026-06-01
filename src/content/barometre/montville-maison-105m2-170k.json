@@ -1,0 +1,32 @@
+{
+  "slug": "montville-maison-105m2-170k",
+  "ville": "Montville",
+  "code_postal": "76710",
+  "region": "Normandie",
+  "type_bien": "maison",
+  "surface": 105,
+  "prix_demande": 170000,
+  "prix_m2": 1619,
+  "score_global": 71,
+  "score_sections": {
+    "dpe": 3,
+    "prix": 9,
+    "risques": 9,
+    "urbanisme": 1,
+    "environnement": 8
+  },
+  "dpe": "E",
+  "points_forts": [
+    "17% sous la médiane du secteur",
+    "26 commerces et restaurants à proximité",
+    "62 arrêts et gares accessibles"
+  ],
+  "alertes_cles": [
+    "Zone à constructibilité limitée (agricole/naturelle)"
+  ],
+  "verdict": "Bon dossier dans l'ensemble : 17% sous la médiane du secteur. Point de vigilance : Zone à constructibilité limitée (agricole/naturelle).",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

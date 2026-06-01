@@ -1,0 +1,30 @@
+{
+  "slug": "cayenne-appartement-29m2-105k",
+  "ville": "Cayenne",
+  "code_postal": "97300",
+  "region": "France",
+  "type_bien": "appartement",
+  "surface": 29,
+  "prix_demande": 105000,
+  "prix_m2": 3621,
+  "score_global": 84,
+  "score_sections": {
+    "dpe": 7,
+    "prix": 9,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 8
+  },
+  "dpe": "C",
+  "points_forts": [
+    "12% sous la médiane du secteur",
+    "128 commerces et restaurants à proximité",
+    "186 arrêts et gares accessibles"
+  ],
+  "alertes_cles": [],
+  "verdict": "Excellente opportunité : 12% sous la médiane du secteur.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

@@ -1,0 +1,30 @@
+{
+  "slug": "saint-sulpice-la-pointe-maison-105m2-399k",
+  "ville": "Saint-Sulpice-la-Pointe",
+  "code_postal": "81370",
+  "region": "Occitanie",
+  "type_bien": "maison",
+  "surface": 105,
+  "prix_demande": 399000,
+  "prix_m2": 3800,
+  "score_global": 73,
+  "score_sections": {
+    "dpe": 0,
+    "prix": 2,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 9
+  },
+  "dpe": "C",
+  "points_forts": [
+    "44 commerces et restaurants à proximité",
+    "72 arrêts et gares accessibles",
+    "Aucun risque naturel recensé"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : 44 commerces et restaurants à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

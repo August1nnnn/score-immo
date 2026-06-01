@@ -1,0 +1,30 @@
+{
+  "slug": "boucau-maison-131m2-328k",
+  "ville": "Boucau",
+  "code_postal": "64340",
+  "region": "Nouvelle-Aquitaine",
+  "type_bien": "maison",
+  "surface": 131,
+  "prix_demande": 328600,
+  "prix_m2": 2508,
+  "score_global": 77,
+  "score_sections": {
+    "dpe": 3,
+    "prix": 7,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 9
+  },
+  "dpe": "E",
+  "points_forts": [
+    "611 commerces et restaurants à proximité",
+    "742 arrêts et gares accessibles",
+    "12 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : 611 commerces et restaurants à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

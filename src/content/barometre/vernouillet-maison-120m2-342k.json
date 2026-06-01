@@ -1,0 +1,30 @@
+{
+  "slug": "vernouillet-maison-120m2-342k",
+  "ville": "Vernouillet",
+  "code_postal": "78540",
+  "region": "Île-de-France",
+  "type_bien": "maison",
+  "surface": 120,
+  "prix_demande": 342000,
+  "prix_m2": 2850,
+  "score_global": 79,
+  "score_sections": {
+    "dpe": 3,
+    "prix": 9,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 9
+  },
+  "dpe": "E",
+  "points_forts": [
+    "17% sous la médiane du secteur",
+    "151 commerces et restaurants à proximité",
+    "884 arrêts et gares accessibles"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : 17% sous la médiane du secteur.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

@@ -1,0 +1,30 @@
+{
+  "slug": "merignac-maison-109m2-470k",
+  "ville": "Mérignac",
+  "code_postal": "33700",
+  "region": "Nouvelle-Aquitaine",
+  "type_bien": "maison",
+  "surface": 109,
+  "prix_demande": 470650,
+  "prix_m2": 4318,
+  "score_global": 71,
+  "score_sections": {
+    "dpe": 5,
+    "prix": 5,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 5
+  },
+  "dpe": "D",
+  "points_forts": [
+    "80 commerces et restaurants à proximité",
+    "313 arrêts et gares accessibles",
+    "19 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : 80 commerces et restaurants à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

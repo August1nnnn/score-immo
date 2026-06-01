@@ -1,0 +1,32 @@
+{
+  "slug": "bandol-appartement-55m2-335k",
+  "ville": "Bandol",
+  "code_postal": "83150",
+  "region": "Provence-Alpes-Côte d'Azur",
+  "type_bien": "appartement",
+  "surface": 55,
+  "prix_demande": 335000,
+  "prix_m2": 6091,
+  "score_global": 72,
+  "score_sections": {
+    "dpe": 7,
+    "prix": 3,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 9
+  },
+  "dpe": "C",
+  "points_forts": [
+    "117 commerces et restaurants à proximité",
+    "99 arrêts et gares accessibles",
+    "6 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [
+    "Prix 20% au-dessus du marché local"
+  ],
+  "verdict": "Bon dossier dans l'ensemble : 117 commerces et restaurants à proximité. Point de vigilance : Prix 20% au-dessus du marché local.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

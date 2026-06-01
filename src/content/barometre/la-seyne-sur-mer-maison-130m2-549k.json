@@ -1,0 +1,30 @@
+{
+  "slug": "la-seyne-sur-mer-maison-130m2-549k",
+  "ville": "La Seyne-sur-Mer",
+  "code_postal": "83500",
+  "region": "Provence-Alpes-Côte d'Azur",
+  "type_bien": "maison",
+  "surface": 130,
+  "prix_demande": 549000,
+  "prix_m2": 4223,
+  "score_global": 75,
+  "score_sections": {
+    "dpe": 5,
+    "prix": 5,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 8
+  },
+  "dpe": "D",
+  "points_forts": [
+    "100 commerces et restaurants à proximité",
+    "180 arrêts et gares accessibles",
+    "20 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : 100 commerces et restaurants à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

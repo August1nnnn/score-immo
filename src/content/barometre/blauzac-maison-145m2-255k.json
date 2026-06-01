@@ -1,0 +1,30 @@
+{
+  "slug": "blauzac-maison-145m2-255k",
+  "ville": "Blauzac",
+  "code_postal": "30700",
+  "region": "Occitanie",
+  "type_bien": "maison",
+  "surface": 145,
+  "prix_demande": 255000,
+  "prix_m2": 1759,
+  "score_global": 87,
+  "score_sections": {
+    "dpe": 9,
+    "prix": 10,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 9
+  },
+  "dpe": "B",
+  "points_forts": [
+    "36% sous la médiane du secteur",
+    "DPE B, logement économe en énergie",
+    "42 arrêts et gares accessibles"
+  ],
+  "alertes_cles": [],
+  "verdict": "Excellente opportunité : 36% sous la médiane du secteur.",
+  "mois": "2026-06",
+  "is_edito": true,
+  "edito_label": "Le cas du mois",
+  "date_analyse": "2026-06-01"
+}

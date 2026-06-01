@@ -1,0 +1,32 @@
+{
+  "slug": "le-beausset-maison-92m2-405k",
+  "ville": "Le Beausset",
+  "code_postal": "83330",
+  "region": "Provence-Alpes-Côte d'Azur",
+  "type_bien": "maison",
+  "surface": 92,
+  "prix_demande": 405000,
+  "prix_m2": 4402,
+  "score_global": 75,
+  "score_sections": {
+    "dpe": 0,
+    "prix": 3,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 0
+  },
+  "dpe": "D",
+  "points_forts": [
+    "29 commerces et restaurants à proximité",
+    "17 arrêts et gares accessibles",
+    "Aucun risque naturel recensé"
+  ],
+  "alertes_cles": [
+    "Prix 21% au-dessus du marché local"
+  ],
+  "verdict": "Bon dossier dans l'ensemble : 29 commerces et restaurants à proximité. Point de vigilance : Prix 21% au-dessus du marché local.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

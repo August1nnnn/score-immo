@@ -1,0 +1,32 @@
+{
+  "slug": "toulouse-appartement-44m2-198k",
+  "ville": "Toulouse",
+  "code_postal": "31000",
+  "region": "Occitanie",
+  "type_bien": "appartement",
+  "surface": 44,
+  "prix_demande": 198000,
+  "prix_m2": 4500,
+  "score_global": 72,
+  "score_sections": {
+    "dpe": 7,
+    "prix": 2,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 7
+  },
+  "dpe": "C",
+  "points_forts": [
+    "1726 commerces et restaurants à proximité",
+    "583 arrêts et gares accessibles",
+    "20 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [
+    "Prix 49% au-dessus du marché local"
+  ],
+  "verdict": "Bon dossier dans l'ensemble : 1726 commerces et restaurants à proximité. Point de vigilance : Prix 49% au-dessus du marché local.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

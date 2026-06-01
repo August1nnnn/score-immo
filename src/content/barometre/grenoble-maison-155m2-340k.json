@@ -1,0 +1,32 @@
+{
+  "slug": "grenoble-maison-155m2-340k",
+  "ville": "Grenoble",
+  "code_postal": "38000",
+  "region": "Auvergne-Rhône-Alpes",
+  "type_bien": "maison",
+  "surface": 155.18,
+  "prix_demande": 340000,
+  "prix_m2": 2191,
+  "score_global": 73,
+  "score_sections": {
+    "dpe": 0,
+    "prix": 10,
+    "risques": 8,
+    "urbanisme": 9,
+    "environnement": 5
+  },
+  "dpe": "G",
+  "points_forts": [
+    "31% sous la médiane du secteur",
+    "1271 commerces et restaurants à proximité",
+    "367 arrêts et gares accessibles"
+  ],
+  "alertes_cles": [
+    "DPE G, passoire énergétique : travaux à prévoir"
+  ],
+  "verdict": "Bon dossier dans l'ensemble : 31% sous la médiane du secteur. Point de vigilance : DPE G, passoire énergétique : travaux à prévoir.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

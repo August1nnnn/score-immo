@@ -1,0 +1,30 @@
+{
+  "slug": "paris-appartement-17m2-184k",
+  "ville": "Paris",
+  "code_postal": "75001",
+  "region": "Île-de-France",
+  "type_bien": "appartement",
+  "surface": 17,
+  "prix_demande": 184000,
+  "prix_m2": 10824,
+  "score_global": 73,
+  "score_sections": {
+    "dpe": 5,
+    "prix": 5,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 7
+  },
+  "dpe": "D",
+  "points_forts": [
+    "6423 commerces et restaurants à proximité",
+    "1069 arrêts et gares accessibles",
+    "20 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : 6423 commerces et restaurants à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

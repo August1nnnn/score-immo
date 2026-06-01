@@ -1,0 +1,30 @@
+{
+  "slug": "marseille-appartement-92m2-439k",
+  "ville": "Marseille",
+  "code_postal": "13001",
+  "region": "Provence-Alpes-Côte d'Azur",
+  "type_bien": "appartement",
+  "surface": 92,
+  "prix_demande": 439000,
+  "prix_m2": 4772,
+  "score_global": 74,
+  "score_sections": {
+    "dpe": 5,
+    "prix": 5,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 7
+  },
+  "dpe": "D",
+  "points_forts": [
+    "666 commerces et restaurants à proximité",
+    "608 arrêts et gares accessibles",
+    "20 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : 666 commerces et restaurants à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

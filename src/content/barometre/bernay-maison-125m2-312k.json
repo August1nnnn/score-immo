@@ -1,0 +1,30 @@
+{
+  "slug": "bernay-maison-125m2-312k",
+  "ville": "Bernay",
+  "code_postal": "27300",
+  "region": "Normandie",
+  "type_bien": "maison",
+  "surface": 125,
+  "prix_demande": 312000,
+  "prix_m2": 2496,
+  "score_global": 72,
+  "score_sections": {
+    "dpe": 10,
+    "prix": 2,
+    "risques": 8,
+    "urbanisme": 9,
+    "environnement": 6
+  },
+  "dpe": "A",
+  "points_forts": [
+    "DPE A, logement économe en énergie",
+    "45 commerces et restaurants à proximité",
+    "23 arrêts et gares accessibles"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : DPE A, logement économe en énergie.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

@@ -1,0 +1,32 @@
+{
+  "slug": "saint-herblain-appartement-93m2-232k",
+  "ville": "Saint-Herblain",
+  "code_postal": "44800",
+  "region": "Pays de la Loire",
+  "type_bien": "appartement",
+  "surface": 93,
+  "prix_demande": 232000,
+  "prix_m2": 2495,
+  "score_global": 74,
+  "score_sections": {
+    "dpe": 5,
+    "prix": 5,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 8
+  },
+  "dpe": "D",
+  "points_forts": [
+    "110 commerces et restaurants à proximité",
+    "197 arrêts et gares accessibles",
+    "7 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [
+    "Prix 9% au-dessus du marché local"
+  ],
+  "verdict": "Bon dossier dans l'ensemble : 110 commerces et restaurants à proximité. Point de vigilance : Prix 9% au-dessus du marché local.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

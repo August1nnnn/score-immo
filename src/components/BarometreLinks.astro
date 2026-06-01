@@ -1,0 +1,92 @@
+---
+// Internal-linking block: surfaces real Baromètre analyses relevant to a blog
+// article (same region as the article's city), passing authority from indexed
+// villes/quartiers articles to the /barometre fiches. Self-contained: reads the
+// barometre collection and matches by region (city -> region map below).
+import { getCollection } from 'astro:content';
+
+interface Props { title: string; blog?: string; }
+const { title } = Astro.props;
+
+// Article cities -> region (the blog covers these major cities).
+const CITY_REGION: Record<string, string> = {
+  Angers: 'Pays de la Loire', Nantes: 'Pays de la Loire',
+  Bordeaux: 'Nouvelle-Aquitaine',
+  Dijon: 'Bourgogne-Franche-Comté',
+  Grenoble: 'Auvergne-Rhône-Alpes', Lyon: 'Auvergne-Rhône-Alpes',
+  Lille: 'Hauts-de-France',
+  Marseille: 'Provence-Alpes-Côte d\'Azur', Nice: 'Provence-Alpes-Côte d\'Azur',
+  Montpellier: 'Occitanie', Toulouse: 'Occitanie',
+  Paris: 'Île-de-France',
+  Reims: 'Grand Est', Strasbourg: 'Grand Est',
+  Rennes: 'Bretagne',
+  Tours: 'Centre-Val de Loire',
+};
+
+const norm = (s: string) => s.normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+const t = norm(title);
+let region: string | null = null;
+let cityName: string | null = null;
+for (const [city, reg] of Object.entries(CITY_REGION)) {
+  if (t.includes(norm(city))) { region = reg; cityName = city; break; }
+}
+
+const all = (await getCollection('barometre')).map((e) => e.data).sort((a, b) => b.score_global - a.score_global);
+// Same-region fiches first; if a fiche is the same city, surface it first.
+let fiches = region ? all.filter((f) => f.region === region) : [];
+if (cityName) fiches.sort((a, b) => (norm(b.ville) === norm(cityName!) ? 1 : 0) - (norm(a.ville) === norm(cityName!) ? 1 : 0));
+if (fiches.length === 0) fiches = all; // fallback: top fiches
+fiches = fiches.slice(0, 4);
+
+const typeLabel = (t: string) => (t === 'appartement' ? 'Appart.' : 'Maison');
+const scoreColor = (s: number) => (s >= 70 ? '#16A34A' : s >= 40 ? '#F59E0B' : '#DC2626');
+const heading = region
+  ? `Le Baromètre en ${region}`
+  : 'Le Baromètre Immobilier ScoreImmo';
+---
+{fiches.length > 0 && (
+  <aside class="si-baro-links" aria-label="Analyses du Baromètre">
+    <p class="si-baro-links-label">{heading}</p>
+    <p class="si-baro-links-intro">Des annonces réelles analysées et notées sur 100 par ScoreImmo :</p>
+    <ul class="si-baro-links-list">
+      {fiches.map((f) => (
+        <li>
+          <a href={`/barometre/${f.slug}`}>
+            <span class="si-baro-score" style={`color:${scoreColor(f.score_global)}`}>{f.score_global}</span>
+            <span class="si-baro-city">{f.ville}</span>
+            <span class="si-baro-meta">{typeLabel(f.type_bien)} · {f.surface} m²{f.dpe ? ` · DPE ${f.dpe}` : ''}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <a class="si-baro-all" href="/barometre">Voir tout le Baromètre Immobilier &rarr;</a>
+  </aside>
+)}
+
+<style>
+  .si-baro-links {
+    margin: 2.5rem 0;
+    padding: 1.5rem 1.75rem;
+    border: 1px solid var(--si-border, #E2E8F0);
+    border-radius: var(--si-radius-xl, 1rem);
+    background: var(--si-card, #fff);
+  }
+  .si-baro-links-label {
+    font-family: var(--si-font-heading, 'DM Sans', sans-serif);
+    font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--si-accent, #3B82F6); margin: 0 0 0.25rem;
+  }
+  .si-baro-links-intro { font-size: 0.95rem; color: var(--si-muted-foreground, #64748B); margin: 0 0 1rem; }
+  .si-baro-links-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.5rem; }
+  .si-baro-links-list a {
+    display: flex; align-items: baseline; gap: 0.5rem; padding: 0.6rem 0.85rem;
+    border: 1px solid var(--si-border, #E2E8F0); border-radius: var(--si-radius, 0.75rem);
+    text-decoration: none; transition: border-color 0.2s, background 0.2s;
+  }
+  .si-baro-links-list a:hover { border-color: var(--si-accent, #3B82F6); background: rgba(59,130,246,0.04); }
+  .si-baro-score { font-family: var(--si-font-heading); font-weight: 800; font-size: 1.15rem; }
+  .si-baro-city { font-weight: 600; color: var(--si-foreground); }
+  .si-baro-meta { font-size: 0.78rem; color: var(--si-muted-foreground); margin-left: auto; }
+  .si-baro-all { display: inline-block; margin-top: 1rem; font-weight: 600; color: var(--si-accent, #3B82F6); text-decoration: none; }
+  @media (max-width: 480px) { .si-baro-meta { display: none; } }
+</style>

@@ -1,0 +1,28 @@
+{
+  "slug": "pontvallain-maison-181m2-360k",
+  "ville": "Pontvallain",
+  "code_postal": "72510",
+  "region": "Pays de la Loire",
+  "type_bien": "maison",
+  "surface": 181,
+  "prix_demande": 360000,
+  "prix_m2": 1989,
+  "score_global": 71,
+  "score_sections": {
+    "dpe": 7,
+    "prix": 2,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 9
+  },
+  "dpe": "C",
+  "points_forts": [
+    "Aucun risque naturel recensé"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : Aucun risque naturel recensé.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

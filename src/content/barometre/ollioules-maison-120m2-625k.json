@@ -1,0 +1,30 @@
+{
+  "slug": "ollioules-maison-120m2-625k",
+  "ville": "Ollioules",
+  "code_postal": "83190",
+  "region": "Provence-Alpes-Côte d'Azur",
+  "type_bien": "maison",
+  "surface": 120,
+  "prix_demande": 625000,
+  "prix_m2": 5208,
+  "score_global": 74,
+  "score_sections": {
+    "dpe": 0,
+    "prix": 5,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 0
+  },
+  "dpe": "A",
+  "points_forts": [
+    "DPE A, logement économe en énergie",
+    "119 commerces et restaurants à proximité",
+    "206 arrêts et gares accessibles"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : DPE A, logement économe en énergie.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

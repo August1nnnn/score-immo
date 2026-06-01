@@ -1,0 +1,30 @@
+{
+  "slug": "reims-appartement-73m2-154k",
+  "ville": "Reims",
+  "code_postal": "51100",
+  "region": "Grand Est",
+  "type_bien": "appartement",
+  "surface": 73.29,
+  "prix_demande": 154000,
+  "prix_m2": 2101,
+  "score_global": 73,
+  "score_sections": {
+    "dpe": 5,
+    "prix": 6,
+    "risques": 8,
+    "urbanisme": 9,
+    "environnement": 8
+  },
+  "dpe": "D",
+  "points_forts": [
+    "259 commerces et restaurants à proximité",
+    "341 arrêts et gares accessibles",
+    "20 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : 259 commerces et restaurants à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

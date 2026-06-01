@@ -1,0 +1,30 @@
+{
+  "slug": "saint-pierre-du-perray-appartement-61m2-216k",
+  "ville": "Saint-Pierre-du-Perray",
+  "code_postal": "91280",
+  "region": "Île-de-France",
+  "type_bien": "appartement",
+  "surface": 61.53,
+  "prix_demande": 216000,
+  "prix_m2": 3510,
+  "score_global": 77,
+  "score_sections": {
+    "dpe": 7,
+    "prix": 6,
+    "risques": 8,
+    "urbanisme": 9,
+    "environnement": 9
+  },
+  "dpe": "C",
+  "points_forts": [
+    "81 commerces et restaurants à proximité",
+    "275 arrêts et gares accessibles",
+    "16 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : 81 commerces et restaurants à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

@@ -1,0 +1,30 @@
+{
+  "slug": "mathieu-maison-143m2-445k",
+  "ville": "Mathieu",
+  "code_postal": "14920",
+  "region": "Normandie",
+  "type_bien": "maison",
+  "surface": 143,
+  "prix_demande": 445000,
+  "prix_m2": 3112,
+  "score_global": 74,
+  "score_sections": {
+    "dpe": 5,
+    "prix": 7,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 6
+  },
+  "dpe": "D",
+  "points_forts": [
+    "38 commerces et restaurants à proximité",
+    "373 arrêts et gares accessibles",
+    "Aucun risque naturel recensé"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : 38 commerces et restaurants à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

@@ -1,0 +1,30 @@
+{
+  "slug": "tassin-la-demi-lune-appartement-81m2-200k",
+  "ville": "Tassin-la-Demi-Lune",
+  "code_postal": "69160",
+  "region": "Auvergne-Rhône-Alpes",
+  "type_bien": "appartement",
+  "surface": 81.58,
+  "prix_demande": 200000,
+  "prix_m2": 2452,
+  "score_global": 77,
+  "score_sections": {
+    "dpe": 3,
+    "prix": 9,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 6
+  },
+  "dpe": "E",
+  "points_forts": [
+    "17% sous la médiane du secteur",
+    "135 commerces et restaurants à proximité",
+    "496 arrêts et gares accessibles"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : 17% sous la médiane du secteur.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

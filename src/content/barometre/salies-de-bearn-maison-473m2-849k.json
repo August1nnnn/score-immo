@@ -1,0 +1,32 @@
+{
+  "slug": "salies-de-bearn-maison-473m2-849k",
+  "ville": "Salies-de-Béarn",
+  "code_postal": "64270",
+  "region": "Nouvelle-Aquitaine",
+  "type_bien": "maison",
+  "surface": 473,
+  "prix_demande": 849000,
+  "prix_m2": 1795,
+  "score_global": 77,
+  "score_sections": {
+    "dpe": 0,
+    "prix": 4,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 0
+  },
+  "dpe": "D",
+  "points_forts": [
+    "38 commerces et restaurants à proximité",
+    "42 arrêts et gares accessibles",
+    "Aucun risque naturel recensé"
+  ],
+  "alertes_cles": [
+    "Prix 13% au-dessus du marché local"
+  ],
+  "verdict": "Bon dossier dans l'ensemble : 38 commerces et restaurants à proximité. Point de vigilance : Prix 13% au-dessus du marché local.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

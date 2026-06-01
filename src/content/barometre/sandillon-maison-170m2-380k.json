@@ -1,0 +1,32 @@
+{
+  "slug": "sandillon-maison-170m2-380k",
+  "ville": "Sandillon",
+  "code_postal": "45640",
+  "region": "Centre-Val de Loire",
+  "type_bien": "maison",
+  "surface": 170,
+  "prix_demande": 380000,
+  "prix_m2": 2235,
+  "score_global": 73,
+  "score_sections": {
+    "dpe": 9,
+    "prix": 3,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 8
+  },
+  "dpe": "B",
+  "points_forts": [
+    "DPE B, logement économe en énergie",
+    "18 commerces et restaurants à proximité",
+    "63 arrêts et gares accessibles"
+  ],
+  "alertes_cles": [
+    "Prix 17% au-dessus du marché local"
+  ],
+  "verdict": "Bon dossier dans l'ensemble : DPE B, logement économe en énergie. Point de vigilance : Prix 17% au-dessus du marché local.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

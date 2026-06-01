@@ -1,0 +1,30 @@
+{
+  "slug": "senlis-appartement-30m2-115k",
+  "ville": "Senlis",
+  "code_postal": "60300",
+  "region": "Hauts-de-France",
+  "type_bien": "appartement",
+  "surface": 30,
+  "prix_demande": 115000,
+  "prix_m2": 3833,
+  "score_global": 78,
+  "score_sections": {
+    "dpe": 7,
+    "prix": 5,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 9
+  },
+  "dpe": "C",
+  "points_forts": [
+    "64 commerces et restaurants à proximité",
+    "177 arrêts et gares accessibles",
+    "13 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : 64 commerces et restaurants à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

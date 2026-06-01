@@ -1,0 +1,32 @@
+{
+  "slug": "valenciennes-appartement-95m2-220k",
+  "ville": "Valenciennes",
+  "code_postal": "59300",
+  "region": "Hauts-de-France",
+  "type_bien": "appartement",
+  "surface": 95,
+  "prix_demande": 220000,
+  "prix_m2": 2316,
+  "score_global": 76,
+  "score_sections": {
+    "dpe": 5,
+    "prix": 5,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 9
+  },
+  "dpe": "D",
+  "points_forts": [
+    "381 commerces et restaurants à proximité",
+    "583 arrêts et gares accessibles",
+    "20 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [
+    "Prix 8% au-dessus du marché local"
+  ],
+  "verdict": "Bon dossier dans l'ensemble : 381 commerces et restaurants à proximité. Point de vigilance : Prix 8% au-dessus du marché local.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

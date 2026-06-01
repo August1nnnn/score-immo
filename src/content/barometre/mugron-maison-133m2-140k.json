@@ -1,0 +1,29 @@
+{
+  "slug": "mugron-maison-133m2-140k",
+  "ville": "Mugron",
+  "code_postal": "40250",
+  "region": "Nouvelle-Aquitaine",
+  "type_bien": "maison",
+  "surface": 133,
+  "prix_demande": 140000,
+  "prix_m2": 1053,
+  "score_global": 80,
+  "score_sections": {
+    "dpe": 5,
+    "prix": 9,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 9
+  },
+  "dpe": "D",
+  "points_forts": [
+    "18% sous la médiane du secteur",
+    "Aucun risque naturel recensé"
+  ],
+  "alertes_cles": [],
+  "verdict": "Excellente opportunité : 18% sous la médiane du secteur.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

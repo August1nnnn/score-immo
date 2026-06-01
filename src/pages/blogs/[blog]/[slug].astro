@@ -4,6 +4,7 @@ import TLDRBox from '@/components/TLDRBox.astro';
 import AuthorCard from '@/components/AuthorCard.astro';
 import SourcesSection from '@/components/SourcesSection.astro';
 import AnalyzerBox from '@/components/AnalyzerBox.astro';
+import BarometreLinks from '@/components/BarometreLinks.astro';
 import { getCollection, getEntry } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -174,6 +175,10 @@ if (faqPairs.length > 0) {
         <AnalyzerBox blog={article.blog} medium="blog_top" />
 
         <div class="si-article-body" set:html={article.body_html}></div>
+
+        {(article.blog === 'villes' || article.blog === 'quartiers') && (
+          <BarometreLinks title={article.title} blog={article.blog} />
+        )}
 
         {article.sources && article.sources.length > 0 && (
           <SourcesSection sources={article.sources} />

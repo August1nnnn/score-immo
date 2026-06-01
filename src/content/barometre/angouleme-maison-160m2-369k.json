@@ -1,0 +1,32 @@
+{
+  "slug": "angouleme-maison-160m2-369k",
+  "ville": "Angoulême",
+  "code_postal": "16000",
+  "region": "Nouvelle-Aquitaine",
+  "type_bien": "maison",
+  "surface": 160,
+  "prix_demande": 369900,
+  "prix_m2": 2312,
+  "score_global": 72,
+  "score_sections": {
+    "dpe": 0,
+    "prix": 2,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 9
+  },
+  "dpe": "C",
+  "points_forts": [
+    "279 commerces et restaurants à proximité",
+    "659 arrêts et gares accessibles",
+    "Aucun risque naturel recensé"
+  ],
+  "alertes_cles": [
+    "Prix 44% au-dessus du marché local"
+  ],
+  "verdict": "Bon dossier dans l'ensemble : 279 commerces et restaurants à proximité. Point de vigilance : Prix 44% au-dessus du marché local.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

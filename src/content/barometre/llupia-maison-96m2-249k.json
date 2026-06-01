@@ -1,0 +1,30 @@
+{
+  "slug": "llupia-maison-96m2-249k",
+  "ville": "Llupia",
+  "code_postal": "66300",
+  "region": "Occitanie",
+  "type_bien": "maison",
+  "surface": 96,
+  "prix_demande": 249000,
+  "prix_m2": 2594,
+  "score_global": 74,
+  "score_sections": {
+    "dpe": 7,
+    "prix": 5,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 6
+  },
+  "dpe": "C",
+  "points_forts": [
+    "39 commerces et restaurants à proximité",
+    "72 arrêts et gares accessibles",
+    "Aucun risque naturel recensé"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : 39 commerces et restaurants à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

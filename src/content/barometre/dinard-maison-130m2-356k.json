@@ -1,0 +1,32 @@
+{
+  "slug": "dinard-maison-130m2-356k",
+  "ville": "Dinard",
+  "code_postal": "35800",
+  "region": "Bretagne",
+  "type_bien": "maison",
+  "surface": 130,
+  "prix_demande": 356320,
+  "prix_m2": 2741,
+  "score_global": 75,
+  "score_sections": {
+    "dpe": 1,
+    "prix": 7,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 9
+  },
+  "dpe": "F",
+  "points_forts": [
+    "144 commerces et restaurants à proximité",
+    "180 arrêts et gares accessibles",
+    "7 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [
+    "DPE F, passoire énergétique : travaux à prévoir"
+  ],
+  "verdict": "Bon dossier dans l'ensemble : 144 commerces et restaurants à proximité. Point de vigilance : DPE F, passoire énergétique : travaux à prévoir.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

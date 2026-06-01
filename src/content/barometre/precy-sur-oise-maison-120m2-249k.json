@@ -26,7 +26,7 @@
   ],
   "verdict": "Excellente opportunité : 27% sous la médiane du secteur. Point de vigilance : DPE G, passoire énergétique : travaux à prévoir.",
   "mois": "2026-06",
-  "is_edito": true,
-  "edito_label": "Le cas du mois",
+  "is_edito": false,
+  "edito_label": null,
   "date_analyse": "2026-06-01"
 }
