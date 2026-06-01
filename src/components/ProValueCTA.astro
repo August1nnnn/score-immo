@@ -1,0 +1,52 @@
+---
+// Conversion block for the mandataire (pro) vertical: value proposition
+// ("pourquoi nos rapports") + dual CTA (tester l'app gratuitement + voir une
+// démo réelle via le Baromètre). Funnels SEO traffic to app.score-immo.fr.
+const appUrl = 'https://app.score-immo.fr/app?utm_source=site&utm_medium=pro_cta';
+---
+<aside class="si-pro-cta" aria-label="ScoreImmo pour les mandataires">
+  <p class="si-pro-cta-kicker">L'outil des pros</p>
+  <h2 class="si-pro-cta-title">Pourquoi les mandataires utilisent ScoreImmo</h2>
+  <ul class="si-pro-cta-points">
+    <li><strong>Objectif et indépendant.</strong> 13 sources officielles croisées (DVF, DPE, Géorisques, INSEE...), pas un avis maison : de quoi crédibiliser votre estimation face au vendeur.</li>
+    <li><strong>Un rapport complet en 30 secondes.</strong> Prix au m² réels, performance énergétique, risques, environnement et un score sur 100, à partir du simple lien d'une annonce.</li>
+    <li><strong>Un atout pour décrocher le mandat.</strong> Remettez une analyse claire et factuelle qui transforme la négociation de prix en discussion de données.</li>
+  </ul>
+  <div class="si-pro-cta-actions">
+    <a class="si-pro-cta-btn si-pro-cta-btn-primary" href={appUrl}>Tester gratuitement</a>
+    <a class="si-pro-cta-btn si-pro-cta-btn-ghost" href="/barometre">Voir un exemple d'analyse</a>
+  </div>
+</aside>
+
+<style>
+  .si-pro-cta {
+    margin: 3rem 0 1rem;
+    padding: 2rem 1.75rem;
+    border-radius: var(--si-radius-xl, 1rem);
+    background: linear-gradient(135deg, var(--si-primary, #0F172A), #1e293b);
+    color: #fff;
+  }
+  .si-pro-cta-kicker {
+    font-family: var(--si-font-heading, 'DM Sans', sans-serif);
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--si-accent, #3B82F6); margin: 0 0 0.35rem;
+  }
+  .si-pro-cta-title {
+    font-family: var(--si-font-heading, 'DM Sans', sans-serif);
+    font-size: clamp(1.35rem, 3vw, 1.7rem); font-weight: 700; margin: 0 0 1rem; color: #fff;
+  }
+  .si-pro-cta-points { list-style: none; margin: 0 0 1.5rem; padding: 0; display: grid; gap: 0.75rem; }
+  .si-pro-cta-points li { padding-left: 1.6rem; position: relative; line-height: 1.55; color: rgba(255,255,255,0.9); font-size: 0.98rem; }
+  .si-pro-cta-points li::before { content: '✓'; position: absolute; left: 0; color: var(--si-accent, #3B82F6); font-weight: 800; }
+  .si-pro-cta-points strong { color: #fff; }
+  .si-pro-cta-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .si-pro-cta-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    height: 2.75rem; padding: 0 1.4rem; border-radius: var(--si-radius, 0.75rem);
+    font-weight: 600; text-decoration: none; transition: transform 0.15s, opacity 0.15s;
+  }
+  .si-pro-cta-btn:hover { transform: translateY(-1px); }
+  .si-pro-cta-btn-primary { background: var(--si-accent, #3B82F6); color: #fff; }
+  .si-pro-cta-btn-primary:hover { opacity: 0.92; }
+  .si-pro-cta-btn-ghost { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.25); }
+</style>

@@ -5,6 +5,7 @@ import AuthorCard from '@/components/AuthorCard.astro';
 import SourcesSection from '@/components/SourcesSection.astro';
 import AnalyzerBox from '@/components/AnalyzerBox.astro';
 import BarometreLinks from '@/components/BarometreLinks.astro';
+import ProValueCTA from '@/components/ProValueCTA.astro';
 import { getCollection, getEntry } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -180,6 +181,8 @@ if (faqPairs.length > 0) {
         {(article.blog === 'villes' || article.blog === 'quartiers') && (
           <BarometreLinks title={article.title} blog={article.blog} />
         )}
+
+        {article.blog === 'pro' && <ProValueCTA />}
 
         {article.sources && article.sources.length > 0 && (
           <SourcesSection sources={article.sources} />
