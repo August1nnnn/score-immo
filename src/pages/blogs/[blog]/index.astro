@@ -98,6 +98,9 @@ if (blog === 'villes') {
       <div class="si-blog-header">
         <h1 class="si-section-title">{labels[blog!]}</h1>
         <p class="si-section-subtitle">{descriptions[blog!]}</p>
+        {blog === 'pro' && (
+          <p style="margin-top:1rem;"><a href="/pro" style="display:inline-flex;align-items:center;gap:0.4rem;font-weight:600;color:var(--si-accent,#3B82F6);text-decoration:none;">Découvrir ScoreImmo Pro pour les mandataires &rarr;</a></p>
+        )}
       </div>
 
       <div class="si-grid-3">
