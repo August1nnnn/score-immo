@@ -289,7 +289,9 @@
     "author_handle": "camille-renard",
     "scheduled_date": "2026-06-02",
     "scheduled_datetime": "2026-06-02T07:20:00+02:00",
-    "published": false
+    "published": true,
+    "slug": "devenir-mandataire-immobilier-2026-guide-complet",
+    "published_at": "2026-06-01T19:25:00+02:00"
   },
   {
     "index": 22,
@@ -301,7 +303,9 @@
     "author_handle": "camille-renard",
     "scheduled_date": "2026-06-02",
     "scheduled_datetime": "2026-06-02T08:40:00+02:00",
-    "published": false
+    "published": true,
+    "slug": "iad-safti-capifrance-efficity-quel-reseau-mandataire-choisir",
+    "published_at": "2026-06-01T19:25:00+02:00"
   },
   {
     "index": 23,
@@ -313,7 +317,9 @@
     "author_handle": "thomas-varin",
     "scheduled_date": "2026-06-02",
     "scheduled_datetime": "2026-06-02T13:10:00+02:00",
-    "published": false
+    "published": true,
+    "slug": "combien-gagne-mandataire-immobilier-2026",
+    "published_at": "2026-06-01T19:25:00+02:00"
   },
   {
     "index": 24,
