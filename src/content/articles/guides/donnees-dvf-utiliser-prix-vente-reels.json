@@ -7,7 +7,7 @@
   "summary_html": "<p>Les données DVF révèlent tous les prix de vente immobiliers réels. Découvrez comment analyser, interpréter et utiliser ces informations pour acheter au bon prix.</p>",
   "author": "Léa Moreau",
   "published_at": "2026-03-12T09:46:18+01:00",
-  "updated_at": "2026-03-12T09:46:20+01:00",
+  "updated_at": "2026-06-01T22:40:00+02:00",
   "tags": "achat-immobilier, analyse-annonce, demandes-valeurs-foncières, données-dvf, dpe, immobilier, prix-immobilier, prix-vente-réels-immobilier, score-immo",
   "image": {
     "src": "/images/articles/donnees-dvf-utiliser-prix-vente-reels.webp",
@@ -15,10 +15,10 @@
     "width": 1200,
     "height": 630
   },
-  "meta_title": "Données DVF : Comment Utiliser les Prix de Vente Réels",
-  "meta_description": "Les données DVF (Demandes de Valeurs Foncières) constituent la base de données publique la plus complète des transactions immobilières en France.",
+  "meta_title": "Données DVF 2026 : trouver les prix de vente réels",
+  "meta_description": "Utiliser les données DVF pour connaître les prix de vente réels d'un bien : accès gratuit, méthode de comparaison et limites. La base d'une estimation juste.",
   "author_handle": "lea-moreau",
-  "last_reviewed": "2026-04-19",
+  "last_reviewed": "2026-06-01",
   "tldr": [
     "Les données DVF recensent depuis 2014 plus de 12 millions de transactions réelles avec prix exact, surface et localisation, actualisées tous les 6 mois par la DGFiP.",
     "Tu peux consulter gratuitement les DVF sur app.dvf.etalab.gouv.fr, mais le délai de publication est de 6 mois minimum et l'interface reste peu intuitive.",
