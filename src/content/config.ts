@@ -6,7 +6,7 @@ const articles = defineCollection({
     id: z.string(),
     title: z.string(),
     handle: z.string(),
-    blog: z.enum(['guides', 'villes', 'quartiers']),
+    blog: z.enum(['guides', 'villes', 'quartiers', 'pro']),
     body_html: z.string(),
     summary_html: z.string().nullable().optional(),
     author: z.string().default('Léa Moreau'),

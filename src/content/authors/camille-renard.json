@@ -1,0 +1,11 @@
+{
+  "handle": "camille-renard",
+  "name": "Camille Renard",
+  "title": "Spécialiste des métiers de l'immobilier",
+  "bio": "Camille a été mandataire immobilière pendant 8 ans au sein de deux grands réseaux avant de se consacrer à l'accompagnement des nouveaux entrants dans le métier. Elle décrypte pour ScoreImmo le choix d'un réseau, le statut d'agent commercial, la prospection et les outils qui font la différence pour décrocher des mandats.",
+  "expertise": ["Réseaux de mandataires", "Statut agent commercial", "Prospection immobilière", "Estimation", "Pige immobilière"],
+  "years_experience": 8,
+  "avatar_initials": "CR",
+  "avatar_color": "#3B82F6",
+  "published_in": ["ScoreImmo"]
+}
