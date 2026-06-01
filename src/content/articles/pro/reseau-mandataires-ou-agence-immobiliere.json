@@ -12,8 +12,8 @@
   "last_reviewed": "2026-06-01",
   "tags": "réseau mandataire ou agence, avantages réseau immobilier, indépendant immobilier, négociateur salarié",
   "image": null,
-  "meta_title": "Réseau de mandataires ou agence immobilière : que choisir ? | ScoreImmo",
-  "meta_description": "Réseau de mandataires vs agence immobilière en 2026 : commission, liberté, sécurité, charges. Le comparatif honnête pour choisir la bonne voie dans l'immobilier.",
+  "meta_title": "Réseau de mandataires ou agence : que choisir ?",
+  "meta_description": "Réseau de mandataires vs agence immobilière en 2026 : commission, liberté, sécurité, charges. Le comparatif honnête pour bien choisir.",
   "tldr": [
     "Réseau mandataire : commission 60-99 %, liberté totale, pas de fixe, à soi de tout gérer.",
     "Agence (salarié) : fixe + cadre + mandats fournis, mais commission 10-25 % et moins d'autonomie.",
@@ -22,9 +22,21 @@
     "Le réseau fournit rarement des mandats : la prospection reste à votre charge."
   ],
   "sources": [
-    { "title": "Carte professionnelle d'agent immobilier (carte T)", "url": "https://entreprendre.service-public.fr/vosdroits/F22020", "publisher": "service-public.fr" },
-    { "title": "Agent commercial indépendant : statut", "url": "https://entreprendre.service-public.fr/vosdroits/F31188", "publisher": "service-public.fr" },
-    { "title": "Loi Hoguet (intermédiaires immobiliers)", "url": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000509656/", "publisher": "Légifrance" }
+    {
+      "title": "Carte professionnelle d'agent immobilier (carte T)",
+      "url": "https://entreprendre.service-public.fr/vosdroits/F22020",
+      "publisher": "service-public.fr"
+    },
+    {
+      "title": "Agent commercial indépendant : statut",
+      "url": "https://entreprendre.service-public.fr/vosdroits/F31188",
+      "publisher": "service-public.fr"
+    },
+    {
+      "title": "Loi Hoguet (intermédiaires immobiliers)",
+      "url": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000509656/",
+      "publisher": "Légifrance"
+    }
   ],
   "word_count": 720
 }

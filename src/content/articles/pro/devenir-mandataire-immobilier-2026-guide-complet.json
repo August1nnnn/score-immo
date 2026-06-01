@@ -12,8 +12,8 @@
   "last_reviewed": "2026-06-01",
   "tags": "devenir mandataire immobilier, comment devenir mandataire, formation mandataire immobilier, statut mandataire",
   "image": null,
-  "meta_title": "Devenir mandataire immobilier en 2026 : le guide complet | ScoreImmo",
-  "meta_description": "Statut, formation, revenus, réseaux : tout pour devenir mandataire immobilier en 2026. Conditions réelles, commissions, pièges à éviter et comment bien démarrer.",
+  "meta_title": "Devenir mandataire immobilier en 2026 : le guide complet",
+  "meta_description": "Statut, formation, revenus, réseaux : tout pour devenir mandataire immobilier en 2026. Conditions réelles, commissions et pièges à éviter.",
   "tldr": [
     "Aucun diplôme requis : il faut s'immatriculer au RSAC et être habilité par un réseau titulaire de la carte T.",
     "Statut le plus courant : agent commercial en micro-entreprise (~22 % de cotisations).",
@@ -22,9 +22,21 @@
     "Compter 2 à 5 mois avant la première vente, puis 2 à 4 mois pour encaisser la commission."
   ],
   "sources": [
-    { "title": "Agent commercial : statut et immatriculation au RSAC", "url": "https://entreprendre.service-public.fr/vosdroits/F31188", "publisher": "service-public.fr" },
-    { "title": "Loi Hoguet et obligations des professionnels de l'immobilier", "url": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000509656/", "publisher": "Légifrance" },
-    { "title": "Formation continue immobilier (loi ALUR, 14h/an)", "url": "https://www.service-public.fr/particuliers/vosdroits/F2604", "publisher": "service-public.fr" }
+    {
+      "title": "Agent commercial : statut et immatriculation au RSAC",
+      "url": "https://entreprendre.service-public.fr/vosdroits/F31188",
+      "publisher": "service-public.fr"
+    },
+    {
+      "title": "Loi Hoguet et obligations des professionnels de l'immobilier",
+      "url": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000509656/",
+      "publisher": "Légifrance"
+    },
+    {
+      "title": "Formation continue immobilier (loi ALUR, 14h/an)",
+      "url": "https://www.service-public.fr/particuliers/vosdroits/F2604",
+      "publisher": "service-public.fr"
+    }
   ],
   "word_count": 1080
 }

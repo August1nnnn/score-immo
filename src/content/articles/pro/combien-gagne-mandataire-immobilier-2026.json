@@ -12,7 +12,7 @@
   "last_reviewed": "2026-06-01",
   "tags": "salaire mandataire immobilier, combien gagne un mandataire, commission mandataire immobilier",
   "image": null,
-  "meta_title": "Combien gagne un mandataire immobilier en 2026 ? Chiffres réels | ScoreImmo",
+  "meta_title": "Combien gagne un mandataire immobilier en 2026 ?",
   "meta_description": "Revenus réels d'un mandataire immobilier en 2026 : commissions, calcul sur une vente, revenu annuel par profil, et le levier qui change tout pour gagner plus.",
   "tldr": [
     "Rémunération 100 % à la commission : 60 à 99 % d'honoraires d'agence (~4 à 6 % du prix de vente).",
@@ -22,9 +22,21 @@
     "Le levier n°1 pour gagner plus : estimer juste pour que les mandats se vendent vraiment."
   ],
   "sources": [
-    { "title": "Régime micro-entrepreneur : cotisations sociales", "url": "https://www.service-public.fr/particuliers/vosdroits/F23267", "publisher": "service-public.fr" },
-    { "title": "Demandes de valeurs foncières (prix de vente réels)", "url": "https://app.dvf.etalab.gouv.fr/", "publisher": "data.gouv.fr" },
-    { "title": "Agent commercial : statut et immatriculation", "url": "https://entreprendre.service-public.fr/vosdroits/F31188", "publisher": "service-public.fr" }
+    {
+      "title": "Régime micro-entrepreneur : cotisations sociales",
+      "url": "https://www.service-public.fr/particuliers/vosdroits/F23267",
+      "publisher": "service-public.fr"
+    },
+    {
+      "title": "Demandes de valeurs foncières (prix de vente réels)",
+      "url": "https://app.dvf.etalab.gouv.fr/",
+      "publisher": "data.gouv.fr"
+    },
+    {
+      "title": "Agent commercial : statut et immatriculation",
+      "url": "https://entreprendre.service-public.fr/vosdroits/F31188",
+      "publisher": "service-public.fr"
+    }
   ],
   "word_count": 980
 }

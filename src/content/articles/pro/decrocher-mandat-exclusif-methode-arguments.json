@@ -12,8 +12,8 @@
   "last_reviewed": "2026-06-01",
   "tags": "mandat exclusif, décrocher un mandat, arguments mandat exclusif, mandat semi-exclusif",
   "image": null,
-  "meta_title": "Décrocher un mandat exclusif : méthode et arguments 2026 | ScoreImmo",
-  "meta_description": "La méthode et les arguments pour décrocher un mandat exclusif : prix prouvé, plan d'action, transparence. Lever les objections du vendeur et gagner l'exclusivité.",
+  "meta_title": "Décrocher un mandat exclusif : la méthode 2026",
+  "meta_description": "La méthode et les arguments pour décrocher un mandat exclusif : prix prouvé, plan d'action, transparence. Lever les objections du vendeur.",
   "tldr": [
     "Les biens en exclusivité se vendent plus vite et plus près du prix qu'en mandat simple.",
     "Objections fréquentes : \"plusieurs agences = plus de chances\" (faux), \"je veux aussi vendre seul\".",
@@ -22,9 +22,21 @@
     "Remettre un rapport objectif dès le 1er RDV déclenche la confiance et l'exclusivité."
   ],
   "sources": [
-    { "title": "Mandat de vente immobilier : règles et types", "url": "https://www.service-public.fr/particuliers/vosdroits/F2729", "publisher": "service-public.fr" },
-    { "title": "Loi Hoguet (mandats immobiliers)", "url": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000509656/", "publisher": "Légifrance" },
-    { "title": "Demandes de valeurs foncières (prix réels)", "url": "https://app.dvf.etalab.gouv.fr/", "publisher": "data.gouv.fr" }
+    {
+      "title": "Mandat de vente immobilier : règles et types",
+      "url": "https://www.service-public.fr/particuliers/vosdroits/F2729",
+      "publisher": "service-public.fr"
+    },
+    {
+      "title": "Loi Hoguet (mandats immobiliers)",
+      "url": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000509656/",
+      "publisher": "Légifrance"
+    },
+    {
+      "title": "Demandes de valeurs foncières (prix réels)",
+      "url": "https://app.dvf.etalab.gouv.fr/",
+      "publisher": "data.gouv.fr"
+    }
   ],
   "word_count": 720
 }

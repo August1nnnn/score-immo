@@ -12,8 +12,8 @@
   "last_reviewed": "2026-06-01",
   "tags": "pige immobilière, trouver des mandats, prospection mandats immobilier, pige 2026",
   "image": null,
-  "meta_title": "Pige immobilière 2026 : trouver des mandats (méthodes + outils) | ScoreImmo",
-  "meta_description": "La pige immobilière en 2026 : sources, méthode, outils et la technique qui marche pour décrocher des mandats. L'estimation objective comme porte d'entrée vendeur.",
+  "meta_title": "Pige immobilière 2026 : trouver des mandats",
+  "meta_description": "La pige immobilière en 2026 : sources, méthode, outils et la technique qui marche pour décrocher des mandats auprès des vendeurs en direct.",
   "tldr": [
     "La pige = prospection ciblée des biens à vendre (surtout particuliers) pour décrocher des mandats.",
     "Sources : annonces PAP, pige terrain, réseau personnel, mandats expirés.",
@@ -22,9 +22,21 @@
     "À éviter : démarchage agressif, messages génériques, estimations gonflées."
   ],
   "sources": [
-    { "title": "Démarchage et protection du consommateur", "url": "https://www.service-public.fr/particuliers/vosdroits/F34631", "publisher": "service-public.fr" },
-    { "title": "RGPD : prospection et données personnelles", "url": "https://www.cnil.fr/fr/la-prospection-commerciale-par-courrier-electronique", "publisher": "CNIL" },
-    { "title": "Demandes de valeurs foncières (estimation)", "url": "https://app.dvf.etalab.gouv.fr/", "publisher": "data.gouv.fr" }
+    {
+      "title": "Démarchage et protection du consommateur",
+      "url": "https://www.service-public.fr/particuliers/vosdroits/F34631",
+      "publisher": "service-public.fr"
+    },
+    {
+      "title": "RGPD : prospection et données personnelles",
+      "url": "https://www.cnil.fr/fr/la-prospection-commerciale-par-courrier-electronique",
+      "publisher": "CNIL"
+    },
+    {
+      "title": "Demandes de valeurs foncières (estimation)",
+      "url": "https://app.dvf.etalab.gouv.fr/",
+      "publisher": "data.gouv.fr"
+    }
   ],
   "word_count": 760
 }

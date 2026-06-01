@@ -12,8 +12,8 @@
   "last_reviewed": "2026-06-01",
   "tags": "statut mandataire immobilier, agent commercial immobilier, micro entreprise mandataire, cotisations",
   "image": null,
-  "meta_title": "Statut du mandataire immobilier : agent commercial et cotisations 2026 | ScoreImmo",
-  "meta_description": "Agent commercial, RSAC, micro-entreprise, cotisations (~22 %) : le statut du mandataire immobilier expliqué en 2026, avec les démarches et ce qu'il faut anticiper.",
+  "meta_title": "Statut du mandataire immobilier : ce qu'il faut savoir",
+  "meta_description": "Agent commercial, RSAC, micro-entreprise, cotisations ~22 % : le statut du mandataire immobilier expliqué en 2026, avec toutes les démarches.",
   "tldr": [
     "Le mandataire est agent commercial indépendant, immatriculé au RSAC (obligatoire).",
     "Démarrage en micro-entreprise (BNC) : gratuit, simple, cotisations ~22 % du CA encaissé.",
@@ -22,9 +22,21 @@
     "On cotise sur le CA, pas sur le bénéfice : rien à payer un mois sans vente."
   ],
   "sources": [
-    { "title": "Agent commercial : statut et immatriculation au RSAC", "url": "https://entreprendre.service-public.fr/vosdroits/F31188", "publisher": "service-public.fr" },
-    { "title": "Régime micro-entrepreneur : cotisations et plafonds", "url": "https://www.service-public.fr/particuliers/vosdroits/F23267", "publisher": "service-public.fr" },
-    { "title": "Cotisation foncière des entreprises (CFE)", "url": "https://entreprendre.service-public.fr/vosdroits/F23547", "publisher": "service-public.fr" }
+    {
+      "title": "Agent commercial : statut et immatriculation au RSAC",
+      "url": "https://entreprendre.service-public.fr/vosdroits/F31188",
+      "publisher": "service-public.fr"
+    },
+    {
+      "title": "Régime micro-entrepreneur : cotisations et plafonds",
+      "url": "https://www.service-public.fr/particuliers/vosdroits/F23267",
+      "publisher": "service-public.fr"
+    },
+    {
+      "title": "Cotisation foncière des entreprises (CFE)",
+      "url": "https://entreprendre.service-public.fr/vosdroits/F23547",
+      "publisher": "service-public.fr"
+    }
   ],
   "word_count": 760
 }

@@ -12,7 +12,7 @@
   "last_reviewed": "2026-06-01",
   "tags": "estimation locative, rendement locatif mandataire, convaincre investisseur, rendement net",
   "image": null,
-  "meta_title": "Estimation locative : convaincre un investisseur en 2026 | ScoreImmo",
+  "meta_title": "Estimation locative : convaincre un investisseur",
   "meta_description": "Maîtriser l'estimation locative pour conclure avec un investisseur : rendement brut/net/net-net, loyer de marché, DPE et dossier chiffré qui inspire confiance.",
   "tldr": [
     "L'investisseur raisonne rendement : brut, net et surtout net-net (après fiscalité).",
@@ -22,9 +22,21 @@
     "Remettre un dossier chiffré (prix DVF, loyer, rendement, DPE) crédibilise le conseil."
   ],
   "sources": [
-    { "title": "Calendrier d'interdiction de location des passoires thermiques", "url": "https://www.service-public.fr/particuliers/vosdroits/F35515", "publisher": "service-public.fr" },
-    { "title": "Demandes de valeurs foncières (prix réels)", "url": "https://app.dvf.etalab.gouv.fr/", "publisher": "data.gouv.fr" },
-    { "title": "Diagnostic de performance énergétique (DPE)", "url": "https://data.ademe.fr/", "publisher": "ADEME" }
+    {
+      "title": "Calendrier d'interdiction de location des passoires thermiques",
+      "url": "https://www.service-public.fr/particuliers/vosdroits/F35515",
+      "publisher": "service-public.fr"
+    },
+    {
+      "title": "Demandes de valeurs foncières (prix réels)",
+      "url": "https://app.dvf.etalab.gouv.fr/",
+      "publisher": "data.gouv.fr"
+    },
+    {
+      "title": "Diagnostic de performance énergétique (DPE)",
+      "url": "https://data.ademe.fr/",
+      "publisher": "ADEME"
+    }
   ],
   "word_count": 720
 }

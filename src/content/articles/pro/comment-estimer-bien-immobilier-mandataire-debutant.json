@@ -12,8 +12,8 @@
   "last_reviewed": "2026-06-01",
   "tags": "estimer un bien immobilier, estimation mandataire débutant, méthode estimation, prix au m2 DVF",
   "image": null,
-  "meta_title": "Comment estimer un bien immobilier (mandataire débutant) | ScoreImmo",
-  "meta_description": "La méthode fiable pour estimer un bien quand on débute comme mandataire : prix DVF réels, DPE, environnement, croisement de sources et rapport pour convaincre le vendeur.",
+  "meta_title": "Comment estimer un bien immobilier (mandataire)",
+  "meta_description": "La méthode fiable pour estimer un bien quand on débute comme mandataire : prix DVF réels, DPE, environnement, et le rapport qui convainc le vendeur.",
   "tldr": [
     "Partir des prix de vente réels (DVF), pas des prix affichés des annonces.",
     "Ajuster selon DPE, état, étage, extérieur, travaux et environnement.",
@@ -22,9 +22,21 @@
     "Assumer le bon prix : un mandat surévalué ne se vend pas et abîme la réputation."
   ],
   "sources": [
-    { "title": "Demandes de valeurs foncières (DVF) - prix réels", "url": "https://app.dvf.etalab.gouv.fr/", "publisher": "data.gouv.fr" },
-    { "title": "Diagnostic de performance énergétique (DPE)", "url": "https://data.ademe.fr/", "publisher": "ADEME" },
-    { "title": "Risques naturels et technologiques", "url": "https://www.georisques.gouv.fr/", "publisher": "Géorisques" }
+    {
+      "title": "Demandes de valeurs foncières (DVF) - prix réels",
+      "url": "https://app.dvf.etalab.gouv.fr/",
+      "publisher": "data.gouv.fr"
+    },
+    {
+      "title": "Diagnostic de performance énergétique (DPE)",
+      "url": "https://data.ademe.fr/",
+      "publisher": "ADEME"
+    },
+    {
+      "title": "Risques naturels et technologiques",
+      "url": "https://www.georisques.gouv.fr/",
+      "publisher": "Géorisques"
+    }
   ],
   "word_count": 700
 }

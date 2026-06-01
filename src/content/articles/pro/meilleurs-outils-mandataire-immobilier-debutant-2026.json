@@ -12,8 +12,8 @@
   "last_reviewed": "2026-06-01",
   "tags": "outils mandataire immobilier, logiciel mandataire, outils prospection immobilière, outil estimation",
   "image": null,
-  "meta_title": "Les meilleurs outils du mandataire immobilier débutant 2026 | ScoreImmo",
-  "meta_description": "La boîte à outils essentielle du mandataire débutant en 2026 : CRM, estimation fiable, diffusion, bases publiques (DVF, Géorisques). Sur quoi investir en priorité.",
+  "meta_title": "Les meilleurs outils du mandataire en 2026",
+  "meta_description": "La boîte à outils du mandataire débutant en 2026 : CRM, estimation fiable, diffusion, bases publiques (DVF, Géorisques). Sur quoi investir d'abord.",
   "tldr": [
     "Trois moments qui comptent : trouver des mandats, estimer juste, suivre ses dossiers.",
     "Indispensables : un CRM/tableur de suivi et un outil d'estimation crédible.",
@@ -22,9 +22,21 @@
     "Budget limité : investir d'abord dans ce qui rentre des mandats (estimation + suivi)."
   ],
   "sources": [
-    { "title": "Demandes de valeurs foncières (DVF)", "url": "https://app.dvf.etalab.gouv.fr/", "publisher": "data.gouv.fr" },
-    { "title": "Géorisques (risques d'un bien)", "url": "https://www.georisques.gouv.fr/", "publisher": "Géorisques" },
-    { "title": "Signature électronique : valeur juridique", "url": "https://entreprendre.service-public.fr/vosdroits/F23371", "publisher": "service-public.fr" }
+    {
+      "title": "Demandes de valeurs foncières (DVF)",
+      "url": "https://app.dvf.etalab.gouv.fr/",
+      "publisher": "data.gouv.fr"
+    },
+    {
+      "title": "Géorisques (risques d'un bien)",
+      "url": "https://www.georisques.gouv.fr/",
+      "publisher": "Géorisques"
+    },
+    {
+      "title": "Signature électronique : valeur juridique",
+      "url": "https://entreprendre.service-public.fr/vosdroits/F23371",
+      "publisher": "service-public.fr"
+    }
   ],
   "word_count": 730
 }

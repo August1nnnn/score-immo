@@ -12,7 +12,7 @@
   "last_reviewed": "2026-06-01",
   "tags": "comparatif réseaux mandataires, IAD vs SAFTI, meilleur réseau immobilier, Capifrance, Efficity",
   "image": null,
-  "meta_title": "IAD, SAFTI, Capifrance, Efficity : quel réseau choisir en 2026 ? | ScoreImmo",
+  "meta_title": "IAD, SAFTI, Capifrance, Efficity : quel réseau choisir ?",
   "meta_description": "Comparatif 2026 des réseaux de mandataires : commissions, frais, formation, modèle MLM ou classique. La méthode pour choisir IAD, SAFTI, Capifrance ou Efficity.",
   "tldr": [
     "Jugez un réseau sur 5 critères : commission, frais, formation, marque/outils et modèle (MLM ou classique).",
@@ -22,9 +22,21 @@
     "Les taux et frais évoluent : vérifiez toujours les conditions à jour avant de signer."
   ],
   "sources": [
-    { "title": "Agent commercial en immobilier : cadre et habilitation", "url": "https://entreprendre.service-public.fr/vosdroits/F31188", "publisher": "service-public.fr" },
-    { "title": "Loi Hoguet (encadrement des intermédiaires immobiliers)", "url": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000509656/", "publisher": "Légifrance" },
-    { "title": "Demandes de valeurs foncières (prix de vente réels)", "url": "https://app.dvf.etalab.gouv.fr/", "publisher": "data.gouv.fr" }
+    {
+      "title": "Agent commercial en immobilier : cadre et habilitation",
+      "url": "https://entreprendre.service-public.fr/vosdroits/F31188",
+      "publisher": "service-public.fr"
+    },
+    {
+      "title": "Loi Hoguet (encadrement des intermédiaires immobiliers)",
+      "url": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000509656/",
+      "publisher": "Légifrance"
+    },
+    {
+      "title": "Demandes de valeurs foncières (prix de vente réels)",
+      "url": "https://app.dvf.etalab.gouv.fr/",
+      "publisher": "data.gouv.fr"
+    }
   ],
   "word_count": 1040
 }

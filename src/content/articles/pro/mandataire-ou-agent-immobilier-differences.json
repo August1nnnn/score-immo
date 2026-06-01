@@ -12,7 +12,7 @@
   "last_reviewed": "2026-06-01",
   "tags": "mandataire ou agent immobilier, différence mandataire agent, statut immobilier",
   "image": null,
-  "meta_title": "Mandataire ou agent immobilier : les différences en 2026 | ScoreImmo",
+  "meta_title": "Mandataire ou agent immobilier : les différences",
   "meta_description": "Carte T, diplôme, rémunération, indépendance : toutes les différences entre mandataire et agent immobilier en 2026, et comment choisir selon votre projet.",
   "tldr": [
     "L'agent immobilier détient la carte T (peut diriger une agence, détenir des fonds) ; le mandataire non.",
@@ -22,9 +22,21 @@
     "On peut commencer mandataire puis passer la carte T avec l'expérience."
   ],
   "sources": [
-    { "title": "Carte professionnelle d'agent immobilier (carte T)", "url": "https://entreprendre.service-public.fr/vosdroits/F22020", "publisher": "service-public.fr" },
-    { "title": "Agent commercial : statut et immatriculation au RSAC", "url": "https://entreprendre.service-public.fr/vosdroits/F31188", "publisher": "service-public.fr" },
-    { "title": "Loi Hoguet", "url": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000509656/", "publisher": "Légifrance" }
+    {
+      "title": "Carte professionnelle d'agent immobilier (carte T)",
+      "url": "https://entreprendre.service-public.fr/vosdroits/F22020",
+      "publisher": "service-public.fr"
+    },
+    {
+      "title": "Agent commercial : statut et immatriculation au RSAC",
+      "url": "https://entreprendre.service-public.fr/vosdroits/F31188",
+      "publisher": "service-public.fr"
+    },
+    {
+      "title": "Loi Hoguet",
+      "url": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000509656/",
+      "publisher": "Légifrance"
+    }
   ],
   "word_count": 720
 }

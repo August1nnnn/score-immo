@@ -12,7 +12,7 @@
   "last_reviewed": "2026-06-01",
   "tags": "frais mandataire immobilier, coût pack réseau, royalties mandataire, budget démarrage immobilier",
   "image": null,
-  "meta_title": "Combien coûte le démarrage d'un mandataire immobilier en 2026 ? | ScoreImmo",
+  "meta_title": "Combien coûte le démarrage d'un mandataire ?",
   "meta_description": "Pack de démarrage, abonnement, royalties, CFE, trésorerie : le budget réel pour devenir mandataire immobilier en 2026 et comment optimiser ses coûts.",
   "tldr": [
     "Pack d'entrée : de quelques centaines à ~1 500 € selon le réseau (formation + outils).",
@@ -22,9 +22,21 @@
     "Le vrai poste : une trésorerie pour tenir plusieurs mois avant la 1re commission."
   ],
   "sources": [
-    { "title": "Cotisation foncière des entreprises (CFE)", "url": "https://entreprendre.service-public.fr/vosdroits/F23547", "publisher": "service-public.fr" },
-    { "title": "Régime micro-entrepreneur : cotisations", "url": "https://www.service-public.fr/particuliers/vosdroits/F23267", "publisher": "service-public.fr" },
-    { "title": "Agent commercial : immatriculation au RSAC", "url": "https://entreprendre.service-public.fr/vosdroits/F31188", "publisher": "service-public.fr" }
+    {
+      "title": "Cotisation foncière des entreprises (CFE)",
+      "url": "https://entreprendre.service-public.fr/vosdroits/F23547",
+      "publisher": "service-public.fr"
+    },
+    {
+      "title": "Régime micro-entrepreneur : cotisations",
+      "url": "https://www.service-public.fr/particuliers/vosdroits/F23267",
+      "publisher": "service-public.fr"
+    },
+    {
+      "title": "Agent commercial : immatriculation au RSAC",
+      "url": "https://entreprendre.service-public.fr/vosdroits/F31188",
+      "publisher": "service-public.fr"
+    }
   ],
   "word_count": 740
 }

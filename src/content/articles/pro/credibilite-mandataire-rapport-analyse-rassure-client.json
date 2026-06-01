@@ -12,8 +12,8 @@
   "last_reviewed": "2026-06-01",
   "tags": "rapport immobilier mandataire, crédibilité mandataire, rapport pour vendeur, rapport co-brandé",
   "image": null,
-  "meta_title": "Crédibilité du mandataire : le rapport qui rassure le client | ScoreImmo",
-  "meta_description": "Comment un mandataire construit sa crédibilité avec un rapport d'analyse objectif et co-brandé : prix réels, DPE, risques. L'outil de confiance et de closing en 2026.",
+  "meta_title": "Crédibilité du mandataire : le rapport qui rassure",
+  "meta_description": "Comment un mandataire bâtit sa crédibilité avec un rapport objectif et co-brandé : prix réels, DPE, risques. L'outil de confiance et de closing.",
   "tldr": [
     "Le débutant doit construire sa crédibilité à chaque RDV : la preuve par la donnée est le meilleur levier.",
     "Un rapport chiffré et sourcé déplace le débat de l'opinion vers les faits officiels.",
@@ -22,9 +22,21 @@
     "La donnée ouvre la porte ; la constance et les recommandations installent la réputation."
   ],
   "sources": [
-    { "title": "Demandes de valeurs foncières (prix réels)", "url": "https://app.dvf.etalab.gouv.fr/", "publisher": "data.gouv.fr" },
-    { "title": "Risques naturels et technologiques (Géorisques)", "url": "https://www.georisques.gouv.fr/", "publisher": "Géorisques" },
-    { "title": "Diagnostic de performance énergétique (DPE)", "url": "https://data.ademe.fr/", "publisher": "ADEME" }
+    {
+      "title": "Demandes de valeurs foncières (prix réels)",
+      "url": "https://app.dvf.etalab.gouv.fr/",
+      "publisher": "data.gouv.fr"
+    },
+    {
+      "title": "Risques naturels et technologiques (Géorisques)",
+      "url": "https://www.georisques.gouv.fr/",
+      "publisher": "Géorisques"
+    },
+    {
+      "title": "Diagnostic de performance énergétique (DPE)",
+      "url": "https://data.ademe.fr/",
+      "publisher": "ADEME"
+    }
   ],
   "word_count": 700
 }

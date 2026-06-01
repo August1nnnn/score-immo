@@ -12,8 +12,8 @@
   "last_reviewed": "2026-06-01",
   "tags": "se lancer dans l'immobilier, immobilier sans diplôme, reconversion immobilier, devenir mandataire sans diplôme",
   "image": null,
-  "meta_title": "Se lancer dans l'immobilier sans diplôme en 2026 : possible ? | ScoreImmo",
-  "meta_description": "Devenir mandataire immobilier sans diplôme est possible en 2026. Conditions réelles, compétences qui comptent, formation obligatoire et comment démarrer en reconversion.",
+  "meta_title": "Travailler dans l'immobilier sans diplôme en 2026",
+  "meta_description": "Devenir mandataire immobilier sans diplôme est possible en 2026 : conditions réelles, compétences clés, formation obligatoire et comment démarrer.",
   "tldr": [
     "Mandataire : accessible sans diplôme (RSAC + habilitation réseau + 14h de formation/an).",
     "Diriger une agence (carte T) exige un diplôme ou une expérience validée.",
@@ -22,9 +22,21 @@
     "Commencer : comparer les réseaux, créer sa micro-entreprise, s'outiller pour estimer."
   ],
   "sources": [
-    { "title": "Carte professionnelle d'agent immobilier (conditions)", "url": "https://entreprendre.service-public.fr/vosdroits/F22020", "publisher": "service-public.fr" },
-    { "title": "Formation continue loi ALUR (14h/an)", "url": "https://www.service-public.fr/particuliers/vosdroits/F2604", "publisher": "service-public.fr" },
-    { "title": "Agent commercial : immatriculation au RSAC", "url": "https://entreprendre.service-public.fr/vosdroits/F31188", "publisher": "service-public.fr" }
+    {
+      "title": "Carte professionnelle d'agent immobilier (conditions)",
+      "url": "https://entreprendre.service-public.fr/vosdroits/F22020",
+      "publisher": "service-public.fr"
+    },
+    {
+      "title": "Formation continue loi ALUR (14h/an)",
+      "url": "https://www.service-public.fr/particuliers/vosdroits/F2604",
+      "publisher": "service-public.fr"
+    },
+    {
+      "title": "Agent commercial : immatriculation au RSAC",
+      "url": "https://entreprendre.service-public.fr/vosdroits/F31188",
+      "publisher": "service-public.fr"
+    }
   ],
   "word_count": 700
 }
