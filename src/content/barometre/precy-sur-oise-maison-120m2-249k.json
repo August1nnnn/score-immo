@@ -1,0 +1,32 @@
+{
+  "slug": "precy-sur-oise-maison-120m2-249k",
+  "ville": "Précy-sur-Oise",
+  "code_postal": "60460",
+  "region": "Hauts-de-France",
+  "type_bien": "maison",
+  "surface": 120,
+  "prix_demande": 249000,
+  "prix_m2": 2075,
+  "score_global": 85,
+  "score_sections": {
+    "dpe": 0,
+    "prix": 10,
+    "risques": 9,
+    "urbanisme": 9,
+    "environnement": 6
+  },
+  "dpe": "G",
+  "points_forts": [
+    "27% sous la médiane du secteur",
+    "46 commerces et restaurants à proximité",
+    "106 arrêts et gares accessibles"
+  ],
+  "alertes_cles": [
+    "DPE G, passoire énergétique : travaux à prévoir"
+  ],
+  "verdict": "Excellente opportunité : 27% sous la médiane du secteur. Point de vigilance : DPE G, passoire énergétique : travaux à prévoir.",
+  "mois": "2026-06",
+  "is_edito": true,
+  "edito_label": "Le cas du mois",
+  "date_analyse": "2026-06-01"
+}

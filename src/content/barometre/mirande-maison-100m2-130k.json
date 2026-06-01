@@ -1,0 +1,28 @@
+{
+  "slug": "mirande-maison-100m2-130k",
+  "ville": "Mirande",
+  "code_postal": "32300",
+  "region": "Occitanie",
+  "type_bien": "maison",
+  "surface": 100,
+  "prix_demande": 130000,
+  "prix_m2": 1300,
+  "score_global": 75,
+  "score_sections": {
+    "dpe": 5,
+    "prix": 6,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 9
+  },
+  "dpe": "D",
+  "points_forts": [
+    "Aucun risque naturel recensé"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : Aucun risque naturel recensé.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

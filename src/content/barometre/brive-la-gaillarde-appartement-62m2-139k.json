@@ -1,0 +1,32 @@
+{
+  "slug": "brive-la-gaillarde-appartement-62m2-139k",
+  "ville": "Brive-la-Gaillarde",
+  "code_postal": "19100",
+  "region": "Nouvelle-Aquitaine",
+  "type_bien": "appartement",
+  "surface": 62.76,
+  "prix_demande": 139900,
+  "prix_m2": 2229,
+  "score_global": 65,
+  "score_sections": {
+    "dpe": 3,
+    "prix": 2,
+    "risques": 8,
+    "urbanisme": 9,
+    "environnement": 8
+  },
+  "dpe": "E",
+  "points_forts": [
+    "154 commerces et restaurants à proximité",
+    "431 arrêts et gares accessibles",
+    "20 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [
+    "Prix 37% au-dessus du marché local"
+  ],
+  "verdict": "Dossier correct mais perfectible : 154 commerces et restaurants à proximité. Point de vigilance : Prix 37% au-dessus du marché local.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

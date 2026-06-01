@@ -1,0 +1,32 @@
+{
+  "slug": "verdun-ciel-maison-101m2-249k",
+  "ville": "Verdun-Ciel",
+  "code_postal": "71350",
+  "region": "Bourgogne-Franche-Comté",
+  "type_bien": "maison",
+  "surface": 101,
+  "prix_demande": 249900,
+  "prix_m2": 2474,
+  "score_global": 63,
+  "score_sections": {
+    "dpe": 7,
+    "prix": 1,
+    "risques": 10,
+    "urbanisme": 3,
+    "environnement": 9
+  },
+  "dpe": "C",
+  "points_forts": [
+    "21 commerces et restaurants à proximité",
+    "20 arrêts et gares accessibles",
+    "Aucun risque naturel recensé"
+  ],
+  "alertes_cles": [
+    "Zone à constructibilité limitée (agricole/naturelle)"
+  ],
+  "verdict": "Dossier correct mais perfectible : 21 commerces et restaurants à proximité. Point de vigilance : Zone à constructibilité limitée (agricole/naturelle).",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

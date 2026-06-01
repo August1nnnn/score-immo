@@ -1,0 +1,32 @@
+{
+  "slug": "avignon-maison-170m2-370k",
+  "ville": "Avignon",
+  "code_postal": "84140",
+  "region": "Provence-Alpes-Côte d'Azur",
+  "type_bien": "maison",
+  "surface": 170,
+  "prix_demande": 370000,
+  "prix_m2": 2176,
+  "score_global": 76,
+  "score_sections": {
+    "dpe": 9,
+    "prix": 5,
+    "risques": 10,
+    "urbanisme": 3,
+    "environnement": 8
+  },
+  "dpe": "B",
+  "points_forts": [
+    "DPE B, logement économe en énergie",
+    "58 commerces et restaurants à proximité",
+    "118 arrêts et gares accessibles"
+  ],
+  "alertes_cles": [
+    "Zone à constructibilité limitée (agricole/naturelle)"
+  ],
+  "verdict": "Bon dossier dans l'ensemble : DPE B, logement économe en énergie. Point de vigilance : Zone à constructibilité limitée (agricole/naturelle).",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

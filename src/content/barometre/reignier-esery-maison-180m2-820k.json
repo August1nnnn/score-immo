@@ -1,0 +1,32 @@
+{
+  "slug": "reignier-esery-maison-180m2-820k",
+  "ville": "Reignier-Ésery",
+  "code_postal": "74930",
+  "region": "Auvergne-Rhône-Alpes",
+  "type_bien": "maison",
+  "surface": 180,
+  "prix_demande": 820000,
+  "prix_m2": 4556,
+  "score_global": 74,
+  "score_sections": {
+    "dpe": 9,
+    "prix": 2,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 9
+  },
+  "dpe": "B",
+  "points_forts": [
+    "DPE B, logement économe en énergie",
+    "44 commerces et restaurants à proximité",
+    "205 arrêts et gares accessibles"
+  ],
+  "alertes_cles": [
+    "Prix 41% au-dessus du marché local"
+  ],
+  "verdict": "Bon dossier dans l'ensemble : DPE B, logement économe en énergie. Point de vigilance : Prix 41% au-dessus du marché local.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

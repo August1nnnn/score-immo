@@ -1,0 +1,30 @@
+{
+  "slug": "baillargues-maison-120m2-388k",
+  "ville": "Baillargues",
+  "code_postal": "34670",
+  "region": "Occitanie",
+  "type_bien": "maison",
+  "surface": 120,
+  "prix_demande": 388500,
+  "prix_m2": 3238,
+  "score_global": 74,
+  "score_sections": {
+    "dpe": 5,
+    "prix": 5,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 9
+  },
+  "dpe": "D",
+  "points_forts": [
+    "152 commerces et restaurants à proximité",
+    "304 arrêts et gares accessibles",
+    "6 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : 152 commerces et restaurants à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

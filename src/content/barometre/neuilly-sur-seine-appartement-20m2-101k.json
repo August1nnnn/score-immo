@@ -1,0 +1,30 @@
+{
+  "slug": "neuilly-sur-seine-appartement-20m2-101k",
+  "ville": "Neuilly-sur-Seine",
+  "code_postal": "92200",
+  "region": "Île-de-France",
+  "type_bien": "appartement",
+  "surface": 20,
+  "prix_demande": 101000,
+  "prix_m2": 5050,
+  "score_global": 82,
+  "score_sections": {
+    "dpe": 5,
+    "prix": 10,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 8
+  },
+  "dpe": "D",
+  "points_forts": [
+    "978 commerces et restaurants à proximité",
+    "572 arrêts et gares accessibles",
+    "20 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [],
+  "verdict": "Excellente opportunité : 978 commerces et restaurants à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

@@ -1,0 +1,32 @@
+{
+  "slug": "availles-limouzine-maison-64m2-49k",
+  "ville": "Availles-Limouzine",
+  "code_postal": "86460",
+  "region": "Nouvelle-Aquitaine",
+  "type_bien": "maison",
+  "surface": 64,
+  "prix_demande": 49000,
+  "prix_m2": 766,
+  "score_global": 75,
+  "score_sections": {
+    "dpe": 5,
+    "prix": 10,
+    "risques": 9,
+    "urbanisme": 9,
+    "environnement": 9
+  },
+  "dpe": "D",
+  "points_forts": [
+    "24% sous la médiane du secteur",
+    "Aucun risque naturel recensé"
+  ],
+  "alertes_cles": [
+    "Pas de transport en commun à proximité",
+    "Commerces et services peu nombreux à proximité"
+  ],
+  "verdict": "Bon dossier dans l'ensemble : 24% sous la médiane du secteur. Point de vigilance : Pas de transport en commun à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

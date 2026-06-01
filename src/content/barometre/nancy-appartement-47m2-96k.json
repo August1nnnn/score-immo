@@ -1,0 +1,28 @@
+{
+  "slug": "nancy-appartement-47m2-96k",
+  "ville": "Nancy",
+  "code_postal": "96000",
+  "region": "France",
+  "type_bien": "appartement",
+  "surface": 47,
+  "prix_demande": 96000,
+  "prix_m2": 2043,
+  "score_global": 67,
+  "score_sections": {
+    "dpe": 3,
+    "prix": 7,
+    "risques": 10,
+    "urbanisme": 5,
+    "environnement": 8
+  },
+  "dpe": "E",
+  "points_forts": [
+    "Aucun risque naturel recensé"
+  ],
+  "alertes_cles": [],
+  "verdict": "Dossier correct mais perfectible : Aucun risque naturel recensé.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

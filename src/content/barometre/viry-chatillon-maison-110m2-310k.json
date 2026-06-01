@@ -1,0 +1,30 @@
+{
+  "slug": "viry-chatillon-maison-110m2-310k",
+  "ville": "Viry-Châtillon",
+  "code_postal": "91170",
+  "region": "Île-de-France",
+  "type_bien": "maison",
+  "surface": 110,
+  "prix_demande": 310000,
+  "prix_m2": 2818,
+  "score_global": 80,
+  "score_sections": {
+    "dpe": 5,
+    "prix": 7,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 9
+  },
+  "dpe": "D",
+  "points_forts": [
+    "258 commerces et restaurants à proximité",
+    "534 arrêts et gares accessibles",
+    "20 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [],
+  "verdict": "Excellente opportunité : 258 commerces et restaurants à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

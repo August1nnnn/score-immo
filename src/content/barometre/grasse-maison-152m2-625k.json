@@ -1,0 +1,30 @@
+{
+  "slug": "grasse-maison-152m2-625k",
+  "ville": "Grasse",
+  "code_postal": "06130",
+  "region": "Provence-Alpes-Côte d'Azur",
+  "type_bien": "maison",
+  "surface": 152.43,
+  "prix_demande": 625000,
+  "prix_m2": 4100,
+  "score_global": 77,
+  "score_sections": {
+    "dpe": 7,
+    "prix": 8,
+    "risques": 8,
+    "urbanisme": 9,
+    "environnement": 5
+  },
+  "dpe": "C",
+  "points_forts": [
+    "9% sous la médiane du secteur",
+    "65 commerces et restaurants à proximité",
+    "233 arrêts et gares accessibles"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : 9% sous la médiane du secteur.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

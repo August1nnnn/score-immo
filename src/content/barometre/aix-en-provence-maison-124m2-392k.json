@@ -1,0 +1,30 @@
+{
+  "slug": "aix-en-provence-maison-124m2-392k",
+  "ville": "Aix-en-Provence",
+  "code_postal": "13080",
+  "region": "Provence-Alpes-Côte d'Azur",
+  "type_bien": "maison",
+  "surface": 124,
+  "prix_demande": 392000,
+  "prix_m2": 3161,
+  "score_global": 73,
+  "score_sections": {
+    "dpe": 5,
+    "prix": 5,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 8
+  },
+  "dpe": "D",
+  "points_forts": [
+    "50 commerces et restaurants à proximité",
+    "133 arrêts et gares accessibles",
+    "6 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : 50 commerces et restaurants à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

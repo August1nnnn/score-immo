@@ -1,0 +1,33 @@
+{
+  "slug": "montfermeil-maison-114m2-339k",
+  "ville": "Montfermeil",
+  "code_postal": "93370",
+  "region": "Île-de-France",
+  "type_bien": "maison",
+  "surface": 114,
+  "prix_demande": 339000,
+  "prix_m2": 2974,
+  "score_global": 67,
+  "score_sections": {
+    "dpe": 5,
+    "prix": 3,
+    "risques": 10,
+    "urbanisme": 1,
+    "environnement": 9
+  },
+  "dpe": "D",
+  "points_forts": [
+    "179 commerces et restaurants à proximité",
+    "682 arrêts et gares accessibles",
+    "20 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [
+    "Prix 18% au-dessus du marché local",
+    "Zone à constructibilité limitée (agricole/naturelle)"
+  ],
+  "verdict": "Dossier correct mais perfectible : 179 commerces et restaurants à proximité. Point de vigilance : Prix 18% au-dessus du marché local.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

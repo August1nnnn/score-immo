@@ -1,0 +1,30 @@
+{
+  "slug": "vichy-appartement-131m2-349k",
+  "ville": "Vichy",
+  "code_postal": "03200",
+  "region": "Auvergne-Rhône-Alpes",
+  "type_bien": "appartement",
+  "surface": 131,
+  "prix_demande": 349800,
+  "prix_m2": 2670,
+  "score_global": 64,
+  "score_sections": {
+    "dpe": 3,
+    "prix": 1,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 6
+  },
+  "dpe": "E",
+  "points_forts": [
+    "321 commerces et restaurants à proximité",
+    "469 arrêts et gares accessibles",
+    "19 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [],
+  "verdict": "Dossier correct mais perfectible : 321 commerces et restaurants à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

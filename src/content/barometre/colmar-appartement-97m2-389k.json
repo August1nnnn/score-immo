@@ -1,0 +1,30 @@
+{
+  "slug": "colmar-appartement-97m2-389k",
+  "ville": "Colmar",
+  "code_postal": "68000",
+  "region": "Grand Est",
+  "type_bien": "appartement",
+  "surface": 97.5,
+  "prix_demande": 389000,
+  "prix_m2": 3990,
+  "score_global": 78,
+  "score_sections": {
+    "dpe": 7,
+    "prix": 7,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 5
+  },
+  "dpe": "C",
+  "points_forts": [
+    "277 commerces et restaurants à proximité",
+    "215 arrêts et gares accessibles",
+    "20 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : 277 commerces et restaurants à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

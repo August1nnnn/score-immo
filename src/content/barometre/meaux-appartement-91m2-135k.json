@@ -1,0 +1,32 @@
+{
+  "slug": "meaux-appartement-91m2-135k",
+  "ville": "Meaux",
+  "code_postal": "77100",
+  "region": "Île-de-France",
+  "type_bien": "appartement",
+  "surface": 91,
+  "prix_demande": 135000,
+  "prix_m2": 1484,
+  "score_global": 76,
+  "score_sections": {
+    "dpe": 1,
+    "prix": 10,
+    "risques": 8,
+    "urbanisme": 9,
+    "environnement": 8
+  },
+  "dpe": "F",
+  "points_forts": [
+    "47% sous la médiane du secteur",
+    "69 commerces et restaurants à proximité",
+    "147 arrêts et gares accessibles"
+  ],
+  "alertes_cles": [
+    "DPE F, passoire énergétique : travaux à prévoir"
+  ],
+  "verdict": "Bon dossier dans l'ensemble : 47% sous la médiane du secteur. Point de vigilance : DPE F, passoire énergétique : travaux à prévoir.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

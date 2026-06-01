@@ -1,0 +1,30 @@
+{
+  "slug": "strasbourg-appartement-60m2-185k",
+  "ville": "Strasbourg",
+  "code_postal": "67000",
+  "region": "Grand Est",
+  "type_bien": "appartement",
+  "surface": 60.12,
+  "prix_demande": 185000,
+  "prix_m2": 3077,
+  "score_global": 74,
+  "score_sections": {
+    "dpe": 5,
+    "prix": 5,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 7
+  },
+  "dpe": "D",
+  "points_forts": [
+    "1214 commerces et restaurants à proximité",
+    "467 arrêts et gares accessibles",
+    "20 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : 1214 commerces et restaurants à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

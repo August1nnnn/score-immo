@@ -1,0 +1,212 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TLDRBox from '@/components/TLDRBox.astro';
+import AuthorCard from '@/components/AuthorCard.astro';
+import SourcesSection from '@/components/SourcesSection.astro';
+import AnalyzerBox from '@/components/AnalyzerBox.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const fiches = await getCollection('barometre');
+  return fiches.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { fiche: entry.data },
+  }));
+}
+
+const { fiche } = Astro.props;
+const SITE = 'https://score-immo.fr';
+const canonical = `${SITE}/barometre/${fiche.slug}`;
+
+const authorEntry = await getEntry('authors', 'thomas-varin');
+const author = authorEntry?.data;
+
+const typeLabel = fiche.type_bien === 'appartement' ? 'Appartement' : 'Maison';
+const prixFmt = fiche.prix_demande.toLocaleString('fr-FR');
+const prixM2Fmt = fiche.prix_m2 ? fiche.prix_m2.toLocaleString('fr-FR') : null;
+const dateFmt = new Date(fiche.date_analyse).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long' });
+
+const title = `${fiche.ville} : ${typeLabel} ${fiche.surface} m² noté ${fiche.score_global}/100 | Baromètre ScoreImmo`;
+const description = (fiche.verdict || `Analyse ScoreImmo d'un ${typeLabel.toLowerCase()} de ${fiche.surface} m² à ${fiche.ville} (${fiche.code_postal}) : score ${fiche.score_global}/100.`).slice(0, 160);
+
+const scoreColor = fiche.score_global >= 70 ? '#16A34A' : fiche.score_global >= 40 ? '#F59E0B' : '#DC2626';
+const scoreWord = fiche.score_global >= 70 ? 'Excellent' : fiche.score_global >= 40 ? 'Correct' : 'Risqué';
+
+const SECTIONS = [
+  { key: 'prix', label: 'Prix vs marché' },
+  { key: 'dpe', label: 'Performance énergétique' },
+  { key: 'risques', label: 'Risques naturels' },
+  { key: 'urbanisme', label: 'Urbanisme' },
+  { key: 'environnement', label: 'Environnement' },
+];
+const sectionColor = (s: number) => (s >= 7 ? '#16A34A' : s >= 4 ? '#F59E0B' : '#DC2626');
+
+// TLDR: the verdict + key facts
+const tldr = [
+  `Score global : ${fiche.score_global}/100 (${scoreWord.toLowerCase()}).`,
+  prixM2Fmt ? `${prixFmt} € pour ${fiche.surface} m², soit ${prixM2Fmt} €/m².` : `${prixFmt} € pour ${fiche.surface} m².`,
+  fiche.dpe ? `DPE ${fiche.dpe}.` : null,
+  fiche.points_forts[0] ? `Point fort : ${fiche.points_forts[0].toLowerCase()}.` : null,
+  fiche.alertes_cles[0] ? `Vigilance : ${fiche.alertes_cles[0].toLowerCase()}.` : null,
+].filter(Boolean) as string[];
+
+const sources = [
+  { title: 'Demandes de valeurs foncières (DVF)', url: 'https://app.dvf.etalab.gouv.fr/', publisher: 'data.gouv.fr' },
+  { title: 'Diagnostic de performance énergétique', url: 'https://data.ademe.fr/', publisher: 'ADEME' },
+  { title: 'Risques naturels et technologiques', url: 'https://www.georisques.gouv.fr/', publisher: 'Géorisques' },
+  { title: 'Revenus et démographie communale', url: 'https://www.insee.fr/', publisher: 'INSEE' },
+  { title: 'Commerces, services et transports', url: 'https://www.openstreetmap.org/', publisher: 'OpenStreetMap' },
+];
+
+const jsonLd: any[] = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'AnalysisNewsArticle',
+    headline: `${fiche.ville} : ${typeLabel} ${fiche.surface} m² noté ${fiche.score_global}/100`,
+    description,
+    datePublished: fiche.date_analyse,
+    dateModified: fiche.date_analyse,
+    author: author ? {
+      '@type': 'Person', name: author.name, jobTitle: author.title,
+      url: `${SITE}/pages/auteurs/${author.handle}`, knowsAbout: author.expertise,
+    } : { '@type': 'Organization', name: 'ScoreImmo' },
+    publisher: { '@type': 'Organization', name: 'ScoreImmo', logo: { '@type': 'ImageObject', url: `${SITE}/favicon.svg` } },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+    inLanguage: 'fr-FR',
+    about: {
+      '@type': 'Place', name: fiche.ville,
+      address: { '@type': 'PostalAddress', addressLocality: fiche.ville, postalCode: fiche.code_postal, addressRegion: fiche.region, addressCountry: 'FR' },
+    },
+    citation: sources.map((s) => ({ '@type': 'CreativeWork', name: s.title, url: s.url, publisher: { '@type': 'Organization', name: s.publisher } })),
+    speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.si-article-title', '.si-tldr'] },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: `${SITE}/` },
+      { '@type': 'ListItem', position: 2, name: 'Baromètre', item: `${SITE}/barometre` },
+      { '@type': 'ListItem', position: 3, name: `${fiche.ville} ${fiche.surface} m²`, item: canonical },
+    ],
+  },
+];
+---
+<BaseLayout {title} {description} {canonical} {jsonLd}
+  articleMeta={{ publishedTime: fiche.date_analyse, modifiedTime: fiche.date_analyse, author: author?.name || 'ScoreImmo' }}>
+  <section class="si-section">
+    <div class="si-container">
+      <nav class="si-breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a><span> &rsaquo; </span>
+        <a href="/barometre">Le Baromètre</a><span> &rsaquo; </span>
+        <span>{fiche.ville}</span>
+      </nav>
+
+      <article class="si-article">
+        <header class="si-article-header">
+          {fiche.is_edito && fiche.edito_label && (
+            <span class="bar-edito-badge">{fiche.edito_label}</span>
+          )}
+          <h1 class="si-article-title">{fiche.ville} : {typeLabel.toLowerCase()} de {fiche.surface} m² noté {fiche.score_global}/100</h1>
+          <p class="bar-sub">{fiche.region} · {fiche.code_postal} · Analyse de {dateFmt}</p>
+          {author && <AuthorCard author={author} publishedAt={fiche.date_analyse} />}
+        </header>
+
+        <div class="bar-hero">
+          <div class="bar-gauge" style={`--c:${scoreColor};--p:${fiche.score_global}`}>
+            <div class="bar-gauge-num">{fiche.score_global}<span>/100</span></div>
+            <div class="bar-gauge-word">{scoreWord}</div>
+          </div>
+          <dl class="bar-facts">
+            <div><dt>Prix affiché</dt><dd>{prixFmt} €</dd></div>
+            <div><dt>Surface</dt><dd>{fiche.surface} m²</dd></div>
+            {prixM2Fmt && <div><dt>Prix au m²</dt><dd>{prixM2Fmt} €</dd></div>}
+            <div><dt>DPE</dt><dd>{fiche.dpe || 'NC'}</dd></div>
+            <div><dt>Type</dt><dd>{typeLabel}</dd></div>
+          </dl>
+        </div>
+
+        <TLDRBox items={tldr} />
+
+        <h2>Le verdict ScoreImmo</h2>
+        <p class="bar-verdict">{fiche.verdict}</p>
+
+        <h2>Le détail du score</h2>
+        <div class="bar-bars">
+          {SECTIONS.map((s) => {
+            const v = fiche.score_sections[s.key] ?? 0;
+            return (
+              <div class="bar-row">
+                <span class="bar-row-label">{s.label}</span>
+                <span class="bar-track"><span class="bar-fill" style={`width:${v * 10}%;background:${sectionColor(v)}`}></span></span>
+                <span class="bar-row-val">{v}/10</span>
+              </div>
+            );
+          })}
+        </div>
+
+        {fiche.points_forts.length > 0 && (
+          <>
+            <h2>Les points forts</h2>
+            <ul class="bar-list bar-pos">{fiche.points_forts.map((p) => <li>{p}</li>)}</ul>
+          </>
+        )}
+        {fiche.alertes_cles.length > 0 && (
+          <>
+            <h2>Les points de vigilance</h2>
+            <ul class="bar-list bar-neg">{fiche.alertes_cles.map((a) => <li>{a}</li>)}</ul>
+          </>
+        )}
+
+        <h2>Comment ce score est calculé</h2>
+        <p>Le score sur 100 attribué à ce bien à {fiche.ville} croise plus de 250 données issues de 13 sources
+        officielles : prix au m² réels (DVF), performance énergétique (DPE/ADEME), risques naturels et technologiques
+        (Géorisques), urbanisme, environnement, commerces, transports et profil socio-démographique de la commune.
+        Cette analyse est indicative et ne constitue pas un conseil en investissement.</p>
+
+        <AnalyzerBox blog="villes" medium="barometre_detail" />
+
+        <SourcesSection sources={sources} />
+
+        <p class="bar-back"><a href="/barometre">&larr; Voir tout le Baromètre Immobilier</a></p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style is:global>
+  .si-breadcrumb { font-size: 0.875rem; color: var(--si-muted-foreground, #64748B); margin: 1rem 0 2rem; }
+  .si-breadcrumb a { color: var(--si-muted-foreground, #64748B); text-decoration: none; }
+  .si-breadcrumb a:hover { color: var(--si-accent, #3B82F6); }
+  .si-article { max-width: 48rem; margin: 0 auto; }
+  .si-article-title { font-family: var(--si-font-heading, 'DM Sans', sans-serif); font-size: clamp(1.75rem, 4.5vw, 2.75rem); font-weight: 700; line-height: 1.12; letter-spacing: -0.025em; margin: 0 0 0.5rem; color: var(--si-foreground); }
+  .si-article h2 { font-family: var(--si-font-heading); font-size: clamp(1.4rem, 3.2vw, 1.85rem); font-weight: 700; margin: 2.5rem 0 1rem; color: var(--si-foreground); }
+  .si-article p { line-height: 1.75; font-size: 1.05rem; color: var(--si-foreground); }
+
+  .bar-edito-badge { display: inline-block; background: var(--si-accent, #3B82F6); color: #fff; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.25rem 0.6rem; border-radius: 999px; margin-bottom: 0.75rem; }
+  .bar-sub { color: var(--si-muted-foreground, #64748B); font-size: 0.95rem !important; margin: 0 0 1.25rem; }
+
+  .bar-hero { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; margin: 1.5rem 0 0.5rem; padding: 1.5rem; border: 1px solid var(--si-border, #E2E8F0); border-radius: var(--si-radius-xl, 1rem); background: var(--si-card, #fff); }
+  .bar-gauge { flex: 0 0 auto; width: 130px; height: 130px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: radial-gradient(closest-side, #fff 78%, transparent 79% 100%), conic-gradient(var(--c) calc(var(--p) * 1%), #E2E8F0 0); }
+  .bar-gauge-num { font-family: var(--si-font-heading); font-size: 2.25rem; font-weight: 800; color: var(--c); line-height: 1; }
+  .bar-gauge-num span { font-size: 0.9rem; color: var(--si-muted-foreground); font-weight: 600; }
+  .bar-gauge-word { font-size: 0.8rem; font-weight: 700; color: var(--c); text-transform: uppercase; letter-spacing: 0.04em; margin-top: 0.25rem; }
+  .bar-facts { flex: 1; min-width: 220px; display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 0.75rem 1rem; margin: 0; }
+  .bar-facts dt { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--si-muted-foreground); font-weight: 600; }
+  .bar-facts dd { margin: 0.1rem 0 0; font-size: 1.15rem; font-weight: 700; color: var(--si-foreground); font-family: var(--si-font-heading); }
+
+  .bar-verdict { font-size: 1.15rem !important; font-weight: 500; }
+  .bar-bars { display: flex; flex-direction: column; gap: 0.75rem; margin: 1rem 0; }
+  .bar-row { display: grid; grid-template-columns: 150px 1fr 48px; align-items: center; gap: 0.75rem; }
+  .bar-row-label { font-size: 0.9rem; color: var(--si-foreground); }
+  .bar-track { height: 10px; border-radius: 999px; background: var(--si-muted, #F1F5F9); overflow: hidden; }
+  .bar-fill { display: block; height: 100%; border-radius: 999px; }
+  .bar-row-val { font-size: 0.85rem; font-weight: 700; color: var(--si-muted-foreground); text-align: right; }
+  @media (max-width: 480px) { .bar-row { grid-template-columns: 110px 1fr 42px; } .bar-row-label { font-size: 0.8rem; } }
+
+  .bar-list { margin: 0.5rem 0 1rem 0; padding: 0; list-style: none; }
+  .bar-list li { padding: 0.5rem 0 0.5rem 1.75rem; position: relative; line-height: 1.5; border-bottom: 1px solid var(--si-border, #E2E8F0); }
+  .bar-pos li::before { content: '✓'; position: absolute; left: 0; color: #16A34A; font-weight: 800; }
+  .bar-neg li::before { content: '!'; position: absolute; left: 0.3rem; color: #DC2626; font-weight: 800; }
+  .bar-back { margin-top: 2rem; }
+  .bar-back a { color: var(--si-accent, #3B82F6); text-decoration: none; font-weight: 600; }
+</style>

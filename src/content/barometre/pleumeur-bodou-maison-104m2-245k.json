@@ -1,0 +1,32 @@
+{
+  "slug": "pleumeur-bodou-maison-104m2-245k",
+  "ville": "Pleumeur-Bodou",
+  "code_postal": "22560",
+  "region": "Bretagne",
+  "type_bien": "maison",
+  "surface": 104,
+  "prix_demande": 245850,
+  "prix_m2": 2364,
+  "score_global": 67,
+  "score_sections": {
+    "dpe": 5,
+    "prix": 5,
+    "risques": 10,
+    "urbanisme": 1,
+    "environnement": 9
+  },
+  "dpe": "D",
+  "points_forts": [
+    "64 commerces et restaurants à proximité",
+    "103 arrêts et gares accessibles",
+    "Aucun risque naturel recensé"
+  ],
+  "alertes_cles": [
+    "Zone à constructibilité limitée (agricole/naturelle)"
+  ],
+  "verdict": "Dossier correct mais perfectible : 64 commerces et restaurants à proximité. Point de vigilance : Zone à constructibilité limitée (agricole/naturelle).",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

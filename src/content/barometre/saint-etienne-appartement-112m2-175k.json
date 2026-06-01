@@ -1,0 +1,30 @@
+{
+  "slug": "saint-etienne-appartement-112m2-175k",
+  "ville": "Saint-Étienne",
+  "code_postal": "42000",
+  "region": "Auvergne-Rhône-Alpes",
+  "type_bien": "appartement",
+  "surface": 112,
+  "prix_demande": 175000,
+  "prix_m2": 1563,
+  "score_global": 75,
+  "score_sections": {
+    "dpe": 5,
+    "prix": 5,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 8
+  },
+  "dpe": "D",
+  "points_forts": [
+    "516 commerces et restaurants à proximité",
+    "324 arrêts et gares accessibles",
+    "20 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : 516 commerces et restaurants à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

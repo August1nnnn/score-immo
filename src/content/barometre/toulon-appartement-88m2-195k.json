@@ -1,0 +1,30 @@
+{
+  "slug": "toulon-appartement-88m2-195k",
+  "ville": "Toulon",
+  "code_postal": "83000",
+  "region": "Provence-Alpes-Côte d'Azur",
+  "type_bien": "appartement",
+  "surface": 88.09,
+  "prix_demande": 195000,
+  "prix_m2": 2214,
+  "score_global": 80,
+  "score_sections": {
+    "dpe": 9,
+    "prix": 5,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 8
+  },
+  "dpe": "B",
+  "points_forts": [
+    "DPE B, logement économe en énergie",
+    "384 commerces et restaurants à proximité",
+    "218 arrêts et gares accessibles"
+  ],
+  "alertes_cles": [],
+  "verdict": "Excellente opportunité : DPE B, logement économe en énergie.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

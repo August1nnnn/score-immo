@@ -1,0 +1,32 @@
+{
+  "slug": "montauban-appartement-82m2-82k",
+  "ville": "Montauban",
+  "code_postal": "82000",
+  "region": "Occitanie",
+  "type_bien": "appartement",
+  "surface": 82,
+  "prix_demande": 82000,
+  "prix_m2": 1000,
+  "score_global": 75,
+  "score_sections": {
+    "dpe": 5,
+    "prix": 10,
+    "risques": 10,
+    "urbanisme": 3,
+    "environnement": 8
+  },
+  "dpe": "D",
+  "points_forts": [
+    "49% sous la médiane du secteur",
+    "30 commerces et restaurants à proximité",
+    "15 arrêts et gares accessibles"
+  ],
+  "alertes_cles": [
+    "Zone à constructibilité limitée (agricole/naturelle)"
+  ],
+  "verdict": "Bon dossier dans l'ensemble : 49% sous la médiane du secteur. Point de vigilance : Zone à constructibilité limitée (agricole/naturelle).",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

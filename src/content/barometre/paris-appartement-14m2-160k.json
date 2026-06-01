@@ -1,0 +1,30 @@
+{
+  "slug": "paris-appartement-14m2-160k",
+  "ville": "Paris",
+  "code_postal": "75001",
+  "region": "Île-de-France",
+  "type_bien": "appartement",
+  "surface": 14.45,
+  "prix_demande": 160000,
+  "prix_m2": 11073,
+  "score_global": 76,
+  "score_sections": {
+    "dpe": 7,
+    "prix": 7,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 4
+  },
+  "dpe": "C",
+  "points_forts": [
+    "6300 commerces et restaurants à proximité",
+    "1100 arrêts et gares accessibles",
+    "20 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : 6300 commerces et restaurants à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

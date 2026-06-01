@@ -1,0 +1,30 @@
+{
+  "slug": "chambery-appartement-68m2-195k",
+  "ville": "Chambéry",
+  "code_postal": "73000",
+  "region": "Auvergne-Rhône-Alpes",
+  "type_bien": "appartement",
+  "surface": 68.34,
+  "prix_demande": 195000,
+  "prix_m2": 2853,
+  "score_global": 77,
+  "score_sections": {
+    "dpe": 7,
+    "prix": 5,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 8
+  },
+  "dpe": "C",
+  "points_forts": [
+    "148 commerces et restaurants à proximité",
+    "172 arrêts et gares accessibles",
+    "18 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : 148 commerces et restaurants à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

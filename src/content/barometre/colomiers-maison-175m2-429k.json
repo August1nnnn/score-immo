@@ -1,0 +1,30 @@
+{
+  "slug": "colomiers-maison-175m2-429k",
+  "ville": "Colomiers",
+  "code_postal": "31770",
+  "region": "Occitanie",
+  "type_bien": "maison",
+  "surface": 175,
+  "prix_demande": 429000,
+  "prix_m2": 2451,
+  "score_global": 84,
+  "score_sections": {
+    "dpe": 5,
+    "prix": 10,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 9
+  },
+  "dpe": "D",
+  "points_forts": [
+    "24% sous la médiane du secteur",
+    "136 commerces et restaurants à proximité",
+    "500 arrêts et gares accessibles"
+  ],
+  "alertes_cles": [],
+  "verdict": "Excellente opportunité : 24% sous la médiane du secteur.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

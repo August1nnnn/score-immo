@@ -49,4 +49,28 @@ const authors = defineCollection({
   }),
 });
 
-export const collections = { articles, authors };
+const barometre = defineCollection({
+  type: 'data',
+  schema: z.object({
+    slug: z.string(),
+    ville: z.string(),
+    code_postal: z.string(),
+    region: z.string(),
+    type_bien: z.string(),
+    surface: z.number(),
+    prix_demande: z.number(),
+    prix_m2: z.number().nullable(),
+    score_global: z.number(),
+    score_sections: z.record(z.number()).default({}),
+    dpe: z.string().nullable(),
+    points_forts: z.array(z.string()).default([]),
+    alertes_cles: z.array(z.string()).default([]),
+    verdict: z.string().default(''),
+    mois: z.string(),
+    is_edito: z.boolean().default(false),
+    edito_label: z.string().nullable().optional(),
+    date_analyse: z.string(),
+  }),
+});
+
+export const collections = { articles, authors, barometre };

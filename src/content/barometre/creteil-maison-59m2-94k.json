@@ -1,0 +1,32 @@
+{
+  "slug": "creteil-maison-59m2-94k",
+  "ville": "Créteil",
+  "code_postal": "94000",
+  "region": "Île-de-France",
+  "type_bien": "maison",
+  "surface": 59.79,
+  "prix_demande": 94000,
+  "prix_m2": 1572,
+  "score_global": 69,
+  "score_sections": {
+    "dpe": 1,
+    "prix": 5,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 8
+  },
+  "dpe": "F",
+  "points_forts": [
+    "315 commerces et restaurants à proximité",
+    "370 arrêts et gares accessibles",
+    "20 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [
+    "DPE F, passoire énergétique : travaux à prévoir"
+  ],
+  "verdict": "Dossier correct mais perfectible : 315 commerces et restaurants à proximité. Point de vigilance : DPE F, passoire énergétique : travaux à prévoir.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

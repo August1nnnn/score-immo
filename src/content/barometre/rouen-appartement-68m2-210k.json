@@ -1,0 +1,30 @@
+{
+  "slug": "rouen-appartement-68m2-210k",
+  "ville": "Rouen",
+  "code_postal": "76000",
+  "region": "Normandie",
+  "type_bien": "appartement",
+  "surface": 68.68,
+  "prix_demande": 210000,
+  "prix_m2": 3058,
+  "score_global": 75,
+  "score_sections": {
+    "dpe": 5,
+    "prix": 5,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 8
+  },
+  "dpe": "D",
+  "points_forts": [
+    "866 commerces et restaurants à proximité",
+    "423 arrêts et gares accessibles",
+    "20 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : 866 commerces et restaurants à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

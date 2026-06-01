@@ -1,0 +1,30 @@
+{
+  "slug": "arzon-maison-125m2-819k",
+  "ville": "Arzon",
+  "code_postal": "56640",
+  "region": "Bretagne",
+  "type_bien": "maison",
+  "surface": 125,
+  "prix_demande": 819500,
+  "prix_m2": 6556,
+  "score_global": 67,
+  "score_sections": {
+    "dpe": 7,
+    "prix": 2,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 6
+  },
+  "dpe": "C",
+  "points_forts": [
+    "67 commerces et restaurants à proximité",
+    "71 arrêts et gares accessibles",
+    "Aucun risque naturel recensé"
+  ],
+  "alertes_cles": [],
+  "verdict": "Dossier correct mais perfectible : 67 commerces et restaurants à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

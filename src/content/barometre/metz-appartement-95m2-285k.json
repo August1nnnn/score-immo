@@ -1,0 +1,30 @@
+{
+  "slug": "metz-appartement-95m2-285k",
+  "ville": "Metz",
+  "code_postal": "57000",
+  "region": "Grand Est",
+  "type_bien": "appartement",
+  "surface": 95,
+  "prix_demande": 285000,
+  "prix_m2": 3000,
+  "score_global": 74,
+  "score_sections": {
+    "dpe": 5,
+    "prix": 7,
+    "risques": 8,
+    "urbanisme": 9,
+    "environnement": 5
+  },
+  "dpe": "D",
+  "points_forts": [
+    "480 commerces et restaurants à proximité",
+    "453 arrêts et gares accessibles",
+    "20 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : 480 commerces et restaurants à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

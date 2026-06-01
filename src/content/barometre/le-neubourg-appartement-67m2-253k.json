@@ -1,0 +1,30 @@
+{
+  "slug": "le-neubourg-appartement-67m2-253k",
+  "ville": "Le Neubourg",
+  "code_postal": "27110",
+  "region": "Normandie",
+  "type_bien": "appartement",
+  "surface": 67,
+  "prix_demande": 253000,
+  "prix_m2": 3776,
+  "score_global": 74,
+  "score_sections": {
+    "dpe": 9,
+    "prix": 2,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 9
+  },
+  "dpe": "B",
+  "points_forts": [
+    "DPE B, logement économe en énergie",
+    "41 commerces et restaurants à proximité",
+    "7 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : DPE B, logement économe en énergie.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

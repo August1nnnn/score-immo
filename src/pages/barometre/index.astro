@@ -1,0 +1,142 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TLDRBox from '@/components/TLDRBox.astro';
+import AnalyzerBox from '@/components/AnalyzerBox.astro';
+import { getCollection } from 'astro:content';
+
+const SITE = 'https://score-immo.fr';
+const canonical = `${SITE}/barometre`;
+
+const all = (await getCollection('barometre')).map((e) => e.data);
+all.sort((a, b) => b.score_global - a.score_global);
+
+const total = all.length;
+const avg = total ? Math.round(all.reduce((s, f) => s + f.score_global, 0) / total) : 0;
+const regions = [...new Set(all.map((f) => f.region))].length;
+const best = all.slice(0, 3);
+const worst = [...all].slice(-3).reverse();
+
+const title = `Le Baromètre Immobilier ScoreImmo : ${total} annonces notées sur 100`;
+const description = `Les vrais scores d'annonces immobilières analysées par ScoreImmo : ${total} biens dans ${regions} régions, notés sur 100 à partir de 13 sources officielles (prix DVF, DPE, risques, urbanisme).`.slice(0, 160);
+
+const tldr = [
+  `${total} annonces réelles analysées et notées sur 100 dans ${regions} régions.`,
+  `Score moyen du panel : ${avg}/100.`,
+  `Chaque note croise plus de 250 données de 13 sources officielles (DVF, ADEME, Géorisques, INSEE...).`,
+  `Le meilleur du mois : ${best[0]?.ville} (${best[0]?.score_global}/100).`,
+];
+
+const scoreColor = (s: number) => (s >= 70 ? '#16A34A' : s >= 40 ? '#F59E0B' : '#DC2626');
+const typeLabel = (t: string) => (t === 'appartement' ? 'Appartement' : 'Maison');
+
+const jsonLd: any[] = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: title,
+    description,
+    url: canonical,
+    inLanguage: 'fr-FR',
+    isPartOf: { '@type': 'WebSite', name: 'ScoreImmo', url: SITE },
+    speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.si-article-title', '.si-tldr'] },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: all.map((f, i) => ({
+      '@type': 'ListItem', position: i + 1, name: `${f.ville} — ${typeLabel(f.type_bien)} ${f.surface} m² (${f.score_global}/100)`,
+      url: `${SITE}/barometre/${f.slug}`,
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: `${SITE}/` },
+      { '@type': 'ListItem', position: 2, name: 'Baromètre', item: canonical },
+    ],
+  },
+];
+---
+<BaseLayout {title} {description} {canonical} {jsonLd}>
+  <section class="si-section">
+    <div class="si-container">
+      <nav class="si-breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a><span> &rsaquo; </span><span>Le Baromètre</span>
+      </nav>
+
+      <header class="bar-hub-header">
+        <h1 class="si-article-title">Le Baromètre Immobilier ScoreImmo</h1>
+        <p class="bar-hub-lead">Les vrais scores d'annonces immobilières réelles, analysées sans complaisance.
+        Chaque bien est noté sur 100 à partir de plus de 250 données croisées (prix au m² réels, DPE, risques,
+        urbanisme, environnement, commerces). Du côté de l'acheteur, jamais du vendeur.</p>
+        <div class="bar-stats">
+          <div><strong>{total}</strong><span>annonces notées</span></div>
+          <div><strong>{avg}/100</strong><span>score moyen</span></div>
+          <div><strong>{regions}</strong><span>régions</span></div>
+          <div><strong>13</strong><span>sources officielles</span></div>
+        </div>
+      </header>
+
+      <div class="bar-hub-narrow">
+        <TLDRBox items={tldr} />
+      </div>
+
+      <h2 class="bar-h2">Le top du moment</h2>
+      <div class="bar-grid">
+        {best.map((f) => (
+          <a class="bar-card bar-card-top" href={`/barometre/${f.slug}`}>
+            <span class="bar-card-score" style={`color:${scoreColor(f.score_global)}`}>{f.score_global}<small>/100</small></span>
+            <span class="bar-card-city">{f.ville}</span>
+            <span class="bar-card-meta">{typeLabel(f.type_bien)} · {f.surface} m² · {f.region}</span>
+          </a>
+        ))}
+      </div>
+
+      <h2 class="bar-h2">Toutes les analyses</h2>
+      <div class="bar-grid">
+        {all.map((f) => (
+          <a class="bar-card" href={`/barometre/${f.slug}`}>
+            <span class="bar-card-score" style={`color:${scoreColor(f.score_global)}`}>{f.score_global}<small>/100</small></span>
+            <span class="bar-card-city">{f.ville}{f.is_edito ? ' ★' : ''}</span>
+            <span class="bar-card-meta">{typeLabel(f.type_bien)} · {f.surface} m² · {f.prix_demande.toLocaleString('fr-FR')} €</span>
+            <span class="bar-card-region">{f.region}{f.dpe ? ` · DPE ${f.dpe}` : ''}</span>
+          </a>
+        ))}
+      </div>
+
+      <div class="bar-hub-narrow">
+        <AnalyzerBox blog="villes" medium="barometre_hub" />
+        <p class="bar-method">Méthodologie : le Baromètre publie des analyses générées par l'outil ScoreImmo sur des
+        annonces réelles. Les notes sont indicatives et reposent sur des données publiques officielles. Elles ne
+        constituent pas un conseil en investissement. <a href="/blogs/villes">Voir aussi nos analyses de prix par ville.</a></p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style is:global>
+  .si-breadcrumb { font-size: 0.875rem; color: var(--si-muted-foreground, #64748B); margin: 1rem 0 2rem; }
+  .si-breadcrumb a { color: var(--si-muted-foreground, #64748B); text-decoration: none; }
+  .si-breadcrumb a:hover { color: var(--si-accent, #3B82F6); }
+  .bar-hub-header { max-width: 48rem; margin: 0 auto 1rem; text-align: center; }
+  .si-article-title { font-family: var(--si-font-heading, 'DM Sans', sans-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.025em; margin: 0 0 1rem; color: var(--si-foreground); }
+  .bar-hub-lead { font-size: 1.1rem; line-height: 1.7; color: var(--si-muted-foreground, #64748B); margin: 0 auto 1.5rem; }
+  .bar-hub-narrow { max-width: 48rem; margin: 0 auto; }
+  .bar-stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 2rem; margin: 1.5rem 0; }
+  .bar-stats div { display: flex; flex-direction: column; }
+  .bar-stats strong { font-family: var(--si-font-heading); font-size: 1.75rem; font-weight: 800; color: var(--si-accent, #3B82F6); }
+  .bar-stats span { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--si-muted-foreground); }
+  .bar-h2 { font-family: var(--si-font-heading); font-size: 1.5rem; font-weight: 700; margin: 2.5rem 0 1rem; color: var(--si-foreground); }
+  .bar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+  .bar-card { display: flex; flex-direction: column; gap: 0.25rem; padding: 1.1rem 1.25rem; border: 1px solid var(--si-border, #E2E8F0); border-radius: var(--si-radius, 0.75rem); background: var(--si-card, #fff); text-decoration: none; transition: box-shadow 0.2s, transform 0.2s; }
+  .bar-card:hover { box-shadow: var(--si-shadow-lg, 0 10px 15px -3px rgba(0,0,0,0.1)); transform: translateY(-2px); }
+  .bar-card-top { border-color: rgba(59,130,246,0.35); }
+  .bar-card-score { font-family: var(--si-font-heading); font-size: 1.9rem; font-weight: 800; line-height: 1; }
+  .bar-card-score small { font-size: 0.8rem; color: var(--si-muted-foreground); font-weight: 600; }
+  .bar-card-city { font-weight: 700; font-size: 1.05rem; color: var(--si-foreground); }
+  .bar-card-meta { font-size: 0.85rem; color: var(--si-foreground); }
+  .bar-card-region { font-size: 0.8rem; color: var(--si-muted-foreground); }
+  .bar-method { font-size: 0.875rem; color: var(--si-muted-foreground); line-height: 1.6; margin-top: 1.5rem; }
+  .bar-method a { color: var(--si-accent, #3B82F6); }
+</style>

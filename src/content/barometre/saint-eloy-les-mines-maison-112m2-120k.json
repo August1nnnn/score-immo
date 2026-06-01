@@ -1,0 +1,32 @@
+{
+  "slug": "saint-eloy-les-mines-maison-112m2-120k",
+  "ville": "Saint-Éloy-les-Mines",
+  "code_postal": "63700",
+  "region": "Auvergne-Rhône-Alpes",
+  "type_bien": "maison",
+  "surface": 112,
+  "prix_demande": 120000,
+  "prix_m2": 1071,
+  "score_global": 63,
+  "score_sections": {
+    "dpe": 3,
+    "prix": 2,
+    "risques": 9,
+    "urbanisme": 9,
+    "environnement": 6
+  },
+  "dpe": "E",
+  "points_forts": [
+    "24 arrêts et gares accessibles",
+    "5 établissements scolaires à proximité",
+    "Aucun risque naturel recensé"
+  ],
+  "alertes_cles": [
+    "Prix 30% au-dessus du marché local"
+  ],
+  "verdict": "Dossier correct mais perfectible : 24 arrêts et gares accessibles. Point de vigilance : Prix 30% au-dessus du marché local.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

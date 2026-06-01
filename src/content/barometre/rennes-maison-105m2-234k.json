@@ -1,0 +1,30 @@
+{
+  "slug": "rennes-maison-105m2-234k",
+  "ville": "Rennes",
+  "code_postal": "35000",
+  "region": "Bretagne",
+  "type_bien": "maison",
+  "surface": 105,
+  "prix_demande": 234950,
+  "prix_m2": 2238,
+  "score_global": 78,
+  "score_sections": {
+    "dpe": 7,
+    "prix": 5,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 7
+  },
+  "dpe": "C",
+  "points_forts": [
+    "810 commerces et restaurants à proximité",
+    "537 arrêts et gares accessibles",
+    "20 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [],
+  "verdict": "Bon dossier dans l'ensemble : 810 commerces et restaurants à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}

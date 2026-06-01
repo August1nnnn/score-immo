@@ -1,0 +1,30 @@
+{
+  "slug": "canet-en-roussillon-appartement-66m2-220k",
+  "ville": "Canet-en-Roussillon",
+  "code_postal": "66140",
+  "region": "Occitanie",
+  "type_bien": "appartement",
+  "surface": 66.28,
+  "prix_demande": 220000,
+  "prix_m2": 3319,
+  "score_global": 84,
+  "score_sections": {
+    "dpe": 7,
+    "prix": 9,
+    "risques": 10,
+    "urbanisme": 9,
+    "environnement": 9
+  },
+  "dpe": "C",
+  "points_forts": [
+    "16% sous la médiane du secteur",
+    "126 commerces et restaurants à proximité",
+    "98 arrêts et gares accessibles"
+  ],
+  "alertes_cles": [],
+  "verdict": "Excellente opportunité : 16% sous la médiane du secteur.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}
