@@ -1,0 +1,30 @@
+{
+  "id": "1780335300",
+  "title": "Estimation locative : convaincre un investisseur avec les bons chiffres",
+  "handle": "estimation-locative-convaincre-investisseur",
+  "blog": "pro",
+  "body_html": "<p>Un client investisseur ne raisonne pas comme un acheteur de résidence principale. Lui, ce qui l'intéresse, c'est le <strong>rendement</strong>. Pour décrocher et conclure avec ce profil, le mandataire doit maîtriser l'estimation locative et la présenter avec des chiffres solides.</p><h2>Ce que regarde un investisseur</h2><ul><li><strong>Le rendement brut</strong> : (loyer annuel / prix d'achat) x 100.</li><li><strong>Le rendement net</strong> : après charges, taxe foncière, gestion, vacance.</li><li><strong>Le rendement net-net</strong> : après fiscalité (le vrai chiffre qui compte).</li><li><strong>La tension locative</strong> du secteur : se loue-t-il vite ?</li><li><strong>Le potentiel de revalorisation</strong> du quartier.</li></ul><h2>Estimer le loyer de marché</h2><p>L'erreur classique : annoncer un loyer optimiste pour gonfler le rendement affiché. Un investisseur averti le verra. Appuyez-vous sur les <strong>loyers réellement pratiqués</strong> dans le secteur (observatoires des loyers, annonces comparables récentes) et soyez prudent sur la vacance.</p><h2>Calculer un rendement crédible</h2><p>Exemple : un T2 à 150 000 € loué 650 €/mois, soit 7 800 €/an. Rendement brut = 5,2 %. Après charges, taxe foncière et gestion (souvent 1 à 1,5 point de moins), le net tombe vers 3,5 à 4 %. Présentez toujours le net, pas seulement le brut : c'est ce qui distingue un mandataire sérieux.</p><h2>Le DPE, devenu central pour l'investisseur</h2><p>Avec le calendrier d'interdiction de location des passoires thermiques, le <strong>DPE</strong> est désormais un critère d'investissement majeur. Un bien F ou G implique des travaux à budgéter (et à intégrer au calcul de rendement) sous peine de ne plus pouvoir être loué. Intégrez-le systématiquement.</p><h2>Présenter un dossier chiffré</h2><p>Un investisseur signe quand les chiffres sont clairs et défendables. Remettez un dossier : prix au m² réels (DVF), loyer de marché, rendement brut/net, DPE et travaux, environnement. L'outil ScoreImmo agrège ces données et estime le rendement locatif en 30 secondes, ce qui vous fait gagner du temps et crédibilise votre conseil. Voir <a href=\"/blogs/pro/comment-estimer-bien-immobilier-mandataire-debutant\">la méthode d'estimation</a> et des exemples dans <a href=\"/barometre\">le Baromètre</a>.</p><h2>FAQ</h2><h3>Comment calculer le rendement locatif ?</h3><p>Rendement brut = (loyer annuel / prix d'achat) x 100. Le rendement net déduit charges, taxe foncière, gestion et vacance ; le net-net intègre la fiscalité. Présentez toujours le net pour être crédible.</p><h3>Quel rendement présenter à un investisseur ?</h3><p>Le rendement net, pas seulement le brut. Un brut de 5 % correspond souvent à un net de 3,5 à 4 % après charges et fiscalité. La transparence inspire confiance.</p><h3>Pourquoi le DPE compte-t-il pour un investisseur ?</h3><p>Parce que les passoires thermiques (F, G) sont progressivement interdites à la location. Un mauvais DPE implique des travaux à budgéter, qui pèsent sur le rendement réel.</p>",
+  "summary_html": null,
+  "author": "Thomas Varin",
+  "author_handle": "thomas-varin",
+  "published_at": "2026-06-01T20:20:00+02:00",
+  "updated_at": "2026-06-01T20:20:00+02:00",
+  "last_reviewed": "2026-06-01",
+  "tags": "estimation locative, rendement locatif mandataire, convaincre investisseur, rendement net",
+  "image": null,
+  "meta_title": "Estimation locative : convaincre un investisseur en 2026 | ScoreImmo",
+  "meta_description": "Maîtriser l'estimation locative pour conclure avec un investisseur : rendement brut/net/net-net, loyer de marché, DPE et dossier chiffré qui inspire confiance.",
+  "tldr": [
+    "L'investisseur raisonne rendement : brut, net et surtout net-net (après fiscalité).",
+    "Estimer le loyer sur les loyers réellement pratiqués, pas un loyer optimiste.",
+    "Présenter le rendement net, pas seulement le brut (souvent 1 à 1,5 point d'écart).",
+    "Le DPE est devenu central : passoires F/G = travaux à budgéter, location menacée.",
+    "Remettre un dossier chiffré (prix DVF, loyer, rendement, DPE) crédibilise le conseil."
+  ],
+  "sources": [
+    { "title": "Calendrier d'interdiction de location des passoires thermiques", "url": "https://www.service-public.fr/particuliers/vosdroits/F35515", "publisher": "service-public.fr" },
+    { "title": "Demandes de valeurs foncières (prix réels)", "url": "https://app.dvf.etalab.gouv.fr/", "publisher": "data.gouv.fr" },
+    { "title": "Diagnostic de performance énergétique (DPE)", "url": "https://data.ademe.fr/", "publisher": "ADEME" }
+  ],
+  "word_count": 720
+}

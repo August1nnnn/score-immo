@@ -1,0 +1,30 @@
+{
+  "id": "1780334800",
+  "title": "Comment estimer un bien immobilier quand on débute comme mandataire",
+  "handle": "comment-estimer-bien-immobilier-mandataire-debutant",
+  "blog": "pro",
+  "body_html": "<p>L'estimation est le moment de vérité du mandataire. Trop haute, le bien ne se vend pas et vous perdez du temps ; trop basse, vous perdez le mandat (et la confiance du vendeur). Voici une méthode fiable pour estimer juste, même en débutant.</p><h2>1. Partir des prix de vente réels (DVF)</h2><p>Oubliez les prix affichés des annonces : ils sont gonflés. La base d'une estimation sérieuse, ce sont les <strong>transactions réellement signées</strong>, disponibles dans la base DVF (Demandes de Valeurs Foncières). Comparez des biens vendus récemment, dans le même secteur, de surface et de type proches. C'est votre point d'ancrage objectif.</p><h2>2. Ajuster avec les caractéristiques du bien</h2><ul><li><strong>DPE</strong> : une passoire (F/G) se décote fortement depuis le durcissement réglementaire ; un bon DPE (A/B/C) se valorise.</li><li><strong>État, étage, exposition, extérieur, stationnement.</strong></li><li><strong>Travaux à prévoir</strong> : à déduire honnêtement.</li><li><strong>Environnement</strong> : nuisances, risques naturels, commerces et transports à proximité.</li></ul><h2>3. Croiser plusieurs signaux</h2><p>Une bonne estimation ne repose jamais sur une seule donnée. Croisez prix au m² réels, DPE, risques (Géorisques), profil de la commune (INSEE) et tension du marché local. Plus vous croisez de sources officielles, plus votre fourchette est défendable face au vendeur.</p><h2>4. Présenter un rapport, pas un chiffre</h2><p>Un vendeur accepte plus facilement un prix réaliste quand il est <strong>justifié par des données</strong>, pas par votre intuition. Remettre un rapport clair, objectif et sourcé transforme une négociation tendue en discussion factuelle. C'est exactement ce que produit l'outil ScoreImmo : un rapport complet (prix, DPE, risques, environnement, score sur 100) en 30 secondes, que vous pouvez présenter au vendeur. Voyez des exemples dans <a href=\"/barometre\">le Baromètre</a>.</p><h2>5. Assumer le bon prix</h2><p>Le piège du débutant : surévaluer pour \"faire plaisir\" au vendeur et décrocher le mandat. Résultat : un bien qui stagne, des baisses successives, une réputation entamée. Mieux vaut rentrer moins de mandats, mais au bon prix. C'est la clé d'un revenu régulier (voir <a href=\"/blogs/pro/combien-gagne-mandataire-immobilier-2026\">combien gagne un mandataire</a>).</p><h2>FAQ</h2><h3>Quelle est la méthode d'estimation la plus fiable ?</h3><p>La méthode par comparaison à partir des prix de vente réels (DVF), ajustée selon le DPE, l'état et l'environnement du bien, puis croisée avec d'autres sources officielles.</p><h3>Où trouver les prix de vente réels ?</h3><p>Dans la base DVF (Demandes de Valeurs Foncières), publique et gratuite. Elle recense les transactions effectivement signées.</p><h3>Comment convaincre un vendeur d'un prix réaliste ?</h3><p>En lui présentant un rapport objectif et sourcé plutôt qu'un simple chiffre. Les données officielles dépersonnalisent la discussion et crédibilisent votre estimation.</p>",
+  "summary_html": null,
+  "author": "Camille Renard",
+  "author_handle": "camille-renard",
+  "published_at": "2026-06-01T19:55:00+02:00",
+  "updated_at": "2026-06-01T19:55:00+02:00",
+  "last_reviewed": "2026-06-01",
+  "tags": "estimer un bien immobilier, estimation mandataire débutant, méthode estimation, prix au m2 DVF",
+  "image": null,
+  "meta_title": "Comment estimer un bien immobilier (mandataire débutant) | ScoreImmo",
+  "meta_description": "La méthode fiable pour estimer un bien quand on débute comme mandataire : prix DVF réels, DPE, environnement, croisement de sources et rapport pour convaincre le vendeur.",
+  "tldr": [
+    "Partir des prix de vente réels (DVF), pas des prix affichés des annonces.",
+    "Ajuster selon DPE, état, étage, extérieur, travaux et environnement.",
+    "Croiser plusieurs sources officielles pour une fourchette défendable.",
+    "Présenter un rapport sourcé au vendeur, pas un simple chiffre.",
+    "Assumer le bon prix : un mandat surévalué ne se vend pas et abîme la réputation."
+  ],
+  "sources": [
+    { "title": "Demandes de valeurs foncières (DVF) - prix réels", "url": "https://app.dvf.etalab.gouv.fr/", "publisher": "data.gouv.fr" },
+    { "title": "Diagnostic de performance énergétique (DPE)", "url": "https://data.ademe.fr/", "publisher": "ADEME" },
+    { "title": "Risques naturels et technologiques", "url": "https://www.georisques.gouv.fr/", "publisher": "Géorisques" }
+  ],
+  "word_count": 700
+}

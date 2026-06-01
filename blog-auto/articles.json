@@ -331,7 +331,9 @@
     "author_handle": "camille-renard",
     "scheduled_date": "2026-06-03",
     "scheduled_datetime": "2026-06-03T07:20:00+02:00",
-    "published": false
+    "published": true,
+    "slug": "mandataire-ou-agent-immobilier-differences",
+    "published_at": "2026-06-01T19:30:00+02:00"
   },
   {
     "index": 25,
@@ -343,7 +345,9 @@
     "author_handle": "camille-renard",
     "scheduled_date": "2026-06-03",
     "scheduled_datetime": "2026-06-03T08:40:00+02:00",
-    "published": false
+    "published": true,
+    "slug": "statut-mandataire-immobilier-agent-commercial-micro-entreprise",
+    "published_at": "2026-06-01T19:35:00+02:00"
   },
   {
     "index": 26,
@@ -355,7 +359,9 @@
     "author_handle": "camille-renard",
     "scheduled_date": "2026-06-03",
     "scheduled_datetime": "2026-06-03T13:10:00+02:00",
-    "published": false
+    "published": true,
+    "slug": "se-lancer-immobilier-sans-diplome",
+    "published_at": "2026-06-01T19:40:00+02:00"
   },
   {
     "index": 27,
@@ -367,7 +373,9 @@
     "author_handle": "camille-renard",
     "scheduled_date": "2026-06-04",
     "scheduled_datetime": "2026-06-04T07:20:00+02:00",
-    "published": false
+    "published": true,
+    "slug": "reseau-mandataires-ou-agence-immobiliere",
+    "published_at": "2026-06-01T19:45:00+02:00"
   },
   {
     "index": 28,
@@ -379,7 +387,9 @@
     "author_handle": "thomas-varin",
     "scheduled_date": "2026-06-04",
     "scheduled_datetime": "2026-06-04T08:40:00+02:00",
-    "published": false
+    "published": true,
+    "slug": "cout-demarrage-mandataire-immobilier-pack-royalties",
+    "published_at": "2026-06-01T19:50:00+02:00"
   },
   {
     "index": 29,
@@ -391,7 +401,9 @@
     "author_handle": "camille-renard",
     "scheduled_date": "2026-06-04",
     "scheduled_datetime": "2026-06-04T13:10:00+02:00",
-    "published": false
+    "published": true,
+    "slug": "comment-estimer-bien-immobilier-mandataire-debutant",
+    "published_at": "2026-06-01T19:55:00+02:00"
   },
   {
     "index": 30,
@@ -403,7 +415,9 @@
     "author_handle": "camille-renard",
     "scheduled_date": "2026-06-05",
     "scheduled_datetime": "2026-06-05T07:20:00+02:00",
-    "published": false
+    "published": true,
+    "slug": "pige-immobiliere-2026-trouver-mandats",
+    "published_at": "2026-06-01T20:00:00+02:00"
   },
   {
     "index": 31,
@@ -415,7 +429,9 @@
     "author_handle": "camille-renard",
     "scheduled_date": "2026-06-05",
     "scheduled_datetime": "2026-06-05T08:40:00+02:00",
-    "published": false
+    "published": true,
+    "slug": "decrocher-mandat-exclusif-methode-arguments",
+    "published_at": "2026-06-01T20:05:00+02:00"
   },
   {
     "index": 32,
@@ -427,7 +443,9 @@
     "author_handle": "camille-renard",
     "scheduled_date": "2026-06-05",
     "scheduled_datetime": "2026-06-05T13:10:00+02:00",
-    "published": false
+    "published": true,
+    "slug": "meilleurs-outils-mandataire-immobilier-debutant-2026",
+    "published_at": "2026-06-01T20:10:00+02:00"
   },
   {
     "index": 33,
@@ -439,7 +457,9 @@
     "author_handle": "camille-renard",
     "scheduled_date": "2026-06-08",
     "scheduled_datetime": "2026-06-08T07:20:00+02:00",
-    "published": false
+    "published": true,
+    "slug": "prospection-immobiliere-techniques-qui-marchent",
+    "published_at": "2026-06-01T20:15:00+02:00"
   },
   {
     "index": 34,
@@ -451,7 +471,9 @@
     "author_handle": "thomas-varin",
     "scheduled_date": "2026-06-08",
     "scheduled_datetime": "2026-06-08T08:40:00+02:00",
-    "published": false
+    "published": true,
+    "slug": "estimation-locative-convaincre-investisseur",
+    "published_at": "2026-06-01T20:20:00+02:00"
   },
   {
     "index": 35,
@@ -463,6 +485,8 @@
     "author_handle": "camille-renard",
     "scheduled_date": "2026-06-08",
     "scheduled_datetime": "2026-06-08T13:10:00+02:00",
-    "published": false
+    "published": true,
+    "slug": "credibilite-mandataire-rapport-analyse-rassure-client",
+    "published_at": "2026-06-01T20:25:00+02:00"
   }
 ]
