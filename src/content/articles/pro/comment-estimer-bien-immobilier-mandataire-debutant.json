@@ -11,7 +11,10 @@
   "updated_at": "2026-06-01T21:40:00+02:00",
   "last_reviewed": "2026-06-01",
   "tags": "estimer un bien immobilier, estimation mandataire débutant, méthode estimation, prix au m2 DVF",
-  "image": null,
+  "image": {
+    "src": "https://images.unsplash.com/photo-1648201637025-1c77b9be3013?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4Nzg4MzB8MHwxfHNlYXJjaHwxfHxob3VzZSUyMGFwcHJhaXNhbCUyMGRvY3VtZW50cyUyMGNhbGN1bGF0b3J8ZW58MHwwfHx8MTc4MDQyNjA5NXww&ixlib=rb-4.1.0&q=80&w=1080",
+    "alt": "a calculator and a pen sitting on top of a piece of paper"
+  },
   "meta_title": "Comment estimer un bien immobilier (mandataire)",
   "meta_description": "La méthode fiable pour estimer un bien quand on débute comme mandataire : prix DVF réels, DPE, environnement, et le rapport qui convainc le vendeur.",
   "tldr": [

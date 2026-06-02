@@ -11,7 +11,10 @@
   "updated_at": "2026-06-01T21:40:00+02:00",
   "last_reviewed": "2026-06-01",
   "tags": "statut mandataire immobilier, agent commercial immobilier, micro entreprise mandataire, cotisations",
-  "image": null,
+  "image": {
+    "src": "https://images.unsplash.com/photo-1625225230517-7426c1be750c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4Nzg4MzB8MHwxfHNlYXJjaHwxfHxwYXBlcndvcmslMjBhZG1pbmlzdHJhdGlvbiUyMGRvY3VtZW50cyUyMGRlc2t8ZW58MHwwfHx8MTc4MDQyNjEwN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+    "alt": "green cactus plant on white table"
+  },
   "meta_title": "Statut du mandataire immobilier : ce qu'il faut savoir",
   "meta_description": "Agent commercial, RSAC, micro-entreprise, cotisations ~22 % : le statut du mandataire immobilier expliqué en 2026, avec toutes les démarches.",
   "tldr": [

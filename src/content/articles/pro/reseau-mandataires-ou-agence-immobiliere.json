@@ -11,7 +11,10 @@
   "updated_at": "2026-06-01T21:40:00+02:00",
   "last_reviewed": "2026-06-01",
   "tags": "réseau mandataire ou agence, avantages réseau immobilier, indépendant immobilier, négociateur salarié",
-  "image": null,
+  "image": {
+    "src": "https://images.unsplash.com/photo-1656370465119-cb8d6735bda3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4Nzg4MzB8MHwxfHNlYXJjaHwxfHxwZW9wbGUlMjBuZXR3b3JrJTIwY29ubmVjdGlvbiUyMGNpdHl8ZW58MHwwfHx8MTc4MDQyNjEwNXww&ixlib=rb-4.1.0&q=80&w=1080",
+    "alt": "a group of people in a room"
+  },
   "meta_title": "Réseau de mandataires ou agence : que choisir ?",
   "meta_description": "Réseau de mandataires vs agence immobilière en 2026 : commission, liberté, sécurité, charges. Le comparatif honnête pour bien choisir.",
   "tldr": [

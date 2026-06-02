@@ -11,7 +11,10 @@
   "updated_at": "2026-06-01T21:40:00+02:00",
   "last_reviewed": "2026-06-01",
   "tags": "estimation locative, rendement locatif mandataire, convaincre investisseur, rendement net",
-  "image": null,
+  "image": {
+    "src": "https://images.unsplash.com/photo-1744782351841-9cc6b86a5add?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4Nzg4MzB8MHwxfHNlYXJjaHwxfHxyZW50YWwlMjBpbnZlc3RtZW50JTIwa2V5cyUyMGFwYXJ0bWVudHxlbnwwfDB8fHwxNzgwNDI2MTAwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+    "alt": "Here's a possible caption: keys being held in front of a staircase."
+  },
   "meta_title": "Estimation locative : convaincre un investisseur",
   "meta_description": "Maîtriser l'estimation locative pour conclure avec un investisseur : rendement brut/net/net-net, loyer de marché, DPE et dossier chiffré qui inspire confiance.",
   "tldr": [

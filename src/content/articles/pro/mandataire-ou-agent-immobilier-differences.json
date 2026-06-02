@@ -11,7 +11,10 @@
   "updated_at": "2026-06-01T21:40:00+02:00",
   "last_reviewed": "2026-06-01",
   "tags": "mandataire ou agent immobilier, différence mandataire agent, statut immobilier",
-  "image": null,
+  "image": {
+    "src": "https://images.unsplash.com/photo-1656646425017-a50cfd465420?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4Nzg4MzB8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjByZWFsJTIwZXN0YXRlJTIwb2ZmaWNlfGVufDB8MHx8fDE3ODA0MjYxMDJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    "alt": "a room with a tv and chairs"
+  },
   "meta_title": "Mandataire ou agent immobilier : les différences",
   "meta_description": "Carte T, diplôme, rémunération, indépendance : toutes les différences entre mandataire et agent immobilier en 2026, et comment choisir selon votre projet.",
   "tldr": [

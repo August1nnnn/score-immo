@@ -11,7 +11,10 @@
   "updated_at": "2026-06-01T21:40:00+02:00",
   "last_reviewed": "2026-06-01",
   "tags": "se lancer dans l'immobilier, immobilier sans diplôme, reconversion immobilier, devenir mandataire sans diplôme",
-  "image": null,
+  "image": {
+    "src": "https://images.unsplash.com/photo-1571149828488-1cc5695847a3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4Nzg4MzB8MHwxfHNlYXJjaHwxfHxuZXclMjBjYXJlZXIlMjBmcmVzaCUyMHN0YXJ0JTIwbW90aXZhdGlvbnxlbnwwfDB8fHwxNzgwNDI2MTA2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    "alt": "you can do it text"
+  },
   "meta_title": "Travailler dans l'immobilier sans diplôme en 2026",
   "meta_description": "Devenir mandataire immobilier sans diplôme est possible en 2026 : conditions réelles, compétences clés, formation obligatoire et comment démarrer.",
   "tldr": [

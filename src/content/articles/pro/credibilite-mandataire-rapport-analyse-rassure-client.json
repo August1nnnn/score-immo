@@ -11,7 +11,10 @@
   "updated_at": "2026-06-01T21:40:00+02:00",
   "last_reviewed": "2026-06-01",
   "tags": "rapport immobilier mandataire, crédibilité mandataire, rapport pour vendeur, rapport co-brandé",
-  "image": null,
+  "image": {
+    "src": "https://images.unsplash.com/photo-1638262052640-82e94d64664a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4Nzg4MzB8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBoYW5kc2hha2UlMjBjbGllbnQlMjB0cnVzdHxlbnwwfDB8fHwxNzgwNDI2MDk3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    "alt": "two people shaking hands over a wooden table"
+  },
   "meta_title": "Crédibilité du mandataire : le rapport qui rassure",
   "meta_description": "Comment un mandataire bâtit sa crédibilité avec un rapport objectif et co-brandé : prix réels, DPE, risques. L'outil de confiance et de closing.",
   "tldr": [

@@ -11,7 +11,10 @@
   "updated_at": "2026-05-05T09:33:44.490567+00:00",
   "last_reviewed": "2026-05-05",
   "tags": "meilleurs quartiers Tours, ou acheter Tours, quartiers Tours",
-  "image": null,
+  "image": {
+    "src": "https://images.unsplash.com/photo-1597225907889-bc80324cd8e5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4Nzg4MzB8MHwxfHNlYXJjaHwxfHxUb3VycyUyMEZyYW5jZSUyMGNpdHklMjBjYXRoZWRyYWx8ZW58MHwwfHx8MTc4MDQyNjEwOXww&ixlib=rb-4.1.0&q=80&w=1080",
+    "alt": "cars parked in front of brown concrete building during daytime"
+  },
   "meta_title": "Meilleurs Quartiers pour Acheter à Tours 2026",
   "meta_description": "Où acheter à Tours en 2026 ? Analyse quartier par quartier : prix au m², DPE, dynamisme. Données DVF et tendances concrètes pour bien investir.",
   "tldr": [

@@ -11,7 +11,10 @@
   "updated_at": "2026-06-01T21:40:00+02:00",
   "last_reviewed": "2026-06-01",
   "tags": "mandat exclusif, décrocher un mandat, arguments mandat exclusif, mandat semi-exclusif",
-  "image": null,
+  "image": {
+    "src": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4Nzg4MzB8MHwxfHNlYXJjaHwxfHxzaWduaW5nJTIwY29udHJhY3QlMjBwZW4lMjBhZ3JlZW1lbnR8ZW58MHwwfHx8MTc4MDQyNjA5OHww&ixlib=rb-4.1.0&q=80&w=1080",
+    "alt": "man writing on paper"
+  },
   "meta_title": "Décrocher un mandat exclusif : la méthode 2026",
   "meta_description": "La méthode et les arguments pour décrocher un mandat exclusif : prix prouvé, plan d'action, transparence. Lever les objections du vendeur.",
   "tldr": [

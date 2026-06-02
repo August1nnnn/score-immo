@@ -11,7 +11,10 @@
   "updated_at": "2026-06-01T21:40:00+02:00",
   "last_reviewed": "2026-06-01",
   "tags": "frais mandataire immobilier, coût pack réseau, royalties mandataire, budget démarrage immobilier",
-  "image": null,
+  "image": {
+    "src": "https://images.unsplash.com/photo-1516910817563-4df1c1b69058?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4Nzg4MzB8MHwxfHNlYXJjaHwxfHxzdGFydHVwJTIwZGVzayUyMHBsYW5uaW5nJTIwYnVkZ2V0fGVufDB8MHx8fDE3ODA0MjYwOTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    "alt": "space gray iPhone 6 on table near magic keybord"
+  },
   "meta_title": "Combien coûte le démarrage d'un mandataire ?",
   "meta_description": "Pack de démarrage, abonnement, royalties, CFE, trésorerie : le budget réel pour devenir mandataire immobilier en 2026 et comment optimiser ses coûts.",
   "tldr": [

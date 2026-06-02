@@ -11,7 +11,10 @@
   "updated_at": "2026-06-01T21:10:00+02:00",
   "last_reviewed": "2026-06-01",
   "tags": "comparatif réseaux mandataires, IAD vs SAFTI, meilleur réseau immobilier, Capifrance, Efficity",
-  "image": null,
+  "image": {
+    "src": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4Nzg4MzB8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMHRlYW0lMjBtZWV0aW5nJTIwZGlzY3Vzc2lvbnxlbnwwfDB8fHwxNzgwNDI2MTAxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+    "alt": "people sitting on chair in front of table while holding pens during daytime"
+  },
   "meta_title": "IAD, SAFTI, Capifrance, Efficity : quel réseau choisir ?",
   "meta_description": "Comparatif 2026 des réseaux de mandataires : commissions, frais, formation, modèle MLM ou classique. La méthode pour choisir IAD, SAFTI, Capifrance ou Efficity.",
   "tldr": [

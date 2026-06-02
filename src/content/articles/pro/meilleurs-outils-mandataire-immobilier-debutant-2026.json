@@ -11,7 +11,10 @@
   "updated_at": "2026-06-01T21:40:00+02:00",
   "last_reviewed": "2026-06-01",
   "tags": "outils mandataire immobilier, logiciel mandataire, outils prospection immobilière, outil estimation",
-  "image": null,
+  "image": {
+    "src": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4Nzg4MzB8MHwxfHNlYXJjaHwxfHxsYXB0b3AlMjBzbWFydHBob25lJTIwd29ya3NwYWNlJTIwZGVza3xlbnwwfDB8fHwxNzgwNDI2MTAzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+    "alt": "MacBook Pro, white ceramic mug,and black smartphone on table"
+  },
   "meta_title": "Les meilleurs outils du mandataire en 2026",
   "meta_description": "La boîte à outils du mandataire débutant en 2026 : CRM, estimation fiable, diffusion, bases publiques (DVF, Géorisques). Sur quoi investir d'abord.",
   "tldr": [
