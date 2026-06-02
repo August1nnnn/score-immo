@@ -9,15 +9,15 @@ import urllib.error
 import xml.etree.ElementTree as ET
 import json
 
-HOST = "litiere-agglomerante.com"
-KEY = "9e5df87cd98341a3b0f80bba1b9d6ad4"
+HOST = "score-immo.fr"
+KEY = "aa87fc9bfd0440f08e944eb5a26837e3"
 KEY_LOCATION = f"https://{HOST}/{KEY}.txt"
 ENDPOINT = "https://api.indexnow.org/indexnow"
 SITEMAP = f"https://{HOST}/sitemap-0.xml"
 
 
 def fetch_sitemap_urls():
-    req = urllib.request.Request(SITEMAP, headers={"User-Agent": "Mozilla/5.0 litierescore-indexnow"})
+    req = urllib.request.Request(SITEMAP, headers={"User-Agent": "Mozilla/5.0 scoreimmo-indexnow"})
     with urllib.request.urlopen(req, timeout=20) as r:
         xml_data = r.read()
     root = ET.fromstring(xml_data)
@@ -39,7 +39,7 @@ def ping(urls):
     req = urllib.request.Request(
         ENDPOINT,
         data=data,
-        headers={"Content-Type": "application/json; charset=utf-8", "User-Agent": "litierescore-indexnow/1.0"},
+        headers={"Content-Type": "application/json; charset=utf-8", "User-Agent": "scoreimmo-indexnow/1.0"},
         method="POST",
     )
     try:
