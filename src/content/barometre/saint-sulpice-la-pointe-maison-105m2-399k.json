@@ -27,5 +27,125 @@
   "is_edito": false,
   "edito_label": null,
   "date_analyse": "2026-06-01",
-  "details": null
+  "details": {
+    "taxe": {
+      "annee": 2025,
+      "annuelle": 1197,
+      "taux_communal": 61.53
+    },
+    "marche": {
+      "p25": 1767,
+      "p75": 2330,
+      "prix_m2": 3800,
+      "diff_pct": 80.2,
+      "median_m2": 2109,
+      "comparables": 174
+    },
+    "energie": {
+      "dpe": "C",
+      "ges": "C",
+      "conso": null,
+      "cout_max": null,
+      "cout_min": null,
+      "date_dpe": null,
+      "emission_ges": null
+    },
+    "risques": [
+      {
+        "label": "Inondation",
+        "level": "Faible"
+      },
+      {
+        "label": "Sismicité",
+        "level": "Faible"
+      },
+      {
+        "label": "Radon",
+        "level": "Faible"
+      },
+      {
+        "label": "Retrait-gonflement argiles",
+        "level": "Faible"
+      },
+      {
+        "label": "Mouvement de terrain",
+        "level": "Faible"
+      },
+      {
+        "label": "Feux de forêt",
+        "level": "Faible"
+      },
+      {
+        "label": "Industriel",
+        "level": "Faible"
+      },
+      {
+        "label": "Minier",
+        "level": "Faible"
+      }
+    ],
+    "quartier": {
+      "sante": 11,
+      "ecoles": null,
+      "loisirs": 633,
+      "services": 33,
+      "commerces": 44,
+      "transports": 72
+    },
+    "rendement": {
+      "net": null,
+      "brut": null,
+      "roi_ans": null,
+      "loyer_estime": null
+    },
+    "historique": {
+      "ventes": [
+        {
+          "date": "2018-06-28",
+          "prix": 215000,
+          "prix_m2": 1903
+        },
+        {
+          "date": "2018-06-21",
+          "prix": 110000,
+          "prix_m2": 1038
+        },
+        {
+          "date": "2018-06-15",
+          "prix": 233230,
+          "prix_m2": 2287
+        },
+        {
+          "date": "2018-05-25",
+          "prix": 208300,
+          "prix_m2": 2126
+        },
+        {
+          "date": "2018-05-23",
+          "prix": 120000,
+          "prix_m2": 1200
+        }
+      ],
+      "nb_mutations": 5,
+      "plus_value_pct": 232.5,
+      "duree_detention_ans": 8
+    },
+    "acquisition": {
+      "prix": 399000,
+      "total": 450870,
+      "agence": 19950,
+      "notaire": 31920,
+      "travaux": 0,
+      "agence_pct": 5,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": null,
+      "densite": null,
+      "population": null,
+      "revenu_median": null,
+      "pct_locataires": null,
+      "pct_proprietaires": null
+    }
+  }
 }

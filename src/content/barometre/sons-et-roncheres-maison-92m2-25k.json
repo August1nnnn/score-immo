@@ -25,5 +25,66 @@
   "is_edito": false,
   "edito_label": null,
   "date_analyse": "2026-06-01",
-  "details": null
+  "details": {
+    "taxe": {
+      "annee": 2025,
+      "annuelle": 500,
+      "taux_communal": 43.72
+    },
+    "marche": {
+      "p25": null,
+      "p75": null,
+      "prix_m2": 272,
+      "diff_pct": null,
+      "median_m2": null,
+      "comparables": 0
+    },
+    "energie": {
+      "dpe": "D",
+      "ges": "D",
+      "conso": 209.1,
+      "cout_max": 5566,
+      "cout_min": 4114,
+      "date_dpe": "2026-04-13",
+      "emission_ges": 45.6
+    },
+    "risques": [],
+    "quartier": {
+      "sante": 5,
+      "ecoles": 0,
+      "loisirs": 4,
+      "services": 3,
+      "commerces": 14,
+      "transports": 5
+    },
+    "rendement": {
+      "net": 5,
+      "brut": 7,
+      "roi_ans": 14.3,
+      "loyer_estime": 146
+    },
+    "historique": {
+      "ventes": [],
+      "nb_mutations": 0,
+      "plus_value_pct": null,
+      "duree_detention_ans": null
+    },
+    "acquisition": {
+      "prix": 25000,
+      "total": 28250,
+      "agence": 1250,
+      "notaire": 2000,
+      "travaux": 0,
+      "agence_pct": 5,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 1818,
+      "population": 118489,
+      "revenu_median": 21000,
+      "pct_locataires": 62,
+      "pct_proprietaires": 38
+    }
+  }
 }

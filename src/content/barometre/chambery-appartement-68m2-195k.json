@@ -27,5 +27,99 @@
   "is_edito": false,
   "edito_label": null,
   "date_analyse": "2026-06-01",
-  "details": null
+  "details": {
+    "taxe": {
+      "annee": 2025,
+      "annuelle": 585,
+      "taux_communal": 41.96
+    },
+    "marche": {
+      "p25": null,
+      "p75": null,
+      "prix_m2": 2853,
+      "diff_pct": null,
+      "median_m2": null,
+      "comparables": 0
+    },
+    "energie": {
+      "dpe": "C",
+      "ges": "B",
+      "conso": 168,
+      "cout_max": 3322,
+      "cout_min": 2456,
+      "date_dpe": "2026-05-25",
+      "emission_ges": 6
+    },
+    "risques": [
+      {
+        "label": "Inondation",
+        "level": "Faible"
+      },
+      {
+        "label": "Sismicité",
+        "level": "Faible"
+      },
+      {
+        "label": "Radon",
+        "level": "Faible"
+      },
+      {
+        "label": "Retrait-gonflement argiles",
+        "level": "Faible"
+      },
+      {
+        "label": "Mouvement de terrain",
+        "level": "Faible"
+      },
+      {
+        "label": "Feux de forêt",
+        "level": "Faible"
+      },
+      {
+        "label": "Industriel",
+        "level": "Faible"
+      },
+      {
+        "label": "Minier",
+        "level": "Faible"
+      }
+    ],
+    "quartier": {
+      "sante": 62,
+      "ecoles": 18,
+      "loisirs": 422,
+      "services": 81,
+      "commerces": 148,
+      "transports": 172
+    },
+    "rendement": {
+      "net": 5.7,
+      "brut": 6,
+      "roi_ans": 16.7,
+      "loyer_estime": 975
+    },
+    "historique": {
+      "ventes": [],
+      "nb_mutations": 0,
+      "plus_value_pct": null,
+      "duree_detention_ans": null
+    },
+    "acquisition": {
+      "prix": 195000,
+      "total": 220350,
+      "agence": 9750,
+      "notaire": 15600,
+      "travaux": 0,
+      "agence_pct": 5,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 2829,
+      "population": 59964,
+      "revenu_median": 21500,
+      "pct_locataires": 58,
+      "pct_proprietaires": 42
+    }
+  }
 }

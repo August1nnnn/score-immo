@@ -27,5 +27,99 @@
   "is_edito": false,
   "edito_label": null,
   "date_analyse": "2026-06-01",
-  "details": null
+  "details": {
+    "taxe": {
+      "annee": 2025,
+      "annuelle": 345,
+      "taux_communal": 44.59
+    },
+    "marche": {
+      "p25": null,
+      "p75": null,
+      "prix_m2": 3833,
+      "diff_pct": null,
+      "median_m2": null,
+      "comparables": 0
+    },
+    "energie": {
+      "dpe": "C",
+      "ges": "A",
+      "conso": 284,
+      "cout_max": 840,
+      "cout_min": 590,
+      "date_dpe": "2026-05-25",
+      "emission_ges": 52
+    },
+    "risques": [
+      {
+        "label": "Inondation",
+        "level": "Faible"
+      },
+      {
+        "label": "Sismicité",
+        "level": "Faible"
+      },
+      {
+        "label": "Radon",
+        "level": "Faible"
+      },
+      {
+        "label": "Retrait-gonflement argiles",
+        "level": "Faible"
+      },
+      {
+        "label": "Mouvement de terrain",
+        "level": "Faible"
+      },
+      {
+        "label": "Feux de forêt",
+        "level": "Faible"
+      },
+      {
+        "label": "Industriel",
+        "level": "Faible"
+      },
+      {
+        "label": "Minier",
+        "level": "Faible"
+      }
+    ],
+    "quartier": {
+      "sante": 64,
+      "ecoles": 13,
+      "loisirs": 294,
+      "services": 29,
+      "commerces": 64,
+      "transports": 177
+    },
+    "rendement": {
+      "net": 4.7,
+      "brut": 5,
+      "roi_ans": 20,
+      "loyer_estime": 479
+    },
+    "historique": {
+      "ventes": [],
+      "nb_mutations": 0,
+      "plus_value_pct": null,
+      "duree_detention_ans": null
+    },
+    "acquisition": {
+      "prix": 115000,
+      "total": 129950,
+      "agence": 5750,
+      "notaire": 9200,
+      "travaux": 0,
+      "agence_pct": 5,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 629,
+      "population": 15157,
+      "revenu_median": 22500,
+      "pct_locataires": 45,
+      "pct_proprietaires": 55
+    }
+  }
 }

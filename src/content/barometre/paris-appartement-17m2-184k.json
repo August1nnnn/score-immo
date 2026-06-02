@@ -27,5 +27,99 @@
   "is_edito": false,
   "edito_label": null,
   "date_analyse": "2026-06-01",
-  "details": null
+  "details": {
+    "taxe": {
+      "annee": 2025,
+      "annuelle": 552,
+      "taux_communal": 20.5
+    },
+    "marche": {
+      "p25": null,
+      "p75": null,
+      "prix_m2": 10824,
+      "diff_pct": null,
+      "median_m2": null,
+      "comparables": 0
+    },
+    "energie": {
+      "dpe": "D",
+      "ges": "D",
+      "conso": 289,
+      "cout_max": 1421,
+      "cout_min": 1051,
+      "date_dpe": "2026-05-11",
+      "emission_ges": 91
+    },
+    "risques": [
+      {
+        "label": "Inondation",
+        "level": "Faible"
+      },
+      {
+        "label": "Sismicité",
+        "level": "Faible"
+      },
+      {
+        "label": "Radon",
+        "level": "Faible"
+      },
+      {
+        "label": "Retrait-gonflement argiles",
+        "level": "Faible"
+      },
+      {
+        "label": "Mouvement de terrain",
+        "level": "Faible"
+      },
+      {
+        "label": "Feux de forêt",
+        "level": "Faible"
+      },
+      {
+        "label": "Industriel",
+        "level": "Faible"
+      },
+      {
+        "label": "Minier",
+        "level": "Faible"
+      }
+    ],
+    "quartier": {
+      "sante": 971,
+      "ecoles": 20,
+      "loisirs": 1657,
+      "services": 752,
+      "commerces": 6423,
+      "transports": 1069
+    },
+    "rendement": {
+      "net": 2.9,
+      "brut": 3.2,
+      "roi_ans": 31.2,
+      "loyer_estime": 491
+    },
+    "historique": {
+      "ventes": [],
+      "nb_mutations": 0,
+      "plus_value_pct": null,
+      "duree_detention_ans": null
+    },
+    "acquisition": {
+      "prix": 184000,
+      "total": 207920,
+      "agence": 9200,
+      "notaire": 14720,
+      "travaux": 0,
+      "agence_pct": 5,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 19967,
+      "population": 2103778,
+      "revenu_median": 22500,
+      "pct_locataires": 65,
+      "pct_proprietaires": 35
+    }
+  }
 }

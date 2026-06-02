@@ -27,5 +27,99 @@
   "is_edito": false,
   "edito_label": null,
   "date_analyse": "2026-06-01",
-  "details": null
+  "details": {
+    "taxe": {
+      "annee": 2025,
+      "annuelle": 1166,
+      "taux_communal": 61.59
+    },
+    "marche": {
+      "p25": null,
+      "p75": null,
+      "prix_m2": 3238,
+      "diff_pct": null,
+      "median_m2": null,
+      "comparables": 0
+    },
+    "energie": {
+      "dpe": "D",
+      "ges": "E",
+      "conso": 230,
+      "cout_max": 7986,
+      "cout_min": 5902,
+      "date_dpe": "2026-05-21",
+      "emission_ges": 34
+    },
+    "risques": [
+      {
+        "label": "Inondation",
+        "level": "Faible"
+      },
+      {
+        "label": "Sismicité",
+        "level": "Faible"
+      },
+      {
+        "label": "Radon",
+        "level": "Faible"
+      },
+      {
+        "label": "Retrait-gonflement argiles",
+        "level": "Faible"
+      },
+      {
+        "label": "Mouvement de terrain",
+        "level": "Faible"
+      },
+      {
+        "label": "Feux de forêt",
+        "level": "Faible"
+      },
+      {
+        "label": "Industriel",
+        "level": "Faible"
+      },
+      {
+        "label": "Minier",
+        "level": "Faible"
+      }
+    ],
+    "quartier": {
+      "sante": 94,
+      "ecoles": 6,
+      "loisirs": 6551,
+      "services": 84,
+      "commerces": 152,
+      "transports": 304
+    },
+    "rendement": {
+      "net": 4.7,
+      "brut": 5,
+      "roi_ans": 20,
+      "loyer_estime": 1619
+    },
+    "historique": {
+      "ventes": [],
+      "nb_mutations": 0,
+      "plus_value_pct": null,
+      "duree_detention_ans": null
+    },
+    "acquisition": {
+      "prix": 388500,
+      "total": 439005,
+      "agence": 19425,
+      "notaire": 31080,
+      "travaux": 0,
+      "agence_pct": 5,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 1001,
+      "population": 7829,
+      "revenu_median": 22500,
+      "pct_locataires": 45,
+      "pct_proprietaires": 55
+    }
+  }
 }

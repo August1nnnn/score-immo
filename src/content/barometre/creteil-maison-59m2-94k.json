@@ -29,5 +29,99 @@
   "is_edito": false,
   "edito_label": null,
   "date_analyse": "2026-06-01",
-  "details": null
+  "details": {
+    "taxe": {
+      "annee": 2025,
+      "annuelle": 940,
+      "taux_communal": null
+    },
+    "marche": {
+      "p25": null,
+      "p75": null,
+      "prix_m2": 1572,
+      "diff_pct": null,
+      "median_m2": null,
+      "comparables": 0
+    },
+    "energie": {
+      "dpe": "F",
+      "ges": "E",
+      "conso": 262,
+      "cout_max": 4532,
+      "cout_min": 3350,
+      "date_dpe": "2026-05-18",
+      "emission_ges": 27
+    },
+    "risques": [
+      {
+        "label": "Inondation",
+        "level": "Faible"
+      },
+      {
+        "label": "Sismicité",
+        "level": "Faible"
+      },
+      {
+        "label": "Radon",
+        "level": "Faible"
+      },
+      {
+        "label": "Retrait-gonflement argiles",
+        "level": "Faible"
+      },
+      {
+        "label": "Mouvement de terrain",
+        "level": "Faible"
+      },
+      {
+        "label": "Feux de forêt",
+        "level": "Faible"
+      },
+      {
+        "label": "Industriel",
+        "level": "Faible"
+      },
+      {
+        "label": "Minier",
+        "level": "Faible"
+      }
+    ],
+    "quartier": {
+      "sante": 323,
+      "ecoles": 20,
+      "loisirs": 532,
+      "services": 114,
+      "commerces": 315,
+      "transports": 370
+    },
+    "rendement": {
+      "net": 5,
+      "brut": 6,
+      "roi_ans": 16.7,
+      "loyer_estime": 470
+    },
+    "historique": {
+      "ventes": [],
+      "nb_mutations": 0,
+      "plus_value_pct": null,
+      "duree_detention_ans": null
+    },
+    "acquisition": {
+      "prix": 94000,
+      "total": 106220,
+      "agence": 4700,
+      "notaire": 7520,
+      "travaux": 0,
+      "agence_pct": 5,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 8179,
+      "population": 93397,
+      "revenu_median": 21500,
+      "pct_locataires": 58,
+      "pct_proprietaires": 42
+    }
+  }
 }

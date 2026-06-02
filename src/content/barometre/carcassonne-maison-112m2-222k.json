@@ -27,5 +27,99 @@
   "is_edito": false,
   "edito_label": null,
   "date_analyse": "2026-06-01",
-  "details": null
+  "details": {
+    "taxe": {
+      "annee": 2025,
+      "annuelle": 968,
+      "taux_communal": 53.28
+    },
+    "marche": {
+      "p25": null,
+      "p75": null,
+      "prix_m2": 1988,
+      "diff_pct": null,
+      "median_m2": null,
+      "comparables": 0
+    },
+    "energie": {
+      "dpe": "C",
+      "ges": "A",
+      "conso": 154,
+      "cout_max": 4991,
+      "cout_min": 3689,
+      "date_dpe": "2026-04-06",
+      "emission_ges": 23
+    },
+    "risques": [
+      {
+        "label": "Inondation",
+        "level": "Faible"
+      },
+      {
+        "label": "Sismicité",
+        "level": "Faible"
+      },
+      {
+        "label": "Radon",
+        "level": "Faible"
+      },
+      {
+        "label": "Retrait-gonflement argiles",
+        "level": "Faible"
+      },
+      {
+        "label": "Mouvement de terrain",
+        "level": "Faible"
+      },
+      {
+        "label": "Feux de forêt",
+        "level": "Faible"
+      },
+      {
+        "label": "Industriel",
+        "level": "Faible"
+      },
+      {
+        "label": "Minier",
+        "level": "Faible"
+      }
+    ],
+    "quartier": {
+      "sante": 24,
+      "ecoles": 20,
+      "loisirs": 23,
+      "services": 44,
+      "commerces": 215,
+      "transports": 350
+    },
+    "rendement": {
+      "net": 5.6,
+      "brut": 6,
+      "roi_ans": 16.7,
+      "loyer_estime": 1113
+    },
+    "historique": {
+      "ventes": [],
+      "nb_mutations": 0,
+      "plus_value_pct": null,
+      "duree_detention_ans": null
+    },
+    "acquisition": {
+      "prix": 222600,
+      "total": 251538,
+      "agence": 11130,
+      "notaire": 17808,
+      "travaux": 0,
+      "agence_pct": 5,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 707,
+      "population": 46080,
+      "revenu_median": 22000,
+      "pct_locataires": 52,
+      "pct_proprietaires": 48
+    }
+  }
 }

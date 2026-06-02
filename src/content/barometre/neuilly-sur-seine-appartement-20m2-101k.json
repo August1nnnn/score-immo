@@ -27,5 +27,105 @@
   "is_edito": false,
   "edito_label": null,
   "date_analyse": "2026-06-01",
-  "details": null
+  "details": {
+    "taxe": {
+      "annee": 2025,
+      "annuelle": 303,
+      "taux_communal": 14.35
+    },
+    "marche": {
+      "p25": 9500,
+      "p75": 10783,
+      "prix_m2": 5050,
+      "diff_pct": -50.9,
+      "median_m2": 10278,
+      "comparables": 13
+    },
+    "energie": {
+      "dpe": "D",
+      "ges": "C",
+      "conso": 231,
+      "cout_max": 1336,
+      "cout_min": 988,
+      "date_dpe": "2026-05-18",
+      "emission_ges": 29
+    },
+    "risques": [
+      {
+        "label": "Inondation",
+        "level": "Faible"
+      },
+      {
+        "label": "Sismicité",
+        "level": "Faible"
+      },
+      {
+        "label": "Radon",
+        "level": "Faible"
+      },
+      {
+        "label": "Retrait-gonflement argiles",
+        "level": "Faible"
+      },
+      {
+        "label": "Mouvement de terrain",
+        "level": "Faible"
+      },
+      {
+        "label": "Feux de forêt",
+        "level": "Faible"
+      },
+      {
+        "label": "Industriel",
+        "level": "Faible"
+      },
+      {
+        "label": "Minier",
+        "level": "Faible"
+      }
+    ],
+    "quartier": {
+      "sante": 488,
+      "ecoles": 20,
+      "loisirs": 1219,
+      "services": 345,
+      "commerces": 978,
+      "transports": 572
+    },
+    "rendement": {
+      "net": 2.9,
+      "brut": 3.2,
+      "roi_ans": 31.3,
+      "loyer_estime": 269
+    },
+    "historique": {
+      "ventes": [
+        {
+          "date": "2023-10-05",
+          "prix": 185000,
+          "prix_m2": 10278
+        }
+      ],
+      "nb_mutations": 1,
+      "plus_value_pct": -45.4,
+      "duree_detention_ans": 2.6
+    },
+    "acquisition": {
+      "prix": 101000,
+      "total": 114130,
+      "agence": 5050,
+      "notaire": 8080,
+      "travaux": 0,
+      "agence_pct": 5,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 16017,
+      "population": 59538,
+      "revenu_median": 21500,
+      "pct_locataires": 58,
+      "pct_proprietaires": 42
+    }
+  }
 }

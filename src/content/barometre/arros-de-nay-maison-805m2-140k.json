@@ -27,5 +27,99 @@
   "is_edito": false,
   "edito_label": null,
   "date_analyse": "2026-06-01",
-  "details": null
+  "details": {
+    "taxe": {
+      "annee": 2025,
+      "annuelle": 2180,
+      "taux_communal": 21.12
+    },
+    "marche": {
+      "p25": 1224,
+      "p75": 2233,
+      "prix_m2": 174,
+      "diff_pct": -90.2,
+      "median_m2": 1778,
+      "comparables": 54
+    },
+    "energie": {
+      "dpe": "D",
+      "ges": "D",
+      "conso": 233.5,
+      "cout_max": 54387,
+      "cout_min": 40199,
+      "date_dpe": "2026-05-18",
+      "emission_ges": 51.2
+    },
+    "risques": [
+      {
+        "label": "Inondation",
+        "level": "Faible"
+      },
+      {
+        "label": "Sismicité",
+        "level": "Faible"
+      },
+      {
+        "label": "Radon",
+        "level": "Faible"
+      },
+      {
+        "label": "Retrait-gonflement argiles",
+        "level": "Faible"
+      },
+      {
+        "label": "Mouvement de terrain",
+        "level": "Faible"
+      },
+      {
+        "label": "Feux de forêt",
+        "level": "Faible"
+      },
+      {
+        "label": "Industriel",
+        "level": "Faible"
+      },
+      {
+        "label": "Minier",
+        "level": "Faible"
+      }
+    ],
+    "quartier": {
+      "sante": 14,
+      "ecoles": 0,
+      "loisirs": 169,
+      "services": 47,
+      "commerces": 29,
+      "transports": 59
+    },
+    "rendement": {
+      "net": 4.4,
+      "brut": 6,
+      "roi_ans": 16.7,
+      "loyer_estime": 700
+    },
+    "historique": {
+      "ventes": [],
+      "nb_mutations": 0,
+      "plus_value_pct": null,
+      "duree_detention_ans": null
+    },
+    "acquisition": {
+      "prix": 140000,
+      "total": 560700,
+      "agence": 7000,
+      "notaire": 11200,
+      "travaux": 402500,
+      "agence_pct": 5,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 60,
+      "population": 820,
+      "revenu_median": 23000,
+      "pct_locataires": 32,
+      "pct_proprietaires": 68
+    }
+  }
 }

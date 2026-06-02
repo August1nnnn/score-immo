@@ -27,5 +27,92 @@
   "is_edito": false,
   "edito_label": null,
   "date_analyse": "2026-06-01",
-  "details": null
+  "details": {
+    "taxe": {
+      "annee": 2025,
+      "annuelle": 1191,
+      "taux_communal": 38.62
+    },
+    "marche": {
+      "p25": 2672,
+      "p75": 4318,
+      "prix_m2": 6391,
+      "diff_pct": 99.9,
+      "median_m2": 3197,
+      "comparables": 111
+    },
+    "energie": {
+      "dpe": "A",
+      "ges": "A",
+      "conso": 147,
+      "cout_max": 2643,
+      "cout_min": 1953,
+      "date_dpe": "2026-05-22",
+      "emission_ges": 5
+    },
+    "risques": [],
+    "quartier": {
+      "sante": 82,
+      "ecoles": 13,
+      "loisirs": 92,
+      "services": 29,
+      "commerces": 57,
+      "transports": 64
+    },
+    "rendement": {
+      "net": 4.7,
+      "brut": 5,
+      "roi_ans": 20,
+      "loyer_estime": 1654
+    },
+    "historique": {
+      "ventes": [
+        {
+          "date": "2017-12-27",
+          "prix": 182000,
+          "prix_m2": 2716
+        },
+        {
+          "date": "2017-12-20",
+          "prix": 197000,
+          "prix_m2": 3031
+        },
+        {
+          "date": "2017-12-19",
+          "prix": 160000,
+          "prix_m2": 2462
+        },
+        {
+          "date": "2017-12-08",
+          "prix": 256000,
+          "prix_m2": 4491
+        },
+        {
+          "date": "2017-11-30",
+          "prix": 280000,
+          "prix_m2": 4000
+        }
+      ],
+      "nb_mutations": 5,
+      "plus_value_pct": 41.8,
+      "duree_detention_ans": 8.5
+    },
+    "acquisition": {
+      "prix": 397000,
+      "total": 448610,
+      "agence": 19850,
+      "notaire": 31760,
+      "travaux": 0,
+      "agence_pct": 5,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 797,
+      "population": 12493,
+      "revenu_median": 22500,
+      "pct_locataires": 45,
+      "pct_proprietaires": 55
+    }
+  }
 }

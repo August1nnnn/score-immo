@@ -27,5 +27,120 @@
   "is_edito": false,
   "edito_label": null,
   "date_analyse": "2026-06-01",
-  "details": null
+  "details": {
+    "taxe": {
+      "annee": 2025,
+      "annuelle": 979,
+      "taux_communal": 45
+    },
+    "marche": {
+      "p25": 1042,
+      "p75": 2118,
+      "prix_m2": 1106,
+      "diff_pct": -25.4,
+      "median_m2": 1483,
+      "comparables": 54
+    },
+    "energie": {
+      "dpe": "E",
+      "ges": "E",
+      "conso": 221,
+      "cout_max": 10871,
+      "cout_min": 8035,
+      "date_dpe": "2026-05-13",
+      "emission_ges": 47
+    },
+    "risques": [
+      {
+        "label": "Inondation",
+        "level": "Faible"
+      },
+      {
+        "label": "Sismicité",
+        "level": "Faible"
+      },
+      {
+        "label": "Radon",
+        "level": "Faible"
+      },
+      {
+        "label": "Retrait-gonflement argiles",
+        "level": "Faible"
+      },
+      {
+        "label": "Mouvement de terrain",
+        "level": "Faible"
+      },
+      {
+        "label": "Feux de forêt",
+        "level": "Faible"
+      },
+      {
+        "label": "Industriel",
+        "level": "Faible"
+      },
+      {
+        "label": "Minier",
+        "level": "Faible"
+      }
+    ],
+    "quartier": {
+      "sante": 18,
+      "ecoles": 1,
+      "loisirs": 348,
+      "services": 46,
+      "commerces": 42,
+      "transports": 34
+    },
+    "rendement": {
+      "net": 6.5,
+      "brut": 7,
+      "roi_ans": 14.3,
+      "loyer_estime": 1097
+    },
+    "historique": {
+      "ventes": [
+        {
+          "date": "2022-09-30",
+          "prix": 278000,
+          "prix_m2": 1759
+        },
+        {
+          "date": "2022-07-11",
+          "prix": 349200,
+          "prix_m2": 2238
+        },
+        {
+          "date": "2022-05-16",
+          "prix": 179000,
+          "prix_m2": 1209
+        },
+        {
+          "date": "2022-05-11",
+          "prix": 130000,
+          "prix_m2": 833
+        }
+      ],
+      "nb_mutations": 4,
+      "plus_value_pct": 44.6,
+      "duree_detention_ans": 4
+    },
+    "acquisition": {
+      "prix": 188000,
+      "total": 212440,
+      "agence": 9400,
+      "notaire": 15040,
+      "travaux": 0,
+      "agence_pct": 5,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 298,
+      "population": 3487,
+      "revenu_median": 23000,
+      "pct_locataires": 32,
+      "pct_proprietaires": 68
+    }
+  }
 }

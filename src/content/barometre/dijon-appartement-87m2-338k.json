@@ -27,5 +27,99 @@
   "is_edito": false,
   "edito_label": null,
   "date_analyse": "2026-06-01",
-  "details": null
+  "details": {
+    "taxe": {
+      "annee": 2025,
+      "annuelle": 1014,
+      "taux_communal": 50.28
+    },
+    "marche": {
+      "p25": null,
+      "p75": null,
+      "prix_m2": 3885,
+      "diff_pct": null,
+      "median_m2": null,
+      "comparables": 0
+    },
+    "energie": {
+      "dpe": "E",
+      "ges": "B",
+      "conso": 283.6,
+      "cout_max": 7139,
+      "cout_min": 5277,
+      "date_dpe": "2026-05-18",
+      "emission_ges": 59
+    },
+    "risques": [
+      {
+        "label": "Inondation",
+        "level": "Faible"
+      },
+      {
+        "label": "Sismicité",
+        "level": "Faible"
+      },
+      {
+        "label": "Radon",
+        "level": "Faible"
+      },
+      {
+        "label": "Retrait-gonflement argiles",
+        "level": "Faible"
+      },
+      {
+        "label": "Mouvement de terrain",
+        "level": "Faible"
+      },
+      {
+        "label": "Feux de forêt",
+        "level": "Faible"
+      },
+      {
+        "label": "Industriel",
+        "level": "Faible"
+      },
+      {
+        "label": "Minier",
+        "level": "Faible"
+      }
+    ],
+    "quartier": {
+      "sante": 108,
+      "ecoles": 20,
+      "loisirs": 518,
+      "services": 89,
+      "commerces": 352,
+      "transports": 225
+    },
+    "rendement": {
+      "net": 4.7,
+      "brut": 5,
+      "roi_ans": 20,
+      "loyer_estime": 1408
+    },
+    "historique": {
+      "ventes": [],
+      "nb_mutations": 0,
+      "plus_value_pct": null,
+      "duree_detention_ans": null
+    },
+    "acquisition": {
+      "prix": 338000,
+      "total": 381940,
+      "agence": 16900,
+      "notaire": 27040,
+      "travaux": 0,
+      "agence_pct": 5,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 3881,
+      "population": 161830,
+      "revenu_median": 21000,
+      "pct_locataires": 62,
+      "pct_proprietaires": 38
+    }
+  }
 }

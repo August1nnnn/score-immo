@@ -27,5 +27,105 @@
   "is_edito": false,
   "edito_label": null,
   "date_analyse": "2026-06-01",
-  "details": null
+  "details": {
+    "taxe": {
+      "annee": 2025,
+      "annuelle": 686,
+      "taux_communal": 34.95
+    },
+    "marche": {
+      "p25": 1665,
+      "p75": 2750,
+      "prix_m2": 2288,
+      "diff_pct": 7.2,
+      "median_m2": 2134,
+      "comparables": 79
+    },
+    "energie": {
+      "dpe": "B",
+      "ges": "A",
+      "conso": 70,
+      "cout_max": 2025,
+      "cout_min": 1497,
+      "date_dpe": "2026-03-16",
+      "emission_ges": 2
+    },
+    "risques": [
+      {
+        "label": "Inondation",
+        "level": "Faible"
+      },
+      {
+        "label": "Sismicité",
+        "level": "Faible"
+      },
+      {
+        "label": "Radon",
+        "level": "Faible"
+      },
+      {
+        "label": "Retrait-gonflement argiles",
+        "level": "Faible"
+      },
+      {
+        "label": "Mouvement de terrain",
+        "level": "Faible"
+      },
+      {
+        "label": "Feux de forêt",
+        "level": "Faible"
+      },
+      {
+        "label": "Industriel",
+        "level": "Faible"
+      },
+      {
+        "label": "Minier",
+        "level": "Faible"
+      }
+    ],
+    "quartier": {
+      "sante": 61,
+      "ecoles": 20,
+      "loisirs": 81,
+      "services": 76,
+      "commerces": 155,
+      "transports": 391
+    },
+    "rendement": {
+      "net": 5.7,
+      "brut": 6,
+      "roi_ans": 16.7,
+      "loyer_estime": 1144
+    },
+    "historique": {
+      "ventes": [
+        {
+          "date": "2016-12-19",
+          "prix": 204000,
+          "prix_m2": 2103
+        }
+      ],
+      "nb_mutations": 1,
+      "plus_value_pct": 12.2,
+      "duree_detention_ans": 9.3
+    },
+    "acquisition": {
+      "prix": 228800,
+      "total": 258544,
+      "agence": 11440,
+      "notaire": 18304,
+      "travaux": 0,
+      "agence_pct": 5,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 1656,
+      "population": 49229,
+      "revenu_median": 22000,
+      "pct_locataires": 52,
+      "pct_proprietaires": 48
+    }
+  }
 }
