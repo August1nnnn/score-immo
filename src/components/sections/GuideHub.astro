@@ -208,7 +208,19 @@ const artTitle = (a: any) => (a ? (a.data.title || '') : '');
     flex-direction: column;
     gap: 0;
     transition: border-color 0.2s, box-shadow 0.2s;
+    position: relative;
+    cursor: pointer;
   }
+  /* Whole card is clickable -> category page (stretched link via the CTA).
+     The featured-article link sits above and keeps its own destination. */
+  .si-guide-card-cta::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: var(--si-radius-2xl);
+  }
+  .si-guide-article-link { position: relative; z-index: 2; }
   .si-guide-card:hover {
     border-color: var(--si-accent);
     box-shadow: 0 4px 24px rgba(59,130,246,0.08);
