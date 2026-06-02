@@ -1,0 +1,749 @@
+[
+ {
+  "category": "guides",
+  "title": "DPE 2026 : Classes A à G, Grille, Tranches kWh et Calcul de la Note (Guide Complet)",
+  "slug": "dpe-comprendre-classes-energetiques",
+  "target_keyword": "dpe classes a g",
+  "secondary_keywords": [
+   "classement dpe",
+   "grille dpe",
+   "tableau dpe",
+   "tranches dpe",
+   "note dpe",
+   "classe energetique dpe",
+   "classement dpe kwh",
+   "dpe explication simple"
+  ],
+  "intent": "Pilier informationnel : comprendre toute l'echelle DPE A-G, la grille kWh/m2/an, le calcul de la note. CAPTURE tout le cluster GSC ~1100 imp.",
+  "priority": 1,
+  "action": "UPGRADE_EXISTING"
+ },
+ {
+  "category": "villes",
+  "title": "Prix Immobilier Paris 2026 : Nos Prévisions Basées sur les Données Notariales",
+  "slug": "previsions-prix-immobilier-paris-2026",
+  "target_keyword": "prix moyen m2 paris 2025 2026 notaires",
+  "intent": "L'utilisateur recherche une analyse experte et chiffrée de l'évolution des prix à Paris pour anticiper son achat.",
+  "priority": 1
+ },
+ {
+  "category": "guides",
+  "title": "Marge de Négociation Immobilière 2026 : Quel Pourcentage Obtenir Selon votre Région ?",
+  "slug": "marge-negociation-immobilier-2026",
+  "target_keyword": "marge de négociation immobilier 2026",
+  "intent": "L'acheteur veut connaître la marge de négociation réaliste sur un bien immobilier en 2026 pour préparer son offre d'achat.",
+  "priority": 1
+ },
+ {
+  "category": "quartiers",
+  "title": "Où Acheter un T3 à Lyon en 2026 ? Les Meilleurs Arrondissements Analysés",
+  "slug": "meilleurs-arrondissements-acheter-t3-lyon-2026",
+  "target_keyword": "quels sont les meilleurs arrondissements pour acheter un t3 à lyon",
+  "intent": "Un acheteur cherche des recommandations précises d'arrondissements à Lyon pour un appartement de type T3.",
+  "priority": 1
+ },
+ {
+  "category": "guides",
+  "title": "Durée de Prêt Immobilier en 2026 : 15, 20 ou 25 ans, le Calcul pour Bien Choisir",
+  "slug": "duree-moyenne-pret-immobilier-2026",
+  "target_keyword": "durée moyenne prêt immobilier france 2026",
+  "intent": "L'emprunteur cherche à comprendre quelle est la durée de prêt optimale pour son projet en 2026 en fonction de sa situation.",
+  "priority": 1
+ },
+ {
+  "category": "villes",
+  "title": "Marché Immobilier Toulouse 2026 : Analyse Complète et Perspectives d'Achat",
+  "slug": "marche-immobilier-toulouse-2026",
+  "target_keyword": "marché immobilier toulouse",
+  "intent": "Le futur acheteur souhaite une analyse approfondie du marché toulousain pour savoir si c'est le bon moment pour investir.",
+  "priority": 1
+ },
+ {
+  "category": "quartiers",
+  "title": "Quartiers Chics de Nantes : Où Acheter pour un Cadre de Vie d'Exception ?",
+  "slug": "quartiers-chics-nantes-acheter",
+  "target_keyword": "quartiers chic nantes",
+  "intent": "L'acheteur recherche les quartiers les plus prestigieux et agréables de Nantes pour un achat immobilier haut de gamme.",
+  "priority": 1
+ },
+ {
+  "category": "guides",
+  "title": "Coût des Travaux de Déplombage : Comment l'Estimer et le Négocier ?",
+  "slug": "estimation-cout-travaux-deplombage",
+  "target_keyword": "estimation coûts travaux déplombage",
+  "intent": "L'acheteur d'un bien ancien veut anticiper le budget nécessaire pour des travaux de mise en conformité liés au plomb.",
+  "priority": 1
+ },
+ {
+  "category": "guides",
+  "title": "Les 7 Erreurs à Éviter Absolument pour votre Premier Achat Immobilier",
+  "slug": "erreurs-a-eviter-premier-achat-immobilier",
+  "target_keyword": "les erreurs à éviter lors de l'achat d'un premier bien immobilier",
+  "intent": "Le primo-accédant cherche des conseils concrets pour sécuriser son premier achat et ne pas tomber dans les pièges courants.",
+  "priority": 1
+ },
+ {
+  "category": "guides",
+  "title": "DPE Classe D : Bonne Affaire ou Futur Gouffre Financier ? Notre Analyse",
+  "slug": "dpe-classe-d-analyse-achat",
+  "target_keyword": "classe energie d",
+  "intent": "L'acheteur hésite sur un bien classé D et veut comprendre les implications en termes de confort, de charges et de travaux futurs.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "Simulation de Mensualités de Crédit Immobilier : L'Outil Fiable pour 2026",
+  "slug": "simuler-mensualites-credit-immobilier-2026",
+  "target_keyword": "simuler mensualites de crédit immo",
+  "intent": "L'utilisateur veut calculer précisément ses futures mensualités de prêt pour valider la faisabilité de son projet d'achat.",
+  "priority": 2
+ },
+ {
+  "category": "villes",
+  "title": "Prix M² à Strasbourg en 2026 : Notre Analyse Quartier par Quartier",
+  "slug": "prix-m2-strasbourg-2026-quartiers",
+  "target_keyword": "prix m2 appartement strasbourg 2026",
+  "intent": "L'acheteur recherche les prix au mètre carré détaillés par quartier à Strasbourg pour affiner sa recherche et son budget.",
+  "priority": 2
+ },
+ {
+  "category": "villes",
+  "title": "Évolution Prix Immobilier Bordeaux 2026 : Faut-il Acheter Maintenant ?",
+  "slug": "evolution-prix-immobilier-bordeaux-2026",
+  "target_keyword": "évolution prix immobilier bordeaux 2025 2026",
+  "intent": "Le futur acquéreur à Bordeaux cherche à comprendre les tendances du marché pour décider du meilleur moment pour acheter.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "Analyse Immobilière : La Méthode ScoreImmo pour un Achat en Toute Confiance",
+  "slug": "methode-analyse-immobiliere-scoreimmo",
+  "target_keyword": "immobilier analyse",
+  "intent": "L'acheteur veut comprendre comment analyser un bien immobilier de manière professionnelle pour sécuriser sa décision.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "DPE Classe G : Peut-on Encore Acheter une Passoire Thermique en 2026 ?",
+  "slug": "acheter-passoire-thermique-dpe-g-2026",
+  "target_keyword": "acheter dpe g",
+  "intent": "L'acheteur s'interroge sur les risques, les obligations de travaux et la rentabilité d'un achat de bien classé G.",
+  "priority": 1
+ },
+ {
+  "category": "guides",
+  "title": "Travaux de Rénovation Énergétique : Le Guide pour Passer d'un DPE F à D",
+  "slug": "travaux-renovation-energetique-dpe-f-d",
+  "target_keyword": "améliorer dpe f",
+  "intent": "L'acheteur d'un bien mal classé cherche un plan d'action chiffré pour améliorer sa performance énergétique et sa valeur.",
+  "priority": 2
+ },
+ {
+  "category": "villes",
+  "title": "Tendances Immobilières 2026 : Notre Analyse Ville par Ville",
+  "slug": "tendances-immobilier-2026-villes",
+  "target_keyword": "marché immobilier appartements 2026 tendances prix par ville française",
+  "intent": "L'investisseur ou l'acheteur mobile veut une vision globale des marchés locaux en France pour orienter sa recherche.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "Simulateur Capacité d'Emprunt 2026 : Calculez Votre Budget d'Achat Réel",
+  "slug": "simulation-capacite-emprunt-2026",
+  "target_keyword": "simulation capacite emprunt 2025",
+  "intent": "Le futur acheteur veut connaître le montant maximum qu'il peut emprunter auprès des banques en 2026.",
+  "priority": 2
+ },
+ {
+  "category": "villes",
+  "title": "Évolution Prix Immobilier Nantes : Notre Analyse sur 10 ans et Prévisions 2026",
+  "slug": "evolution-prix-immobilier-nantes-10-ans",
+  "target_keyword": "evolution prix immobilier nantes sur 10 ans",
+  "intent": "L'acheteur à Nantes veut comprendre la dynamique long terme du marché pour valider la pertinence de son investissement.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "Acheter un bien avec un DPE vierge : les risques et précautions à prendre",
+  "slug": "acheter-bien-dpe-vierge-risques",
+  "target_keyword": "dpe vierge achat",
+  "intent": "L'acheteur est face à une annonce avec un DPE vierge et veut connaître les implications légales et financières.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Le Diagnostic Électricité : Les 11 Points de Contrôle à Vérifier Avant d'Acheter",
+  "slug": "diagnostic-electricite-points-controle-achat",
+  "target_keyword": "anomalies diagnostic électrique achat",
+  "intent": "L'acheteur veut savoir interpréter le diagnostic électrique pour évaluer la sécurité et le coût des travaux de mise aux normes.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "Vices Cachés dans l'Immobilier : Comment se Protéger et Quels sont vos Recours ?",
+  "slug": "vices-caches-immobilier-protection-recours",
+  "target_keyword": "recours vices cachés immobilier",
+  "intent": "L'acheteur veut connaître ses droits et les démarches à suivre s'il découvre un défaut majeur après la signature.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Apport Personnel pour un Prêt Immobilier en 2026 : Combien Faut-il Vraiment ?",
+  "slug": "apport-personnel-pret-immobilier-2026",
+  "target_keyword": "apport minimum prêt immobilier 2026",
+  "intent": "Le futur emprunteur veut savoir quel montant d'apport est exigé par les banques pour obtenir un crédit en 2026.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "Le Compte Rendu d'AG de Copropriété : Le Document à Éplucher Avant d'Acheter",
+  "slug": "analyser-pv-ag-copropriete-avant-achat",
+  "target_keyword": "lire procès verbal ag copropriété",
+  "intent": "L'acheteur d'un appartement veut décrypter les PV d'AG pour déceler les futurs travaux, les conflits et l'état financier de la copropriété.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "Frais d'Agence Immobilière : Qui Paie Quoi et Comment les Négocier ?",
+  "slug": "frais-agence-immobiliere-negocier",
+  "target_keyword": "négocier frais d'agence acheteur",
+  "intent": "L'acheteur veut comprendre comment sont calculés les frais d'agence et s'il dispose d'une marge de manœuvre pour les réduire.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Délai de Rétractation de 10 Jours : Comment l'Utiliser Après une Offre d'Achat ?",
+  "slug": "delai-retractation-10-jours-achat-immobilier",
+  "target_keyword": "délai de rétractation compromis de vente",
+  "intent": "L'acheteur veut connaître les modalités exactes pour se rétracter légalement après avoir signé un compromis de vente.",
+  "priority": 3
+ },
+ {
+  "category": "quartiers",
+  "title": "Où Habiter à Strasbourg : Le Guide des Quartiers pour les Familles",
+  "slug": "ou-habiter-strasbourg-famille",
+  "target_keyword": "meilleur quartier famille strasbourg",
+  "intent": "Une famille cherchant à s'installer à Strasbourg veut des recommandations de quartiers avec écoles, parcs et commodités.",
+  "priority": 2
+ },
+ {
+  "category": "villes",
+  "title": "Investir à Marseille en 2026 : Les Arrondissements d'Avenir",
+  "slug": "investir-marseille-2026-arrondissements",
+  "target_keyword": "investissement locatif marseille 2026",
+  "intent": "L'investisseur cherche à identifier les zones de Marseille avec le plus fort potentiel de plus-value et de rentabilité locative.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "Le Prêt à Taux Zéro (PTZ) en 2026 : Êtes-vous Éligible ? Simulation et Conditions",
+  "slug": "ptz-2026-simulation-conditions-eligibilite",
+  "target_keyword": "conditions ptz 2026",
+  "intent": "Le primo-accédant veut vérifier son éligibilité au PTZ et simuler le montant qu'il pourrait obtenir pour son projet.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "Le Rôle du Notaire dans un Achat Immobilier : Bien Plus qu'une Signature",
+  "slug": "role-notaire-achat-immobilier",
+  "target_keyword": "que vérifie le notaire avant une vente",
+  "intent": "L'acheteur veut comprendre toutes les missions et vérifications effectuées par le notaire pour sécuriser la transaction.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Acheter un Logement Loué : Avantages, Inconvénients et Précautions à Prendre",
+  "slug": "acheter-logement-deja-loue",
+  "target_keyword": "acheter appartement avec locataire en place",
+  "intent": "L'investisseur ou le futur propriétaire veut connaître les règles et les risques liés à l'achat d'un bien déjà occupé par un locataire.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Le Diagnostic Termites : Quand est-il Obligatoire et Comment l'Interpréter ?",
+  "slug": "diagnostic-termites-obligatoire-interpreter",
+  "target_keyword": "diagnostic termites obligatoire",
+  "intent": "L'acheteur d'un bien dans une zone à risque veut comprendre la portée de ce diagnostic et les conséquences d'une infestation.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Calcul de la Plus-Value Immobilière : Comment l'Anticiper avant d'Acheter ?",
+  "slug": "calcul-plus-value-immobiliere-revente",
+  "target_keyword": "calcul plus value immobilière",
+  "intent": "L'acheteur, notamment l'investisseur, veut comprendre comment est taxée la plus-value pour mieux projeter la rentabilité de son futur achat.",
+  "priority": 3
+ },
+ {
+  "category": "quartiers",
+  "title": "Les Pépites de l'Immobilier Parisien : Les Quartiers où Investir en 2026",
+  "slug": "quartiers-investir-paris-2026",
+  "target_keyword": "quartier parisien qui monte",
+  "intent": "L'acheteur cherche à identifier les quartiers parisiens encore abordables mais à fort potentiel de valorisation.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "Taux d'Endettement 2026 : Le Calcul des Banques pour votre Prêt Expliqué",
+  "slug": "calcul-taux-endettement-2026",
+  "target_keyword": "calcul taux d'endettement 2026",
+  "intent": "L'emprunteur veut comprendre comment les banques calculent sa capacité d'emprunt via le taux d'endettement pour préparer son dossier.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "Le Plan Local d'Urbanisme (PLU) : Comment le Consulter et le Comprendre Avant d'Acheter",
+  "slug": "consulter-comprendre-plu-achat-immobilier",
+  "target_keyword": "consulter plu avant achat",
+  "intent": "L'acheteur d'une maison ou d'un terrain veut vérifier les règles d'urbanisme (extensions possibles, constructions voisines) qui s'appliquent à son futur bien.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Acheter en SCI : La Fausse Bonne Idée pour votre Résidence Principale ?",
+  "slug": "acheter-residence-principale-sci-analyse",
+  "target_keyword": "acheter sa résidence principale en sci",
+  "intent": "Un couple ou une famille s'interroge sur la pertinence de créer une SCI pour acheter leur logement et veut en peser le pour et le contre.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Le Diagnostic Gaz : Sécurité, Validité et Points de Vigilance pour l'Acheteur",
+  "slug": "diagnostic-gaz-achat-immobilier",
+  "target_keyword": "diagnostic gaz obligatoire vente",
+  "intent": "L'acheteur veut savoir interpréter le diagnostic gaz pour évaluer la sécurité de l'installation et le coût d'éventuels travaux.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "DPE Classe E : Travaux Obligatoires et Stratégies pour Valoriser votre Achat",
+  "slug": "dpe-classe-e-travaux-strategie",
+  "target_keyword": "acheter dpe e",
+  "intent": "L'acheteur d'un bien classé E veut connaître le calendrier des obligations de rénovation et comment planifier les travaux.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "DPE Classe C : Le Bon Compromis pour un Achat Immobilier Serein",
+  "slug": "dpe-classe-c-bon-compromis-achat",
+  "target_keyword": "dpe c est il bien",
+  "intent": "L'acheteur veut être rassuré sur la qualité d'un bien classé C et comprendre ses avantages par rapport aux autres classes.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "Comment Contester un DPE qui vous Semble Incorrect ?",
+  "slug": "contester-dpe-incorrect",
+  "target_keyword": "contester un dpe",
+  "intent": "L'acheteur a des doutes sur la validité du DPE fourni et cherche à connaître les démarches pour obtenir une contre-expertise.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Le Dossier de Diagnostic Technique (DDT) : La Checklist Complète pour l'Acheteur",
+  "slug": "dossier-diagnostic-technique-ddt-checklist-acheteur",
+  "target_keyword": "liste diagnostics obligatoires vente maison",
+  "intent": "L'acheteur veut une liste claire de tous les diagnostics qu'il doit recevoir du vendeur pour ne rien oublier.",
+  "priority": 2
+ },
+ {
+  "category": "quartiers",
+  "title": "Les Meilleurs Quartiers Étudiants où Investir à Toulouse en 2026",
+  "slug": "meilleurs-quartiers-etudiants-investir-toulouse",
+  "target_keyword": "investissement locatif étudiant toulouse",
+  "intent": "L'investisseur cherche à acheter un petit appartement à Toulouse et cible les quartiers les plus demandés par les étudiants.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "Le Prêt Relais : La Solution pour Acheter Avant d'Avoir Vendu ?",
+  "slug": "pret-relais-acheter-avant-vendre",
+  "target_keyword": "fonctionnement prêt relais",
+  "intent": "Le propriétaire qui souhaite changer de logement veut comprendre le mécanisme, les coûts et les risques du prêt relais.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "L'Étude de Sol (G1) : Est-elle Obligatoire pour l'Achat d'un Terrain ?",
+  "slug": "etude-de-sol-g1-obligatoire-achat-terrain",
+  "target_keyword": "étude de sol obligatoire vente terrain",
+  "intent": "L'acheteur d'un terrain à bâtir veut savoir si une étude de sol est nécessaire et ce qu'elle peut révéler sur les risques de construction.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Acheter sur Plan (VEFA) : Les 7 Pièges à Éviter",
+  "slug": "acheter-vefa-pieges-a-eviter",
+  "target_keyword": "pièges achat vefa",
+  "intent": "Le futur acquéreur d'un logement neuf veut connaître les points de vigilance spécifiques à la Vente en l'État Futur d'Achèvement.",
+  "priority": 3
+ },
+ {
+  "category": "quartiers",
+  "title": "Bordeaux Rive Droite : Le Nouvel Eldorado de l'Immobilier Bordelais ?",
+  "slug": "bordeaux-rive-droite-immobilier",
+  "target_keyword": "acheter rive droite bordeaux",
+  "intent": "L'acheteur à Bordeaux s'interroge sur le potentiel des quartiers de la rive droite (Bastide, Floirac) et leur attractivité.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "Le DPE Projeté : Un Outil Essentiel pour Négocier une Passoire Thermique",
+  "slug": "dpe-projete-negocier-passoire-thermique",
+  "target_keyword": "dpe projeté",
+  "intent": "L'acheteur d'un bien à rénover veut comprendre comment utiliser un DPE projeté pour évaluer le gain énergétique et négocier le prix.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "Assainissement Non Collectif : Le Diagnostic à ne pas Négliger pour une Maison",
+  "slug": "diagnostic-assainissement-non-collectif-achat",
+  "target_keyword": "diagnostic assainissement non collectif",
+  "intent": "L'acheteur d'une maison non raccordée au tout-à-l'égout veut comprendre le rapport d'assainissement et le coût des travaux de mise en conformité.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Les Aides à la Rénovation Énergétique en 2026 pour les Nouveaux Propriétaires",
+  "slug": "aides-renovation-energetique-2026-acheteur",
+  "target_keyword": "aides rénovation énergétique primo accédant 2026",
+  "intent": "L'acheteur d'un bien avec travaux veut connaître toutes les aides financières (MaPrimeRénov', éco-PTZ) qu'il peut mobiliser dès l'achat.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "Charges de Copropriété : Comment Analyser le Budget Prévisionnel Avant d'Acheter ?",
+  "slug": "analyser-budget-previsionnel-copropriete",
+  "target_keyword": "analyser charges de copropriété avant achat",
+  "intent": "L'acheteur d'un appartement veut décortiquer les charges pour anticiper ses futures dépenses et détecter une mauvaise gestion.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "La Garantie de Loyer Impayé (GLI) : Une Sécurité pour votre Investissement Locatif",
+  "slug": "garantie-loyer-impaye-gli-investissement-locatif",
+  "target_keyword": "garantie loyer impayé",
+  "intent": "L'investisseur locatif cherche à comprendre comment fonctionne l'assurance GLI pour sécuriser ses revenus locatifs.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Acheter un bien en indivision : les règles d'or pour éviter les conflits",
+  "slug": "acheter-indivision-regles-eviter-conflits",
+  "target_keyword": "acheter en indivision",
+  "intent": "Plusieurs personnes (amis, couple non marié) souhaitent acheter ensemble et veulent comprendre les règles de l'indivision.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Le Droit de Préemption Urbain : La Mairie Peut-elle Racheter le Bien que vous Convoitez ?",
+  "slug": "droit-de-preemption-urbain-mairie",
+  "target_keyword": "droit de préemption urbain",
+  "intent": "L'acheteur veut comprendre ce qu'est le DPU et comment il peut impacter sa transaction immobilière.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Le Diagnostic Mérules : Un Risque à ne pas Sous-estimer dans Certaines Régions",
+  "slug": "diagnostic-merules-risques-achat",
+  "target_keyword": "diagnostic mérules obligatoire",
+  "intent": "L'acheteur d'un bien dans une zone humide veut connaître les dangers de ce champignon et l'importance du diagnostic.",
+  "priority": 3
+ },
+ {
+  "category": "villes",
+  "title": "Le Marché Immobilier de Luxe à Paris : Tendances et Opportunités en 2026",
+  "slug": "marche-immobilier-luxe-paris-2026",
+  "target_keyword": "immobilier de luxe paris 2026",
+  "intent": "L'acheteur haut de gamme recherche une analyse spécifique du marché du luxe parisien pour un investissement d'exception.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Frais de Notaire Réduits dans le Neuf : Comment ça Marche ?",
+  "slug": "frais-notaire-reduits-immobilier-neuf",
+  "target_keyword": "frais de notaire dans le neuf",
+  "intent": "L'acheteur d'un bien neuf (VEFA) veut comprendre pourquoi les frais de notaire sont moins élevés et comment ils sont calculés.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Checklist Ultime de la Contre-Visite Immobilière : Ne Laissez Rien Passer",
+  "slug": "checklist-contre-visite-immobiliere",
+  "target_keyword": "que vérifier lors d'une contre visite",
+  "intent": "Après une première visite concluante, l'acheteur veut une liste exhaustive de points à vérifier lors de la seconde visite.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "Le Viager : Comment ça Marche et est-ce un Bon Plan en 2026 ?",
+  "slug": "viager-fonctionnement-bon-plan-2026",
+  "target_keyword": "acheter en viager",
+  "intent": "L'acheteur s'intéresse au viager et veut comprendre les différents types (occupé, libre) et les calculs de la rente.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Comment Lire un Plan Cadastral pour un Achat de Maison ou Terrain",
+  "slug": "lire-plan-cadastral-achat",
+  "target_keyword": "comprendre plan cadastral",
+  "intent": "L'acheteur veut savoir interpréter un plan cadastral pour vérifier les limites de propriété et les servitudes éventuelles.",
+  "priority": 3
+ },
+ {
+  "category": "quartiers",
+  "title": "Nantes : Les Quartiers qui Montent où Acheter en 2026",
+  "slug": "quartiers-qui-montent-nantes-2026",
+  "target_keyword": "quartier nantes qui monte",
+  "intent": "L'acheteur à Nantes cherche à identifier les quartiers en devenir, combinant prix encore accessibles et fort potentiel de valorisation.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "L'assurance Dommages-Ouvrage est-elle Indispensable pour l'Acheteur ?",
+  "slug": "assurance-dommages-ouvrage-acheteur",
+  "target_keyword": "assurance dommages ouvrage obligatoire acheteur",
+  "intent": "L'acheteur d'une maison de moins de 10 ans veut comprendre le rôle de l'assurance dommages-ouvrage et les risques s'il n'y en a pas.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Le DPE des Copropriétés : Ce que ça Change pour votre Futur Achat",
+  "slug": "dpe-collectif-copropriete-impact-achat",
+  "target_keyword": "dpe collectif obligatoire",
+  "intent": "L'acheteur d'un appartement veut comprendre l'impact du nouveau DPE à l'échelle de l'immeuble sur ses charges et les travaux à venir.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "Acheter un Local Commercial pour le Transformer en Habitation : Le Guide",
+  "slug": "transformer-local-commercial-en-habitation-guide",
+  "target_keyword": "changement de destination local commercial en habitation",
+  "intent": "L'acheteur atypique cherche le processus complet (urbanisme, copropriété, travaux) pour transformer un local en logement.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Les Servitudes de Passage : Comment les Détecter Avant d'Acheter ?",
+  "slug": "servitude-de-passage-detecter-achat",
+  "target_keyword": "vérifier servitude avant achat",
+  "intent": "L'acheteur d'une maison ou d'un terrain veut s'assurer qu'aucune servitude ne viendra grever sa propriété.",
+  "priority": 3
+ },
+ {
+  "category": "villes",
+  "title": "Immobilier à Lille en 2026 : Faut-il Craindre une Bulle Immobilière ?",
+  "slug": "immobilier-lille-2026-analyse-marche",
+  "target_keyword": "marché immobilier lille 2026",
+  "intent": "L'acheteur lillois s'interroge sur la santé du marché et veut une analyse pour savoir si les prix sont surévalués.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "Le Coût Réel d'un Achat Immobilier : Au-delà du Prix de Vente",
+  "slug": "cout-total-achat-immobilier",
+  "target_keyword": "calcul coût total achat immobilier",
+  "intent": "Le primo-accédant veut une liste complète de tous les frais annexes (notaire, agence, garantie, déménagement) pour établir un budget fiable.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "Le Diagnostic État des Risques et Pollutions (ERP) : Ce qu'il Faut Savoir",
+  "slug": "diagnostic-etat-risques-pollutions-erp",
+  "target_keyword": "diagnostic erp",
+  "intent": "L'acheteur veut comprendre les informations contenues dans l'ERP (inondations, risques industriels, etc.) pour évaluer l'environnement du bien.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Comment Financer les Travaux lors d'un Achat Immobilier ?",
+  "slug": "financer-travaux-achat-immobilier",
+  "target_keyword": "prêt immobilier avec travaux",
+  "intent": "L'acheteur d'un bien à rénover cherche les meilleures solutions pour inclure le montant des travaux dans son prêt immobilier.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "Le Règlement de Copropriété : Le Document à Lire pour Éviter les Mauvaises Surprises",
+  "slug": "lire-reglement-copropriete-avant-achat",
+  "target_keyword": "règlement de copropriété",
+  "intent": "L'acheteur d'un appartement veut vérifier les règles de vie de l'immeuble (usage des parties communes, animaux, professions libérales).",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Acheter un Appartement au Dernier Étage : Avantages et Inconvénients",
+  "slug": "acheter-appartement-dernier-etage",
+  "target_keyword": "acheter dernier étage avantages inconvénients",
+  "intent": "L'acheteur hésite sur un appartement sous les toits et veut peser le pour (vue, calme) et le contre (chaleur, étanchéité, ascenseur).",
+  "priority": 3
+ },
+ {
+  "category": "quartiers",
+  "title": "Où s'Installer près de Lyon ? Le Top 5 des Communes de la Première Couronne",
+  "slug": "ou-habiter-pres-de-lyon",
+  "target_keyword": "meilleures communes proche lyon",
+  "intent": "L'acheteur cherche une alternative à Lyon intra-muros et veut des recommandations de villes bien connectées et agréables à vivre.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "La Clause Pénale dans le Compromis de Vente : Explication et Risques",
+  "slug": "clause-penale-compromis-vente",
+  "target_keyword": "clause pénale compromis de vente",
+  "intent": "L'acheteur veut comprendre les conséquences financières s'il ne peut finalement pas acheter le bien après la signature du compromis.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Le Carnet d'Information du Logement (CIL) : Qu'est-ce que c'est et à quoi ça sert ?",
+  "slug": "carnet-information-logement-cil",
+  "target_keyword": "carnet d'information du logement",
+  "intent": "L'acheteur veut comprendre ce nouvel outil qui retrace la vie du logement et les travaux effectués.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Achat à la Montagne : Les Spécificités à Connaître (Loi Montagne, DPE)",
+  "slug": "achat-immobilier-montagne-specificites",
+  "target_keyword": "acheter appartement montagne",
+  "intent": "L'acheteur d'un bien en station de ski veut connaître les particularités juridiques, techniques et fiscales de ce type d'acquisition.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Comment Obtenir le Meilleur Taux pour votre Prêt Immobilier en 2026 ?",
+  "slug": "obtenir-meilleur-taux-pret-immobilier-2026",
+  "target_keyword": "meilleur taux immobilier 2026",
+  "intent": "L'emprunteur cherche des stratégies et des conseils pour négocier le taux de son crédit et optimiser son dossier.",
+  "priority": 2
+ },
+ {
+  "category": "villes",
+  "title": "Rennes, Métropole en Plein Essor : Où Acheter en 2026 ?",
+  "slug": "ou-acheter-rennes-2026",
+  "target_keyword": "marché immobilier rennes 2026",
+  "intent": "Le futur acheteur à Rennes veut une analyse du marché et des recommandations de quartiers pour son projet.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "Le Fonds de Travaux Loi ALUR : Ce que l'Acheteur Doit Vérifier",
+  "slug": "fonds-de-travaux-loi-alur-acheteur",
+  "target_keyword": "fonds de travaux alur",
+  "intent": "L'acheteur d'un bien en copropriété veut savoir si le fonds de travaux est bien alimenté pour ne pas avoir de mauvaises surprises.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Acheter un Bien avec une Piscine : Les Points de Contrôle Indispensables",
+  "slug": "acheter-maison-piscine-points-controle",
+  "target_keyword": "vérifications achat maison avec piscine",
+  "intent": "L'acheteur d'une maison avec piscine veut connaître les normes de sécurité, les coûts d'entretien et les points à vérifier avant de signer.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Les Conditions Suspensives d'un Compromis de Vente : Votre Filet de Sécurité",
+  "slug": "conditions-suspensives-compromis-vente",
+  "target_keyword": "condition suspensive d'obtention de prêt",
+  "intent": "L'acheteur veut comprendre le rôle des conditions suspensives (prêt, urbanisme) qui le protègent en cas d'imprévu.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "Le Diagnostic Bruit (ENSA) : Comment Savoir si votre Futur Logement est au Calme ?",
+  "slug": "diagnostic-bruit-ensa-achat",
+  "target_keyword": "diagnostic bruit",
+  "intent": "L'acheteur d'un bien proche d'un aéroport veut comprendre ce diagnostic et évaluer l'impact des nuisances sonores.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Acheter un Appartement en Rez-de-Jardin : Les Pour et les Contre",
+  "slug": "acheter-appartement-rez-de-jardin",
+  "target_keyword": "avantages inconvénients rez de jardin",
+  "intent": "L'acheteur s'intéresse à un rez-de-jardin et veut une analyse objective des avantages (extérieur) et inconvénients (sécurité, luminosité).",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Le Score ScoreImmo Expliqué : Comment nous Évaluons un Bien sur 100",
+  "slug": "score-scoreimmo-methode-evaluation",
+  "target_keyword": "score immobilier",
+  "intent": "L'utilisateur veut comprendre la méthodologie et les critères qui composent le score ScoreImmo pour faire confiance à l'analyse.",
+  "priority": 1
+ },
+ {
+  "category": "guides",
+  "title": "Benchmark Immobilier : Comment Comparer Efficacement les Biens Avant d'Acheter ?",
+  "slug": "benchmark-immobilier-comparer-biens",
+  "target_keyword": "benchmark immo",
+  "intent": "L'acheteur veut une méthode structurée pour comparer plusieurs biens visités sur des critères objectifs et prendre la meilleure décision.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "Le DPE Collectif est-il Fiable pour un Appartement Individuel ?",
+  "slug": "fiabilite-dpe-collectif-appartement",
+  "target_keyword": "fiabilité dpe collectif",
+  "intent": "L'acheteur s'interroge sur la pertinence d'un DPE à l'échelle de l'immeuble pour connaître la performance réelle de son futur appartement.",
+  "priority": 3
+ },
+ {
+  "category": "quartiers",
+  "title": "Les Micro-Quartiers de Strasbourg à Découvrir pour un Achat Authentique",
+  "slug": "micro-quartiers-strasbourg-achat-authentique",
+  "target_keyword": "quartiers secrets strasbourg",
+  "intent": "L'acheteur qui connaît déjà Strasbourg cherche des recommandations de zones plus confidentielles et pleines de charme.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "L'Impact Réel de la Taxe Foncière sur votre Budget Mensuel : Simulation et Calcul",
+  "slug": "impact-taxe-fonciere-budget-achat",
+  "target_keyword": "calcul taxe foncière avant achat",
+  "intent": "L'acheteur veut anticiper le montant de la future taxe foncière pour l'intégrer dans le coût global de son acquisition.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "Crédit Immobilier pour Jeune Couple à Tours en 2026 : Nos Conseils",
+  "slug": "credit-immobilier-jeune-couple-tours-2026",
+  "target_keyword": "meilleur prêt immobilier jeune couple tours 2026",
+  "intent": "Un jeune couple cherche des conseils spécifiques pour optimiser son dossier de prêt et acheter son premier bien à Tours.",
+  "priority": 2
+ },
+ {
+  "category": "guides",
+  "title": "Le Guide de la Visite de Cave et Parking avant un Achat en Copropriété",
+  "slug": "visite-cave-parking-achat-copropriete",
+  "target_keyword": "vérifier cave avant achat",
+  "intent": "L'acheteur veut une checklist des points à vérifier (humidité, sécurité, accès) pour les annexes souvent négligées lors des visites.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Comment la Proximité des Transports en Commun Impacte le Prix Immobilier ?",
+  "slug": "impact-transports-en-commun-prix-immobilier",
+  "target_keyword": "valeur immobilière proximité métro",
+  "intent": "L'acheteur veut comprendre comment la présence d'un métro, tram ou gare valorise un bien et si le surcoût est justifié.",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Acheter un Duplex : Les Questions à se Poser Avant de Craquer",
+  "slug": "acheter-duplex-questions-a-poser",
+  "target_keyword": "inconvénients duplex",
+  "intent": "L'acheteur est séduit par un duplex mais veut en connaître les contraintes spécifiques (escaliers, charges, aménagement).",
+  "priority": 3
+ },
+ {
+  "category": "guides",
+  "title": "Le Home Staging Virtuel : Un Leurre pour l'Acheteur ? Nos Conseils",
+  "slug": "home-staging-virtuel-pieges-acheteur",
+  "target_keyword": "home staging virtuel",
+  "intent": "L'acheteur voit des photos d'annonces avec aménagement 3D et veut savoir comment faire la part des choses avec la réalité du bien.",
+  "priority": 3
+ }
+]
