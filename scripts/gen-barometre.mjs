@@ -52,6 +52,7 @@ for (const r of rows) {
     is_edito: !!r.is_edito,
     edito_label: r.edito_label || null,
     date_analyse: `${r.mois}-01`,
+    details: r.details_json || null,
   };
   writeFileSync(join(OUT, `${r.slug}.json`), JSON.stringify(fiche, null, 2) + '\n');
   n++;

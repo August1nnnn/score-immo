@@ -26,5 +26,128 @@
   "mois": "2026-06",
   "is_edito": false,
   "edito_label": null,
-  "date_analyse": "2026-06-01"
+  "date_analyse": "2026-06-01",
+  "details": {
+    "taxe": {
+      "annee": 2025,
+      "annuelle": 1497,
+      "taux_communal": 48.81
+    },
+    "marche": {
+      "p25": 5813,
+      "p75": 7094,
+      "prix_m2": 6653,
+      "diff_pct": 2,
+      "median_m2": 6524,
+      "comparables": 9
+    },
+    "energie": {
+      "dpe": "E",
+      "ges": "E",
+      "conso": 254,
+      "cout_max": 5512,
+      "cout_min": 4074,
+      "date_dpe": "2026-05-23",
+      "emission_ges": 55
+    },
+    "risques": [
+      {
+        "label": "Inondation",
+        "level": "Faible"
+      },
+      {
+        "label": "Sismicité",
+        "level": "Faible"
+      },
+      {
+        "label": "Radon",
+        "level": "Faible"
+      },
+      {
+        "label": "Retrait-gonflement argiles",
+        "level": "Faible"
+      },
+      {
+        "label": "Mouvement de terrain",
+        "level": "Faible"
+      },
+      {
+        "label": "Feux de forêt",
+        "level": "Faible"
+      },
+      {
+        "label": "Industriel",
+        "level": "Faible"
+      },
+      {
+        "label": "Minier",
+        "level": "Faible"
+      }
+    ],
+    "quartier": {
+      "sante": 71,
+      "ecoles": 10,
+      "loisirs": 439,
+      "services": 21,
+      "boutiques": 47,
+      "commerces": 162,
+      "transports": 253,
+      "restaurants_commerces": 115
+    },
+    "rendement": {
+      "net": 3.7,
+      "brut": 4,
+      "roi_ans": 25,
+      "loyer_estime": 1663
+    },
+    "historique": {
+      "ventes": [
+        {
+          "date": "2023-10-31",
+          "prix": 545000,
+          "prix_m2": 7171
+        },
+        {
+          "date": "2023-08-31",
+          "prix": 465000,
+          "prix_m2": 5813
+        },
+        {
+          "date": "2023-08-23",
+          "prix": 541500,
+          "prix_m2": 6524
+        },
+        {
+          "date": "2023-08-22",
+          "prix": 503600,
+          "prix_m2": 6715
+        },
+        {
+          "date": "2023-08-09",
+          "prix": 468220,
+          "prix_m2": 7094
+        }
+      ],
+      "nb_mutations": 5,
+      "plus_value_pct": 6.6,
+      "duree_detention_ans": 2.8
+    },
+    "acquisition": {
+      "prix": 499000,
+      "total": 563870,
+      "agence": 24950,
+      "notaire": 39920,
+      "travaux": 0,
+      "agence_pct": 5,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 1201,
+      "population": 38477,
+      "revenu_median": 22000,
+      "pct_locataires": 52,
+      "pct_proprietaires": 48
+    }
+  }
 }

@@ -26,5 +26,6 @@
   "mois": "2026-06",
   "is_edito": true,
   "edito_label": "Le cas du mois",
-  "date_analyse": "2026-06-01"
+  "date_analyse": "2026-06-01",
+  "details": null
 }

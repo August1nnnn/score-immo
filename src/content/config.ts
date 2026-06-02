@@ -70,6 +70,7 @@ const barometre = defineCollection({
     is_edito: z.boolean().default(false),
     edito_label: z.string().nullable().optional(),
     date_analyse: z.string(),
+    details: z.any().nullable().optional(),
   }),
 });
 

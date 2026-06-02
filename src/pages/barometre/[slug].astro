@@ -41,6 +41,17 @@ const SECTIONS = [
 ];
 const sectionColor = (s: number) => (s >= 7 ? '#16A34A' : s >= 4 ? '#F59E0B' : '#DC2626');
 
+// Full report detail (aggregate, non-identifying). Null on older fiches.
+const d: any = fiche.details || null;
+const eur = (n: any) => (n == null || isNaN(Number(n)) ? null : Number(n).toLocaleString('fr-FR') + ' €');
+const num = (n: any) => (n == null || isNaN(Number(n)) ? null : Number(n).toLocaleString('fr-FR'));
+const riskColor = (lvl: string) => {
+  const l = (lvl || '').toLowerCase();
+  if (l.includes('fort') || l.includes('élev') || l.includes('elev')) return '#DC2626';
+  if (l.includes('moyen') || l.includes('modér') || l.includes('moder')) return '#F59E0B';
+  return '#16A34A';
+};
+
 // TLDR: the verdict + key facts
 const tldr = [
   `Score global : ${fiche.score_global}/100 (${scoreWord.toLowerCase()}).`,
@@ -157,6 +168,118 @@ const jsonLd: any[] = [
           </>
         )}
 
+        {d && d.marche && (d.marche.median_m2 || d.marche.comparables) && (
+          <>
+            <h2>Le prix face au marché</h2>
+            <p>Sur la base des transactions réelles (DVF) du secteur, le prix au m² de ce bien se compare ainsi au marché local.</p>
+            <div class="bar-statgrid">
+              {prixM2Fmt && <div class="bar-stat"><span class="bar-stat-num">{prixM2Fmt} €</span><span class="bar-stat-lbl">Prix au m² du bien</span></div>}
+              {d.marche.median_m2 && <div class="bar-stat"><span class="bar-stat-num">{num(d.marche.median_m2)} €</span><span class="bar-stat-lbl">Médiane du secteur</span></div>}
+              {(d.marche.p25 && d.marche.p75) && <div class="bar-stat"><span class="bar-stat-num">{num(d.marche.p25)} - {num(d.marche.p75)} €</span><span class="bar-stat-lbl">Fourchette courante (m²)</span></div>}
+              {d.marche.diff_pct != null && <div class="bar-stat"><span class="bar-stat-num" style={`color:${d.marche.diff_pct <= 0 ? '#16A34A' : d.marche.diff_pct >= 8 ? '#DC2626' : '#F59E0B'}`}>{d.marche.diff_pct > 0 ? '+' : ''}{d.marche.diff_pct}%</span><span class="bar-stat-lbl">vs médiane</span></div>}
+              {d.marche.comparables != null && <div class="bar-stat"><span class="bar-stat-num">{d.marche.comparables}</span><span class="bar-stat-lbl">Biens comparables</span></div>}
+            </div>
+          </>
+        )}
+
+        {d && d.energie && d.energie.dpe && (
+          <>
+            <h2>Performance énergétique</h2>
+            <div class="bar-statgrid">
+              <div class="bar-stat"><span class="bar-stat-num">{d.energie.dpe}</span><span class="bar-stat-lbl">Étiquette DPE</span></div>
+              {d.energie.ges && <div class="bar-stat"><span class="bar-stat-num">{d.energie.ges}</span><span class="bar-stat-lbl">Étiquette GES</span></div>}
+              {d.energie.conso && <div class="bar-stat"><span class="bar-stat-num">{d.energie.conso}</span><span class="bar-stat-lbl">kWh/m²/an</span></div>}
+              {(d.energie.cout_min && d.energie.cout_max) && <div class="bar-stat"><span class="bar-stat-num">{num(d.energie.cout_min)} - {num(d.energie.cout_max)} €</span><span class="bar-stat-lbl">Coût énergie / an</span></div>}
+            </div>
+          </>
+        )}
+
+        {d && d.rendement && (d.rendement.brut || d.rendement.loyer_estime) && (
+          <>
+            <h2>Rendement locatif estimé</h2>
+            <p>Estimation indicative sur la base des loyers de marché et du prix d'achat affiché.</p>
+            <div class="bar-statgrid">
+              {d.rendement.loyer_estime && <div class="bar-stat"><span class="bar-stat-num">{eur(d.rendement.loyer_estime)}</span><span class="bar-stat-lbl">Loyer mensuel estimé</span></div>}
+              {d.rendement.brut != null && <div class="bar-stat"><span class="bar-stat-num">{d.rendement.brut}%</span><span class="bar-stat-lbl">Rendement brut</span></div>}
+              {d.rendement.net != null && <div class="bar-stat"><span class="bar-stat-num">{d.rendement.net}%</span><span class="bar-stat-lbl">Rendement net</span></div>}
+              {d.rendement.roi_ans && <div class="bar-stat"><span class="bar-stat-num">{d.rendement.roi_ans} ans</span><span class="bar-stat-lbl">Retour sur invest.</span></div>}
+            </div>
+          </>
+        )}
+
+        {d && d.acquisition && d.acquisition.total && (
+          <>
+            <h2>Coût d'acquisition total</h2>
+            <div class="bar-bars">
+              <div class="bar-row"><span class="bar-row-label">Prix affiché</span><span class="bar-track"></span><span class="bar-row-val2">{eur(d.acquisition.prix)}</span></div>
+              {d.acquisition.notaire && <div class="bar-row"><span class="bar-row-label">Frais de notaire {d.acquisition.notaire_pct ? `(~${d.acquisition.notaire_pct}%)` : ''}</span><span class="bar-track"></span><span class="bar-row-val2">{eur(d.acquisition.notaire)}</span></div>}
+              {d.acquisition.agence != null && <div class="bar-row"><span class="bar-row-label">Frais d'agence {d.acquisition.agence_pct ? `(~${d.acquisition.agence_pct}%)` : ''}</span><span class="bar-track"></span><span class="bar-row-val2">{eur(d.acquisition.agence)}</span></div>}
+              {d.acquisition.travaux ? <div class="bar-row"><span class="bar-row-label">Travaux estimés</span><span class="bar-track"></span><span class="bar-row-val2">{eur(d.acquisition.travaux)}</span></div> : null}
+              <div class="bar-row bar-row-total"><span class="bar-row-label">Budget total</span><span class="bar-track"></span><span class="bar-row-val2">{eur(d.acquisition.total)}</span></div>
+            </div>
+          </>
+        )}
+
+        {d && d.taxe && d.taxe.annuelle && (
+          <>
+            <h2>Taxe foncière</h2>
+            <p>Estimation annuelle (source DGFIP{d.taxe.annee ? `, base ${d.taxe.annee}` : ''}) : <strong>{eur(d.taxe.annuelle)} / an</strong>{d.taxe.taux_communal ? `, taux communal ${d.taxe.taux_communal}%` : ''}.</p>
+          </>
+        )}
+
+        {d && d.historique && d.historique.ventes && d.historique.ventes.length > 0 && (
+          <>
+            <h2>Historique des ventes du bien</h2>
+            <p>{d.historique.nb_mutations} mutation{d.historique.nb_mutations > 1 ? 's' : ''} recensée{d.historique.nb_mutations > 1 ? 's' : ''} (DVF){d.historique.plus_value_pct != null ? `, soit ${d.historique.plus_value_pct > 0 ? '+' : ''}${d.historique.plus_value_pct}% sur ${d.historique.duree_detention_ans || '?'} an(s)` : ''}.</p>
+            <table class="bar-table">
+              <thead><tr><th>Date</th><th>Prix</th><th>Prix/m²</th></tr></thead>
+              <tbody>
+                {d.historique.ventes.map((v: any) => (
+                  <tr><td>{v.date}</td><td>{eur(v.prix)}</td><td>{v.prix_m2 ? `${num(v.prix_m2)} €` : '—'}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </>
+        )}
+
+        {d && d.quartier && (d.quartier.commerces || d.quartier.transports) && (
+          <>
+            <h2>Le quartier</h2>
+            <div class="bar-statgrid">
+              {d.quartier.commerces != null && <div class="bar-stat"><span class="bar-stat-num">{d.quartier.commerces}</span><span class="bar-stat-lbl">Commerces & restaurants</span></div>}
+              {d.quartier.transports != null && <div class="bar-stat"><span class="bar-stat-num">{d.quartier.transports}</span><span class="bar-stat-lbl">Arrêts & gares</span></div>}
+              {d.quartier.ecoles != null && <div class="bar-stat"><span class="bar-stat-num">{d.quartier.ecoles}</span><span class="bar-stat-lbl">Établissements scolaires</span></div>}
+              {d.quartier.sante != null && <div class="bar-stat"><span class="bar-stat-num">{d.quartier.sante}</span><span class="bar-stat-lbl">Santé (médecins, pharma.)</span></div>}
+              {d.quartier.loisirs != null && <div class="bar-stat"><span class="bar-stat-num">{d.quartier.loisirs}</span><span class="bar-stat-lbl">Loisirs & culture</span></div>}
+              {d.quartier.services != null && <div class="bar-stat"><span class="bar-stat-num">{d.quartier.services}</span><span class="bar-stat-lbl">Services</span></div>}
+            </div>
+          </>
+        )}
+
+        {d && d.demographie && d.demographie.population && (
+          <>
+            <h2>La commune</h2>
+            <div class="bar-statgrid">
+              <div class="bar-stat"><span class="bar-stat-num">{num(d.demographie.population)}</span><span class="bar-stat-lbl">Habitants</span></div>
+              {d.demographie.densite && <div class="bar-stat"><span class="bar-stat-num">{num(d.demographie.densite)}</span><span class="bar-stat-lbl">Hab./km²</span></div>}
+              {d.demographie.revenu_median && <div class="bar-stat"><span class="bar-stat-num">{eur(d.demographie.revenu_median)}</span><span class="bar-stat-lbl">Revenu médian / an</span></div>}
+              {d.demographie.pct_proprietaires != null && <div class="bar-stat"><span class="bar-stat-num">{d.demographie.pct_proprietaires}%</span><span class="bar-stat-lbl">Propriétaires</span></div>}
+              {d.demographie.pct_locataires != null && <div class="bar-stat"><span class="bar-stat-num">{d.demographie.pct_locataires}%</span><span class="bar-stat-lbl">Locataires</span></div>}
+            </div>
+          </>
+        )}
+
+        {d && d.risques && d.risques.length > 0 && (
+          <>
+            <h2>Risques naturels et technologiques</h2>
+            <ul class="bar-risks">
+              {d.risques.map((r: any) => (
+                <li><span class="bar-risk-dot" style={`background:${riskColor(r.level)}`}></span>{r.label}<span class="bar-risk-lvl">{r.level}</span></li>
+              ))}
+            </ul>
+          </>
+        )}
+
         <h2>Comment ce score est calculé</h2>
         <p>Le score sur 100 attribué à ce bien à {fiche.ville} croise plus de 250 données issues de 13 sources
         officielles : prix au m² réels (DVF), performance énergétique (DPE/ADEME), risques naturels et technologiques
@@ -209,4 +332,21 @@ const jsonLd: any[] = [
   .bar-neg li::before { content: '!'; position: absolute; left: 0.3rem; color: #DC2626; font-weight: 800; }
   .bar-back { margin-top: 2rem; }
   .bar-back a { color: var(--si-accent, #3B82F6); text-decoration: none; font-weight: 600; }
+
+  .bar-statgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem; margin: 1rem 0 1.5rem; }
+  .bar-stat { padding: 1rem 1.1rem; border: 1px solid var(--si-border, #E2E8F0); border-radius: var(--si-radius, 0.75rem); background: var(--si-card, #fff); }
+  .bar-stat-num { display: block; font-family: var(--si-font-heading, 'DM Sans', sans-serif); font-size: 1.35rem; font-weight: 800; color: var(--si-foreground, #0F172A); line-height: 1.1; }
+  .bar-stat-lbl { display: block; margin-top: 0.3rem; font-size: 0.78rem; color: var(--si-muted-foreground, #64748B); font-weight: 500; }
+  .bar-row-val2 { font-size: 0.95rem; font-weight: 700; color: var(--si-foreground); text-align: right; white-space: nowrap; }
+  .bar-row-total { border-top: 2px solid var(--si-border, #E2E8F0); padding-top: 0.6rem; margin-top: 0.2rem; }
+  .bar-row-total .bar-row-label, .bar-row-total .bar-row-val2 { font-weight: 800; color: var(--si-accent, #3B82F6); }
+
+  .bar-table { width: 100%; border-collapse: collapse; margin: 0.75rem 0 1.5rem; font-size: 0.95rem; }
+  .bar-table th { text-align: left; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--si-muted-foreground, #64748B); font-weight: 600; padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--si-border, #E2E8F0); }
+  .bar-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--si-border, #E2E8F0); color: var(--si-foreground); }
+
+  .bar-risks { list-style: none; margin: 0.5rem 0 1.5rem; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.4rem 1rem; }
+  .bar-risks li { display: flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0; font-size: 0.95rem; color: var(--si-foreground); }
+  .bar-risk-dot { flex: 0 0 auto; width: 10px; height: 10px; border-radius: 50%; }
+  .bar-risk-lvl { margin-left: auto; font-size: 0.78rem; font-weight: 600; color: var(--si-muted-foreground, #64748B); }
 </style>
