@@ -1,0 +1,30 @@
+{
+  "slug": "la-ciotat-maison-75m2-499k",
+  "ville": "La Ciotat",
+  "code_postal": "13600",
+  "region": "Provence-Alpes-Côte d'Azur",
+  "type_bien": "maison",
+  "surface": 75,
+  "prix_demande": 499000,
+  "prix_m2": 6653,
+  "score_global": 69,
+  "score_sections": {
+    "dpe": 3,
+    "prix": 6,
+    "risques": 8,
+    "urbanisme": 9,
+    "environnement": 6
+  },
+  "dpe": "E",
+  "points_forts": [
+    "162 commerces et restaurants à proximité",
+    "253 arrêts et gares accessibles",
+    "10 établissements scolaires à proximité"
+  ],
+  "alertes_cles": [],
+  "verdict": "Dossier correct mais perfectible : 162 commerces et restaurants à proximité.",
+  "mois": "2026-06",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-06-01"
+}
