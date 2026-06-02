@@ -1,749 +1,2726 @@
-[
- {
-  "category": "guides",
-  "title": "DPE 2026 : Classes A à G, Grille, Tranches kWh et Calcul de la Note (Guide Complet)",
-  "slug": "dpe-comprendre-classes-energetiques",
-  "target_keyword": "dpe classes a g",
-  "secondary_keywords": [
-   "classement dpe",
-   "grille dpe",
-   "tableau dpe",
-   "tranches dpe",
-   "note dpe",
-   "classe energetique dpe",
-   "classement dpe kwh",
-   "dpe explication simple"
+{
+ "vision": {
+  "clusters": [
+   {
+    "nom": "DPE & Rénovation Énergétique",
+    "hub_slug": "dpe-comprendre-classes-energetiques",
+    "spokes_slugs": [
+     "dpe-classe-d-analyse-achat",
+     "acheter-passoire-thermique-dpe-g-2026",
+     "travaux-renovation-energetique-dpe-f-d",
+     "acheter-bien-dpe-vierge-risques",
+     "dpe-classe-e-travaux-strategie",
+     "dpe-classe-c-bon-compromis-achat",
+     "contester-dpe-incorrect",
+     "dpe-projete-negocier-passoire-thermique",
+     "aides-renovation-energetique-2026-acheteur",
+     "dpe-collectif-copropriete-impact-achat",
+     "fiabilite-dpe-collectif-appartement"
+    ],
+    "objectif": "Devenir la référence sur le DPE pour l'acheteur, en couvrant toutes les classes énergétiques et les travaux associés pour capter l'intention d'achat à chaque étape de la réflexion."
+   },
+   {
+    "nom": "Prêt & Financement Immobilier",
+    "hub_slug": "simulation-capacite-emprunt-2026",
+    "spokes_slugs": [
+     "duree-moyenne-pret-immobilier-2026",
+     "simuler-mensualites-credit-immobilier-2026",
+     "apport-personnel-pret-immobilier-2026",
+     "ptz-2026-simulation-conditions-eligibilite",
+     "calcul-taux-endettement-2026",
+     "pret-relais-acheter-avant-vendre",
+     "financer-travaux-achat-immobilier",
+     "obtenir-meilleur-taux-pret-immobilier-2026",
+     "credit-immobilier-jeune-couple-tours-2026"
+    ],
+    "objectif": "Capturer toutes les requêtes liées au financement d'un achat pour positionner ScoreImmo comme un outil d'aide à la décision budgétaire, basé sur des calculs fiables et non des promesses."
+   },
+   {
+    "nom": "Diagnostics & Documents Techniques",
+    "hub_slug": "dossier-diagnostic-technique-ddt-checklist-acheteur",
+    "spokes_slugs": [
+     "estimation-cout-travaux-deplombage",
+     "diagnostic-electricite-points-controle-achat",
+     "analyser-pv-ag-copropriete-avant-achat",
+     "diagnostic-termites-obligatoire-interpreter",
+     "consulter-comprendre-plu-achat-immobilier",
+     "diagnostic-gaz-achat-immobilier",
+     "etude-de-sol-g1-obligatoire-achat-terrain",
+     "diagnostic-assainissement-non-collectif-achat",
+     "diagnostic-merules-risques-achat",
+     "diagnostic-etat-risques-pollutions-erp",
+     "lire-reglement-copropriete-avant-achat",
+     "carnet-information-logement-cil",
+     "diagnostic-bruit-ensa-achat"
+    ],
+    "objectif": "Rassurer l'acheteur en démystifiant chaque diagnostic et document technique, renforçant notre image de tiers de confiance qui s'appuie sur des faits et des sources officielles."
+   },
+   {
+    "nom": "Marché & Villes Clés",
+    "hub_slug": "tendances-immobilier-2026-villes",
+    "spokes_slugs": [
+     "previsions-prix-immobilier-paris-2026",
+     "marche-immobilier-toulouse-2026",
+     "prix-m2-strasbourg-2026-quartiers",
+     "evolution-prix-immobilier-bordeaux-2026",
+     "evolution-prix-immobilier-nantes-10-ans",
+     "investir-marseille-2026-arrondissements",
+     "marche-immobilier-luxe-paris-2026",
+     "immobilier-lille-2026-analyse-marche",
+     "ou-acheter-rennes-2026"
+    ],
+    "objectif": "Se positionner comme l'analyste de référence sur les marchés des grandes métropoles françaises, en fournissant des prévisions et des analyses basées sur des données notariales et non sur des spéculations."
+   },
+   {
+    "nom": "Stratégie & Processus d'Achat",
+    "hub_slug": "erreurs-a-eviter-premier-achat-immobilier",
+    "spokes_slugs": [
+     "marge-negociation-immobilier-2026",
+     "vices-caches-immobilier-protection-recours",
+     "frais-agence-immobiliere-negocier",
+     "delai-retractation-10-jours-achat-immobilier",
+     "role-notaire-achat-immobilier",
+     "acheter-logement-deja-loue",
+     "checklist-contre-visite-immobiliere",
+     "conditions-suspensives-compromis-vente"
+    ],
+    "objectif": "Guider l'acheteur à chaque étape clé du processus d'achat, de la négociation à la signature, en renforçant la confiance et en présentant le rapport ScoreImmo comme l'outil indispensable de validation."
+   }
   ],
-  "intent": "Pilier informationnel : comprendre toute l'echelle DPE A-G, la grille kWh/m2/an, le calcul de la note. CAPTURE tout le cluster GSC ~1100 imp.",
-  "priority": 1,
-  "action": "UPGRADE_EXISTING"
- },
- {
-  "category": "villes",
-  "title": "Prix Immobilier Paris 2026 : Nos Prévisions Basées sur les Données Notariales",
-  "slug": "previsions-prix-immobilier-paris-2026",
-  "target_keyword": "prix moyen m2 paris 2025 2026 notaires",
-  "intent": "L'utilisateur recherche une analyse experte et chiffrée de l'évolution des prix à Paris pour anticiper son achat.",
-  "priority": 1
- },
- {
-  "category": "guides",
-  "title": "Marge de Négociation Immobilière 2026 : Quel Pourcentage Obtenir Selon votre Région ?",
-  "slug": "marge-negociation-immobilier-2026",
-  "target_keyword": "marge de négociation immobilier 2026",
-  "intent": "L'acheteur veut connaître la marge de négociation réaliste sur un bien immobilier en 2026 pour préparer son offre d'achat.",
-  "priority": 1
- },
- {
-  "category": "quartiers",
-  "title": "Où Acheter un T3 à Lyon en 2026 ? Les Meilleurs Arrondissements Analysés",
-  "slug": "meilleurs-arrondissements-acheter-t3-lyon-2026",
-  "target_keyword": "quels sont les meilleurs arrondissements pour acheter un t3 à lyon",
-  "intent": "Un acheteur cherche des recommandations précises d'arrondissements à Lyon pour un appartement de type T3.",
-  "priority": 1
- },
- {
-  "category": "guides",
-  "title": "Durée de Prêt Immobilier en 2026 : 15, 20 ou 25 ans, le Calcul pour Bien Choisir",
-  "slug": "duree-moyenne-pret-immobilier-2026",
-  "target_keyword": "durée moyenne prêt immobilier france 2026",
-  "intent": "L'emprunteur cherche à comprendre quelle est la durée de prêt optimale pour son projet en 2026 en fonction de sa situation.",
-  "priority": 1
- },
- {
-  "category": "villes",
-  "title": "Marché Immobilier Toulouse 2026 : Analyse Complète et Perspectives d'Achat",
-  "slug": "marche-immobilier-toulouse-2026",
-  "target_keyword": "marché immobilier toulouse",
-  "intent": "Le futur acheteur souhaite une analyse approfondie du marché toulousain pour savoir si c'est le bon moment pour investir.",
-  "priority": 1
- },
- {
-  "category": "quartiers",
-  "title": "Quartiers Chics de Nantes : Où Acheter pour un Cadre de Vie d'Exception ?",
-  "slug": "quartiers-chics-nantes-acheter",
-  "target_keyword": "quartiers chic nantes",
-  "intent": "L'acheteur recherche les quartiers les plus prestigieux et agréables de Nantes pour un achat immobilier haut de gamme.",
-  "priority": 1
- },
- {
-  "category": "guides",
-  "title": "Coût des Travaux de Déplombage : Comment l'Estimer et le Négocier ?",
-  "slug": "estimation-cout-travaux-deplombage",
-  "target_keyword": "estimation coûts travaux déplombage",
-  "intent": "L'acheteur d'un bien ancien veut anticiper le budget nécessaire pour des travaux de mise en conformité liés au plomb.",
-  "priority": 1
- },
- {
-  "category": "guides",
-  "title": "Les 7 Erreurs à Éviter Absolument pour votre Premier Achat Immobilier",
-  "slug": "erreurs-a-eviter-premier-achat-immobilier",
-  "target_keyword": "les erreurs à éviter lors de l'achat d'un premier bien immobilier",
-  "intent": "Le primo-accédant cherche des conseils concrets pour sécuriser son premier achat et ne pas tomber dans les pièges courants.",
-  "priority": 1
- },
- {
-  "category": "guides",
-  "title": "DPE Classe D : Bonne Affaire ou Futur Gouffre Financier ? Notre Analyse",
-  "slug": "dpe-classe-d-analyse-achat",
-  "target_keyword": "classe energie d",
-  "intent": "L'acheteur hésite sur un bien classé D et veut comprendre les implications en termes de confort, de charges et de travaux futurs.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "Simulation de Mensualités de Crédit Immobilier : L'Outil Fiable pour 2026",
-  "slug": "simuler-mensualites-credit-immobilier-2026",
-  "target_keyword": "simuler mensualites de crédit immo",
-  "intent": "L'utilisateur veut calculer précisément ses futures mensualités de prêt pour valider la faisabilité de son projet d'achat.",
-  "priority": 2
- },
- {
-  "category": "villes",
-  "title": "Prix M² à Strasbourg en 2026 : Notre Analyse Quartier par Quartier",
-  "slug": "prix-m2-strasbourg-2026-quartiers",
-  "target_keyword": "prix m2 appartement strasbourg 2026",
-  "intent": "L'acheteur recherche les prix au mètre carré détaillés par quartier à Strasbourg pour affiner sa recherche et son budget.",
-  "priority": 2
- },
- {
-  "category": "villes",
-  "title": "Évolution Prix Immobilier Bordeaux 2026 : Faut-il Acheter Maintenant ?",
-  "slug": "evolution-prix-immobilier-bordeaux-2026",
-  "target_keyword": "évolution prix immobilier bordeaux 2025 2026",
-  "intent": "Le futur acquéreur à Bordeaux cherche à comprendre les tendances du marché pour décider du meilleur moment pour acheter.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "Analyse Immobilière : La Méthode ScoreImmo pour un Achat en Toute Confiance",
-  "slug": "methode-analyse-immobiliere-scoreimmo",
-  "target_keyword": "immobilier analyse",
-  "intent": "L'acheteur veut comprendre comment analyser un bien immobilier de manière professionnelle pour sécuriser sa décision.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "DPE Classe G : Peut-on Encore Acheter une Passoire Thermique en 2026 ?",
-  "slug": "acheter-passoire-thermique-dpe-g-2026",
-  "target_keyword": "acheter dpe g",
-  "intent": "L'acheteur s'interroge sur les risques, les obligations de travaux et la rentabilité d'un achat de bien classé G.",
-  "priority": 1
- },
- {
-  "category": "guides",
-  "title": "Travaux de Rénovation Énergétique : Le Guide pour Passer d'un DPE F à D",
-  "slug": "travaux-renovation-energetique-dpe-f-d",
-  "target_keyword": "améliorer dpe f",
-  "intent": "L'acheteur d'un bien mal classé cherche un plan d'action chiffré pour améliorer sa performance énergétique et sa valeur.",
-  "priority": 2
- },
- {
-  "category": "villes",
-  "title": "Tendances Immobilières 2026 : Notre Analyse Ville par Ville",
-  "slug": "tendances-immobilier-2026-villes",
-  "target_keyword": "marché immobilier appartements 2026 tendances prix par ville française",
-  "intent": "L'investisseur ou l'acheteur mobile veut une vision globale des marchés locaux en France pour orienter sa recherche.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "Simulateur Capacité d'Emprunt 2026 : Calculez Votre Budget d'Achat Réel",
-  "slug": "simulation-capacite-emprunt-2026",
-  "target_keyword": "simulation capacite emprunt 2025",
-  "intent": "Le futur acheteur veut connaître le montant maximum qu'il peut emprunter auprès des banques en 2026.",
-  "priority": 2
- },
- {
-  "category": "villes",
-  "title": "Évolution Prix Immobilier Nantes : Notre Analyse sur 10 ans et Prévisions 2026",
-  "slug": "evolution-prix-immobilier-nantes-10-ans",
-  "target_keyword": "evolution prix immobilier nantes sur 10 ans",
-  "intent": "L'acheteur à Nantes veut comprendre la dynamique long terme du marché pour valider la pertinence de son investissement.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "Acheter un bien avec un DPE vierge : les risques et précautions à prendre",
-  "slug": "acheter-bien-dpe-vierge-risques",
-  "target_keyword": "dpe vierge achat",
-  "intent": "L'acheteur est face à une annonce avec un DPE vierge et veut connaître les implications légales et financières.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Le Diagnostic Électricité : Les 11 Points de Contrôle à Vérifier Avant d'Acheter",
-  "slug": "diagnostic-electricite-points-controle-achat",
-  "target_keyword": "anomalies diagnostic électrique achat",
-  "intent": "L'acheteur veut savoir interpréter le diagnostic électrique pour évaluer la sécurité et le coût des travaux de mise aux normes.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "Vices Cachés dans l'Immobilier : Comment se Protéger et Quels sont vos Recours ?",
-  "slug": "vices-caches-immobilier-protection-recours",
-  "target_keyword": "recours vices cachés immobilier",
-  "intent": "L'acheteur veut connaître ses droits et les démarches à suivre s'il découvre un défaut majeur après la signature.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Apport Personnel pour un Prêt Immobilier en 2026 : Combien Faut-il Vraiment ?",
-  "slug": "apport-personnel-pret-immobilier-2026",
-  "target_keyword": "apport minimum prêt immobilier 2026",
-  "intent": "Le futur emprunteur veut savoir quel montant d'apport est exigé par les banques pour obtenir un crédit en 2026.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "Le Compte Rendu d'AG de Copropriété : Le Document à Éplucher Avant d'Acheter",
-  "slug": "analyser-pv-ag-copropriete-avant-achat",
-  "target_keyword": "lire procès verbal ag copropriété",
-  "intent": "L'acheteur d'un appartement veut décrypter les PV d'AG pour déceler les futurs travaux, les conflits et l'état financier de la copropriété.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "Frais d'Agence Immobilière : Qui Paie Quoi et Comment les Négocier ?",
-  "slug": "frais-agence-immobiliere-negocier",
-  "target_keyword": "négocier frais d'agence acheteur",
-  "intent": "L'acheteur veut comprendre comment sont calculés les frais d'agence et s'il dispose d'une marge de manœuvre pour les réduire.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Délai de Rétractation de 10 Jours : Comment l'Utiliser Après une Offre d'Achat ?",
-  "slug": "delai-retractation-10-jours-achat-immobilier",
-  "target_keyword": "délai de rétractation compromis de vente",
-  "intent": "L'acheteur veut connaître les modalités exactes pour se rétracter légalement après avoir signé un compromis de vente.",
-  "priority": 3
- },
- {
-  "category": "quartiers",
-  "title": "Où Habiter à Strasbourg : Le Guide des Quartiers pour les Familles",
-  "slug": "ou-habiter-strasbourg-famille",
-  "target_keyword": "meilleur quartier famille strasbourg",
-  "intent": "Une famille cherchant à s'installer à Strasbourg veut des recommandations de quartiers avec écoles, parcs et commodités.",
-  "priority": 2
- },
- {
-  "category": "villes",
-  "title": "Investir à Marseille en 2026 : Les Arrondissements d'Avenir",
-  "slug": "investir-marseille-2026-arrondissements",
-  "target_keyword": "investissement locatif marseille 2026",
-  "intent": "L'investisseur cherche à identifier les zones de Marseille avec le plus fort potentiel de plus-value et de rentabilité locative.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "Le Prêt à Taux Zéro (PTZ) en 2026 : Êtes-vous Éligible ? Simulation et Conditions",
-  "slug": "ptz-2026-simulation-conditions-eligibilite",
-  "target_keyword": "conditions ptz 2026",
-  "intent": "Le primo-accédant veut vérifier son éligibilité au PTZ et simuler le montant qu'il pourrait obtenir pour son projet.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "Le Rôle du Notaire dans un Achat Immobilier : Bien Plus qu'une Signature",
-  "slug": "role-notaire-achat-immobilier",
-  "target_keyword": "que vérifie le notaire avant une vente",
-  "intent": "L'acheteur veut comprendre toutes les missions et vérifications effectuées par le notaire pour sécuriser la transaction.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Acheter un Logement Loué : Avantages, Inconvénients et Précautions à Prendre",
-  "slug": "acheter-logement-deja-loue",
-  "target_keyword": "acheter appartement avec locataire en place",
-  "intent": "L'investisseur ou le futur propriétaire veut connaître les règles et les risques liés à l'achat d'un bien déjà occupé par un locataire.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Le Diagnostic Termites : Quand est-il Obligatoire et Comment l'Interpréter ?",
-  "slug": "diagnostic-termites-obligatoire-interpreter",
-  "target_keyword": "diagnostic termites obligatoire",
-  "intent": "L'acheteur d'un bien dans une zone à risque veut comprendre la portée de ce diagnostic et les conséquences d'une infestation.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Calcul de la Plus-Value Immobilière : Comment l'Anticiper avant d'Acheter ?",
-  "slug": "calcul-plus-value-immobiliere-revente",
-  "target_keyword": "calcul plus value immobilière",
-  "intent": "L'acheteur, notamment l'investisseur, veut comprendre comment est taxée la plus-value pour mieux projeter la rentabilité de son futur achat.",
-  "priority": 3
- },
- {
-  "category": "quartiers",
-  "title": "Les Pépites de l'Immobilier Parisien : Les Quartiers où Investir en 2026",
-  "slug": "quartiers-investir-paris-2026",
-  "target_keyword": "quartier parisien qui monte",
-  "intent": "L'acheteur cherche à identifier les quartiers parisiens encore abordables mais à fort potentiel de valorisation.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "Taux d'Endettement 2026 : Le Calcul des Banques pour votre Prêt Expliqué",
-  "slug": "calcul-taux-endettement-2026",
-  "target_keyword": "calcul taux d'endettement 2026",
-  "intent": "L'emprunteur veut comprendre comment les banques calculent sa capacité d'emprunt via le taux d'endettement pour préparer son dossier.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "Le Plan Local d'Urbanisme (PLU) : Comment le Consulter et le Comprendre Avant d'Acheter",
-  "slug": "consulter-comprendre-plu-achat-immobilier",
-  "target_keyword": "consulter plu avant achat",
-  "intent": "L'acheteur d'une maison ou d'un terrain veut vérifier les règles d'urbanisme (extensions possibles, constructions voisines) qui s'appliquent à son futur bien.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Acheter en SCI : La Fausse Bonne Idée pour votre Résidence Principale ?",
-  "slug": "acheter-residence-principale-sci-analyse",
-  "target_keyword": "acheter sa résidence principale en sci",
-  "intent": "Un couple ou une famille s'interroge sur la pertinence de créer une SCI pour acheter leur logement et veut en peser le pour et le contre.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Le Diagnostic Gaz : Sécurité, Validité et Points de Vigilance pour l'Acheteur",
-  "slug": "diagnostic-gaz-achat-immobilier",
-  "target_keyword": "diagnostic gaz obligatoire vente",
-  "intent": "L'acheteur veut savoir interpréter le diagnostic gaz pour évaluer la sécurité de l'installation et le coût d'éventuels travaux.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "DPE Classe E : Travaux Obligatoires et Stratégies pour Valoriser votre Achat",
-  "slug": "dpe-classe-e-travaux-strategie",
-  "target_keyword": "acheter dpe e",
-  "intent": "L'acheteur d'un bien classé E veut connaître le calendrier des obligations de rénovation et comment planifier les travaux.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "DPE Classe C : Le Bon Compromis pour un Achat Immobilier Serein",
-  "slug": "dpe-classe-c-bon-compromis-achat",
-  "target_keyword": "dpe c est il bien",
-  "intent": "L'acheteur veut être rassuré sur la qualité d'un bien classé C et comprendre ses avantages par rapport aux autres classes.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "Comment Contester un DPE qui vous Semble Incorrect ?",
-  "slug": "contester-dpe-incorrect",
-  "target_keyword": "contester un dpe",
-  "intent": "L'acheteur a des doutes sur la validité du DPE fourni et cherche à connaître les démarches pour obtenir une contre-expertise.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Le Dossier de Diagnostic Technique (DDT) : La Checklist Complète pour l'Acheteur",
-  "slug": "dossier-diagnostic-technique-ddt-checklist-acheteur",
-  "target_keyword": "liste diagnostics obligatoires vente maison",
-  "intent": "L'acheteur veut une liste claire de tous les diagnostics qu'il doit recevoir du vendeur pour ne rien oublier.",
-  "priority": 2
- },
- {
-  "category": "quartiers",
-  "title": "Les Meilleurs Quartiers Étudiants où Investir à Toulouse en 2026",
-  "slug": "meilleurs-quartiers-etudiants-investir-toulouse",
-  "target_keyword": "investissement locatif étudiant toulouse",
-  "intent": "L'investisseur cherche à acheter un petit appartement à Toulouse et cible les quartiers les plus demandés par les étudiants.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "Le Prêt Relais : La Solution pour Acheter Avant d'Avoir Vendu ?",
-  "slug": "pret-relais-acheter-avant-vendre",
-  "target_keyword": "fonctionnement prêt relais",
-  "intent": "Le propriétaire qui souhaite changer de logement veut comprendre le mécanisme, les coûts et les risques du prêt relais.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "L'Étude de Sol (G1) : Est-elle Obligatoire pour l'Achat d'un Terrain ?",
-  "slug": "etude-de-sol-g1-obligatoire-achat-terrain",
-  "target_keyword": "étude de sol obligatoire vente terrain",
-  "intent": "L'acheteur d'un terrain à bâtir veut savoir si une étude de sol est nécessaire et ce qu'elle peut révéler sur les risques de construction.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Acheter sur Plan (VEFA) : Les 7 Pièges à Éviter",
-  "slug": "acheter-vefa-pieges-a-eviter",
-  "target_keyword": "pièges achat vefa",
-  "intent": "Le futur acquéreur d'un logement neuf veut connaître les points de vigilance spécifiques à la Vente en l'État Futur d'Achèvement.",
-  "priority": 3
- },
- {
-  "category": "quartiers",
-  "title": "Bordeaux Rive Droite : Le Nouvel Eldorado de l'Immobilier Bordelais ?",
-  "slug": "bordeaux-rive-droite-immobilier",
-  "target_keyword": "acheter rive droite bordeaux",
-  "intent": "L'acheteur à Bordeaux s'interroge sur le potentiel des quartiers de la rive droite (Bastide, Floirac) et leur attractivité.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "Le DPE Projeté : Un Outil Essentiel pour Négocier une Passoire Thermique",
-  "slug": "dpe-projete-negocier-passoire-thermique",
-  "target_keyword": "dpe projeté",
-  "intent": "L'acheteur d'un bien à rénover veut comprendre comment utiliser un DPE projeté pour évaluer le gain énergétique et négocier le prix.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "Assainissement Non Collectif : Le Diagnostic à ne pas Négliger pour une Maison",
-  "slug": "diagnostic-assainissement-non-collectif-achat",
-  "target_keyword": "diagnostic assainissement non collectif",
-  "intent": "L'acheteur d'une maison non raccordée au tout-à-l'égout veut comprendre le rapport d'assainissement et le coût des travaux de mise en conformité.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Les Aides à la Rénovation Énergétique en 2026 pour les Nouveaux Propriétaires",
-  "slug": "aides-renovation-energetique-2026-acheteur",
-  "target_keyword": "aides rénovation énergétique primo accédant 2026",
-  "intent": "L'acheteur d'un bien avec travaux veut connaître toutes les aides financières (MaPrimeRénov', éco-PTZ) qu'il peut mobiliser dès l'achat.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "Charges de Copropriété : Comment Analyser le Budget Prévisionnel Avant d'Acheter ?",
-  "slug": "analyser-budget-previsionnel-copropriete",
-  "target_keyword": "analyser charges de copropriété avant achat",
-  "intent": "L'acheteur d'un appartement veut décortiquer les charges pour anticiper ses futures dépenses et détecter une mauvaise gestion.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "La Garantie de Loyer Impayé (GLI) : Une Sécurité pour votre Investissement Locatif",
-  "slug": "garantie-loyer-impaye-gli-investissement-locatif",
-  "target_keyword": "garantie loyer impayé",
-  "intent": "L'investisseur locatif cherche à comprendre comment fonctionne l'assurance GLI pour sécuriser ses revenus locatifs.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Acheter un bien en indivision : les règles d'or pour éviter les conflits",
-  "slug": "acheter-indivision-regles-eviter-conflits",
-  "target_keyword": "acheter en indivision",
-  "intent": "Plusieurs personnes (amis, couple non marié) souhaitent acheter ensemble et veulent comprendre les règles de l'indivision.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Le Droit de Préemption Urbain : La Mairie Peut-elle Racheter le Bien que vous Convoitez ?",
-  "slug": "droit-de-preemption-urbain-mairie",
-  "target_keyword": "droit de préemption urbain",
-  "intent": "L'acheteur veut comprendre ce qu'est le DPU et comment il peut impacter sa transaction immobilière.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Le Diagnostic Mérules : Un Risque à ne pas Sous-estimer dans Certaines Régions",
-  "slug": "diagnostic-merules-risques-achat",
-  "target_keyword": "diagnostic mérules obligatoire",
-  "intent": "L'acheteur d'un bien dans une zone humide veut connaître les dangers de ce champignon et l'importance du diagnostic.",
-  "priority": 3
- },
- {
-  "category": "villes",
-  "title": "Le Marché Immobilier de Luxe à Paris : Tendances et Opportunités en 2026",
-  "slug": "marche-immobilier-luxe-paris-2026",
-  "target_keyword": "immobilier de luxe paris 2026",
-  "intent": "L'acheteur haut de gamme recherche une analyse spécifique du marché du luxe parisien pour un investissement d'exception.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Frais de Notaire Réduits dans le Neuf : Comment ça Marche ?",
-  "slug": "frais-notaire-reduits-immobilier-neuf",
-  "target_keyword": "frais de notaire dans le neuf",
-  "intent": "L'acheteur d'un bien neuf (VEFA) veut comprendre pourquoi les frais de notaire sont moins élevés et comment ils sont calculés.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Checklist Ultime de la Contre-Visite Immobilière : Ne Laissez Rien Passer",
-  "slug": "checklist-contre-visite-immobiliere",
-  "target_keyword": "que vérifier lors d'une contre visite",
-  "intent": "Après une première visite concluante, l'acheteur veut une liste exhaustive de points à vérifier lors de la seconde visite.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "Le Viager : Comment ça Marche et est-ce un Bon Plan en 2026 ?",
-  "slug": "viager-fonctionnement-bon-plan-2026",
-  "target_keyword": "acheter en viager",
-  "intent": "L'acheteur s'intéresse au viager et veut comprendre les différents types (occupé, libre) et les calculs de la rente.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Comment Lire un Plan Cadastral pour un Achat de Maison ou Terrain",
-  "slug": "lire-plan-cadastral-achat",
-  "target_keyword": "comprendre plan cadastral",
-  "intent": "L'acheteur veut savoir interpréter un plan cadastral pour vérifier les limites de propriété et les servitudes éventuelles.",
-  "priority": 3
- },
- {
-  "category": "quartiers",
-  "title": "Nantes : Les Quartiers qui Montent où Acheter en 2026",
-  "slug": "quartiers-qui-montent-nantes-2026",
-  "target_keyword": "quartier nantes qui monte",
-  "intent": "L'acheteur à Nantes cherche à identifier les quartiers en devenir, combinant prix encore accessibles et fort potentiel de valorisation.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "L'assurance Dommages-Ouvrage est-elle Indispensable pour l'Acheteur ?",
-  "slug": "assurance-dommages-ouvrage-acheteur",
-  "target_keyword": "assurance dommages ouvrage obligatoire acheteur",
-  "intent": "L'acheteur d'une maison de moins de 10 ans veut comprendre le rôle de l'assurance dommages-ouvrage et les risques s'il n'y en a pas.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Le DPE des Copropriétés : Ce que ça Change pour votre Futur Achat",
-  "slug": "dpe-collectif-copropriete-impact-achat",
-  "target_keyword": "dpe collectif obligatoire",
-  "intent": "L'acheteur d'un appartement veut comprendre l'impact du nouveau DPE à l'échelle de l'immeuble sur ses charges et les travaux à venir.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "Acheter un Local Commercial pour le Transformer en Habitation : Le Guide",
-  "slug": "transformer-local-commercial-en-habitation-guide",
-  "target_keyword": "changement de destination local commercial en habitation",
-  "intent": "L'acheteur atypique cherche le processus complet (urbanisme, copropriété, travaux) pour transformer un local en logement.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Les Servitudes de Passage : Comment les Détecter Avant d'Acheter ?",
-  "slug": "servitude-de-passage-detecter-achat",
-  "target_keyword": "vérifier servitude avant achat",
-  "intent": "L'acheteur d'une maison ou d'un terrain veut s'assurer qu'aucune servitude ne viendra grever sa propriété.",
-  "priority": 3
- },
- {
-  "category": "villes",
-  "title": "Immobilier à Lille en 2026 : Faut-il Craindre une Bulle Immobilière ?",
-  "slug": "immobilier-lille-2026-analyse-marche",
-  "target_keyword": "marché immobilier lille 2026",
-  "intent": "L'acheteur lillois s'interroge sur la santé du marché et veut une analyse pour savoir si les prix sont surévalués.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "Le Coût Réel d'un Achat Immobilier : Au-delà du Prix de Vente",
-  "slug": "cout-total-achat-immobilier",
-  "target_keyword": "calcul coût total achat immobilier",
-  "intent": "Le primo-accédant veut une liste complète de tous les frais annexes (notaire, agence, garantie, déménagement) pour établir un budget fiable.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "Le Diagnostic État des Risques et Pollutions (ERP) : Ce qu'il Faut Savoir",
-  "slug": "diagnostic-etat-risques-pollutions-erp",
-  "target_keyword": "diagnostic erp",
-  "intent": "L'acheteur veut comprendre les informations contenues dans l'ERP (inondations, risques industriels, etc.) pour évaluer l'environnement du bien.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Comment Financer les Travaux lors d'un Achat Immobilier ?",
-  "slug": "financer-travaux-achat-immobilier",
-  "target_keyword": "prêt immobilier avec travaux",
-  "intent": "L'acheteur d'un bien à rénover cherche les meilleures solutions pour inclure le montant des travaux dans son prêt immobilier.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "Le Règlement de Copropriété : Le Document à Lire pour Éviter les Mauvaises Surprises",
-  "slug": "lire-reglement-copropriete-avant-achat",
-  "target_keyword": "règlement de copropriété",
-  "intent": "L'acheteur d'un appartement veut vérifier les règles de vie de l'immeuble (usage des parties communes, animaux, professions libérales).",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Acheter un Appartement au Dernier Étage : Avantages et Inconvénients",
-  "slug": "acheter-appartement-dernier-etage",
-  "target_keyword": "acheter dernier étage avantages inconvénients",
-  "intent": "L'acheteur hésite sur un appartement sous les toits et veut peser le pour (vue, calme) et le contre (chaleur, étanchéité, ascenseur).",
-  "priority": 3
- },
- {
-  "category": "quartiers",
-  "title": "Où s'Installer près de Lyon ? Le Top 5 des Communes de la Première Couronne",
-  "slug": "ou-habiter-pres-de-lyon",
-  "target_keyword": "meilleures communes proche lyon",
-  "intent": "L'acheteur cherche une alternative à Lyon intra-muros et veut des recommandations de villes bien connectées et agréables à vivre.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "La Clause Pénale dans le Compromis de Vente : Explication et Risques",
-  "slug": "clause-penale-compromis-vente",
-  "target_keyword": "clause pénale compromis de vente",
-  "intent": "L'acheteur veut comprendre les conséquences financières s'il ne peut finalement pas acheter le bien après la signature du compromis.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Le Carnet d'Information du Logement (CIL) : Qu'est-ce que c'est et à quoi ça sert ?",
-  "slug": "carnet-information-logement-cil",
-  "target_keyword": "carnet d'information du logement",
-  "intent": "L'acheteur veut comprendre ce nouvel outil qui retrace la vie du logement et les travaux effectués.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Achat à la Montagne : Les Spécificités à Connaître (Loi Montagne, DPE)",
-  "slug": "achat-immobilier-montagne-specificites",
-  "target_keyword": "acheter appartement montagne",
-  "intent": "L'acheteur d'un bien en station de ski veut connaître les particularités juridiques, techniques et fiscales de ce type d'acquisition.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Comment Obtenir le Meilleur Taux pour votre Prêt Immobilier en 2026 ?",
-  "slug": "obtenir-meilleur-taux-pret-immobilier-2026",
-  "target_keyword": "meilleur taux immobilier 2026",
-  "intent": "L'emprunteur cherche des stratégies et des conseils pour négocier le taux de son crédit et optimiser son dossier.",
-  "priority": 2
- },
- {
-  "category": "villes",
-  "title": "Rennes, Métropole en Plein Essor : Où Acheter en 2026 ?",
-  "slug": "ou-acheter-rennes-2026",
-  "target_keyword": "marché immobilier rennes 2026",
-  "intent": "Le futur acheteur à Rennes veut une analyse du marché et des recommandations de quartiers pour son projet.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "Le Fonds de Travaux Loi ALUR : Ce que l'Acheteur Doit Vérifier",
-  "slug": "fonds-de-travaux-loi-alur-acheteur",
-  "target_keyword": "fonds de travaux alur",
-  "intent": "L'acheteur d'un bien en copropriété veut savoir si le fonds de travaux est bien alimenté pour ne pas avoir de mauvaises surprises.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Acheter un Bien avec une Piscine : Les Points de Contrôle Indispensables",
-  "slug": "acheter-maison-piscine-points-controle",
-  "target_keyword": "vérifications achat maison avec piscine",
-  "intent": "L'acheteur d'une maison avec piscine veut connaître les normes de sécurité, les coûts d'entretien et les points à vérifier avant de signer.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Les Conditions Suspensives d'un Compromis de Vente : Votre Filet de Sécurité",
-  "slug": "conditions-suspensives-compromis-vente",
-  "target_keyword": "condition suspensive d'obtention de prêt",
-  "intent": "L'acheteur veut comprendre le rôle des conditions suspensives (prêt, urbanisme) qui le protègent en cas d'imprévu.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "Le Diagnostic Bruit (ENSA) : Comment Savoir si votre Futur Logement est au Calme ?",
-  "slug": "diagnostic-bruit-ensa-achat",
-  "target_keyword": "diagnostic bruit",
-  "intent": "L'acheteur d'un bien proche d'un aéroport veut comprendre ce diagnostic et évaluer l'impact des nuisances sonores.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Acheter un Appartement en Rez-de-Jardin : Les Pour et les Contre",
-  "slug": "acheter-appartement-rez-de-jardin",
-  "target_keyword": "avantages inconvénients rez de jardin",
-  "intent": "L'acheteur s'intéresse à un rez-de-jardin et veut une analyse objective des avantages (extérieur) et inconvénients (sécurité, luminosité).",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Le Score ScoreImmo Expliqué : Comment nous Évaluons un Bien sur 100",
-  "slug": "score-scoreimmo-methode-evaluation",
-  "target_keyword": "score immobilier",
-  "intent": "L'utilisateur veut comprendre la méthodologie et les critères qui composent le score ScoreImmo pour faire confiance à l'analyse.",
-  "priority": 1
- },
- {
-  "category": "guides",
-  "title": "Benchmark Immobilier : Comment Comparer Efficacement les Biens Avant d'Acheter ?",
-  "slug": "benchmark-immobilier-comparer-biens",
-  "target_keyword": "benchmark immo",
-  "intent": "L'acheteur veut une méthode structurée pour comparer plusieurs biens visités sur des critères objectifs et prendre la meilleure décision.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "Le DPE Collectif est-il Fiable pour un Appartement Individuel ?",
-  "slug": "fiabilite-dpe-collectif-appartement",
-  "target_keyword": "fiabilité dpe collectif",
-  "intent": "L'acheteur s'interroge sur la pertinence d'un DPE à l'échelle de l'immeuble pour connaître la performance réelle de son futur appartement.",
-  "priority": 3
- },
- {
-  "category": "quartiers",
-  "title": "Les Micro-Quartiers de Strasbourg à Découvrir pour un Achat Authentique",
-  "slug": "micro-quartiers-strasbourg-achat-authentique",
-  "target_keyword": "quartiers secrets strasbourg",
-  "intent": "L'acheteur qui connaît déjà Strasbourg cherche des recommandations de zones plus confidentielles et pleines de charme.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "L'Impact Réel de la Taxe Foncière sur votre Budget Mensuel : Simulation et Calcul",
-  "slug": "impact-taxe-fonciere-budget-achat",
-  "target_keyword": "calcul taxe foncière avant achat",
-  "intent": "L'acheteur veut anticiper le montant de la future taxe foncière pour l'intégrer dans le coût global de son acquisition.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "Crédit Immobilier pour Jeune Couple à Tours en 2026 : Nos Conseils",
-  "slug": "credit-immobilier-jeune-couple-tours-2026",
-  "target_keyword": "meilleur prêt immobilier jeune couple tours 2026",
-  "intent": "Un jeune couple cherche des conseils spécifiques pour optimiser son dossier de prêt et acheter son premier bien à Tours.",
-  "priority": 2
- },
- {
-  "category": "guides",
-  "title": "Le Guide de la Visite de Cave et Parking avant un Achat en Copropriété",
-  "slug": "visite-cave-parking-achat-copropriete",
-  "target_keyword": "vérifier cave avant achat",
-  "intent": "L'acheteur veut une checklist des points à vérifier (humidité, sécurité, accès) pour les annexes souvent négligées lors des visites.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Comment la Proximité des Transports en Commun Impacte le Prix Immobilier ?",
-  "slug": "impact-transports-en-commun-prix-immobilier",
-  "target_keyword": "valeur immobilière proximité métro",
-  "intent": "L'acheteur veut comprendre comment la présence d'un métro, tram ou gare valorise un bien et si le surcoût est justifié.",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Acheter un Duplex : Les Questions à se Poser Avant de Craquer",
-  "slug": "acheter-duplex-questions-a-poser",
-  "target_keyword": "inconvénients duplex",
-  "intent": "L'acheteur est séduit par un duplex mais veut en connaître les contraintes spécifiques (escaliers, charges, aménagement).",
-  "priority": 3
- },
- {
-  "category": "guides",
-  "title": "Le Home Staging Virtuel : Un Leurre pour l'Acheteur ? Nos Conseils",
-  "slug": "home-staging-virtuel-pieges-acheteur",
-  "target_keyword": "home staging virtuel",
-  "intent": "L'acheteur voit des photos d'annonces avec aménagement 3D et veut savoir comment faire la part des choses avec la réalité du bien.",
-  "priority": 3
- }
-]
+  "elargissement": "Notre stratégie s'appuie sur la consolidation de nos positions sur les requêtes transactionnelles (GSC) liées au DPE et au financement, en créant des clusters de contenu exhaustifs. Nous allons ensuite élargir notre couverture géographique sur les villes et quartiers à fort potentiel pour capter une audience qualifiée à la recherche d'opportunités locales. Chaque contenu est conçu pour maximiser le CTR avec des titres orientés 'bénéfice acheteur' et pour convertir en démontrant comment notre analyse factuelle, basée sur 13 sources officielles, apporte la confiance nécessaire à la prise de décision."
+ },
+ "topics": [
+  {
+   "slug": "dpe-comprendre-classes-energetiques",
+   "category": "guides",
+   "priority": 1,
+   "but": "Devenir l'article de référence pour tout acheteur cherchant à comprendre l'impact d'une classe DPE sur son futur achat, son budget travaux et sa capacité de négociation.",
+   "kw_principal": "dpe classes a g",
+   "kw_secondaires": [
+    "nouvelle grille dpe 2026",
+    "calcul consommation kwh m2 an",
+    "étiquette énergie logement",
+    "comprendre son dpe avant achat",
+    "impact classe énergétique sur prix de vente",
+    "dpe obligatoire vente"
+   ],
+   "plan": [
+    "H2: La nouvelle grille DPE 2026 expliquée simplement pour un acheteur",
+    "H2: Classe par classe, l'impact concret sur votre budget et votre confort",
+    "H3: DPE A, B, C : Les bons élèves et leur valeur ajoutée à l'achat",
+    "H3: DPE D, E : Le ventre mou, quelles questions se poser avant d'acheter ?",
+    "H3: DPE F, G : Passoires thermiques, interdictions et opportunités de négociation",
+    "H2: Comment ScoreImmo analyse le DPE d'un bien pour sécuriser votre achat",
+    "H2: Questions fréquentes sur les classes DPE et le calcul de la note"
+   ],
+   "geo_eeat": "Ancrer l'expertise en citant les décrets officiels (sources gouvernementales) et en intégrant des données chiffrées sur le coût moyen des rénovations par classe, rédigé par notre expert immobilier.",
+   "maillage": [
+    "acheter-bien-classe-dpe-f-2026",
+    "dpe-classe-d-analyse-achat",
+    "renovation-energetique-maprimerenov-2026-aides-rentabilite"
+   ]
+  },
+  {
+   "slug": "previsions-prix-immobilier-paris-2026",
+   "category": "villes",
+   "priority": 1,
+   "but": "Fournir aux acheteurs parisiens des prévisions de prix fiables et argumentées, basées sur les données des Notaires du Grand Paris, pour les aider à décider du bon moment pour acheter.",
+   "kw_principal": "prix moyen m2 paris 2025 2026 notaires",
+   "kw_secondaires": [
+    "évolution prix immobilier paris",
+    "tendance marché immobilier paris 2026",
+    "faut il acheter à paris maintenant",
+    "prix m2 paris par arrondissement 2026",
+    "analyse marché immobilier parisien"
+   ],
+   "plan": [
+    "H2: Bilan du marché parisien : ce que les données notariales nous apprennent",
+    "H2: Nos prévisions de prix pour 2026, arrondissement par arrondissement",
+    "H2: Quels facteurs vont influencer le marché parisien (taux, JO 2024, DPE) ?",
+    "H2: Acheter à Paris en 2026 : nos conseils pour saisir les opportunités",
+    "H2: Validez votre projet : Analysez n'importe quel bien parisien avec ScoreImmo",
+    "H2: Questions fréquentes sur l'immobilier à Paris"
+   ],
+   "geo_eeat": "Obtenir le featured snippet sur 'prix m2 paris 2026' en affichant un tableau clair des prix par arrondissement, sourcé directement depuis les publications des Notaires du Grand Paris pour une confiance maximale.",
+   "maillage": [
+    "prix-immobilier-paris-marche-plancher",
+    "quartiers-investir-paris-2026",
+    "marche-immobilier-luxe-paris-2026"
+   ]
+  },
+  {
+   "slug": "marge-negociation-immobilier-2026",
+   "category": "guides",
+   "priority": 1,
+   "but": "Donner aux acheteurs un avantage concurrentiel en leur fournissant des pourcentages de négociation réalistes par région, basés sur l'état actuel du marché, pour maximiser leurs économies.",
+   "kw_principal": "marge de négociation immobilier 2026",
+   "kw_secondaires": [
+    "quel pourcentage négocier achat immobilier",
+    "marge de négociation moyenne par région",
+    "comment bien négocier un bien immobilier",
+    "négocier une passoire thermique",
+    "arguments pour baisser le prix d'une maison"
+   ],
+   "plan": [
+    "H2: Le marché a changé : pourquoi la négociation est de retour en 2026",
+    "H2: Quelle marge de négociation espérer ? Les chiffres par région et type de bien",
+    "H2: Les 5 arguments basés sur des données pour réussir votre négociation",
+    "H3: Le DPE, votre meilleur allié pour négocier",
+    "H3: Les anomalies des diagnostics et les travaux à venir",
+    "H2: Utilisez le rapport ScoreImmo comme base factuelle pour votre offre",
+    "H2: Questions fréquentes sur la négociation immobilière"
+   ],
+   "geo_eeat": "Apporter une crédibilité maximale en utilisant des données de marché récentes (ex: baromètres SeLoger, MeilleursAgents) et en les croisant avec nos propres analyses sur les décotes liées au DPE.",
+   "maillage": [
+    "negocier-prix-bien-immobilier-guide-complet",
+    "offre-achat-immobilier-modele-conseils-strategie",
+    "dpe-projete-negocier-passoire-thermique"
+   ]
+  },
+  {
+   "slug": "meilleurs-arrondissements-acheter-t3-lyon-2026",
+   "category": "quartiers",
+   "priority": 1,
+   "but": "Guider les familles et jeunes couples cherchant un T3 à Lyon vers les arrondissements offrant le meilleur compromis prix, qualité de vie et potentiel de valorisation.",
+   "kw_principal": "quels sont les meilleurs arrondissements pour acheter un t3 à lyon",
+   "kw_secondaires": [
+    "prix m2 t3 lyon",
+    "où habiter en famille à lyon",
+    "acheter appartement 3 pièces lyon",
+    "arrondissement lyon bon rapport qualité prix",
+    "marché immobilier lyon 2026"
+   ],
+   "plan": [
+    "H2: Le marché des T3 à Lyon en 2026 : prix et tensions",
+    "H2: Notre analyse comparative des arrondissements pour un T3",
+    "H3: Le choix de la valeur sûre : 2e, 6e",
+    "H3: Le meilleur rapport qualité de vie / prix : 4e, 7e",
+    "H3: Les paris d'avenir pour un T3 : 3e, 8e, 9e",
+    "H2: Comment ScoreImmo évalue la qualité de vie d'un quartier à Lyon",
+    "H2: Questions fréquentes sur l'achat d'un T3 à Lyon"
+   ],
+   "geo_eeat": "Fournir une réponse directe et cartographiée aux requêtes locales, en s'appuyant sur des données démographiques (INSEE), de transport (TCL) et de prix (DVFEF) pour chaque arrondissement analysé.",
+   "maillage": [
+    "prix-immobilier-lyon-analyse-arrondissement",
+    "meilleurs-quartiers-acheter-lyon",
+    "ou-habiter-pres-de-lyon"
+   ]
+  },
+  {
+   "slug": "duree-moyenne-pret-immobilier-2026",
+   "category": "guides",
+   "priority": 1,
+   "but": "Aider les emprunteurs à choisir la durée de prêt optimale (15, 20 ou 25 ans) en leur fournissant un calcul clair du coût total et de l'impact sur leur mensualité et leur pouvoir d'achat.",
+   "kw_principal": "durée moyenne prêt immobilier france 2026",
+   "kw_secondaires": [
+    "choisir durée prêt immobilier",
+    "prêt sur 15 20 ou 25 ans",
+    "impact durée sur coût total crédit",
+    "calcul mensualité prêt immobilier",
+    "allongement durée de prêt 2026"
+   ],
+   "plan": [
+    "H2: Quelle est la durée de prêt idéale en 2026 ?",
+    "H2: Le comparatif chiffré : 15, 20 ou 25 ans, ce que ça change pour vous",
+    "H3: Le coût total du crédit : l'argument pour un prêt plus court",
+    "H3: La mensualité : l'argument pour un prêt plus long",
+    "H2: Notre conseil pour arbitrer entre coût et capacité d'emprunt",
+    "H2: Simulez votre capacité d'emprunt réelle avant de choisir",
+    "H2: Questions fréquentes sur la durée des crédits immobiliers"
+   ],
+   "geo_eeat": "Renforcer la confiance en utilisant les données de l'Observatoire Crédit Logement/CSA pour illustrer les tendances et en proposant un simulateur simple basé sur des formules de calcul transparentes.",
+   "maillage": [
+    "pret-immobilier-taux-duree-capacite-emprunt",
+    "simulation-capacite-emprunt-2026",
+    "simuler-mensualites-credit-immobilier-2026"
+   ]
+  },
+  {
+   "slug": "marche-immobilier-toulouse-2026",
+   "category": "villes",
+   "priority": 1,
+   "but": "Offrir une analyse complète du marché toulousain pour permettre aux acheteurs de comprendre les dynamiques de prix, les quartiers porteurs et les perspectives d'évolution à moyen terme.",
+   "kw_principal": "marché immobilier toulouse",
+   "kw_secondaires": [
+    "prix m2 toulouse 2026",
+    "évolution prix immobilier toulouse",
+    "faut il acheter à toulouse en 2026",
+    "analyse marché immobilier toulouse",
+    "perspectives immobilier toulouse"
+   ],
+   "plan": [
+    "H2: Toulouse en 2026 : un marché toujours attractif pour les acheteurs ?",
+    "H2: Analyse des prix au m² : les quartiers qui montent et ceux qui se stabilisent",
+    "H2: L'impact des grands projets (LGV, 3ème ligne de métro) sur les prix",
+    "H2: Nos conseils pour un achat réussi à Toulouse cette année",
+    "H2: Obtenez une analyse complète de n'importe quel bien à Toulouse",
+    "H2: Questions fréquentes sur l'immobilier toulousain"
+   ],
+   "geo_eeat": "Démontrer une expertise locale pointue en analysant l'impact de projets d'urbanisme concrets (sources : Tisséo, Mairie de Toulouse) sur les prix de l'immobilier, quartier par quartier.",
+   "maillage": [
+    "prix-immobilier-toulouse-marche-accessible",
+    "meilleurs-quartiers-acheter-toulouse",
+    "meilleurs-quartiers-etudiants-investir-toulouse"
+   ]
+  },
+  {
+   "slug": "quartiers-chics-nantes-acheter",
+   "category": "quartiers",
+   "priority": 1,
+   "but": "Guider les acheteurs à fort pouvoir d'achat vers les quartiers les plus prestigieux de Nantes, en analysant non seulement les prix mais aussi le cadre de vie, les écoles et les services.",
+   "kw_principal": "quartiers chic nantes",
+   "kw_secondaires": [
+    "quartier bourgeois nantes",
+    "meilleur quartier nantes",
+    "où acheter à nantes pour un cadre de vie exceptionnel",
+    "prix immobilier nantes centre ville",
+    "quartier canclaux mellinet"
+   ],
+   "plan": [
+    "H2: Qu'est ce qui définit un quartier chic à Nantes ?",
+    "H2: Le classement des quartiers les plus prisés pour un achat d'exception",
+    "H3: Centre ville et Guist'hau : l'hyper centre historique",
+    "H3: Canclaux et Mellinet : le charme des hôtels particuliers",
+    "H3: Saint Félix et Saint Pasquier : le calme et la verdure",
+    "H2: Au delà du prix : comment ScoreImmo évalue le standing d'un quartier",
+    "H2: Questions fréquentes sur l'immobilier de prestige à Nantes"
+   ],
+   "geo_eeat": "Asseoir l'autorité en fournissant des données précises sur les prix des biens d'exception (source DVF) et des informations qualitatives sur les établissements scolaires (source : Ministère de l'Éducation) pour chaque quartier.",
+   "maillage": [
+    "meilleurs-quartiers-acheter-nantes",
+    "prix-immobilier-nantes-evolution-previsions",
+    "quartiers-qui-montent-nantes-2026"
+   ]
+  },
+  {
+   "slug": "estimation-cout-travaux-deplombage",
+   "category": "guides",
+   "priority": 1,
+   "but": "Permettre aux acheteurs de biens anciens de chiffrer précisément le coût d'un déplombage pour l'intégrer dans leur budget et leur négociation, transformant un risque en opportunité.",
+   "kw_principal": "estimation coûts travaux déplombage",
+   "kw_secondaires": [
+    "prix m2 déplombage peinture",
+    "comment se passe un déplombage",
+    "diagnostic plomb positif que faire achat",
+    "obligation travaux diagnostic plomb",
+    "négocier prix suite diagnostic plomb"
+   ],
+   "plan": [
+    "H2: Diagnostic plomb positif : pas de panique, voici comment réagir",
+    "H2: Comment estimer le coût de vos travaux de déplombage : la méthode",
+    "H3: Le coût au m² selon la technique utilisée (recouvrement, remplacement)",
+    "H3: Exemples de devis pour un appartement de 50m² et une maison de 120m²",
+    "H2: Le déplombage : un argument solide pour négocier le prix de vente",
+    "H2: Intégrez le coût des travaux dans votre plan de financement global",
+    "H2: Questions fréquentes sur le diagnostic plomb et les travaux"
+   ],
+   "geo_eeat": "Fournir des estimations de coûts basées sur des moyennes nationales (source : Anah, artisans) et souligner l'importance de faire réaliser plusieurs devis, renforçant notre rôle de conseil impartial.",
+   "maillage": [
+    "diagnostic-amiante-plomb-2026-obligations-impact-prix",
+    "dossier-diagnostic-technique-ddt-checklist-acheteur",
+    "financer-travaux-achat-immobilier"
+   ]
+  },
+  {
+   "slug": "erreurs-a-eviter-premier-achat-immobilier",
+   "category": "guides",
+   "priority": 1,
+   "but": "Sécuriser les primo-accédants en listant les pièges les plus courants de l'achat immobilier et en leur donnant des solutions concrètes pour les éviter, positionnant ScoreImmo comme le filet de sécurité.",
+   "kw_principal": "les erreurs à éviter lors de l'achat d'un premier bien immobilier",
+   "kw_secondaires": [
+    "conseils premier achat immobilier",
+    "pièges à éviter achat maison",
+    "que vérifier avant d'acheter un appartement",
+    "erreur primo accédant",
+    "checklist premier achat"
+   ],
+   "plan": [
+    "H2: Erreur 1 : Sous estimer le coût total de l'achat",
+    "H2: Erreur 2 : Négliger l'analyse des diagnostics et des documents de la copropriété",
+    "H2: Erreur 3 : Oublier de faire une contre visite approfondie",
+    "H2: Erreur 4 : Se focaliser sur le bien et pas sur son environnement",
+    "H2: Erreur 5 : Mal définir sa capacité d'emprunt",
+    "H2: La solution ScoreImmo : une analyse complète pour ne rien laisser au hasard",
+    "H2: Questions fréquentes des primo-accédants"
+   ],
+   "geo_eeat": "Rédiger l'article sous le nom de notre expert immobilier principal, en utilisant des exemples concrets et anonymisés issus de cas clients pour illustrer chaque erreur et renforcer l'E-E-A-T.",
+   "maillage": [
+    "premier-achat-immobilier-erreurs-eviter",
+    "compromis-vente-acheteur-guide",
+    "checklist-contre-visite-immobiliere"
+   ]
+  },
+  {
+   "slug": "dpe-classe-d-analyse-achat",
+   "category": "guides",
+   "priority": 2,
+   "but": "Aider les acheteurs à évaluer objectivement un bien classé D, en déterminant s'il s'agit d'un bon compromis ou d'un achat risqué à moyen terme avec le durcissement des normes.",
+   "kw_principal": "classe energie d",
+   "kw_secondaires": [
+    "dpe d est ce bien",
+    "acheter un appartement classe d",
+    "consommation dpe d",
+    "passer de dpe d à c",
+    "avenir des logements classe d"
+   ],
+   "plan": [
+    "H2: DPE classe D : la nouvelle norme du marché ?",
+    "H2: Avantages et inconvénients d'un achat en classe D en 2026",
+    "H2: Quel budget travaux prévoir pour améliorer un DPE D ?",
+    "H2: Classe D : un impact sur la négociation et la future valeur de revente ?",
+    "H2: Comment ScoreImmo analyse le potentiel d'un bien classé D",
+    "H2: Questions fréquentes sur les logements DPE D"
+   ],
+   "geo_eeat": "Utiliser les statistiques de l'ADEME sur la répartition du parc immobilier français pour contextualiser la classe D et fournir des estimations de coûts de rénovation sourcées pour renforcer la crédibilité.",
+   "maillage": [
+    "dpe-comprendre-classes-energetiques",
+    "dpe-classe-c-bon-compromis-achat",
+    "aides-renovation-energetique-2026-acheteur"
+   ]
+  },
+  {
+   "slug": "simuler-mensualites-credit-immobilier-2026",
+   "category": "guides",
+   "priority": 2,
+   "but": "Fournir un outil de simulation de mensualités simple et fiable, permettant aux futurs acheteurs de concrétiser leur projet en évaluant l'impact du prêt sur leur budget mensuel.",
+   "kw_principal": "simuler mensualites de crédit immo",
+   "kw_secondaires": [
+    "calcul mensualité emprunt immobilier",
+    "simulateur prêt immobilier 2026",
+    "tableau amortissement prêt immobilier",
+    "calculer sa mensualité de prêt",
+    "simulation crédit immobilier avec assurance"
+   ],
+   "plan": [
+    "H2: Comment les banques calculent elles votre mensualité en 2026 ?",
+    "H2: Notre outil de simulation pour estimer votre future mensualité",
+    "H2: N'oubliez pas l'assurance emprunteur dans votre calcul",
+    "H2: De la mensualité à la capacité d'emprunt : déterminez votre budget total",
+    "H2: Préparez votre dossier de financement en toute confiance",
+    "H2: Questions fréquentes sur le calcul des mensualités"
+   ],
+   "geo_eeat": "Garantir la confiance en expliquant la formule de calcul utilisée par notre simulateur (sans la cacher) et en citant les taux moyens actuels de sources fiables comme la Banque de France ou l'Observatoire Crédit Logement.",
+   "maillage": [
+    "pret-immobilier-taux-duree-capacite-emprunt",
+    "duree-moyenne-pret-immobilier-2026",
+    "simulation-capacite-emprunt-2026"
+   ]
+  },
+  {
+   "slug": "prix-m2-strasbourg-2026-quartiers",
+   "category": "villes",
+   "priority": 2,
+   "but": "Offrir une vision détaillée et chiffrée des prix au m² à Strasbourg, quartier par quartier, pour permettre aux acheteurs de cibler leurs recherches en fonction de leur budget et de leurs attentes.",
+   "kw_principal": "prix m2 appartement strasbourg 2026",
+   "kw_secondaires": [
+    "prix immobilier strasbourg par quartier",
+    "évolution prix m2 strasbourg",
+    "carte prix immobilier strasbourg",
+    "acheter à strasbourg en 2026",
+    "prix m2 krutenau neudorf"
+   ],
+   "plan": [
+    "H2: Le marché immobilier strasbourgeois en 2026 : quelle tendance ?",
+    "H2: La carte des prix au m² à Strasbourg : notre analyse par quartier",
+    "H3: Les valeurs sûres : Centre, Orangerie, Contades",
+    "H3: Les quartiers qui montent : Neudorf, Krutenau, Port du Rhin",
+    "H3: Les secteurs plus accessibles : Neuhof, Cronenbourg",
+    "H2: Comment ScoreImmo affine l'estimation de prix pour un bien précis",
+    "H2: Questions fréquentes sur les prix de l'immobilier à Strasbourg"
+   ],
+   "geo_eeat": "Viser le featured snippet en présentant un tableau comparatif des prix par quartier, sourcé avec les données DVF et analysé par nos experts pour une information à forte valeur ajoutée locale.",
+   "maillage": [
+    "prix-immobilier-strasbourg-marche-frontalier",
+    "meilleurs-quartiers-acheter-strasbourg",
+    "ou-habiter-strasbourg-famille"
+   ]
+  },
+  {
+   "slug": "evolution-prix-immobilier-bordeaux-2026",
+   "category": "villes",
+   "priority": 2,
+   "but": "Aider les acheteurs à prendre une décision éclairée sur le marché bordelais en analysant l'évolution passée des prix et en fournissant des perspectives argumentées pour 2026.",
+   "kw_principal": "évolution prix immobilier bordeaux 2025 2026",
+   "kw_secondaires": [
+    "tendance prix immobilier bordeaux",
+    "faut il acheter à bordeaux en 2026",
+    "prix m2 bordeaux 2026",
+    "baisse prix immobilier bordeaux",
+    "marché immobilier bordeaux"
+   ],
+   "plan": [
+    "H2: Le marché bordelais post flambée : analyse d'une stabilisation",
+    "H2: Évolution des prix sur 5 ans : ce que les chiffres nous disent",
+    "H2: Nos prévisions pour 2026 : vers une baisse ou une reprise ?",
+    "H2: Acheter à Bordeaux maintenant : opportunités et points de vigilance",
+    "H2: Analysez la juste valeur d'un bien à Bordeaux avec nos données",
+    "H2: Questions fréquentes sur l'évolution des prix à Bordeaux"
+   ],
+   "geo_eeat": "Asseoir notre autorité en basant notre analyse sur des graphiques d'évolution des prix issus des données des Notaires de France et de l'INSEE, commentés par notre spécialiste du marché du Sud-Ouest.",
+   "maillage": [
+    "prix-immobilier-bordeaux-quartiers-tendances",
+    "meilleurs-quartiers-acheter-bordeaux",
+    "bordeaux-rive-droite-immobilier"
+   ]
+  },
+  {
+   "slug": "methode-analyse-immobiliere-scoreimmo",
+   "category": "guides",
+   "priority": 2,
+   "but": "Renforcer la confiance des utilisateurs en expliquant de manière transparente comment ScoreImmo analyse un bien, en mettant l'accent sur la fiabilité des 13 sources de données officielles utilisées.",
+   "kw_principal": "immobilier analyse",
+   "kw_secondaires": [
+    "comment analyser un bien immobilier avant d'acheter",
+    "critères d'analyse immobilière",
+    "analyse de marché immobilier",
+    "outil d'analyse immobilière",
+    "analyse de données immobilières"
+   ],
+   "plan": [
+    "H2: Pourquoi une analyse factuelle est indispensable avant tout achat",
+    "H2: Notre méthode : 13 sources de données officielles au service de votre décision",
+    "H3: Analyse du prix : la puissance des données DVF",
+    "H3: Analyse des risques : urbanisme, pollution, inondations",
+    "H3: Analyse de l'environnement : transports, écoles, commerces",
+    "H2: Le rapport ScoreImmo : votre synthèse de confiance en un clic",
+    "H2: Questions fréquentes sur notre méthode d'analyse"
+   ],
+   "geo_eeat": "Démontrer notre transparence et notre expertise en listant explicitement nos 13 sources de données (DVF, INSEE, Cadastre, Géorisques, etc.) et en expliquant la valeur ajoutée de chacune pour l'acheteur.",
+   "maillage": [
+    "score-scoreimmo-methode-evaluation",
+    "benchmark-immobilier-comparer-biens",
+    "donnees-dvf-utiliser-prix-vente-reels"
+   ]
+  },
+  {
+   "slug": "acheter-passoire-thermique-dpe-g-2026",
+   "category": "guides",
+   "priority": 1,
+   "but": "Transformer la perception des passoires thermiques de 'piège' à 'opportunité' pour l'acheteur averti, en expliquant les contraintes réglementaires, le potentiel de négociation et les aides à la rénovation.",
+   "kw_principal": "acheter dpe g",
+   "kw_secondaires": [
+    "acheter une passoire thermique en 2026",
+    "interdiction location dpe g",
+    "négocier un bien dpe g",
+    "travaux pour sortir de la classe g",
+    "rentabilité achat passoire thermique"
+   ],
+   "plan": [
+    "H2: DPE G en 2026 : ce que la loi change pour un acheteur",
+    "H2: La décote à l'achat : quel pourcentage de négociation obtenir pour un DPE G ?",
+    "H2: Le budget travaux pour passer de G à D : estimations et aides disponibles",
+    "H2: Le calcul de rentabilité : quand est ce une bonne affaire ?",
+    "H2: Notre outil d'analyse pour évaluer le potentiel d'une passoire thermique",
+    "H2: Questions fréquentes sur l'achat d'un bien classé G"
+   ],
+   "geo_eeat": "Apporter des réponses chiffrées et sourcées (textes de loi, montants MaPrimeRénov' 2026) pour guider l'acheteur, et asseoir notre crédibilité en tant qu'expert de la rénovation énergétique post-achat.",
+   "maillage": [
+    "dpe-comprendre-classes-energetiques",
+    "acheter-bien-classe-dpe-f-2026",
+    "aides-renovation-energetique-2026-acheteur"
+   ]
+  },
+  {
+   "slug": "travaux-renovation-energetique-dpe-f-d",
+   "category": "guides",
+   "priority": 2,
+   "but": "Fournir un plan d'action clair et chiffré aux acheteurs d'un bien classé F pour atteindre la classe D, en détaillant les travaux prioritaires, les coûts et les aides financières.",
+   "kw_principal": "améliorer dpe f",
+   "kw_secondaires": [
+    "passer de dpe f à d",
+    "quels travaux pour améliorer dpe",
+    "coût rénovation énergétique dpe f",
+    "aide pour travaux passoire thermique",
+    "audit énergétique obligatoire dpe f"
+   ],
+   "plan": [
+    "H2: Pourquoi passer de la classe F à D est un objectif stratégique pour un acheteur",
+    "H2: Le plan de travaux étape par étape pour gagner deux classes énergétiques",
+    "H3: Priorité 1 : L'isolation (combles, murs, fenêtres)",
+    "H3: Priorité 2 : Le système de chauffage et de ventilation",
+    "H2: Budget et aides : combien coûtent réellement ces travaux en 2026 ?",
+    "H2: Utilisez le DPE projeté pour valider votre plan avant l'achat",
+    "H2: Questions fréquentes sur la rénovation d'un DPE F"
+   ],
+   "geo_eeat": "Renforcer l'E-E-A-T en s'appuyant sur les recommandations de l'ADEME et les grilles tarifaires des aides de l'Anah, et en structurant l'article comme un guide pratique rédigé par un expert en rénovation.",
+   "maillage": [
+    "acheter-bien-classe-dpe-f-2026",
+    "dpe-projete-negocier-passoire-thermique",
+    "aides-renovation-energetique-2026-acheteur"
+   ]
+  },
+  {
+   "slug": "tendances-immobilier-2026-villes",
+   "category": "villes",
+   "priority": 2,
+   "but": "Offrir une vue d'ensemble du marché immobilier français en 2026, en analysant les tendances de prix et d'attractivité des principales métropoles pour aider les acheteurs à orienter leur projet.",
+   "kw_principal": "marché immobilier appartements 2026 tendances prix par ville française",
+   "kw_secondaires": [
+    "tendances immobilières 2026",
+    "évolution prix immobilier grandes villes france",
+    "où investir en france en 2026",
+    "marché immobilier 2026 analyse",
+    "prévisions immobilières 2026"
+   ],
+   "plan": [
+    "H2: Le marché immobilier national en 2026 : les grandes tendances",
+    "H2: Le baromètre des grandes villes : notre analyse comparative",
+    "H3: Les marchés en hausse ou résilients",
+    "H3: Les marchés en correction ou stabilisés",
+    "H2: L'impact du DPE et des taux sur les dynamiques locales",
+    "H2: Affinez votre recherche avec nos analyses détaillées par ville",
+    "H2: Questions fréquentes sur les tendances du marché immobilier"
+   ],
+   "geo_eeat": "Synthétiser les données des Notaires de France et de l'INSEE dans un format visuel (carte de France, tableau) pour une lecture rapide et impactante, se positionnant comme une source de référence nationale.",
+   "maillage": [
+    "previsions-prix-immobilier-paris-2026",
+    "marche-immobilier-toulouse-2026",
+    "evolution-prix-immobilier-bordeaux-2026"
+   ]
+  },
+  {
+   "slug": "simulation-capacite-emprunt-2026",
+   "category": "guides",
+   "priority": 2,
+   "but": "Permettre à chaque acheteur de calculer précisément et de manière fiable son budget d'achat réel, en intégrant tous les paramètres pris en compte par les banques (revenus, charges, taux d'endettement).",
+   "kw_principal": "simulation capacite emprunt 2025",
+   "kw_secondaires": [
+    "calculer sa capacité d'emprunt 2026",
+    "simulateur budget achat immobilier",
+    "combien puis je emprunter",
+    "capacité d'achat immobilier",
+    "calculer son reste à vivre pour un prêt"
+   ],
+   "plan": [
+    "H2: La capacité d'emprunt : la première étape cruciale de votre projet",
+    "H2: Notre simulateur pour calculer votre budget d'achat réel en 2 minutes",
+    "H2: Les éléments clés du calcul : revenus, charges et le fameux taux d'endettement",
+    "H2: Comment optimiser votre capacité d'emprunt avant de consulter les banques",
+    "H2: Une fois votre budget connu, analysez les biens qui vous correspondent",
+    "H2: Questions fréquentes sur le calcul de la capacité d'emprunt"
+   ],
+   "geo_eeat": "Asseoir la confiance en expliquant clairement les règles du HCSF (Haut Conseil de Stabilité Financière) sur le taux d'endettement, montrant que notre outil est basé sur les mêmes critères que les banques.",
+   "maillage": [
+    "calcul-taux-endettement-2026",
+    "apport-personnel-pret-immobilier-2026",
+    "simuler-mensualites-credit-immobilier-2026"
+   ]
+  },
+  {
+   "slug": "evolution-prix-immobilier-nantes-10-ans",
+   "category": "villes",
+   "priority": 2,
+   "but": "Donner aux acheteurs une perspective historique sur le marché nantais pour mieux comprendre les dynamiques actuelles et évaluer le potentiel de plus-value à long terme de leur investissement.",
+   "kw_principal": "evolution prix immobilier nantes sur 10 ans",
+   "kw_secondaires": [
+    "graphique prix immobilier nantes 10 ans",
+    "historique prix m2 nantes",
+    "analyse marché immobilier nantes",
+    "prévision prix immobilier nantes 2026",
+    "faut il acheter à nantes"
+   ],
+   "plan": [
+    "H2: Nantes : 10 ans de hausse, analyse d'un marché dynamique",
+    "H2: L'évolution des prix quartier par quartier sur la dernière décennie",
+    "H2: Les facteurs de cette attractivité (économie, cadre de vie, transports)",
+    "H2: Quelles perspectives pour les 5 prochaines années à Nantes ?",
+    "H2: Évaluez le juste prix d'un bien nantais grâce à notre analyse de données",
+    "H2: Questions fréquentes sur l'immobilier à Nantes"
+   ],
+   "geo_eeat": "Démontrer une analyse de fond en présentant un graphique d'évolution des prix sourcé par les Notaires et l'INSEE, et en le commentant avec une expertise locale sur les projets d'urbanisme passés et futurs.",
+   "maillage": [
+    "prix-immobilier-nantes-evolution-previsions",
+    "meilleurs-quartiers-acheter-nantes",
+    "quartiers-chics-nantes-acheter"
+   ]
+  },
+  {
+   "slug": "acheter-bien-dpe-vierge-risques",
+   "category": "guides",
+   "priority": 3,
+   "but": "Alerter les acheteurs sur les risques importants liés à un DPE vierge et leur fournir une procédure claire pour se protéger et exiger un DPE valide avant de s'engager.",
+   "kw_principal": "dpe vierge achat",
+   "kw_secondaires": [
+    "acheter maison dpe non requis",
+    "conséquence dpe vierge pour l'acheteur",
+    "peut on vendre sans dpe",
+    "comment obtenir un dpe valide",
+    "dpe vierge copropriété"
+   ],
+   "plan": [
+    "H2: DPE vierge : qu'est ce que ça signifie et est ce encore légal ?",
+    "H2: Les risques pour l'acheteur : de la mauvaise surprise sur les charges à la passoire thermique cachée",
+    "H2: La marche à suivre : comment exiger un DPE conforme avant le compromis",
+    "H2: Un DPE vierge est il un motif de négociation ?",
+    "H2: Ne prenez aucun risque : notre analyse intègre toujours un DPE valide",
+    "H2: Questions fréquentes sur le DPE vierge"
+   ],
+   "geo_eeat": "Adopter un ton d'expert juridique en citant les textes de loi qui rendent le DPE obligatoire pour la vente et en expliquant les recours possibles pour l'acheteur, renforçant notre rôle de protecteur.",
+   "maillage": [
+    "dpe-comprendre-classes-energetiques",
+    "dossier-diagnostic-technique-ddt-checklist-acheteur",
+    "compromis-vente-acheteur-guide"
+   ]
+  },
+  {
+   "slug": "diagnostic-electricite-points-controle-achat",
+   "category": "guides",
+   "priority": 2,
+   "but": "Permettre à un acheteur non-expert de comprendre un diagnostic électrique, d'identifier les anomalies réellement dangereuses et de chiffrer le coût d'une mise en sécurité.",
+   "kw_principal": "anomalies diagnostic électrique achat",
+   "kw_secondaires": [
+    "lire un diagnostic électrique",
+    "anomalie b1 diagnostic électricité",
+    "coût mise en conformité électrique",
+    "diagnostic électrique obligatoire vente",
+    "points de contrôle installation électrique"
+   ],
+   "plan": [
+    "H2: Comment lire et comprendre votre diagnostic électrique sans être électricien",
+    "H2: Les 11 points de contrôle et les anomalies à ne jamais ignorer",
+    "H3: Anomalies graves nécessitant une action immédiate (groupe B1)",
+    "H3: Anomalies à corriger pour votre confort et sécurité",
+    "H2: Comment estimer le coût d'une mise en sécurité électrique ?",
+    "H2: Utilisez les anomalies du diagnostic pour négocier le prix de vente",
+    "H2: Questions fréquentes sur le diagnostic électricité"
+   ],
+   "geo_eeat": "Apporter une forte crédibilité technique en expliquant la norme NF C 16-600 qui régit le diagnostic et en fournissant des fourchettes de prix pour les travaux (sources : artisans, sites spécialisés).",
+   "maillage": [
+    "dossier-diagnostic-technique-ddt-checklist-acheteur",
+    "financer-travaux-achat-immobilier",
+    "negocier-prix-bien-immobilier-guide-complet"
+   ]
+  },
+  {
+   "slug": "vices-caches-immobilier-protection-recours",
+   "category": "guides",
+   "priority": 3,
+   "but": "Informer les acheteurs sur leurs droits en matière de vices cachés, en expliquant comment les détecter avant l'achat, comment se protéger juridiquement et quels sont les recours possibles après la vente.",
+   "kw_principal": "recours vices cachés immobilier",
+   "kw_secondaires": [
+    "définition vice caché immobilier",
+    "comment prouver un vice caché",
+    "délai pour agir en garantie des vices cachés",
+    "exemple de vice caché maison",
+    "clause d'exonération de la garantie des vices cachés"
+   ],
+   "plan": [
+    "H2: Qu'est ce qu'un vice caché en immobilier ? Définition et exemples concrets",
+    "H2: Comment vous protéger contre les vices cachés avant de signer",
+    "H2: Vous avez découvert un vice caché après l'achat : quelle est la procédure ?",
+    "H3: L'expertise et la tentative de résolution à l'amiable",
+    "H3: L'action en justice : annulation de la vente ou diminution du prix",
+    "H2: Le rapport ScoreImmo, un premier niveau de détection des risques",
+    "H2: Questions fréquentes sur les vices cachés"
+   ],
+   "geo_eeat": "Adopter un angle juridique précis en citant les articles du Code civil (1641 et suivants) et en décrivant les étapes d'une procédure, ce qui positionne ScoreImmo comme un acteur sérieux et protecteur.",
+   "maillage": [
+    "compromis-vente-acheteur-guide",
+    "checklist-contre-visite-immobiliere",
+    "role-notaire-achat-immobilier"
+   ]
+  },
+  {
+   "slug": "apport-personnel-pret-immobilier-2026",
+   "category": "guides",
+   "priority": 2,
+   "but": "Clarifier pour les acheteurs le montant d'apport personnel réellement nécessaire en 2026 pour obtenir un prêt, en expliquant ce qu'il doit couvrir et comment un apport plus important peut améliorer les conditions du crédit.",
+   "kw_principal": "apport minimum prêt immobilier 2026",
+   "kw_secondaires": [
+    "quel apport pour acheter en 2026",
+    "prêt immobilier sans apport est ce possible",
+    "calcul apport personnel achat immobilier",
+    "10 pourcent apport obligatoire",
+    "à quoi sert l'apport personnel"
+   ],
+   "plan": [
+    "H2: L'apport personnel en 2026 : pourquoi les banques sont elles plus exigeantes ?",
+    "H2: L'apport minimum de 10% : mythe ou réalité ? Ce qu'il doit couvrir",
+    "H2: Comment un apport supérieur à 10% devient un levier de négociation",
+    "H2: Pas ou peu d'apport ? Les solutions qui existent encore",
+    "H2: Simulez votre plan de financement complet avec ou sans apport",
+    "H2: Questions fréquentes sur l'apport personnel"
+   ],
+   "geo_eeat": "Baser l'argumentaire sur les recommandations du HCSF et les pratiques actuelles des banques, en citant des exemples chiffrés pour montrer l'impact de l'apport sur le taux d'intérêt et le coût total du crédit.",
+   "maillage": [
+    "simulation-capacite-emprunt-2026",
+    "frais-notaire-calcul-simulation-astuces",
+    "ptz-2026-simulation-conditions-eligibilite"
+   ]
+  },
+  {
+   "slug": "analyser-pv-ag-copropriete-avant-achat",
+   "category": "guides",
+   "priority": 2,
+   "but": "Donner aux acheteurs d'appartements une méthode et une checklist pour décrypter les PV d'AG, afin de déceler les futurs gros travaux, les conflits de voisinage et l'état financier réel de la copropriété.",
+   "kw_principal": "lire procès verbal ag copropriété",
+   "kw_secondaires": [
+    "analyser les 3 derniers pv d'ag",
+    "que regarder dans les pv d'ag avant d'acheter",
+    "travaux votés en ag qui paie",
+    "comprendre les comptes d'une copropriété",
+    "pièges à éviter en copropriété"
+   ],
+   "plan": [
+    "H2: Les PV d'AG : la mine d'or d'informations que vous devez absolument lire",
+    "H2: Notre checklist en 7 points pour analyser les 3 derniers PV d'AG",
+    "H3: Repérer les travaux votés ou à venir (ravalement, toiture, ascenseur)",
+    "H3: Vérifier la santé financière de la copropriété (impayés, fonds travaux)",
+    "H3: Détecter les éventuels conflits et procédures en cours",
+    "H2: Comment ScoreImmo vous alerte sur les risques liés à la copropriété",
+    "H2: Questions fréquentes sur l'analyse des documents de copropriété"
+   ],
+   "geo_eeat": "Fournir une checklist téléchargeable pour la visite, un signal d'expertise pratique qui renforce l'utilité du contenu et la confiance dans notre méthodologie d'analyse rigoureuse.",
+   "maillage": [
+    "copropriete-charges-pieges-detecter-achat",
+    "analyser-budget-previsionnel-copropriete",
+    "fonds-de-travaux-loi-alur-acheteur"
+   ]
+  },
+  {
+   "slug": "frais-agence-immobiliere-negocier",
+   "category": "guides",
+   "priority": 3,
+   "but": "Expliquer clairement à l'acheteur comment sont calculés les frais d'agence, qui les paie réellement, et lui donner des arguments concrets pour tenter de les négocier à son avantage.",
+   "kw_principal": "négocier frais d'agence acheteur",
+   "kw_secondaires": [
+    "qui paie les frais d'agence immobilière",
+    "pourcentage frais d'agence 2026",
+    "comment baisser les frais d'agence",
+    "frais d'agence à la charge de l'acquéreur",
+    "est il possible de négocier les honoraires d'une agence"
+   ],
+   "plan": [
+    "H2: Frais d'agence : qui paie quoi et comment sont ils calculés ?",
+    "H2: Acheteur : même si vous ne les payez pas directement, vous pouvez les négocier",
+    "H2: 3 arguments pour tenter de faire baisser les honoraires de l'agence",
+    "H2: La différence entre frais charge vendeur et charge acquéreur (et l'impact sur les frais de notaire)",
+    "H2: Calculez le coût total de votre acquisition, frais inclus",
+    "H2: Questions fréquentes sur les frais d'agence"
+   ],
+   "geo_eeat": "Clarifier un point souvent confus pour les acheteurs en s'appuyant sur la loi Hoguet et les pratiques de marché, et en fournissant des exemples chiffrés pour illustrer l'impact sur le coût global.",
+   "maillage": [
+    "cout-total-achat-immobilier",
+    "negocier-prix-bien-immobilier-guide-complet",
+    "frais-notaire-calcul-simulation-astuces"
+   ]
+  },
+  {
+   "slug": "delai-retractation-10-jours-achat-immobilier",
+   "category": "guides",
+   "priority": 3,
+   "but": "Expliquer précisément à l'acheteur comment fonctionne le délai de rétractation SRU de 10 jours, quand il commence, et comment l'utiliser formellement pour se retirer d'une vente sans pénalité.",
+   "kw_principal": "délai de rétractation compromis de vente",
+   "kw_secondaires": [
+    "loi sru 10 jours",
+    "comment se rétracter après signature compromis",
+    "calcul délai de rétractation 10 jours",
+    "lettre de rétractation achat immobilier",
+    "se rétracter après une offre d'achat"
+   ],
+   "plan": [
+    "H2: Le délai de rétractation de 10 jours : votre droit absolu après la signature",
+    "H2: Quand commence et quand se termine précisément ce délai ? Le calcul expliqué",
+    "H2: Comment exercer votre droit de rétractation dans les règles (lettre recommandée)",
+    "H2: Se rétracter : quelles conséquences pour vous et pour le vendeur ?",
+    "H2: Utilisez ce délai pour faire une analyse approfondie avec ScoreImmo",
+    "H2: Questions fréquentes sur le délai de rétractation"
+   ],
+   "geo_eeat": "Fournir une information juridique fiable en citant l'article L. 271-1 du Code de la construction et de l'habitation et en proposant un modèle de lettre de rétractation, ce qui renforce notre image de conseil de confiance.",
+   "maillage": [
+    "compromis-vente-acheteur-guide",
+    "offre-achat-immobilier-modele-conseils-strategie",
+    "conditions-suspensives-compromis-vente"
+   ]
+  },
+  {
+   "slug": "ou-habiter-strasbourg-famille",
+   "category": "quartiers",
+   "priority": 2,
+   "but": "Guider les familles dans leur recherche de logement à Strasbourg en leur présentant une sélection de quartiers qui répondent à leurs critères spécifiques : écoles, parcs, sécurité et accessibilité.",
+   "kw_principal": "meilleur quartier famille strasbourg",
+   "kw_secondaires": [
+    "où habiter à strasbourg avec des enfants",
+    "quartier calme strasbourg",
+    "vivre à strasbourg en famille avis",
+    "écoles maternelles et primaires strasbourg",
+    "acheter maison avec jardin strasbourg"
+   ],
+   "plan": [
+    "H2: Acheter à Strasbourg en famille : les critères à privilégier",
+    "H2: Notre sélection des meilleurs quartiers strasbourgeois pour les familles",
+    "H3: Robertsau et Pourtalès : pour la verdure et les écoles réputées",
+    "H3: Orangerie et Contades : pour le prestige et la proximité du centre",
+    "H3: Neudorf : pour le dynamisme et le bon rapport qualité prix",
+    "H2: Comment ScoreImmo analyse la qualité de l'environnement scolaire et des espaces verts",
+    "H2: Questions fréquentes des familles qui s'installent à Strasbourg"
+   ],
+   "geo_eeat": "Démontrer une expertise locale en intégrant des données sur la carte scolaire (source : Académie de Strasbourg) et la localisation des parcs et aires de jeux (source : Ville de Strasbourg) pour chaque quartier.",
+   "maillage": [
+    "prix-m2-strasbourg-2026-quartiers",
+    "meilleurs-quartiers-acheter-strasbourg",
+    "micro-quartiers-strasbourg-achat-authentique"
+   ]
+  },
+  {
+   "slug": "investir-marseille-2026-arrondissements",
+   "category": "villes",
+   "priority": 2,
+   "but": "Orienter les investisseurs vers les arrondissements marseillais les plus prometteurs en 2026, en analysant le potentiel de rentabilité locative, la demande et les projets de développement urbain.",
+   "kw_principal": "investissement locatif marseille 2026",
+   "kw_secondaires": [
+    "où investir à marseille",
+    "arrondissement marseille qui monte",
+    "rentabilité locative marseille par arrondissement",
+    "acheter pour louer à marseille",
+    "marché immobilier marseille 2026"
+   ],
+   "plan": [
+    "H2: Marseille : une métropole au fort potentiel pour les investisseurs en 2026",
+    "H2: Notre analyse des arrondissements où investir",
+    "H3: Les valeurs sûres pour un investissement patrimonial (6e, 7e, 8e)",
+    "H3: Les secteurs à fort potentiel de plus value (1er, 2e, 4e, 5e)",
+    "H3: Les zones de développement et de grands projets (Euroméditerranée)",
+    "H2: Calculez la rentabilité potentielle de votre investissement avec nos données",
+    "H2: Questions fréquentes sur l'investissement locatif à Marseille"
+   ],
+   "geo_eeat": "Fournir une analyse prospective basée sur les données du projet Euroméditerranée et les plans d'urbanisme de la métropole, démontrant une vision stratégique du marché local et pas seulement une analyse des prix actuels.",
+   "maillage": [
+    "prix-immobilier-marseille-arrondissements-perspectives",
+    "meilleurs-quartiers-acheter-marseille",
+    "investissement-locatif-rentabilite-fiscalite-villes"
+   ]
+  },
+  {
+   "slug": "ptz-2026-simulation-conditions-eligibilite",
+   "category": "guides",
+   "priority": 2,
+   "but": "Permettre aux primo-accédants de vérifier rapidement leur éligibilité au Prêt à Taux Zéro 2026 et de simuler le montant auquel ils ont droit, transformant ce dispositif complexe en un levier concret pour leur achat.",
+   "kw_principal": "conditions ptz 2026",
+   "kw_secondaires": [
+    "suis je éligible au ptz 2026",
+    "plafond de ressources ptz 2026",
+    "simulation prêt à taux zéro",
+    "montant ptz 2026 par zone",
+    "ptz dans l'ancien avec travaux"
+   ],
+   "plan": [
+    "H2: Le Prêt à Taux Zéro 2026 : un coup de pouce majeur pour votre premier achat",
+    "H2: Les conditions d'éligibilité expliquées simplement (ressources, zone, type de bien)",
+    "H2: Simulez en 1 minute le montant du PTZ auquel vous avez droit",
+    "H2: Comment intégrer le PTZ dans votre plan de financement global",
+    "H2: Préparez votre dossier pour maximiser vos chances de l'obtenir",
+    "H2: Questions fréquentes sur le PTZ"
+   ],
+   "geo_eeat": "Offrir un outil de simulation fiable basé sur les barèmes officiels du gouvernement (source : service-public.fr), et présenter les informations par zone géographique (A, B1, B2, C) pour une réponse personnalisée.",
+   "maillage": [
+    "ptz-2026-conditions-montant-beneficiaires",
+    "premier-achat-immobilier-erreurs-eviter",
+    "apport-personnel-pret-immobilier-2026"
+   ]
+  },
+  {
+   "slug": "role-notaire-achat-immobilier",
+   "category": "guides",
+   "priority": 3,
+   "but": "Démystifier le rôle du notaire pour l'acheteur, en expliquant que sa mission va bien au-delà de la signature et qu'il est un garant essentiel de la sécurité juridique de la transaction.",
+   "kw_principal": "que vérifie le notaire avant une vente",
+   "kw_secondaires": [
+    "rôle du notaire pour l'acheteur",
+    "à quoi sert un notaire dans une vente immobilière",
+    "vérifications obligatoires du notaire",
+    "choisir son propre notaire acheteur",
+    "responsabilité du notaire"
+   ],
+   "plan": [
+    "H2: Le notaire : votre allié sécurité pour votre achat immobilier",
+    "H2: Les 7 vérifications cruciales que le notaire effectue pour vous protéger",
+    "H3: Vérification de la propriété du vendeur et de l'origine du bien",
+    "H3: Vérification des règles d'urbanisme et des servitudes",
+    "H3: Vérification de la situation hypothécaire du bien",
+    "H2: Pourquoi il est recommandé de prendre votre propre notaire",
+    "H2: Questions fréquentes sur le rôle du notaire"
+   ],
+   "geo_eeat": "Renforcer la confiance en expliquant le rôle d'officier public du notaire et en détaillant ses obligations légales, se positionnant comme un guide fiable sur les aspects juridiques de l'achat.",
+   "maillage": [
+    "compromis-vente-acheteur-guide",
+    "frais-notaire-calcul-simulation-astuces",
+    "droit-de-preemption-urbain-mairie"
+   ]
+  },
+  {
+   "slug": "acheter-logement-deja-loue",
+   "category": "guides",
+   "priority": 3,
+   "but": "Guider les acheteurs (investisseurs ou futurs occupants) sur les spécificités de l'achat d'un bien déjà loué, en détaillant les avantages, les contraintes et les vérifications indispensables à effectuer.",
+   "kw_principal": "acheter appartement avec locataire en place",
+   "kw_secondaires": [
+    "acheter un bien loué pour y habiter",
+    "donner congé au locataire pour reprise",
+    "avantages d'acheter un bien déjà loué",
+    "vérifier le bail avant d'acheter",
+    "rentabilité d'un bien vendu occupé"
+   ],
+   "plan": [
+    "H2: Acheter loué : bonne affaire pour investisseur ou casse tête pour futur occupant ?",
+    "H2: Les avantages : pas de vacance locative, rentabilité immédiate",
+    "H2: Les inconvénients et précautions : le bail, le locataire, le congé pour reprise",
+    "H2: La checklist des documents à exiger du vendeur (bail, quittances, etc.)",
+    "H2: Comment analyser la rentabilité d'un bien vendu occupé",
+    "H2: Questions fréquentes sur l'achat d'un logement loué"
+   ],
+   "geo_eeat": "Fournir des conseils juridiques précis sur les conditions de congé pour reprise (loi du 6 juillet 1989), en expliquant les délais et les formalismes pour sécuriser l'acheteur qui souhaite occuper le bien.",
+   "maillage": [
+    "investissement-locatif-rentabilite-fiscalite-villes",
+    "garantie-loyer-impaye-gli-investissement-locatif",
+    "compromis-vente-acheteur-guide"
+   ]
+  },
+  {
+   "slug": "diagnostic-termites-obligatoire-interpreter",
+   "category": "guides",
+   "priority": 3,
+   "but": "Informer les acheteurs sur le diagnostic termites, en expliquant dans quelles zones il est obligatoire, comment interpréter ses conclusions et quelle attitude adopter en cas de présence de termites.",
+   "kw_principal": "diagnostic termites obligatoire",
+   "kw_secondaires": [
+    "carte des zones infestées par les termites",
+    "validité diagnostic termites",
+    "présence de termites que faire achat",
+    "coût traitement anti termites",
+    "lire un rapport de diagnostic termites"
+   ],
+   "plan": [
+    "H2: Le diagnostic termites est il obligatoire pour votre achat ?",
+    "H2: Comment interpréter les conclusions du diagnostiqueur",
+    "H2: Présence de termites détectée : 3 scénarios pour l'acheteur",
+    "H3: Le vendeur prend en charge le traitement avant la vente",
+    "H3: Vous négociez le prix pour financer le traitement",
+    "H3: Vous renoncez à l'achat",
+    "H2: Intégrez le risque termites dans votre analyse globale du bien",
+    "H2: Questions fréquentes sur le diagnostic termites"
+   ],
+   "geo_eeat": "Apporter une information géographique précise en intégrant la carte officielle des zones soumises à arrêté préfectoral (source : observatoire-termites.fr), pour une réponse directe et fiable.",
+   "maillage": [
+    "dossier-diagnostic-technique-ddt-checklist-acheteur",
+    "vices-caches-immobilier-protection-recours",
+    "negocier-prix-bien-immobilier-guide-complet"
+   ]
+  },
+  {
+   "slug": "calcul-plus-value-immobiliere-revente",
+   "category": "guides",
+   "priority": 3,
+   "but": "Permettre aux acheteurs d'anticiper l'impôt sur la plus-value lors d'une future revente (hors résidence principale), en expliquant la méthode de calcul, les abattements et les cas d'exonération.",
+   "kw_principal": "calcul plus value immobilière",
+   "kw_secondaires": [
+    "simulateur plus value immobilière",
+    "abattement pour durée de détention",
+    "exonération plus value résidence principale",
+    "comment ne pas payer de plus value immobilière",
+    "fiscalité vente investissement locatif"
+   ],
+   "plan": [
+    "H2: Penser à la revente dès l'achat : une stratégie d'acheteur avisé",
+    "H2: Comment est calculée l'imposition sur la plus value immobilière ?",
+    "H2: Les abattements pour durée de détention expliqués (impôt et prélèvements sociaux)",
+    "H2: Les principaux cas d'exonération à connaître",
+    "H2: Simulez votre potentielle plus value avant même d'acheter",
+    "H2: Questions fréquentes sur la fiscalité de la plus value"
+   ],
+   "geo_eeat": "Garantir l'exactitude des informations en se basant sur les règles fiscales en vigueur (source : impots.gouv.fr) et en fournissant des exemples de calcul clairs pour différents scénarios de détention.",
+   "maillage": [
+    "investissement-locatif-rentabilite-fiscalite-villes",
+    "acheter-residence-principale-sci-analyse",
+    "cout-total-achat-immobilier"
+   ]
+  },
+  {
+   "slug": "quartiers-investir-paris-2026",
+   "category": "quartiers",
+   "priority": 2,
+   "but": "Révéler aux acheteurs et investisseurs les quartiers parisiens qui offrent le meilleur potentiel de valorisation en 2026, en se basant sur les projets urbains, l'évolution des prix et les nouvelles dynamiques.",
+   "kw_principal": "quartier parisien qui monte",
+   "kw_secondaires": [
+    "où investir à paris en 2026",
+    "quartier d'avenir grand paris",
+    "pépite immobilier paris",
+    "acheter à paris petit budget",
+    "évolution prix immobilier paris par arrondissement"
+   ],
+   "plan": [
+    "H2: Investir à Paris en 2026 : où trouver encore du potentiel ?",
+    "H2: Notre sélection des quartiers parisiens en pleine transformation",
+    "H3: L'Est parisien (19e, 20e) : la gentrification continue",
+    "H3: Les quartiers des futures gares du Grand Paris Express (13e, 14e, 15e)",
+    "H3: Le Nord (18e) : des micro quartiers qui se réinventent",
+    "H2: Comment ScoreImmo détecte le potentiel de valorisation d'une adresse",
+    "H2: Questions fréquentes sur l'investissement à Paris"
+   ],
+   "geo_eeat": "Démontrer une expertise pointue en analysant l'impact des projets du Grand Paris Express (source : Société du Grand Paris) sur la valeur immobilière des quartiers concernés, offrant une vision d'avenir.",
+   "maillage": [
+    "previsions-prix-immobilier-paris-2026",
+    "prix-immobilier-paris-marche-plancher",
+    "impact-transports-en-commun-prix-immobilier"
+   ]
+  },
+  {
+   "slug": "calcul-taux-endettement-2026",
+   "category": "guides",
+   "priority": 2,
+   "but": "Expliquer aux futurs emprunteurs comment les banques calculent précisément leur taux d'endettement, en détaillant les revenus et charges pris en compte, pour leur permettre de préparer au mieux leur dossier de prêt.",
+   "kw_principal": "calcul taux d'endettement 2026",
+   "kw_secondaires": [
+    "taux d'endettement maximum 35%",
+    "comment calculer son taux d'endettement pour un prêt immobilier",
+    "simulateur taux d'endettement",
+    "charges prises en compte dans le taux d'endettement",
+    "règle hcsf prêt immobilier"
+   ],
+   "plan": [
+    "H2: Le taux d'endettement : la règle d'or des banques pour vous accorder un prêt",
+    "H2: La méthode de calcul exacte : revenus et charges à prendre en compte",
+    "H2: La règle des 35% : est elle stricte ? Quelles sont les dérogations ?",
+    "H2: Comment optimiser votre dossier en réduisant votre taux d'endettement",
+    "H2: Validez votre projet en calculant votre capacité d'emprunt réelle",
+    "H2: Questions fréquentes sur le taux d'endettement"
+   ],
+   "geo_eeat": "Asseoir notre autorité en expliquant clairement les directives du HCSF (Haut Conseil de Stabilité Financière), montrant que nos conseils et outils sont alignés sur les exigences réglementaires des banques.",
+   "maillage": [
+    "simulation-capacite-emprunt-2026",
+    "simuler-mensualites-credit-immobilier-2026",
+    "obtenir-meilleur-taux-pret-immobilier-2026"
+   ]
+  },
+  {
+   "slug": "consulter-comprendre-plu-achat-immobilier",
+   "category": "guides",
+   "priority": 3,
+   "but": "Apprendre aux acheteurs (surtout de maisons ou terrains) à consulter et interpréter le Plan Local d'Urbanisme (PLU) pour vérifier la constructibilité, les futures évolutions du quartier et les contraintes applicables au bien.",
+   "kw_principal": "consulter plu avant achat",
+   "kw_secondaires": [
+    "comment lire un plan local d'urbanisme",
+    "savoir ce qui va se construire près de chez soi",
+    "vérifier les règles d'urbanisme avant d'acheter",
+    "où trouver le plu d'une commune",
+    "certificat d'urbanisme pré opérationnel"
+   ],
+   "plan": [
+    "H2: Le PLU : le document qui vous révèle l'avenir de votre quartier",
+    "H2: Où et comment consulter le PLU de la commune qui vous intéresse",
+    "H2: Les 4 informations clés à vérifier dans le PLU avant d'acheter",
+    "H3: Le zonage (zone U, AU, N, A) et ce qu'il implique",
+    "H3: Les projets d'aménagement prévus à proximité (OAP)",
+    "H3: Les règles de construction et d'extension pour votre parcelle",
+    "H2: Comment ScoreImmo intègre les données d'urbanisme dans son analyse",
+    "H2: Questions fréquentes sur le PLU"
+   ],
+   "geo_eeat": "Fournir un guide pratique en expliquant comment accéder aux PLU via le Géoportail de l'Urbanisme, une source officielle et fiable, et en décodant le jargon technique pour le rendre accessible à tous.",
+   "maillage": [
+    "terrain-constructible-plu-permis-pieges-cadastre",
+    "role-notaire-achat-immobilier",
+    "lire-plan-cadastral-achat"
+   ]
+  },
+  {
+   "slug": "acheter-residence-principale-sci-analyse",
+   "category": "guides",
+   "priority": 3,
+   "but": "Démontrer aux acheteurs pourquoi l'achat de leur résidence principale via une SCI est souvent une fausse bonne idée, en analysant les inconvénients fiscaux et les contraintes de gestion par rapport à un achat en nom propre.",
+   "kw_principal": "acheter sa résidence principale en sci",
+   "kw_secondaires": [
+    "inconvénients sci résidence principale",
+    "sci familiale pour résidence principale",
+    "perte des aides à l'accession en sci",
+    "fiscalité sci résidence principale",
+    "achat en nom propre ou sci"
+   ],
+   "plan": [
+    "H2: La SCI pour sa résidence principale : une idée séduisante mais souvent inadaptée",
+    "H2: Les inconvénients majeurs à connaître avant de vous lancer",
+    "H3: L'impossibilité de bénéficier du PTZ et d'autres aides",
+    "H3: Une fiscalité complexe et potentiellement pénalisante",
+    "H3: Des contraintes administratives et juridiques lourdes",
+    "H2: Dans quels cas très spécifiques la SCI peut elle être envisagée ?",
+    "H2: Analysez d'abord le bien, puis le mode de détention",
+    "H2: Questions fréquentes sur la SCI et la résidence principale"
+   ],
+   "geo_eeat": "Adopter un angle de conseil patrimonial et fiscal, en expliquant des notions comme l'imposition des plus-values professionnelles ou la perte de l'abattement sur la résidence principale, pour asseoir une expertise de haut niveau.",
+   "maillage": [
+    "acheter-seul-deux-pacs-indivision-sci",
+    "acheter-indivision-regles-eviter-conflits",
+    "ptz-2026-simulation-conditions-eligibilite"
+   ]
+  },
+  {
+   "slug": "diagnostic-gaz-achat-immobilier",
+   "category": "guides",
+   "priority": 3,
+   "but": "Aider les acheteurs à comprendre l'importance du diagnostic gaz, à identifier les anomalies critiques (DGI) et à évaluer les implications en termes de sécurité et de coût de mise en conformité.",
+   "kw_principal": "diagnostic gaz obligatoire vente",
+   "kw_secondaires": [
+    "anomalie a2 diagnostic gaz",
+    "danger grave immédiat dgi gaz",
+    "validité diagnostic gaz",
+    "que vérifier sur une installation au gaz",
+    "coût mise aux normes installation gaz"
+   ],
+   "plan": [
+    "H2: Le diagnostic gaz : un enjeu de sécurité majeur pour votre futur logement",
+    "H2: Comment lire le rapport et comprendre les différents types d'anomalies (A1, A2, DGI)",
+    "H2: Anomalie DGI (Danger Grave Immédiat) : que se passe t il et qui paie les travaux ?",
+    "H2: Comment estimer le coût des travaux de mise en conformité ?",
+    "H2: Le diagnostic gaz, un point de vigilance dans notre analyse de risques",
+    "H2: Questions fréquentes sur le diagnostic gaz"
+   ],
+   "geo_eeat": "Renforcer la crédibilité en se référant à la norme NF P 45-500 qui encadre le diagnostic et en expliquant clairement la procédure de coupure de l'alimentation en cas de DGI, montrant notre focus sur la sécurité de l'acheteur.",
+   "maillage": [
+    "dossier-diagnostic-technique-ddt-checklist-acheteur",
+    "diagnostic-electricite-points-controle-achat",
+    "negocier-prix-bien-immobilier-guide-complet"
+   ]
+  },
+  {
+   "slug": "dpe-classe-e-travaux-strategie",
+   "category": "guides",
+   "priority": 2,
+   "but": "Fournir une stratégie claire aux acheteurs d'un bien classé E, en détaillant les obligations légales à venir, le plan de travaux pour atteindre la classe D et comment utiliser cet état de fait pour négocier.",
+   "kw_principal": "acheter dpe e",
+   "kw_secondaires": [
+    "interdiction location dpe e 2034",
+    "travaux pour passer de dpe e à d",
+    "valeur d'un bien classé e",
+    "faut il acheter un appartement dpe e",
+    "audit énergétique obligatoire vente dpe e"
+   ],
+   "plan": [
+    "H2: DPE classe E : l'échéance de 2034 doit elle vous faire peur ?",
+    "H2: Acheter un bien classé E : une opportunité de négociation aujourd'hui",
+    "H2: Le plan de travaux prioritaire pour passer en classe D (ou mieux)",
+    "H2: Quel budget et quelles aides pour la rénovation d'un logement E ?",
+    "H2: Analysez le potentiel réel d'un bien DPE E avec notre rapport",
+    "H2: Questions fréquentes sur les logements classés E"
+   ],
+   "geo_eeat": "Apporter une vision prospective en expliquant les échéances de la loi Climat et Résilience, et en fournissant des données chiffrées sur les coûts des travaux (source ADEME), positionnant ScoreImmo comme un outil d'aide à la décision stratégique.",
+   "maillage": [
+    "dpe-comprendre-classes-energetiques",
+    "travaux-renovation-energetique-dpe-f-d",
+    "aides-renovation-energetique-2026-acheteur"
+   ]
+  },
+  {
+   "slug": "dpe-classe-c-bon-compromis-achat",
+   "category": "guides",
+   "priority": 2,
+   "but": "Rassurer les acheteurs sur la pertinence d'un bien classé C, en le présentant comme le standard de confort et de maîtrise des charges pour les années à venir, et un gage de bonne valeur patrimoniale.",
+   "kw_principal": "dpe c est il bien",
+   "kw_secondaires": [
+    "acheter un appartement dpe c",
+    "consommation dpe c",
+    "valeur d'un bien classé c",
+    "comment atteindre la classe c",
+    "dpe c avantages"
+   ],
+   "plan": [
+    "H2: DPE classe C : le nouveau standard de performance pour un achat serein",
+    "H2: Les avantages concrets d'un logement classé C (charges, confort, valeur)",
+    "H2: Un DPE C est il une garantie contre de futurs travaux ?",
+    "H2: Comment un bien classé C se valorise t il sur le marché ?",
+    "H2: Vérifiez que tous les autres indicateurs du bien sont aussi bons que son DPE",
+    "H2: Questions fréquentes sur les logements DPE C"
+   ],
+   "geo_eeat": "Utiliser les données des Notaires sur la 'valeur verte' pour démontrer de manière chiffrée comment une bonne étiquette énergétique (comme la classe C) impacte positivement le prix de vente, renforçant l'argumentaire.",
+   "maillage": [
+    "dpe-comprendre-classes-energetiques",
+    "dpe-classe-d-analyse-achat",
+    "cout-total-achat-immobilier"
+   ]
+  },
+  {
+   "slug": "contester-dpe-incorrect",
+   "category": "guides",
+   "priority": 3,
+   "but": "Guider un acheteur qui doute de la fiabilité du DPE fourni par le vendeur, en lui expliquant les motifs de contestation valables et la procédure à suivre pour obtenir un diagnostic correct.",
+   "kw_principal": "contester un dpe",
+   "kw_secondaires": [
+    "dpe erroné que faire",
+    "responsabilité du diagnostiqueur dpe",
+    "comment faire refaire un dpe",
+    "recours en cas de mauvais dpe",
+    "fiabilité des diagnostics immobiliers"
+   ],
+   "plan": [
+    "H2: Le DPE de votre futur bien vous semble fantaisiste ? Vous avez des recours",
+    "H2: Les motifs valables pour contester un DPE (erreurs de méthode, factures ignorées)",
+    "H2: La procédure à suivre pour une contestation efficace",
+    "H3: Étape 1 : Le dialogue avec le vendeur et le diagnostiqueur",
+    "H3: Étape 2 : La contre expertise à vos frais",
+    "H3: Étape 3 : Le recours juridique si nécessaire",
+    "H2: Un DPE fiable est la base de notre analyse, ne l'oubliez pas",
+    "H2: Questions fréquentes sur la contestation de DPE"
+   ],
+   "geo_eeat": "Adopter une posture d'expert en expliquant la notion de DPE opposable et les responsabilités légales du vendeur et du diagnostiqueur, citant des cas de jurisprudence pour illustrer les possibilités de recours.",
+   "maillage": [
+    "dpe-comprendre-classes-energetiques",
+    "fiabilite-dpe-collectif-appartement",
+    "vices-caches-immobilier-protection-recours"
+   ]
+  },
+  {
+   "slug": "dossier-diagnostic-technique-ddt-checklist-acheteur",
+   "category": "guides",
+   "priority": 2,
+   "but": "Fournir à l'acheteur une checklist complète et simple à utiliser de tous les diagnostics obligatoires du DDT, pour lui permettre de vérifier qu'aucun document ne manque et de savoir quoi regarder dans chacun.",
+   "kw_principal": "liste diagnostics obligatoires vente maison",
+   "kw_secondaires": [
+    "quels sont les diagnostics obligatoires pour vendre un appartement",
+    "dossier de diagnostic technique contenu",
+    "validité des diagnostics immobiliers",
+    "checklist diagnostics avant achat",
+    "comprendre le ddt"
+   ],
+   "plan": [
+    "H2: Le Dossier de Diagnostic Technique (DDT) : votre bouclier d'informations",
+    "H2: La checklist complète des diagnostics à exiger du vendeur",
+    "H3: Les diagnostics systématiques (DPE, ERP)",
+    "H3: Les diagnostics conditionnels (amiante, plomb, électricité, gaz, termites...)",
+    "H2: Pour chaque diagnostic : ce que vous devez vérifier en priorité",
+    "H2: Comment ScoreImmo synthétise les points d'alerte de tous vos diagnostics",
+    "H2: Questions fréquentes sur le DDT"
+   ],
+   "geo_eeat": "Structurer l'article sous forme de checklist claire et visuelle (potentiellement téléchargeable), en précisant la durée de validité de chaque diagnostic selon les textes réglementaires pour une information fiable et pratique.",
+   "maillage": [
+    "diagnostic-electricite-points-controle-achat",
+    "diagnostic-amiante-plomb-2026-obligations-impact-prix",
+    "diagnostic-termites-obligatoire-interpreter"
+   ]
+  },
+  {
+   "slug": "meilleurs-quartiers-etudiants-investir-toulouse",
+   "category": "quartiers",
+   "priority": 2,
+   "but": "Orienter les investisseurs vers les quartiers toulousains les plus stratégiques pour l'investissement locatif étudiant, en analysant la proximité des campus, les transports et la demande locative.",
+   "kw_principal": "investissement locatif étudiant toulouse",
+   "kw_secondaires": [
+    "meilleur quartier étudiant toulouse",
+    "acheter studio toulouse pour louer",
+    "rentabilité locative toulouse",
+    "quartier rangueil toulouse",
+    "marché locatif étudiant toulouse"
+   ],
+   "plan": [
+    "H2: Toulouse, ville étudiante : une valeur sûre pour l'investissement locatif",
+    "H2: Notre analyse des meilleurs quartiers où acheter pour louer à un étudiant",
+    "H3: Rangueil et Saint Michel : au coeur des campus scientifiques et de médecine",
+    "H3: Saint Cyprien et Patte d'Oie : pour la vie de quartier et la proximité du centre",
+    "H3: Les Chalets et Compans Caffarelli : pour les étudiants des écoles de commerce",
+    "H2: Calculez la rentabilité de votre projet avec des données de loyers fiables",
+    "H2: Questions fréquentes sur l'investissement étudiant à Toulouse"
+   ],
+   "geo_eeat": "Démontrer une connaissance fine du terrain en cartographiant les universités et grandes écoles (source : Académie de Toulouse) et en les superposant avec le réseau de transport Tisséo pour justifier la pertinence de chaque quartier.",
+   "maillage": [
+    "marche-immobilier-toulouse-2026",
+    "meilleurs-quartiers-acheter-toulouse",
+    "investissement-locatif-rentabilite-fiscalite-villes"
+   ]
+  },
+  {
+   "slug": "pret-relais-acheter-avant-vendre",
+   "category": "guides",
+   "priority": 3,
+   "but": "Expliquer de manière simple le fonctionnement du prêt relais aux propriétaires qui souhaitent acheter un nouveau bien avant d'avoir vendu l'actuel, en détaillant les avantages, les risques et les coûts.",
+   "kw_principal": "fonctionnement prêt relais",
+   "kw_secondaires": [
+    "prêt relais sec ou adossé",
+    "calcul coût prêt relais",
+    "risques du prêt relais",
+    "durée maximale prêt relais",
+    "alternative au prêt relais"
+   ],
+   "plan": [
+    "H2: Acheter avant de vendre : le prêt relais est il la solution miracle ?",
+    "H2: Comment fonctionne un prêt relais ? Le mécanisme expliqué",
+    "H2: Les avantages : pas de location intermédiaire, pas de précipitation pour vendre",
+    "H2: Les risques à ne pas sous estimer : si votre bien ne se vend pas...",
+    "H2: Combien coûte un prêt relais ? Exemple de calcul",
+    "H2: Évaluez la faisabilité de votre projet avant de vous engager",
+    "H2: Questions fréquentes sur le prêt relais"
+   ],
+   "geo_eeat": "Adopter un ton de conseiller financier prudent, en insistant sur l'importance d'une estimation réaliste du bien à vendre (citant la fiabilité des données DVF) pour minimiser les risques, renforçant la confiance.",
+   "maillage": [
+    "pret-immobilier-taux-duree-capacite-emprunt",
+    "simulation-capacite-emprunt-2026",
+    "estimation-immobiliere-methodes-juste-prix"
+   ]
+  },
+  {
+   "slug": "etude-de-sol-g1-obligatoire-achat-terrain",
+   "category": "guides",
+   "priority": 3,
+   "but": "Informer les acheteurs de terrains en zone argileuse sur l'obligation de fournir une étude de sol G1, en expliquant son utilité pour prévenir les risques de fissures et son impact sur le projet de construction.",
+   "kw_principal": "étude de sol obligatoire vente terrain",
+   "kw_secondaires": [
+    "loi elan étude de sol",
+    "carte exposition retrait gonflement des argiles",
+    "prix étude de sol g1",
+    "que contient une étude de sol",
+    "acheter un terrain sans étude de sol"
+   ],
+   "plan": [
+    "H2: L'étude de sol G1 : une obligation pour sécuriser l'achat de votre terrain",
+    "H2: Comment savoir si votre terrain est concerné par cette obligation ?",
+    "H2: Que vous apprend une étude de sol sur les risques et les fondations à prévoir ?",
+    "H2: Qui doit la fournir et à quel moment de la vente ?",
+    "H2: L'étude de sol, une information cruciale intégrée à notre analyse de risques",
+    "H2: Questions fréquentes sur l'étude de sol"
+   ],
+   "geo_eeat": "Fournir une information pratique et fiable en renvoyant vers le site Géorisques pour que l'utilisateur puisse vérifier lui-même l'exposition de sa parcelle au risque de retrait-gonflement des argiles.",
+   "maillage": [
+    "terrain-constructible-plu-permis-pieges-cadastre",
+    "diagnostic-etat-risques-pollutions-erp",
+    "cout-total-achat-immobilier"
+   ]
+  },
+  {
+   "slug": "acheter-vefa-pieges-a-eviter",
+   "category": "guides",
+   "priority": 3,
+   "but": "Alerter les acheteurs en VEFA sur les pièges les plus courants (retards, malfaçons, clauses abusives) et leur donner les clés pour sécuriser leur achat sur plan, de la réservation à la livraison.",
+   "kw_principal": "pièges achat vefa",
+   "kw_secondaires": [
+    "acheter sur plan inconvénients",
+    "vérifications avant de signer un contrat de réservation vefa",
+    "retard de livraison vefa recours",
+    "garanties vefa",
+    "visite de livraison vefa"
+   ],
+   "plan": [
+    "H2: La VEFA : un rêve qui peut tourner au cauchemar si vous n'êtes pas préparé",
+    "H2: Les 7 pièges à déjouer avant et pendant votre achat sur plan",
+    "H3: Piège 1 : La notice descriptive imprécise",
+    "H3: Piège 2 : Les retards de livraison et les pénalités insuffisantes",
+    "H3: Piège 3 : Les réserves à la livraison non prises en compte",
+    "H2: Les garanties légales qui vous protègent (parfait achèvement, décennale)",
+    "H2: Questions fréquentes sur l'achat en VEFA"
+   ],
+   "geo_eeat": "Asseoir l'expertise en détaillant les garanties légales (GFA, garantie de parfait achèvement, etc.) et en conseillant de se faire assister par un expert lors de la visite de livraison, positionnant ScoreImmo comme un coach protecteur.",
+   "maillage": [
+    "frais-notaire-reduits-immobilier-neuf",
+    "garantie-decennale-immobilier-couverture-recours-dedales",
+    "assurance-dommages-ouvrage-acheteur"
+   ]
+  },
+  {
+   "slug": "bordeaux-rive-droite-immobilier",
+   "category": "quartiers",
+   "priority": 2,
+   "but": "Présenter la rive droite de Bordeaux (Bastide, Floirac, Cenon) comme une alternative d'avenir pour les acheteurs, en analysant son potentiel de développement, ses prix plus accessibles et sa qualité de vie.",
+   "kw_principal": "acheter rive droite bordeaux",
+   "kw_secondaires": [
+    "quartier la bastide bordeaux avis",
+    "prix immobilier bordeaux bastide",
+    "vivre à floirac haut",
+    "projet rive droite bordeaux",
+    "meilleur quartier rive droite bordeaux"
+   ],
+   "plan": [
+    "H2: La Rive Droite : le nouveau visage de l'immobilier bordelais ?",
+    "H2: Analyse des quartiers de la Rive Droite où il fait bon acheter",
+    "H3: La Bastide : le charme et la proximité du centre",
+    "H3: Floirac et Cenon : des opportunités à saisir avec l'arrivée des projets urbains",
+    "H2: L'impact du pont Simone Veil et des aménagements sur les futurs prix",
+    "H2: Comparez le potentiel d'un bien Rive Droite avec notre outil d'analyse",
+    "H2: Questions fréquentes sur l'immobilier de la Rive Droite"
+   ],
+   "geo_eeat": "Démontrer une vision prospective en basant l'analyse sur les documents officiels de Bordeaux Métropole concernant les projets d'aménagement de la rive droite, pour une information à forte valeur ajoutée.",
+   "maillage": [
+    "evolution-prix-immobilier-bordeaux-2026",
+    "prix-immobilier-bordeaux-quartiers-tendances",
+    "meilleurs-quartiers-acheter-bordeaux"
+   ]
+  },
+  {
+   "slug": "dpe-projete-negocier-passoire-thermique",
+   "category": "guides",
+   "priority": 2,
+   "but": "Expliquer aux acheteurs de passoires thermiques comment utiliser le DPE projeté comme un outil objectif pour chiffrer les travaux nécessaires et justifier une offre de prix à la baisse.",
+   "kw_principal": "dpe projeté",
+   "kw_secondaires": [
+    "audit énergétique réglementaire",
+    "comment faire un dpe projeté",
+    "dpe après travaux",
+    "utiliser l'audit énergétique pour négocier",
+    "coût dpe projeté"
+   ],
+   "plan": [
+    "H2: Le DPE projeté : votre meilleur argument pour négocier une passoire thermique",
+    "H2: Quelle est la différence entre un DPE classique, un audit et un DPE projeté ?",
+    "H2: Comment obtenir un DPE projeté et que contient il ?",
+    "H2: La méthode pour utiliser le chiffrage des travaux dans votre négociation",
+    "H2: Intégrez le coût des travaux à votre plan de financement global",
+    "H2: Questions fréquentes sur le DPE projeté et l'audit énergétique"
+   ],
+   "geo_eeat": "Clarifier la distinction entre DPE, audit énergétique et DPE projeté en se référant aux définitions réglementaires, et fournir une méthodologie de négociation basée sur des chiffres concrets, renforçant notre image d'outil d'aide à la décision.",
+   "maillage": [
+    "acheter-passoire-thermique-dpe-g-2026",
+    "travaux-renovation-energetique-dpe-f-d",
+    "negocier-prix-bien-immobilier-guide-complet"
+   ]
+  },
+  {
+   "slug": "diagnostic-assainissement-non-collectif-achat",
+   "category": "guides",
+   "priority": 3,
+   "but": "Guider les acheteurs de maisons non raccordées au tout-à-l'égout, en leur expliquant comment interpréter le diagnostic d'assainissement, les obligations de travaux et les coûts associés.",
+   "kw_principal": "diagnostic assainissement non collectif",
+   "kw_secondaires": [
+    "diagnostic assainissement non conforme obligation travaux",
+    "délai pour mise en conformité assainissement après vente",
+    "qui paie les travaux d'assainissement",
+    "coût d'une fosse septique aux normes",
+    "contrôle spanc"
+   ],
+   "plan": [
+    "H2: Acheter une maison avec fosse septique : le diagnostic à ne pas négliger",
+    "H2: Comment lire le rapport du SPANC et comprendre ses conclusions",
+    "H2: Diagnostic non conforme : vous avez un an pour faire les travaux",
+    "H2: Quel budget prévoir pour une mise aux normes ? (fosse, micro station)",
+    "H2: La non conformité : un levier de négociation à ne pas oublier",
+    "H2: Questions fréquentes sur l'assainissement non collectif"
+   ],
+   "geo_eeat": "Fournir des informations réglementaires précises sur l'obligation de travaux dans l'année qui suit la vente et des fourchettes de coûts réalistes (sourcées auprès d'artisans), pour aider l'acheteur à budgétiser et négocier.",
+   "maillage": [
+    "dossier-diagnostic-technique-ddt-checklist-acheteur",
+    "financer-travaux-achat-immobilier",
+    "acheter-maison-piscine-points-controle"
+   ]
+  },
+  {
+   "slug": "aides-renovation-energetique-2026-acheteur",
+   "category": "guides",
+   "priority": 2,
+   "but": "Présenter un panorama clair et à jour des aides financières (MaPrimeRénov', éco-PTZ, CEE) accessibles aux nouveaux propriétaires pour financer la rénovation énergétique de leur bien.",
+   "kw_principal": "aides rénovation énergétique primo accédant 2026",
+   "kw_secondaires": [
+    "maprimerenov 2026 conditions",
+    "aide achat et rénovation passoire thermique",
+    "cumul maprimerenov et éco ptz",
+    "certificats d'économie d'énergie (cee)",
+    "aide anah nouveau propriétaire"
+   ],
+   "plan": [
+    "H2: Acheter et rénover : le guide complet des aides financières en 2026",
+    "H2: MaPrimeRénov' : pour qui, pour quels travaux et pour quel montant ?",
+    "H2: L'éco prêt à taux zéro (éco PTZ) pour financer le reste à charge",
+    "H2: Les autres dispositifs à ne pas oublier (CEE, TVA à 5,5%, aides locales)",
+    "H2: Comment monter votre dossier de demande d'aides ?",
+    "H2: Anticipez vos travaux et leur financement avant même d'acheter",
+    "H2: Questions fréquentes sur les aides à la rénovation"
+   ],
+   "geo_eeat": "Garantir la fiabilité de l'information en se basant exclusivement sur les barèmes et conditions des sites gouvernementaux (France Rénov', ADEME, ANIL) et en les présentant de manière synthétique et compréhensible.",
+   "maillage": [
+    "renovation-energetique-maprimerenov-2026-aides-rentabilite",
+    "travaux-renovation-energetique-dpe-f-d",
+    "acheter-passoire-thermique-dpe-g-2026"
+   ]
+  },
+  {
+   "slug": "analyser-budget-previsionnel-copropriete",
+   "category": "guides",
+   "priority": 2,
+   "but": "Apprendre aux futurs copropriétaires à analyser le budget prévisionnel pour anticiper le montant réel de leurs futures charges et déceler d'éventuelles anomalies ou augmentations à venir.",
+   "kw_principal": "analyser charges de copropriété avant achat",
+   "kw_secondaires": [
+    "comprendre le budget prévisionnel d'une copropriété",
+    "charges de copropriété élevées que faire",
+    "détail des charges de copropriété",
+    "comment sont votées les charges de copropriété",
+    "anticiper l'augmentation des charges"
+   ],
+   "plan": [
+    "H2: Les charges de copropriété : le deuxième loyer que vous devez anticiper",
+    "H2: Comment lire et décrypter un budget prévisionnel de copropriété",
+    "H2: Les postes de dépenses à examiner à la loupe (chauffage, ascenseur, gardien)",
+    "H2: Comment repérer une mauvaise gestion ou des charges anormalement élevées",
+    "H2: Le rapport ScoreImmo, votre aide pour comparer les charges avec des biens similaires",
+    "H2: Questions fréquentes sur le budget de copropriété"
+   ],
+   "geo_eeat": "Proposer une méthodologie d'analyse rigoureuse en expliquant la structure comptable d'une copropriété et en fournissant des ratios de charges moyennes au m² (source : associations de copropriétaires) pour permettre la comparaison.",
+   "maillage": [
+    "copropriete-charges-pieges-detecter-achat",
+    "analyser-pv-ag-copropriete-avant-achat",
+    "fonds-de-travaux-loi-alur-acheteur"
+   ]
+  },
+  {
+   "slug": "garantie-loyer-impaye-gli-investissement-locatif",
+   "category": "guides",
+   "priority": 3,
+   "but": "Expliquer aux investisseurs locatifs le fonctionnement de la Garantie Loyer Impayé (GLI), son coût, sa couverture et ses conditions, pour leur permettre de sécuriser leur investissement.",
+   "kw_principal": "garantie loyer impayé",
+   "kw_secondaires": [
+    "comment fonctionne la gli",
+    "prix assurance loyer impayé",
+    "conditions de souscription gli",
+    "meilleure garantie loyer impayé",
+    "gli ou caution"
+   ],
+   "plan": [
+    "H2: La GLI : l'assurance indispensable pour sécuriser votre investissement locatif",
+    "H2: Que couvre exactement une Garantie Loyer Impayé ?",
+    "H2: Quelles sont les conditions d'éligibilité pour votre locataire ?",
+    "H2: Combien coûte une GLI et est ce déductible de vos revenus fonciers ?",
+    "H2: Anticipez la gestion locative de votre futur bien dès la phase d'achat",
+    "H2: Questions fréquentes sur la GLI"
+   ],
+   "geo_eeat": "Adopter un ton de conseil en investissement, en comparant la GLI avec d'autres solutions comme la caution ou la garantie Visale, et en expliquant les avantages fiscaux, pour un contenu à forte valeur ajoutée.",
+   "maillage": [
+    "investissement-locatif-rentabilite-fiscalite-villes",
+    "acheter-logement-deja-loue",
+    "dispositif-denormandie-2026-renover-l-ancien-defiscaliser"
+   ]
+  },
+  {
+   "slug": "acheter-indivision-regles-eviter-conflits",
+   "category": "guides",
+   "priority": 3,
+   "but": "Alerter les couples non mariés, les amis ou les fratries sur les risques de l'indivision et leur donner les règles d'or (convention d'indivision, répartition des quotes-parts) pour un achat sécurisé.",
+   "kw_principal": "acheter en indivision",
+   "kw_secondaires": [
+    "inconvénients de l'indivision",
+    "convention d'indivision obligatoire",
+    "sortir de l'indivision",
+    "acheter en couple non marié",
+    "quote part indivision"
+   ],
+   "plan": [
+    "H2: L'indivision : la solution par défaut, mais est ce la bonne pour vous ?",
+    "H2: Les risques majeurs de l'indivision : blocage, mésentente, revente forcée",
+    "H2: Les 3 règles d'or pour un achat en indivision sans conflit",
+    "H3: Règle 1 : Rédiger une convention d'indivision chez le notaire",
+    "H3: Règle 2 : Définir des quotes parts fidèles à l'apport de chacun",
+    "H3: Règle 3 : Anticiper les scénarios de sortie (séparation, décès)",
+    "H2: Comparez l'indivision avec d'autres statuts comme la SCI",
+    "H2: Questions fréquentes sur l'achat en indivision"
+   ],
+   "geo_eeat": "Apporter une expertise juridique en collaboration avec un notaire partenaire pour expliquer les termes de la convention d'indivision et les implications de l'article 815 du Code civil ('nul ne peut être contraint à demeurer dans l'indivision').",
+   "maillage": [
+    "acheter-seul-deux-pacs-indivision-sci",
+    "acheter-residence-principale-sci-analyse",
+    "role-notaire-achat-immobilier"
+   ]
+  },
+  {
+   "slug": "droit-de-preemption-urbain-mairie",
+   "category": "guides",
+   "priority": 3,
+   "but": "Expliquer à l'acheteur ce qu'est le droit de préemption urbain (DPU), comment savoir si un bien est concerné, et quelles sont les conséquences si la mairie décide de l'exercer.",
+   "kw_principal": "droit de préemption urbain",
+   "kw_secondaires": [
+    "la mairie peut elle préempter mon achat",
+    "délai de réponse dpu",
+    "conséquences d'une préemption",
+    "comment savoir si un bien est en zone de préemption",
+    "purge du droit de préemption"
+   ],
+   "plan": [
+    "H2: Le droit de préemption : la mairie peut elle 'voler' le bien que vous voulez acheter ?",
+    "H2: Comment savoir si le logement est situé dans une zone de préemption ?",
+    "H2: La procédure : comment le notaire informe la mairie (la DIA)",
+    "H2: Que se passe t il si la mairie décide de préempter ?",
+    "H2: Le DPU est une des vérifications juridiques clés de notre analyse",
+    "H2: Questions fréquentes sur le droit de préemption"
+   ],
+   "geo_eeat": "Démystifier un processus souvent anxiogène pour les acheteurs en expliquant clairement la procédure de la Déclaration d'Intention d'Aliéner (DIA) et les délais légaux de réponse de la mairie, se basant sur le Code de l'urbanisme.",
+   "maillage": [
+    "role-notaire-achat-immobilier",
+    "consulter-comprendre-plu-achat-immobilier",
+    "compromis-vente-acheteur-guide"
+   ]
+  },
+  {
+   "slug": "diagnostic-merules-risques-achat",
+   "category": "guides",
+   "priority": 3,
+   "but": "Informer les acheteurs sur le risque mérule, en expliquant où ce champignon se développe, les signes qui doivent alerter et les conséquences d'une infestation pour le bâti et le portefeuille.",
+   "kw_principal": "diagnostic mérules obligatoire",
+   "kw_secondaires": [
+    "carte zones à risque mérule",
+    "comment reconnaître la mérule",
+    "coût traitement mérule",
+    "mérule vice caché",
+    "diagnostic mérule non obligatoire mais recommandé"
+   ],
+   "plan": [
+    "H2: La mérule : le champignon dévastateur que tout acheteur doit redouter",
+    "H2: Le diagnostic est il obligatoire dans votre zone d'achat ?",
+    "H2: Les signes qui doivent vous alerter pendant la visite (humidité, odeur, bois déformé)",
+    "H2: Les conséquences d'une infestation : un coût de traitement exorbitant",
+    "H2: Comment vous protéger même en l'absence de diagnostic obligatoire",
+    "H2: Questions fréquentes sur le risque mérule"
+   ],
+   "geo_eeat": "Intégrer la carte des zones à risque mérule (définies par arrêté préfectoral) pour une information géographique précise et fiable, et conseiller des mesures de précaution concrètes lors de la visite.",
+   "maillage": [
+    "dossier-diagnostic-technique-ddt-checklist-acheteur",
+    "vices-caches-immobilier-protection-recours",
+    "checklist-contre-visite-immobiliere"
+   ]
+  },
+  {
+   "slug": "marche-immobilier-luxe-paris-2026",
+   "category": "villes",
+   "priority": 3,
+   "but": "Fournir une analyse pointue du marché immobilier de luxe parisien aux acheteurs et investisseurs haut de gamme, en décryptant les tendances de prix, les quartiers les plus recherchés et les types de biens d'exception.",
+   "kw_principal": "immobilier de luxe paris 2026",
+   "kw_secondaires": [
+    "marché immobilier haut de gamme paris",
+    "prix m2 appartement haussmannien paris",
+    "acheter un hôtel particulier à paris",
+    "quartiers les plus chers de paris",
+    "tendance marché immobilier de prestige"
+   ],
+   "plan": [
+    "H2: Le marché du luxe parisien en 2026 : un segment à part",
+    "H2: Analyse des prix et des tendances dans le Triangle d'Or, le Marais et Saint Germain des Prés",
+    "H2: Quel type de bien d'exception a la cote (terrasses, vues, appartements familiaux) ?",
+    "H2: L'impact de la clientèle internationale sur le marché",
+    "H2: L'analyse de biens d'exception requiert des données spécifiques",
+    "H2: Questions fréquentes sur l'immobilier de luxe à Paris"
+   ],
+   "geo_eeat": "Démontrer une expertise sur ce marché de niche en citant des données de réseaux spécialisés (ex: Barnes, Daniel Féau) et en analysant des segments spécifiques comme les appartements avec terrasse ou les derniers étages, pour un contenu à forte valeur ajoutée.",
+   "maillage": [
+    "previsions-prix-immobilier-paris-2026",
+    "prix-immobilier-paris-marche-plancher",
+    "quartiers-investir-paris-2026"
+   ]
+  },
+  {
+   "slug": "frais-notaire-reduits-immobilier-neuf",
+   "category": "guides",
+   "priority": 3,
+   "but": "Expliquer aux acheteurs de biens neufs (VEFA) le mécanisme des 'frais de notaire' réduits, en détaillant ce qui compose ces frais et pourquoi ils sont moins élevés que dans l'ancien.",
+   "kw_principal": "frais de notaire dans le neuf",
+   "kw_secondaires": [
+    "calcul frais de notaire vefa",
+    "pourcentage frais de notaire neuf",
+    "pourquoi les frais de notaire sont réduits dans le neuf",
+    "taxe de publicité foncière neuf",
+    "frais acquisition immobilier neuf"
+   ],
+   "plan": [
+    "H2: Acheter dans le neuf : l'avantage des frais de notaire réduits",
+    "H2: De quoi sont composés ces frais et pourquoi sont ils plus bas ?",
+    "H2: Le calcul : 2 à 3% dans le neuf contre 7 à 8% dans l'ancien",
+    "H2: Quand un bien est il considéré comme 'neuf' pour les frais de notaire ?",
+    "H2: Simulez le coût total de votre achat dans le neuf, frais inclus",
+    "H2: Questions fréquentes sur les frais de notaire réduits"
+   ],
+   "geo_eeat": "Apporter une information chiffrée précise en décomposant les frais (émoluments, débours, taxes) et en expliquant la différence sur le taux de la taxe de publicité foncière, source de l'économie réalisée.",
+   "maillage": [
+    "acheter-vefa-pieges-a-eviter",
+    "frais-notaire-calcul-simulation-astuces",
+    "cout-total-achat-immobilier"
+   ]
+  },
+  {
+   "slug": "checklist-contre-visite-immobiliere",
+   "category": "guides",
+   "priority": 2,
+   "but": "Armer l'acheteur pour sa contre-visite en lui fournissant une checklist exhaustive et pratique des points à vérifier (techniques, administratifs, environnementaux) pour prendre sa décision finale en toute confiance.",
+   "kw_principal": "que vérifier lors d'une contre visite",
+   "kw_secondaires": [
+    "checklist contre visite appartement",
+    "questions à poser lors d'une contre visite",
+    "comment bien préparer une contre visite",
+    "points à vérifier avant d'acheter une maison",
+    "contre visite avec un artisan"
+   ],
+   "plan": [
+    "H2: La contre visite : votre dernière chance de tout vérifier avant de faire une offre",
+    "H2: Notre checklist ultime pour une contre visite efficace",
+    "H3: Les points techniques à inspecter (murs, sols, plafonds, fenêtres, électricité, plomberie)",
+    "H3: Les vérifications dans les parties communes (cave, parking, toiture, façade)",
+    "H3: L'analyse de l'environnement à différents moments de la journée",
+    "H2: Utilisez les défauts constatés comme base de négociation",
+    "H2: Questions fréquentes sur la contre visite"
+   ],
+   "geo_eeat": "Proposer une checklist téléchargeable et imprimable, un outil pratique qui ancre notre expertise dans le réel et accompagne l'acheteur sur le terrain, renforçant la confiance et la mémorisation de la marque.",
+   "maillage": [
+    "visite-immobiliere-checklist-points-verifier",
+    "erreurs-a-eviter-premier-achat-immobilier",
+    "negocier-prix-bien-immobilier-guide-complet"
+   ]
+  },
+  {
+   "slug": "viager-fonctionnement-bon-plan-2026",
+   "category": "guides",
+   "priority": 3,
+   "but": "Démystifier l'achat en viager pour les acheteurs, en expliquant son fonctionnement (bouquet, rente), ses avantages (décote) et ses risques (aléa sur la durée), pour leur permettre d'évaluer si c'est une option pertinente.",
+   "kw_principal": "acheter en viager",
+   "kw_secondaires": [
+    "comment fonctionne le viager occupé",
+    "calcul rente viagère",
+    "avantages et inconvénients du viager pour l'acheteur",
+    "viager libre ou occupé",
+    "fiscalité du viager"
+   ],
+   "plan": [
+    "H2: Le viager : un pari sur l'avenir ou un investissement stratégique en 2026 ?",
+    "H2: Le mécanisme du viager expliqué : bouquet, rente et droit d'usage",
+    "H2: Les avantages pour l'acheteur : décote sur le prix, investissement progressif",
+    "H2: Les risques et contraintes à bien mesurer avant de s'engager",
+    "H2: Comment est calculé le montant du bouquet et de la rente ?",
+    "H2: Analysez les fondamentaux du bien avant de vous intéresser au montage viager",
+    "H2: Questions fréquentes sur l'achat en viager"
+   ],
+   "geo_eeat": "Expliquer la méthode de calcul de la rente en se basant sur des tables de mortalité officielles (INSEE) et des taux de capitalisation, montrant une approche rationnelle et non spéculative de ce type d'investissement.",
+   "maillage": [
+    "acheter-viager-principes-calculs-precautions",
+    "investissement-locatif-rentabilite-fiscalite-villes",
+    "cout-total-achat-immobilier"
+   ]
+  },
+  {
+   "slug": "lire-plan-cadastral-achat",
+   "category": "guides",
+   "priority": 3,
+   "but": "Apprendre à un acheteur de maison ou de terrain à consulter et interpréter un plan cadastral pour vérifier les limites exactes de la propriété, l'emprise au sol du bâti et l'absence d'empiètement.",
+   "kw_principal": "comprendre plan cadastral",
+   "kw_secondaires": [
+    "comment lire un extrait cadastral",
+    "où consulter le cadastre en ligne",
+    "vérifier les limites de sa propriété",
+    "différence entre cadastre et bornage",
+    "à quoi sert le cadastre"
+   ],
+   "plan": [
+    "H2: Le plan cadastral : la carte d'identité de votre future propriété",
+    "H2: Où et comment consulter le plan cadastral gratuitement en ligne",
+    "H2: Les 3 informations essentielles à vérifier sur le plan avant d'acheter",
+    "H3: Les limites de la parcelle",
+    "H3: L'emplacement et la forme des constructions existantes",
+    "H3: Les numéros de parcelles des voisins",
+    "H2: Attention, le cadastre a une valeur fiscale et non juridique",
+    "H2: Questions fréquentes sur le cadastre"
+   ],
+   "geo_eeat": "Fournir un guide pratique en renvoyant vers le site officiel cadastre.gouv.fr et en expliquant la signification des différents éléments graphiques, tout en clarifiant la distinction juridique importante avec un bornage réalisé par un géomètre-expert.",
+   "maillage": [
+    "terrain-constructible-plu-permis-pieges-cadastre",
+    "consulter-comprendre-plu-achat-immobilier",
+    "servitude-de-passage-detecter-achat"
+   ]
+  },
+  {
+   "slug": "quartiers-qui-montent-nantes-2026",
+   "category": "quartiers",
+   "priority": 2,
+   "but": "Révéler aux acheteurs les quartiers nantais en devenir, offrant le meilleur potentiel de plus-value à moyen terme, en se basant sur les projets d'urbanisme, l'amélioration des transports et l'évolution des prix.",
+   "kw_principal": "quartier nantes qui monte",
+   "kw_secondaires": [
+    "où investir à nantes 2026",
+    "quartier d'avenir nantes",
+    "projet urbain nantes métropole",
+    "acheter à nantes petit budget",
+    "quartier république nantes"
+   ],
+   "plan": [
+    "H2: Acheter à Nantes en 2026 : où se trouvent les pépites de demain ?",
+    "H2: Notre sélection des quartiers nantais à fort potentiel",
+    "H3: L'Île de Nantes : la transformation continue",
+    "H3: Chantenay Sainte Anne : l'esprit village et les projets à venir",
+    "H3: Doulon Bottière : l'arrivée du tramway et la rénovation urbaine",
+    "H2: Comment ScoreImmo analyse le potentiel de valorisation d'un quartier",
+    "H2: Questions fréquentes sur les quartiers émergents de Nantes"
+   ],
+   "geo_eeat": "Démontrer une expertise locale pointue en analysant les documents et calendriers des projets de Nantes Métropole (nouvelles lignes de tramway, ZAC), pour une analyse prospective et non seulement basée sur le passé.",
+   "maillage": [
+    "evolution-prix-immobilier-nantes-10-ans",
+    "meilleurs-quartiers-acheter-nantes",
+    "prix-immobilier-nantes-evolution-previsions"
+   ]
+  },
+  {
+   "slug": "assurance-dommages-ouvrage-acheteur",
+   "category": "guides",
+   "priority": 3,
+   "but": "Expliquer à un acheteur (notamment d'une maison récente) l'importance de l'assurance dommages-ouvrage, comment vérifier son existence et sa validité, et quels recours elle offre en cas de malfaçons.",
+   "kw_principal": "assurance dommages ouvrage obligatoire acheteur",
+   "kw_secondaires": [
+    "à quoi sert l'assurance dommages ouvrage",
+    "vérifier validité attestation dommages ouvrage",
+    "acheter une maison sans dommages ouvrage",
+    "durée de validité dommages ouvrage",
+    "comment activer la garantie dommages ouvrage"
+   ],
+   "plan": [
+    "H2: La dommages-ouvrage : l'assurance qui protège votre achat pendant 10 ans",
+    "H2: Est elle obligatoire et pourquoi est elle indispensable pour vous ?",
+    "H2: Comment vérifier que le vendeur a bien souscrit une assurance valide",
+    "H2: Que faire si la maison de moins de 10 ans n'a pas de dommages-ouvrage ?",
+    "H2: La DO, un point de contrôle essentiel dans notre analyse de documents",
+    "H2: Questions fréquentes sur l'assurance dommages-ouvrage"
+   ],
+   "geo_eeat": "Adopter un ton d'expert en assurance et en droit de la construction, en expliquant l'articulation entre la dommages-ouvrage (pour l'indemnisation rapide) et la garantie décennale (pour la recherche de responsabilité), clarifiant un sujet complexe.",
+   "maillage": [
+    "garantie-decennale-immobilier-couverture-recours-dedales",
+    "acheter-vefa-pieges-a-eviter",
+    "vices-caches-immobilier-protection-recours"
+   ]
+  },
+  {
+   "slug": "dpe-collectif-copropriete-impact-achat",
+   "category": "guides",
+   "priority": 2,
+   "but": "Expliquer aux acheteurs en copropriété l'impact du nouveau DPE collectif obligatoire, ce qu'il change pour leur futur appartement et comment l'utiliser pour anticiper les travaux de rénovation de l'immeuble.",
+   "kw_principal": "dpe collectif obligatoire",
+   "kw_secondaires": [
+    "loi climat et résilience dpe collectif",
+    "calendrier dpe collectif",
+    "différence dpe collectif et individuel",
+    "plan pluriannuel de travaux ppt",
+    "impact dpe collectif sur charges"
+   ],
+   "plan": [
+    "H2: Le DPE collectif : ce qui change pour votre futur achat en copropriété",
+    "H2: Votre immeuble est il concerné ? Le calendrier de l'obligation",
+    "H2: Comment le DPE collectif va t il impacter vos futures charges (PPT) ?",
+    "H2: Le DPE de l'immeuble est mauvais : une menace ou une opportunité de négocier ?",
+    "H2: Analysez la santé énergétique de la copropriété avant de vous décider",
+    "H2: Questions fréquentes sur le DPE collectif"
+   ],
+   "geo_eeat": "Apporter une information réglementaire à jour en détaillant le calendrier de la loi Climat et Résilience et en expliquant le lien entre le DPE collectif et le nouveau Plan Pluriannuel de Travaux (PPT), démontrant une expertise sur les enjeux des copropriétés.",
+   "maillage": [
+    "fiabilite-dpe-collectif-appartement",
+    "analyser-pv-ag-copropriete-avant-achat",
+    "dpe-comprendre-classes-energetiques"
+   ]
+  },
+  {
+   "slug": "transformer-local-commercial-en-habitation-guide",
+   "category": "guides",
+   "priority": 3,
+   "but": "Guider les acheteurs intéressés par la transformation d'un local commercial en logement, en détaillant la procédure administrative (changement de destination), les contraintes techniques et les coûts.",
+   "kw_principal": "changement de destination local commercial en habitation",
+   "kw_secondaires": [
+    "acheter un local commercial pour y habiter",
+    "autorisation d'urbanisme changement de destination",
+    "accord de la copropriété pour changement d'usage",
+    "coût transformation local en logement",
+    "avantages fiscaux changement de destination"
+   ],
+   "plan": [
+    "H2: Acheter un local commercial pour le transformer : le parcours de l'acheteur",
+    "H2: Étape 1 : Obtenir l'autorisation de la copropriété",
+    "H2: Étape 2 : Obtenir l'autorisation d'urbanisme de la mairie",
+    "H2: Les contraintes techniques et réglementaires à anticiper (ouvertures, normes)",
+    "H2: Comment budgétiser un tel projet (achat + travaux + frais)",
+    "H2: Analysez le potentiel du local avant de vous lancer dans les démarches",
+    "H2: Questions fréquentes sur le changement de destination"
+   ],
+   "geo_eeat": "Fournir une feuille de route claire en se basant sur les règles du Code de l'urbanisme et en insistant sur les deux autorisations clés (copropriété et mairie), pour un conseil pratique et sécurisant.",
+   "maillage": [
+    "consulter-comprendre-plu-achat-immobilier",
+    "lire-reglement-copropriete-avant-achat",
+    "financer-travaux-achat-immobilier"
+   ]
+  },
+  {
+   "slug": "servitude-de-passage-detecter-achat",
+   "category": "guides",
+   "priority": 3,
+   "but": "Apprendre aux acheteurs de maisons à détecter l'existence d'une servitude (de passage, de vue, etc.) avant l'achat, en expliquant où trouver l'information et quelles sont les conséquences sur leur future jouissance du bien.",
+   "kw_principal": "vérifier servitude avant achat",
+   "kw_secondaires": [
+    "comment savoir s'il y a une servitude de passage",
+    "servitude non mentionnée dans l'acte de vente",
+    "conséquences d'une servitude pour le propriétaire",
+    "où sont inscrites les servitudes",
+    "servitude de vue"
+   ],
+   "plan": [
+    "H2: La servitude : une contrainte cachée qui peut gâcher votre achat",
+    "H2: Les différents types de servitudes et leurs conséquences concrètes",
+    "H2: La méthode pour savoir si une servitude grève le bien que vous convoitez",
+    "H3: Analyser l'acte de propriété antérieur",
+    "H3: Interroger le service de la publicité foncière",
+    "H3: Observer la configuration des lieux",
+    "H2: La vérification des servitudes, une mission clé de votre notaire",
+    "H2: Questions fréquentes sur les servitudes"
+   ],
+   "geo_eeat": "Apporter une expertise juridique en expliquant où trouver l'information (actes notariés, service de la publicité foncière) et en citant des exemples concrets pour illustrer l'impact d'une servitude sur la vie quotidienne.",
+   "maillage": [
+    "role-notaire-achat-immobilier",
+    "lire-plan-cadastral-achat",
+    "vices-caches-immobilier-protection-recours"
+   ]
+  },
+  {
+   "slug": "immobilier-lille-2026-analyse-marche",
+   "category": "villes",
+   "priority": 2,
+   "but": "Fournir aux acheteurs une analyse objective du marché immobilier lillois, en décryptant les prix, les quartiers porteurs et les perspectives, pour répondre à la question : faut-il craindre une bulle ou est-ce le moment d'acheter ?",
+   "kw_principal": "marché immobilier lille 2026",
+   "kw_secondaires": [
+    "prix m2 lille 2026",
+    "évolution prix immobilier lille",
+    "faut il acheter à lille maintenant",
+    "analyse marché immobilier lille",
+    "quartiers où investir à lille"
+   ],
+   "plan": [
+    "H2: Le marché lillois en 2026 : après la surchauffe, vers un atterrissage ?",
+    "H2: Analyse des prix : le Vieux Lille, Vauban, Wazemmes et les autres quartiers",
+    "H2: Les facteurs qui soutiennent (ou freinent) le marché lillois",
+    "H2: Nos conseils pour un achat malin à Lille en 2026",
+    "H2: Obtenez une analyse de la juste valeur pour n'importe quel bien lillois",
+    "H2: Questions fréquentes sur l'immobilier à Lille"
+   ],
+   "geo_eeat": "Baser l'analyse sur les données chiffrées des Notaires et de l'INSEE pour objectiver le discours sur la 'bulle' et fournir une vision factuelle du marché, quartier par quartier, renforçant notre crédibilité.",
+   "maillage": [
+    "prix-immobilier-lille-metropole-sous-cotee",
+    "meilleurs-quartiers-acheter-lille",
+    "tendances-immobilier-2026-villes"
+   ]
+  },
+  {
+   "slug": "cout-total-achat-immobilier",
+   "category": "guides",
+   "priority": 2,
+   "but": "Aider les acheteurs à budgétiser leur projet de manière exhaustive en listant tous les frais annexes (notaire, agence, garantie, dossier) qui s'ajoutent au prix de vente, pour éviter les mauvaises surprises.",
+   "kw_principal": "calcul coût total achat immobilier",
+   "kw_secondaires": [
+    "frais à prévoir en plus du prix de la maison",
+    "liste des frais annexes achat immobilier",
+    "calculer son budget d'achat tout compris",
+    "frais de notaire et frais d'agence",
+    "coût du crédit immobilier"
+   ],
+   "plan": [
+    "H2: Le prix affiché n'est que la partie visible de l'iceberg : calculez le coût réel",
+    "H2: La checklist de tous les frais à ne pas oublier dans votre budget",
+    "H3: Les frais d'acquisition (notaire, agence)",
+    "H3: Les frais liés au crédit (garantie, dossier, assurance)",
+    "H3: Les frais post acquisition (travaux, taxe foncière, charges)",
+    "H2: Notre outil pour simuler votre budget total d'acquisition",
+    "H2: Questions fréquentes sur le coût global d'un achat"
+   ],
+   "geo_eeat": "Fournir un simulateur simple et transparent qui additionne les différents postes de coût, basé sur des pourcentages standards du marché (ex: 7.5% pour les frais de notaire dans l'ancien), pour un résultat personnalisé et fiable.",
+   "maillage": [
+    "frais-notaire-calcul-simulation-astuces",
+    "frais-agence-immobiliere-negocier",
+    "simulation-capacite-emprunt-2026"
+   ]
+  },
+  {
+   "slug": "diagnostic-etat-risques-pollutions-erp",
+   "category": "guides",
+   "priority": 3,
+   "but": "Expliquer à l'acheteur à quoi sert l'État des Risques et Pollutions (ERP), comment le lire et quelles conséquences les risques mentionnés (inondation, sismique, industriel) peuvent avoir sur son bien.",
+   "kw_principal": "diagnostic erp",
+   "kw_secondaires": [
+    "état des risques et pollutions obligatoire",
+    "comprendre un diagnostic erp",
+    "zone inondable achat maison",
+    "risque sismique et construction",
+    "validité erp"
+   ],
+   "plan": [
+    "H2: L'ERP : le diagnostic qui vous informe sur les risques naturels et technologiques",
+    "H2: Comment lire ce document et identifier les risques qui concernent votre futur bien",
+    "H2: Quelles sont les conséquences concrètes d'un risque (inondation, argile, etc.) ?",
+    "H2: Un risque mentionné dans l'ERP est il un motif d'annulation ou de négociation ?",
+    "H2: ScoreImmo intègre et analyse pour vous les données de l'ERP",
+    "H2: Questions fréquentes sur l'État des Risques et Pollutions"
+   ],
+   "geo_eeat": "Renforcer la confiance en renvoyant vers la source officielle des données, le site Géorisques, et en expliquant comment ces risques sont cartographiés par les services de l'État, montrant que notre analyse repose sur des faits avérés.",
+   "maillage": [
+    "dossier-diagnostic-technique-ddt-checklist-acheteur",
+    "etude-de-sol-g1-obligatoire-achat-terrain",
+    "consulter-comprendre-plu-achat-immobilier"
+   ]
+  },
+  {
+   "slug": "financer-travaux-achat-immobilier",
+   "category": "guides",
+   "priority": 2,
+   "but": "Présenter aux acheteurs de biens avec travaux les différentes solutions pour financer leur rénovation, en comparant le prêt unique (achat + travaux) avec les autres options (prêt personnel, éco-PTZ).",
+   "kw_principal": "prêt immobilier avec travaux",
+   "kw_secondaires": [
+    "comment inclure les travaux dans un prêt immobilier",
+    "financement achat et rénovation",
+    "prêt travaux ou prêt immobilier",
+    "éco prêt à taux zéro pour des travaux",
+    "justificatifs pour prêt travaux"
+   ],
+   "plan": [
+    "H2: Acheter avec travaux : comment financer votre projet globalement ?",
+    "H2: La solution la plus simple : le prêt immobilier unique incluant les travaux",
+    "H2: Les autres options de financement et leurs avantages/inconvénients",
+    "H2: Comment faire chiffrer les travaux et présenter un dossier solide à la banque",
+    "H2: Simulez votre capacité d'emprunt en incluant votre budget travaux",
+    "H2: Questions fréquentes sur le financement de travaux"
+   ],
+   "geo_eeat": "Adopter un angle de conseil financier, en expliquant les avantages d'un prêt unique en termes de taux et de simplicité de gestion, et en listant les documents (devis d'artisans) exigés par les banques pour accorder ce type de financement.",
+   "maillage": [
+    "acheter-appartement-travaux-budget-aides",
+    "simulation-capacite-emprunt-2026",
+    "aides-renovation-energetique-2026-acheteur"
+   ]
+  },
+  {
+   "slug": "lire-reglement-copropriete-avant-achat",
+   "category": "guides",
+   "priority": 3,
+   "but": "Convaincre les acheteurs de l'importance de lire le règlement de copropriété avant de s'engager, pour connaître les règles de vie de l'immeuble et vérifier l'absence de clauses restrictives pour leurs projets.",
+   "kw_principal": "règlement de copropriété",
+   "kw_secondaires": [
+    "que contient un règlement de copropriété",
+    "où trouver le règlement de copropriété",
+    "clause interdisant la location saisonnière",
+    "autorisation de travaux en copropriété",
+    "comprendre l'état descriptif de division"
+   ],
+   "plan": [
+    "H2: Le règlement de copropriété : la 'constitution' de votre futur immeuble",
+    "H2: Pourquoi vous devez absolument le lire avant de signer",
+    "H2: Les 5 clauses à vérifier pour éviter les mauvaises surprises",
+    "H3: La destination de l'immeuble (usage d'habitation, professionnel)",
+    "H3: Les règles sur les travaux affectant les parties communes ou l'aspect extérieur",
+    "H3: Les interdictions spécifiques (barbecue, animaux, location courte durée)",
+    "H2: Le règlement de copropriété, un document clé de notre analyse",
+    "H2: Questions fréquentes sur le règlement de copropriété"
+   ],
+   "geo_eeat": "Apporter une expertise juridique en expliquant la valeur contractuelle du règlement de copropriété et les conséquences de son non-respect, renforçant notre image de conseil rigoureux et protecteur pour l'acheteur.",
+   "maillage": [
+    "copropriete-charges-pieges-detecter-achat",
+    "analyser-pv-ag-copropriete-avant-achat",
+    "transformer-local-commercial-en-habitation-guide"
+   ]
+  },
+  {
+   "slug": "acheter-appartement-dernier-etage",
+   "category": "guides",
+   "priority": 3,
+   "but": "Aider les acheteurs à peser le pour et le contre d'un appartement en dernier étage, en analysant objectivement les avantages (luminosité, calme) et les inconvénients (chaleur, étanchéité, charges).",
+   "kw_principal": "acheter dernier étage avantages inconvénients",
+   "kw_secondaires": [
+    "inconvénient appartement dernier étage sans ascenseur",
+    "problème étanchéité toiture dernier étage",
+    "appartement sous les toits chaleur",
+    "valeur d'un appartement en dernier étage",
+    "visiter un appartement en dernier étage"
+   ],
+   "plan": [
+    "H2: Le dernier étage : le rêve de beaucoup d'acheteurs, mais à quel prix ?",
+    "H2: Les avantages incontestables : calme, lumière et vue",
+    "H2: Les inconvénients à ne pas sous estimer : chaleur, étanchéité et accessibilité",
+    "H2: Les points de vigilance spécifiques lors de la visite d'un dernier étage",
+    "H2: Comment notre analyse prend en compte les spécificités d'un dernier étage",
+    "H2: Questions fréquentes sur l'achat en dernier étage"
+   ],
+   "geo_eeat": "Fournir une checklist de vérification spécifique au dernier étage (état de la toiture visible depuis les combles, pression de l'eau, isolation), démontrant une expertise technique qui va au-delà des généralités.",
+   "maillage": [
+    "checklist-contre-visite-immobiliere",
+    "analyser-pv-ag-copropriete-avant-achat",
+    "dpe-comprendre-classes-energetiques"
+   ]
+  },
+  {
+   "slug": "ou-habiter-pres-de-lyon",
+   "category": "quartiers",
+   "priority": 2,
+   "but": "Guider les acheteurs qui cherchent un compromis entre la vie urbaine lyonnaise et un cadre plus calme, en leur présentant les communes de la première couronne les plus attractives en termes de prix, transports et qualité de vie.",
+   "kw_principal": "meilleures communes proche lyon",
+   "kw_secondaires": [
+    "où habiter en première couronne de lyon",
+    "ville proche de lyon avec gare",
+    "acheter une maison près de lyon",
+    "communes chics ouest lyonnais",
+    "vivre à caluire et cuire avis"
+   ],
+   "plan": [
+    "H2: Acheter près de Lyon : le guide des communes où il fait bon vivre",
+    "H2: Notre Top 5 des communes de la première couronne",
+    "H3: L'Ouest Lyonnais (Tassin, Écully) : le choix du prestige et de la verdure",
+    "H3: Le Nord (Caluire et Cuire) : la proximité de la Croix Rousse",
+    "H3: L'Est (Villeurbanne, Bron) : l'accessibilité et le dynamisme",
+    "H2: Comment ScoreImmo analyse la qualité de vie et l'accessibilité d'une commune",
+    "H2: Questions fréquentes sur l'achat en périphérie de Lyon"
+   ],
+   "geo_eeat": "Démontrer une expertise locale en analysant pour chaque commune les temps de transport vers le centre de Lyon (source : TCL, SNCF) et les niveaux de prix (source : DVF), pour un comparatif factuel et utile.",
+   "maillage": [
+    "meilleurs-arrondissements-acheter-t3-lyon-2026",
+    "prix-immobilier-lyon-analyse-arrondissement",
+    "impact-transports-en-commun-prix-immobilier"
+   ]
+  },
+  {
+   "slug": "clause-penale-compromis-vente",
+   "category": "guides",
+   "priority": 3,
+   "but": "Expliquer à l'acheteur le rôle et les conséquences de la clause pénale dans un compromis de vente, pour qu'il comprenne les risques financiers en cas de désistement non justifié.",
+   "kw_principal": "clause pénale compromis de vente",
+   "kw_secondaires": [
+    "montant clause pénale immobilier",
+    "que risque l'acheteur s'il se rétracte après le délai",
+    "indemnité d'immobilisation et clause pénale",
+    "comment ne pas payer la clause pénale",
+    "cas de nullité du compromis de vente"
+   ],
+   "plan": [
+    "H2: La clause pénale : l'engagement financier que vous prenez en signant le compromis",
+    "H2: Quel est son montant et comment est elle calculée ?",
+    "H2: Dans quels cas devez vous payer la clause pénale ?",
+    "H2: Comment les conditions suspensives vous protègent de la clause pénale",
+    "H2: Le compromis de vente, un acte à analyser en détail avant de signer",
+    "H2: Questions fréquentes sur la clause pénale"
+   ],
+   "geo_eeat": "Adopter un angle juridique précis en expliquant la différence entre l'indemnité d'immobilisation et la clause pénale, et en listant les motifs légitimes de non-réalisation de la vente (liés aux conditions suspensives).",
+   "maillage": [
+    "compromis-vente-acheteur-guide",
+    "conditions-suspensives-compromis-vente",
+    "delai-retractation-10-jours-achat-immobilier"
+   ]
+  },
+  {
+   "slug": "carnet-information-logement-cil",
+   "category": "guides",
+   "priority": 3,
+   "but": "Informer les acheteurs sur le nouveau Carnet d'Information du Logement (CIL), en expliquant son contenu, son utilité pour connaître l'historique des travaux et son déploiement progressif.",
+   "kw_principal": "carnet d'information du logement",
+   "kw_secondaires": [
+    "cil obligatoire vente",
+    "que contient le carnet d'information du logement",
+    "loi climat et résilience cil",
+    "comment obtenir le cil d'un logement",
+    "carnet numérique du logement"
+   ],
+   "plan": [
+    "H2: Le CIL : le nouveau 'carnet de santé' de votre futur logement",
+    "H2: Qu'est ce que c'est et quand devient il obligatoire ?",
+    "H2: Quelles informations précieuses trouverez vous dans le CIL ?",
+    "H2: Comment le CIL va t il faciliter l'analyse de la performance énergétique ?",
+    "H2: Le CIL, une future source de données pour notre analyse",
+    "H2: Questions fréquentes sur le Carnet d'Information du Logement"
+   ],
+   "geo_eeat": "Démontrer une veille réglementaire pointue en expliquant ce nouveau dispositif issu de la loi Climat et Résilience et son calendrier de mise en place, se positionnant comme un expert à la pointe de l'actualité immobilière.",
+   "maillage": [
+    "dossier-diagnostic-technique-ddt-checklist-acheteur",
+    "dpe-comprendre-classes-energetiques",
+    "aides-renovation-energetique-2026-acheteur"
+   ]
+  },
+  {
+   "slug": "achat-immobilier-montagne-specificites",
+   "category": "guides",
+   "priority": 3,
+   "but": "Guider les acheteurs de biens en montagne en leur présentant les spécificités à connaître : contraintes d'urbanisme (Loi Montagne), particularités du DPE et gestion de la saisonnalité.",
+   "kw_principal": "acheter appartement montagne",
+   "kw_secondaires": [
+    "spécificités achat chalet montagne",
+    "loi montagne urbanisme",
+    "dpe altitude",
+    "investissement locatif saisonnier montagne",
+    "charges de copropriété en station de ski"
+   ],
+   "plan": [
+    "H2: Acheter à la montagne : plus qu'un achat, un projet spécifique",
+    "H2: Les règles d'urbanisme à connaître (Loi Montagne, PLU)",
+    "H2: Le DPE en altitude : pourquoi il est souvent moins bon et comment l'interpréter",
+    "H2: Les charges de copropriété en station : attention aux coûts cachés (deneigement, etc.)",
+    "H2: Analysez le potentiel locatif saisonnier de votre futur bien",
+    "H2: Questions fréquentes sur l'achat en montagne"
+   ],
+   "geo_eeat": "Apporter une expertise de niche en expliquant l'impact de l'altitude sur le calcul du DPE (facteur de correction) et les contraintes de la Loi Montagne, démontrant une capacité à analyser tous les types de marchés.",
+   "maillage": [
+    "investissement-locatif-rentabilite-fiscalite-villes",
+    "copropriete-charges-pieges-detecter-achat",
+    "dpe-comprendre-classes-energetiques"
+   ]
+  },
+  {
+   "slug": "obtenir-meilleur-taux-pret-immobilier-2026",
+   "category": "guides",
+   "priority": 2,
+   "but": "Donner aux emprunteurs une stratégie et des conseils concrets pour optimiser leur dossier et négocier afin d'obtenir le meilleur taux possible pour leur crédit immobilier en 2026.",
+   "kw_principal": "meilleur taux immobilier 2026",
+   "kw_secondaires": [
+    "comment négocier son taux de prêt immobilier",
+    "quel est un bon taux de crédit immobilier actuellement",
+    "améliorer son dossier emprunteur",
+    "profil idéal pour un prêt immobilier",
+    "faire jouer la concurrence entre les banques"
+   ],
+   "plan": [
+    "H2: Taux immobiliers 2026 : comment tirer votre épingle du jeu",
+    "H2: Les 5 clés pour présenter un dossier emprunteur en béton",
+    "H2: La stratégie pour faire jouer la concurrence et négocier avec les banques",
+    "H2: Au delà du taux nominal : négociez aussi l'assurance et les frais de dossier",
+    "H2: Simulez l'impact d'une baisse de taux sur votre coût de crédit",
+    "H2: Questions fréquentes sur l'obtention du meilleur taux"
+   ],
+   "geo_eeat": "Fournir des conseils actionnables en se basant sur les critères réels d'analyse des banques (stabilité des revenus, gestion des comptes, apport), et en citant les baromètres de taux actuels (Meilleurtaux, Empruntis) pour contextualiser.",
+   "maillage": [
+    "pret-immobilier-taux-duree-capacite-emprunt",
+    "calcul-taux-endettement-2026",
+    "assurance-emprunteur-2026-lemoine-delegation-economies"
+   ]
+  },
+  {
+   "slug": "ou-acheter-rennes-2026",
+   "category": "villes",
+   "priority": 2,
+   "but": "Guider les acheteurs sur le marché rennais, en analysant les quartiers les plus porteurs et les plus agréables à vivre, dans un contexte de forte attractivité et de hausse des prix.",
+   "kw_principal": "marché immobilier rennes 2026",
+   "kw_secondaires": [
+    "prix m2 rennes 2026",
+    "faut il acheter à rennes maintenant",
+    "meilleurs quartiers rennes",
+    "évolution prix immobilier rennes",
+    "investir à rennes"
+   ],
+   "plan": [
+    "H2: Rennes en 2026 : un marché toujours aussi attractif pour les acheteurs ?",
+    "H2: Notre analyse des quartiers où acheter à Rennes",
+    "H3: Le centre historique (Thabor, Saint Hélier) : la valeur patrimoniale",
+    "H3: Les quartiers connectés (EuroRennes, Baud Chardonnet) : la modernité",
+    "H3: Les secteurs familiaux (Jeanne d'Arc, Longs Champs)",
+    "H2: L'impact de la ligne B du métro sur les prix des quartiers desservis",
+    "H2: Évaluez le juste prix d'un bien rennais avec nos données",
+    "H2: Questions fréquentes sur l'immobilier à Rennes"
+   ],
+   "geo_eeat": "Démontrer une expertise locale en analysant l'impact concret de la ligne B du métro sur la valorisation des quartiers (source : Rennes Métropole, STAR), pour une analyse pertinente et prospective.",
+   "maillage": [
+    "prix-immobilier-rennes-boom-breton",
+    "meilleurs-quartiers-acheter-rennes",
+    "tendances-immobilier-2026-villes"
+   ]
+  },
+  {
+   "slug": "fonds-de-travaux-loi-alur-acheteur",
+   "category": "guides",
+   "priority": 3,
+   "but": "Expliquer à un futur copropriétaire ce qu'est le fonds de travaux loi ALUR, comment vérifier son montant et ce que son existence (ou son absence) révèle sur la gestion et l'anticipation de la copropriété.",
+   "kw_principal": "fonds de travaux alur",
+   "kw_secondaires": [
+    "fonds de travaux obligatoire copropriété",
+    "montant minimum fonds de travaux",
+    "comment est utilisé le fonds de travaux",
+    "vérifier le fonds de travaux avant achat",
+    "dispense de fonds de travaux"
+   ],
+   "plan": [
+    "H2: Le fonds de travaux : l'épargne de votre copropriété que vous devez vérifier",
+    "H2: À quoi sert il et est il obligatoire pour l'immeuble que vous visez ?",
+    "H2: Où trouver le montant du fonds de travaux et comment l'analyser ?",
+    "H2: Un fonds de travaux bien approvisionné : un signe de bonne gestion",
+    "H2: L'analyse de la santé financière de la copropriété, un pilier de notre rapport",
+    "H2: Questions fréquentes sur le fonds de travaux"
+   ],
+   "geo_eeat": "Apporter une information réglementaire précise en se basant sur la loi ALUR et ses décrets d'application, et en expliquant comment ce fonds s'articule avec le nouveau Plan Pluriannuel de Travaux (PPT).",
+   "maillage": [
+    "analyser-budget-previsionnel-copropriete",
+    "analyser-pv-ag-copropriete-avant-achat",
+    "copropriete-charges-pieges-detecter-achat"
+   ]
+  },
+  {
+   "slug": "acheter-maison-piscine-points-controle",
+   "category": "guides",
+   "priority": 3,
+   "but": "Fournir aux acheteurs d'une maison avec piscine une checklist des points de contrôle essentiels (sécurité, état de la structure, machinerie) pour éviter les mauvaises surprises et les coûts cachés.",
+   "kw_principal": "vérifications achat maison avec piscine",
+   "kw_secondaires": [
+    "acheter une maison avec piscine quels points vérifier",
+    "diagnostic sécurité piscine obligatoire",
+    "problème piscine vice caché",
+    "coût entretien piscine",
+    "réglementation piscine privée"
+   ],
+   "plan": [
+    "H2: La piscine : un rêve qui peut cacher des coûts importants",
+    "H2: La checklist des points à vérifier avant d'acheter",
+    "H3: La conformité des dispositifs de sécurité (barrière, alarme, bâche)",
+    "H3: L'état de la structure (liner, coque, carrelage) et des abords",
+    "H3: Le fonctionnement du local technique (pompe, filtre)",
+    "H2: N'oubliez pas d'intégrer les coûts d'entretien dans votre budget",
+    "H2: Questions fréquentes sur l'achat d'une maison avec piscine"
+   ],
+   "geo_eeat": "Démontrer une expertise technique et réglementaire en détaillant les 4 dispositifs de sécurité normalisés et obligatoires, et en conseillant de demander les factures d'entretien et de construction.",
+   "maillage": [
+    "checklist-contre-visite-immobiliere",
+    "vices-caches-immobilier-protection-recours",
+    "impact-taxe-fonciere-budget-achat"
+   ]
+  },
+  {
+   "slug": "conditions-suspensives-compromis-vente",
+   "category": "guides",
+   "priority": 2,
+   "but": "Expliquer à l'acheteur le rôle crucial des conditions suspensives (notamment celle d'obtention de prêt) comme filet de sécurité, en détaillant comment elles le protègent et comment bien les rédiger.",
+   "kw_principal": "condition suspensive d'obtention de prêt",
+   "kw_secondaires": [
+    "quelles sont les conditions suspensives dans un compromis de vente",
+    "comment fonctionne la condition suspensive de prêt",
+    "délai pour réaliser les conditions suspensives",
+    "refus de prêt que se passe t il",
+    "ajouter une condition suspensive"
+   ],
+   "plan": [
+    "H2: Les conditions suspensives : vos portes de sortie légales et sans frais",
+    "H2: La condition suspensive d'obtention de prêt : votre protection numéro 1",
+    "H2: Les autres conditions suspensives que vous pouvez négocier d'ajouter",
+    "H2: Que se passe t il si une condition suspensive ne se réalise pas ?",
+    "H2: Le compromis de vente est un acte engageant, analysez le avec soin",
+    "H2: Questions fréquentes sur les conditions suspensives"
+   ],
+   "geo_eeat": "Apporter une expertise juridique claire en expliquant la mécanique de la condition suspensive et en donnant des exemples de rédaction précise pour la clause de prêt (montant, durée, taux max), en collaboration avec un notaire.",
+   "maillage": [
+    "compromis-vente-acheteur-guide",
+    "clause-penale-compromis-vente",
+    "delai-retractation-10-jours-achat-immobilier"
+   ]
+  },
+  {
+   "slug": "diagnostic-bruit-ensa-achat",
+   "category": "guides",
+   "priority": 3,
+   "but": "Informer les acheteurs sur le diagnostic bruit (ENSA), en expliquant quand il est obligatoire (proximité d'un aéroport), ce qu'il contient et comment évaluer l'exposition au bruit d'un logement.",
+   "kw_principal": "diagnostic bruit",
+   "kw_secondaires": [
+    "état des nuisances sonores aériennes obligatoire",
+    "plan d'exposition au bruit aéroport",
+    "comment savoir si un logement est bruyant",
+    "nuisances sonores et valeur immobilière",
+    "validité diagnostic bruit"
+   ],
+   "plan": [
+    "H2: Le bruit : la nuisance numéro 1 qui peut impacter votre qualité de vie",
+    "H2: Le diagnostic bruit (ENSA) : quand est il obligatoire et que vous apprend il ?",
+    "H2: Comment évaluer le bruit au delà de ce diagnostic (visites, outils en ligne) ?",
+    "H2: L'impact réel des nuisances sonores sur le prix d'un bien",
+    "H2: ScoreImmo analyse l'environnement sonore de votre futur bien",
+    "H2: Questions fréquentes sur le bruit et l'immobilier"
+   ],
+   "geo_eeat": "Fournir une information géographique précise en renvoyant vers les cartes des Plans d'Exposition au Bruit (PEB) disponibles sur Géoportail, permettant à l'acheteur de vérifier lui-même la situation du bien.",
+   "maillage": [
+    "dossier-diagnostic-technique-ddt-checklist-acheteur",
+    "impact-transports-en-commun-prix-immobilier",
+    "diagnostic-etat-risques-pollutions-erp"
+   ]
+  },
+  {
+   "slug": "acheter-appartement-rez-de-jardin",
+   "category": "guides",
+   "priority": 3,
+   "but": "Aider les acheteurs à faire un choix éclairé sur un rez-de-jardin, en pesant objectivement les avantages (extérieur privatif) et les inconvénients (manque de lumière, sécurité, humidité).",
+   "kw_principal": "avantages inconvénients rez de jardin",
+   "kw_secondaires": [
+    "acheter un rez de jardin avis",
+    "problème humidité rez de jardin",
+    "sécurité appartement rez de chaussée",
+    "valeur d'un rez de jardin",
+    "entretien jardin privatif en copropriété"
+   ],
+   "plan": [
+    "H2: Le rez-de-jardin : le compromis idéal entre appartement et maison ?",
+    "H2: Les avantages qui séduisent : l'espace extérieur, l'accessibilité",
+    "H2: Les inconvénients à ne pas négliger : sécurité, luminosité, humidité, vis à vis",
+    "H2: Les points de vigilance lors de la visite d'un rez-de-jardin",
+    "H2: Comment le règlement de copropriété encadre l'usage du jardin",
+    "H2: Questions fréquentes sur l'achat en rez-de-jardin"
+   ],
+   "geo_eeat": "Proposer une checklist de points de vérification spécifiques (traces d'humidité, état des grilles de sécurité, vis-à-vis avec les étages supérieurs), démontrant une expertise pratique pour sécuriser l'acheteur.",
+   "maillage": [
+    "checklist-contre-visite-immobiliere",
+    "lire-reglement-copropriete-avant-achat",
+    "acheter-appartement-dernier-etage"
+   ]
+  },
+  {
+   "slug": "score-scoreimmo-methode-evaluation",
+   "category": "guides",
+   "priority": 1,
+   "but": "Bâtir la confiance en expliquant de manière transparente et pédagogique comment est calculé le Score ScoreImmo, en insistant sur la compilation de données objectives et non sur un algorithme opaque.",
+   "kw_principal": "score immobilier",
+   "kw_secondaires": [
+    "note de bien immobilier",
+    "comment évaluer la qualité d'un bien immobilier",
+    "critères de notation immobilière",
+    "calcul score immobilier",
+    "fiabilité score immobilier"
+   ],
+   "plan": [
+    "H2: Le Score ScoreImmo : une note sur 100 pour un achat en toute confiance",
+    "H2: Notre méthodologie : pas d'algorithme magique, que des données factuelles",
+    "H2: Les 5 piliers de notre évaluation",
+    "H3: Le Prix (basé sur les données DVF)",
+    "H3: La Qualité intrinsèque (basé sur les diagnostics)",
+    "H3: L'Environnement (transports, commerces, écoles)",
+    "H3: Les Risques (naturels, technologiques, urbanisme)",
+    "H3: La Copropriété (charges, travaux, finances)",
+    "H2: Comment utiliser le score pour comparer des biens et prendre la bonne décision",
+    "H2: Questions fréquentes sur notre score"
+   ],
+   "geo_eeat": "Renforcer l'E-E-A-T en listant nos 13 sources de données officielles et en expliquant l'apport de chacune au score, pour asseoir notre positionnement de tiers de confiance basé sur la transparence et la data.",
+   "maillage": [
+    "methode-analyse-immobiliere-scoreimmo",
+    "benchmark-immobilier-comparer-biens",
+    "donnees-dvf-utiliser-prix-vente-reels"
+   ]
+  },
+  {
+   "slug": "benchmark-immobilier-comparer-biens",
+   "category": "guides",
+   "priority": 2,
+   "but": "Donner aux acheteurs une méthode rigoureuse pour comparer plusieurs biens entre eux sur la base de critères objectifs (prix/m², DPE, charges, environnement), au-delà du simple coup de cœur.",
+   "kw_principal": "benchmark immo",
+   "kw_secondaires": [
+    "comment comparer deux appartements",
+    "tableau comparatif achat immobilier",
+    "critères de comparaison de biens",
+    "analyse comparative de marché immobilier",
+    "évaluer un bien par rapport au marché"
+   ],
+   "plan": [
+    "H2: Ne vous fiez pas qu'à votre intuition : la méthode pour comparer objectivement les biens",
+    "H2: Créez votre grille de comparaison : les 10 critères à évaluer",
+    "H2: Comment pondérer ces critères en fonction de votre projet personnel",
+    "H2: Utilisez le rapport ScoreImmo pour automatiser cette comparaison",
+    "H2: Le benchmark, l'outil indispensable pour conforter votre choix final",
+    "H2: Questions fréquentes sur la comparaison de biens"
+   ],
+   "geo_eeat": "Proposer un modèle de grille de comparaison téléchargeable (Excel ou PDF), un outil pratique qui matérialise notre approche méthodique et data-driven de l'aide à la décision.",
+   "maillage": [
+    "score-scoreimmo-methode-evaluation",
+    "methode-analyse-immobiliere-scoreimmo",
+    "estimation-immobiliere-methodes-juste-prix"
+   ]
+  },
+  {
+   "slug": "fiabilite-dpe-collectif-appartement",
+   "category": "guides",
+   "priority": 3,
+   "but": "Aider les acheteurs à comprendre les limites du DPE collectif pour évaluer leur appartement, en expliquant pourquoi il peut y avoir un écart avec la performance réelle et quand un DPE individuel est pertinent.",
+   "kw_principal": "fiabilité dpe collectif",
+   "kw_secondaires": [
+    "dpe collectif moins bon que dpe individuel",
+    "le dpe collectif remplace t il l'individuel",
+    "comment est calculé le dpe collectif",
+    "impact de l'étage sur le dpe",
+    "contester un dpe collectif"
+   ],
+   "plan": [
+    "H2: Le DPE collectif de l'immeuble est il représentatif de votre futur appartement ?",
+    "H2: Pourquoi il peut y avoir des écarts importants (étage, exposition, rénovations privatives)",
+    "H2: DPE collectif ou individuel : lequel fait foi pour la vente ?",
+    "H2: Nos conseils pour affiner l'évaluation de la performance réelle du logement",
+    "H2: Notre analyse prend en compte les spécificités de chaque lot",
+    "H2: Questions fréquentes sur la fiabilité du DPE collectif"
+   ],
+   "geo_eeat": "Apporter une expertise technique en expliquant les différentes méthodes de calcul du DPE collectif (sur factures, méthode 3CL) et leurs biais potentiels, pour un conseil nuancé et crédible.",
+   "maillage": [
+    "dpe-collectif-copropriete-impact-achat",
+    "dpe-comprendre-classes-energetiques",
+    "contester-dpe-incorrect"
+   ]
+  },
+  {
+   "slug": "micro-quartiers-strasbourg-achat-authentique",
+   "category": "quartiers",
+   "priority": 3,
+   "but": "Faire découvrir aux acheteurs des micro-quartiers et des rues méconnues de Strasbourg, offrant un cadre de vie authentique et un potentiel de valorisation, loin des secteurs les plus connus.",
+   "kw_principal": "quartiers secrets strasbourg",
+   "kw_secondaires": [
+    "où habiter à strasbourg au calme",
+    "quartier village strasbourg",
+    "rues cachées strasbourg",
+    "acheter à la petite france",
+    "quartier tribunal contades"
+   ],
+   "plan": [
+    "H2: Sortez des sentiers battus : les micro quartiers de Strasbourg à découvrir",
+    "H2: Notre sélection de pépites pour un achat authentique",
+    "H3: Le quartier des XV : l'esprit village aux portes de l'Europe",
+    "H3: La Petite France : pour les amoureux de l'histoire",
+    "H3: Le carré d'or de la Krutenau : le charme et l'animation",
+    "H2: Comment ScoreImmo analyse le charme et le caractère d'un quartier",
+    "H2: Questions fréquentes sur les quartiers de caractère à Strasbourg"
+   ],
+   "geo_eeat": "Démontrer une connaissance intime de la ville en décrivant l'ambiance, les commerces de proximité et l'architecture de rues spécifiques, une expertise hyper-locale qui crée une forte connexion avec le lecteur.",
+   "maillage": [
+    "ou-habiter-strasbourg-famille",
+    "prix-m2-strasbourg-2026-quartiers",
+    "meilleurs-quartiers-acheter-strasbourg"
+   ]
+  },
+  {
+   "slug": "impact-taxe-fonciere-budget-achat",
+   "category": "guides",
+   "priority": 2,
+   "but": "Permettre aux acheteurs d'anticiper le montant de leur future taxe foncière et de l'intégrer dans leur budget mensuel, en expliquant son mode de calcul et les facteurs qui la font varier.",
+   "kw_principal": "calcul taxe foncière avant achat",
+   "kw_secondaires": [
+    "comment connaître le montant de la taxe foncière avant d'acheter",
+    "demander le montant de la taxe foncière au vendeur",
+    "simulateur taxe foncière",
+    "exonération taxe foncière achat neuf",
+    "valeur locative cadastrale"
+   ],
+   "plan": [
+    "H2: La taxe foncière : la dépense annuelle à ne surtout pas oublier dans votre budget",
+    "H2: Comment est elle calculée et pourquoi varie t elle tant d'une commune à l'autre ?",
+    "H2: La méthode pour estimer le montant de votre future taxe foncière",
+    "H2: Les cas d'exonération temporaire (achat dans le neuf)",
+    "H2: Intégrez cette charge dans le calcul de votre coût de possession mensuel",
+    "H2: Questions fréquentes sur la taxe foncière"
+   ],
+   "geo_eeat": "Expliquer le mécanisme de calcul basé sur la valeur locative cadastrale et les taux votés par les collectivités locales (sources : DGFIP, collectivites-locales.gouv.fr), pour une information de fond fiable.",
+   "maillage": [
+    "taxe-fonciere-2026-calcul-exonerations-pieges",
+    "cout-total-achat-immobilier",
+    "analyser-budget-previsionnel-copropriete"
+   ]
+  },
+  {
+   "slug": "credit-immobilier-jeune-couple-tours-2026",
+   "category": "guides",
+   "priority": 2,
+   "but": "Fournir des conseils ciblés aux jeunes couples souhaitant acheter à Tours, en abordant les spécificités de leur dossier (stabilité, apport) et les dispositifs d'aide locaux ou nationaux qui peuvent les aider.",
+   "kw_principal": "meilleur prêt immobilier jeune couple tours 2026",
+   "kw_secondaires": [
+    "primo accédant tours",
+    "acheter à deux tours",
+    "aide achat immobilier tours métropole",
+    "courtier immobilier tours",
+    "simuler prêt immobilier tours"
+   ],
+   "plan": [
+    "H2: Jeune couple à Tours : nos conseils pour réussir votre premier achat en 2026",
+    "H2: Comment monter un dossier solide pour convaincre les banques",
+    "H2: Les aides qui peuvent booster votre projet (PTZ, aides locales...)",
+    "H2: Où acheter à Tours avec un budget de jeune couple ?",
+    "H2: Simulez votre capacité d'emprunt à deux pour votre projet tourangeau",
+    "H2: Questions fréquentes des jeunes acheteurs à Tours"
+   ],
+   "geo_eeat": "Démontrer une expertise locale en recherchant et en présentant les aides spécifiques à l'accession de Tours Métropole Val de Loire, en plus des aides nationales comme le PTZ, pour un conseil hyper-personnalisé.",
+   "maillage": [
+    "prix-immobilier-tours-2026-loire-tgv-opportunites",
+    "meilleurs-quartiers-acheter-tours-2026",
+    "ptz-2026-simulation-conditions-eligibilite"
+   ]
+  },
+  {
+   "slug": "visite-cave-parking-achat-copropriete",
+   "category": "guides",
+   "priority": 3,
+   "but": "Inciter les acheteurs en copropriété à ne pas négliger la visite de la cave et du parking, en leur donnant une checklist des points à vérifier (humidité, sécurité, accès) pour ces annexes importantes.",
+   "kw_principal": "vérifier cave avant achat",
+   "kw_secondaires": [
+    "visiter une cave avant d'acheter",
+    "problème humidité cave copropriété",
+    "vérifier place de parking avant achat",
+    "sécurité des parkings en sous sol",
+    "valeur d'une cave ou d'un parking"
+   ],
+   "plan": [
+    "H2: Cave et parking : les annexes oubliées qui peuvent cacher des problèmes",
+    "H2: La checklist pour la visite de la cave (humidité, sécurité, électricité)",
+    "H2: La checklist pour la visite du parking (accès, taille, sécurité)",
+    "H2: Comment ces annexes sont elles décrites dans le règlement de copropriété ?",
+    "H2: Ne négligez aucun détail, notre analyse est complète",
+    "H2: Questions fréquentes sur les caves et parkings"
+   ],
+   "geo_eeat": "Fournir des conseils pratiques et techniques (ex: tester l'éclairage, vérifier la ventilation, mesurer la place de parking), qui démontrent une approche exhaustive et sécurisante pour l'acheteur.",
+   "maillage": [
+    "checklist-contre-visite-immobiliere",
+    "lire-reglement-copropriete-avant-achat",
+    "vices-caches-immobilier-protection-recours"
+   ]
+  },
+  {
+   "slug": "impact-transports-en-commun-prix-immobilier",
+   "category": "guides",
+   "priority": 3,
+   "but": "Expliquer aux acheteurs comment la proximité d'une station de métro, de tram ou d'une gare impacte le prix d'un bien, et comment anticiper la valorisation liée à la création de nouvelles lignes.",
+   "kw_principal": "valeur immobilière proximité métro",
+   "kw_secondaires": [
+    "impact transport en commun sur prix immobilier",
+    "plus value immobilière nouvelle ligne de tramway",
+    "acheter près d'une future gare du grand paris",
+    "distance idéale transports en commun",
+    "comment la desserte influence un quartier"
+   ],
+   "plan": [
+    "H2: Transports en commun : un critère majeur qui valorise votre bien",
+    "H2: De combien la proximité d'un métro ou d'un tram augmente t elle le prix ?",
+    "H2: Anticiper les futurs projets de transport pour acheter au bon endroit",
+    "H2: Attention à ne pas être trop près : les nuisances sonores",
+    "H2: ScoreImmo analyse la desserte en transports de chaque bien",
+    "H2: Questions fréquentes sur les transports et l'immobilier"
+   ],
+   "geo_eeat": "Apporter une analyse chiffrée en citant des études de l'INSEE ou de centres de recherche sur l'impact mesuré des infrastructures de transport sur les prix, pour un contenu basé sur des données probantes.",
+   "maillage": [
+    "quartiers-investir-paris-2026",
+    "ou-habiter-pres-de-lyon",
+    "diagnostic-bruit-ensa-achat"
+   ]
+  },
+  {
+   "slug": "acheter-duplex-questions-a-poser",
+   "category": "guides",
+   "priority": 3,
+   "but": "Guider les acheteurs intéressés par un duplex en leur fournissant une liste de questions spécifiques à poser et de points à vérifier (escalier, charges, isolation) pour évaluer les avantages et les inconvénients de ce type de bien.",
+   "kw_principal": "inconvénients duplex",
+   "kw_secondaires": [
+    "avantages duplex",
+    "questions à poser avant d'acheter un duplex",
+    "duplex dernier étage",
+    "perte de place escalier duplex",
+    "charges de copropriété pour un duplex"
+   ],
+   "plan": [
+    "H2: Le duplex, un appartement pas comme les autres : ce qu'il faut vérifier",
+    "H2: Les avantages : l'impression d'être dans une maison, la séparation des espaces",
+    "H2: Les inconvénients à ne pas sous estimer : l'escalier, la chaleur à l'étage, les charges",
+    "H2: Les questions clés à poser lors de la visite",
+    "H2: Comment est calculée la surface Carrez d'un duplex ?",
+    "H2: Analysez si le duplex est le bon choix pour votre mode de vie",
+    "H2: Questions fréquentes sur l'achat d'un duplex"
+   ],
+   "geo_eeat": "Démontrer une expertise technique en expliquant comment la surface sous l'escalier et les zones mansardées sont (ou ne sont pas) comptabilisées dans la loi Carrez, un point crucial pour évaluer le prix d'un duplex.",
+   "maillage": [
+    "acheter-appartement-dernier-etage",
+    "checklist-contre-visite-immobiliere",
+    "analyser-budget-previsionnel-copropriete"
+   ]
+  },
+  {
+   "slug": "home-staging-virtuel-pieges-acheteur",
+   "category": "guides",
+   "priority": 3,
+   "but": "Mettre en garde les acheteurs contre les illusions du home staging virtuel, en leur apprenant à décrypter ces images et à se concentrer sur la réalité du bien lors de la visite.",
+   "kw_principal": "home staging virtuel",
+   "kw_secondaires": [
+    "avis home staging virtuel",
+    "avantages inconvénients home staging virtuel",
+    "comment reconnaître un home staging virtuel",
+    "photo 3d aménagement appartement",
+    "ne pas se fier aux photos de l'annonce"
+   ],
+   "plan": [
+    "H2: Le home staging virtuel : une aide à la projection ou un miroir aux alouettes ?",
+    "H2: Comment repérer une annonce utilisant le home staging virtuel",
+    "H2: Les pièges à éviter : volumes trompeurs, masquage des défauts",
+    "H2: Nos conseils pour faire la part des choses lors de la visite physique",
+    "H2: Fiez vous aux données objectives, pas aux projections",
+    "H2: Questions fréquentes sur le home staging virtuel"
+   ],
+   "geo_eeat": "Adopter un ton de mise en garde et de conseil, en montrant des exemples 'avant/après' pour éduquer l'œil de l'acheteur et renforcer notre positionnement d'outil d'analyse factuelle face aux techniques de marketing.",
+   "maillage": [
+    "analyser-annonce-immobiliere-comme-pro",
+    "visite-immobiliere-checklist-points-verifier",
+    "erreurs-a-eviter-premier-achat-immobilier"
+   ]
+  }
+ ]
+}
