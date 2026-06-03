@@ -1,18 +1,19 @@
 ---
 // Hero optimise CRO (audit SXO): parle au primo-accedant, champ URL interactif pour capturer l'intent
 ---
-<section class="si-section" style="padding-top:2rem;padding-bottom:1rem;" aria-label="ScoreImmo : verifie le prix d'une annonce avant de faire une offre">
+<section class="si-section" style="padding-top:2rem;padding-bottom:1rem;" aria-label="ScoreImmo : vérifie le prix d'une annonce avant de faire une offre">
   <div class="si-container" style="position:relative;">
-    <div style="max-width:52rem;margin:0 auto;text-align:center;">
+    <div class="si-hero-glow" aria-hidden="true"></div>
+    <div class="si-hero-inner" style="max-width:52rem;margin:0 auto;text-align:center;position:relative;z-index:1;">
 
       <!-- Badge trust -->
       <div class="si-reveal" style="margin-bottom:1.5rem;">
-        <span class="si-badge">Données publiques · 9 sources officielles · 100% indépendant</span>
+        <span class="si-badge si-badge-hero"><span class="si-badge-dot" aria-hidden="true"></span>Données publiques · 9 sources officielles · 100% indépendant</span>
       </div>
 
       <!-- H1 tension primo-accedant -->
-      <h1 class="si-hero-title si-reveal si-reveal-delay-1" style="font-size:clamp(2rem, 5.5vw, 3.25rem);line-height:1.1;">
-        Ton annonce vaut-elle vraiment ce prix ?
+      <h1 class="si-hero-title si-reveal si-reveal-delay-1" style="font-size:clamp(2rem, 5.5vw, 3.4rem);line-height:1.08;">
+        Ton annonce vaut-elle vraiment <span class="si-hero-accent">ce prix</span> ?
       </h1>
 
       <!-- Subtitle : moment de decision + benefit clair -->
@@ -39,7 +40,7 @@
             autocomplete="off"
             spellcheck="false"
             inputmode="url"
-            aria-label="URL de l'annonce a analyser"
+            aria-label="URL de l'annonce à analyser"
           />
           <button type="submit" class="si-btn si-btn-primary si-url-submit">
             <span class="si-hide-mobile">Analyser</span>
@@ -208,6 +209,57 @@
 </script>
 
 <style>
+  /* Premium depth: halo bleu accent derriere le hero (DA-safe, bleu only) */
+  .si-hero-glow {
+    position: absolute;
+    left: 50%;
+    top: -56px;
+    transform: translateX(-50%);
+    width: min(900px, 122%);
+    height: 480px;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      radial-gradient(440px 300px at 34% 24%, rgba(59,130,246,0.15), transparent 70%),
+      radial-gradient(360px 280px at 70% 36%, rgba(59,130,246,0.07), transparent 72%);
+  }
+  @media (max-width: 640px) {
+    .si-hero-glow { top: -30px; height: 360px; }
+  }
+
+  /* Badge hero : pastille glass + point accent pulse */
+  .si-badge-hero {
+    backdrop-filter: blur(var(--si-glass-blur));
+    -webkit-backdrop-filter: blur(var(--si-glass-blur));
+    box-shadow: var(--si-shadow-sm);
+  }
+  .si-badge-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--si-accent);
+    margin-right: 7px;
+    vertical-align: middle;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.18);
+    animation: si-hero-dot 2.4s ease infinite;
+  }
+  @keyframes si-hero-dot {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(59,130,246,0.18); }
+    50% { box-shadow: 0 0 0 5px rgba(59,130,246,0.08); }
+  }
+
+  /* Highlight de marque sur le mot cle du H1 (accent DA) */
+  .si-hero-accent {
+    background: linear-gradient(transparent 60%, rgba(59,130,246,0.20) 0);
+    padding: 0 3px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .si-badge-dot { animation: none; }
+  }
+
   .si-url-form {
     max-width: 36rem;
     margin: 2rem auto 0;
