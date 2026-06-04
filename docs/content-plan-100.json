@@ -87,7 +87,7 @@
     "objectif": "Guider l'acheteur à chaque étape clé du processus d'achat, de la négociation à la signature, en renforçant la confiance et en présentant le rapport ScoreImmo comme l'outil indispensable de validation."
    }
   ],
-  "elargissement": "Notre stratégie s'appuie sur la consolidation de nos positions sur les requêtes transactionnelles (GSC) liées au DPE et au financement, en créant des clusters de contenu exhaustifs. Nous allons ensuite élargir notre couverture géographique sur les villes et quartiers à fort potentiel pour capter une audience qualifiée à la recherche d'opportunités locales. Chaque contenu est conçu pour maximiser le CTR avec des titres orientés 'bénéfice acheteur' et pour convertir en démontrant comment notre analyse factuelle, basée sur 13 sources officielles, apporte la confiance nécessaire à la prise de décision."
+  "elargissement": "Notre stratégie s'appuie sur la consolidation de nos positions sur les requêtes transactionnelles (GSC) liées au DPE et au financement, en créant des clusters de contenu exhaustifs. Nous allons ensuite élargir notre couverture géographique sur les villes et quartiers à fort potentiel pour capter une audience qualifiée à la recherche d'opportunités locales. Chaque contenu est conçu pour maximiser le CTR avec des titres orientés 'bénéfice acheteur' et pour convertir en démontrant comment notre analyse factuelle, basée sur 10 sources officielles, apporte la confiance nécessaire à la prise de décision."
  },
  "topics": [
   {
@@ -467,7 +467,7 @@
    "slug": "methode-analyse-immobiliere-scoreimmo",
    "category": "guides",
    "priority": 2,
-   "but": "Renforcer la confiance des utilisateurs en expliquant de manière transparente comment ScoreImmo analyse un bien, en mettant l'accent sur la fiabilité des 13 sources de données officielles utilisées.",
+   "but": "Renforcer la confiance des utilisateurs en expliquant de manière transparente comment ScoreImmo analyse un bien, en mettant l'accent sur la fiabilité des 10 sources de données officielles utilisées.",
    "kw_principal": "immobilier analyse",
    "kw_secondaires": [
     "comment analyser un bien immobilier avant d'acheter",
@@ -478,14 +478,14 @@
    ],
    "plan": [
     "H2: Pourquoi une analyse factuelle est indispensable avant tout achat",
-    "H2: Notre méthode : 13 sources de données officielles au service de votre décision",
+    "H2: Notre méthode : 10 sources de données officielles au service de votre décision",
     "H3: Analyse du prix : la puissance des données DVF",
     "H3: Analyse des risques : urbanisme, pollution, inondations",
     "H3: Analyse de l'environnement : transports, écoles, commerces",
     "H2: Le rapport ScoreImmo : votre synthèse de confiance en un clic",
     "H2: Questions fréquentes sur notre méthode d'analyse"
    ],
-   "geo_eeat": "Démontrer notre transparence et notre expertise en listant explicitement nos 13 sources de données (DVF, INSEE, Cadastre, Géorisques, etc.) et en expliquant la valeur ajoutée de chacune pour l'acheteur.",
+   "geo_eeat": "Démontrer notre transparence et notre expertise en listant explicitement nos 10 sources de données (DVF, INSEE, Cadastre, Géorisques, etc.) et en expliquant la valeur ajoutée de chacune pour l'acheteur.",
    "maillage": [
     "score-scoreimmo-methode-evaluation",
     "benchmark-immobilier-comparer-biens",
@@ -2461,7 +2461,7 @@
     "H2: Comment utiliser le score pour comparer des biens et prendre la bonne décision",
     "H2: Questions fréquentes sur notre score"
    ],
-   "geo_eeat": "Renforcer l'E-E-A-T en listant nos 13 sources de données officielles et en expliquant l'apport de chacune au score, pour asseoir notre positionnement de tiers de confiance basé sur la transparence et la data.",
+   "geo_eeat": "Renforcer l'E-E-A-T en listant nos 10 sources de données officielles et en expliquant l'apport de chacune au score, pour asseoir notre positionnement de tiers de confiance basé sur la transparence et la data.",
    "maillage": [
     "methode-analyse-immobiliere-scoreimmo",
     "benchmark-immobilier-comparer-biens",

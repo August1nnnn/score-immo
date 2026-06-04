@@ -8,7 +8,7 @@ export const homepageJsonLd = [
         "name": "ScoreImmo",
         "url": "https://score-immo.fr",
         "logo": "https://score-immo.fr/favicon.svg",
-        "description": "Premier outil français d'aide à la décision immobilière. Analyse n'importe quelle annonce immobilière en 30 secondes via 9 sources de données officielles.",
+        "description": "Premier outil français d'aide à la décision immobilière. Analyse n'importe quelle annonce immobilière en 30 secondes via 10 sources de données officielles.",
         "foundingDate": "2025",
         "areaServed": { "@type": "Country", "name": "France" },
         "knowsAbout": [
@@ -56,7 +56,7 @@ export const homepageJsonLd = [
         "applicationSubCategory": "Real Estate Analysis Tool",
         "operatingSystem": "Web (all)",
         "browserRequirements": "Requires JavaScript",
-        "description": "Colle le lien d'une annonce immobilière (Leboncoin, SeLoger, Bien'ici, PAP, Logic-Immo), reçois un rapport complet d'aide à la décision en 30 secondes. 230+ données croisées depuis 9 sources officielles : DVF, ADEME, Géorisques, INSEE, IGN/GPU, OSM, Éducation Nationale, ATMO, DGFIP.",
+        "description": "Colle le lien d'une annonce immobilière (Leboncoin, SeLoger, Bien'ici, PAP, Logic-Immo), reçois un rapport complet d'aide à la décision en 30 secondes. 230+ données croisées depuis 10 sources officielles : DVF, ADEME, Géorisques, INSEE, IGN/GPU, BAN, OSM, Éducation Nationale, ATMO, DGFIP.",
         "featureList": [
           "Analyse du prix vs transactions réelles DVF",
           "Score global 0-100 avec recommandation d'achat",
@@ -92,7 +92,7 @@ export const homepageJsonLd = [
       {
         "@type": "Question",
         "name": "D'où viennent les données de ScoreImmo ?",
-        "acceptedAnswer": { "@type": "Answer", "text": "ScoreImmo croise automatiquement 9 sources de données publiques officielles françaises : DVF (transactions réelles, DGFIP), ADEME (DPE), Géorisques (ministère de la Transition écologique), INSEE, IGN et Géoportail de l'Urbanisme, OpenStreetMap, Éducation Nationale, ATMO France et DGFIP. Plus de 250 vérifications par annonce." }
+        "acceptedAnswer": { "@type": "Answer", "text": "ScoreImmo croise automatiquement 10 sources de données publiques officielles françaises : DVF (transactions réelles, DGFIP), ADEME (DPE), Géorisques (ministère de la Transition écologique), INSEE, IGN et Géoportail de l'Urbanisme, BAN (adresses), OpenStreetMap, Éducation Nationale, ATMO France et DGFIP. Plus de 250 vérifications par annonce." }
       },
       {
         "@type": "Question",

@@ -24,7 +24,7 @@
   <div class="si-bts-strip" id="si-bts-strip"></div>
 
   <div class="si-bts-sources">
-    <div class="si-bts-sources-label">9 sources officielles françaises</div>
+    <div class="si-bts-sources-label">10 sources officielles françaises</div>
     <div id="si-bts-srcs"></div>
     <p class="si-bts-sources-note">Aucun concurrent ne croise autant de données publiques dans un seul rapport. Nos 6 analystes ne prennent jamais de pause café.</p>
   </div>
@@ -66,7 +66,7 @@ p.innerHTML='<div class="si-bts-dh"><div class="si-bts-dh-icon">'+m.e+'</div><di
 '<div class="si-bts-srcrow">'+m.s.map(function(s){return '<span class="si-bts-srctag">'+s+'</span>';}).join('')+'</div>';
 m.d.forEach(function(_,i){setTimeout(function(){var el=document.getElementById('si-dp-'+i);if(el)el.classList.add('vis');},250+i*260);});
 }else if(done.size===T.length){
-p.innerHTML='<div class="si-bts-final"><div class="si-bts-final-check">✓</div><div class="si-bts-final-title">Rapport généré</div><p class="si-bts-final-sub">6 analystes. 9 sources. 230+ données.<br>En <strong class="si-bts-blue">30 s</strong> au lieu de <strong class="si-bts-red">5 h</strong>.</p><div class="si-bts-bars"><div class="si-bts-bar-row"><span class="si-bts-red">Si vous le faites vous-même</span><span class="si-bts-mono si-bts-red">~5 h</span></div><div class="si-bts-bar-track si-bts-bar-track-red"><div class="si-bts-bar-fill" id="si-bar-h" style="width:0%;background:#DC2626;"></div></div><div class="si-bts-bar-row"><span class="si-bts-blue">ScoreImmo</span><span class="si-bts-mono si-bts-blue">30 s</span></div><div class="si-bts-bar-track si-bts-bar-track-blue"><div class="si-bts-bar-fill" id="si-bar-b" style="width:0%;background:#3B82F6;min-width:6px;"></div></div></div><button type="button" class="si-bts-start si-bts-start-sm" onclick="siBtsStart()">Relancer la simulation</button></div>';
+p.innerHTML='<div class="si-bts-final"><div class="si-bts-final-check">✓</div><div class="si-bts-final-title">Rapport généré</div><p class="si-bts-final-sub">6 analystes. 10 sources. 230+ données.<br>En <strong class="si-bts-blue">30 s</strong> au lieu de <strong class="si-bts-red">5 h</strong>.</p><div class="si-bts-bars"><div class="si-bts-bar-row"><span class="si-bts-red">Si vous le faites vous-même</span><span class="si-bts-mono si-bts-red">~5 h</span></div><div class="si-bts-bar-track si-bts-bar-track-red"><div class="si-bts-bar-fill" id="si-bar-h" style="width:0%;background:#DC2626;"></div></div><div class="si-bts-bar-row"><span class="si-bts-blue">ScoreImmo</span><span class="si-bts-mono si-bts-blue">30 s</span></div><div class="si-bts-bar-track si-bts-bar-track-blue"><div class="si-bts-bar-fill" id="si-bar-b" style="width:0%;background:#3B82F6;min-width:6px;"></div></div></div><button type="button" class="si-bts-start si-bts-start-sm" onclick="siBtsStart()">Relancer la simulation</button></div>';
 requestAnimationFrame(function(){var h=document.getElementById('si-bar-h'),b=document.getElementById('si-bar-b');if(h)h.style.width='100%';setTimeout(function(){if(b)b.style.width='2%';},400);});
 }}
 

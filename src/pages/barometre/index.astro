@@ -17,12 +17,12 @@ const best = all.slice(0, 3);
 const worst = [...all].slice(-3).reverse();
 
 const title = `Le Baromètre Immobilier ScoreImmo : ${total} annonces notées sur 100`;
-const description = `Les vrais scores d'annonces immobilières analysées par ScoreImmo : ${total} biens dans ${regions} régions, notés sur 100 à partir de 13 sources officielles (prix DVF, DPE, risques, urbanisme).`.slice(0, 160);
+const description = `Les vrais scores d'annonces immobilières analysées par ScoreImmo : ${total} biens dans ${regions} régions, notés sur 100 à partir de 10 sources officielles (prix DVF, DPE, risques, urbanisme).`.slice(0, 160);
 
 const tldr = [
   `${total} annonces réelles analysées et notées sur 100 dans ${regions} régions.`,
   `Score moyen du panel : ${avg}/100.`,
-  `Chaque note croise plus de 250 données de 13 sources officielles (DVF, ADEME, Géorisques, INSEE...).`,
+  `Chaque note croise plus de 250 données de 10 sources officielles (DVF, ADEME, Géorisques, INSEE...).`,
   `Le meilleur du mois : ${best[0]?.ville} (${best[0]?.score_global}/100).`,
 ];
 
