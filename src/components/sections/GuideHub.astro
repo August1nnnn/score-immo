@@ -142,6 +142,18 @@ const artTitle = (a: any) => (a ? (a.data.title || '') : '');
 
     </div>
 
+    <!-- Passerelle mandataires : rend l'espace pro decouvrable depuis le hub -->
+    <a href="/pro" class="si-reveal" style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:2.5rem;padding:1.25rem 1.5rem;background:linear-gradient(135deg,var(--si-primary,#0F172A),#1e293b);border-radius:var(--si-radius-2xl,1rem);text-decoration:none;color:#fff;">
+      <span style="font-family:var(--si-font-body);line-height:1.45;">
+        <strong style="font-family:var(--si-font-heading);font-size:1.05rem;">Vous &ecirc;tes mandataire ou agent immobilier ?</strong><br>
+        <span style="color:rgba(255,255,255,0.85);font-size:0.9375rem;">D&eacute;couvrez l'espace pro : estimez juste et d&eacute;crochez plus de mandats.</span>
+      </span>
+      <span class="si-btn si-btn-primary" style="flex-shrink:0;">
+        Espace mandataires
+        <svg class="si-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/></svg>
+      </span>
+    </a>
+
     <!-- Outils gratuits -->
     <div style="margin-top:3rem;" class="si-reveal">
       <div style="text-align:center;margin-bottom:2rem;">
