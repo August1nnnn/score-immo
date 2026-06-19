@@ -1,0 +1,195 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TLDRBox from '@/components/TLDRBox.astro';
+import FAQ from '@/components/FAQ.astro';
+import SourcesSection from '@/components/SourcesSection.astro';
+import AnalyzerBox from '@/components/AnalyzerBox.astro';
+import { getCollection } from 'astro:content';
+import { slugifyRegion as slugify, groupByRegion, REGION_MIN } from '@/lib/regions';
+
+export async function getStaticPaths() {
+  const all = (await getCollection('barometre')).map((e) => e.data);
+  const g = groupByRegion(all);
+  return [...g.entries()]
+    .filter(([, fiches]) => fiches.length >= REGION_MIN)
+    .map(([region]) => ({ params: { slug: slugify(region) }, props: { region } }));
+}
+
+const SITE = 'https://score-immo.fr';
+
+const { region } = Astro.props;
+const all = (await getCollection('barometre')).map((e) => e.data);
+const fiches = groupByRegion(all).get(region)!.sort((a, b) => b.score_global - a.score_global);
+const canonical = `${SITE}/barometre/region/${slugify(region)}`;
+
+const typeLabel = (t: string) => (t === 'appartement' ? 'Appartement' : 'Maison');
+const median = (arr: number[]) => {
+  if (!arr.length) return null;
+  const s = [...arr].sort((a, b) => a - b);
+  return s[Math.floor(s.length / 2)];
+};
+const fr = (n: number | null) => (n == null ? null : n.toLocaleString('fr-FR'));
+
+const n = fiches.length;
+const avgScore = Math.round(fiches.reduce((s, f) => s + f.score_global, 0) / n);
+// DVF medians per sector (real, from details.marche.median_m2)
+const dvf = fiches.map((f) => f.details?.marche?.median_m2).filter((x: any) => x > 0) as number[];
+const medM2 = median(dvf);
+const minM2 = dvf.length ? Math.min(...dvf) : null;
+const maxM2 = dvf.length ? Math.max(...dvf) : null;
+const lastDate = fiches.map((f) => f.date_analyse).filter(Boolean).sort().slice(-1)[0] || null;
+const lastDateFmt = lastDate
+  ? new Date(lastDate).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long' })
+  : null;
+
+const title = `Prix au m² et scores immobiliers en ${region} | Baromètre ScoreImmo`;
+const description = `${n} biens analysés par ScoreImmo en ${region} : score moyen ${avgScore}/100${medM2 ? `, prix médian DVF ${fr(medM2)} €/m²` : ''}. Données publiques officielles, du côté de l'acheteur.`.slice(0, 160);
+
+const tldr = [
+  `${n} biens immobiliers analysés et notés sur 100 par ScoreImmo en ${region}.`,
+  `Score ScoreImmo moyen : ${avgScore}/100.`,
+  medM2 ? `Prix médian observé (DVF) : ${fr(medM2)} €/m²${minM2 && maxM2 ? `, de ${fr(minM2)} à ${fr(maxM2)} €/m² selon les communes.` : '.'}` : null,
+].filter(Boolean) as string[];
+
+const faq = [
+  medM2 ? {
+    q: `Quel est le prix immobilier au m² en ${region} ?`,
+    a: `Sur les ${n} biens analysés par ScoreImmo en ${region}, le prix médian au m² issu des transactions réelles (DVF) est de ${fr(medM2)} €/m²${minM2 && maxM2 ? `, dans une fourchette de ${fr(minM2)} à ${fr(maxM2)} €/m² selon les communes` : ''}.`,
+  } : null,
+  {
+    q: `Quel est le score immobilier moyen en ${region} ?`,
+    a: `Les ${n} biens analysés par ScoreImmo en ${region} obtiennent un score moyen de ${avgScore}/100. Le meilleur du panel est ${fiches[0].ville} (${fiches[0].score_global}/100).`,
+  },
+  {
+    q: `Combien de biens ScoreImmo a-t-il analysés en ${region} ?`,
+    a: `ScoreImmo a publié ${n} analyses détaillées de biens immobiliers en ${region}, chacune notée sur 100 à partir de données publiques officielles (DVF, DPE/ADEME, Géorisques, INSEE).${lastDateFmt ? ` Dernière mise à jour : ${lastDateFmt}.` : ''}`,
+  },
+  {
+    q: `Comment ScoreImmo calcule le score d'un bien ?`,
+    a: `Chaque bien reçoit une note sur 100 croisant cinq critères : prix vs marché (DVF), performance énergétique (DPE), risques naturels (Géorisques), urbanisme et environnement. La notation est indépendante et du côté de l'acheteur.`,
+  },
+].filter(Boolean) as { q: string; a: string }[];
+
+const sources = [
+  { title: 'Demandes de valeurs foncières (DVF)', url: 'https://app.dvf.etalab.gouv.fr/', publisher: 'data.gouv.fr' },
+  { title: 'Diagnostic de performance énergétique', url: 'https://data.ademe.fr/', publisher: 'ADEME' },
+  { title: 'Risques naturels et technologiques', url: 'https://www.georisques.gouv.fr/', publisher: 'Géorisques' },
+  { title: 'Revenus et démographie communale', url: 'https://www.insee.fr/', publisher: 'INSEE' },
+];
+
+const scoreColor = (s: number) => (s >= 70 ? '#16A34A' : s >= 40 ? '#F59E0B' : '#DC2626');
+
+const jsonLd: any[] = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: title,
+    description,
+    url: canonical,
+    inLanguage: 'fr-FR',
+    ...(lastDate ? { dateModified: lastDate } : {}),
+    isPartOf: { '@type': 'WebSite', name: 'ScoreImmo', url: SITE },
+    speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.si-article-title', '.si-tldr'] },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
+    name: `Prix au m² et scores ScoreImmo en ${region}`,
+    description: `Notation ScoreImmo (0 à 100) et prix au m² de ${n} biens immobiliers réels en ${region}. Score moyen ${avgScore}/100${medM2 ? `, prix médian DVF ${medM2} €/m²` : ''}.`,
+    url: canonical,
+    isAccessibleForFree: true,
+    creator: { '@type': 'Organization', name: 'ScoreImmo', url: SITE },
+    ...(lastDate ? { dateModified: lastDate } : {}),
+    spatialCoverage: { '@type': 'Place', name: region, address: { '@type': 'PostalAddress', addressRegion: region, addressCountry: 'FR' } },
+    measurementTechnique: 'ScoreImmo : cinq sous-scores (prix vs marché, performance énergétique, risques naturels, urbanisme, environnement) agrégés en une note sur 100, à partir de données publiques DVF, ADEME, Géorisques et INSEE.',
+    variableMeasured: [
+      { '@type': 'PropertyValue', name: 'Biens analysés', value: n },
+      { '@type': 'PropertyValue', name: 'Score ScoreImmo moyen (0-100)', value: avgScore },
+      ...(medM2 ? [{ '@type': 'PropertyValue', name: 'Prix médian DVF (€/m²)', value: medM2 }] : []),
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: `${SITE}/` },
+      { '@type': 'ListItem', position: 2, name: 'Baromètre', item: `${SITE}/barometre` },
+      { '@type': 'ListItem', position: 3, name: region, item: canonical },
+    ],
+  },
+];
+---
+<BaseLayout {title} {description} {canonical} {jsonLd}>
+  <section class="si-section">
+    <div class="si-container">
+      <nav class="si-breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a><span> &rsaquo; </span>
+        <a href="/barometre">Le Baromètre</a><span> &rsaquo; </span>
+        <span>{region}</span>
+      </nav>
+
+      <header class="reg-header">
+        <h1 class="si-article-title">Prix au m² et scores immobiliers en {region}</h1>
+        <p class="reg-lead">{n} biens immobiliers réels en {region}, analysés et notés sur 100 par ScoreImmo
+        à partir de données publiques officielles. Du côté de l'acheteur, jamais du vendeur.</p>
+        <div class="reg-stats">
+          <div><strong>{n}</strong><span>biens analysés</span></div>
+          <div><strong>{avgScore}/100</strong><span>score moyen</span></div>
+          {medM2 && <div><strong>{fr(medM2)} €</strong><span>prix médian /m² (DVF)</span></div>}
+        </div>
+      </header>
+
+      <div class="reg-narrow">
+        <TLDRBox items={tldr} />
+      </div>
+
+      <h2 class="reg-h2">Les biens analysés en {region}</h2>
+      <div class="reg-grid">
+        {fiches.map((f) => (
+          <a class="bar-card" href={`/barometre/${f.slug}`}>
+            <span class="bar-card-score" style={`color:${scoreColor(f.score_global)}`}>{f.score_global}<small>/100</small></span>
+            <span class="bar-card-city">{f.ville}</span>
+            <span class="bar-card-meta">{typeLabel(f.type_bien)} · {f.surface} m²{f.prix_m2 ? ` · ${fr(f.prix_m2)} €/m²` : ''}</span>
+          </a>
+        ))}
+      </div>
+
+      <div class="reg-narrow">
+        <FAQ items={faq} />
+        <AnalyzerBox blog="villes" medium="barometre_region" />
+        <SourcesSection sources={sources} />
+        <p class="reg-method">Méthodologie : les prix médians au m² proviennent des transactions réelles publiées
+        en open data (DVF). Les scores sont calculés par l'outil ScoreImmo sur des annonces réelles et sont indicatifs ;
+        ils ne constituent pas un conseil en investissement.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style is:global>
+  .si-breadcrumb { font-size: 0.875rem; color: var(--si-muted-foreground, #64748B); margin: 1rem 0 2rem; }
+  .si-breadcrumb a { color: var(--si-muted-foreground, #64748B); text-decoration: none; }
+  .si-breadcrumb a:hover { color: var(--si-accent, #3B82F6); }
+  .reg-header { max-width: 48rem; margin: 0 auto 1rem; text-align: center; }
+  .si-article-title { font-family: var(--si-font-heading, 'DM Sans', sans-serif); font-size: clamp(1.9rem, 5vw, 2.8rem); font-weight: 700; line-height: 1.12; letter-spacing: -0.025em; margin: 0 0 1rem; color: var(--si-foreground); }
+  .reg-lead { font-size: 1.1rem; line-height: 1.7; color: var(--si-muted-foreground, #64748B); margin: 0 auto 1.5rem; }
+  .reg-narrow { max-width: 48rem; margin: 0 auto; }
+  .reg-stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 2rem; margin: 1.5rem 0; }
+  .reg-stats div { display: flex; flex-direction: column; }
+  .reg-stats strong { font-family: var(--si-font-heading); font-size: 1.75rem; font-weight: 800; color: var(--si-accent, #3B82F6); }
+  .reg-stats span { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--si-muted-foreground); }
+  .reg-h2 { font-family: var(--si-font-heading); font-size: 1.5rem; font-weight: 700; margin: 2.5rem 0 1rem; color: var(--si-foreground); }
+  .reg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+  .bar-card { display: flex; flex-direction: column; gap: 0.25rem; padding: 1.1rem 1.25rem; border: 1px solid var(--si-border, #E2E8F0); border-radius: var(--si-radius, 0.75rem); background: var(--si-card, #fff); text-decoration: none; transition: box-shadow 0.2s, transform 0.2s; }
+  .bar-card:hover { box-shadow: var(--si-shadow-lg, 0 10px 15px -3px rgba(0,0,0,0.1)); transform: translateY(-2px); }
+  .bar-card-score { font-family: var(--si-font-heading); font-size: 1.9rem; font-weight: 800; line-height: 1; }
+  .bar-card-score small { font-size: 0.8rem; color: var(--si-muted-foreground); font-weight: 600; }
+  .bar-card-city { font-weight: 700; font-size: 1.05rem; color: var(--si-foreground); }
+  .bar-card-meta { font-size: 0.85rem; color: var(--si-foreground); }
+  .reg-method { font-size: 0.875rem; color: var(--si-muted-foreground); line-height: 1.6; margin-top: 1.5rem; }
+</style>

@@ -4,6 +4,7 @@ import TLDRBox from '@/components/TLDRBox.astro';
 import AnalyzerBox from '@/components/AnalyzerBox.astro';
 import FAQ from '@/components/FAQ.astro';
 import { getCollection } from 'astro:content';
+import { slugifyRegion, groupByRegion, REGION_MIN } from '@/lib/regions';
 
 const SITE = 'https://score-immo.fr';
 const canonical = `${SITE}/barometre`;
@@ -29,6 +30,15 @@ const tldr = [
 
 const scoreColor = (s: number) => (s >= 70 ? '#16A34A' : s >= 40 ? '#F59E0B' : '#DC2626');
 const typeLabel = (t: string) => (t === 'appartement' ? 'Appartement' : 'Maison');
+
+// Region aggregates -> links to the regional pages (real aggregates, >=3 fiches).
+const regionLinks = [...groupByRegion(all).entries()]
+  .filter(([, fs]) => fs.length >= REGION_MIN)
+  .map(([region, fs]) => ({
+    region, slug: slugifyRegion(region), count: fs.length,
+    avg: Math.round(fs.reduce((s, f) => s + f.score_global, 0) / fs.length),
+  }))
+  .sort((a, b) => b.count - a.count);
 
 // Aggregate first-party figures (real, computed from the published fiches) for the
 // Dataset + FAQ. This turns the hub into a citable primary source for queries like
@@ -147,6 +157,20 @@ const jsonLd: any[] = [
           </a>
         ))}
       </div>
+
+      {regionLinks.length > 0 && (
+        <>
+          <h2 class="bar-h2">Prix et scores par région</h2>
+          <div class="bar-grid">
+            {regionLinks.map((r) => (
+              <a class="bar-card" href={`/barometre/region/${r.slug}`}>
+                <span class="bar-card-city">{r.region}</span>
+                <span class="bar-card-meta">{r.count} biens analysés · score moyen {r.avg}/100</span>
+              </a>
+            ))}
+          </div>
+        </>
+      )}
 
       <h2 class="bar-h2">Toutes les analyses</h2>
       <div class="bar-grid">
