@@ -2,6 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import TLDRBox from '@/components/TLDRBox.astro';
 import AnalyzerBox from '@/components/AnalyzerBox.astro';
+import FAQ from '@/components/FAQ.astro';
 import { getCollection } from 'astro:content';
 
 const SITE = 'https://score-immo.fr';
@@ -29,6 +30,58 @@ const tldr = [
 const scoreColor = (s: number) => (s >= 70 ? '#16A34A' : s >= 40 ? '#F59E0B' : '#DC2626');
 const typeLabel = (t: string) => (t === 'appartement' ? 'Appartement' : 'Maison');
 
+// Aggregate first-party figures (real, computed from the published fiches) for the
+// Dataset + FAQ. This turns the hub into a citable primary source for queries like
+// "score immobilier moyen" / "combien d'annonces analysees".
+const withM2 = all.filter((f) => f.prix_m2);
+const avgM2 = withM2.length ? Math.round(withM2.reduce((s, f) => s + (f.prix_m2 as number), 0) / withM2.length) : null;
+const lastDate = all.map((f) => f.date_analyse).filter(Boolean).sort().slice(-1)[0] || null;
+const lastDateFmt = lastDate ? new Date(lastDate).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long' }) : null;
+
+const faq: { q: string; a: string }[] = [
+  {
+    q: `Quel est le score immobilier moyen des annonces analysées par ScoreImmo ?`,
+    a: `Sur les ${total} annonces réelles analysées dans ${regions} régions, le score ScoreImmo moyen est de ${avg}/100. La meilleure note du panel est ${best[0]?.score_global}/100 (${best[0]?.ville}).`,
+  },
+  {
+    q: `Combien d'annonces immobilières ScoreImmo a-t-il notées ?`,
+    a: `Le Baromètre ScoreImmo publie ${total} analyses d'annonces réelles${avgM2 ? `, avec un prix moyen observé de ${avgM2.toLocaleString('fr-FR')} €/m²` : ''}, réparties sur ${regions} régions françaises.`,
+  },
+  {
+    q: `Comment ScoreImmo note une annonce immobilière ?`,
+    a: `Chaque bien reçoit une note sur 100 croisant plus de 250 données issues de sources publiques officielles : prix au m² réels (DVF), performance énergétique (DPE/ADEME), risques naturels (Géorisques), urbanisme, environnement et profil de la commune (INSEE).`,
+  },
+  {
+    q: `Les notes du Baromètre sont-elles fiables et indépendantes ?`,
+    a: `Les notes sont calculées uniquement à partir de données publiques officielles, du côté de l'acheteur et jamais du vendeur. Elles sont indicatives et ne constituent pas un conseil en investissement.${lastDateFmt ? ` Dernière mise à jour : ${lastDateFmt}.` : ''}`,
+  },
+];
+
+const datasetSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Dataset',
+  name: `Baromètre Immobilier ScoreImmo : scores de ${total} annonces réelles`,
+  description: `Notation ScoreImmo (0 à 100) de ${total} annonces immobilières réelles dans ${regions} régions françaises. Score moyen ${avg}/100${avgM2 ? `, prix moyen observé ${avgM2} €/m²` : ''}.`,
+  url: canonical,
+  isAccessibleForFree: true,
+  creator: { '@type': 'Organization', name: 'ScoreImmo', url: SITE },
+  ...(lastDate ? { dateModified: lastDate } : {}),
+  spatialCoverage: { '@type': 'Place', name: 'France' },
+  measurementTechnique: 'ScoreImmo : cinq sous-scores (prix vs marché, performance énergétique, risques naturels, urbanisme, environnement) agrégés en une note sur 100, à partir de données publiques DVF, ADEME, Géorisques et INSEE.',
+  variableMeasured: [
+    { '@type': 'PropertyValue', name: 'Annonces analysées', value: total },
+    { '@type': 'PropertyValue', name: 'Score ScoreImmo moyen (0-100)', value: avg },
+    { '@type': 'PropertyValue', name: 'Régions couvertes', value: regions },
+    ...(avgM2 ? [{ '@type': 'PropertyValue', name: 'Prix moyen observé (€/m²)', value: avgM2 }] : []),
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+
 const jsonLd: any[] = [
   {
     '@context': 'https://schema.org',
@@ -44,7 +97,7 @@ const jsonLd: any[] = [
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     itemListElement: all.map((f, i) => ({
-      '@type': 'ListItem', position: i + 1, name: `${f.ville} — ${typeLabel(f.type_bien)} ${f.surface} m² (${f.score_global}/100)`,
+      '@type': 'ListItem', position: i + 1, name: `${f.ville} · ${typeLabel(f.type_bien)} ${f.surface} m² (${f.score_global}/100)`,
       url: `${SITE}/barometre/${f.slug}`,
     })),
   },
@@ -56,6 +109,8 @@ const jsonLd: any[] = [
       { '@type': 'ListItem', position: 2, name: 'Baromètre', item: canonical },
     ],
   },
+  datasetSchema,
+  faqSchema,
 ];
 ---
 <BaseLayout {title} {description} {canonical} {jsonLd}>
@@ -106,6 +161,7 @@ const jsonLd: any[] = [
       </div>
 
       <div class="bar-hub-narrow">
+        <FAQ items={faq} />
         <AnalyzerBox blog="villes" medium="barometre_hub" />
         <p class="bar-method">Méthodologie : le Baromètre publie des analyses générées par l'outil ScoreImmo sur des
         annonces réelles. Les notes sont indicatives et reposent sur des données publiques officielles. Elles ne
