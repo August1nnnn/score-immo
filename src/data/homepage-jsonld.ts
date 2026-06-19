@@ -10,6 +10,7 @@ export const homepageJsonLd = [
         "logo": "https://score-immo.fr/favicon.svg",
         "description": "Premier outil français d'aide à la décision immobilière. Analyse n'importe quelle annonce immobilière en 30 secondes via 10 sources de données officielles.",
         "foundingDate": "2025",
+        "sameAs": ["https://www.wikidata.org/wiki/Q140289914"],
         "areaServed": { "@type": "Country", "name": "France" },
         "knowsAbout": [
           "Immobilier résidentiel",
