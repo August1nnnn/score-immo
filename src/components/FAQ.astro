@@ -1,0 +1,57 @@
+---
+// Visible FAQ block. The same items array MUST also feed a FAQPage JSON-LD on the
+// page so the rendered HTML and the schema stay identical: the Q&A pairs are what
+// AI search engines extract and cite (the SERP FAQ dropdown was deprecated 2026).
+interface Props {
+  items: { q: string; a: string }[];
+  title?: string;
+}
+const { items, title = "Questions fréquentes" } = Astro.props;
+---
+{items && items.length > 0 && (
+  <section class="si-faq" aria-label={title}>
+    <h2>{title}</h2>
+    <div class="si-faq-list">
+      {items.map((it) => (
+        <div class="si-faq-item">
+          <h3 class="si-faq-q">{it.q}</h3>
+          <p class="si-faq-a">{it.a}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+)}
+
+<style>
+  .si-faq {
+    margin: 2.5rem 0;
+  }
+  .si-faq > h2 {
+    margin: 0 0 1.25rem;
+  }
+  .si-faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .si-faq-item {
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: var(--si-radius, 0.75rem);
+    padding: 1.1rem 1.25rem;
+    background: #ffffff;
+  }
+  .si-faq-q {
+    margin: 0 0 0.5rem;
+    font-family: var(--si-font-heading, 'DM Sans', sans-serif);
+    font-size: 1.02rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: #0f172a;
+  }
+  .si-faq-a {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #475569;
+  }
+</style>
