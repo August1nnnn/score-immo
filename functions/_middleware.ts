@@ -5,6 +5,8 @@
 //      which the consent-gated client JS beacon misses).
 //   3. Inject CSP security header.
 
+import { verifyOpenAIBot } from "./_oai-verify";
+
 const BOT_RE =
   /bot|crawl|spider|slurp|lighthouse|headless|curl|wget|python|httpx|scrap|fetch|monitor|preview|vercel|facebookexternalhit|whatsapp|telegram|skypeuripreview|linkedinbot|twitterbot|duckduckbot|yandex|semrush|ahrefs|mj12bot|dotbot|petalbot|seznambot|applebot|ccbot|claudebot|gptbot|google-extended|perplexitybot|youbot|amazonbot|bytespider|duckassistbot|chatgpt-user|oai-searchbot|anthropic|cohere|diffbot|archive|uptime|pingdom|gtmetrix|Nexus 5X Build\/MMB29P/i;
 
@@ -38,7 +40,8 @@ function logBotIfRelevant(
 
     if (!env.SUPABASE_URL || !env.SUPABASE_SERVICE_KEY) return;
 
-    const payload = {
+    const ip = request.headers.get("cf-connecting-ip") || "";
+    const base = {
       path: path.slice(0, 500),
       referrer: (request.headers.get("referer") || "").slice(0, 500) || null,
       user_agent: ua.slice(0, 500),
@@ -48,16 +51,22 @@ function logBotIfRelevant(
     };
 
     waitUntil(
-      fetch(`${env.SUPABASE_URL}/rest/v1/page_views`, {
-        method: "POST",
-        headers: {
-          apikey: env.SUPABASE_SERVICE_KEY,
-          Authorization: `Bearer ${env.SUPABASE_SERVICE_KEY}`,
-          "Content-Type": "application/json",
-          Prefer: "return=minimal",
-        },
-        body: JSON.stringify(payload),
-      }).catch(() => null),
+      (async () => {
+        // Verify OpenAI bots against published IP ranges so spoofed "ChatGPT-User"
+        // UAs land as bot_verified=false instead of inflating the live-fetch KPI.
+        const { bot, verified } = await verifyOpenAIBot(ua, ip);
+        const payload = { ...base, bot_name: bot, bot_verified: verified };
+        await fetch(`${env.SUPABASE_URL}/rest/v1/page_views`, {
+          method: "POST",
+          headers: {
+            apikey: env.SUPABASE_SERVICE_KEY!,
+            Authorization: `Bearer ${env.SUPABASE_SERVICE_KEY}`,
+            "Content-Type": "application/json",
+            Prefer: "return=minimal",
+          },
+          body: JSON.stringify(payload),
+        }).catch(() => null);
+      })(),
     );
   } catch {
     // silent
