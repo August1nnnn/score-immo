@@ -1,0 +1,22 @@
+{
+  "index": 36,
+  "queued_at": "2026-06-24T15:29:54.084919+00:00",
+  "blog": "pro",
+  "category": "mandataire",
+  "slug": "suivi-vente-comment-rassurer-vendeur-pendant-commercialisati",
+  "title": "Suivi de vente : comment rassurer un vendeur pendant la commercialisation",
+  "keywords": "suivi de vente immobilier, rassurer un vendeur, communication mandataire vendeur",
+  "author": "Léa Moreau",
+  "author_handle": "lea-moreau",
+  "scheduled_date": "2026-06-24",
+  "image": {
+    "src": "https://images.unsplash.com/photo-1431274172761-fca41d930114?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4Nzg4MzB8MHwxfHNlYXJjaHwxfHxyZWFsJTIwZXN0YXRlJTIwYWdlbnQlMjBmcmFuY2V8ZW58MHwwfHx8MTc4MjMxNDk1N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+    "alt": "Eiffel Tower at Paris, France",
+    "width": 1080,
+    "height": 720
+  },
+  "output_path": "src/content/articles/pro/suivi-vente-comment-rassurer-vendeur-pendant-commercialisati.json",
+  "prompt_file": "blog-auto/prompts/article-scoreimmo.md",
+  "live_url": "https://score-immo.fr/blogs/pro/suivi-vente-comment-rassurer-vendeur-pendant-commercialisati",
+  "instructions": "Genere l'article FR en suivant STRICTEMENT blog-auto/prompts/article-scoreimmo.md (persona Lea Moreau, 3500+ mots body_html HTML pur, TL;DR 4 bullets, FAQ 5Q, 5+ sources officielles FR, 5+ liens internes, 1+ CTA app.score-immo.fr, zero em-dash, accents FR obligatoires, aucune fabrication de chiffre YMYL). Ecris le JSON complet (schema dans blog-auto/prompts/article-scoreimmo.md) dans output_path en recopiant le champ image fourni. Puis : 1) marque cette entree published:true + published_at dans blog-auto/articles.json, 2) supprime blog-auto/queue/<index>.json, 3) commit + push (-> deploy CF Pages)."
+}
