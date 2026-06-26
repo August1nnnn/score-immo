@@ -1,0 +1,22 @@
+{
+  "index": 38,
+  "queued_at": "2026-06-26T09:51:47.497148+00:00",
+  "blog": "pro",
+  "category": "mandataire",
+  "slug": "baisse-prix-convaincre-vendeur-arguments-chiffres",
+  "title": "Baisse de prix : convaincre un vendeur avec des arguments chiffrés",
+  "keywords": "baisse de prix immobilier, convaincre un vendeur, ajustement prix de vente",
+  "author": "Léa Moreau",
+  "author_handle": "lea-moreau",
+  "scheduled_date": "2026-06-25",
+  "image": {
+    "src": "https://images.unsplash.com/photo-1431274172761-fca41d930114?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4Nzg4MzB8MHwxfHNlYXJjaHwxfHxyZWFsJTIwZXN0YXRlJTIwYWdlbnQlMjBmcmFuY2V8ZW58MHwwfHx8MTc4MjMxNDk1N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+    "alt": "Eiffel Tower at Paris, France",
+    "width": 1080,
+    "height": 720
+  },
+  "output_path": "src/content/articles/pro/baisse-prix-convaincre-vendeur-arguments-chiffres.json",
+  "prompt_file": "blog-auto/prompts/article-scoreimmo.md",
+  "live_url": "https://score-immo.fr/blogs/pro/baisse-prix-convaincre-vendeur-arguments-chiffres",
+  "instructions": "Genere l'article FR en suivant STRICTEMENT blog-auto/prompts/article-scoreimmo.md (persona Lea Moreau, 3500+ mots body_html HTML pur, TL;DR 4 bullets, FAQ 5Q, 5+ sources officielles FR, 5+ liens internes, 1+ CTA app.score-immo.fr, zero em-dash, accents FR obligatoires, aucune fabrication de chiffre YMYL). Ecris le JSON complet (schema dans blog-auto/prompts/article-scoreimmo.md) dans output_path en recopiant le champ image fourni. Puis : 1) marque cette entree published:true + published_at dans blog-auto/articles.json, 2) supprime blog-auto/queue/<index>.json, 3) commit + push (-> deploy CF Pages)."
+}
