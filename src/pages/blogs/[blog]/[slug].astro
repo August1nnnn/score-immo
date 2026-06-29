@@ -124,6 +124,39 @@ if (faqPairs.length > 0) {
     })),
   });
 }
+
+// First-party methodology Dataset — only on the canonical "Score ScoreImmo" method page.
+// Makes the named, weighted scoring methodology a citable primary source for LLMs.
+// Weights are the production source of truth (app scoringService.ts):
+// market 40% + risks 20% + energy 15% + neighborhood 15% + liquidity 10%.
+if (article.handle === 'score-scoreimmo-methode-evaluation') {
+  jsonLd.push({
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
+    '@id': `${canonical}#methodologie`,
+    name: 'Méthodologie du Score ScoreImmo',
+    alternateName: 'Score ScoreImmo',
+    description:
+      "Méthodologie de notation immobilière ScoreImmo : une note sur 100 calculée en croisant plus de 250 données de 10 sources publiques officielles. Le score agrège cinq sous-scores pondérés : prix face au marché 40 %, risques 20 %, performance énergétique 15 %, environnement et quartier 15 %, liquidité 10 %.",
+    url: canonical,
+    isAccessibleForFree: true,
+    inLanguage: 'fr-FR',
+    datePublished: article.published_at,
+    dateModified: article.last_reviewed || article.updated_at || article.published_at,
+    creator: { '@id': 'https://score-immo.fr/#organization' },
+    publisher: { '@id': 'https://score-immo.fr/#organization' },
+    measurementTechnique:
+      "Agrégation pondérée de cinq sous-scores (prix vs marché DVF, risques Géorisques, performance énergétique DPE/ADEME, environnement et quartier, liquidité) en une note unique sur 100, accompagnée d'un indice de confiance A, B ou C selon la précision de géolocalisation et la couverture des sources.",
+    variableMeasured: [
+      { '@type': 'PropertyValue', name: 'Prix face au marché (DVF)', description: 'Écart au prix de vente réel médian des biens comparables.', value: '40%' },
+      { '@type': 'PropertyValue', name: 'Risques naturels et technologiques (Géorisques)', description: 'Inondation, retrait-gonflement des argiles, séisme, radon, sites ICPE et Seveso.', value: '20%' },
+      { '@type': 'PropertyValue', name: 'Performance énergétique (DPE/ADEME)', description: 'Classe DPE de A à G et impact sur la valeur et la louabilité.', value: '15%' },
+      { '@type': 'PropertyValue', name: 'Environnement et quartier', description: 'Commerces, transports, écoles, services et profil socio-démographique INSEE.', value: '15%' },
+      { '@type': 'PropertyValue', name: 'Liquidité du bien', description: 'Nombre de biens comparables disponibles dans le secteur.', value: '10%' },
+    ],
+    keywords: ['score immobilier', 'notation immobilière', 'méthode ScoreImmo', 'DVF', 'DPE', 'Géorisques', 'INSEE'],
+  });
+}
 ---
 <BaseLayout
   {title}
@@ -187,6 +220,10 @@ if (faqPairs.length > 0) {
         {article.sources && article.sources.length > 0 && (
           <SourcesSection sources={article.sources} />
         )}
+
+        <p class="si-article-disclaimer">
+          Contenu informatif fondé sur des données publiques officielles, à jour à la date de révision indiquée. Ne constitue pas un conseil en investissement ni un avis juridique ou fiscal personnalisé.
+        </p>
 
         {author && (
           <aside class="si-article-author-footer">
@@ -283,6 +320,15 @@ if (faqPairs.length > 0) {
     font-size: 0.9375rem;
     line-height: 1.6;
     color: var(--si-foreground);
+  }
+
+  .si-article-disclaimer {
+    margin: 1.5rem 0 0;
+    padding-top: 1rem;
+    border-top: 1px solid var(--si-border);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--si-muted-foreground);
   }
 
   .si-cta-box {
