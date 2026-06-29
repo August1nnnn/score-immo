@@ -187,8 +187,11 @@ def build_queue_spec(entry: dict, slug: str, image: dict | None) -> dict:
         "instructions": (
             f"Genere l'article FR en suivant STRICTEMENT {PROMPT_REF} "
             "(persona Lea Moreau, 3500+ mots body_html HTML pur, TL;DR 4 bullets, FAQ 5Q, "
-            "5+ sources officielles FR, 5+ liens internes, 1+ CTA app.score-immo.fr, "
-            "zero em-dash, accents FR obligatoires, aucune fabrication de chiffre YMYL). "
+            "H2 formules en questions langage naturel (GEO) + 1re phrase reponse directe sous chaque H2, "
+            ">=2 sources officielles ancrees INLINE dans la prose au point du claim chiffre (GEO), "
+            "5+ sources officielles FR total (dont les 2 inline), 5+ liens internes, "
+            "1+ CTA app.score-immo.fr, zero em-dash, accents FR obligatoires, "
+            "aucune fabrication de chiffre YMYL). "
             f"Ecris le JSON complet (schema dans {PROMPT_REF}) dans output_path en recopiant "
             "le champ image fourni. Puis : 1) marque cette entree published:true + published_at "
             "dans blog-auto/articles.json, 2) supprime blog-auto/queue/<index>.json, "

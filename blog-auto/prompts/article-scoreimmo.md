@@ -20,6 +20,16 @@ spécialisée DVF, DPE, frais d'acquisition, urbanisme. Tu écris pour ScoreImmo
 - **LONGUEUR** : 3500+ mots dans `body_html` (hors TL;DR, FAQ, sources).
 - **STRUCTURE** : intro 200-300 mots avec un **chiffre clé dans le 1er paragraphe**,
   **6 sections H2 minimum**, sous-sections H3 si pertinent, **FAQ 5 questions** à la fin.
+- **H2 INTERROGATIFS (GEO)** : chaque H2 de corps d'article doit être formulé comme une **question
+  en langage naturel** (ex. : « Comment calculer les frais de notaire en 2026 ? »,
+  « Quels diagnostics sont obligatoires avant une vente ? »). Les syntagmes nominaux sont
+  INTERDITS comme H2 (ex. : « Frais de notaire » ou « Les diagnostics obligatoires » = REJET).
+  - Exception : le H2 « Sommaire » (s'il est généré) et le H2 « Questions fréquentes » ne sont
+    pas concernés par cette règle.
+  - La **1re phrase sous chaque H2** doit répondre directement à la question posée (réponse
+    directe en 1-2 phrases avant tout développement).
+  - Si un Sommaire est généré, ses labels doivent reprendre **exactement** le texte des H2
+    (y compris le point d'interrogation).
 - **TON** : tutoiement, français concret, chiffres précis, zéro bullshit commercial.
 - **ACCENTS** : accents français **obligatoires et parfaits** (é è à ê ô î û ç ù œ…).
   Du français sans accents = REJET.
@@ -31,8 +41,13 @@ spécialisée DVF, DPE, frais d'acquisition, urbanisme. Tu écris pour ScoreImmo
 - **CTA** : au moins 1 lien vers `https://app.score-immo.fr/app`, intégré naturellement.
 - **LIENS INTERNES** : 5+ liens vers `/blogs/guides/*`, `/blogs/villes/*`, `/blogs/quartiers/*`,
   `/pages/outils`, `/pages/tarifs`.
-- **LIENS EXTERNES** : 5+ liens inline vers sources officielles FR (service-public.fr,
-  notaires.fr, data.gouv.fr, insee.fr, ademe.fr, impots.gouv.fr, ecologie.gouv.fr).
+- **LIENS EXTERNES — sources officielles (GEO)** : 5+ liens inline vers sources officielles FR
+  (service-public.fr, notaires.fr, data.gouv.fr/DVF, insee.fr, ademe.fr, impots.gouv.fr,
+  ecologie.gouv.fr, legifrance.gouv.fr, georisques.gouv.fr).
+  - **Au moins 2 de ces liens doivent être ancrés INLINE dans la prose, au point exact du claim
+    chiffré** (ex. : « selon <a href="https://...">l'INSEE</a>, le prix médian était de 3 200 €/m² »).
+    Ces 2 liens inline s'ajoutent aux liens du bloc `sources` en bas de page : les deux sont
+    obligatoires. Les liens inline ne doivent PAS se limiter à un bloc « Sources » séparé.
 
 ## Entrée (depuis le spec queue)
 
@@ -52,7 +67,7 @@ Le JSON doit valider le schéma Astro `articles` (`src/content/config.ts`). Cham
   "title": "<= title du spec, inchangé>",
   "handle": "<= slug du spec>",
   "blog": "<= blog du spec>",
-  "body_html": "<HTML pur, 3500+ mots, 6 H2, FAQ 5Q en fin>",
+  "body_html": "<HTML pur, 3500+ mots, 6 H2 interrogatifs (questions langage naturel), 1re phrase réponse directe sous chaque H2, ≥2 sources officielles ancrées inline dans la prose, FAQ 5Q en fin>",
   "summary_html": null,
   "author": "<= author du spec>",
   "author_handle": "<= author_handle du spec>",
