@@ -527,8 +527,9 @@
     "author_handle": "lea-moreau",
     "scheduled_date": "2026-06-25",
     "scheduled_datetime": "2026-06-25T08:30:00+02:00",
-    "published": false,
-    "slug": "baisse-prix-convaincre-vendeur-arguments-chiffres"
+    "published": true,
+    "slug": "baisse-prix-convaincre-vendeur-arguments-chiffres",
+    "published_at": "2026-06-29T09:00:00+02:00"
   },
   {
     "index": 39,
