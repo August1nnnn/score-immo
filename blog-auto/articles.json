@@ -541,7 +541,8 @@
     "author_handle": "thomas-varin",
     "scheduled_date": "2026-06-25",
     "scheduled_datetime": "2026-06-25T13:10:00+02:00",
-    "published": false,
+    "published": true,
+    "published_at": "2026-06-30T08:00:00+02:00",
     "slug": "10-erreurs-font-perdre-mandats-mandataire-debutant"
   },
   {
