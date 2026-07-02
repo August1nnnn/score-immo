@@ -569,7 +569,8 @@
     "author_handle": "lea-moreau",
     "scheduled_date": "2026-06-26",
     "scheduled_datetime": "2026-06-26T13:10:00+02:00",
-    "published": false,
+    "published": true,
+    "published_at": "2026-07-02T09:00:00+02:00",
     "slug": "fiabiliser-estimation-ventes-dvf-comparables"
   },
   {
