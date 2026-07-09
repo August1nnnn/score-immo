@@ -1,0 +1,22 @@
+{
+  "index": 45,
+  "queued_at": "2026-07-09T09:57:01.613686+00:00",
+  "blog": "villes",
+  "category": "villes",
+  "slug": "prix-immobilier-annecy-2026-lac-frontiere-suisse-tension",
+  "title": "Prix Immobilier Annecy 2026 : lac, frontière suisse et tension du marché",
+  "keywords": "prix immobilier Annecy 2026, marché immobilier Annecy, acheter à Annecy",
+  "author": "Thomas Varin",
+  "author_handle": "thomas-varin",
+  "scheduled_date": "2026-06-30",
+  "image": {
+    "src": "https://images.unsplash.com/photo-1473951574080-01fe45ec8643?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4Nzg4MzB8MHwxfHNlYXJjaHwxfHxBbm5lY3klMjBmcmFuY2UlMjBjaXR5fGVufDB8MHx8fDE3ODM1OTEwMjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    "alt": "aerial photography of lighted concrete buildings at night time",
+    "width": 1080,
+    "height": 720
+  },
+  "output_path": "src/content/articles/villes/prix-immobilier-annecy-2026-lac-frontiere-suisse-tension.json",
+  "prompt_file": "blog-auto/prompts/article-scoreimmo.md",
+  "live_url": "https://score-immo.fr/blogs/villes/prix-immobilier-annecy-2026-lac-frontiere-suisse-tension",
+  "instructions": "Genere l'article FR en suivant STRICTEMENT blog-auto/prompts/article-scoreimmo.md (persona Lea Moreau, 3500+ mots body_html HTML pur, TL;DR 4 bullets, FAQ 5Q, H2 formules en questions langage naturel (GEO) + 1re phrase reponse directe sous chaque H2, >=2 sources officielles ancrees INLINE dans la prose au point du claim chiffre (GEO), 5+ sources officielles FR total (dont les 2 inline), 5+ liens internes, 1+ CTA app.score-immo.fr, zero em-dash, accents FR obligatoires, aucune fabrication de chiffre YMYL). Ecris le JSON complet (schema dans blog-auto/prompts/article-scoreimmo.md) dans output_path en recopiant le champ image fourni. Puis : 1) marque cette entree published:true + published_at dans blog-auto/articles.json, 2) supprime blog-auto/queue/<index>.json, 3) commit + push (-> deploy CF Pages)."
+}
