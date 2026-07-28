@@ -62,6 +62,26 @@
       "; Expires=Thu, 01 Jan 1970 00:00:00 GMT; Max-Age=0";
   }
 
+  function clearAnalyticsCookies() {
+    try {
+      var parts = (document.cookie || "").split(";");
+      for (var i = 0; i < parts.length; i += 1) {
+        var name = parts[i].trim().split("=", 1)[0];
+        if (!/^(_ga($|_)|_gid$|_gat($|_))/.test(name)) continue;
+        var expired =
+          name +
+          "=; Path=/; SameSite=Lax; Expires=Thu, 01 Jan 1970 00:00:00 GMT; Max-Age=0";
+        document.cookie = expired;
+        document.cookie =
+          expired + "; Domain=.score-immo.fr; Secure";
+        document.cookie =
+          expired + "; Domain=score-immo.fr; Secure";
+      }
+    } catch (_error) {
+      // Cookie cleanup must not break consent controls.
+    }
+  }
+
   function readLegacyConsent() {
     try {
       var value = JSON.parse(localStorage.getItem(CONSENT_KEY) || "null");
@@ -135,7 +155,10 @@
       // The shared cookie remains the source of truth.
     }
     if (status === "accepted") ensureJourney(now);
-    else deleteCookie(JOURNEY_KEY);
+    else {
+      deleteCookie(JOURNEY_KEY);
+      clearAnalyticsCookies();
+    }
     notify(status);
     return true;
   }
@@ -159,7 +182,10 @@
     }
   }
   if (existing === "accepted") ensureJourney(migratedAt);
-  else deleteCookie(JOURNEY_KEY);
+  else {
+    deleteCookie(JOURNEY_KEY);
+    clearAnalyticsCookies();
+  }
 
   window.ScoreImmoConsent = {
     getStatus: getStatus,

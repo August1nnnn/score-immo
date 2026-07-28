@@ -46,7 +46,10 @@ function cookieDocument(initial = {}) {
 
 test("consent migrates the legacy choice and shares consent plus journey cookies", async () => {
   const source = await read("public/consent.js");
-  const cookies = cookieDocument();
+  const cookies = cookieDocument({
+    _ga: "legacy",
+    _ga_FL8T0DN7GH: "legacy-stream",
+  });
   const localStorage = storage({
     si_cookie_consent: JSON.stringify({ status: "accepted", ts: Date.now() - 1_000 }),
   });
@@ -86,10 +89,19 @@ test("consent migrates the legacy choice and shares consent plus journey cookies
   window.ScoreImmoConsent.setStatus("rejected");
   assert.equal(window.ScoreImmoConsent.getStatus(), "rejected");
   assert.equal(window.ScoreImmoConsent.getJourneyId(), null);
+  assert.doesNotMatch(cookies.document.cookie, /(?:^|; )_ga(?:_|=)/);
   assert.ok(
     cookies.writes.some(
       (raw) =>
         raw.startsWith("si_journey_id=;") &&
+        raw.includes("Domain=.score-immo.fr") &&
+        raw.includes("Max-Age=0"),
+    ),
+  );
+  assert.ok(
+    cookies.writes.some(
+      (raw) =>
+        raw.startsWith("_ga=;") &&
         raw.includes("Domain=.score-immo.fr") &&
         raw.includes("Max-Age=0"),
     ),
