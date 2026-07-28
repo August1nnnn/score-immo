@@ -3,6 +3,7 @@
 // rotatif accent (comme RotatingHero de l'app), placeholders rotatifs dans le
 // champ, layout mobile-first (input full-width + bouton empile, comme l'app).
 // DA preservee (bleu #3B82F6, Inter/DM Sans). Aucun token modifie.
+import { SUPPORTED_PORTAL_HOSTS } from '@/lib/portal-hosts.js';
 ---
 <section class="si-section si-hero" aria-label="ScoreImmo : analysez une annonce immobilière en 30 secondes">
   <div class="si-container">
@@ -37,7 +38,7 @@
       </div>
 
       <!-- Champ URL : input full-width + bouton (empile sur mobile comme l'app) -->
-      <form class="si-url-form si-reveal si-reveal-delay-3" id="si-url-form" action="https://app.score-immo.fr/app" method="get" novalidate>
+      <form class="si-url-form si-reveal si-reveal-delay-3" id="si-url-form" action="https://app.score-immo.fr/app" method="get" data-form-id="homepage_analyzer" data-analyzer-form novalidate>
         <div class="si-url-row">
           <div class="si-url-box">
             <svg class="si-url-icon" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -54,6 +55,7 @@
                 spellcheck="false"
                 inputmode="url"
                 aria-label="URL de l'annonce à analyser"
+                required
               />
               <span class="si-rotor" id="si-rotor" aria-hidden="true"><span class="si-rotor-text" id="si-rotor-text">Collez un lien LeBonCoin...</span></span>
             </div>
@@ -133,7 +135,7 @@
   </div>
 </section>
 
-<script>
+<script define:vars={{ portalHosts: SUPPORTED_PORTAL_HOSTS }}>
 (function(){
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -194,14 +196,25 @@
   psync();
 
   // --- Validation + UTM ---
-  var portalsRegex = /(leboncoin\.fr|seloger\.com|bienici\.com|pap\.fr|logic-immo\.com|century21\.fr|orpi\.com|laforet\.com|ouestfrance-immo\.com|paruvendu\.fr|meilleursagents\.com|immobilier\.lefigaro\.fr|bellesdemeures\.com|barnes-international\.com|superimmo\.com|green-acres\.fr|stephaneplazaimmobilier\.com|guy-hoquet\.com|immoneuf\.com|zefir\.fr)/i;
+  function isSupportedPortal(hostname) {
+    var host = String(hostname || '').toLowerCase().replace(/\.$/, '');
+    return portalHosts.some(function(domain) {
+      return host === domain || host.endsWith('.' + domain);
+    });
+  }
   form.addEventListener('submit', function(e) {
     var val = (input.value || '').trim();
-    if (!val) return;
+    if (!val) {
+      e.preventDefault();
+      hint.textContent = "Colle le lien de l'annonce à analyser.";
+      hint.style.color = 'var(--si-destructive, #DC2626)';
+      input.focus();
+      return;
+    }
     if (!/^https?:\/\//i.test(val)) { input.value = 'https://' + val; val = input.value; }
     try {
       var u = new URL(val);
-      if (!portalsRegex.test(u.hostname)) {
+      if (!isSupportedPortal(u.hostname)) {
         e.preventDefault();
         hint.innerHTML = "Portail non reconnu. Essaie SeLoger, LeBonCoin, Bien'ici, PAP... ou <a href='https://app.score-immo.fr/app?utm_source=site&utm_medium=hero'>ouvre l'outil directement</a>.";
         hint.style.color = 'var(--si-destructive, #DC2626)'; input.focus(); return;
@@ -216,6 +229,9 @@
     action.searchParams.set('utm_medium', 'hero_url_input');
     action.searchParams.set('utm_campaign', 'hero_instant_analyze');
     form.action = action.toString();
+    if (typeof window.siTrack === 'function') {
+      window.siTrack('analyzer_submit', { form_id: 'homepage_analyzer' });
+    }
   });
   input.addEventListener('input', function() {
     hint.style.color = '';

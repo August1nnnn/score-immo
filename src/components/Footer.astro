@@ -13,6 +13,7 @@ const year = new Date().getFullYear();
         <a href="/pages/cgv">CGV</a>
         <a href="/pages/mentions-legales">Mentions légales</a>
         <a href="/pages/politique-de-confidentialite">Confidentialité</a>
+        <button type="button" id="si-footer-cookie-settings" class="si-footer-cookie-settings">Gérer les cookies</button>
         <a href="/pages/outils" class="si-footer-link">Outils gratuits</a>
         <a href="/pages/contact">Contact</a>
       </div>
@@ -38,3 +39,21 @@ const year = new Date().getFullYear();
     </div>
   </div>
 </footer>
+
+<style>
+  .si-footer-cookie-settings {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    padding: 0;
+  }
+</style>
+
+<script is:inline>
+  document.getElementById('si-footer-cookie-settings')?.addEventListener('click', function () {
+    window.siOpenCookieBanner?.();
+  });
+</script>

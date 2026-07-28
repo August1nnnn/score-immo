@@ -1,187 +1,329 @@
-// STACK-2026 conversion tracker. Drop-in script: emits events to /api/event AND forwards to GA4 (window.gtag).
-// No PII captured: only event type, target string, page path, session UUID.
-// Auto-instruments:
-//   - a[href^="tel:"]          -> phone_click
-//   - a[href^="mailto:"]       -> email_click
-//   - [data-cta]               -> cta_click
-//   - a[href^="/go/"]          -> affiliate_click
-//   - a[href^="http"] (extern) -> website_click  (outbound to other domains)
-//   - [data-form-id]           -> form_view / form_focus / form_submit / form_abandon
-//   - scroll                   -> scroll_depth at 25/50/75/100% (once per session)
+// Consent-gated, PII-free marketing funnel tracker.
 (function () {
-  if (window.__stackTrackerInit) return;
-  window.__stackTrackerInit = true;
+  "use strict";
 
-  var SID_KEY = "stack_sid";
-  var SID_TTL_DAYS = 30;
-  function uuid() {
-    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, function (c) {
-      return (c ^ (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))).toString(16);
+  if (window.__scoreImmoTrackerInit) return;
+  window.__scoreImmoTrackerInit = true;
+
+  var consent = window.ScoreImmoConsent;
+  var SESSION_KEY = "si_session_id";
+  var ALLOWED_EVENTS = new Set([
+    "marketing_page_view",
+    "analyzer_submit",
+    "phone_click",
+    "email_click",
+    "website_click",
+    "cta_click",
+    "form_view",
+    "form_focus",
+    "form_submit",
+    "form_abandon",
+    "affiliate_click",
+    "scroll_depth",
+  ]);
+  var pageViewSent = false;
+
+  function isAccepted() {
+    return Boolean(consent && consent.getStatus() === "accepted");
+  }
+
+  function sessionId() {
+    var current = null;
+    try {
+      current = sessionStorage.getItem(SESSION_KEY);
+    } catch (_error) {
+      // Continue with an in-memory UUID.
+    }
+    if (
+      current &&
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+        current,
+      )
+    ) {
+      return current;
+    }
+    var next =
+      typeof crypto.randomUUID === "function"
+        ? crypto.randomUUID()
+        : null;
+    if (!next) return null;
+    try {
+      sessionStorage.setItem(SESSION_KEY, next);
+    } catch (_error) {
+      // Session storage may be disabled.
+    }
+    return next;
+  }
+
+  function safeSlug(value) {
+    var text = String(value || "").toLowerCase();
+    return /^[a-z0-9_-]{1,64}$/.test(text) ? text : null;
+  }
+
+  function outboundCategory(hostname) {
+    var host = String(hostname || "").toLowerCase();
+    if (host === "app.score-immo.fr") return "app";
+    if (
+      /(^|\.)(leboncoin\.fr|seloger\.com|bienici\.com|pap\.fr|logic-immo\.com|century21\.fr|orpi\.com|laforet\.com|ouestfrance-immo\.com|paruvendu\.fr|meilleursagents\.com|lefigaro\.fr)$/.test(
+        host,
+      )
+    ) {
+      return "portal";
+    }
+    if (
+      /(^|\.)(gouv\.fr|data\.gouv\.fr|insee\.fr|georisques\.gouv\.fr|ademe\.fr)$/.test(
+        host,
+      )
+    ) {
+      return "official_source";
+    }
+    return "other";
+  }
+
+  function referrerCategory() {
+    if (!document.referrer) return "direct";
+    try {
+      var host = new URL(document.referrer).hostname.toLowerCase();
+      if (/(^|\.)google\./.test(host)) return "google";
+      if (/(^|\.)bing\.com$/.test(host)) return "bing";
+      if (/(^|\.)facebook\.com$/.test(host)) return "facebook";
+      if (/(^|\.)instagram\.com$/.test(host)) return "instagram";
+      if (/(^|\.)linkedin\.com$/.test(host)) return "linkedin";
+      return "referral";
+    } catch (_error) {
+      return "direct";
+    }
+  }
+
+  function cleanReferrer() {
+    if (!document.referrer) return "";
+    try {
+      var referrer = new URL(document.referrer);
+      return referrer.origin + referrer.pathname;
+    } catch (_error) {
+      return "";
+    }
+  }
+
+  function sanitizeMetadata(metadata) {
+    var input = metadata || {};
+    var safe = { page_path: location.pathname || "/" };
+    var formId = safeSlug(input.form_id);
+    var surface = safeSlug(input.surface);
+    var category = safeSlug(input.outbound_category);
+    if (formId) safe.form_id = formId;
+    if (surface) safe.surface = surface;
+    if (
+      category &&
+      ["app", "portal", "official_source", "other"].indexOf(category) >= 0
+    ) {
+      safe.outbound_category = category;
+    }
+    var depth = Number(input.scroll_depth);
+    if ([25, 50, 75, 100].indexOf(depth) >= 0) {
+      safe.scroll_depth = depth;
+    }
+    if (input.attribution_source) {
+      var source = safeSlug(input.attribution_source);
+      if (
+        source &&
+        [
+          "direct",
+          "google",
+          "bing",
+          "facebook",
+          "instagram",
+          "linkedin",
+          "referral",
+        ].indexOf(source) >= 0
+      ) {
+        safe.attribution_source = source;
+      }
+    }
+    return safe;
+  }
+
+  function track(eventType, metadata) {
+    if (!isAccepted() || !ALLOWED_EVENTS.has(eventType)) return false;
+    var journeyId = consent.getJourneyId();
+    var sid = sessionId();
+    if (!journeyId || !sid) return false;
+
+    var safeMetadata = sanitizeMetadata(metadata);
+    var body = JSON.stringify({
+      event_type: eventType,
+      journey_id: journeyId,
+      session_id: sid,
+      metadata: safeMetadata,
     });
-  }
-  function sid() {
     try {
-      var raw = localStorage.getItem(SID_KEY);
-      if (raw) {
-        var p = JSON.parse(raw);
-        if (p && p.id && p.exp > Date.now()) return p.id;
-      }
-      var id = uuid();
-      localStorage.setItem(SID_KEY, JSON.stringify({ id: id, exp: Date.now() + SID_TTL_DAYS * 86400000 }));
-      return id;
-    } catch (e) {
-      return "ephemeral-" + Date.now();
+      fetch("/api/event", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: body,
+        credentials: "same-origin",
+        keepalive: true,
+      }).catch(function () {});
+    } catch (_error) {
+      // Analytics must never block navigation or product use.
     }
-  }
-  var SID = sid();
-  var PAGE = location.pathname + location.search;
-  var HOST = location.hostname;
 
-  function send(type, target) {
-    // 1. Custom backend: /api/event (Supabase events table)
-    var payload = JSON.stringify({ type: type, target: target || null, page: PAGE, sid: SID });
-    try {
-      if (navigator.sendBeacon) {
-        navigator.sendBeacon("/api/event", new Blob([payload], { type: "application/json" }));
-      } else {
-        fetch("/api/event", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: payload,
-          keepalive: true,
-        });
-      }
-    } catch (e) {
-      /* swallow */
-    }
-    // 2. GA4 forward (only if gtag bootstrapped + consent granted in GA4Tracker)
     try {
       if (typeof window.gtag === "function") {
-        window.gtag("event", type, {
-          event_category: "engagement",
-          event_label: target || undefined,
-          page_path: PAGE,
+        var gaMetadata = Object.assign({}, safeMetadata, {
+          page_location: location.origin + (location.pathname || "/"),
+          page_referrer: cleanReferrer(),
         });
+        window.gtag("event", eventType, gaMetadata);
       }
-    } catch (e) {
-      /* swallow */
+    } catch (_error) {
+      // GA4 is an optional reporting layer.
     }
+    return true;
   }
 
-  // 1. Phone clicks (tel:)
-  document.addEventListener("click", function (ev) {
-    var a = ev.target.closest && ev.target.closest('a[href^="tel:"]');
-    if (a) send("phone_click", a.getAttribute("href"));
-  });
+  function sendPageView() {
+    if (pageViewSent || !isAccepted()) return;
+    pageViewSent = true;
+    track("marketing_page_view", {
+      attribution_source: referrerCategory(),
+    });
+  }
 
-  // 2. Email clicks (mailto:)
-  document.addEventListener("click", function (ev) {
-    var a = ev.target.closest && ev.target.closest('a[href^="mailto:"]');
-    if (a) send("email_click", a.getAttribute("href"));
-  });
+  window.ScoreImmoTracking = { track: track };
+  window.siTrack = track;
 
-  // 3. CTA clicks ([data-cta])
-  document.addEventListener("click", function (ev) {
-    var el = ev.target.closest && ev.target.closest("[data-cta]");
-    if (el) send("cta_click", el.getAttribute("data-cta"));
-  });
+  if (consent) {
+    consent.onChange(function (status) {
+      if (status === "accepted") sendPageView();
+    });
+  }
+  sendPageView();
 
-  // 4. Affiliate outbound (/go/*)
-  document.addEventListener("click", function (ev) {
-    var a = ev.target.closest && ev.target.closest('a[href^="/go/"]');
-    if (a) send("affiliate_click", a.getAttribute("href"));
-  });
+  document.addEventListener("click", function (event) {
+    var tel = event.target.closest && event.target.closest('a[href^="tel:"]');
+    if (tel) track("phone_click", { surface: "phone_link" });
 
-  // 5. Outbound clicks (a[href^="http"] to any non-host domain, excluding /go/ which is already affiliate)
-  document.addEventListener("click", function (ev) {
-    var a = ev.target.closest && ev.target.closest('a[href^="http"]');
-    if (!a) return;
-    var href = a.getAttribute("href") || "";
+    var email =
+      event.target.closest && event.target.closest('a[href^="mailto:"]');
+    if (email) track("email_click", { surface: "email_link" });
+
+    var cta = event.target.closest && event.target.closest("[data-cta]");
+    if (cta) {
+      track("cta_click", {
+        surface: cta.getAttribute("data-cta"),
+      });
+    }
+
+    var affiliate =
+      event.target.closest && event.target.closest('a[href^="/go/"]');
+    if (affiliate) {
+      track("affiliate_click", { surface: "affiliate_link" });
+    }
+
+    var external =
+      event.target.closest && event.target.closest('a[href^="http"]');
+    if (!external) return;
     try {
-      var u = new URL(href, location.href);
-      if (u.hostname && u.hostname !== HOST && !u.pathname.startsWith("/go/")) {
-        send("website_click", u.hostname);
+      var url = new URL(external.getAttribute("href"), location.href);
+      if (url.hostname && url.hostname !== location.hostname) {
+        track("website_click", {
+          outbound_category: outboundCategory(url.hostname),
+        });
       }
-    } catch (e) {
-      /* swallow */
+    } catch (_error) {
+      // Invalid links are ignored.
     }
   });
 
-  // 6. Form lifecycle (each form needs data-form-id="<name>")
-  var formsSeen = new Set();
   var formsFocused = new Set();
   var formsSubmitted = new Set();
 
   function instrumentForm(form) {
-    var fid = form.getAttribute("data-form-id");
-    if (!fid) return;
-    if (!formsSeen.has(fid) && "IntersectionObserver" in window) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting && !formsSeen.has(fid)) {
-            formsSeen.add(fid);
-            send("form_view", fid);
-            io.disconnect();
+    if (form.__scoreImmoTracked) return;
+    var formId = safeSlug(form.getAttribute("data-form-id"));
+    if (!formId) return;
+    form.__scoreImmoTracked = true;
+
+    if ("IntersectionObserver" in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        for (var i = 0; i < entries.length; i += 1) {
+          if (entries[i].isIntersecting) {
+            track("form_view", { form_id: formId });
+            observer.disconnect();
+            break;
           }
-        });
-      }, { threshold: 0.3 });
-      io.observe(form);
+        }
+      });
+      observer.observe(form);
     }
+
     form.addEventListener("focusin", function () {
-      if (!formsFocused.has(fid)) {
-        formsFocused.add(fid);
-        send("form_focus", fid);
-      }
+      if (formsFocused.has(formId)) return;
+      formsFocused.add(formId);
+      track("form_focus", { form_id: formId });
     });
-    form.addEventListener("submit", function () {
-      formsSubmitted.add(fid);
-      send("form_submit", fid);
+    form.addEventListener("submit", function (event) {
+      if (event.defaultPrevented) return;
+      formsSubmitted.add(formId);
+      if (form.hasAttribute("data-analyzer-form")) return;
+      track("form_submit", { form_id: formId });
     });
   }
+
   function scanForms() {
-    document.querySelectorAll("form[data-form-id]").forEach(instrumentForm);
+    var forms = document.querySelectorAll("form[data-form-id]");
+    for (var i = 0; i < forms.length; i += 1) instrumentForm(forms[i]);
   }
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", scanForms);
   } else {
     scanForms();
   }
   if ("MutationObserver" in window) {
-    new MutationObserver(scanForms).observe(document.documentElement, { childList: true, subtree: true });
+    new MutationObserver(scanForms).observe(document.documentElement, {
+      childList: true,
+      subtree: true,
+    });
   }
 
-  // 7. Form abandon = visibility loss after focus, before submit
   document.addEventListener("visibilitychange", function () {
     if (document.visibilityState !== "hidden") return;
-    formsFocused.forEach(function (fid) {
-      if (!formsSubmitted.has(fid)) send("form_abandon", fid);
+    formsFocused.forEach(function (formId) {
+      if (!formsSubmitted.has(formId)) {
+        track("form_abandon", { form_id: formId });
+      }
     });
     formsFocused.clear();
   });
 
-  // 8. Scroll depth (25 / 50 / 75 / 100 %), once per session per page
-  var scrollMarks = [25, 50, 75, 100];
+  var marks = [25, 50, 75, 100];
   var fired = new Set();
-  function pct() {
-    var doc = document.documentElement;
-    var body = document.body;
-    var total = Math.max(doc.scrollHeight, body.scrollHeight) - window.innerHeight;
-    if (total <= 0) return 100;
-    return Math.round(((window.scrollY || doc.scrollTop) / total) * 100);
-  }
   var scrollTimer = null;
-  window.addEventListener("scroll", function () {
-    if (scrollTimer) return;
-    scrollTimer = setTimeout(function () {
-      scrollTimer = null;
-      var p = pct();
-      for (var i = 0; i < scrollMarks.length; i++) {
-        var m = scrollMarks[i];
-        if (p >= m && !fired.has(m)) {
-          fired.add(m);
-          send("scroll_depth", String(m));
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (scrollTimer) return;
+      scrollTimer = setTimeout(function () {
+        scrollTimer = null;
+        var total =
+          Math.max(
+            document.documentElement.scrollHeight,
+            document.body.scrollHeight,
+          ) - window.innerHeight;
+        var percent =
+          total <= 0
+            ? 100
+            : Math.round(((window.scrollY || 0) / total) * 100);
+        for (var i = 0; i < marks.length; i += 1) {
+          if (percent >= marks[i] && !fired.has(marks[i])) {
+            fired.add(marks[i]);
+            track("scroll_depth", { scroll_depth: marks[i] });
+          }
         }
-      }
-    }, 250);
-  }, { passive: true });
+      }, 250);
+    },
+    { passive: true },
+  );
 })();

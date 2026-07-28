@@ -296,7 +296,7 @@ const jsonLd: any[] = [
               <thead><tr><th>Date</th><th>Prix</th><th>Prix/m²</th></tr></thead>
               <tbody>
                 {d.historique.ventes.map((v: any) => (
-                  <tr><td>{v.date}</td><td>{eur(v.prix)}</td><td>{v.prix_m2 ? `${num(v.prix_m2)} €` : '—'}</td></tr>
+                  <tr><td>{v.date}</td><td>{eur(v.prix)}</td><td>{v.prix_m2 ? `${num(v.prix_m2)} €` : '-'}</td></tr>
                 ))}
               </tbody>
             </table>

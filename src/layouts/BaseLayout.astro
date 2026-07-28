@@ -2,8 +2,6 @@
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import CookieBanner from '@/components/CookieBanner.astro';
-import Analytics from '@/components/Analytics.astro';
-import GA4Tracker from '@/components/GA4Tracker.astro';
 // Self-hosted fonts via @fontsource (eliminate fonts.googleapis CDN)
 import '@fontsource/inter/400.css';
 import '@fontsource/inter/500.css';
@@ -106,8 +104,8 @@ const siteName = 'ScoreImmo';
       <script type="application/ld+json" set:html={JSON.stringify(block)} />
     ))}
 
-    <Analytics />
-    <GA4Tracker />
+    <script is:inline src="/consent.js"></script>
+    <script is:inline src="/ga4.js"></script>
 
     <slot name="head" />
   </head>

@@ -68,30 +68,22 @@
 
 <script is:inline>
 (function(){
-  const KEY = 'si_cookie_consent';
-  const now = Date.now();
-  const THIRTEEN_MONTHS = 13 * 30 * 24 * 60 * 60 * 1000;
-
-  function getConsent(){
-    try { const v = JSON.parse(localStorage.getItem(KEY) || 'null');
-      if (!v || !v.ts || (now - v.ts) > THIRTEEN_MONTHS) return null;
-      return v;
-    } catch { return null; }
-  }
-  function setConsent(status){
-    localStorage.setItem(KEY, JSON.stringify({ status, ts: now }));
-    window.dispatchEvent(new CustomEvent('si:consent', { detail: { status } }));
-  }
   function show(){ document.getElementById('si-cookie-banner')?.removeAttribute('hidden'); }
   function hide(){ document.getElementById('si-cookie-banner')?.setAttribute('hidden',''); }
 
-  const existing = getConsent();
+  const consent = window.ScoreImmoConsent;
+  const existing = consent?.getStatus() || null;
   if (!existing) show();
 
-  document.getElementById('si-cookie-accept')?.addEventListener('click', () => { setConsent('accepted'); hide(); });
-  document.getElementById('si-cookie-reject')?.addEventListener('click', () => { setConsent('rejected'); hide(); });
+  document.getElementById('si-cookie-accept')?.addEventListener('click', () => {
+    consent?.setStatus('accepted');
+    hide();
+  });
+  document.getElementById('si-cookie-reject')?.addEventListener('click', () => {
+    consent?.setStatus('rejected');
+    hide();
+  });
 
-  // Expose re-open
   window.siOpenCookieBanner = show;
 })();
 </script>
