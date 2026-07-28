@@ -42,7 +42,7 @@ var T=[
 {n:"Clara",r:"Fiscalité et coûts",e:"💰",ht:"Estime la taxe foncière, calcule notaire et coût total",hm:"25min",s:["DGFIP","Notaires"],d:["TF : ~1 280 €","Notaire : 17 850 €","Total : 248 350 €","Rendement : 5,2%"],a:6}
 ];
 var ST=[{v:"6",l:"analystes"},{v:"10",l:"sources officielles"},{v:"230+",l:"données croisées"},{v:"30s",l:"par rapport"},{v:"5h",l:"économisées"}];
-var SRC=["DVF (notaires)","ADEME (DPE)","Géorisques","INSEE","IGN/GPU","OpenStreetMap","Éducation Nationale","ATMO France","DGFIP"];
+var SRC=["DVF (notaires)","ADEME (DPE)","Géorisques","INSEE","IGN/GPU","BAN (Adresses)","OpenStreetMap","Éducation Nationale","ATMO France","DGFIP"];
 var act=null,done=new Set(),timer=null,triggered=false,loopC=0;
 
 document.getElementById('si-bts-srcs').innerHTML=SRC.map(function(s){return '<span class="si-bts-src">'+s+'</span>';}).join('');

@@ -115,6 +115,24 @@ if (sourcePillCount !== 10) {
     `src/components/sections/Sources.astro: ${sourcePillCount} sources affichées, 10 attendues.`,
   );
 }
+
+const behindScenesComponent = read("src/components/sections/BehindScenes.astro");
+const behindScenesSources =
+  behindScenesComponent.match(/var SRC=\[(.*?)\];/)?.[1] ?? "";
+if (!behindScenesSources.includes('"BAN (Adresses)"')) {
+  failures.push(
+    "src/components/sections/BehindScenes.astro: BAN (Adresses) est absente de la liste des 10 sources.",
+  );
+}
+const behindScenesSourceCount = (
+  behindScenesSources.match(/"[^"]+"/g) || []
+).length;
+if (behindScenesSourceCount !== 10) {
+  failures.push(
+    `src/components/sections/BehindScenes.astro: ${behindScenesSourceCount} sources affichées, 10 attendues.`,
+  );
+}
+
 if (sourcesComponent.includes("Bing News")) {
   failures.push(
     "src/components/sections/Sources.astro: Bing News ne doit pas être présenté comme une source publique officielle française.",
