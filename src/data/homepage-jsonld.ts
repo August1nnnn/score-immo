@@ -76,10 +76,10 @@ export const homepageJsonLd = [
         ],
         "screenshot": "https://score-immo.fr/assets/og-default.svg",
         "offers": [
-          { "@type": "Offer", "name": "Gratuit", "price": "0", "priceCurrency": "EUR", "description": "1 analyse offerte" },
+          { "@type": "Offer", "name": "Analyse unique", "price": "2.99", "priceCurrency": "EUR", "description": "1 rapport personnalisé, paiement unique" },
           { "@type": "Offer", "name": "Découverte", "price": "9.99", "priceCurrency": "EUR", "description": "5 analyses, paiement unique" },
-          { "@type": "Offer", "name": "Recherche", "price": "29", "priceCurrency": "EUR", "description": "60 analyses/mois, 1€ le premier mois" },
-          { "@type": "Offer", "name": "Premium", "price": "79", "priceCurrency": "EUR", "description": "Analyses illimitées, 1€ le premier mois" }
+          { "@type": "Offer", "name": "Recherche", "price": "29", "priceCurrency": "EUR", "description": "60 analyses par mois" },
+          { "@type": "Offer", "name": "Premium", "price": "79", "priceCurrency": "EUR", "description": "Analyses illimitées, PDF brandé et modes Achat/Vente" }
         ],
         "creator": { "@id": "https://score-immo.fr/#organization" },
         "inLanguage": "fr-FR"
@@ -108,7 +108,7 @@ export const homepageJsonLd = [
       {
         "@type": "Question",
         "name": "Que débloque l'abonnement ?",
-        "acceptedAnswer": { "@type": "Answer", "text": "L'abonnement (1€ le premier mois puis 29€ ou 79€/mois sans engagement) débloque les sections complètes du rapport : rendement locatif détaillé, coût total d'acquisition, historique DVF, urbanisme projet, et augmente le volume d'analyses mensuelles (60 ou illimité)." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Recherche coûte 29€/mois pour 60 analyses et Premium 79€/mois pour des analyses illimitées, le PDF brandé et les modes Achat/Vente. Les deux abonnements sont sans engagement." }
       },
       {
         "@type": "Question",
@@ -118,7 +118,7 @@ export const homepageJsonLd = [
       {
         "@type": "Question",
         "name": "Combien coûte une analyse ScoreImmo ?",
-        "acceptedAnswer": { "@type": "Answer", "text": "La première analyse est offerte sans carte bleue. Ensuite, tu as le choix : Découverte à 9,99€ pour 5 analyses en paiement unique, Recherche à 1€ le premier mois puis 29€/mois (60 analyses/mois, sans engagement), ou Premium à 1€ le premier mois puis 79€/mois (illimité, sans engagement)." }
+        "acceptedAnswer": { "@type": "Answer", "text": "La démo complète est gratuite. Un rapport personnalisé coûte 2,99€ en paiement unique. Découverte coûte 9,99€ pour 5 analyses, Recherche 29€/mois pour 60 analyses et Premium 79€/mois pour l'illimité." }
       }
     ]
   }

@@ -7,7 +7,7 @@
 - [ScoreImmo - Accueil](https://score-immo.fr/) : analyse de n'importe quelle annonce immobiliere
 - [Application](https://app.score-immo.fr/app) : l'outil d'analyse en direct
 - [Baromètre immobilier](https://app.score-immo.fr/barometre) : tendances du marche par ville
-- [Tarifs](https://score-immo.fr/pages/tarifs) : 1ere analyse offerte, puis 1 euro le premier mois sans engagement
+- [Tarifs](https://score-immo.fr/pages/tarifs) : demo complete gratuite, puis rapport personnalise des 2,99 euros
 - [Outils gratuits](https://score-immo.fr/pages/outils) : 4 calculateurs (frais de notaire, capacite d'emprunt, mensualite de credit, rendement locatif)
 
 ## Sources de donnees officielles (9)
@@ -82,7 +82,7 @@
 
 - ScoreImmo effectue plus de 250 verifications automatiques par annonce en croisant 9 sources de donnees officielles francaises.
 - Un rapport ScoreImmo genere en 30 secondes couvre le prix du marche (DVF), le DPE, les risques naturels (Georisques), le quartier, la rentabilite locative et le coût d'acquisition total.
-- 1ere analyse offerte sans carte bleue. Abonnement 1 euro le premier mois, sans engagement, annulable en 1 clic.
+- Demo complete gratuite sans carte bleue. Rapport personnalise a 2,99 euros, pack de 5 a 9,99 euros, Recherche a 29 euros/mois et Premium a 79 euros/mois.
 - ScoreImmo analyse les annonces de Leboncoin, SeLoger, Bien'ici, PAP, Logic-Immo, Century 21, Orpi, Laforêt, Ouestfrance Immo, ParuVendu, MeilleursAgents et autres portails immobiliers francais.
 
 ## A savoir

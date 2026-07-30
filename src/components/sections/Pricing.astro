@@ -14,7 +14,16 @@
   "offers": [
     {
       "@type": "Offer",
-      "name": "Decouverte (5 analyses)",
+      "name": "Analyse unique",
+      "price": "2.99",
+      "priceCurrency": "EUR",
+      "priceValidUntil": "2027-12-31",
+      "availability": "https://schema.org/InStock",
+      "url": "https://app.score-immo.fr/go/checkout/unit"
+    },
+    {
+      "@type": "Offer",
+      "name": "Découverte (5 analyses)",
       "price": "9.99",
       "priceCurrency": "EUR",
       "priceValidUntil": "2027-12-31",
@@ -60,7 +69,7 @@
       "name": "Quel plan choisir ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "La D&eacute;couverte (9,99 EUR) donne 5 analyses pour v&eacute;rifier quelques biens. Recherche (1 EUR le premier mois, puis 29 EUR/mois) offre 60 analyses par mois. Pro Mandataire (1 EUR le premier mois, puis 79 EUR/mois) est illimit&eacute; avec PDF brand&eacute; &agrave; votre logo et mode Achat/Vente, con&ccedil;u pour les mandataires."
+        "text": "Analyse unique co&ucirc;te 2,99 EUR pour un rapport. D&eacute;couverte co&ucirc;te 9,99 EUR pour 5 rapports. Recherche co&ucirc;te 29 EUR/mois pour 60 rapports. Premium co&ucirc;te 79 EUR/mois et inclut les analyses illimit&eacute;es, le PDF brand&eacute; et les modes Achat/Vente."
       }
     },
     {
@@ -68,7 +77,7 @@
       "name": "Y a-t-il un abonnement ou un renouvellement automatique ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Les formules Recherche et Pro Mandataire sont des abonnements mensuels, annulables a tout moment en 1 clic. La formule D&eacute;couverte est un paiement unique sans abonnement. Tes rapports restent accessibles m&ecirc;me apr&egrave;s annulation."
+        "text": "Recherche et Premium sont des abonnements mensuels, annulables &agrave; tout moment en 1 clic. Analyse unique et D&eacute;couverte sont des paiements uniques sans abonnement. Tes rapports restent accessibles m&ecirc;me apr&egrave;s annulation."
       }
     },
     {
@@ -128,10 +137,44 @@
   <div class="si-container" style="max-width:60rem;">
     <div class="si-reveal" style="text-align:center;margin-bottom:0.5rem;">
       <h2 class="si-section-title" style="font-size:1.5rem;margin-bottom:0.5rem;">Choisis ta formule</h2>
-      <p class="si-section-subtitle">1er mois &agrave; 1&euro; sur les abonnements. Sans engagement. Tes cr&eacute;dits ne sont d&eacute;bit&eacute;s que si le rapport est g&eacute;n&eacute;r&eacute; avec succ&egrave;s.</p>
+      <p class="si-section-subtitle">D&eacute;mo compl&egrave;te gratuite. Rapports personnalis&eacute;s d&egrave;s 2,99&nbsp;&euro;. Tes cr&eacute;dits ne sont d&eacute;bit&eacute;s que si le rapport est g&eacute;n&eacute;r&eacute; avec succ&egrave;s.</p>
     </div>
 
     <div class="si-pricing-grid si-reveal si-reveal-delay-1" style="margin-top:2rem;">
+
+      <!-- Analyse unique -->
+      <div class="si-pricing-card-v2">
+        <div style="text-align:center;padding-bottom:1.25rem;border-bottom:1px solid var(--si-border);margin-bottom:1.25rem;">
+          <h3 style="font-family:var(--si-font-heading);font-weight:700;font-size:1.125rem;">Analyse unique</h3>
+          <p style="font-size:0.8125rem;color:var(--si-muted-foreground);margin-top:0.25rem;">Pour v&eacute;rifier un bien sans abonnement.</p>
+          <div style="margin-top:1rem;">
+            <span class="si-price">2,99&nbsp;&euro;</span>
+          </div>
+          <p style="font-size:0.75rem;color:var(--si-muted-foreground);margin-top:0.25rem;">paiement unique</p>
+        </div>
+        <ul class="si-pricing-features">
+          <li class="si-pricing-feature">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <strong>1 rapport complet</strong>
+          </li>
+          <li class="si-pricing-feature">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            13 sections d'analyse
+          </li>
+          <li class="si-pricing-feature">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Score sur 100 et prix vs march&eacute;
+          </li>
+          <li class="si-pricing-feature">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Export PDF et partage
+          </li>
+        </ul>
+        <p style="font-size:0.75rem;color:var(--si-muted-foreground);margin-top:auto;padding-top:1rem;">Un seul paiement. Aucun renouvellement.</p>
+        <a href="https://app.score-immo.fr/go/checkout/unit" class="si-btn si-btn-secondary si-pricing-cta" style="width:100%;justify-content:center;margin-top:1rem;">
+          Analyser pour 2,99&nbsp;&euro;
+        </a>
+      </div>
 
       <!-- D&eacute;couverte -->
       <div class="si-pricing-card-v2">
@@ -187,9 +230,8 @@
           <h3 style="font-family:var(--si-font-heading);font-weight:700;font-size:1.125rem;">Recherche</h3>
           <p style="font-size:0.8125rem;color:var(--si-muted-foreground);margin-top:0.25rem;">Compare autant de biens que tu veux.</p>
           <div style="margin-top:1rem;text-align:center;">
-            <span class="si-price" data-counter="1" data-suffix="&nbsp;&euro;">1&nbsp;&euro;</span>
-            <p style="font-size:0.8125rem;color:var(--si-muted-foreground);margin-top:0.25rem;">le premier mois, puis</p>
-            <p style="font-family:var(--si-font-heading);font-weight:700;font-size:1.25rem;margin-top:0.125rem;">29&nbsp;&euro;/mois</p>
+            <span class="si-price">29&nbsp;&euro;</span>
+            <p style="font-size:0.8125rem;color:var(--si-muted-foreground);margin-top:0.25rem;">par mois</p>
           </div>
           <p style="font-size:0.75rem;color:var(--si-muted-foreground);margin-top:0.5rem;">soit 0,48&nbsp;&euro;/analyse &middot; <span style="color:var(--si-success);font-weight:500;">76% d&apos;&eacute;conomie</span></p>
         </div>
@@ -229,19 +271,18 @@
         </ul>
         <p style="font-size:0.75rem;color:var(--si-muted-foreground);margin-top:auto;padding-top:1rem;">Sans engagement. Annulable en 1 clic.</p>
         <a href="https://app.score-immo.fr/go/checkout/search" class="si-btn si-btn-primary si-pricing-cta" style="width:100%;justify-content:center;margin-top:1rem;">
-          Commencer pour 1&euro;
+          Choisir Recherche
         </a>
       </div>
 
-      <!-- Pro / Mandataire -->
+      <!-- Premium -->
       <div class="si-pricing-card-v2">
         <div style="text-align:center;padding-bottom:1.25rem;border-bottom:1px solid var(--si-border);margin-bottom:1.25rem;">
-          <h3 style="font-family:var(--si-font-heading);font-weight:700;font-size:1.125rem;">Pro / Mandataire</h3>
+          <h3 style="font-family:var(--si-font-heading);font-weight:700;font-size:1.125rem;">Premium</h3>
           <p style="font-size:0.8125rem;color:var(--si-muted-foreground);margin-top:0.25rem;">Pour les mandataires et agents immobiliers.</p>
           <div style="margin-top:1rem;text-align:center;">
-            <span class="si-price" data-counter="1" data-suffix="&nbsp;&euro;">1&nbsp;&euro;</span>
-            <p style="font-size:0.8125rem;color:var(--si-muted-foreground);margin-top:0.25rem;">le premier mois, puis</p>
-            <p style="font-family:var(--si-font-heading);font-weight:700;font-size:1.25rem;margin-top:0.125rem;">79&nbsp;&euro;/mois</p>
+            <span class="si-price">79&nbsp;&euro;</span>
+            <p style="font-size:0.8125rem;color:var(--si-muted-foreground);margin-top:0.25rem;">par mois</p>
           </div>
         </div>
         <ul class="si-pricing-features">
@@ -272,7 +313,7 @@
         </ul>
         <p style="font-size:0.75rem;color:var(--si-muted-foreground);margin-top:auto;padding-top:1rem;">Rapport &agrave; votre marque. Annulable en 1 clic.</p>
         <a href="https://app.score-immo.fr/go/checkout/premium" class="si-btn si-btn-secondary si-pricing-cta" style="width:100%;justify-content:center;margin-top:1rem;">
-          Commencer pour 1&euro;
+          Choisir Premium
         </a>
       </div>
 
@@ -284,13 +325,13 @@
       <h3 style="font-family:var(--si-font-heading,'DM Sans',sans-serif);font-size:clamp(1.25rem,3vw,1.6rem);font-weight:700;margin:0 0 0.75rem;color:#fff;">Un seul mandat d&eacute;croch&eacute; rembourse des ann&eacute;es d'abonnement</h3>
       <p style="max-width:40rem;margin:0 auto 1.5rem;line-height:1.6;color:rgba(255,255,255,0.9);font-size:0.98rem;">&Agrave; 79&nbsp;&euro;/mois, remettez un rapport objectif &agrave; votre marque qui transforme la n&eacute;gociation de prix en discussion de donn&eacute;es. C'est l'outil pens&eacute; pour les mandataires.</p>
       <div style="display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;">
-        <a class="si-btn si-btn-primary" href="https://app.score-immo.fr/iad?utm_source=site&amp;utm_medium=tarifs_pro" style="justify-content:center;">Tester gratuitement</a>
+        <a class="si-btn si-btn-primary" href="https://app.score-immo.fr/iad?utm_source=site&amp;utm_medium=tarifs_pro" style="justify-content:center;">Voir l'offre mandataire</a>
         <a class="si-btn" href="/pro" style="justify-content:center;background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.25);">En savoir plus</a>
       </div>
     </aside>
 
     <p class="si-reveal si-reveal-delay-2" style="text-align:center;font-size:0.875rem;color:var(--si-muted-foreground);margin-top:1.5rem;">
-      1&egrave;re analyse offerte &middot; 1er mois &agrave; 1&euro; &middot; Annulable en 1 clic
+      D&eacute;mo compl&egrave;te gratuite &middot; Rapport personnalis&eacute; d&egrave;s 2,99&nbsp;&euro; &middot; Abonnements annulables en 1 clic
     </p>
   </div>
 </section>
@@ -479,7 +520,7 @@
           <svg class="si-accordion-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
         </button>
         <div class="si-accordion-content">
-          <p>La D&eacute;couverte (9,99&nbsp;&euro;) donne 5 analyses pour v&eacute;rifier quelques biens. Recherche (1&nbsp;&euro; le premier mois, puis <strong>29&nbsp;&euro;/mois</strong>) offre 60 analyses par mois. Pro Mandataire (1&nbsp;&euro; le premier mois, puis <strong>79&nbsp;&euro;/mois</strong>) est illimit&eacute; avec PDF brand&eacute; &agrave; votre logo et mode Achat/Vente, con&ccedil;u pour les mandataires.</p>
+          <p>Analyse unique co&ucirc;te <strong>2,99&nbsp;&euro;</strong> pour un rapport. D&eacute;couverte co&ucirc;te <strong>9,99&nbsp;&euro;</strong> pour 5 rapports. Recherche propose 60 analyses &agrave; <strong>29&nbsp;&euro;/mois</strong>. Premium est illimit&eacute; &agrave; <strong>79&nbsp;&euro;/mois</strong>, avec PDF brand&eacute; et modes Achat/Vente.</p>
         </div>
       </div>
       <div class="si-accordion-item">
@@ -488,7 +529,7 @@
           <svg class="si-accordion-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
         </button>
         <div class="si-accordion-content">
-          <p>Les formules Recherche et Pro Mandataire sont des abonnements mensuels, annulables a tout moment en 1 clic. La formule D&eacute;couverte est un paiement unique sans abonnement. Tes rapports restent accessibles m&ecirc;me apr&egrave;s annulation.</p>
+          <p>Recherche et Premium sont des abonnements mensuels, annulables &agrave; tout moment en 1 clic. Analyse unique et D&eacute;couverte sont des paiements uniques sans abonnement. Tes rapports restent accessibles m&ecirc;me apr&egrave;s annulation.</p>
         </div>
       </div>
       <div class="si-accordion-item">
@@ -520,16 +561,16 @@
   <div class="si-container" style="max-width:42rem;">
     <div class="si-card si-reveal" style="padding:2.5rem 2rem;border-radius:var(--si-radius-2xl);border-color:rgba(59,130,246,0.2);background:linear-gradient(135deg, rgba(59,130,246,0.04) 0%, rgba(59,130,246,0.08) 100%);text-align:center;">
       <h2 style="font-family:var(--si-font-heading);font-weight:700;font-size:1.5rem;margin-bottom:0.5rem;">Pr&ecirc;t &agrave; analyser ta prochaine annonce ?</h2>
-      <p style="color:var(--si-muted-foreground);margin-bottom:1.5rem;font-size:0.9375rem;">1er mois &agrave; 1&euro;. Sans engagement.</p>
+      <p style="color:var(--si-muted-foreground);margin-bottom:1.5rem;font-size:0.9375rem;">Consulte la d&eacute;mo compl&egrave;te, puis analyse ton bien d&egrave;s 2,99&nbsp;&euro;.</p>
       <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
-        <a href="https://app.score-immo.fr/go/checkout/search" class="si-btn si-btn-primary si-cta-glow">
-          Commencer pour 1&euro;
+        <a href="https://app.score-immo.fr/go/checkout/unit" class="si-btn si-btn-primary si-cta-glow">
+          Analyser pour 2,99&nbsp;&euro;
         </a>
-        <a href="https://app.score-immo.fr/app?utm_source=site&utm_medium=pricing" class="si-btn si-btn-secondary">
-          Analyser une annonce
+        <a href="https://app.score-immo.fr/r/demo?utm_source=site&utm_medium=pricing" class="si-btn si-btn-secondary">
+          Voir la d&eacute;mo gratuite
         </a>
       </div>
-      <p style="font-size:0.75rem;color:var(--si-muted-foreground);margin-top:1rem;">Aucun paiement maintenant &bull; Annulable en 1 clic &bull; Donn&eacute;es 100% officielles</p>
+      <p style="font-size:0.75rem;color:var(--si-muted-foreground);margin-top:1rem;">Paiement s&eacute;curis&eacute; &bull; Offres sans abonnement disponibles &bull; Donn&eacute;es 100% officielles</p>
     </div>
   </div>
 </section>
@@ -546,8 +587,13 @@
   }
   @media (min-width: 768px) {
     .si-pricing-grid {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       align-items: stretch;
+    }
+  }
+  @media (min-width: 1100px) {
+    .si-pricing-grid {
+      grid-template-columns: repeat(4, 1fr);
     }
   }
   @media (max-width: 767px) {
@@ -571,7 +617,7 @@
     transform: translateY(-8px);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1100px) {
     .si-pricing-popular {
       transform: scale(1.05);
       border-color: var(--si-accent);
