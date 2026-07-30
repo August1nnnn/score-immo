@@ -61,6 +61,8 @@ Marketing repository:
 
 - Make the homepage H1 stable while keeping rotating examples inside the input.
 - Align the public accent token with WCAG AA contrast for white text.
+- Version the shared stylesheet URL so the corrected accessibility tokens
+  bypass the previous Cloudflare/browser cache immediately.
 - Fix the demo mockup heading hierarchy.
 - Align `llms.txt` with the canonical 10-source claim and marketing URLs.
 - Rewrite the Paris title around the queries that already generate impressions.
@@ -117,6 +119,17 @@ hits are visibility signals, never visitors or conversions.
 - Paris article Lighthouse mobile: 100 accessibility, 100 best practices,
   100 SEO, 100 agentic browsing.
 - Homepage observed local LCP: 189 ms, down from the 2.595 s baseline.
+- Marketing commit `dccfa51` deployed successfully through Cloudflare Pages;
+  the cache-busting follow-up is deployed separately after final live audit.
+- Application commit `3ea00a8` published through Lovable and verified on
+  `app.score-immo.fr/admin`.
+- The live AI visibility card initially reports 0 human AI-referral sessions
+  and 229 verified OpenAI reads: 221 ChatGPT-User and 8 OAI-SearchBot. These
+  reads remain excluded from visitors, funnels and conversions.
+- Production homepage Lighthouse after the first deployment: performance 98,
+  best practices 100, SEO 100, LCP 2.005 s, CLS 0.005, TBT 0 ms. Its
+  accessibility score of 96 exposed the stale unversioned stylesheet and
+  triggered the cache-busting follow-up.
 - The full application test suite retains two unrelated pre-existing failures
   in `validateListingURL.test.ts` for SeLoger search and PAP list URLs. The
   changed analytics tests pass.
