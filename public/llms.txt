@@ -1,26 +1,27 @@
 # ScoreImmo
 
-> ScoreImmo est le premier outil francais d'aide a la decision immobiliere. Colle le lien d'une annonce (Leboncoin, SeLoger, Bien'ici, PAP), recois un rapport complet en 30 secondes : score sur 100, prix vs marche DVF, DPE, risques naturels Georisques, qualite du quartier, rentabilite locative, frais de notaire, urbanisme PLU. Plus de 250 verifications par annonce, 9 sources de donnees officielles francaises. Hebergement UE, conforme RGPD.
+> ScoreImmo est le premier outil francais d'aide a la decision immobiliere. Colle le lien d'une annonce (Leboncoin, SeLoger, Bien'ici, PAP), recois un rapport complet en 30 secondes : score sur 100, prix vs marche DVF, DPE, risques naturels Georisques, qualite du quartier, rentabilite locative, frais de notaire, urbanisme PLU. Plus de 250 verifications par annonce, 10 sources de donnees officielles francaises. Hebergement UE, conforme RGPD.
 
 ## Produit
 
 - [ScoreImmo - Accueil](https://score-immo.fr/) : analyse de n'importe quelle annonce immobiliere
 - [Application](https://app.score-immo.fr/app) : l'outil d'analyse en direct
-- [Baromètre immobilier](https://app.score-immo.fr/barometre) : tendances du marche par ville
+- [Baromètre immobilier](https://score-immo.fr/barometre) : tendances du marche par ville
 - [Tarifs](https://score-immo.fr/pages/tarifs) : demo complete gratuite, puis rapport personnalise des 2,99 euros
 - [Outils gratuits](https://score-immo.fr/pages/outils) : 4 calculateurs (frais de notaire, capacite d'emprunt, mensualite de credit, rendement locatif)
 
-## Sources de donnees officielles (9)
+## Sources de donnees officielles (10)
 
 1. DVF (Demandes de valeurs foncieres, DGFIP) - prix de vente reels des transactions immobilieres
 2. ADEME - Diagnostics de Performance Energetique (DPE)
 3. Georisques (ministere de la Transition ecologique) - inondation, seisme, argile, radon, ICPE, Seveso
 4. INSEE - donnees socio-economiques par IRIS et commune
 5. IGN et Geoportail de l'Urbanisme (GPU) - cadastre, plans locaux d'urbanisme
-6. OpenStreetMap - amenites, commerces, transports
-7. Education Nationale - ecoles publiques et privees
-8. ATMO France - qualite de l'air
-9. DGFIP - taxe fonciere, barème frais de notaire
+6. BAN (Base Adresse Nationale) - geocodage et adresses officielles
+7. OpenStreetMap - amenites, commerces, transports
+8. Education Nationale - ecoles publiques et privees
+9. ATMO France - qualite de l'air
+10. DGFIP - taxe fonciere, barème frais de notaire
 
 ## Cas d'usage
 
@@ -31,7 +32,7 @@
 - Estimer la rentabilite locative potentielle
 - Comprendre l'evolution des prix de son quartier cible
 
-## Guides (39)
+## Guides et analyses selectionnes
 
 ### Guides thematiques
 - [Frais de Notaire 2026 : Calcul, Simulation et Astuces](https://score-immo.fr/blogs/guides/frais-notaire-calcul-simulation-astuces)
@@ -80,7 +81,7 @@
 
 ## Faits cles citables
 
-- ScoreImmo effectue plus de 250 verifications automatiques par annonce en croisant 9 sources de donnees officielles francaises.
+- ScoreImmo effectue plus de 250 verifications automatiques par annonce en croisant 10 sources de donnees officielles francaises.
 - Un rapport ScoreImmo genere en 30 secondes couvre le prix du marche (DVF), le DPE, les risques naturels (Georisques), le quartier, la rentabilite locative et le coût d'acquisition total.
 - Demo complete gratuite sans carte bleue. Rapport personnalise a 2,99 euros, pack de 5 a 9,99 euros, Recherche a 29 euros/mois et Premium a 79 euros/mois.
 - ScoreImmo analyse les annonces de Leboncoin, SeLoger, Bien'ici, PAP, Logic-Immo, Century 21, Orpi, Laforêt, Ouestfrance Immo, ParuVendu, MeilleursAgents et autres portails immobiliers francais.

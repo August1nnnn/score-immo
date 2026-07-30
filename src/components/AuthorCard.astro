@@ -17,9 +17,10 @@ const { author, publishedAt, lastReviewed, compact = false } = Astro.props;
 
 const fmt = (iso?: string | null) =>
   iso ? new Date(iso).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' }) : null;
+const avatarColor = author.avatar_color.toUpperCase() === '#3B82F6' ? '#2563EB' : author.avatar_color;
 ---
 <div class={`si-author ${compact ? 'si-author-compact' : ''}`}>
-  <a href={`/pages/auteurs/${author.handle}`} class="si-author-avatar" style={`background:${author.avatar_color};`}>
+  <a href={`/pages/auteurs/${author.handle}`} class="si-author-avatar" style={`background:${avatarColor};`}>
     {author.avatar_initials}
   </a>
   <div class="si-author-meta">

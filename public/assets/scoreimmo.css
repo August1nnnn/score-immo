@@ -16,10 +16,10 @@
   --si-foreground: #0F172A;
   --si-primary: #0F172A;
   --si-primary-foreground: #F8FAFC;
-  --si-accent: #3B82F6;
-  --si-accent-hover: rgba(59, 130, 246, 0.9);
-  --si-accent-light: rgba(59, 130, 246, 0.1);
-  --si-accent-light-hover: rgba(59, 130, 246, 0.15);
+  --si-accent: #2563EB;
+  --si-accent-hover: #1D4ED8;
+  --si-accent-light: rgba(37, 99, 235, 0.1);
+  --si-accent-light-hover: rgba(37, 99, 235, 0.15);
   --si-secondary: #E2E8F0;
   --si-muted: #F1F5F9;
   --si-muted-foreground: #64748B;
@@ -2979,4 +2979,14 @@ body.si-page-bg {
 @media (max-width: 640px) {
   .si-show-mobile { display: inline; }
   .si-hide-mobile { display: none; }
+}
+
+/* Accessible fallbacks for legacy inline styles in editorial HTML. */
+.si-article-body .si-tool-cta > a,
+.si-article-body .si-article-cta > a {
+  background: var(--si-accent) !important;
+}
+
+.si-article-body .si-article-cta[style*="background:#0f172a"] p[style*="color:#64748b"] {
+  color: #CBD5E1 !important;
 }

@@ -39,7 +39,7 @@ if (fiches.length === 0) fiches = all; // fallback: top fiches
 fiches = fiches.slice(0, 4);
 
 const typeLabel = (t: string) => (t === 'appartement' ? 'Appart.' : 'Maison');
-const scoreColor = (s: number) => (s >= 70 ? '#16A34A' : s >= 40 ? '#F59E0B' : '#DC2626');
+const scoreColor = (s: number) => (s >= 70 ? '#15803D' : s >= 40 ? '#B45309' : '#DC2626');
 const heading = region
   ? `Le Baromètre en ${region}`
   : 'Le Baromètre Immobilier ScoreImmo';

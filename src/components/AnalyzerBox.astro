@@ -29,7 +29,7 @@ const copy: Record<string, { h: string; p: string }> = {
 const c = copy[blog] || copy.guides;
 ---
 <div class="sib-card">
-  <h3 class="sib-h">{c.h}</h3>
+  <h2 class="sib-h">{c.h}</h2>
   <p class="sib-p">{c.p}</p>
   <form class="sib-form" action="https://app.score-immo.fr/app" method="get" novalidate>
     <input type="hidden" name="utm_source" value="site" />
