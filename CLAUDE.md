@@ -8,6 +8,25 @@ App séparée : app.score-immo.fr (Lovable). Backend Supabase `afvtxiklivnmakqix
 - **Déploiement = `deploy.yml` sur push `main`** (PAS wrangler). Pull avant push.
 - **Données baromètre** : content collections `barometre` (fiches JSON, champ `score_sections` = 5 sous-scores prix/dpe/risques/urbanisme/environnement, `details.marche.median_m2` = médiane DVF), `authors`, `articles`.
 
+## Décisions durables du 30/07/2026
+
+- **Paid-first** : aucun rapport personnalisé gratuit. La seule expérience
+  gratuite est `/r/demo`. Offres canoniques : 2,99 € / 1 rapport, 9,99 € /
+  5 rapports, 29 €/mois / 60 rapports, 79 €/mois / illimité. Les anciens plans
+  ou textes mentionnant `first_free`, `free_weekly`, un essai personnalisé
+  gratuit ou un premier mois standard à 1 € sont historiques. Source :
+  `docs/superpowers/specs/2026-07-30-paid-formulas-source-of-truth.md`.
+- **SEO/GEO** : audit, mesures, changements, GSC, Bing, Dataset et IndexNow
+  sont consignés dans
+  `docs/superpowers/specs/2026-07-30-seo-geo-visibility-optimization.md`.
+- **IndexNow** : notification automatique uniquement après un déploiement
+  Cloudflare réussi. Les pages touchées sont ciblées ; les changements globaux
+  utilisent les 303 URL du sitemap. Ne pas remettre de ping avant déploiement
+  dans le workflow éditorial.
+- **Mesure IA** : les sessions humaines issues d'assistants constituent un
+  canal d'acquisition ; les lectures de bots vérifiés sont un signal de
+  visibilité séparé, jamais des visiteurs ou des conversions.
+
 ## GEO / citation IA (fait 19/06 ; voir skill `parc-geo-citation`)
 But = être *cité* par les LLM, pas juste ranker. Pattern en place :
 - **`/barometre/[slug]`** (101 fiches) : TL;DR speakable + `Dataset` JSON-LD (score global + 5 sous-scores) + `FAQPage` + FAQ visible. Composant réutilisable **`src/components/FAQ.astro`**. FAQ data-driven (démonstratif genre/élision : « cet appartement » / « cette maison »).

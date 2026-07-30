@@ -96,4 +96,6 @@ La FAQ (5 Q/R) est **dans** `body_html` (section H2 « Questions fréquentes »)
 2. Supprimer `blog-auto/queue/{index}.json`.
 3. `git commit -m "chore(blog): publish <slug>"` + `git push origin main`
    (Cloudflare Pages auto-deploy via `deploy.yml`).
-4. (Optionnel) ping IndexNow sur `https://score-immo.fr/blogs/{blog}/{slug}`.
+4. Ne pas lancer de ping IndexNow avant le déploiement. `deploy.yml` notifie
+   automatiquement l'URL de l'article et son hub après la publication
+   Cloudflare réussie.
