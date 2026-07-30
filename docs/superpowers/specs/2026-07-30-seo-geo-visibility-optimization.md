@@ -130,6 +130,9 @@ hits are visibility signals, never visitors or conversions.
   best practices 100, SEO 100, LCP 2.005 s, CLS 0.005, TBT 0 ms. Its
   accessibility score of 96 exposed the stale unversioned stylesheet and
   triggered the cache-busting follow-up.
+- Follow-up commit `5145534` deployed successfully in GitHub Actions run
+  `30540652011`. After CDN propagation, the direct production URL scores 100
+  accessibility and 100 SEO, with the contrast audit passing.
 - The full application test suite retains two unrelated pre-existing failures
   in `validateListingURL.test.ts` for SeLoger search and PAP list URLs. The
   changed analytics tests pass.
