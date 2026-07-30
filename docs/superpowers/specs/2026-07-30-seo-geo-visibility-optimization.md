@@ -162,6 +162,9 @@ IndexNow:
   12 hours; the last visible submissions dated from 2026-07-10.
 - A complete 303-URL submission was accepted with HTTP 200 on 2026-07-30.
   Bing then displayed 303 submitted URLs for the previous 12 hours.
+- The first corrected production deployment repeated the complete notification
+  after Cloudflare finished. Its GitHub Actions logs show `IndexNow 200 OK on
+  303 urls`; Bing then displayed 606 submissions in the previous 12 hours.
 - The previous editorial workflow notified the sitemap before content was
   deployed. IndexNow now runs only after a successful Cloudflare deployment.
 - Article and page changes are mapped to their affected canonical URLs.
@@ -176,6 +179,9 @@ Structured-data follow-up:
   objects as incomplete standalone `Dataset` entities. They are now URL
   references, leaving one complete first-party Dataset instead of three
   entities with two invalid children.
-- After production deployment, notify IndexNow again for the city hub and
-  request Google reindexing. Bing sitemap processing is asynchronous and must
-  be checked again without treating a pending state as an error.
+- Google live-tested the deployed city hub on 2026-07-30 at 14:24 Europe/Paris:
+  the old three-item result became one valid Dataset and one valid breadcrumb.
+  The hub was then added to Google's priority crawl queue.
+- Bing sitemap processing is asynchronous and remained in `Traitement` at the
+  end of the session; the prior 63-URL count must not be treated as refreshed
+  until Bing records a new analysis date.
