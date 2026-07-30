@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 
@@ -63,4 +64,42 @@ test("legacy inline article CTAs receive accessible color overrides", () => {
   assert.match(css, /\.si-article-body \.si-tool-cta > a/);
   assert.match(css, /\.si-article-body \.si-article-cta > a/);
   assert.match(css, /color:\s*#CBD5E1\s*!important/i);
+});
+
+test("the city Dataset links its sources without declaring incomplete nested Datasets", () => {
+  const hub = read("src/pages/blogs/[blog]/index.astro");
+  assert.doesNotMatch(hub, /"isBasedOn":\s*\[\s*\{\s*"@type":\s*"Dataset"/);
+  assert.match(
+    hub,
+    /"isBasedOn":\s*\[\s*"https:\/\/www\.data\.gouv\.fr\/fr\/datasets\/demandes-de-valeurs-foncieres-geolocalisees\/"/,
+  );
+});
+
+test("IndexNow runs after deployment and targets changed article URLs", () => {
+  const deploy = read(".github/workflows/deploy.yml");
+  const blogAuto = read(".github/workflows/blog-auto.yml");
+  assert.ok(
+    deploy.indexOf("Deploy to Cloudflare Pages") < deploy.indexOf("Notify IndexNow after deployment"),
+    "IndexNow must run only after Cloudflare has published the content",
+  );
+  assert.doesNotMatch(blogAuto, /name:\s*Ping IndexNow/);
+
+  const result = spawnSync(
+    "python3",
+    [
+      "scripts/indexnow_ping.py",
+      "--dry-run",
+      "--changed-files",
+      "src/content/articles/villes/prix-immobilier-paris-marche-plancher.json",
+      "src/data/pages/tarifs.json",
+    ],
+    { cwd: new URL("..", import.meta.url), encoding: "utf8" },
+  );
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(
+    result.stdout,
+    /https:\/\/score-immo\.fr\/blogs\/villes\/prix-immobilier-paris-marche-plancher/,
+  );
+  assert.match(result.stdout, /https:\/\/score-immo\.fr\/pages\/tarifs/);
+  assert.doesNotMatch(result.stdout, /Pinging 303 URLs/);
 });

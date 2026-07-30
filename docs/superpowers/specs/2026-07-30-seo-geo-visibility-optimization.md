@@ -2,7 +2,7 @@
 
 Date: 2026-07-30
 Owner: Augustin / Codex
-Status: implementation in progress
+Status: implemented; search-engine processing under observation
 
 ## Objective
 
@@ -136,3 +136,46 @@ hits are visibility signals, never visitors or conversions.
 - The full application test suite retains two unrelated pre-existing failures
   in `validateListingURL.test.ts` for SeLoger search and PAP list URLs. The
   changed analytics tests pass.
+
+## Search-engine submission audit — 2026-07-30
+
+Live technical state:
+
+- `robots.txt`, `sitemap-index.xml`, `sitemap-0.xml` and the active IndexNow
+  key file return HTTP 200.
+- The live child sitemap contains 303 canonical URLs and no `lastmod` values.
+  Omitting `lastmod` is acceptable while the application cannot guarantee
+  accurate modification dates; fabricated or build-time dates must not be
+  added.
+- Google Search Console reports both sitemaps successful with 303 discovered
+  URLs. Their latest reads were 2026-07-28 and 2026-07-29; the index was
+  resubmitted on 2026-07-30.
+- Bing had retained an obsolete 63-URL analysis of `sitemap-0.xml` from
+  2026-04-25. The child sitemap was resubmitted on 2026-07-30 and entered
+  processing. The sitemap index itself had last been analyzed on 2026-07-28.
+- Bing also retains an obsolete `/sitemap.xml` warning with zero discovered
+  URLs. It is not referenced by `robots.txt` and contributes no indexable URL.
+
+IndexNow:
+
+- Before correction, Bing showed zero URLs submitted during the previous
+  12 hours; the last visible submissions dated from 2026-07-10.
+- A complete 303-URL submission was accepted with HTTP 200 on 2026-07-30.
+  Bing then displayed 303 submitted URLs for the previous 12 hours.
+- The previous editorial workflow notified the sitemap before content was
+  deployed. IndexNow now runs only after a successful Cloudflare deployment.
+- Article and page changes are mapped to their affected canonical URLs.
+  Shared templates, layouts or other site-wide changes deliberately fall back
+  to the complete live sitemap.
+
+Structured-data follow-up:
+
+- Google URL Inspection confirmed that the Paris article is indexed; priority
+  recrawling was requested after its title update.
+- The city hub was indexed but Google interpreted the two `isBasedOn` source
+  objects as incomplete standalone `Dataset` entities. They are now URL
+  references, leaving one complete first-party Dataset instead of three
+  entities with two invalid children.
+- After production deployment, notify IndexNow again for the city hub and
+  request Google reindexing. Bing sitemap processing is asynchronous and must
+  be checked again without treating a pending state as an error.

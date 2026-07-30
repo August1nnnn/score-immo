@@ -33,11 +33,16 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
       - run: npm ci
 
@@ -52,3 +57,21 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy dist --project-name=score-immo --branch=main
+
+      - name: Collect changed files for IndexNow
+        if: github.event_name == 'push' && github.event.before != '0000000000000000000000000000000000000000'
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.sha }}
+        run: git diff --name-only "$BEFORE_SHA" "$AFTER_SHA" > "$RUNNER_TEMP/indexnow-changed-files.txt"
+
+      - name: Notify IndexNow after deployment
+        continue-on-error: true
+        env:
+          CHANGED_FILE_LIST: ${{ runner.temp }}/indexnow-changed-files.txt
+        run: |
+          if [ -f "$CHANGED_FILE_LIST" ]; then
+            python3 scripts/indexnow_ping.py --changed-file-list "$CHANGED_FILE_LIST"
+          else
+            python3 scripts/indexnow_ping.py
+          fi

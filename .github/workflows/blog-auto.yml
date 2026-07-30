@@ -48,16 +48,3 @@ jobs:
           else
             python3 blog-auto/publish.py
           fi
-
-      - name: Ping IndexNow
-        if: success()
-        continue-on-error: true
-        run: |
-          curl -s -X POST "https://api.indexnow.org/IndexNow" \
-            -H "Content-Type: application/json" \
-            -d '{
-              "host":"score-immo.fr",
-              "key":"si-scoreimmo-indexnow",
-              "keyLocation":"https://score-immo.fr/si-scoreimmo-indexnow.txt",
-              "urlList":["https://score-immo.fr/sitemap-index.xml"]
-            }' || true
