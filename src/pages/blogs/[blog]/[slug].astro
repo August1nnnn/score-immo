@@ -27,6 +27,7 @@ const title = article.meta_title || `${article.title} | ScoreImmo`;
 const description = article.meta_description || article.title;
 const image = article.image?.src;
 const canonical = `https://score-immo.fr/blogs/${article.blog}/${article.handle}`;
+const firstBodyLinkPriority = article.first_body_link_priority === true;
 
 const blogLabels: Record<string, string> = {
   guides: "Guide de l'acheteur",
@@ -183,7 +184,7 @@ if (article.handle === 'score-scoreimmo-methode-evaluation') {
       <article class="si-article">
         <header class="si-article-header">
           <h1 class="si-article-title">{article.title}</h1>
-          {author && (
+          {author && !firstBodyLinkPriority && (
             <AuthorCard
               author={author}
               publishedAt={article.published_at}
@@ -207,7 +208,9 @@ if (article.handle === 'score-scoreimmo-methode-evaluation') {
           <TLDRBox items={article.tldr} />
         )}
 
-        <AnalyzerBox blog={article.blog} medium="blog_top" />
+        {!firstBodyLinkPriority && (
+          <AnalyzerBox blog={article.blog} medium="blog_top" />
+        )}
 
         <div class="si-article-body" set:html={article.body_html}></div>
 

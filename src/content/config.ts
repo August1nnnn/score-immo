@@ -23,6 +23,7 @@ const articles = defineCollection({
     }).nullable().optional(),
     meta_title: z.string().nullable().optional(),
     meta_description: z.string().nullable().optional(),
+    first_body_link_priority: z.boolean().default(false),
     tldr: z.array(z.string()).default([]),
     sources: z.array(z.object({
       title: z.string(),
