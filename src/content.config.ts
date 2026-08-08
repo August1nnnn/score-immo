@@ -1,7 +1,8 @@
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 const articles = defineCollection({
-  type: 'data',
+  loader: glob({ pattern: '**/*.json', base: './src/content/articles' }),
   schema: z.object({
     id: z.string(),
     title: z.string(),
@@ -35,7 +36,7 @@ const articles = defineCollection({
 });
 
 const authors = defineCollection({
-  type: 'data',
+  loader: glob({ pattern: '**/*.json', base: './src/content/authors' }),
   schema: z.object({
     handle: z.string(),
     name: z.string(),
@@ -51,7 +52,7 @@ const authors = defineCollection({
 });
 
 const barometre = defineCollection({
-  type: 'data',
+  loader: glob({ pattern: '**/*.json', base: './src/content/barometre' }),
   schema: z.object({
     slug: z.string(),
     ville: z.string(),
@@ -62,7 +63,7 @@ const barometre = defineCollection({
     prix_demande: z.number(),
     prix_m2: z.number().nullable(),
     score_global: z.number(),
-    score_sections: z.record(z.number()).default({}),
+    score_sections: z.record(z.string(), z.number()).default({}),
     dpe: z.string().nullable(),
     points_forts: z.array(z.string()).default([]),
     alertes_cles: z.array(z.string()).default([]),

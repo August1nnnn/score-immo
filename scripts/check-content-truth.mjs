@@ -39,6 +39,11 @@ const checks = [
     message: "La page tarifs affiche encore 13 sources au lieu de la valeur canonique 10.",
   },
   {
+    file: "public/assets/og-default.svg",
+    forbidden: ["9 sources officielles"],
+    message: "La carte sociale par défaut affiche encore 9 sources au lieu de la valeur canonique 10.",
+  },
+  {
     file: "src/content/articles/guides/loi-pinel-2026-conditions-plafonds-alternatives.json",
     forbidden: [
       "seul le dispositif Pinel Plus (aussi appelé Super Pinel) maintient",

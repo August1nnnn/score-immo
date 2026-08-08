@@ -1,7 +1,8 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
-import tailwind from '@astrojs/tailwind';
+import autoprefixer from 'autoprefixer';
+import tailwindcss from 'tailwindcss';
 
 export default defineConfig({
   site: 'https://score-immo.fr',
@@ -16,8 +17,14 @@ export default defineConfig({
       priority: 0.7,
       filter: (page) => !page.includes('/admin'),
     }),
-    tailwind({ applyBaseStyles: false }),
   ],
+  vite: {
+    css: {
+      postcss: {
+        plugins: [tailwindcss(), autoprefixer()],
+      },
+    },
+  },
   image: {
     service: { entrypoint: 'astro/assets/services/sharp' },
   },

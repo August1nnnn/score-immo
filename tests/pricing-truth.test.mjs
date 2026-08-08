@@ -54,6 +54,15 @@ test("the pricing page exposes the four canonical paid offers", () => {
   ]) {
     assert.match(pricing, new RegExp(expected.replace("/", "\\/"), "i"));
   }
+
+  assert.doesNotMatch(pricing, /Comparateur de biens/i);
+});
+
+test("the default social card uses the canonical data and source counts", () => {
+  const socialCard = source("public/assets/og-default.svg");
+
+  assert.match(socialCard, /230\+ données · 10 sources officielles/);
+  assert.doesNotMatch(socialCard, /9 sources officielles/);
 });
 
 test("public copy never promises a free personalized report", () => {

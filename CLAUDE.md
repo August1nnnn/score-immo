@@ -10,8 +10,10 @@ App séparée : app.score-immo.fr (Lovable). Backend Supabase `afvtxiklivnmakqix
 
 ## Décisions durables du 30/07/2026
 
-- **Paid-first** : aucun rapport personnalisé gratuit. La seule expérience
-  gratuite est `/r/demo`. Offres canoniques : 2,99 € / 1 rapport, 9,99 € /
+- **Paid-first** : aucun rapport complet personnalisé gratuit. Avant paiement,
+  l'app peut afficher seulement les informations réellement extraites de
+  l'annonce, sans score ni enrichissement multi-source. `/r/demo` reste
+  gratuite. Offres canoniques : 2,99 € / 1 rapport, 9,99 € /
   5 rapports, 29 €/mois / 60 rapports, 79 €/mois / illimité. Les anciens plans
   ou textes mentionnant `first_free`, `free_weekly`, un essai personnalisé
   gratuit ou un premier mois standard à 1 € sont historiques. Source :
