@@ -65,6 +65,13 @@ test("the default social card uses the canonical data and source counts", () => 
   assert.doesNotMatch(socialCard, /9 sources officielles/);
 });
 
+test("the homepage distinguishes data points from automatic checks", () => {
+  const stats = source("src/components/sections/Stats.astro");
+
+  assert.match(stats, /250\+/);
+  assert.match(stats, /contr(?:ô|&ocirc;)les automatiques appliqu(?:é|&eacute;)s aux 230\+ donn(?:é|&eacute;)es/i);
+});
+
 test("public copy never promises a free personalized report", () => {
   const forbidden = [
     /(?:premi[eè]re|1[eè]re)\s+analyse\s+(?:est\s+)?(?:offerte|gratuite)/iu,
