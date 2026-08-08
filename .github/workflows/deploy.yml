@@ -9,6 +9,8 @@ on:
       - 'astro.config.mjs'
       - 'tailwind.config.mjs'
       - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/deploy.yml'
       - 'functions/**'
   workflow_run:
     # Trigger deploy after blog-auto commit (bot commits don't fire `on: push`)
