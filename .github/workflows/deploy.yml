@@ -53,6 +53,9 @@ jobs:
         env:
           PUBLIC_SUPABASE_ANON: ${{ secrets.PUBLIC_SUPABASE_ANON }}
 
+      - name: Validate generated routes
+        run: npm run test:site-integrity
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:

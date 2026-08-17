@@ -19,4 +19,27 @@
 # Consolidation du doublon premier achat
 /blogs/guides/erreurs-a-eviter-premier-achat-immobilier /blogs/guides/premier-achat-immobilier-erreurs-eviter 301
 
-# 404 fallback (implicit, Astro builds 404.html)
+# Liens historiques avec accents dans les slugs
+/blogs/guides/analyser-annonce-immobilière-comme-pro /blogs/guides/analyser-annonce-immobiliere-comme-pro 301
+/blogs/guides/diagnostic-electricite-points-contrôle-achat /blogs/guides/diagnostic-electricite-points-controle-achat 301
+/blogs/guides/dpe-classe-e-travaux-stratégie /blogs/guides/dpe-classe-e-travaux-strategie 301
+/blogs/guides/dpe-comprendre-classes-énergétiques /blogs/guides/dpe-comprendre-classes-energetiques 301
+/blogs/guides/dpe-projete-négocier-passoire-thermique /blogs/guides/dpe-projete-negocier-passoire-thermique 301
+/blogs/guides/estimation-immobilière-méthodes-juste-prix /blogs/guides/estimation-immobiliere-methodes-juste-prix 301
+/blogs/guides/investissement-locatif-rentabilité-fiscalite-villes /blogs/guides/investissement-locatif-rentabilite-fiscalite-villes 301
+/blogs/guides/marge-négociation-immobilier-2026 /blogs/guides/marge-negociation-immobilier-2026 301
+/blogs/guides/négocier-prix-bien-immobilier-guide-complet /blogs/guides/negocier-prix-bien-immobilier-guide-complet 301
+/blogs/guides/offre-achat-immobilier-modèle-conseils-stratégie /blogs/guides/offre-achat-immobilier-modele-conseils-strategie 301
+/blogs/guides/renovation-énergétique-maprimerenov-2026-aides-rentabilité /blogs/guides/renovation-energetique-maprimerenov-2026-aides-rentabilite 301
+/blogs/guides/score-scoreimmo-méthode-evaluation /blogs/guides/score-scoreimmo-methode-evaluation 301
+/blogs/guides/travaux-renovation-énergétique-dpe-f-d /blogs/guides/travaux-renovation-energetique-dpe-f-d 301
+/blogs/guides/visite-immobilière-checklist-points-verifier /blogs/guides/visite-immobiliere-checklist-points-verifier 301
+/blogs/pro/crédibilité-mandataire-rapport-analyse-rassure-client /blogs/pro/credibilite-mandataire-rapport-analyse-rassure-client 301
+/blogs/pro/decrocher-mandat-exclusif-méthode-arguments /blogs/pro/decrocher-mandat-exclusif-methode-arguments 301
+/blogs/pro/iad-safti-capifrance-efficity-quel-réseau-mandataire-choisir /blogs/pro/iad-safti-capifrance-efficity-quel-reseau-mandataire-choisir 301
+/blogs/pro/mandataire-ou-agent-immobilier-différences /blogs/pro/mandataire-ou-agent-immobilier-differences 301
+/blogs/pro/pige-immobilière-2026-trouver-mandats /blogs/pro/pige-immobiliere-2026-trouver-mandats 301
+/blogs/pro/prospection-immobilière-techniques-qui-marchent /blogs/pro/prospection-immobiliere-techniques-qui-marchent 301
+/blogs/villes/prix-immobilier-nantes-évolution-previsions /blogs/villes/prix-immobilier-nantes-evolution-previsions 301
+
+# Cloudflare Pages sert ce fichier avec un statut HTTP 404 pour toute route inconnue.

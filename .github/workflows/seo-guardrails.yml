@@ -41,6 +41,10 @@ jobs:
         env:
           ASTRO_TELEMETRY_DISABLED: "1"
 
+      - name: Validate generated routes
+        working-directory: ${{ steps.detect.outputs.site_dir }}
+        run: npm run test:site-integrity
+
       - name: Guardrail 1 — No external font CDN in built HTML
         working-directory: ${{ steps.detect.outputs.site_dir }}
         run: |

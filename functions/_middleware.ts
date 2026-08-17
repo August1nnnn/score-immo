@@ -3,7 +3,8 @@
 //   2. Server-side bot crawl logger : log HTML GETs from bot UAs to Supabase
 //      page_views with is_bot=true (captures GPTBot/ClaudeBot/PerplexityBot
 //      which the consent-gated client JS beacon misses).
-//   3. Inject CSP security header.
+//   3. Keep crawler directives consistent on 404 responses.
+//   4. Inject CSP security header.
 
 import { verifyOpenAIBot } from "./_oai-verify";
 
@@ -93,8 +94,13 @@ export const onRequest: PagesFunction<Env> = async (context) => {
   // (2) Bot crawl logger (no-op for assets/non-HTML/non-bot/no-env-vars)
   logBotIfRelevant(context.request, response, context.env, context.waitUntil);
 
-  // (3) CSP header injection
+  // (3) A custom 404 must override the global index header from public/_headers.
   const headers = new Headers(response.headers);
+  if (response.status === 404) {
+    headers.set('x-robots-tag', 'noindex, follow');
+  }
+
+  // (4) CSP header injection
   if (!headers.has('content-security-policy')) {
     headers.set(
       'content-security-policy',
