@@ -16,4 +16,7 @@
 # /blogs racine -> guide hub
 /blogs /pages/guide 301
 
+# Consolidation du doublon premier achat
+/blogs/guides/erreurs-a-eviter-premier-achat-immobilier /blogs/guides/premier-achat-immobilier-erreurs-eviter 301
+
 # 404 fallback (implicit, Astro builds 404.html)

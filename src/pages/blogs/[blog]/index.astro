@@ -17,7 +17,7 @@ const articles = (await getCollection('articles', (e) => e.data.blog === blog))
 
 const titles: Record<string, string> = {
   guides: "Le Guide de l'Acheteur - Conseils immobiliers",
-  villes: "Prix immobilier par ville 2026 : évolution et tendances",
+  villes: "Prix immobilier par ville 2026 : carte, m² et tendances",
   quartiers: "Meilleurs Quartiers pour Acheter - Guide 2026",
   pro: "Se lancer dans l'immobilier - Guide du mandataire 2026",
 };
@@ -131,6 +131,41 @@ if (blog === 'villes') {
           </a>
         ))}
       </div>
+
+      {blog === 'villes' && (
+        <div class="si-city-guide">
+          <section aria-labelledby="comparer-prix-ville">
+            <h2 id="comparer-prix-ville">Comment comparer les prix immobiliers par ville ?</h2>
+            <p>
+              Un prix au m² n'est comparable que si le type de bien, la période des ventes et le secteur sont cohérents. Nos analyses mettent les transactions DVF en contexte avec le quartier, le marché local et les caractéristiques du logement.
+            </p>
+            <p>
+              Commencez par la ville, puis vérifiez les écarts entre quartiers et la date des données avant d'estimer une annonce précise.
+            </p>
+          </section>
+
+          <section aria-labelledby="marches-paris-bordeaux">
+            <h2 id="marches-paris-bordeaux">Explorer les marchés de Paris et Bordeaux</h2>
+            <div class="si-city-priority-links">
+              <a href="/blogs/villes/prix-immobilier-paris-marche-plancher">
+                <strong>Prix immobilier à Paris</strong>
+                <span>Comparer les prix au m² par arrondissement et leur évolution.</span>
+              </a>
+              <a href="/blogs/villes/prix-immobilier-bordeaux-quartiers-tendances">
+                <strong>Prix immobilier à Bordeaux</strong>
+                <span>Lire le marché quartier par quartier avant de faire une offre.</span>
+              </a>
+            </div>
+          </section>
+
+          <section aria-labelledby="prix-vers-decision">
+            <h2 id="prix-vers-decision">Du prix au m² à la décision d'achat</h2>
+            <p>
+              Le prix local est un point de départ. Vérifiez aussi la <a href="/blogs/guides/dpe-comprendre-classes-energetiques">grille DPE 2026</a>, l'état du bien et les ventes comparables. Consultez ensuite les <a href="/blogs/guides/marge-negociation-immobilier-2026">repères de marge de négociation immobilière</a>, puis préparez votre offre avec notre <a href="/blogs/guides/negocier-prix-bien-immobilier-guide-complet">méthode pour négocier le prix d'un bien</a>.
+            </p>
+          </section>
+        </div>
+      )}
     </div>
   </section>
 </BaseLayout>
@@ -146,5 +181,63 @@ if (blog === 'villes') {
     max-width: 38rem;
     color: var(--si-foreground);
     line-height: 1.65;
+  }
+  .si-city-guide {
+    display: grid;
+    gap: 2rem;
+    max-width: 56rem;
+    margin: 4rem auto 0;
+  }
+  .si-city-guide section {
+    padding: 2rem;
+    border: 1px solid var(--si-border, #E2E8F0);
+    border-radius: 1rem;
+    background: var(--si-surface, #FFFFFF);
+  }
+  .si-city-guide h2 {
+    margin: 0 0 1rem;
+    color: var(--si-foreground);
+    font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  }
+  .si-city-guide p {
+    margin: 0;
+    color: var(--si-muted-foreground, #475569);
+    line-height: 1.7;
+  }
+  .si-city-guide p + p {
+    margin-top: 0.75rem;
+  }
+  .si-city-guide p a {
+    color: var(--si-accent, #2563EB);
+    font-weight: 600;
+  }
+  .si-city-priority-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .si-city-priority-links a {
+    display: grid;
+    gap: 0.4rem;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    background: var(--si-background, #F8FAFC);
+    color: var(--si-foreground);
+    text-decoration: none;
+  }
+  .si-city-priority-links a:hover {
+    color: var(--si-accent, #2563EB);
+  }
+  .si-city-priority-links span {
+    color: var(--si-muted-foreground, #475569);
+    line-height: 1.5;
+  }
+  @media (max-width: 640px) {
+    .si-city-guide section {
+      padding: 1.5rem;
+    }
+    .si-city-priority-links {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
