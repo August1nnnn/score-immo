@@ -4,6 +4,12 @@ import sitemap from '@astrojs/sitemap';
 import autoprefixer from 'autoprefixer';
 import tailwindcss from 'tailwindcss';
 
+const sitemapExcludedPaths = new Set([
+  '/404',
+  '/pages/efficity',
+  '/pages/llms-txt',
+]);
+
 export default defineConfig({
   site: 'https://score-immo.fr',
   trailingSlash: 'never',
@@ -15,7 +21,10 @@ export default defineConfig({
     sitemap({
       changefreq: 'weekly',
       priority: 0.7,
-      filter: (page) => !page.includes('/admin') && !page.endsWith('/404'),
+      filter: (page) => {
+        const pathname = new URL(page).pathname.replace(/\/$/, '') || '/';
+        return !pathname.startsWith('/admin') && !sitemapExcludedPaths.has(pathname);
+      },
     }),
   ],
   vite: {

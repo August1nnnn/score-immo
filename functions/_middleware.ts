@@ -14,6 +14,14 @@ const BOT_RE =
 const ASSET_EXT =
   /\.(js|mjs|css|png|jpe?g|webp|avif|gif|svg|ico|woff2?|ttf|otf|eot|map|json|xml|txt|mp4|webm|mp3|pdf|zip)$/i;
 
+// These utility/partner pages intentionally stay reachable but must not be
+// indexed. The response header overrides the global `index, follow` rule from
+// public/_headers so crawlers never receive contradictory directives.
+const NOINDEX_PATHS = new Set([
+  '/pages/efficity',
+  '/pages/llms-txt',
+]);
+
 interface Env {
   SUPABASE_URL?: string;
   SUPABASE_SERVICE_KEY?: string;
@@ -94,9 +102,10 @@ export const onRequest: PagesFunction<Env> = async (context) => {
   // (2) Bot crawl logger (no-op for assets/non-HTML/non-bot/no-env-vars)
   logBotIfRelevant(context.request, response, context.env, context.waitUntil);
 
-  // (3) A custom 404 must override the global index header from public/_headers.
+  // (3) Custom 404s and explicit noindex pages override the global index header.
   const headers = new Headers(response.headers);
-  if (response.status === 404) {
+  const normalizedPath = url.pathname.replace(/\/$/, '') || '/';
+  if (response.status === 404 || NOINDEX_PATHS.has(normalizedPath)) {
     headers.set('x-robots-tag', 'noindex, follow');
   }
 

@@ -10,7 +10,7 @@ and runs these checks :
 5. Noindex pages are skipped for signals (meta-refresh redirects)
 
 Run : python3 scripts/audit_standards.py
-Exit 1 if em-dashes found (CI fail), 0 otherwise.
+Exit 1 if a required public-page invariant fails, 0 otherwise.
 """
 from __future__ import annotations
 import re
@@ -23,6 +23,16 @@ SRC = next((c for c in [ROOT / "site" / "src", ROOT / "src"] if c.exists()), Non
 DIST = next((c for c in [ROOT / "site" / "dist", ROOT / "dist"] if c.exists()), None)
 
 report: dict[str, list] = defaultdict(list)
+pages_checked = 0
+
+
+def route_for_html(html_file: Path) -> str:
+    relative = html_file.relative_to(DIST).as_posix()
+    if relative == "index.html":
+        return "/"
+    if relative.endswith("/index.html"):
+        return "/" + relative[: -len("/index.html")]
+    return "/" + relative.removesuffix(".html")
 
 # 1. Em-dashes / en-dashes in source
 if SRC:
@@ -40,8 +50,9 @@ if SRC:
 
 # 2-5. Dist checks (only if dist built)
 if DIST:
-    for html_file in DIST.rglob("index.html"):
-        rel = "/" + html_file.parent.relative_to(DIST).as_posix()
+    for html_file in DIST.rglob("*.html"):
+        pages_checked += 1
+        rel = route_for_html(html_file)
         try:
             html = html_file.read_text(encoding="utf-8")
         except Exception:
@@ -79,18 +90,28 @@ print("STACK-2026 Standards Audit")
 print("=" * 60)
 print(f"Src : {SRC}")
 print(f"Dist: {DIST}")
+print(f"Pages checked: {pages_checked}")
 
 exit_code = 0
+failing_keys = {
+    "dashes",
+    "missing_canonical",
+    "missing_og",
+    "missing_title",
+    "missing_description",
+    "heading_issues",
+    "img_no_alt",
+}
 for key in ["dashes", "missing_canonical", "missing_og", "missing_jsonld_org",
             "missing_title", "missing_description", "heading_issues", "img_no_alt"]:
     items = report.get(key, [])
-    status = "FAIL" if items else "OK"
+    status = "INFO" if key == "missing_jsonld_org" and items else "FAIL" if items else "OK"
     print(f"\n[{status}] {key} ({len(items)})")
     for item in items[:12]:
         print(f"  {item}")
     if len(items) > 12:
         print(f"  ... +{len(items) - 12} more")
-    if key == "dashes" and items:
+    if key in failing_keys and items:
         exit_code = 1
 
 print()

@@ -196,23 +196,36 @@
      6. FAQ ACCORDION
      ============================================= */
   function initAccordion() {
+    function setAccordionState(item, open) {
+      var trigger = item.querySelector('.si-accordion-trigger');
+      var content = item.querySelector('.si-accordion-content');
+      item.classList.toggle('active', open);
+      if (trigger) trigger.setAttribute('aria-expanded', String(open));
+      if (content) content.hidden = !open;
+    }
+
+    document.querySelectorAll('.si-accordion-item').forEach(function (item) {
+      setAccordionState(item, item.classList.contains('active'));
+    });
+
     document.addEventListener('click', function (e) {
       var trigger = e.target.closest('.si-accordion-trigger');
       if (!trigger) return;
 
       var item = trigger.closest('.si-accordion-item');
       if (!item) return;
+      var willOpen = !item.classList.contains('active');
 
       /* Close other items in the same accordion */
       var parent = item.parentElement;
       if (parent) {
         var allItems = parent.querySelectorAll('.si-accordion-item');
         allItems.forEach(function (other) {
-          if (other !== item) other.classList.remove('active');
+          if (other !== item) setAccordionState(other, false);
         });
       }
 
-      item.classList.toggle('active');
+      setAccordionState(item, willOpen);
     });
   }
 

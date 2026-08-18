@@ -1,112 +1,51 @@
 ---
+const pricingFaq = [
+  {
+    question: 'Quelles données contient un rapport ScoreImmo ?',
+    answer: "Chaque rapport analyse plus de 230 données issues de 10 sources officielles : DVF, ADEME, Géorisques, INSEE, IGN, Éducation Nationale et plus. Tu obtiens un score sur 100, l'analyse du prix par rapport au marché, les risques, le DPE, le quartier, l'urbanisme et la taxe foncière.",
+  },
+  {
+    question: 'Quels sites immobiliers sont compatibles ?',
+    answer: "ScoreImmo fonctionne avec Leboncoin, SeLoger, Bien'ici, PAP, Logic-Immo, Century 21, Orpi, Laforêt et d'autres portails. Colle une URL d'annonce immobilière française pour vérifier sa compatibilité.",
+  },
+  {
+    question: 'Quel plan choisir ?',
+    answer: "Analyse unique coûte 2,99 € pour un rapport. Découverte coûte 9,99 € pour 5 rapports. Recherche propose 60 analyses à 29 €/mois. Premium est illimité à 79 €/mois, avec PDF brandé et modes Achat/Vente.",
+  },
+  {
+    question: 'Y a-t-il un abonnement ou un renouvellement automatique ?',
+    answer: "Recherche et Premium sont des abonnements mensuels, annulables à tout moment en 1 clic. Analyse unique et Découverte sont des paiements uniques sans abonnement. Tes rapports restent accessibles même après annulation.",
+  },
+  {
+    question: "D'où viennent les données ?",
+    answer: "Toutes les données proviennent de sources publiques officielles françaises : DVF, ADEME, Géorisques, INSEE, IGN, Éducation Nationale et ATMO France. ScoreImmo est indépendant des portails immobiliers.",
+  },
+  {
+    question: 'Mes données sont-elles protégées ?',
+    answer: 'Oui. ScoreImmo applique le principe de minimisation RGPD. Tu peux exporter ou supprimer tes données à tout moment depuis ton profil.',
+  },
+];
+
+const pricingFaqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: pricingFaq.map(({ question, answer }) => ({
+    '@type': 'Question',
+    name: question,
+    acceptedAnswer: { '@type': 'Answer', text: answer },
+  })),
+};
+
+const pricingFaqItems = pricingFaq.map((item, index) => ({
+  ...item,
+  triggerId: `pricing-faq-trigger-${index + 1}`,
+  panelId: `pricing-faq-panel-${index + 1}`,
+}));
 ---
 <!-- ScoreImmo - Page Tarifs (conversion-optimized, Apple style) -->
 
-<!-- Schema.org - Product + FAQPage -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "ScoreImmo",
-  "description": "Analyse immobili&egrave;re automatique. Score sur 100, 13 sections d'analyse, donn&eacute;es DVF, risques, DPE, quartier.",
-  "brand": { "@id": "https://score-immo.fr/#organization" },
-  "category": "Outil d'analyse immobili&egrave;re",
-  "offers": [
-    {
-      "@type": "Offer",
-      "name": "Analyse unique",
-      "price": "2.99",
-      "priceCurrency": "EUR",
-      "priceValidUntil": "2027-12-31",
-      "availability": "https://schema.org/InStock",
-      "url": "https://app.score-immo.fr/go/checkout/unit"
-    },
-    {
-      "@type": "Offer",
-      "name": "Découverte (5 analyses)",
-      "price": "9.99",
-      "priceCurrency": "EUR",
-      "priceValidUntil": "2027-12-31",
-      "availability": "https://schema.org/InStock",
-      "url": "https://app.score-immo.fr/pricing"
-    },
-    {
-      "@type": "Offer",
-      "name": "Recherche (60 analyses/mois)",
-      "price": "29.00",
-      "priceCurrency": "EUR",
-      "priceValidUntil": "2027-12-31",
-      "availability": "https://schema.org/InStock",
-      "url": "https://app.score-immo.fr/pricing"
-    },
-    {
-      "@type": "Offer",
-      "name": "Pro Mandataire (illimite)",
-      "price": "79.00",
-      "priceCurrency": "EUR",
-      "priceValidUntil": "2027-12-31",
-      "availability": "https://schema.org/InStock",
-      "url": "https://app.score-immo.fr/pricing"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Quelles donn&eacute;es contient un rapport ScoreImmo ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Chaque rapport analyse 230+ donn&eacute;es issues de 10 sources officielles : DVF, ADEME, G&eacute;orisques, INSEE, IGN, &Eacute;ducation Nationale et plus. Tu obtiens un score sur 100, le prix par rapport au march&eacute;, les risques, le DPE, le quartier, l'urbanisme et la taxe fonci&egrave;re."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Quel plan choisir ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Analyse unique co&ucirc;te 2,99 EUR pour un rapport. D&eacute;couverte co&ucirc;te 9,99 EUR pour 5 rapports. Recherche co&ucirc;te 29 EUR/mois pour 60 rapports. Premium co&ucirc;te 79 EUR/mois et inclut les analyses illimit&eacute;es, le PDF brand&eacute; et les modes Achat/Vente."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Y a-t-il un abonnement ou un renouvellement automatique ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Recherche et Premium sont des abonnements mensuels, annulables &agrave; tout moment en 1 clic. Analyse unique et D&eacute;couverte sont des paiements uniques sans abonnement. Tes rapports restent accessibles m&ecirc;me apr&egrave;s annulation."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "D'o&ugrave; viennent les donn&eacute;es utilis&eacute;es par ScoreImmo ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "ScoreImmo utilise 10 sources de donn&eacute;es officielles fran&ccedil;aises : DVF, ADEME, G&eacute;orisques, INSEE, IGN/GPU, BAN, OpenStreetMap, &Eacute;ducation Nationale, ATMO France et plus. Toutes les donn&eacute;es sont publiques et v&eacute;rifiables."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Combien de temps prend une analyse ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Une analyse compl&egrave;te prend environ 30 secondes. Tu colles le lien d'une annonce immobili&egrave;re, et ScoreImmo importe automatiquement les donn&eacute;es, interroge les sources officielles, calcule le score et g&eacute;n&egrave;re ton rapport d&eacute;taill&eacute;."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Mes donn&eacute;es sont-elles prot&eacute;g&eacute;es ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Oui. ScoreImmo applique le principe de minimisation RGPD. Tu peux exporter ou supprimer tes donn&eacute;es &agrave; tout moment depuis ton profil."
-      }
-    }
-  ]
-}
-</script>
+<!-- Product data is emitted once by the page layout; this component owns FAQ only. -->
+<script type="application/ld+json" set:html={JSON.stringify(pricingFaqSchema)} />
 
 <!-- ═══════════════════════════════════════════════════════
      SECTION 1 - HERO
@@ -307,7 +246,7 @@
             Support prioritaire
           </li>
         </ul>
-        <p style="font-size:0.75rem;color:var(--si-muted-foreground);margin-top:auto;padding-top:1rem;">Rapport &agrave; votre marque. Annulable en 1 clic.</p>
+        <p style="font-size:0.75rem;color:var(--si-muted-foreground);margin-top:auto;padding-top:1rem;">Rapport &agrave; ta marque. Annulable en 1 clic.</p>
         <a href="https://app.score-immo.fr/go/checkout/premium" class="si-btn si-btn-secondary si-pricing-cta" style="width:100%;justify-content:center;margin-top:1rem;">
           Choisir Premium
         </a>
@@ -317,9 +256,9 @@
 
     <!-- Bloc mandataires : passe le relais a la landing /iad qui convertit -->
     <aside class="si-reveal si-reveal-delay-2" style="margin-top:2.5rem;padding:1.75rem;border-radius:var(--si-radius-xl,1rem);background:linear-gradient(135deg,var(--si-primary,#0F172A),#1e293b);color:#fff;text-align:center;">
-      <p style="font-family:var(--si-font-heading,'DM Sans',sans-serif);font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--si-accent,#3B82F6);margin:0 0 0.5rem;">Vous &ecirc;tes mandataire ?</p>
+      <p style="font-family:var(--si-font-heading,'DM Sans',sans-serif);font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--si-accent,#3B82F6);margin:0 0 0.5rem;">Tu es mandataire ?</p>
       <h3 style="font-family:var(--si-font-heading,'DM Sans',sans-serif);font-size:clamp(1.25rem,3vw,1.6rem);font-weight:700;margin:0 0 0.75rem;color:#fff;">Un seul mandat d&eacute;croch&eacute; rembourse des ann&eacute;es d'abonnement</h3>
-      <p style="max-width:40rem;margin:0 auto 1.5rem;line-height:1.6;color:rgba(255,255,255,0.9);font-size:0.98rem;">&Agrave; 79&nbsp;&euro;/mois, remettez un rapport objectif &agrave; votre marque qui transforme la n&eacute;gociation de prix en discussion de donn&eacute;es. C'est l'outil pens&eacute; pour les mandataires.</p>
+      <p style="max-width:40rem;margin:0 auto 1.5rem;line-height:1.6;color:rgba(255,255,255,0.9);font-size:0.98rem;">&Agrave; 79&nbsp;&euro;/mois, remets un rapport objectif &agrave; ta marque qui transforme la n&eacute;gociation de prix en discussion de donn&eacute;es. C'est l'outil pens&eacute; pour les mandataires.</p>
       <div style="display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;">
         <a class="si-btn si-btn-primary" href="https://app.score-immo.fr/iad?utm_source=site&amp;utm_medium=tarifs_pro" style="justify-content:center;">Voir l'offre mandataire</a>
         <a class="si-btn" href="/pro" style="justify-content:center;background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.25);">En savoir plus</a>
@@ -390,8 +329,8 @@
 
       <div class="si-card si-reveal si-reveal-delay-1" style="padding:1.5rem;border-radius:var(--si-radius-2xl);text-align:center;position:relative;z-index:1;">
         <div style="width:3rem;height:3rem;border-radius:var(--si-radius-xl);background:var(--si-primary);color:var(--si-primary-foreground);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-family:var(--si-font-heading);font-weight:700;font-size:1.25rem;">1</div>
-        <h3 style="font-family:var(--si-font-heading);font-weight:600;font-size:1rem;margin-bottom:0.375rem;">Collez l'URL</h3>
-        <p style="font-size:0.8125rem;color:var(--si-muted-foreground);line-height:1.5;">Copiez le lien de l'annonce depuis n'importe quel site immobilier.</p>
+        <h3 style="font-family:var(--si-font-heading);font-weight:600;font-size:1rem;margin-bottom:0.375rem;">Colle l'URL</h3>
+        <p style="font-size:0.8125rem;color:var(--si-muted-foreground);line-height:1.5;">Copie le lien de l'annonce depuis n'importe quel site immobilier.</p>
       </div>
       <div class="si-card si-reveal si-reveal-delay-2" style="padding:1.5rem;border-radius:var(--si-radius-2xl);text-align:center;position:relative;z-index:1;">
         <div style="width:3rem;height:3rem;border-radius:var(--si-radius-xl);background:var(--si-primary);color:var(--si-primary-foreground);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-family:var(--si-font-heading);font-weight:700;font-size:1.25rem;">2</div>
@@ -400,7 +339,7 @@
       </div>
       <div class="si-card si-reveal si-reveal-delay-3" style="padding:1.5rem;border-radius:var(--si-radius-2xl);text-align:center;position:relative;z-index:1;">
         <div style="width:3rem;height:3rem;border-radius:var(--si-radius-xl);background:var(--si-primary);color:var(--si-primary-foreground);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-family:var(--si-font-heading);font-weight:700;font-size:1.25rem;">3</div>
-        <h3 style="font-family:var(--si-font-heading);font-weight:600;font-size:1rem;margin-bottom:0.375rem;">D&eacute;cidez en confiance</h3>
+        <h3 style="font-family:var(--si-font-heading);font-weight:600;font-size:1rem;margin-bottom:0.375rem;">D&eacute;cide en confiance</h3>
         <p style="font-size:0.8125rem;color:var(--si-muted-foreground);line-height:1.5;">Score sur 100, risques, march&eacute;, DPE, quartier : tout est l&agrave;.</p>
       </div>
     </div>
@@ -492,60 +431,27 @@
     <h2 class="si-section-title si-reveal" style="font-size:1.5rem;text-align:center;margin-bottom:1.5rem;">Questions fr&eacute;quentes</h2>
 
     <div class="si-accordion si-reveal si-reveal-delay-1">
-      <div class="si-accordion-item">
-        <button class="si-accordion-trigger">
-          Quelles donn&eacute;es contient un rapport ScoreImmo ?
-          <svg class="si-accordion-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
-        </button>
-        <div class="si-accordion-content">
-          <p>Chaque rapport analyse 230+ donn&eacute;es issues de 10 sources officielles : DVF (transactions), ADEME (DPE), G&eacute;orisques, INSEE, IGN, &Eacute;ducation Nationale et plus. Tu obtiens un score sur 100, l'analyse du prix par rapport au march&eacute;, les risques, le DPE, le quartier, l'urbanisme et la taxe fonci&egrave;re.</p>
+      {pricingFaqItems.map(({ question, answer, triggerId, panelId }) => (
+        <div class="si-accordion-item">
+          <button
+            type="button"
+            class="si-accordion-trigger"
+            id={triggerId}
+            aria-expanded="false"
+            aria-controls={panelId}
+          >
+            {question}
+            <svg class="si-accordion-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+          </button>
+          <div
+            class="si-accordion-content"
+            id={panelId}
+            role="region"
+            aria-labelledby={triggerId}
+            hidden
+          ><p>{answer}</p></div>
         </div>
-      </div>
-      <div class="si-accordion-item">
-        <button class="si-accordion-trigger">
-          Quels sites immobiliers sont compatibles ?
-          <svg class="si-accordion-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
-        </button>
-        <div class="si-accordion-content">
-          <p>ScoreImmo fonctionne avec Leboncoin, SeLoger, Bien'ici, PAP, Logic-Immo, Century 21, Orpi, Laforet et 12 autres portails. Collez n'importe quelle URL d'annonce immobili&egrave;re fran&ccedil;aise.</p>
-        </div>
-      </div>
-      <div class="si-accordion-item">
-        <button class="si-accordion-trigger">
-          Quel plan choisir ?
-          <svg class="si-accordion-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
-        </button>
-        <div class="si-accordion-content">
-          <p>Analyse unique co&ucirc;te <strong>2,99&nbsp;&euro;</strong> pour un rapport. D&eacute;couverte co&ucirc;te <strong>9,99&nbsp;&euro;</strong> pour 5 rapports. Recherche propose 60 analyses &agrave; <strong>29&nbsp;&euro;/mois</strong>. Premium est illimit&eacute; &agrave; <strong>79&nbsp;&euro;/mois</strong>, avec PDF brand&eacute; et modes Achat/Vente.</p>
-        </div>
-      </div>
-      <div class="si-accordion-item">
-        <button class="si-accordion-trigger">
-          Y a-t-il un abonnement ou un renouvellement automatique ?
-          <svg class="si-accordion-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
-        </button>
-        <div class="si-accordion-content">
-          <p>Recherche et Premium sont des abonnements mensuels, annulables &agrave; tout moment en 1 clic. Analyse unique et D&eacute;couverte sont des paiements uniques sans abonnement. Tes rapports restent accessibles m&ecirc;me apr&egrave;s annulation.</p>
-        </div>
-      </div>
-      <div class="si-accordion-item">
-        <button class="si-accordion-trigger">
-          D'o&ugrave; viennent les donn&eacute;es ?
-          <svg class="si-accordion-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
-        </button>
-        <div class="si-accordion-content">
-          <p>Toutes les donn&eacute;es proviennent de sources publiques officielles fran&ccedil;aises : base DVF (Cerema), ADEME (DPE), G&eacute;orisques, INSEE, IGN, &Eacute;ducation Nationale, ATMO France. ScoreImmo est 100% ind&eacute;pendant et sans lien avec les portails immobiliers.</p>
-        </div>
-      </div>
-      <div class="si-accordion-item">
-        <button class="si-accordion-trigger">
-          Mes donn&eacute;es sont-elles prot&eacute;g&eacute;es ?
-          <svg class="si-accordion-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
-        </button>
-        <div class="si-accordion-content">
-          <p>Oui. ScoreImmo applique le principe de minimisation RGPD. Tu peux exporter ou supprimer tes donn&eacute;es &agrave; tout moment depuis ton profil.</p>
-        </div>
-      </div>
+      ))}
     </div>
   </div>
 </section>

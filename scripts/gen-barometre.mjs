@@ -13,6 +13,12 @@ const ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZ
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT = join(__dirname, '..', 'src', 'content', 'barometre');
+const REJECTED_SOURCE_SLUGS = new Set([
+  'la-roche-guyon-appartement-45m2-99k',
+  'maxeville-appartement-74m2-97k',
+  'nancy-appartement-47m2-96k',
+  'sons-et-roncheres-maison-92m2-25k',
+]);
 
 const res = await fetch(
   // Only real scanned listings (source_report_id set) — never publish seed/mock rows to SEO.
@@ -22,6 +28,17 @@ const res = await fetch(
 if (!res.ok) { console.error('Supabase fetch failed', res.status, await res.text()); process.exit(1); }
 const rows = await res.json();
 if (!Array.isArray(rows) || rows.length === 0) { console.error('No published barometre rows'); process.exit(1); }
+
+const invalidRows = rows.filter((row) =>
+  REJECTED_SOURCE_SLUGS.has(row.slug) || !row.region || row.region.trim() === 'France'
+);
+if (invalidRows.length > 0) {
+  console.error(
+    'Barometre generation stopped: invalid geography for',
+    invalidRows.map((row) => row.slug).join(', '),
+  );
+  process.exit(1);
+}
 
 if (existsSync(OUT)) {
   for (const f of readdirSync(OUT)) if (f.endsWith('.json')) rmSync(join(OUT, f));

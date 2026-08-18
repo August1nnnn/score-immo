@@ -27,15 +27,21 @@ const isPro = path.startsWith('/pro') || path.includes('/blogs/pro');
         <span class="si-show-mobile">Analyser</span>
       </a>
 
-      <button class="si-mobile-menu-btn" id="si-mobile-menu-btn" aria-label="Menu">
+      <button
+        class="si-mobile-menu-btn"
+        id="si-mobile-menu-btn"
+        aria-label="Ouvrir le menu"
+        aria-expanded="false"
+        aria-controls="si-mobile-drawer"
+      >
         <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
       </button>
     </div>
   </div>
 </header>
 
-<div class="si-mobile-overlay" id="si-mobile-overlay"></div>
-<nav class="si-mobile-drawer" id="si-mobile-drawer" aria-label="Menu mobile">
+<div class="si-mobile-overlay" id="si-mobile-overlay" aria-hidden="true"></div>
+<nav class="si-mobile-drawer" id="si-mobile-drawer" aria-hidden="true" inert aria-label="Menu mobile">
   <div class="si-mobile-drawer-header">
     <a href="/" class="si-logo">
       <div class="si-logo-icon"><span>SI</span></div>
@@ -84,14 +90,52 @@ const isPro = path.startsWith('/pro') || path.includes('/blogs/pro');
   const btn = document.getElementById('si-mobile-menu-btn');
   const overlay = document.getElementById('si-mobile-overlay');
   const drawer = document.getElementById('si-mobile-drawer');
+  const focusableSelector = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+  function setMenuOpen(open: boolean, restoreFocus = true) {
+    overlay?.classList.toggle('open', open);
+    drawer?.classList.toggle('open', open);
+    btn?.setAttribute('aria-expanded', String(open));
+    btn?.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+    drawer?.setAttribute('aria-hidden', String(!open));
+    if (drawer) drawer.inert = !open;
+
+    if (open) {
+      const firstLink = drawer?.querySelector<HTMLElement>(focusableSelector);
+      window.requestAnimationFrame(() => firstLink?.focus());
+    } else if (restoreFocus) {
+      btn?.focus();
+    }
+  }
 
   btn?.addEventListener('click', () => {
-    overlay?.classList.add('open');
-    drawer?.classList.add('open');
+    setMenuOpen(btn.getAttribute('aria-expanded') !== 'true');
   });
-  overlay?.addEventListener('click', () => {
-    overlay.classList.remove('open');
-    drawer?.classList.remove('open');
+  overlay?.addEventListener('click', () => setMenuOpen(false));
+  drawer?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setMenuOpen(false, false));
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (btn?.getAttribute('aria-expanded') !== 'true' || !drawer) return;
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      setMenuOpen(false);
+      return;
+    }
+    if (event.key === 'Tab') {
+      const focusable = [...drawer.querySelectorAll<HTMLElement>(focusableSelector)];
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
   });
 
   // Hide on scroll down

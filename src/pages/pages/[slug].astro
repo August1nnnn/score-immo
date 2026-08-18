@@ -4,27 +4,61 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 export async function getStaticPaths() {
+  const staticPageHandles = new Set([
+    'calculateur-capacite-emprunt',
+    'calculateur-frais-de-notaire',
+    'calculateur-mensualite-credit',
+    'calculateur-rendement-locatif',
+    'efficity',
+    'guide',
+    'tarifs',
+  ]);
   const dir = path.resolve('./src/data/pages');
   const files = fs.readdirSync(dir).filter((f) => f.endsWith('.json'));
-  return files.map((f) => {
-    const p = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf-8'));
-    return {
-      params: { slug: p.handle },
-      props: { page: p },
-    };
-  });
+  return files
+    .map((f) => JSON.parse(fs.readFileSync(path.join(dir, f), 'utf-8')))
+    .filter((page) => !staticPageHandles.has(page.handle))
+    .map((page) => ({
+      params: { slug: page.handle },
+      props: { page },
+    }));
 }
 
 const { page } = Astro.props;
 
+let bodyHtml = (page.body_html || '')
+  .replaceAll('https://claude.ai/pages/politique-de-confidentialite', '/pages/politique-de-confidentialite');
+
+if (page.handle === 'contact') {
+  bodyHtml = bodyHtml.replace('<h2>Contactez-nous</h2>', '<h1>Contactez-nous</h1>');
+}
+
+if (page.handle === 'politique-de-confidentialite') {
+  bodyHtml = `<h1>Politique de confidentialité</h1>${bodyHtml}`
+    .replaceAll('<h3>', '<h2>')
+    .replaceAll('</h3>', '</h2>');
+}
+
+if (page.handle === 'outils') {
+  const visibleCopyFixes = new Map([
+    ['Outils de simulation immobiliere', 'Outils de simulation immobilière'],
+    ["ScoreImmo met a disposition des futurs acheteurs et investisseurs une suite d'outils gratuits pour preparer votre projet immobilier. Frais de notaire, capacite d'emprunt, mensualites, rendement locatif : simulez chaque etape de votre parcours d'achat en quelques clics. Pas d'inscription requise, pas de pub, des calculs precis et a jour.", "ScoreImmo met à disposition des futurs acheteurs et investisseurs une suite d'outils gratuits pour préparer votre projet immobilier. Frais de notaire, capacité d'emprunt, mensualités, rendement locatif : simulez chaque étape de votre parcours d'achat en quelques clics. Pas d'inscription requise, pas de pub, des calculs précis et à jour."],
+    ["Calculez le montant exact de vos frais de notaire selon le departement, le type de bien et le prix d'achat.", "Calculez le montant exact de vos frais de notaire selon le département, le type de bien et le prix d'achat."],
+    ["Estimez le montant maximum que vous pouvez emprunter en fonction de vos revenus et de la duree souhaitee.", "Estimez le montant maximum que vous pouvez emprunter en fonction de vos revenus et de la durée souhaitée."],
+    ['Mensualite de credit', 'Mensualité de crédit'],
+    ["Simulez vos mensualites avec le detail capital, interets et assurance, plus le tableau d'amortissement.", "Simulez vos mensualités avec le détail du capital, des intérêts et de l'assurance, ainsi que le tableau d'amortissement."],
+    ["Quel est le cout total de l'achat ?", "Quel est le coût total de l'achat ?"],
+    ["Ces outils vous donnent les bases. Pour une analyse complete d'une annonce immobiliere : prix au m², estimation, points de vigilance, tendances du quartier. Consultez la demo gratuitement, puis analysez votre bien des 2,99 euros.", "Ces outils vous donnent les bases. Pour une analyse complète d'une annonce immobilière : prix au m², estimation, points de vigilance, tendances du quartier. Consultez la démo gratuitement, puis analysez votre bien dès 2,99 euros."],
+  ]);
+  for (const [legacy, corrected] of visibleCopyFixes) bodyHtml = bodyHtml.replaceAll(legacy, corrected);
+}
+
 const title = page.title ? `${page.title} | ScoreImmo` : 'ScoreImmo';
-const description = page.body_html
-  ? page.body_html.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').slice(0, 160).trim()
+const description = bodyHtml
+  ? bodyHtml.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').slice(0, 160).trim()
   : 'ScoreImmo - Analyse immobilière en 30 secondes';
 
 // Sanitize body_html for safe render (Shopify source is trusted)
-const bodyHtml = page.body_html || '';
-
 // Legal pages + contact get noindex=false but canonical strict
 const noindex = page.handle === 'llms-txt' ? true : false;
 ---

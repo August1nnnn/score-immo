@@ -85,41 +85,5 @@ export const homepageJsonLd = [
         "inLanguage": "fr-FR"
       }
     ]
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "D'où viennent les données de ScoreImmo ?",
-        "acceptedAnswer": { "@type": "Answer", "text": "ScoreImmo croise automatiquement 10 sources de données publiques officielles françaises : DVF (transactions réelles, DGFIP), ADEME (DPE), Géorisques (ministère de la Transition écologique), INSEE, IGN et Géoportail de l'Urbanisme, BAN (adresses), OpenStreetMap, Éducation Nationale, ATMO France et DGFIP. Plus de 250 vérifications par annonce." }
-      },
-      {
-        "@type": "Question",
-        "name": "ScoreImmo est-il un conseil en investissement ?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Non. ScoreImmo est un outil d'aide à la décision basé sur des données publiques. Il fournit des informations factuelles et un score indicatif. Il ne constitue pas un conseil en investissement au sens réglementaire et ne remplace pas un professionnel (notaire, agent, expert)." }
-      },
-      {
-        "@type": "Question",
-        "name": "Quelles annonces puis-je analyser ?",
-        "acceptedAnswer": { "@type": "Answer", "text": "ScoreImmo analyse les annonces de tous les grands portails immobiliers français : Leboncoin, SeLoger, Bien'ici, PAP, Logic-Immo, Century 21, Orpi, Laforêt, Ouest-France Immo, ParuVendu, MeilleursAgents. Il suffit de coller le lien de l'annonce." }
-      },
-      {
-        "@type": "Question",
-        "name": "Que débloque l'abonnement ?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Recherche coûte 29€/mois pour 60 analyses et Premium 79€/mois pour des analyses illimitées, le PDF brandé et les modes Achat/Vente. Les deux abonnements sont sans engagement." }
-      },
-      {
-        "@type": "Question",
-        "name": "Mes données sont-elles protégées ?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Oui. ScoreImmo ne conserve que les données nécessaires au fonctionnement du service. Aucune donnée personnelle n'est revendue à des tiers. Le service est hébergé en Europe (UE) et conforme au RGPD. Un délégué à la protection des données peut être contacté à contact@score-immo.fr." }
-      },
-      {
-        "@type": "Question",
-        "name": "Combien coûte une analyse ScoreImmo ?",
-        "acceptedAnswer": { "@type": "Answer", "text": "La démo complète est gratuite. Un rapport personnalisé coûte 2,99€ en paiement unique. Découverte coûte 9,99€ pour 5 analyses, Recherche 29€/mois pour 60 analyses et Premium 79€/mois pour l'illimité." }
-      }
-    ]
   }
 ];

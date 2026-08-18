@@ -65,11 +65,23 @@ const assets = new Set(files.map(webPath));
 const { rules: redirects, errors } = parseRedirects(join(dist, "_redirects"));
 const brokenLinks = new Set();
 const redirectedLinks = new Set();
+const noindexRoutes = new Set();
 let checkedLinks = 0;
 
 for (const htmlFile of htmlFiles) {
   const from = routeForHtml(htmlFile);
   const html = readFileSync(htmlFile, "utf8");
+  const robots = [...html.matchAll(/<meta\b[^>]*\bname\s*=\s*(["'])robots\1[^>]*>/gi)]
+    .map((match) => match[0].match(/\bcontent\s*=\s*(["'])(.*?)\1/i)?.[2] || "");
+  if (robots.length !== 1) {
+    errors.push(`${from} must contain exactly one robots meta directive, found ${robots.length}`);
+  } else {
+    const directives = robots[0].toLowerCase().split(",").map((item) => item.trim());
+    if (directives.includes("index") && directives.includes("noindex")) {
+      errors.push(`${from} contains conflicting index and noindex directives`);
+    }
+    if (directives.includes("noindex")) noindexRoutes.add(from);
+  }
   for (const match of html.matchAll(/<a\b[^>]*\bhref\s*=\s*(["'])(.*?)\1/gi)) {
     const href = match[2].replaceAll("&amp;", "&").trim();
     if (!href || href.startsWith("#") || /^(?:mailto|tel|javascript|data):/i.test(href)) continue;
@@ -127,8 +139,24 @@ if (!existsSync(notFoundPath)) {
 }
 
 for (const sitemap of files.filter((path) => /sitemap.*\.xml$/.test(path))) {
-  if (/https:\/\/score-immo\.fr\/404(?:<|\/|$)/.test(readFileSync(sitemap, "utf8"))) {
+  const xml = readFileSync(sitemap, "utf8");
+  if (/https:\/\/score-immo\.fr\/404(?:<|\/|$)/.test(xml)) {
     errors.push(`${webPath(sitemap)} contains the noindex 404 URL`);
+  }
+  if (!/<urlset\b/i.test(xml)) continue;
+  for (const match of xml.matchAll(/<loc>(.*?)<\/loc>/gi)) {
+    let url;
+    try {
+      url = new URL(match[1]);
+    } catch {
+      errors.push(`${webPath(sitemap)} contains malformed URL: ${match[1]}`);
+      continue;
+    }
+    if (!internalHosts.has(url.hostname)) continue;
+    const route = normalizePath(url.pathname);
+    if (route && noindexRoutes.has(route)) {
+      errors.push(`${webPath(sitemap)} contains noindex URL: ${route}`);
+    }
   }
 }
 

@@ -6,6 +6,7 @@ import SourcesSection from '@/components/SourcesSection.astro';
 import AnalyzerBox from '@/components/AnalyzerBox.astro';
 import BarometreLinks from '@/components/BarometreLinks.astro';
 import ProValueCTA from '@/components/ProValueCTA.astro';
+import { applyCuratedInternalLinks } from '@/lib/curated-internal-links.js';
 import { getCollection, getEntry } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -28,6 +29,7 @@ const description = article.meta_description || article.title;
 const image = article.image?.src;
 const canonical = `https://score-immo.fr/blogs/${article.blog}/${article.handle}`;
 const firstBodyLinkPriority = article.first_body_link_priority === true;
+const bodyHtml = applyCuratedInternalLinks(`${article.blog}/${article.handle}`, article.body_html || '');
 
 const blogLabels: Record<string, string> = {
   guides: "Guide de l'acheteur",
@@ -51,7 +53,7 @@ function extractFaq(html: string): { q: string; a: string }[] {
   }
   return pairs;
 }
-const faqPairs = extractFaq(article.body_html || '');
+const faqPairs = extractFaq(bodyHtml);
 
 // Build JSON-LD
 const jsonLd: any[] = [
@@ -212,7 +214,7 @@ if (article.handle === 'score-scoreimmo-methode-evaluation') {
           <AnalyzerBox blog={article.blog} medium="blog_top" />
         )}
 
-        <div class="si-article-body" set:html={article.body_html}></div>
+        <div class="si-article-body" set:html={bodyHtml}></div>
 
         {(article.blog === 'villes' || article.blog === 'quartiers') && (
           <BarometreLinks title={article.title} blog={article.blog} />
