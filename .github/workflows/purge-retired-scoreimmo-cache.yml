@@ -1,0 +1,90 @@
+name: Purge retired ScoreImmo cache
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: purge-retired-scoreimmo-cache
+  cancel-in-progress: false
+
+jobs:
+  purge-exact-urls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_SCOREIMMO_CACHE_PURGE_TOKEN }}
+    steps:
+      - name: Purge six retired URLs only
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+
+          API_ROOT = "https://api.cloudflare.com/client/v4"
+          ZONE_NAME = "score-immo.fr"
+          URLS = [
+              "https://score-immo.fr/barometre/la-roche-guyon-appartement-45m2-99k",
+              "https://score-immo.fr/barometre/maxeville-appartement-74m2-97k",
+              "https://score-immo.fr/barometre/nancy-appartement-47m2-96k",
+              "https://score-immo.fr/barometre/sons-et-roncheres-maison-92m2-25k",
+              "https://score-immo.fr/barometre/region/france",
+              "https://score-immo.fr/barometre/region/bourgogne-franche-comte",
+          ]
+
+          token = os.environ.get("CLOUDFLARE_API_TOKEN", "")
+          if not token:
+              raise SystemExit("CLOUDFLARE_API_TOKEN is unavailable; nothing was purged")
+
+          def request(method, path, payload=None):
+              body = None if payload is None else json.dumps(payload).encode("utf-8")
+              req = urllib.request.Request(
+                  f"{API_ROOT}{path}",
+                  data=body,
+                  method=method,
+                  headers={
+                      "Authorization": f"Bearer {token}",
+                      "Content-Type": "application/json",
+                  },
+              )
+              try:
+                  with urllib.request.urlopen(req, timeout=30) as response:
+                      return json.load(response)
+              except urllib.error.HTTPError as exc:
+                  raise SystemExit(
+                      f"Cloudflare API rejected {method} {path.split('?')[0]} "
+                      f"with HTTP {exc.code}"
+                  ) from None
+              except (urllib.error.URLError, TimeoutError) as exc:
+                  raise SystemExit(
+                      f"Cloudflare API request failed before confirmation: {type(exc).__name__}"
+                  ) from None
+
+          query = urllib.parse.urlencode({"name": ZONE_NAME, "status": "active"})
+          zones = request("GET", f"/zones?{query}")
+          matches = zones.get("result", []) if zones.get("success") else []
+          if len(matches) != 1 or matches[0].get("name") != ZONE_NAME:
+              raise SystemExit(
+                  f"Expected exactly one active {ZONE_NAME} zone, found {len(matches)}; "
+                  "nothing was purged"
+              )
+
+          zone_id = matches[0].get("id")
+          if not zone_id:
+              raise SystemExit("Cloudflare zone ID is missing; nothing was purged")
+
+          result = request(
+              "POST",
+              f"/zones/{zone_id}/purge_cache",
+              {"files": URLS},
+          )
+          if not result.get("success"):
+              raise SystemExit("Cloudflare did not confirm the exact-URL purge")
+
+          print(f"Purged {len(URLS)} exact URLs.")
+          PY
