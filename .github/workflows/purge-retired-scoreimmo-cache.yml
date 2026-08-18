@@ -37,9 +37,17 @@ jobs:
               "https://score-immo.fr/barometre/region/bourgogne-franche-comte",
           ]
 
-          token = os.environ.get("CLOUDFLARE_API_TOKEN", "")
+          token = os.environ.get("CLOUDFLARE_API_TOKEN", "").strip()
           if not token:
               raise SystemExit("CLOUDFLARE_API_TOKEN is unavailable; nothing was purged")
+          if (
+              not token.isascii()
+              or not token.isprintable()
+              or any(character.isspace() for character in token)
+          ):
+              raise SystemExit(
+                  "CLOUDFLARE_API_TOKEN has an invalid format; nothing was purged"
+              )
 
           def request(method, path, payload=None):
               body = None if payload is None else json.dumps(payload).encode("utf-8")
