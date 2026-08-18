@@ -1,3 +1,5 @@
+import { LOT_2_LINKS } from './curated-internal-links-lot2.js';
+
 const RULES = new Map([
   ['guides/dpe-comprendre-classes-energetiques', [{
     href: '/blogs/guides/acheter-bien-dpe-vierge-risques',
@@ -110,6 +112,10 @@ const RULES = new Map([
   }]],
 ]);
 
+for (const { from, ...rule } of LOT_2_LINKS) {
+  RULES.set(from, [...(RULES.get(from) || []), rule]);
+}
+
 export function applyCuratedInternalLinks(articleKey, html) {
   let result = html || '';
   for (const rule of RULES.get(articleKey) || []) {
@@ -122,7 +128,8 @@ export function applyCuratedInternalLinks(articleKey, html) {
     if (insertionPoints !== 1) {
       throw new Error(`Curated link insertion point changed for ${articleKey} -> ${rule.href}`);
     }
-    result = result.replace(rule.needle, rule.replacement);
+    const replacement = rule.replacement ?? `${rule.needle}${rule.insertion || ''}`;
+    result = result.replace(rule.needle, replacement);
   }
   return result;
 }
