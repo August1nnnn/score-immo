@@ -3,6 +3,10 @@ const RULES = new Map([
     href: '/blogs/guides/acheter-bien-dpe-vierge-risques',
     needle: '<p>Non, depuis juillet 2021, tous les DPE doivent obligatoirement afficher une classe de A à G. Les DPE "vierges" ou "non renseignés" de l\'ancien système ne sont plus valides. Si un bien n\'a pas de classe, un nouveau diagnostic doit être réalisé.</p>',
     replacement: '<p>Non, depuis juillet 2021, tous les DPE doivent obligatoirement afficher une classe de A à G. Les DPE "vierges" ou "non renseignés" de l\'ancien système ne sont plus valides. Si un bien n\'a pas de classe, un nouveau diagnostic doit être réalisé. Pour approfondir, consultez notre guide pour <a href="/blogs/guides/acheter-bien-dpe-vierge-risques">acheter un bien avec un DPE vierge</a>.</p>',
+  }, {
+    href: '/blogs/guides/dpe-2026-impact-reel-prix-vente-d-bien',
+    needle: 'pour estimer précisément l\'impact du DPE sur le prix.',
+    replacement: 'pour estimer précisément l\'<a href="/blogs/guides/dpe-2026-impact-reel-prix-vente-d-bien">impact réel du DPE sur le prix de vente</a>.',
   }]],
   ['guides/negocier-prix-bien-immobilier-guide-complet', [{
     href: '/blogs/guides/frais-agence-immobiliere-negocier',
@@ -48,6 +52,61 @@ const RULES = new Map([
     href: '/blogs/guides/loi-pinel-2026-conditions-plafonds-alternatives',
     needle: '<p>Le dispositif Denormandie a été créé par la loi de finances pour 2019, portée par l\'alors ministre du Logement Julien Denormandie. Son objectif affiché était simple : inciter les investisseurs privés à rénover des logements vétustes dans des villes moyennes confrontées à une vacance locative élevée et à une dégradation du bâti ancien. En 2026, ce dispositif est ouvert jusqu\'au <strong>31 décembre 2027</strong>, ce qui en fait l\'une des dernières fenêtres ouvertes pour bénéficier d\'un avantage fiscal significatif sur l\'immobilier locatif.</p>',
     replacement: '<p>Le dispositif Denormandie a été créé par la loi de finances pour 2019, portée par l\'alors ministre du Logement Julien Denormandie. Son objectif affiché était simple : inciter les investisseurs privés à rénover des logements vétustes dans des villes moyennes confrontées à une vacance locative élevée et à une dégradation du bâti ancien. En 2026, ce dispositif est ouvert jusqu\'au <strong>31 décembre 2027</strong>, ce qui en fait l\'une des dernières fenêtres ouvertes pour bénéficier d\'un avantage fiscal significatif sur l\'immobilier locatif. Replacez ce dispositif parmi les <a href="/blogs/guides/loi-pinel-2026-conditions-plafonds-alternatives">alternatives au Pinel en 2026</a>.</p>',
+  }]],
+  ['guides/achat-immobilier-montagne-specificites', [{
+    href: '/blogs/villes/prix-immobilier-annecy-2026-lac-frontiere-suisse-tension',
+    needle: '<p>Acheter un appartement à la montagne, c\'est conjuguer plaisir et investissement, mais aussi composer avec des règles et des coûts spécifiques. Loi Montagne, charges élevées, risques naturels, fiscalité de la location saisonnière : voici tout ce qu\'il faut savoir avant d\'acheter en station.</p>',
+    replacement: '<p>Acheter un appartement à la montagne, c\'est conjuguer plaisir et investissement, mais aussi composer avec des règles et des coûts spécifiques. Loi Montagne, charges élevées, risques naturels, fiscalité de la location saisonnière : voici tout ce qu\'il faut savoir avant d\'acheter en station.</p>\n\n<p>Pour compléter cette lecture avec un marché alpin concret, consultez notre analyse du <a href="/blogs/villes/prix-immobilier-annecy-2026-lac-frontiere-suisse-tension">marché immobilier d\'Annecy</a>.</p>',
+  }]],
+  ['quartiers/meilleurs-quartiers-acheter-lyon', [{
+    href: '/blogs/quartiers/ou-habiter-pres-de-lyon',
+    needle: 'Le 9e reste le moins cher (3 760 €), tandis que Villeurbanne atteint 5 à 6% de rendement brut.',
+    replacement: 'Le 9e reste le moins cher (3 760 €), tandis que Villeurbanne atteint 5 à 6% de rendement brut. Pour comparer Lyon aux communes voisines, consultez notre guide pour savoir <a href="/blogs/quartiers/ou-habiter-pres-de-lyon">où habiter près de Lyon</a>.',
+  }]],
+  ['quartiers/meilleurs-quartiers-acheter-reims-2026', [{
+    href: '/blogs/villes/prix-immobilier-reims-2026-champagne-tgv-paris',
+    needle: 'Aucun discours commercial, uniquement des faits vérifiables.</p>',
+    replacement: 'Aucun discours commercial, uniquement des faits vérifiables. Pour replacer ces écarts dans leur contexte, consulte aussi notre analyse du <a href="/blogs/villes/prix-immobilier-reims-2026-champagne-tgv-paris">marché immobilier de Reims</a>.</p>',
+  }]],
+  ['guides/investissement-locatif-rentabilite-fiscalite-villes', [{
+    href: '/blogs/villes/prix-immobilier-reims-2026-champagne-tgv-paris',
+    needle: '<strong>Reims</strong> : proximité Paris et prix attractifs</li>',
+    replacement: '<strong><a href="/blogs/villes/prix-immobilier-reims-2026-champagne-tgv-paris">Reims</a></strong> : proximité Paris et prix attractifs</li>',
+  }]],
+  ['guides/visite-immobiliere-checklist-points-verifier', [{
+    href: '/blogs/guides/acheter-appartement-dernier-etage',
+    needle: '<strong>État de la charpente</strong> : vérifiez les combles si accessibles</li>',
+    replacement: '<strong>État de la charpente</strong> : vérifiez les combles si accessibles et, pour les biens concernés, les points propres à un <a href="/blogs/guides/acheter-appartement-dernier-etage">achat au dernier étage</a></li>',
+  }]],
+  ['guides/terrain-constructible-plu-permis-pieges-cadastre', [{
+    href: '/blogs/guides/etude-de-sol-g1-obligatoire-achat-terrain',
+    needle: '<strong>étude géotechnique préalable de type G1</strong>',
+    replacement: '<a href="/blogs/guides/etude-de-sol-g1-obligatoire-achat-terrain"><strong>étude géotechnique préalable de type G1</strong></a>',
+  }]],
+  ['guides/dossier-diagnostic-technique-ddt-checklist-acheteur', [{
+    href: '/blogs/guides/diagnostic-assainissement-non-collectif-achat',
+    needle: '<strong>Assainissement non collectif</strong> : biens non raccordés au tout-à-l\'égout. Valable 3 ans.</li>',
+    replacement: '<a href="/blogs/guides/diagnostic-assainissement-non-collectif-achat"><strong>Assainissement non collectif</strong></a> : biens non raccordés au tout-à-l\'égout. Valable 3 ans.</li>',
+  }]],
+  ['guides/copropriete-charges-pieges-detecter-achat', [{
+    href: '/blogs/guides/syndic-benevole-avantages-limites-conditions-legales',
+    needle: '<p>Le <strong>syndic de copropriété</strong> joue un rôle déterminant dans la valorisation de votre bien et l\'évolution de vos charges. Une gestion rigoureuse maintient les coûts sous contrôle et préserve le patrimoine commun, tandis qu\'un syndic défaillant peut faire exploser vos charges et dégrader votre investissement.</p>',
+    replacement: '<p>Le <strong>syndic de copropriété</strong> joue un rôle déterminant dans la valorisation de votre bien et l\'évolution de vos charges. Une gestion rigoureuse maintient les coûts sous contrôle et préserve le patrimoine commun, tandis qu\'un syndic défaillant peut faire exploser vos charges et dégrader votre investissement. Si la copropriété est autogérée, vérifiez aussi les <a href="/blogs/guides/syndic-benevole-avantages-limites-conditions-legales">conditions et limites d\'un syndic bénévole</a>.</p>',
+  }]],
+  ['quartiers/meilleurs-quartiers-acheter-rennes', [{
+    href: '/blogs/villes/prix-immobilier-rennes-boom-breton',
+    needle: 'Tu découvriras ici une analyse quartier par quartier croisant DVF, ADEME et 7 autres sources officielles pour cibler ton profil précis.</p>',
+    replacement: 'Tu découvriras ici une analyse quartier par quartier croisant DVF, ADEME et 7 autres sources officielles pour cibler ton profil précis. Pour le contexte général, consulte aussi notre analyse du <a href="/blogs/villes/prix-immobilier-rennes-boom-breton">prix immobilier à Rennes</a>.</p>',
+  }]],
+  ['villes/prix-immobilier-paris-marche-plancher', [{
+    href: '/blogs/quartiers/meilleurs-quartiers-acheter-paris',
+    needle: 'Tu découvriras ici les zones où le plancher est réellement atteint et celles qui résistent encore.</p>',
+    replacement: 'Tu découvriras ici les zones où le plancher est réellement atteint et celles qui résistent encore. Pour passer de la tendance générale au choix d\'une adresse, consulte les <a href="/blogs/quartiers/meilleurs-quartiers-acheter-paris">meilleurs quartiers où acheter à Paris</a>.</p>',
+  }]],
+  ['quartiers/meilleurs-quartiers-acheter-lille', [{
+    href: '/blogs/villes/prix-immobilier-lille-metropole-sous-cotee',
+    needle: '<p>Entre les quartiers historiques du Vieux-Lille aux pavés authentiques et les secteurs émergents comme Euralille, chaque zone possède sa personnalité et ses opportunités d\'investissement. Les dernières données <abbr title="Demande de Valeurs Foncières">DVF</abbr> révèlent des écarts de prix pouvant atteindre 2 000 €/m² entre les arrondissements, rendant crucial le choix de votre future adresse.</p>',
+    replacement: '<p>Entre les quartiers historiques du Vieux-Lille aux pavés authentiques et les secteurs émergents comme Euralille, chaque zone possède sa personnalité et ses opportunités d\'investissement. Les dernières données <abbr title="Demande de Valeurs Foncières">DVF</abbr> révèlent des écarts de prix pouvant atteindre 2 000 €/m² entre les arrondissements, rendant crucial le choix de votre future adresse. Pour replacer ces écarts dans la tendance générale, consultez notre analyse du <a href="/blogs/villes/prix-immobilier-lille-metropole-sous-cotee">prix immobilier à Lille</a>.</p>',
   }]],
 ]);
 

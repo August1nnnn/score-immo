@@ -1,5 +1,6 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join, relative, resolve, sep } from "node:path";
+import { findNestedAnchors } from "./html-link-integrity.mjs";
 
 const root = resolve(import.meta.dirname, "..");
 const dist = resolve(root, process.argv[2] || "dist");
@@ -71,6 +72,9 @@ let checkedLinks = 0;
 for (const htmlFile of htmlFiles) {
   const from = routeForHtml(htmlFile);
   const html = readFileSync(htmlFile, "utf8");
+  for (const issue of findNestedAnchors(html)) {
+    errors.push(`${from} contains a nested anchor at offset ${issue.offset}: ${issue.href || "missing href"}`);
+  }
   const robots = [...html.matchAll(/<meta\b[^>]*\bname\s*=\s*(["'])robots\1[^>]*>/gi)]
     .map((match) => match[0].match(/\bcontent\s*=\s*(["'])(.*?)\1/i)?.[2] || "");
   if (robots.length !== 1) {

@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import test from "node:test";
+import { findNestedAnchors } from "../scripts/html-link-integrity.mjs";
 import { buildBarometreMetaDescription } from "../src/lib/barometre-meta-description.js";
 import { applyCuratedInternalLinks } from "../src/lib/curated-internal-links.js";
 
@@ -237,6 +238,18 @@ test("curated article relationships are present once in each approved direction"
     ["quartiers/micro-quartiers-strasbourg-achat-authentique", "/blogs/villes/prix-immobilier-strasbourg-marche-frontalier"],
     ["guides/loi-pinel-2026-conditions-plafonds-alternatives", "/blogs/guides/dispositif-denormandie-2026-renover-l-ancien-defiscaliser"],
     ["guides/dispositif-denormandie-2026-renover-l-ancien-defiscaliser", "/blogs/guides/loi-pinel-2026-conditions-plafonds-alternatives"],
+    ["guides/achat-immobilier-montagne-specificites", "/blogs/villes/prix-immobilier-annecy-2026-lac-frontiere-suisse-tension"],
+    ["quartiers/meilleurs-quartiers-acheter-lyon", "/blogs/quartiers/ou-habiter-pres-de-lyon"],
+    ["quartiers/meilleurs-quartiers-acheter-reims-2026", "/blogs/villes/prix-immobilier-reims-2026-champagne-tgv-paris"],
+    ["guides/investissement-locatif-rentabilite-fiscalite-villes", "/blogs/villes/prix-immobilier-reims-2026-champagne-tgv-paris"],
+    ["guides/visite-immobiliere-checklist-points-verifier", "/blogs/guides/acheter-appartement-dernier-etage"],
+    ["guides/terrain-constructible-plu-permis-pieges-cadastre", "/blogs/guides/etude-de-sol-g1-obligatoire-achat-terrain"],
+    ["guides/dossier-diagnostic-technique-ddt-checklist-acheteur", "/blogs/guides/diagnostic-assainissement-non-collectif-achat"],
+    ["guides/copropriete-charges-pieges-detecter-achat", "/blogs/guides/syndic-benevole-avantages-limites-conditions-legales"],
+    ["quartiers/meilleurs-quartiers-acheter-rennes", "/blogs/villes/prix-immobilier-rennes-boom-breton"],
+    ["villes/prix-immobilier-paris-marche-plancher", "/blogs/quartiers/meilleurs-quartiers-acheter-paris"],
+    ["quartiers/meilleurs-quartiers-acheter-lille", "/blogs/villes/prix-immobilier-lille-metropole-sous-cotee"],
+    ["guides/dpe-comprendre-classes-energetiques", "/blogs/guides/dpe-2026-impact-reel-prix-vente-d-bien"],
   ];
 
   for (const [from, to] of edges) {
@@ -247,6 +260,50 @@ test("curated article relationships are present once in each approved direction"
   const rules = read("src/lib/curated-internal-links.js");
   assert.doesNotMatch(rules, /contrôle que le calendrier est réaliste\. Consultez/);
   assert.match(rules, /contrôle que le calendrier est réaliste\. Consulte/);
+});
+
+test("priority internal links use the approved contextual anchors", () => {
+  const anchors = [
+    ["guides/achat-immobilier-montagne-specificites", "/blogs/villes/prix-immobilier-annecy-2026-lac-frontiere-suisse-tension", "marché immobilier d'Annecy"],
+    ["quartiers/meilleurs-quartiers-acheter-lyon", "/blogs/quartiers/ou-habiter-pres-de-lyon", "où habiter près de Lyon"],
+    ["quartiers/meilleurs-quartiers-acheter-reims-2026", "/blogs/villes/prix-immobilier-reims-2026-champagne-tgv-paris", "marché immobilier de Reims"],
+    ["guides/investissement-locatif-rentabilite-fiscalite-villes", "/blogs/villes/prix-immobilier-reims-2026-champagne-tgv-paris", "Reims"],
+    ["guides/visite-immobiliere-checklist-points-verifier", "/blogs/guides/acheter-appartement-dernier-etage", "achat au dernier étage"],
+    ["guides/terrain-constructible-plu-permis-pieges-cadastre", "/blogs/guides/etude-de-sol-g1-obligatoire-achat-terrain", "<strong>étude géotechnique préalable de type G1</strong>"],
+    ["guides/dossier-diagnostic-technique-ddt-checklist-acheteur", "/blogs/guides/diagnostic-assainissement-non-collectif-achat", "<strong>Assainissement non collectif</strong>"],
+    ["guides/copropriete-charges-pieges-detecter-achat", "/blogs/guides/syndic-benevole-avantages-limites-conditions-legales", "conditions et limites d'un syndic bénévole"],
+    ["quartiers/meilleurs-quartiers-acheter-rennes", "/blogs/villes/prix-immobilier-rennes-boom-breton", "prix immobilier à Rennes"],
+    ["villes/prix-immobilier-paris-marche-plancher", "/blogs/quartiers/meilleurs-quartiers-acheter-paris", "meilleurs quartiers où acheter à Paris"],
+    ["quartiers/meilleurs-quartiers-acheter-lille", "/blogs/villes/prix-immobilier-lille-metropole-sous-cotee", "prix immobilier à Lille"],
+    ["guides/dpe-comprendre-classes-energetiques", "/blogs/guides/dpe-2026-impact-reel-prix-vente-d-bien", "impact réel du DPE sur le prix de vente"],
+  ];
+
+  for (const [from, to, anchorHtml] of anchors) {
+    const html = applyCuratedInternalLinks(from, article(from).body_html);
+    assert.ok(html.includes(`<a href="${to}">${anchorHtml}</a>`), `${from} -> ${anchorHtml}`);
+  }
+});
+
+test("article HTML never nests one anchor inside another", () => {
+  assert.deepEqual(findNestedAnchors('<a href="/outer">outer <a href="/inner">inner</a></a>').map(({ href }) => href), ["/inner"]);
+  assert.deepEqual(findNestedAnchors('<a href="/first">first</a><a href="/second">second</a>'), []);
+
+  const violations = [];
+  const articlesRoot = new URL("src/content/articles/", root);
+
+  for (const group of readdirSync(articlesRoot, { withFileTypes: true })) {
+    if (!group.isDirectory()) continue;
+    const groupRoot = new URL(`${group.name}/`, articlesRoot);
+    for (const file of readdirSync(groupRoot, { withFileTypes: true })) {
+      if (!file.isFile() || !file.name.endsWith(".json")) continue;
+      const html = JSON.parse(readFileSync(new URL(file.name, groupRoot), "utf8")).body_html || "";
+      for (const issue of findNestedAnchors(html)) {
+        violations.push(`${group.name}/${file.name}:${issue.offset}:${issue.href}`);
+      }
+    }
+  }
+
+  assert.deepEqual(violations, []);
 });
 
 test("the layout imports only the French-compatible Latin font subsets", () => {
