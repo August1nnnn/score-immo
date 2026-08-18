@@ -80,3 +80,13 @@ Run from a fresh production build:
 - Record deployed SHA, workflow, checks, rollback and known limits in the Obsidian checkpoint.
 
 No result is marked complete from a local build alone.
+
+## Task 9 - Contain stale retired routes at the Functions layer
+
+- Preserve the cache incident evidence: immutable Pages hosts are correct, apex serves four stale assets, and exact, prefix and full-zone purges did not evict them.
+- Add RED tests for six exact Function files and a fail-closed response helper outside `functions/`.
+- Cover GET, HEAD, POST, OPTIONS, query strings, trailing slashes, presentation-asset status 200/404 and asset-fetch failure.
+- Pin local Pages integration tests to `wrangler@4.123.0`; prove the six exact routes return 404/noindex/no-store while a neighbouring valid Barometer route remains 200.
+- Re-run the complete repository, build, integrity, standards, privacy and scope checks.
+- Obtain an independent diff review before publication, deploy only the reviewed SHA, and verify the same live matrix plus all critical site/app smoke checks.
+- Keep the tombstones until the previous one-week cache TTL has safely elapsed. Do not use rollback-by-removal while stale 200 assets can still exist.

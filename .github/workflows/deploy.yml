@@ -12,6 +12,7 @@ on:
       - 'package-lock.json'
       - '.github/workflows/deploy.yml'
       - 'functions/**'
+      - 'cloudflare-pages/**'
   workflow_run:
     # Trigger deploy after blog-auto commit (bot commits don't fire `on: push`)
     workflows: ["Blog Auto - publish next article"]
@@ -61,6 +62,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "4.123.0"
           command: pages deploy dist --project-name=score-immo --branch=main
 
       - name: Collect changed files for IndexNow

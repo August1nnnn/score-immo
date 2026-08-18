@@ -71,6 +71,19 @@ Improve ScoreImmo as far as the current evidence safely permits. Every shipped c
 - Report exact routes rather than collapsing file-format pages to `/pages` or `/blogs`.
 - Treat heading, canonical, title, description, OpenGraph and image-alt findings as failing evidence. Keep Organization JSON-LD informational because it is not required on every page.
 
+### 8. Retired-route Pages Functions tombstones
+
+Post-deployment verification exposed a Cloudflare Pages custom-domain cache defect outside the built artifact. The immutable deployment `3fdb5cdd.score-immo.pages.dev` and `score-immo.pages.dev` return the intended 404 for all six retired routes, while the apex custom domain still serves four deleted assets with an increasing one-week `Age`. Exact-URL purge, prefix purge and the Pages-documented zone purge all completed successfully without evicting those four assets. No further cache purge is allowed.
+
+- Add six exact Pages Function routes, one for each retired path. Do not add a wildcard, dynamic slug handler, broad `_routes.json` entry, DNS rule or cache rule.
+- Keep the shared response helper outside `functions/` so it cannot create an unintended Function route.
+- Fetch only the fixed `/404` presentation asset through `env.ASSETS.fetch(new URL('/404', request.url))`. Never forward the incoming request headers, cookies, query, body or path.
+- Reconstruct every response as HTTP 404 and independently force `Cache-Control: no-store` plus `X-Robots-Tag: noindex, follow`. Remove inherited `Age`, validator and surrogate/CDN cache headers that could contradict the tombstone.
+- Handle every HTTP method. HEAD returns no body; GET, POST and OPTIONS remain deterministic 404 responses.
+- If the asset binding is absent, throws or returns a status other than 200 or 404, fail closed to a minimal local 404 document. Never call `context.next()` or pass through to the stale asset.
+- Cloudflare project evidence on 2026-08-18 confirms `uses_functions=true`, production `usage_model=standard` and an active Workers Paid subscription. The project's `fail_open=true` therefore cannot expose the stale asset through exhaustion of the Workers Free daily quota.
+- Use pinned `wrangler@4.123.0` for local Pages routing tests. Deployment remains gated by a fresh independent review and the exact-SHA production workflow.
+
 ## Explicitly out of scope
 
 - DNS, TLS or hosting changes for `score-immo.com`, because repository code cannot fix the demonstrated upstream routing problem and ownership has not been established.
@@ -88,7 +101,7 @@ Improve ScoreImmo as far as the current evidence safely permits. Every shipped c
 3. The build emits no route-conflict warning.
 4. The sitemap contains no noindex or removed Barometer URL.
 5. Every generated page contains exactly one robots directive and all canonical URLs remain self-consistent.
-6. The four removed Barometer fiches and the two resulting region routes are absent from the build and return the existing custom 404 when deployed.
+6. The four removed Barometer fiches and the two resulting region routes are absent from the build and return the existing custom 404 when deployed. Exact Function tombstones must return 404/noindex/no-store for GET, HEAD, POST and OPTIONS, with or without a trailing slash or query string, even when the presentation asset fails.
 7. All ten curated links resolve directly, occur once in the intended source and introduce no broken fragment or redirect target.
 8. Lighthouse accessibility passes on the Barometer hub, an author article and the mobile navigation interaction; browser tests prove the pricing accordion ARIA state and focus behavior.
 9. Homepage FAQ JSON-LD is absent unless a matching FAQ is visible; pricing FAQ text and JSON-LD are generated from one source.
@@ -98,4 +111,6 @@ Improve ScoreImmo as far as the current evidence safely permits. Every shipped c
 
 ## Rollback
 
-The work is delivered as one scoped commit after local verification. Rollback is a Git revert of that commit followed by the existing deployment workflow. The four removed Barometer JSON files remain recoverable from Git history; restoring them also restores the two derived region routes. No external database row is changed.
+The application optimization was delivered as one scoped commit after local verification. Its rollback remains a Git revert followed by the existing deployment workflow. The four removed Barometer JSON files remain recoverable from Git history; restoring them also restores the two derived region routes. No external database row is changed.
+
+The exact Function tombstones are a containment control for stale infrastructure state. Reverting them before the old one-week assets have expired is not a safe functional rollback because it can expose the cached 200 responses again. If a tombstone itself fails, keep or repair the exact-route handler; do not remove it until all apex variants have returned the origin 404 beyond the maximum prior cache TTL. The tombstones do not mutate data and affect no valid route.
