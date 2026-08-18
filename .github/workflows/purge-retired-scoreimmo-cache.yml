@@ -10,13 +10,13 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  purge-exact-urls:
+  purge-barometre-prefix:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     env:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_SCOREIMMO_CACHE_PURGE_TOKEN }}
     steps:
-      - name: Purge six retired URLs only
+      - name: Purge the Barometre prefix only
         shell: bash
         run: |
           python3 - <<'PY'
@@ -28,14 +28,7 @@ jobs:
 
           API_ROOT = "https://api.cloudflare.com/client/v4"
           ZONE_NAME = "score-immo.fr"
-          URLS = [
-              "https://score-immo.fr/barometre/la-roche-guyon-appartement-45m2-99k",
-              "https://score-immo.fr/barometre/maxeville-appartement-74m2-97k",
-              "https://score-immo.fr/barometre/nancy-appartement-47m2-96k",
-              "https://score-immo.fr/barometre/sons-et-roncheres-maison-92m2-25k",
-              "https://score-immo.fr/barometre/region/france",
-              "https://score-immo.fr/barometre/region/bourgogne-franche-comte",
-          ]
+          PREFIX = "score-immo.fr/barometre"
 
           token = os.environ.get("CLOUDFLARE_API_TOKEN", "").strip()
           if not token:
@@ -89,10 +82,10 @@ jobs:
           result = request(
               "POST",
               f"/zones/{zone_id}/purge_cache",
-              {"files": URLS},
+              {"prefixes": [PREFIX]},
           )
           if not result.get("success"):
-              raise SystemExit("Cloudflare did not confirm the exact-URL purge")
+              raise SystemExit("Cloudflare did not confirm the Barometre-prefix purge")
 
-          print(f"Purged {len(URLS)} exact URLs.")
+          print(f"Purged the exact prefix {PREFIX}.")
           PY
