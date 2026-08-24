@@ -35,6 +35,10 @@ jobs:
         working-directory: ${{ steps.detect.outputs.site_dir }}
         run: npm install --include=optional --no-audit --no-fund
 
+      - name: Run behavioral and security tests
+        working-directory: ${{ steps.detect.outputs.site_dir }}
+        run: npm test
+
       - name: Build site
         working-directory: ${{ steps.detect.outputs.site_dir }}
         run: npm run build
