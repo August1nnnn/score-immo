@@ -7,11 +7,14 @@
 import { writeFileSync, readdirSync, rmSync, mkdirSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import {
+  fetchPublishedBarometreRows,
+  getBarometrePublishableKey,
+} from './barometre-supabase.mjs';
 
-const SUPABASE_URL = 'https://afvtxiklivnmakqixkml.supabase.co';
-const PUBLISHABLE_KEY = process.env.SCOREIMMO_SUPABASE_PUBLISHABLE_KEY?.trim();
+const PUBLISHABLE_KEY = getBarometrePublishableKey();
 
-if (!PUBLISHABLE_KEY?.startsWith('sb_publishable_')) {
+if (!PUBLISHABLE_KEY) {
   console.error('SCOREIMMO_SUPABASE_PUBLISHABLE_KEY must be a Supabase publishable key');
   process.exit(1);
 }
@@ -25,14 +28,13 @@ const REJECTED_SOURCE_SLUGS = new Set([
   'sons-et-roncheres-maison-92m2-25k',
 ]);
 
-const res = await fetch(
-  // Only real scanned listings (source_report_id set) — never publish seed/mock rows to SEO.
-  `${SUPABASE_URL}/rest/v1/barometre_reports?publie=eq.true&source_report_id=not.is.null&order=score_global.desc&select=*`,
-  { headers: { apikey: PUBLISHABLE_KEY } },
-);
-if (!res.ok) { console.error('Supabase fetch failed', res.status, await res.text()); process.exit(1); }
-const rows = await res.json();
-if (!Array.isArray(rows) || rows.length === 0) { console.error('No published barometre rows'); process.exit(1); }
+let rows;
+try {
+  rows = await fetchPublishedBarometreRows({ publishableKey: PUBLISHABLE_KEY });
+} catch (error) {
+  console.error(error instanceof Error ? error.message : String(error));
+  process.exit(1);
+}
 
 const invalidRows = rows.filter((row) =>
   REJECTED_SOURCE_SLUGS.has(row.slug) || !row.region || row.region.trim() === 'France'
