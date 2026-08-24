@@ -1,6 +1,6 @@
 // gen-barometre.mjs — Generate static barometre content (JSON) from the published
 // `barometre_reports` rows in Supabase. Run before build to refresh the SEO pages:
-//   node scripts/gen-barometre.mjs
+//   SCOREIMMO_SUPABASE_PUBLISHABLE_KEY=sb_publishable_... node scripts/gen-barometre.mjs
 // Writes one file per published fiche into src/content/barometre/<slug>.json.
 // The data is committed to the repo (same pattern as the blog articles collection),
 // so the Astro build stays purely static (no build-time external dependency).
@@ -9,7 +9,12 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const SUPABASE_URL = 'https://afvtxiklivnmakqixkml.supabase.co';
-const ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFmdnR4aWtsaXZubWFrcWl4a21sIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzExOTcyMTgsImV4cCI6MjA4Njc3MzIxOH0.oJIKsKtcEujZ3jAq79IZJqn16KRUDI-Ihzdjc7fE-wM';
+const PUBLISHABLE_KEY = process.env.SCOREIMMO_SUPABASE_PUBLISHABLE_KEY?.trim();
+
+if (!PUBLISHABLE_KEY?.startsWith('sb_publishable_')) {
+  console.error('SCOREIMMO_SUPABASE_PUBLISHABLE_KEY must be a Supabase publishable key');
+  process.exit(1);
+}
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT = join(__dirname, '..', 'src', 'content', 'barometre');
@@ -23,7 +28,7 @@ const REJECTED_SOURCE_SLUGS = new Set([
 const res = await fetch(
   // Only real scanned listings (source_report_id set) — never publish seed/mock rows to SEO.
   `${SUPABASE_URL}/rest/v1/barometre_reports?publie=eq.true&source_report_id=not.is.null&order=score_global.desc&select=*`,
-  { headers: { apikey: ANON, Authorization: `Bearer ${ANON}` } },
+  { headers: { apikey: PUBLISHABLE_KEY } },
 );
 if (!res.ok) { console.error('Supabase fetch failed', res.status, await res.text()); process.exit(1); }
 const rows = await res.json();
