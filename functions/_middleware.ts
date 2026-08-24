@@ -7,6 +7,7 @@
 //   4. Inject CSP security header.
 
 import { verifyOpenAIBot } from "./_oai-verify";
+import { getSupabaseSecretKey, supabaseHeaders } from "./_supabase.js";
 
 const BOT_RE =
   /bot|crawl|spider|slurp|lighthouse|headless|curl|wget|python|httpx|scrap|fetch|monitor|preview|vercel|facebookexternalhit|whatsapp|telegram|skypeuripreview|linkedinbot|twitterbot|duckduckbot|yandex|semrush|ahrefs|mj12bot|dotbot|petalbot|seznambot|applebot|ccbot|claudebot|gptbot|google-extended|perplexitybot|youbot|amazonbot|bytespider|duckassistbot|chatgpt-user|oai-searchbot|anthropic|cohere|diffbot|archive|uptime|pingdom|gtmetrix|Nexus 5X Build\/MMB29P/i;
@@ -24,7 +25,7 @@ const NOINDEX_PATHS = new Set([
 
 interface Env {
   SUPABASE_URL?: string;
-  SUPABASE_SERVICE_KEY?: string;
+  SUPABASE_SECRET_KEY?: string;
 }
 
 function logBotIfRelevant(
@@ -47,7 +48,8 @@ function logBotIfRelevant(
     const contentType = response.headers.get("content-type") || "";
     if (!contentType.includes("text/html")) return;
 
-    if (!env.SUPABASE_URL || !env.SUPABASE_SERVICE_KEY) return;
+    const secretKey = getSupabaseSecretKey(env);
+    if (!env.SUPABASE_URL || !secretKey) return;
 
     const ip = request.headers.get("cf-connecting-ip") || "";
     const base = {
@@ -67,12 +69,7 @@ function logBotIfRelevant(
         const payload = { ...base, bot_name: bot, bot_verified: verified };
         await fetch(`${env.SUPABASE_URL}/rest/v1/page_views`, {
           method: "POST",
-          headers: {
-            apikey: env.SUPABASE_SERVICE_KEY!,
-            Authorization: `Bearer ${env.SUPABASE_SERVICE_KEY}`,
-            "Content-Type": "application/json",
-            Prefer: "return=minimal",
-          },
+          headers: supabaseHeaders(secretKey, "return=minimal"),
           body: JSON.stringify(payload),
         }).catch(() => null);
       })(),

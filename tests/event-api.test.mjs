@@ -7,7 +7,7 @@ const JOURNEY_ID = "11111111-1111-4111-8111-111111111111";
 const SESSION_ID = "22222222-2222-4222-8222-222222222222";
 const env = {
   SUPABASE_URL: "https://project.supabase.co",
-  SUPABASE_SERVICE_KEY: "test-service-key",
+  SUPABASE_SECRET_KEY: "sb_secret_test",
 };
 
 function request(body, consent = "accepted") {
@@ -53,6 +53,8 @@ test("API writes an idempotent, PII-free conversion event", async (t) => {
     calls[0].options.headers.Prefer,
     "resolution=ignore-duplicates,return=minimal",
   );
+  assert.equal(calls[0].options.headers.apikey, "sb_secret_test");
+  assert.equal("Authorization" in calls[0].options.headers, false);
   const payload = JSON.parse(calls[0].options.body);
   assert.equal(payload.event_type, "analyzer_submit");
   assert.equal(payload.journey_id, JOURNEY_ID);
@@ -66,6 +68,27 @@ test("API writes an idempotent, PII-free conversion event", async (t) => {
   });
   assert.ok(!JSON.stringify(payload).includes("private@example.test"));
   assert.ok(!JSON.stringify(payload).includes("example.test/listing"));
+});
+
+test("API ignores deprecated Supabase credential variables", async (t) => {
+  const fetchMock = t.mock.method(globalThis, "fetch", async () => {
+    throw new Error("must not fetch");
+  });
+  const response = await onRequestPost({
+    request: request({
+      event_type: "marketing_page_view",
+      journey_id: JOURNEY_ID,
+      session_id: SESSION_ID,
+      metadata: { page_path: "/" },
+    }),
+    env: {
+      SUPABASE_URL: "https://project.supabase.co",
+      SUPABASE_SERVICE_KEY: "eyJ.legacy.key",
+      SUPABASE_ANON: "eyJ.legacy.key",
+    },
+  });
+  assert.equal(response.status, 204);
+  assert.equal(fetchMock.mock.callCount(), 0);
 });
 
 test("API is silent without accepted consent", async (t) => {

@@ -51,8 +51,6 @@ jobs:
 
       - name: Build
         run: npm run build
-        env:
-          PUBLIC_SUPABASE_ANON: ${{ secrets.PUBLIC_SUPABASE_ANON }}
 
       - name: Validate generated routes
         run: npm run test:site-integrity

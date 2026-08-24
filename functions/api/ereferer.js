@@ -11,6 +11,11 @@
 //
 // Articles are reviewed manually in Supabase Studio before going live.
 
+import {
+  getSupabaseSecretKey,
+  supabaseHeaders,
+} from "../_supabase.js";
+
 const PUBLIC_URL_PREFIX = "https://score-immo.fr/sponsored/";
 
 function bad(code, message, status = 400) {
@@ -55,18 +60,16 @@ function authOk(request, env) {
 }
 
 async function supabaseRequest(env, method, path, body) {
-  const key = env.SUPABASE_SERVICE_KEY || env.SUPABASE_SERVICE_ROLE_KEY;
+  const key = getSupabaseSecretKey(env);
   if (!env.SUPABASE_URL || !key) {
     throw new Error("supabase_env_missing");
   }
   const r = await fetch(`${env.SUPABASE_URL}${path}`, {
     method,
-    headers: {
-      apikey: key,
-      Authorization: `Bearer ${key}`,
-      "Content-Type": "application/json",
-      Prefer: "return=representation,resolution=merge-duplicates",
-    },
+    headers: supabaseHeaders(
+      key,
+      "return=representation,resolution=merge-duplicates",
+    ),
     body: body ? JSON.stringify(body) : undefined,
   });
   const text = await r.text();

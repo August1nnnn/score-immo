@@ -1,5 +1,10 @@
 // Consent-gated Cloudflare endpoint for PII-free marketing funnel events.
 
+import {
+  getSupabaseSecretKey,
+  supabaseHeaders,
+} from "../_supabase.js";
+
 const ALLOWED_EVENTS = new Set([
   "marketing_page_view",
   "analyzer_submit",
@@ -109,15 +114,6 @@ async function eventKey(eventType, journeyId, sessionId, metadata) {
   );
 }
 
-function headers(key, prefer) {
-  return {
-    apikey: key,
-    Authorization: `Bearer ${key}`,
-    "Content-Type": "application/json",
-    Prefer: prefer,
-  };
-}
-
 function isSchemaError(response, responseText) {
   if (![400, 404].includes(response.status)) return false;
   return /PGRST20[45]|schema cache|could not find the table|could not find.*column/i.test(
@@ -167,11 +163,11 @@ export async function onRequestPost({ request, env }) {
   }
 
   const metadata = sanitizeMetadata(body.metadata);
-  if (!env.SUPABASE_URL || (!env.SUPABASE_SERVICE_KEY && !env.SUPABASE_ANON)) {
+  const key = getSupabaseSecretKey(env);
+  if (!env.SUPABASE_URL || !key) {
     return new Response(null, { status: 204 });
   }
 
-  const key = env.SUPABASE_SERVICE_KEY || env.SUPABASE_ANON;
   const payload = {
     event_type: eventType,
     journey_id: journeyId,
@@ -186,7 +182,7 @@ export async function onRequestPost({ request, env }) {
     `${env.SUPABASE_URL}/rest/v1/conversion_events?on_conflict=event_key`,
     {
       method: "POST",
-      headers: headers(
+      headers: supabaseHeaders(
         key,
         "resolution=ignore-duplicates,return=minimal",
       ),
@@ -206,7 +202,7 @@ export async function onRequestPost({ request, env }) {
   // reaches production. It is never called after a successful primary write.
   const legacyResponse = await fetch(`${env.SUPABASE_URL}/rest/v1/events`, {
     method: "POST",
-    headers: headers(key, "return=minimal"),
+    headers: supabaseHeaders(key, "return=minimal"),
     body: JSON.stringify({
       type: eventType,
       target: legacyTarget(metadata),
