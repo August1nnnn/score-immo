@@ -1,19 +1,17 @@
 #!/usr/bin/env python3
 """
-ScoreImmo Blog Auto v2 -- queue-only mode (zero Anthropic API).
+ScoreImmo Blog Auto v2 -- prepared scheduling + queue mode (zero Anthropic API).
 
-Reads blog-auto/articles.json (editorial plan), picks the next unpublished article whose
-scheduled_datetime has passed, pre-fetches an Unsplash image, and writes a spec file in
-blog-auto/queue/{index}.json. The Routine claude.ai then polls the queue, generates the
-article JSON per blog-auto/prompts/article-scoreimmo.md, writes it to
-src/content/articles/{blog}/{slug}.json, marks the entry published in articles.json,
-removes the queue spec, and commits (-> Cloudflare Pages auto-deploy).
+First promotes one due prewritten article sealed under blog-auto/scheduled*. If none is
+due, reads blog-auto/articles.json (editorial plan), picks the next unpublished article
+whose scheduled_datetime has passed, pre-fetches an Unsplash image, and writes a spec
+file in blog-auto/queue/{index}.json. The Routine claude.ai then handles that queue.
 
 NO Claude/Anthropic API call here. Pure scheduling + Unsplash + queue file write.
 Source de generation = Routine claude.ai (abo Max), pas l'API payante.
 
 Usage :
-  python publish.py            # queue le prochain article echu
+  python publish.py            # publie un article préparé échu, sinon queue le suivant
   python publish.py --force    # queue le prochain article non publie (bypass schedule)
   python publish.py --dry-run  # affiche le spec sans ecrire/commit
 """
@@ -35,6 +33,10 @@ from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).parent
 REPO_DIR = SCRIPT_DIR.parent
+sys.path.insert(0, str(REPO_DIR))
+
+from blog_auto_scheduled_publish import publish_due_prepared_article
+
 ARTICLES_JSON = SCRIPT_DIR / "articles.json"
 QUEUE_DIR = SCRIPT_DIR / "queue"
 PROMPT_REF = "blog-auto/prompts/article-scoreimmo.md"
@@ -223,11 +225,53 @@ def git_commit_push(index, slug: str, dry_run=False):
         raise
 
 
+def git_commit_push_prepared(result: dict, dry_run=False):
+    if dry_run:
+        log.info("  [dry-run] skip git")
+        return
+    article_target = result["article_target"]
+    asset_target = result["asset_target"]
+    try:
+        subprocess.run(
+            [
+                "git", "add", "--all",
+                "blog-auto/scheduled/",
+                "blog-auto/scheduled-content/",
+                "blog-auto/scheduled-assets/",
+                article_target,
+                asset_target,
+            ],
+            cwd=str(REPO_DIR), check=True,
+        )
+        subprocess.run(
+            [
+                "git",
+                "-c", "user.email=blog-bot@score-immo.fr",
+                "-c", "user.name=ScoreImmo Blog Bot",
+                "commit", "-m", f"chore(blog): publish scheduled {result['id']}",
+            ],
+            cwd=str(REPO_DIR), check=True,
+        )
+        subprocess.run(["git", "push", "origin", "main"], cwd=str(REPO_DIR), check=True)
+        log.info("  Published prepared article and pushed to origin/main")
+    except subprocess.CalledProcessError as e:
+        log.error(f"  scheduled git failed: {e}")
+        raise
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--force", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
+
+    prepared = publish_due_prepared_article(REPO_DIR, dry_run=args.dry_run)
+    if prepared:
+        log.info(f"Article préparé échu : {prepared['id']}")
+        if args.dry_run:
+            print(json.dumps(prepared, ensure_ascii=False, indent=2))
+        git_commit_push_prepared(prepared, dry_run=args.dry_run)
+        return
 
     plan = load_plan()
     if not plan:

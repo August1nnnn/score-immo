@@ -15,7 +15,7 @@ on:
       - 'cloudflare-pages/**'
   workflow_run:
     # Trigger deploy after blog-auto commit (bot commits don't fire `on: push`)
-    workflows: ["Blog Auto - publish next article"]
+    workflows: ["Blog Auto - publish prepared or queue next article"]
     types: [completed]
     branches: [main]
   workflow_dispatch:

@@ -1,6 +1,8 @@
-# ScoreImmo — Blog Auto v2 (queue-only, 0 € Anthropic)
+# ScoreImmo — Blog Auto v2 (publication préparée + queue, 0 € Anthropic)
 
-Pipeline de publication SEO/GEO du blog ScoreImmo (Astro + CF Pages).
+Pipeline de publication SEO/GEO du blog ScoreImmo (Astro + CF Pages). Les articles
+contractuels finalisés peuvent être scellés et publiés sans régénération ; le plan
+éditorial ordinaire reste traité par la queue Claude.
 
 **Changement vs v1** : la génération de contenu ne passe **plus** par l'API Anthropic
 payante (qui tombait en `HTTP 400 "credit balance too low"`). Elle est faite par une
@@ -9,6 +11,14 @@ payante (qui tombait en `HTTP 400 "credit balance too low"`). Elle est faite par
 ## Architecture
 
 ```
+blog-auto/scheduled/*.manifest.json + scheduled-content/ + scheduled-assets/
+  → blog-auto/publish.py vérifie date, empreintes et lien contractuel
+      • promeut au plus un article échu vers src/content/articles et public/images
+      • marque le manifeste published, commit + push
+      • deploy.yml construit, déploie, puis notifie IndexNow
+
+Sinon :
+
 blog-auto/articles.json (plan éditorial : index, title, blog, category, scheduled_datetime…)
   → blog-auto/publish.py  (GH Actions, cron, mode queue-only)
       • prend le prochain article échu non publié
@@ -27,7 +37,10 @@ blog-auto/articles.json (plan éditorial : index, title, blog, category, schedul
 
 - `articles.json` — plan éditorial (schéma inchangé : `index, title, keywords, blog,
   category, author, author_handle, scheduled_date, scheduled_datetime, published, slug`).
-- `publish.py` — **queue-only**. Aucun appel Claude/Anthropic. Stdlib seule (+ Unsplash).
+- `publish.py` — publie d'abord un livrable préparé échu, sinon alimente la queue. Aucun appel Claude/Anthropic.
+- `scheduled/*.manifest.json` — date, chemins, empreintes SHA-256 et lien contractuel exact.
+- `scheduled-content/` et `scheduled-assets/` — livrables finaux hors collection Astro avant échéance.
+- `../blog_auto_scheduled_publish.py` — promotion fail-closed, sans écrasement de cible.
 - `prompts/article-scoreimmo.md` — **contrat de génération** (persona, standards, schéma JSON).
 - `queue/{index}.json` — specs consommés par la Routine claude.ai.
 - `.github/workflows/blog-auto.yml` — cron `17 6 / 43 7 / 29 8 * * 1-5` UTC, runner self-hosted.
@@ -60,6 +73,14 @@ commandeici v2. Config :
 
 Ajouter des entrées dans `articles.json` (champs ci-dessus, `published:false`, slug auto).
 Le `scheduled_datetime` (passé ou échu) déclenche la mise en queue par `publish.py`.
+
+## Article final préparé
+
+Un manifeste `pending` n'est promu que si `publish_at` est échu, si les empreintes de
+l'article et de l'image correspondent, si les cibles n'existent pas et si l'ancre, l'URL
+et l'attribut `rel` attendus sont présents dans le même lien. Le premier article préparé
+échu est le seul lot traité pendant l'exécution. Un second passage est sans effet une
+fois le manifeste marqué `published`.
 
 ## Pourquoi v2
 

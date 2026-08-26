@@ -1,0 +1,20 @@
+{
+  "id": "valeur-immeuble-par-rapport-loyer",
+  "status": "pending",
+  "publish_at": "2026-09-25T08:00:00+02:00",
+  "article": {
+    "source": "blog-auto/scheduled-content/valeur-immeuble-par-rapport-loyer.json",
+    "target": "src/content/articles/guides/valeur-immeuble-par-rapport-loyer.json",
+    "sha256": "c061217183e40814f1f7fdb1487066e3a091ba627592c51512dac4fb7beded73"
+  },
+  "asset": {
+    "source": "blog-auto/scheduled-assets/valeur-immeuble-par-rapport-loyer.webp",
+    "target": "public/images/articles/valeur-immeuble-par-rapport-loyer.webp",
+    "sha256": "90e2ef33b9d5e509b142de29d134f58b4c501a5557fceb88c3cc7403ddafe1ea"
+  },
+  "required_link": {
+    "anchor": "le faire estimé par Montclair",
+    "url": "https://www.montclair.fr/estimation-immeuble-de-rapport-en-ligne/",
+    "rel": "sponsored"
+  }
+}

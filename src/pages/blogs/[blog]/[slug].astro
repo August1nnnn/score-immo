@@ -21,7 +21,8 @@ const { article } = Astro.props;
 
 // Fetch author
 const authorHandle = article.author_handle || 'lea-moreau';
-const authorEntry = await getEntry('authors', authorHandle);
+const isOrganizationAuthor = authorHandle === 'scoreimmo';
+const authorEntry = isOrganizationAuthor ? undefined : await getEntry('authors', authorHandle);
 const author = authorEntry?.data;
 
 const title = article.meta_title || `${article.title} | ScoreImmo`;
@@ -38,9 +39,9 @@ const blogLabels: Record<string, string> = {
   pro: 'Espace mandataires',
 };
 
-// Extract FAQ pairs from body_html (h2 "FAQ" block, then h3 questions + p answers)
+// Extract FAQ pairs from body_html (h2 "FAQ" or "Questions fréquentes", then h3 questions + p answers)
 function extractFaq(html: string): { q: string; a: string }[] {
-  const faqAnchor = html.match(/<h2[^>]*>\s*FAQ[^<]*<\/h2>/i);
+  const faqAnchor = html.match(/<h2[^>]*>\s*(?:FAQ|Questions fréquentes)[^<]*<\/h2>/i);
   if (!faqAnchor || faqAnchor.index === undefined) return [];
   const after = html.slice(faqAnchor.index + faqAnchor[0].length);
   const pairs: { q: string; a: string }[] = [];

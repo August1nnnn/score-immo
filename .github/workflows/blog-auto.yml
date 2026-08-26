@@ -1,9 +1,8 @@
-name: Blog Auto - queue next article
+name: Blog Auto - publish prepared or queue next article
 
-# v2 queue-only : ce workflow N'APPELLE PLUS l'API Anthropic.
-# Il sélectionne le prochain article échu, pré-récupère une image Unsplash, et écrit
-# un spec dans blog-auto/queue/{index}.json (commit + push). La génération du contenu
-# est faite par la Routine claude.ai (abo Max) qui poll la queue. => 0 € Anthropic.
+# Priorité 1 : promouvoir un article finalisé et scellé arrivé à échéance.
+# Priorité 2 : sélectionner le prochain sujet éditorial échu et écrire une spec queue.
+# Ce workflow n'appelle pas l'API Anthropic.
 
 on:
   schedule:
