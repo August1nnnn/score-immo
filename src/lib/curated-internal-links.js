@@ -12,8 +12,8 @@ const RULES = new Map([
   }]],
   ['guides/negocier-prix-bien-immobilier-guide-complet', [{
     href: '/blogs/guides/frais-agence-immobiliere-negocier',
-    needle: '<p>Les frais d\'agence sont généralement à la charge du vendeur et difficiles à négocier directement. Cependant, vous pouvez demander au vendeur d\'intégrer ces frais dans sa marge de négociation sur le prix de vente, particulièrement si vous présentez un dossier solide et rapide.</p>',
-    replacement: '<p>Les frais d\'agence sont généralement à la charge du vendeur et difficiles à négocier directement. Cependant, vous pouvez demander au vendeur d\'intégrer ces frais dans sa marge de négociation sur le prix de vente, particulièrement si vous présentez un dossier solide et rapide. Consultez aussi notre méthode pour <a href="/blogs/guides/frais-agence-immobiliere-negocier">négocier les frais d\'agence</a>.</p>',
+    needle: '<p>La première étape n\'est pas de chercher le pourcentage que le vendeur pourrait accepter. Elle consiste à déterminer votre <strong>budget maximal tout compris</strong>. Additionnez le prix, les frais d\'acquisition, les frais de financement, les travaux indispensables, les charges à court terme et une réserve pour les imprévus.</p>',
+    replacement: '<p>La première étape n\'est pas de chercher le pourcentage que le vendeur pourrait accepter. Elle consiste à déterminer votre <strong>budget maximal tout compris</strong>. Additionnez le prix, les frais d\'acquisition, les frais de financement, les travaux indispensables, les charges à court terme et une réserve pour les imprévus. Vérifiez séparément comment sont présentés et s\'il est possible de <a href="/blogs/guides/frais-agence-immobiliere-negocier">négocier les frais d\'agence</a>.</p>',
   }]],
   ['guides/frais-agence-immobiliere-negocier', [{
     href: '/blogs/guides/negocier-prix-bien-immobilier-guide-complet',
