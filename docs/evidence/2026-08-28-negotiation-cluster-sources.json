@@ -1,0 +1,119 @@
+{
+  "captured_at": "2026-08-28",
+  "search_signals": {
+    "google_search_console": {
+      "window": "two consecutive 28-day windows available on 2026-08-27",
+      "procedural_current": {
+        "clicks": 33,
+        "impressions": 3435,
+        "ctr_pct": 0.96,
+        "position": 7.15
+      },
+      "procedural_previous": {
+        "clicks": 47,
+        "impressions": 3666,
+        "ctr_pct": 1.28,
+        "position": 7.36
+      },
+      "benchmark_current": {
+        "clicks": 5,
+        "impressions": 355,
+        "position": 4.35
+      },
+      "benchmark_previous": {
+        "clicks": 6,
+        "impressions": 170,
+        "position": 4.28
+      },
+      "observed_dual_url_query": false,
+      "interpretation": "The procedural page lost CTR while its position stayed stable. No accessible query showed both URLs simultaneously, so cannibalization is not asserted as fact."
+    },
+    "bing_webmaster": {
+      "last_valid_snapshot_end": "2026-08-15",
+      "negotiation_queries_present": true,
+      "fresh_export_status": "blocked_invalid_api_key",
+      "claim_limit": "No post-2026-08-15 Bing performance is claimed."
+    }
+  },
+  "sources": [
+    {
+      "publisher": "Laforêt",
+      "url": "https://www.laforet.com/espace-presse/marche/chiffres-immobiliers-T1-2026",
+      "published_or_updated": "2026-04-15",
+      "scope": "transactions from the 720 agencies in the Laforêt network, T1 2026",
+      "facts": {
+        "national_margin_pct": 5.1,
+        "paris_margin_pct": 3.4,
+        "ile_de_france_margin_pct": 5.1,
+        "regions_margin_pct": 5.4,
+        "houses_margin_pct": 5.7,
+        "apartments_margin_pct": 4.1,
+        "transactions_negotiated_share": "8 out of 10",
+        "average_sale_time_days": 103
+      },
+      "limit": "Network benchmark, not an exhaustive census of all French transactions."
+    },
+    {
+      "publisher": "Direction générale des Finances publiques",
+      "url": "https://www.data.gouv.fr/datasets/demandes-de-valeurs-foncieres",
+      "facts": [
+        "DVF contains transaction data from notarial deeds and cadastral information.",
+        "DVF does not contain the initial listing price.",
+        "DVF alone cannot measure the discount between listing and signed price."
+      ]
+    },
+    {
+      "publisher": "Notaires de France",
+      "url": "https://www.notaires.fr/en/node/38420",
+      "facts": [
+        "Green value studies compare transaction prices by energy class.",
+        "Green value is not the negotiated discount between an advertisement and the signed sale."
+      ]
+    },
+    {
+      "publisher": "Notaires de France",
+      "url": "https://www.notaires.fr/fr/immobilier-fiscalite/achat-et-vente-les-etapes/la-promesse-de-vente-et-le-compromis-de-vente",
+      "facts": [
+        "An offer to purchase can bind its author if accepted.",
+        "No payment can be required from the buyer at the offer stage."
+      ]
+    },
+    {
+      "publisher": "ANIL",
+      "url": "https://www.anil.org/votre-besoin/acheter/types-dachat/logement-existant/",
+      "facts": [
+        "ANIL recommends a short response period in an offer.",
+        "ANIL recommends paying nothing before the preliminary contract."
+      ]
+    },
+    {
+      "publisher": "Service-Public.fr",
+      "url": "https://www.service-public.fr/particuliers/vosdroits/F188",
+      "facts": [
+        "A loan-financed purchase promise includes a financing condition.",
+        "The buyer must respect the financing parameters written into that condition."
+      ]
+    },
+    {
+      "publisher": "Haut Conseil de stabilité financière",
+      "url": "https://www.economie.gouv.fr/hcsf/mesures/mesure-relative-loctroi-de-credits-immobiliers",
+      "facts": [
+        "The effort ratio is generally capped at 35 percent.",
+        "The maximum loan maturity is generally 25 years, with documented flexibility."
+      ]
+    }
+  ],
+  "removed_claims": [
+    "10 percent average discount in the old-property market",
+    "68 percent of listings priced 5 to 15 percent above real value",
+    "success probabilities by listing-to-market gap",
+    "automatic discount ranges by time on market",
+    "unverified quote attributed to Maître Dubois",
+    "78 percent of transactions facilitated by an agent",
+    "15,000 Score-Immo transactions in 2025",
+    "5.2 percent margin allegedly calculated by DVF",
+    "automatic DPE discount of 10 to 20 percent",
+    "4 percent national price decline in 2026",
+    "automatic percentage ladder for counteroffers"
+  ]
+}

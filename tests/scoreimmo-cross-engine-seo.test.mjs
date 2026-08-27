@@ -62,8 +62,8 @@ test("the negotiation cluster separates benchmarks from the procedural guide", (
   assert.match(negotiation.meta_description, /offre d'achat/i);
   assert.doesNotMatch(negotiation.meta_title, /^Marge de négociation/i);
   assert.ok(negotiation.meta_description.length <= 160);
-  assert.match(benchmarks.title, /^Marge de Négociation Immobilier 2026/i);
-  assert.match(benchmarks.meta_title, /selon la région/i);
+  assert.match(benchmarks.title, /^Marge de négociation immobilière 2026/i);
+  assert.match(benchmarks.meta_title, /5,1 % au T1/i);
 });
 
 test("the Bordeaux snippet targets neighbourhood comparison without an unsourced price promise", () => {
