@@ -3,12 +3,12 @@ import { LOT_2_LINKS } from './curated-internal-links-lot2.js';
 const RULES = new Map([
   ['guides/dpe-comprendre-classes-energetiques', [{
     href: '/blogs/guides/acheter-bien-dpe-vierge-risques',
-    needle: '<p>Non, depuis juillet 2021, tous les DPE doivent obligatoirement afficher une classe de A à G. Les DPE "vierges" ou "non renseignés" de l\'ancien système ne sont plus valides. Si un bien n\'a pas de classe, un nouveau diagnostic doit être réalisé.</p>',
-    replacement: '<p>Non, depuis juillet 2021, tous les DPE doivent obligatoirement afficher une classe de A à G. Les DPE "vierges" ou "non renseignés" de l\'ancien système ne sont plus valides. Si un bien n\'a pas de classe, un nouveau diagnostic doit être réalisé. Pour approfondir, consultez notre guide pour <a href="/blogs/guides/acheter-bien-dpe-vierge-risques">acheter un bien avec un DPE vierge</a>.</p>',
+    needle: '<p>Un DPE réalisé depuis le 1er juillet 2021 est en principe valable dix ans. Il doit comporter un numéro d\'identification ADEME à 13 chiffres. Les anciens DPE réalisés avant cette date ne sont plus utilisables depuis le 1er janvier 2025.</p>',
+    replacement: '<p>Un DPE réalisé depuis le 1er juillet 2021 est en principe valable dix ans. Il doit comporter un numéro d\'identification ADEME à 13 chiffres. Les anciens DPE réalisés avant cette date ne sont plus utilisables depuis le 1er janvier 2025. Si une annonce ne présente aucune classe exploitable, consultez les vérifications à mener avant d\'<a href="/blogs/guides/acheter-bien-dpe-vierge-risques">acheter un bien avec un DPE vierge</a>.</p>',
   }, {
     href: '/blogs/guides/dpe-2026-impact-reel-prix-vente-d-bien',
-    needle: 'pour estimer précisément l\'impact du DPE sur le prix.',
-    replacement: 'pour estimer précisément l\'<a href="/blogs/guides/dpe-2026-impact-reel-prix-vente-d-bien">impact réel du DPE sur le prix de vente</a>.',
+    needle: 'Le DPE peut influencer la valeur, mais il n\'existe pas de décote universelle applicable à toute annonce.',
+    replacement: 'Pour mesurer l\'<a href="/blogs/guides/dpe-2026-impact-reel-prix-vente-d-bien">impact réel du DPE sur le prix de vente</a>, il n\'existe pas de décote universelle applicable à toute annonce.',
   }]],
   ['guides/negocier-prix-bien-immobilier-guide-complet', [{
     href: '/blogs/guides/frais-agence-immobiliere-negocier',

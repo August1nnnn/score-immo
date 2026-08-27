@@ -73,7 +73,7 @@ export const LOT_2_LINKS = [
     from: "guides/dpe-comprendre-classes-energetiques",
     href: "/blogs/guides/carnet-information-logement-cil",
     anchorText: "carnet d'information du logement",
-    needle: "<h3 id=\"financement-travaux\">Financement des travaux énergétiques</h3>",
+    needle: "<h2 id=\"verifications-acheteur\">Que vérifier avant un achat ?</h2>",
     insertion: "\n<p>Pour retracer les travaux et les équipements déjà documentés, demandez aussi le <a href=\"/blogs/guides/carnet-information-logement-cil\">carnet d'information du logement</a> lorsqu'il s'applique au bien.</p>",
   },
   {
