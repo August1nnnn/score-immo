@@ -62,7 +62,9 @@ test("organization-authored articles do not resolve a fictional person record", 
 
 test("the FAQ schema recognizes the editorial Questions fréquentes heading", () => {
   const articlePage = read("src/pages/blogs/[blog]/[slug].astro");
-  assert.match(articlePage, /\(\?:FAQ\|Questions fréquentes\)/);
+  const faqExtractor = read("src/lib/extract-faq.js");
+  assert.match(articlePage, /extractFaq\(bodyHtml\)/);
+  assert.match(faqExtractor, /\(\?:FAQ\|Questions fréquentes\)/);
 });
 
 test("the September article is sealed outside the live collection", () => {
