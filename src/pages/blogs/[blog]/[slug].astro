@@ -192,7 +192,7 @@ if (article.handle === 'score-scoreimmo-methode-evaluation') {
         )}
 
         {!firstBodyLinkPriority && (
-          <AnalyzerBox blog={article.blog} medium="blog_top" />
+          <AnalyzerBox blog={article.blog} medium="blog_top" campaign={article.handle} />
         )}
 
         <div class="si-article-body" set:html={bodyHtml}></div>
@@ -212,7 +212,7 @@ if (article.handle === 'score-scoreimmo-methode-evaluation') {
         </p>
 
         <footer class="si-article-footer">
-          <AnalyzerBox blog={article.blog} medium="blog_end" />
+          <AnalyzerBox blog={article.blog} medium="blog_end" campaign={article.handle} />
         </footer>
       </article>
     </div>

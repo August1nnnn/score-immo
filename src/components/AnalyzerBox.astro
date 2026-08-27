@@ -5,9 +5,11 @@
 interface Props {
   blog?: string;
   medium?: string;
+  campaign?: string;
 }
-const { blog = 'guides', medium = 'blog_inline' } = Astro.props;
+const { blog = 'guides', medium = 'blog_inline', campaign = '' } = Astro.props;
 const formId = `article_analyzer_${/^[a-z0-9_]{1,40}$/.test(medium) ? medium : 'blog_inline'}`;
+const safeCampaign = /^[a-z0-9-]{1,80}$/.test(campaign) ? campaign : '';
 
 const copy: Record<string, { h: string; p: string }> = {
   villes: {
@@ -32,9 +34,10 @@ const c = copy[blog] || copy.guides;
 <div class="sib-card">
   <h2 class="sib-h">{c.h}</h2>
   <p class="sib-p">{c.p}</p>
-  <form class="sib-form" action="https://app.score-immo.fr/app" method="get" data-form-id={formId}>
+  <form class="sib-form" action="https://app.score-immo.fr/app" method="get" data-form-id={formId} data-analyzer-form>
     <input type="hidden" name="utm_source" value="site" />
     <input type="hidden" name="utm_medium" value={medium} />
+    {safeCampaign && <input type="hidden" name="utm_campaign" value={safeCampaign} />}
     <div class="sib-wrap">
       <svg class="sib-icon" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/>

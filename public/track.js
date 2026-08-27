@@ -266,7 +266,12 @@
     form.addEventListener("submit", function (event) {
       if (event.defaultPrevented) return;
       formsSubmitted.add(formId);
-      if (form.hasAttribute("data-analyzer-form")) return;
+      if (form.hasAttribute("data-analyzer-form")) {
+        if (!form.hasAttribute("data-analyzer-manual")) {
+          track("analyzer_submit", { form_id: formId });
+        }
+        return;
+      }
       track("form_submit", { form_id: formId });
     });
   }

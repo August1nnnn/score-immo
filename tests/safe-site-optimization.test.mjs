@@ -67,8 +67,20 @@ test("article analyzer is truthful, natively validated and privacy-safe", () => 
   assert.match(analyzer, /<input[\s\S]*type="url"[\s\S]*required/);
   assert.match(analyzer, /const formId[\s\S]{0,160}medium/);
   assert.match(analyzer, /data-form-id=\{formId\}/);
+  assert.match(analyzer, /data-analyzer-form/);
+  assert.match(analyzer, /campaign\?: string/);
+  assert.match(analyzer, /const safeCampaign[\s\S]{0,180}\^\[a-z0-9-\]/);
+  assert.match(analyzer, /name="utm_campaign" value=\{safeCampaign\}/);
   assert.doesNotMatch(analyzer, /data-form-id="article_analyzer"/);
   assert.doesNotMatch(analyzer, /listing_url|\.value/);
+});
+
+test("article analyzers carry the validated article handle as campaign", () => {
+  const route = read("src/pages/blogs/[blog]/[slug].astro");
+
+  assert.equal(count(route, "campaign={article.handle}"), 2);
+  assert.match(route, /medium="blog_top" campaign=\{article\.handle\}/);
+  assert.match(route, /medium="blog_end" campaign=\{article\.handle\}/);
 });
 
 test("calculator descriptions are human-readable and relevant", () => {
