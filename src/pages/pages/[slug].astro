@@ -26,8 +26,7 @@ export async function getStaticPaths() {
 
 const { page } = Astro.props;
 
-let bodyHtml = (page.body_html || '')
-  .replaceAll('https://claude.ai/pages/politique-de-confidentialite', '/pages/politique-de-confidentialite');
+let bodyHtml = page.body_html || '';
 
 if (page.handle === 'contact') {
   bodyHtml = bodyHtml.replace('<h2>Contactez-nous</h2>', '<h1>Contactez-nous</h1>');

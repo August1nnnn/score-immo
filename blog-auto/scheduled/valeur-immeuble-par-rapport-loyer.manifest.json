@@ -5,7 +5,7 @@
   "article": {
     "source": "blog-auto/scheduled-content/valeur-immeuble-par-rapport-loyer.json",
     "target": "src/content/articles/guides/valeur-immeuble-par-rapport-loyer.json",
-    "sha256": "c061217183e40814f1f7fdb1487066e3a091ba627592c51512dac4fb7beded73"
+    "sha256": "7a1de32ac72ceb327b1295da4f74a2bc0690e76ad3e7609cb83bdae32787cdcb"
   },
   "asset": {
     "source": "blog-auto/scheduled-assets/valeur-immeuble-par-rapport-loyer.webp",

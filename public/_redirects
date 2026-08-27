@@ -13,6 +13,11 @@
 /cgv /pages/cgv 301
 /mentions-legales /pages/mentions-legales 301
 
+# Anciennes biographies non vérifiables, consolidées vers la méthode éditoriale
+/pages/auteurs/camille-renard /pages/auteurs 301
+/pages/auteurs/lea-moreau /pages/auteurs 301
+/pages/auteurs/thomas-varin /pages/auteurs 301
+
 # /blogs racine -> guide hub
 /blogs /pages/guide 301
 
