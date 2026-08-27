@@ -32,8 +32,8 @@ const RULES = new Map([
   }]],
   ['villes/prix-immobilier-bordeaux-quartiers-tendances', [{
     href: '/blogs/quartiers/bordeaux-rive-droite-immobilier',
-    needle: '<p>La Bastide reste le dernier secteur abordable intra-muros. Le projet de liaison tramway Pont de Pierre - Gare Saint-Jean (livraison 2027) pourrait relancer ce marché. Les <em>maisons de ville</em> y sont 35% moins chères qu\'en rive gauche.</p>',
-    replacement: '<p>La Bastide reste le dernier secteur abordable intra-muros. Le projet de liaison tramway Pont de Pierre - Gare Saint-Jean (livraison 2027) pourrait relancer ce marché. Les <em>maisons de ville</em> y sont 35% moins chères qu\'en rive gauche. Approfondissez avec notre <a href="/blogs/quartiers/bordeaux-rive-droite-immobilier">guide de la Rive Droite : Bastide, Floirac et Cenon</a>.</p>',
+    needle: '<p>Dans cet échantillon, le Centre ville présente la médiane d\'appartements la plus élevée, tandis que Caudéran présente la plus basse. Cela ne suffit pas à classer les quartiers par qualité ou potentiel. La composition du stock vendu diffère : taille, époque de construction, état, étage, extérieur, terrain et dépendances ne sont pas identiques d\'un quartier à l\'autre.</p>',
+    replacement: '<p>Dans cet échantillon, le Centre ville présente la médiane d\'appartements la plus élevée, tandis que Caudéran présente la plus basse. Cela ne suffit pas à classer les quartiers par qualité ou potentiel. La composition du stock vendu diffère : taille, époque de construction, état, étage, extérieur, terrain et dépendances ne sont pas identiques d\'un quartier à l\'autre. Approfondissez le secteur avec notre <a href="/blogs/quartiers/bordeaux-rive-droite-immobilier">guide de la Rive Droite : Bastide, Floirac et Cenon</a>.</p>',
   }]],
   ['villes/prix-immobilier-strasbourg-marche-frontalier', [{
     href: '/blogs/quartiers/micro-quartiers-strasbourg-achat-authentique',

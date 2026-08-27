@@ -1,0 +1,115 @@
+{
+  "analysis_date": "2026-08-28",
+  "scope": "Commune de Bordeaux, code INSEE 33063",
+  "method": {
+    "mutation_nature": "Vente",
+    "unit_rule": "exactly_one_residential_local_per_mutation",
+    "allowed_types": [
+      "Appartement",
+      "Maison"
+    ],
+    "surface_rule": "surface_reelle_bati_greater_than_zero",
+    "price_rule": "valeur_fonciere_divided_by_surface_reelle_bati",
+    "price_floor_eur_m2": 500,
+    "price_ceiling_eur_m2": 15000,
+    "neighbourhood_assignment": "point_in_polygon_from_official_bordeaux_metropole_boundaries",
+    "aggregation": "median_of_selected_mutations"
+  },
+  "years": {
+    "2024": {
+      "source_url": "https://files.data.gouv.fr/geo-dvf/latest/csv/2024/communes/33/33063.csv",
+      "source_sha256": "324758454af115f15c596b13efa5356ab96ff8c6547446048de82e30dbcf71f1",
+      "source_last_modified": "2026-05-18T12:45:00Z",
+      "all_mutations": 5449,
+      "selected_mutations": 3718,
+      "apartments": {
+        "n": 2856,
+        "median_eur_m2": 4222,
+        "q1_eur_m2": 3520,
+        "q3_eur_m2": 5000
+      },
+      "houses": {
+        "n": 862,
+        "median_eur_m2": 4961,
+        "q1_eur_m2": 4058,
+        "q3_eur_m2": 5913
+      }
+    },
+    "2025": {
+      "source_url": "https://files.data.gouv.fr/geo-dvf/latest/csv/2025/communes/33/33063.csv",
+      "source_sha256": "db2ad0e849169489aabdf949b0651cbb74691de4b3a05837a548b1031707a262",
+      "source_last_modified": "2026-05-18T13:03:02Z",
+      "all_mutations": 6400,
+      "selected_mutations": 4516,
+      "apartments": {
+        "n": 3421,
+        "median_eur_m2": 4121,
+        "q1_eur_m2": 3462,
+        "q3_eur_m2": 4881,
+        "change_from_2024_pct": -2.4
+      },
+      "houses": {
+        "n": 1095,
+        "median_eur_m2": 4855,
+        "q1_eur_m2": 4033,
+        "q3_eur_m2": 5909,
+        "change_from_2024_pct": -2.1
+      }
+    }
+  },
+  "neighbourhood_source": {
+    "source_url": "https://opendata.bordeaux-metropole.fr/api/explore/v2.1/catalog/datasets/se_quart_s/exports/geojson?lang=fr&timezone=Europe%2FParis",
+    "source_sha256": "23c06e7a766403faf8ccc4e5404564309d655e08a59e6935a2970c49430e3616",
+    "selected_commune": "33063",
+    "selected_valid_features": 8
+  },
+  "neighbourhoods_2025": {
+    "Bordeaux Maritime": {
+      "selected_mutations": 473,
+      "apartments": { "n": 400, "median_eur_m2": 3860 },
+      "houses": { "n": 73, "median_eur_m2": 3865 }
+    },
+    "Bordeaux Sud": {
+      "selected_mutations": 661,
+      "apartments": { "n": 575, "median_eur_m2": 4099 },
+      "houses": { "n": 86, "median_eur_m2": 4326 }
+    },
+    "Caudéran": {
+      "selected_mutations": 823,
+      "apartments": { "n": 538, "median_eur_m2": 3615 },
+      "houses": { "n": 285, "median_eur_m2": 4983 }
+    },
+    "Centre ville": {
+      "selected_mutations": 838,
+      "apartments": { "n": 680, "median_eur_m2": 4731 },
+      "houses": { "n": 158, "median_eur_m2": 5295 }
+    },
+    "Chartrons - Grand Parc - Jardin Public": {
+      "selected_mutations": 589,
+      "apartments": { "n": 504, "median_eur_m2": 4398 },
+      "houses": { "n": 85, "median_eur_m2": 5238 }
+    },
+    "La Bastide": {
+      "selected_mutations": 236,
+      "apartments": { "n": 142, "median_eur_m2": 4102 },
+      "houses": { "n": 94, "median_eur_m2": 4652 }
+    },
+    "Nansouty - Saint Genès": {
+      "selected_mutations": 416,
+      "apartments": { "n": 279, "median_eur_m2": 4104 },
+      "houses": { "n": 137, "median_eur_m2": 5000 }
+    },
+    "Saint Augustin - Tauzin - Alphonse Dupeux": {
+      "selected_mutations": 480,
+      "apartments": { "n": 303, "median_eur_m2": 4318 },
+      "houses": { "n": 177, "median_eur_m2": 5070 }
+    }
+  },
+  "limitations": [
+    "DVF does not contain the initial listing price or the negotiated discount.",
+    "DVF does not contain the DPE class or the condition of the property.",
+    "The declared transaction value can include dependencies sold with the selected residential local.",
+    "Multi-property mutations are excluded to avoid dividing a bundle price by a single surface.",
+    "Late land-registry entries can change a historical vintage at a later DVF publication."
+  ]
+}
