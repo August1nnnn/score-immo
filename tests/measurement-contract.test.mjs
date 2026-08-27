@@ -315,12 +315,115 @@ test("homepage analyzer has explicit funnel instrumentation", async () => {
   const hero = await read("src/components/sections/Hero.astro");
   assert.match(hero, /data-form-id="homepage_analyzer"/);
   assert.match(hero, /data-analyzer-form/);
+  assert.match(hero, /data-analyzer-manual/);
   assert.match(
     hero,
     /siTrack\('analyzer_submit', \{ form_id: 'homepage_analyzer' \}\)/,
   );
   assert.match(hero, /if \(!val\) \{\s+e\.preventDefault\(\)/);
   assert.match(hero, /host === domain \|\| host\.endsWith\('\.' \+ domain\)/);
+});
+
+test("form instrumentation emits one qualified event for each analyzer surface", async () => {
+  const source = await read("public/track.js");
+  const fetches = [];
+
+  function fakeForm(attributes) {
+    const listeners = new Map();
+    return {
+      getAttribute(name) {
+        return attributes[name] ?? null;
+      },
+      hasAttribute(name) {
+        return Object.hasOwn(attributes, name);
+      },
+      addEventListener(name, callback) {
+        listeners.set(name, callback);
+      },
+      submit() {
+        listeners.get("submit")?.({ defaultPrevented: false });
+      },
+    };
+  }
+
+  const articleAnalyzer = fakeForm({
+    "data-form-id": "article_analyzer_blog_top",
+    "data-analyzer-form": "",
+  });
+  const manualHomepageAnalyzer = fakeForm({
+    "data-form-id": "homepage_analyzer",
+    "data-analyzer-form": "",
+    "data-analyzer-manual": "",
+  });
+  const contactForm = fakeForm({ "data-form-id": "contact_form" });
+  const forms = [articleAnalyzer, manualHomepageAnalyzer, contactForm];
+  const consent = {
+    getStatus: () => "accepted",
+    getJourneyId: () => "11111111-1111-4111-8111-111111111111",
+    onChange() {},
+  };
+  const document = {
+    readyState: "complete",
+    referrer: "https://www.bing.com/search?q=annonce",
+    addEventListener() {},
+    querySelectorAll: () => forms,
+    documentElement: { scrollHeight: 1_000 },
+    body: { scrollHeight: 1_000 },
+  };
+  const window = {
+    ScoreImmoConsent: consent,
+    addEventListener() {},
+    innerHeight: 800,
+    scrollY: 0,
+  };
+
+  vm.runInNewContext(source, {
+    window,
+    document,
+    location: {
+      origin: "https://score-immo.fr",
+      pathname: "/blogs/guides/test",
+      hostname: "score-immo.fr",
+      href: "https://score-immo.fr/blogs/guides/test",
+    },
+    navigator: {},
+    sessionStorage: storage(),
+    crypto: {
+      randomUUID: () => "22222222-2222-4222-8222-222222222222",
+    },
+    fetch: async (url, options) => {
+      fetches.push({ url, options });
+      return { ok: true };
+    },
+    URL,
+    Set,
+    Map,
+    MutationObserver: undefined,
+    IntersectionObserver: undefined,
+    setTimeout,
+    clearTimeout,
+  });
+
+  articleAnalyzer.submit();
+  manualHomepageAnalyzer.submit();
+  contactForm.submit();
+
+  const submitted = fetches
+    .map(({ options }) => JSON.parse(options.body))
+    .filter(({ event_type }) => event_type !== "marketing_page_view");
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(submitted.map(({ event_type, metadata }) => ({
+      event_type,
+      form_id: metadata.form_id,
+    })))),
+    [
+      {
+        event_type: "analyzer_submit",
+        form_id: "article_analyzer_blog_top",
+      },
+      { event_type: "form_submit", form_id: "contact_form" },
+    ],
+  );
 });
 
 test("portal validation accepts only exact hosts and real subdomains", () => {
@@ -339,6 +442,7 @@ test("layout initializes consent before analytics and does not mount legacy dire
   const ga4Position = layout.indexOf('src="/ga4.js"');
   assert.ok(consentPosition >= 0);
   assert.ok(ga4Position > consentPosition);
+  assert.match(layout, /src="\/track\.js\?v=20260827-lot2"/);
   assert.doesNotMatch(layout, /<Analytics\s*\/>/);
   assert.doesNotMatch(legacyAnalytics, /rest\/v1\/page_views/);
   assert.match(legacyGa4, /src="\/ga4\.js"/);
