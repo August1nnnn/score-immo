@@ -14,19 +14,19 @@ const safeCampaign = /^[a-z0-9-]{1,80}$/.test(campaign) ? campaign : '';
 const copy: Record<string, { h: string; p: string }> = {
   villes: {
     h: 'Une annonce qui vous intéresse ?',
-    p: "Collez le lien pour ouvrir l'analyse de cette annonce dans ScoreImmo.",
+    p: "Collez le lien pour ouvrir l'analyse de cette annonce dans Score-Immo.",
   },
   quartiers: {
     h: 'Un bien dans le quartier ?',
-    p: "Collez le lien pour ouvrir l'analyse de cette annonce dans ScoreImmo.",
+    p: "Collez le lien pour ouvrir l'analyse de cette annonce dans Score-Immo.",
   },
   guides: {
     h: 'Mettez ce guide en pratique',
-    p: "Collez le lien pour ouvrir l'analyse de cette annonce dans ScoreImmo.",
+    p: "Collez le lien pour ouvrir l'analyse de cette annonce dans Score-Immo.",
   },
   pro: {
     h: "L'outil d'analyse que les pros utilisent",
-    p: "Collez le lien pour ouvrir l'analyse de cette annonce dans ScoreImmo.",
+    p: "Collez le lien pour ouvrir l'analyse de cette annonce dans Score-Immo.",
   },
 };
 const c = copy[blog] || copy.guides;
@@ -56,7 +56,7 @@ const c = copy[blog] || copy.guides;
       <button type="submit" class="si-btn si-btn-primary sib-submit">Analyser</button>
     </div>
   </form>
-  <p class="sib-hint">Démo complète gratuite. Rapport personnalisé dès 2,99 €. Données publiques, 100% indépendant.</p>
+  <p class="sib-hint">Démo complète gratuite. Rapport personnalisé dès 2,99 €. Données publiques, analyse conçue du côté de l'acheteur.</p>
 </div>
 
 <style>

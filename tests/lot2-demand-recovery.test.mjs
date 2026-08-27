@@ -32,3 +32,15 @@ test("the analysis guide owns the pre-visit educational intent", () => {
   assert.ok(article.meta_description.length <= 160);
   assert.equal(article.handle, "analyser-annonce-immobiliere-comme-pro");
 });
+
+test("article analyzers use the canonical brand and a bounded buyer-side claim", () => {
+  const analyzer = readFileSync(
+    new URL("src/components/AnalyzerBox.astro", root),
+    "utf8",
+  );
+
+  assert.doesNotMatch(analyzer, /dans ScoreImmo/);
+  assert.match(analyzer, /dans Score-Immo/);
+  assert.doesNotMatch(analyzer, /100% indépendant/);
+  assert.match(analyzer, /analyse conçue du côté de l'acheteur/);
+});
