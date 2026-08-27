@@ -15,7 +15,7 @@ const countWords = (html) => stripHtml(html).split(" ").filter(Boolean).length;
 const sha256 = (path) => createHash("sha256").update(readFileSync(new URL(path, ROOT))).digest("hex");
 
 function assertScoreImmoArticle(article, { anchor, url }) {
-  assert.equal(article.author, "ScoreImmo");
+  assert.equal(article.author, "Score-Immo");
   assert.equal(article.author_handle, "scoreimmo");
   assert.equal(article.first_body_link_priority, true);
   assert.equal(article.word_count, countWords(article.body_html));
@@ -56,8 +56,8 @@ test("the immediate Montclair article preserves its exact sponsored homepage lin
 
 test("organization-authored articles do not resolve a fictional person record", () => {
   const articlePage = read("src/pages/blogs/[blog]/[slug].astro");
-  assert.match(articlePage, /authorHandle === 'scoreimmo'/);
-  assert.match(articlePage, /isOrganizationAuthor \? undefined : await getEntry\('authors', authorHandle\)/);
+  assert.match(articlePage, /author: \{ '@type': 'Organization', name: 'Score-Immo'/);
+  assert.doesNotMatch(articlePage, /getEntry\('authors'|AuthorCard/);
 });
 
 test("the FAQ schema recognizes the editorial Questions fréquentes heading", () => {

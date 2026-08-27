@@ -10,8 +10,8 @@ const articles = defineCollection({
     blog: z.enum(['guides', 'villes', 'quartiers', 'pro']),
     body_html: z.string(),
     summary_html: z.string().nullable().optional(),
-    author: z.string().default('Léa Moreau'),
-    author_handle: z.string().default('lea-moreau'),
+    author: z.string().default('Score-Immo'),
+    author_handle: z.string().default('scoreimmo'),
     published_at: z.string(),
     updated_at: z.string().nullable().optional(),
     last_reviewed: z.string().nullable().optional(),
@@ -32,22 +32,6 @@ const articles = defineCollection({
       publisher: z.string().optional(),
     })).default([]),
     word_count: z.number().optional(),
-  }),
-});
-
-const authors = defineCollection({
-  loader: glob({ pattern: '**/*.json', base: './src/content/authors' }),
-  schema: z.object({
-    handle: z.string(),
-    name: z.string(),
-    title: z.string(),
-    bio: z.string(),
-    expertise: z.array(z.string()),
-    years_experience: z.number(),
-    avatar_initials: z.string(),
-    avatar_color: z.string(),
-    linkedin: z.string().optional(),
-    published_in: z.array(z.string()).optional(),
   }),
 });
 
@@ -76,4 +60,4 @@ const barometre = defineCollection({
   }),
 });
 
-export const collections = { articles, authors, barometre };
+export const collections = { articles, barometre };

@@ -109,13 +109,15 @@ test("FAQ structured data is visible and generated from the same pricing source"
   assert.doesNotMatch(pricing, /D&eacute;cidez/i);
 });
 
-test("legal privacy links are first-party while unconfirmed legal fields stay gated", () => {
+test("legal privacy links and verified publisher fields are first-party", () => {
   const legal = JSON.parse(read("src/data/pages/mentions-legales.json")).body_html;
   const route = read("src/pages/pages/[slug].astro");
 
-  assert.equal(count(legal, 'https://claude.ai/pages/politique-de-confidentialite'), 2);
-  assert.match(route, /replaceAll\('https:\/\/claude\.ai\/pages\/politique-de-confidentialite', '\/pages\/politique-de-confidentialite'\)/);
-  assert.match(legal, /\[PRÉNOM NOM\]/);
+  assert.equal(count(legal, 'href="/pages/politique-de-confidentialite"'), 1);
+  assert.match(legal, /Augustin Foucheres/);
+  assert.match(legal, /890 838 709/);
+  assert.doesNotMatch(legal, /\[PRÉNOM NOM\]|claude\.ai/i);
+  assert.doesNotMatch(route, /claude\.ai/i);
 });
 
 test("contact and privacy pages expose a single logical heading hierarchy", () => {
@@ -182,10 +184,8 @@ test("bounded visible French copy keeps required accents", () => {
 
 test("measured contrast defects use the established accessible palette", () => {
   const hub = read("src/pages/barometre/index.astro");
-  const author = JSON.parse(read("src/content/authors/thomas-varin.json"));
 
   assert.match(hub, /s >= 40 \? '#B45309'/);
-  assert.equal(author.avatar_color.toUpperCase(), "#047857");
 });
 
 test("mobile menu exposes state, blocks closed focus and supports keyboard closure", () => {
