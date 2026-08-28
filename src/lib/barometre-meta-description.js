@@ -4,7 +4,7 @@ export function buildBarometreMetaDescription(fiche) {
   const property = fiche.type_bien === 'appartement'
     ? "d'un appartement"
     : "d'une maison";
-  const base = `Analyse ScoreImmo ${property} de ${fiche.surface} m² à ${fiche.ville} (${fiche.code_postal}) : score ${fiche.score_global}/100.`;
+  const base = `Analyse Score-Immo ${property} de ${fiche.surface} m² à ${fiche.ville} (${fiche.code_postal}) : score ${fiche.score_global}/100.`;
 
   if (base.length > MAX_META_DESCRIPTION_LENGTH) {
     throw new Error(`Barometer base description exceeds ${MAX_META_DESCRIPTION_LENGTH} characters: ${fiche.slug}`);

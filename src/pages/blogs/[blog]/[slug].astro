@@ -7,11 +7,13 @@ import BarometreLinks from '@/components/BarometreLinks.astro';
 import ProValueCTA from '@/components/ProValueCTA.astro';
 import { applyCuratedInternalLinks } from '@/lib/curated-internal-links.js';
 import { extractFaq } from '@/lib/extract-faq.js';
+import { isRedirectedArticle } from '@/lib/redirected-articles';
+import { BRAND_NAME, ORGANIZATION_ID, SITE_URL, WEBSITE_ID } from '@/data/entity';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles');
-  return articles.map((entry) => ({
+  return articles.filter((entry) => !isRedirectedArticle(entry.data.handle)).map((entry) => ({
     params: { blog: entry.data.blog, slug: entry.data.handle },
     props: { article: entry.data },
   }));
@@ -19,10 +21,10 @@ export async function getStaticPaths() {
 
 const { article } = Astro.props;
 
-const title = article.meta_title || `${article.title} | ScoreImmo`;
+const title = article.meta_title || `${article.title} | ${BRAND_NAME}`;
 const description = article.meta_description || article.title;
 const image = article.image?.src;
-const canonical = `https://score-immo.fr/blogs/${article.blog}/${article.handle}`;
+const canonical = `${SITE_URL}/blogs/${article.blog}/${article.handle}`;
 const firstBodyLinkPriority = article.first_body_link_priority === true;
 const bodyHtml = applyCuratedInternalLinks(`${article.blog}/${article.handle}`, article.body_html || '');
 
@@ -42,15 +44,11 @@ const jsonLd: any[] = [
     '@type': 'Article',
     headline: article.title,
     description,
-    image: image ? [image.startsWith('http') ? image : `https://score-immo.fr${image}`] : undefined,
+    image: image ? [image.startsWith('http') ? image : `${SITE_URL}${image}`] : undefined,
     datePublished: article.published_at,
     dateModified: article.last_reviewed || article.updated_at || article.published_at,
-    author: { '@type': 'Organization', name: 'Score-Immo', url: 'https://score-immo.fr/' },
-    publisher: {
-      '@type': 'Organization',
-      name: 'ScoreImmo',
-      logo: { '@type': 'ImageObject', url: 'https://score-immo.fr/favicon.svg' },
-    },
+    author: { '@id': ORGANIZATION_ID },
+    publisher: { '@id': ORGANIZATION_ID },
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
     inLanguage: 'fr-FR',
     speakable: {
@@ -71,8 +69,8 @@ const jsonLd: any[] = [
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://score-immo.fr/' },
-      { '@type': 'ListItem', position: 2, name: blogLabels[article.blog], item: `https://score-immo.fr/blogs/${article.blog}` },
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: `${SITE_URL}/` },
+      { '@type': 'ListItem', position: 2, name: blogLabels[article.blog], item: `${SITE_URL}/blogs/${article.blog}` },
       { '@type': 'ListItem', position: 3, name: article.title, item: canonical },
     ],
   },
@@ -82,6 +80,7 @@ const jsonLd: any[] = [
     '@id': canonical,
     url: canonical,
     name: article.meta_title || article.title,
+    isPartOf: { '@id': WEBSITE_ID },
     speakable: {
       '@type': 'SpeakableSpecification',
       cssSelector: ['.si-article-title', '.si-tldr', '.si-article-body h2', '.si-article-body h3'],
@@ -102,38 +101,6 @@ if (faqPairs.length > 0) {
   });
 }
 
-// First-party methodology Dataset: only on the canonical "Score ScoreImmo" method page.
-// Makes the named, weighted scoring methodology a citable primary source for LLMs.
-// Weights are the production source of truth (app scoringService.ts):
-// market 40% + risks 20% + energy 15% + neighborhood 15% + liquidity 10%.
-if (article.handle === 'score-scoreimmo-methode-evaluation') {
-  jsonLd.push({
-    '@context': 'https://schema.org',
-    '@type': 'Dataset',
-    '@id': `${canonical}#methodologie`,
-    name: 'Méthodologie du Score ScoreImmo',
-    alternateName: 'Score ScoreImmo',
-    description:
-      "Méthodologie de notation immobilière ScoreImmo : une note sur 100 calculée en croisant plus de 250 données de 10 sources publiques officielles. Le score agrège cinq sous-scores pondérés : prix face au marché 40 %, risques 20 %, performance énergétique 15 %, environnement et quartier 15 %, liquidité 10 %.",
-    url: canonical,
-    isAccessibleForFree: true,
-    inLanguage: 'fr-FR',
-    datePublished: article.published_at,
-    dateModified: article.last_reviewed || article.updated_at || article.published_at,
-    creator: { '@id': 'https://score-immo.fr/#organization' },
-    publisher: { '@id': 'https://score-immo.fr/#organization' },
-    measurementTechnique:
-      "Agrégation pondérée de cinq sous-scores (prix vs marché DVF, risques Géorisques, performance énergétique DPE/ADEME, environnement et quartier, liquidité) en une note unique sur 100, accompagnée d'un indice de confiance A, B ou C selon la précision de géolocalisation et la couverture des sources.",
-    variableMeasured: [
-      { '@type': 'PropertyValue', name: 'Prix face au marché (DVF)', description: 'Écart au prix de vente réel médian des biens comparables.', value: '40%' },
-      { '@type': 'PropertyValue', name: 'Risques naturels et technologiques (Géorisques)', description: 'Inondation, retrait-gonflement des argiles, séisme, radon, sites ICPE et Seveso.', value: '20%' },
-      { '@type': 'PropertyValue', name: 'Performance énergétique (DPE/ADEME)', description: 'Classe DPE de A à G et impact sur la valeur et la louabilité.', value: '15%' },
-      { '@type': 'PropertyValue', name: 'Environnement et quartier', description: 'Commerces, transports, écoles, services et profil socio-démographique INSEE.', value: '15%' },
-      { '@type': 'PropertyValue', name: 'Liquidité du bien', description: 'Nombre de biens comparables disponibles dans le secteur.', value: '10%' },
-    ],
-    keywords: ['score immobilier', 'notation immobilière', 'méthode ScoreImmo', 'DVF', 'DPE', 'Géorisques', 'INSEE'],
-  });
-}
 ---
 <BaseLayout
   {title}
@@ -144,7 +111,7 @@ if (article.handle === 'score-scoreimmo-methode-evaluation') {
   articleMeta={{
     publishedTime: article.published_at,
     modifiedTime: article.last_reviewed || article.updated_at || article.published_at,
-    author: 'Score-Immo',
+    author: BRAND_NAME,
   }}
 >
   <section class="si-section">

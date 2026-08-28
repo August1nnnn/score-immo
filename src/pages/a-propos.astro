@@ -1,0 +1,95 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { BRAND_NAME, ORGANIZATION_ID, SITE_URL, WEBSITE_ID } from '@/data/entity';
+
+const canonical = `${SITE_URL}/a-propos`;
+const title = `À propos de ${BRAND_NAME}`;
+const description = `${BRAND_NAME} est une plateforme française d'analyse de biens immobiliers à partir de données publiques, conçue du côté de l'acheteur.`;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    '@id': canonical,
+    url: canonical,
+    name: title,
+    description,
+    inLanguage: 'fr-FR',
+    isPartOf: { '@id': WEBSITE_ID },
+    mainEntity: { '@id': ORGANIZATION_ID },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: `${SITE_URL}/` },
+      { '@type': 'ListItem', position: 2, name: 'À propos', item: canonical },
+    ],
+  },
+];
+---
+<BaseLayout {title} {description} {canonical} {jsonLd}>
+  <section class="si-section">
+    <div class="si-container si-institutional">
+      <nav class="si-breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a><span> &rsaquo; </span><span>À propos</span>
+      </nav>
+
+      <header class="si-institutional-header">
+        <p class="si-institutional-kicker">Identité et mission</p>
+        <h1>À propos de Score-Immo</h1>
+        <p class="si-institutional-lead">Score-Immo est une plateforme française d'analyse de biens immobiliers à partir de données publiques, conçue du côté de l'acheteur.</p>
+      </header>
+
+      <div class="si-institutional-grid">
+        <section>
+          <h2>Ce que fait le service</h2>
+          <p>Score-Immo aide à examiner une annonce avant une décision d'achat. L'application rassemble les informations disponibles sur le prix, la performance énergétique, les risques, l'urbanisme, l'environnement et le contexte local.</p>
+          <p>Le rapport indique les sources utilisées, les points de vigilance et la couverture des données. Une information absente ou insuffisamment fiable ne doit pas être présentée comme un fait certain.</p>
+        </section>
+
+        <section>
+          <h2>Ce que le service ne fait pas</h2>
+          <p>Score-Immo ne remplace pas une visite, un diagnostic réglementaire, une expertise immobilière, un notaire, un diagnostiqueur ou un conseil juridique, fiscal ou financier.</p>
+          <p>Le score et les estimations sont indicatifs. Ils servent à comparer, vérifier et préparer des questions, pas à prendre une décision à la place de l'acheteur.</p>
+        </section>
+
+        <section>
+          <h2>Éditeur et responsabilité</h2>
+          <p>Le service est édité par <strong>Augustin Foucheres</strong>, entrepreneur individuel, SIREN <strong>890 838 709</strong>. Le directeur de la publication est Augustin Foucheres.</p>
+          <p>Les coordonnées, l'hébergement et les informations juridiques complètes figurent dans les <a href="/pages/mentions-legales">mentions légales</a>.</p>
+        </section>
+
+        <section>
+          <h2>Méthode et corrections</h2>
+          <p>La page <a href="/methodologie">Méthodologie</a> documente les sources, le calcul du score, la gestion des données manquantes, les échantillons du Baromètre et les limites du service.</p>
+          <p>Une erreur peut être signalée à <a href="mailto:contact@score-immo.fr">contact@score-immo.fr</a>. Les corrections importantes sont datées sur la page concernée ou dans la méthode.</p>
+        </section>
+      </div>
+
+      <div class="si-institutional-actions">
+        <a class="si-btn si-btn-primary" href="https://app.score-immo.fr/app?utm_source=site&utm_medium=about">Analyser une annonce</a>
+        <a class="si-btn si-btn-secondary" href="/methodologie">Lire la méthodologie</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .si-institutional { max-width: 56rem; }
+  .si-breadcrumb { font-size: 0.875rem; color: var(--si-muted-foreground); margin: 1rem 0 2rem; }
+  .si-breadcrumb a { color: inherit; text-decoration: none; }
+  .si-institutional-header { max-width: 48rem; margin: 0 auto 2.5rem; text-align: center; }
+  .si-institutional-kicker { color: var(--si-accent); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  .si-institutional-header h1 { font-family: var(--si-font-heading); font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin: 0.6rem 0 1rem; }
+  .si-institutional-lead { color: var(--si-muted-foreground); font-size: 1.15rem; line-height: 1.7; }
+  .si-institutional-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  .si-institutional-grid section { background: var(--si-card); border: 1px solid var(--si-border); border-radius: var(--si-radius-xl); padding: 1.5rem; }
+  .si-institutional-grid h2 { font-family: var(--si-font-heading); font-size: 1.2rem; margin: 0 0 0.75rem; }
+  .si-institutional-grid p { line-height: 1.7; margin: 0 0 0.8rem; }
+  .si-institutional-grid p:last-child { margin-bottom: 0; }
+  .si-institutional-grid a { color: var(--si-accent); }
+  .si-institutional-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin: 2rem 0; }
+  .si-btn-secondary { border: 1px solid var(--si-border); background: var(--si-card); color: var(--si-foreground); }
+  @media (max-width: 720px) { .si-institutional-grid { grid-template-columns: 1fr; } }
+</style>

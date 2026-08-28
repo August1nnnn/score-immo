@@ -12,8 +12,9 @@ import Problem from '@/components/sections/Problem.astro';
 import Blog from '@/components/sections/Blog.astro';
 import Outils from '@/components/sections/Outils.astro';
 import CTA from '@/components/sections/CTA.astro';
-const title = "ScoreImmo - Analysez une annonce immobilière en 30 secondes";
-const description = "5 heures d'analyse immobilière en 30 secondes. Collez le lien d'une annonce, découvrez si c'est une bonne affaire. Prix, DPE, risques, quartier : le rapport le plus complet.";
+import { BRAND_NAME } from '@/data/entity';
+const title = `${BRAND_NAME} - Analysez une annonce immobilière en 30 secondes`;
+const description = "Collez le lien d'une annonce immobilière et obtenez une analyse du prix, du DPE, des risques et du quartier à partir des données disponibles.";
 
 import { homepageJsonLd as jsonLd } from '@/data/homepage-jsonld';
 ---

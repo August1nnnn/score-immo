@@ -143,11 +143,14 @@ test("contact and privacy pages expose a single logical heading hierarchy", () =
 
 test("page metadata and Barometer wording preserve human grammar", () => {
   const layout = read("src/layouts/BaseLayout.astro");
+  const entity = read("src/data/entity.ts");
   const legacyPage = read("src/pages/pages/[slug].astro");
   const fiche = read("src/pages/barometre/[slug].astro");
   const hub = read("src/pages/blogs/[blog]/index.astro");
 
-  assert.match(layout, /articleMeta\?\.author\s*\|\|\s*['"]ScoreImmo['"]/);
+  assert.match(layout, /import \{ BRAND_NAME, organizationJsonLd \}/);
+  assert.match(layout, /articleMeta\?\.author\s*\|\|\s*BRAND_NAME/);
+  assert.match(entity, /BRAND_NAME = ['"]Score-Immo['"]/);
   assert.match(legacyPage, /replace\(\/<\[\^>\]\*>\/g,\s*['"] ['"]\)/);
   assert.match(fiche, /typeAgreement/);
   assert.match(fiche, /indefiniteArticle/);

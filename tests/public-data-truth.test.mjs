@@ -65,12 +65,16 @@ test("sales terms use the same verified publisher identity and address", () => {
 });
 
 test("structured identity uses the canonical brand without an unsupported leadership claim", () => {
-  const jsonLd = read("src/data/homepage-jsonld.ts");
+  const entity = read("src/data/entity.ts");
+  const homepageJsonLd = read("src/data/homepage-jsonld.ts");
 
-  assert.match(jsonLd, /"name": "Score-Immo"/);
-  assert.match(jsonLd, /"alternateName": "ScoreImmo"/);
-  assert.match(jsonLd, /plateforme française d'analyse de biens immobiliers à partir de données publiques/i);
-  assert.doesNotMatch(jsonLd, /Premier outil français|"foundingDate": "2025"/i);
+  assert.match(entity, /BRAND_NAME = ['"]Score-Immo['"]/);
+  assert.match(entity, /ALTERNATE_NAMES = \[['"]ScoreImmo['"], ['"]Score Immo['"]\]/);
+  assert.match(entity, /plateforme française d'analyse de biens immobiliers à partir de données publiques/i);
+  assert.match(entity, /ORGANIZATION_ID/);
+  assert.match(homepageJsonLd, /"publisher": \{ "@id": ORGANIZATION_ID \}/);
+  assert.match(homepageJsonLd, /"creator": \{ "@id": ORGANIZATION_ID \}/);
+  assert.doesNotMatch(`${entity}\n${homepageJsonLd}`, /Premier outil français|"foundingDate": "2025"/i);
 });
 
 test("high-visibility copy avoids unsupported superiority and usage claims", () => {

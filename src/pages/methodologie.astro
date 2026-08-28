@@ -1,0 +1,292 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import {
+  APPLICATION_ID,
+  BRAND_NAME,
+  ORGANIZATION_ID,
+  SITE_URL,
+  WEBSITE_ID,
+} from '@/data/entity';
+
+const canonical = `${SITE_URL}/methodologie`;
+const title = `Méthodologie ${BRAND_NAME} : sources, score et limites`;
+const description = `Comment ${BRAND_NAME} calcule son score sur 100, sélectionne les données disponibles, mesure leur couverture et documente les limites de chaque analyse.`;
+
+const residentialSections = [
+  ['Prix face au marché', '18 %'],
+  ['Performance énergétique', '12 %'],
+  ['Risques naturels et industriels', '12 %'],
+  ['Transports', '10 %'],
+  ['Commerces et services', '8 %'],
+  ['Environnement', '8 %'],
+  ['Urbanisme', '7 %'],
+  ['Écoles', '5 %'],
+  ['Profil socio-démographique', '5 %'],
+  ['Taxe foncière', '5 %'],
+  ['Rendement locatif', '4 %'],
+  ['Coût d’acquisition', '3 %'],
+  ['Actualités locales', '3 %'],
+];
+
+const categoryGrids = [
+  {
+    name: 'Terrain',
+    weights: 'Prix 20 %, constructibilité 20 %, risques 15 %, environnement 10 %, transports 8 %, taxe foncière 7 %, commerces 5 %, profil socio-démographique 5 %, actualités 5 %, coût d’acquisition 5 %.',
+  },
+  {
+    name: 'Local commercial',
+    weights: 'Prix 15 %, rendement 15 %, flux et transports 15 %, environnement commercial 15 %, urbanisme 10 %, risques 8 %, bassin de population 7 %, fiscalité 5 %, dynamisme local 5 %, coût d’acquisition 5 %.',
+  },
+  {
+    name: 'Immeuble',
+    weights: 'Prix 15 %, rendement 15 %, DPE 10 %, risques 10 %, transports 10 %, commerces 8 %, bassin locatif 8 %, environnement 5 %, urbanisme 5 %, fiscalité 5 %, écoles 4 %, coût d’acquisition 3 %, actualités 2 %.',
+  },
+  {
+    name: 'Parking',
+    weights: 'Rendement 25 %, prix 20 %, transports 20 %, demande locale 15 %, risques 10 %, coût d’acquisition 10 %.',
+  },
+];
+
+const sources = [
+  {
+    name: 'Demandes de valeurs foncières, DVF',
+    url: 'https://www.data.gouv.fr/fr/datasets/demandes-de-valeurs-foncieres/',
+    role: 'Transactions enregistrées par l’administration fiscale et références de prix locales.',
+    status: 'Donnée publique administrative.',
+  },
+  {
+    name: 'Observatoire DPE-Audit de l’ADEME',
+    url: 'https://observatoire-dpe-audit.ademe.fr/',
+    role: 'Diagnostics de performance énergétique disponibles et rapprochement avec l’adresse.',
+    status: 'Donnée publique administrative.',
+  },
+  {
+    name: 'Géorisques',
+    url: 'https://www.georisques.gouv.fr/',
+    role: 'Risques naturels, technologiques, ICPE et sites Seveso disponibles autour du bien.',
+    status: 'Service public de l’État.',
+  },
+  {
+    name: 'INSEE',
+    url: 'https://www.insee.fr/',
+    role: 'Population, revenus et indicateurs socio-démographiques locaux disponibles.',
+    status: 'Statistique publique.',
+  },
+  {
+    name: 'Géoportail de l’urbanisme',
+    url: 'https://www.geoportail-urbanisme.gouv.fr/',
+    role: 'Zonage et documents d’urbanisme disponibles pour l’adresse.',
+    status: 'Portail public national.',
+  },
+  {
+    name: 'Base Adresse Nationale',
+    url: 'https://adresse.data.gouv.fr/',
+    role: 'Géocodage et niveau de précision de l’adresse analysée.',
+    status: 'Référentiel public national.',
+  },
+  {
+    name: 'OpenStreetMap',
+    url: 'https://www.openstreetmap.org/',
+    role: 'Commerces, services, transports et équipements de proximité disponibles.',
+    status: 'Base ouverte et contributive, non administrative.',
+  },
+  {
+    name: 'Annuaire de l’Éducation nationale',
+    url: 'https://data.education.gouv.fr/',
+    role: 'Établissements scolaires et informations publiques associées.',
+    status: 'Donnée publique administrative.',
+  },
+  {
+    name: 'ATMO France',
+    url: 'https://atmo-france.org/',
+    role: 'Qualité de l’air lorsqu’une mesure locale exploitable est disponible.',
+    status: 'Réseau agréé de surveillance de la qualité de l’air.',
+  },
+  {
+    name: 'Données ouvertes de la DGFIP',
+    url: 'https://data.economie.gouv.fr/',
+    role: 'Taux de fiscalité locale disponibles pour estimer la taxe foncière.',
+    status: 'Donnée publique administrative.',
+  },
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': canonical,
+    url: canonical,
+    name: title,
+    description,
+    dateModified: '2026-08-28',
+    inLanguage: 'fr-FR',
+    isPartOf: { '@id': WEBSITE_ID },
+    about: { '@id': APPLICATION_ID },
+    publisher: { '@id': ORGANIZATION_ID },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: `${SITE_URL}/` },
+      { '@type': 'ListItem', position: 2, name: 'Méthodologie', item: canonical },
+    ],
+  },
+];
+---
+<BaseLayout {title} {description} {canonical} {jsonLd}>
+  <section class="si-section">
+    <div class="si-container si-method">
+      <nav class="si-breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a><span> &rsaquo; </span><span>Méthodologie</span>
+      </nav>
+
+      <header class="si-method-header">
+        <p class="si-method-kicker">Version publique de la méthode en vigueur au 28 août 2026</p>
+        <h1>Méthodologie Score-Immo</h1>
+        <p>Le score sur 100 résume les sections dont la donnée est suffisamment fiable pour le bien analysé. Il doit toujours être lu avec sa couverture, ses sources et le détail du rapport.</p>
+      </header>
+
+      <aside class="si-method-summary" aria-label="Résumé de la méthode">
+        <strong>À retenir</strong>
+        <ul>
+          <li>La grille dépend de la catégorie du bien.</li>
+          <li>Une donnée insuffisante ou non autoritative est exclue du score.</li>
+          <li>Les poids restants sont normalisés et la couverture est affichée.</li>
+          <li>Le score est indicatif et ne remplace aucune expertise réglementaire.</li>
+        </ul>
+      </aside>
+
+      <section>
+        <h2>1. De l’annonce au rapport</h2>
+        <ol>
+          <li>L’application extrait les caractéristiques disponibles dans l’annonce, notamment le type de bien, le prix, la surface et l’adresse.</li>
+          <li>L’adresse est géocodée avec un niveau de précision. Une adresse exacte et une simple commune n’ont pas le même niveau de confiance.</li>
+          <li>Les sources pertinentes sont interrogées. Leur disponibilité varie selon le bien, la commune et la date.</li>
+          <li>Chaque section est évaluée uniquement si son contrat de disponibilité est satisfait.</li>
+          <li>Le score, la couverture, les sections exclues et les informations de contexte sont réunis dans le rapport.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>2. Grille d’un logement résidentiel</h2>
+        <p>Un appartement ou une maison utilise 13 sections. Les valeurs ci-dessous sont les poids source. Leur somme est égale à 100 % avant toute exclusion liée à la disponibilité.</p>
+        <div class="si-table-wrap">
+          <table>
+            <thead><tr><th>Section</th><th>Poids source</th></tr></thead>
+            <tbody>
+              {residentialSections.map(([name, weight]) => <tr><td>{name}</td><td>{weight}</td></tr>)}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>3. Grilles adaptées aux autres catégories</h2>
+        <p>Un terrain, un local commercial, un immeuble et un parking ne sont pas évalués comme un logement résidentiel. Chaque catégorie conserve une somme de poids source égale à 100 %.</p>
+        <div class="si-method-cards">
+          {categoryGrids.map((grid) => (
+            <article>
+              <h3>{grid.name}</h3>
+              <p>{grid.weights}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <h2>4. Données manquantes, poids effectif et couverture</h2>
+        <p>Une section n’entre dans le total que si la donnée requise est disponible et suffisamment autoritative. Un DPE seulement rapproché au code postal, un zonage estimé ou une référence de prix inexploitable ne sont pas notés comme des faits certains.</p>
+        <p>Le <strong>poids source</strong> vient de la grille de la catégorie. Lorsqu’une section est exclue, le <strong>poids effectif</strong> de chaque section conservée est calculé ainsi :</p>
+        <p class="si-formula">poids effectif = poids source ÷ somme des poids disponibles × 100</p>
+        <p>Le score final est la somme de chaque note sur 10 multipliée par son poids effectif. La couverture correspond à la somme des poids source disponibles divisée par 100. Si aucune section n’est disponible, le moteur ne produit pas de score.</p>
+      </section>
+
+      <section>
+        <h2>5. Prix, DPE et indice de confiance</h2>
+        <h3>Référence de prix</h3>
+        <p>Le prix affiché au m² est comparé à une référence locale. Une médiane DVF issue de ventes réelles et de comparables identifiés est prioritaire lorsqu’elle est assez fiable. Si la référence DVF est faible ou absente, une référence estimée à partir d’annonces en cours peut être utilisée lorsqu’elle offre une meilleure fiabilité. Le rapport doit alors l’indiquer.</p>
+        <h3>DPE</h3>
+        <p>Une classe DPE déclarée dans l’annonce ou rapprochée avec une forte confiance peut contribuer au score. Une classe trouvée seulement à proximité ou au niveau du code postal est signalée comme non confirmée et exclue de la note énergétique.</p>
+        <h3>Confiance</h3>
+        <p>L’indice de confiance A, B ou C combine la précision géographique et la proportion d’enrichissements pertinents obtenus avec succès. Il ne garantit pas l’exactitude de chaque donnée. Il indique la qualité de la base disponible pour interpréter le rapport.</p>
+      </section>
+
+      <section>
+        <h2>6. Sources interrogées</h2>
+        <p>Ces sources peuvent être utilisées selon la catégorie, l’adresse et la disponibilité. Elles n’alimentent pas toutes le score de chaque bien et certaines servent uniquement au contexte du rapport.</p>
+        <div class="si-source-list">
+          {sources.map((source) => (
+            <article>
+              <h3><a href={source.url} target="_blank" rel="noopener">{source.name}</a></h3>
+              <p>{source.role}</p>
+              <small>{source.status}</small>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <h2>7. Baromètre et échantillons publiés</h2>
+        <p>Les pages du <a href="/barometre">Baromètre</a> sont des instantanés datés. Elles publient une grille historique de cinq sections visible sur chaque fiche. Elles ne sont pas recalculées automatiquement lorsque le moteur courant évolue.</p>
+        <p>Une moyenne régionale, une médiane de prix ou toute autre statistique du Baromètre décrit uniquement l’échantillon de fiches publiées. Le nombre de biens et la date doivent accompagner le chiffre. Ces agrégats ne représentent pas l’ensemble du marché national ou régional.</p>
+      </section>
+
+      <section>
+        <h2>8. Limites d’interprétation</h2>
+        <ul>
+          <li>Le prix d’une annonce est un prix demandé. DVF décrit des transactions passées et ne contient pas le prix initial de l’annonce.</li>
+          <li>Une médiane locale peut mal représenter un bien atypique, neuf, de prestige ou très différent des comparables.</li>
+          <li>Les bases tierces peuvent contenir des retards, erreurs, absences ou niveaux géographiques plus larges que la parcelle.</li>
+          <li>Le score ne constitue ni une estimation réglementaire, ni un diagnostic, ni un conseil en investissement.</li>
+          <li>La visite, les documents du vendeur et les professionnels compétents restent indispensables avant une décision.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>9. Politique de correction</h2>
+        <p>Une donnée ou une formulation à vérifier peut être signalée à <a href="mailto:contact@score-immo.fr">contact@score-immo.fr</a>, avec l’URL concernée et la source contradictoire.</p>
+        <p>Une erreur factuelle confirmée est corrigée sur la page concernée. Lorsqu’elle affecte la compréhension de la méthode, la date de mise à jour et la nature du changement sont ajoutées ici.</p>
+        <h3>Journal public</h3>
+        <ul>
+          <li><strong>28 août 2026 :</strong> publication de la source de vérité actuelle, remplacement de l’ancienne formule publique à cinq axes par les grilles par catégorie, la couverture et la repondération réellement utilisées.</li>
+        </ul>
+      </section>
+
+      <div class="si-method-actions">
+        <a class="si-btn si-btn-primary" href="https://app.score-immo.fr/app?utm_source=site&utm_medium=methodology">Analyser une annonce</a>
+        <a class="si-btn si-btn-secondary" href="/a-propos">À propos de Score-Immo</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .si-method { max-width: 56rem; }
+  .si-breadcrumb { font-size: 0.875rem; color: var(--si-muted-foreground); margin: 1rem 0 2rem; }
+  .si-breadcrumb a { color: inherit; text-decoration: none; }
+  .si-method-header { max-width: 48rem; margin: 0 auto 2rem; text-align: center; }
+  .si-method-kicker { color: var(--si-accent); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  .si-method-header h1 { font-family: var(--si-font-heading); font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin: 0.6rem 0 1rem; }
+  .si-method-header p:last-child { color: var(--si-muted-foreground); font-size: 1.1rem; line-height: 1.7; }
+  .si-method > section { margin: 2.5rem 0; }
+  .si-method h2 { font-family: var(--si-font-heading); font-size: clamp(1.45rem, 3vw, 2rem); margin: 0 0 1rem; }
+  .si-method h3 { font-family: var(--si-font-heading); font-size: 1.1rem; margin: 1.25rem 0 0.5rem; }
+  .si-method p, .si-method li { line-height: 1.75; }
+  .si-method a { color: var(--si-accent); }
+  .si-method-summary { background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: var(--si-radius-xl); padding: 1.25rem 1.5rem; }
+  .si-method-summary ul { margin-bottom: 0; }
+  .si-table-wrap { overflow-x: auto; }
+  .si-method table { width: 100%; border-collapse: collapse; background: var(--si-card); }
+  .si-method th, .si-method td { border: 1px solid var(--si-border); padding: 0.7rem 0.8rem; text-align: left; }
+  .si-method th { background: var(--si-muted); font-family: var(--si-font-heading); }
+  .si-method-cards, .si-source-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  .si-method-cards article, .si-source-list article { border: 1px solid var(--si-border); border-radius: var(--si-radius-xl); padding: 1.25rem; background: var(--si-card); }
+  .si-method-cards h3, .si-source-list h3 { margin-top: 0; }
+  .si-source-list p { margin-bottom: 0.5rem; }
+  .si-source-list small { color: var(--si-muted-foreground); }
+  .si-formula { background: var(--si-muted); border-radius: var(--si-radius); padding: 1rem; font-family: ui-monospace, monospace; overflow-wrap: anywhere; }
+  .si-method-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin: 2.5rem 0 1rem; }
+  .si-btn-secondary { border: 1px solid var(--si-border); background: var(--si-card); color: var(--si-foreground) !important; }
+  @media (max-width: 720px) { .si-method-cards, .si-source-list { grid-template-columns: 1fr; } }
+</style>

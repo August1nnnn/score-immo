@@ -14,8 +14,8 @@
   <rect x="80" y="80" width="140" height="140" rx="28" fill="url(#logo)"/>
   <text x="150" y="172" text-anchor="middle" font-family="DM Sans,Inter,sans-serif" font-weight="800" font-size="64" fill="#FFFFFF" letter-spacing="-2">SI</text>
   <circle cx="200" cy="100" r="8" fill="#3B82F6"/>
-  <text x="80" y="320" font-family="DM Sans,Inter,sans-serif" font-weight="700" font-size="72" fill="#0F172A" letter-spacing="-2">ScoreImmo</text>
+  <text x="80" y="320" font-family="DM Sans,Inter,sans-serif" font-weight="700" font-size="72" fill="#0F172A" letter-spacing="-2">Score-Immo</text>
   <text x="80" y="400" font-family="Inter,sans-serif" font-weight="500" font-size="36" fill="#64748B">Analysez une annonce immobilière</text>
   <text x="80" y="450" font-family="Inter,sans-serif" font-weight="500" font-size="36" fill="#64748B">à partir de données publiques</text>
-  <text x="80" y="540" font-family="Inter,sans-serif" font-weight="600" font-size="28" fill="#3B82F6">230+ données · 10 sources officielles · 30 secondes</text>
+  <text x="80" y="540" font-family="Inter,sans-serif" font-weight="600" font-size="28" fill="#3B82F6">230+ points potentiels · 10 sources · 30 secondes</text>
 </svg>

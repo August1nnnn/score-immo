@@ -42,12 +42,12 @@ const typeLabel = (t: string) => (t === 'appartement' ? 'Appart.' : 'Maison');
 const scoreColor = (s: number) => (s >= 70 ? '#15803D' : s >= 40 ? '#B45309' : '#DC2626');
 const heading = region
   ? `Le Baromètre en ${region}`
-  : 'Le Baromètre Immobilier ScoreImmo';
+  : 'Le Baromètre Immobilier Score-Immo';
 ---
 {fiches.length > 0 && (
   <aside class="si-baro-links" aria-label="Analyses du Baromètre">
     <p class="si-baro-links-label">{heading}</p>
-    <p class="si-baro-links-intro">Des annonces réelles analysées et notées sur 100 par ScoreImmo :</p>
+    <p class="si-baro-links-intro">Des annonces réelles analysées et notées sur 100 par Score-Immo :</p>
     <ul class="si-baro-links-list">
       {fiches.map((f) => (
         <li>
