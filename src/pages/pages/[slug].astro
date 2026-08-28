@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { BRAND_NAME } from '@/data/entity';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -52,10 +53,12 @@ if (page.handle === 'outils') {
   for (const [legacy, corrected] of visibleCopyFixes) bodyHtml = bodyHtml.replaceAll(legacy, corrected);
 }
 
-const title = page.title ? `${page.title} | ScoreImmo` : 'ScoreImmo';
+bodyHtml = bodyHtml.replaceAll('ScoreImmo', BRAND_NAME);
+
+const title = page.title ? `${page.title} | ${BRAND_NAME}` : BRAND_NAME;
 const description = bodyHtml
   ? bodyHtml.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').slice(0, 160).trim()
-  : 'ScoreImmo - Analyse immobilière en 30 secondes';
+  : `${BRAND_NAME} - Analyse immobilière en 30 secondes`;
 
 // Sanitize body_html for safe render (Shopify source is trusted)
 // Legal pages + contact get noindex=false but canonical strict

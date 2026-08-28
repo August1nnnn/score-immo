@@ -14,10 +14,12 @@ test("the homepage uses a stable, descriptive H1", () => {
 
 test("public machine-readable facts use canonical URLs and source counts", () => {
   const llms = read("public/llms.txt");
-  assert.match(llms, /10 sources de donnees officielles francaises/);
-  assert.match(llms, /Sources de donnees officielles \(10\)/);
+  assert.match(llms, /Sources publiques et ouvertes mobilisables \(10\)/);
+  assert.match(llms, /plus de 230 points de donnees potentiels/);
+  assert.match(llms, /https:\/\/score-immo\.fr\/methodologie/);
   assert.match(llms, /https:\/\/score-immo\.fr\/barometre/);
   assert.doesNotMatch(llms, /https:\/\/app\.score-immo\.fr\/barometre/);
+  assert.doesNotMatch(llms, /premier outil|sources de donnees officielles francaises/i);
 });
 
 test("high-impression pages target their observed search intent", () => {

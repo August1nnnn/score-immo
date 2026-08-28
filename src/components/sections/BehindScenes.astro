@@ -1,5 +1,5 @@
 ---
-// ScoreImmo - Votre équipe invisible (pipeline interactif, auto-start au scroll)
+// Score-Immo - Votre équipe invisible (pipeline interactif, auto-start au scroll)
 // Refonte 2026-06-03 : styles globaux prefixes #si-bts (le DOM est injecte en JS,
 // donc les styles scopes Astro ne s'appliquaient pas -> colonne analystes "cassee").
 // DA preservee (bleu #3B82F6, glass, Inter/DM Sans). Accents FR complets.
@@ -10,7 +10,7 @@
   <div class="si-bts-head si-reveal">
     <span class="si-bts-badge"><span class="si-bts-badge-dot"></span>Ce qui se passe quand vous cliquez sur Analyser</span>
     <h2 class="si-bts-title">Votre équipe (presque) invisible<br><span class="si-bts-gradient">entre en action</span></h2>
-    <p class="si-bts-sub">Si vous deviez faire ce travail vous-même, comptez <strong>plus de 5 heures</strong> de recherches. ScoreImmo le fait en <span class="si-bts-blue">30 secondes</span>. Même pas le temps de se faire un café.</p>
+    <p class="si-bts-sub">Si vous deviez faire ce travail vous-même, comptez <strong>plus de 5 heures</strong> de recherches. Score-Immo le fait en <span class="si-bts-blue">30 secondes</span>. Même pas le temps de se faire un café.</p>
     <div id="si-bts-cta"><button class="si-bts-start" type="button" onclick="siBtsStart()">Lancer la simulation</button></div>
   </div>
 
@@ -24,7 +24,7 @@
   <div class="si-bts-strip" id="si-bts-strip"></div>
 
   <div class="si-bts-sources">
-    <div class="si-bts-sources-label">10 sources officielles françaises</div>
+    <div class="si-bts-sources-label">10 sources publiques et ouvertes</div>
     <div id="si-bts-srcs"></div>
     <p class="si-bts-sources-note">Chaque rapport indique les données trouvées et les points qui restent à vérifier auprès des professionnels compétents.</p>
   </div>
@@ -41,7 +41,7 @@ var T=[
 {n:"Inès",r:"Urbanisme et PLU",e:"🏗️",ht:"Se déplace en mairie, consulte le PLU, vérifie la zone",hm:"40min",s:["IGN/GPU"],d:["Zone : U","Hauteur : 12m","COS : 0,8","Préemption : non"],a:4},
 {n:"Clara",r:"Fiscalité et coûts",e:"💰",ht:"Estime la taxe foncière, calcule notaire et coût total",hm:"25min",s:["DGFIP","Notaires"],d:["TF : ~1 280 €","Notaire : 17 850 €","Total : 248 350 €","Rendement : 5,2%"],a:6}
 ];
-var ST=[{v:"6",l:"analystes"},{v:"10",l:"sources officielles"},{v:"230+",l:"données croisées"},{v:"30s",l:"par rapport"},{v:"5h",l:"économisées"}];
+var ST=[{v:"6",l:"axes d'analyse"},{v:"10",l:"sources disponibles"},{v:"230+",l:"points potentiels"},{v:"30s",l:"par rapport"},{v:"A-C",l:"indice de confiance"}];
 var SRC=["DVF (notaires)","ADEME (DPE)","Géorisques","INSEE","IGN/GPU","BAN (Adresses)","OpenStreetMap","Éducation Nationale","ATMO France","DGFIP"];
 var act=null,done=new Set(),timer=null,triggered=false,loopC=0;
 
@@ -61,12 +61,12 @@ if(act!==null){var m=T[act];
 p.innerHTML='<div class="si-bts-dh"><div class="si-bts-dh-icon">'+m.e+'</div><div><div class="si-bts-dh-name">'+m.n+' : '+m.r+'</div><div class="si-bts-dh-meta">'+m.s.length+' source'+(m.s.length>1?'s':'')+' · '+m.a+' vérifications</div></div></div>'+
 '<div class="si-bts-vs">'+
 '<div class="si-bts-vs-card si-bts-vs-you"><div class="si-bts-vs-label">Vous <span class="si-bts-vs-time">'+m.hm+'</span></div><div class="si-bts-vs-txt">'+m.ht+'</div></div>'+
-'<div class="si-bts-vs-card si-bts-vs-si"><div class="si-bts-vs-label">ScoreImmo <span class="si-bts-vs-time">~5 s</span></div><div class="si-bts-vs-txt">'+m.a+' sources croisées. Sources : '+m.s.join(', ')+'.</div></div></div>'+
+'<div class="si-bts-vs-card si-bts-vs-si"><div class="si-bts-vs-label">Score-Immo <span class="si-bts-vs-time">~5 s</span></div><div class="si-bts-vs-txt">'+m.a+' sources croisées. Sources : '+m.s.join(', ')+'.</div></div></div>'+
 '<div class="si-bts-dp-label">Données extraites</div><div id="si-bts-dps">'+m.d.map(function(d,i){return '<div class="si-bts-dp" id="si-dp-'+i+'"><span class="si-bts-dp-dot"></span>'+d+'</div>';}).join('')+'</div>'+
 '<div class="si-bts-srcrow">'+m.s.map(function(s){return '<span class="si-bts-srctag">'+s+'</span>';}).join('')+'</div>';
 m.d.forEach(function(_,i){setTimeout(function(){var el=document.getElementById('si-dp-'+i);if(el)el.classList.add('vis');},250+i*260);});
 }else if(done.size===T.length){
-p.innerHTML='<div class="si-bts-final"><div class="si-bts-final-check">✓</div><div class="si-bts-final-title">Rapport généré</div><p class="si-bts-final-sub">6 analystes. 10 sources. 230+ données.<br>En <strong class="si-bts-blue">30 s</strong> au lieu de <strong class="si-bts-red">5 h</strong>.</p><div class="si-bts-bars"><div class="si-bts-bar-row"><span class="si-bts-red">Si vous le faites vous-même</span><span class="si-bts-mono si-bts-red">~5 h</span></div><div class="si-bts-bar-track si-bts-bar-track-red"><div class="si-bts-bar-fill" id="si-bar-h" style="width:0%;background:#DC2626;"></div></div><div class="si-bts-bar-row"><span class="si-bts-blue">ScoreImmo</span><span class="si-bts-mono si-bts-blue">30 s</span></div><div class="si-bts-bar-track si-bts-bar-track-blue"><div class="si-bts-bar-fill" id="si-bar-b" style="width:0%;background:#3B82F6;min-width:6px;"></div></div></div><button type="button" class="si-bts-start si-bts-start-sm" onclick="siBtsStart()">Relancer la simulation</button></div>';
+p.innerHTML='<div class="si-bts-final"><div class="si-bts-final-check">✓</div><div class="si-bts-final-title">Rapport généré</div><p class="si-bts-final-sub">10 sources disponibles. Plus de 230 points potentiels.<br>Couverture et confiance affichées selon les données du bien.</p><button type="button" class="si-bts-start si-bts-start-sm" onclick="siBtsStart()">Relancer la simulation</button></div>';
 requestAnimationFrame(function(){var h=document.getElementById('si-bar-h'),b=document.getElementById('si-bar-b');if(h)h.style.width='100%';setTimeout(function(){if(b)b.style.width='2%';},400);});
 }}
 

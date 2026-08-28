@@ -56,7 +56,8 @@ test("the immediate Montclair article preserves its exact sponsored homepage lin
 
 test("organization-authored articles do not resolve a fictional person record", () => {
   const articlePage = read("src/pages/blogs/[blog]/[slug].astro");
-  assert.match(articlePage, /author: \{ '@type': 'Organization', name: 'Score-Immo'/);
+  assert.match(articlePage, /author: \{ '@id': ORGANIZATION_ID \}/);
+  assert.match(articlePage, /publisher: \{ '@id': ORGANIZATION_ID \}/);
   assert.doesNotMatch(articlePage, /getEntry\('authors'|AuthorCard/);
 });
 

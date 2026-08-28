@@ -31,7 +31,7 @@ const LEGACY_ACCENTED_ROUTES = new Map([
   ["/blogs/guides/négocier-prix-bien-immobilier-guide-complet", "/blogs/guides/negocier-prix-bien-immobilier-guide-complet"],
   ["/blogs/guides/offre-achat-immobilier-modèle-conseils-stratégie", "/blogs/guides/offre-achat-immobilier-modele-conseils-strategie"],
   ["/blogs/guides/renovation-énergétique-maprimerenov-2026-aides-rentabilité", "/blogs/guides/renovation-energetique-maprimerenov-2026-aides-rentabilite"],
-  ["/blogs/guides/score-scoreimmo-méthode-evaluation", "/blogs/guides/score-scoreimmo-methode-evaluation"],
+  ["/blogs/guides/score-scoreimmo-méthode-evaluation", "/methodologie"],
   ["/blogs/guides/travaux-renovation-énergétique-dpe-f-d", "/blogs/guides/travaux-renovation-energetique-dpe-f-d"],
   ["/blogs/guides/visite-immobilière-checklist-points-verifier", "/blogs/guides/visite-immobiliere-checklist-points-verifier"],
   ["/blogs/pro/crédibilité-mandataire-rapport-analyse-rassure-client", "/blogs/pro/credibilite-mandataire-rapport-analyse-rassure-client"],

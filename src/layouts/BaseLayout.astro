@@ -2,6 +2,7 @@
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import CookieBanner from '@/components/CookieBanner.astro';
+import { BRAND_NAME, organizationJsonLd } from '@/data/entity';
 // Self-hosted fonts via @fontsource (eliminate fonts.googleapis CDN)
 import '@fontsource/inter/latin-400.css';
 import '@fontsource/inter/latin-500.css';
@@ -52,7 +53,8 @@ const {
 } = Astro.props;
 
 const image = toAbsolute(imageProp || '/assets/og-default.svg');
-const siteName = 'ScoreImmo';
+const siteName = BRAND_NAME;
+const structuredData = [organizationJsonLd, ...jsonLd];
 ---
 <!doctype html>
 <!-- 63060b7066def14c96d91ca1a94ff448 -->
@@ -79,7 +81,7 @@ const siteName = 'ScoreImmo';
     {noindex && <meta name="robots" content="noindex, follow" />}
     {!noindex && <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />}
 
-    <meta name="author" content={articleMeta?.author || 'ScoreImmo'} />
+    <meta name="author" content={articleMeta?.author || BRAND_NAME} />
 
     <!-- Open Graph -->
     <meta property="og:type" content={articleMeta ? 'article' : 'website'} />
@@ -100,7 +102,7 @@ const siteName = 'ScoreImmo';
     <meta name="twitter:image" content={image} />
 
     <!-- JSON-LD -->
-    {jsonLd.length > 0 && jsonLd.map((block) => (
+    {structuredData.map((block) => (
       <script type="application/ld+json" set:html={JSON.stringify(block)} />
     ))}
 

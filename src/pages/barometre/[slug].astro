@@ -5,6 +5,7 @@ import SourcesSection from '@/components/SourcesSection.astro';
 import AnalyzerBox from '@/components/AnalyzerBox.astro';
 import FAQ from '@/components/FAQ.astro';
 import { buildBarometreMetaDescription } from '@/lib/barometre-meta-description.js';
+import { BRAND_NAME, ORGANIZATION_ID, SITE_URL } from '@/data/entity';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -16,8 +17,7 @@ export async function getStaticPaths() {
 }
 
 const { fiche } = Astro.props;
-const SITE = 'https://score-immo.fr';
-const canonical = `${SITE}/barometre/${fiche.slug}`;
+const canonical = `${SITE_URL}/barometre/${fiche.slug}`;
 
 const typeLabel = fiche.type_bien === 'appartement' ? 'Appartement' : 'Maison';
 const typeAgreement = fiche.type_bien === 'appartement' ? 'noté' : 'notée';
@@ -26,7 +26,7 @@ const prixFmt = fiche.prix_demande.toLocaleString('fr-FR');
 const prixM2Fmt = fiche.prix_m2 ? fiche.prix_m2.toLocaleString('fr-FR') : null;
 const dateFmt = new Date(fiche.date_analyse).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long' });
 
-const title = `${fiche.ville} : ${typeLabel} ${fiche.surface} m² ${typeAgreement} ${fiche.score_global}/100 | Baromètre ScoreImmo`;
+const title = `${fiche.ville} : ${typeLabel} ${fiche.surface} m² ${typeAgreement} ${fiche.score_global}/100 | Baromètre ${BRAND_NAME}`;
 const description = buildBarometreMetaDescription(fiche);
 
 const scoreColor = fiche.score_global >= 70 ? '#16A34A' : fiche.score_global >= 40 ? '#B45309' : '#DC2626';
@@ -83,11 +83,11 @@ const sectionLine = SECTIONS
 const faq: { q: string; a: string }[] = [
   {
     q: `Faut-il acheter ${demo} ${typeLabel.toLowerCase()} à ${fiche.ville} ?`,
-    a: `${demoCap} ${typeLabel.toLowerCase()} de ${fiche.surface} m² à ${fiche.ville} obtient un score ScoreImmo de ${fiche.score_global}/100 (${scoreWord.toLowerCase()}). ${fiche.verdict || (fiche.points_forts[0] ? `Principal atout : ${fiche.points_forts[0].toLowerCase()}.` : '')}${fiche.alertes_cles[0] ? ` Point de vigilance : ${fiche.alertes_cles[0].toLowerCase()}.` : ''}`.trim(),
+    a: `${demoCap} ${typeLabel.toLowerCase()} de ${fiche.surface} m² à ${fiche.ville} obtient un score ${BRAND_NAME} de ${fiche.score_global}/100 (${scoreWord.toLowerCase()}). ${fiche.verdict || (fiche.points_forts[0] ? `Principal atout : ${fiche.points_forts[0].toLowerCase()}.` : '')}${fiche.alertes_cles[0] ? ` Point de vigilance : ${fiche.alertes_cles[0].toLowerCase()}.` : ''}`.trim(),
   },
   {
     q: `Pourquoi ce bien est-il noté ${fiche.score_global}/100 ?`,
-    a: `Le score ScoreImmo combine cinq critères notés sur 10${sectionLine ? ` : ${sectionLine}` : ''}. La note globale de ${fiche.score_global}/100 en est la synthèse pondérée.`,
+    a: `Cet instantané daté combine les cinq sections visibles de la grille publiée${sectionLine ? ` : ${sectionLine}` : ''}. La note globale de ${fiche.score_global}/100 en est la synthèse.`,
   },
   ...(prixM2Fmt
     ? [{
@@ -97,26 +97,26 @@ const faq: { q: string; a: string }[] = [
     : []),
   {
     q: `Sur quelles données repose cette analyse ?`,
-    a: `L'analyse s'appuie sur des sources publiques officielles : transactions DVF (data.gouv.fr), DPE (ADEME), risques naturels (Géorisques), démographie et revenus (INSEE), commerces et transports (OpenStreetMap). Analyse de ${dateFmt}.`,
+    a: `L'analyse s'appuie sur les sources publiques et ouvertes disponibles lors de sa génération : transactions DVF, DPE ADEME, Géorisques, INSEE et OpenStreetMap. Analyse de ${dateFmt}.`,
   },
 ];
 
 const datasetSchema = {
   '@context': 'https://schema.org',
   '@type': 'Dataset',
-  name: `Score ScoreImmo : ${typeLabel} ${fiche.surface} m² à ${fiche.ville}`,
-  description: `Notation ScoreImmo (0 à 100) ${indefiniteArticle} de ${fiche.surface} m² à ${fiche.ville} (${fiche.code_postal}), calculée à partir de données publiques DVF, ADEME, Géorisques et INSEE.`,
+  name: `Score ${BRAND_NAME} : ${typeLabel} ${fiche.surface} m² à ${fiche.ville}`,
+  description: `Instantané daté de notation ${BRAND_NAME} ${indefiniteArticle} de ${fiche.surface} m² à ${fiche.ville} (${fiche.code_postal}).`,
   url: canonical,
   isAccessibleForFree: true,
-  creator: { '@type': 'Organization', name: 'ScoreImmo', url: SITE },
+  creator: { '@id': ORGANIZATION_ID },
   dateModified: fiche.date_analyse,
   spatialCoverage: {
     '@type': 'Place', name: fiche.ville,
     address: { '@type': 'PostalAddress', addressLocality: fiche.ville, postalCode: fiche.code_postal, addressRegion: fiche.region, addressCountry: 'FR' },
   },
-  measurementTechnique: 'ScoreImmo : cinq sous-scores (prix vs marché, performance énergétique, risques naturels, urbanisme, environnement) agrégés en une note sur 100.',
+  measurementTechnique: 'Grille historique visible de cinq sections : prix face au marché, performance énergétique, risques naturels, urbanisme et environnement.',
   variableMeasured: [
-    { '@type': 'PropertyValue', name: 'Score global ScoreImmo (0-100)', value: fiche.score_global },
+    { '@type': 'PropertyValue', name: `Score global ${BRAND_NAME} (0-100)`, value: fiche.score_global },
     ...SECTIONS.filter((s) => ss[s.key] != null).map((s) => ({ '@type': 'PropertyValue', name: `${s.label} (0-10)`, value: ss[s.key] })),
   ],
 };
@@ -135,8 +135,8 @@ const jsonLd: any[] = [
     description,
     datePublished: fiche.date_analyse,
     dateModified: fiche.date_analyse,
-    author: { '@type': 'Organization', name: 'Score-Immo', url: SITE },
-    publisher: { '@type': 'Organization', name: 'ScoreImmo', logo: { '@type': 'ImageObject', url: `${SITE}/favicon.svg` } },
+    author: { '@id': ORGANIZATION_ID },
+    publisher: { '@id': ORGANIZATION_ID },
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
     inLanguage: 'fr-FR',
     about: {
@@ -150,8 +150,8 @@ const jsonLd: any[] = [
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Accueil', item: `${SITE}/` },
-      { '@type': 'ListItem', position: 2, name: 'Baromètre', item: `${SITE}/barometre` },
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: `${SITE_URL}/` },
+      { '@type': 'ListItem', position: 2, name: 'Baromètre', item: `${SITE_URL}/barometre` },
       { '@type': 'ListItem', position: 3, name: `${fiche.ville} ${fiche.surface} m²`, item: canonical },
     ],
   },
@@ -194,7 +194,7 @@ const jsonLd: any[] = [
 
         <TLDRBox items={tldr} />
 
-        <h2>Le verdict ScoreImmo</h2>
+        <h2>Le verdict Score-Immo</h2>
         <p class="bar-verdict">{fiche.verdict}</p>
 
         <h2>Le détail du score</h2>
@@ -336,11 +336,11 @@ const jsonLd: any[] = [
           </>
         )}
 
-        <h2>Comment ce score est calculé</h2>
-        <p>Le score sur 100 attribué à ce bien à {fiche.ville} croise plus de 250 données issues de 10 sources
-        officielles : prix au m² réels (DVF), performance énergétique (DPE/ADEME), risques naturels et technologiques
-        (Géorisques), urbanisme, environnement, commerces, transports et profil socio-démographique de la commune.
-        Cette analyse est indicative et ne constitue pas un conseil en investissement.</p>
+        <h2>Comment lire ce score daté</h2>
+        <p>Cette fiche est un instantané daté. Elle rassemble les cinq sections visibles ci-dessus à partir des données
+        disponibles lors de l'analyse. Elle n'est pas recalculée automatiquement lorsque le moteur de Score-Immo évolue.
+        Consultez la <a href="/methodologie">méthodologie actuelle, la gestion des données manquantes et les limites</a>.
+        Cette analyse est indicative et ne constitue pas une expertise immobilière ni un conseil en investissement.</p>
 
         <FAQ items={faq} />
 

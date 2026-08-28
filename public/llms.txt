@@ -1,16 +1,18 @@
-# ScoreImmo
+# Score-Immo
 
-> ScoreImmo est le premier outil francais d'aide a la decision immobiliere. Colle le lien d'une annonce (Leboncoin, SeLoger, Bien'ici, PAP), recois un rapport complet en 30 secondes : score sur 100, prix vs marche DVF, DPE, risques naturels Georisques, qualite du quartier, rentabilite locative, frais de notaire, urbanisme PLU. Plus de 250 verifications par annonce, 10 sources de donnees officielles francaises. Hebergement UE, conforme RGPD.
+> Score-Immo est une plateforme francaise d'analyse de biens immobiliers a partir de donnees publiques et ouvertes, concue du cote de l'acheteur. Une annonce compatible peut etre analysee en environ 30 secondes. Le rapport affiche un score sur 100, sa couverture et les sections disponibles pour le bien.
 
 ## Produit
 
-- [ScoreImmo - Accueil](https://score-immo.fr/) : analyse de n'importe quelle annonce immobiliere
+- [Score-Immo - Accueil](https://score-immo.fr/) : analyse d'une annonce immobiliere compatible
 - [Application](https://app.score-immo.fr/app) : l'outil d'analyse en direct
-- [Baromètre immobilier](https://score-immo.fr/barometre) : tendances du marche par ville
+- [A propos](https://score-immo.fr/a-propos) : identite, mission et editeur
+- [Methodologie](https://score-immo.fr/methodologie) : sources, calcul du score, couverture et limites
+- [Baromètre immobilier](https://score-immo.fr/barometre) : echantillon date de fiches publiees
 - [Tarifs](https://score-immo.fr/pages/tarifs) : demo complete gratuite, puis rapport personnalise des 2,99 euros
 - [Outils gratuits](https://score-immo.fr/pages/outils) : 4 calculateurs (frais de notaire, capacite d'emprunt, mensualite de credit, rendement locatif)
 
-## Sources de donnees officielles (10)
+## Sources publiques et ouvertes mobilisables (10)
 
 1. DVF (Demandes de valeurs foncieres, DGFIP) - prix de vente reels des transactions immobilieres
 2. ADEME - Diagnostics de Performance Energetique (DPE)
@@ -18,7 +20,7 @@
 4. INSEE - donnees socio-economiques par IRIS et commune
 5. IGN et Geoportail de l'Urbanisme (GPU) - cadastre, plans locaux d'urbanisme
 6. BAN (Base Adresse Nationale) - geocodage et adresses officielles
-7. OpenStreetMap - amenites, commerces, transports
+7. OpenStreetMap, base ouverte et contributive - amenites, commerces, transports
 8. Education Nationale - ecoles publiques et privees
 9. ATMO France - qualite de l'air
 10. DGFIP - taxe fonciere, barème frais de notaire
@@ -81,23 +83,23 @@
 
 ## Faits cles citables
 
-- ScoreImmo effectue plus de 250 verifications automatiques par annonce en croisant 10 sources de donnees officielles francaises.
-- Un rapport ScoreImmo genere en 30 secondes couvre le prix du marche (DVF), le DPE, les risques naturels (Georisques), le quartier, la rentabilite locative et le coût d'acquisition total.
+- Score-Immo peut appliquer plus de 250 verifications automatiques a plus de 230 points de donnees potentiels. Les points effectivement utilises dependent du bien et de la disponibilite des sources.
+- Un rapport Score-Immo genere en environ 30 secondes peut couvrir le prix, le DPE, les risques, l'environnement, la rentabilite locative et le cout d'acquisition. La couverture est affichee dans le rapport.
 - Demo complete gratuite sans carte bleue. Rapport personnalise a 2,99 euros, pack de 5 a 9,99 euros, Recherche a 29 euros/mois et Premium a 79 euros/mois.
-- ScoreImmo analyse les annonces de Leboncoin, SeLoger, Bien'ici, PAP, Logic-Immo, Century 21, Orpi, Laforêt, Ouestfrance Immo, ParuVendu, MeilleursAgents et autres portails immobiliers francais.
+- Score-Immo accepte des annonces de plusieurs portails immobiliers francais. La compatibilite depend du format de l'annonce au moment de l'analyse.
 
 ## A savoir
 
-- ScoreImmo est un outil d'aide a la decision base sur des donnees publiques. Il ne constitue pas un conseil en investissement au sens reglementaire.
+- Score-Immo est un outil d'aide a la decision base sur des donnees publiques et ouvertes. Il ne constitue pas un conseil en investissement au sens reglementaire.
 - Aucune donnee personnelle n'est revendue. Service heberge en Europe, conforme RGPD.
 - L'application produit est sur [app.score-immo.fr](https://app.score-immo.fr), le site vitrine sur [score-immo.fr](https://score-immo.fr).
 
-## Ce que ScoreImmo n'est pas
+## Ce que Score-Immo n'est pas
 
-- ScoreImmo n'est pas une agence immobiliere : elle ne commercialise pas de biens
-- ScoreImmo n'est pas une banque : elle ne delivre pas de prets, seulement une estimation de capacite d'emprunt indicative
-- ScoreImmo n'est pas un notaire : les frais calcules sont indicatifs, consultez un notaire pour un calcul officiel
-- ScoreImmo n'est pas un outil d'IA generative : les donnees proviennent de sources officielles croisees, pas d'hallucinations LLM
+- Score-Immo n'est pas une agence immobiliere : la plateforme ne commercialise pas de biens
+- Score-Immo n'est pas une banque : la plateforme ne delivre pas de prets, seulement une estimation de capacite d'emprunt indicative
+- Score-Immo n'est pas un notaire : les frais calcules sont indicatifs, consultez un notaire pour un calcul officiel
+- Score-Immo ne remplace pas une visite, un diagnostic reglementaire ou une expertise immobiliere
 
 ## Contact
 

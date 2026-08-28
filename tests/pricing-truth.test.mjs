@@ -61,7 +61,8 @@ test("the pricing page exposes the four canonical paid offers", () => {
 test("the default social card uses the canonical data and source counts", () => {
   const socialCard = source("public/assets/og-default.svg");
 
-  assert.match(socialCard, /230\+ données · 10 sources officielles/);
+  assert.match(socialCard, /Score-Immo/);
+  assert.match(socialCard, /230\+ points potentiels · 10 sources/);
   assert.doesNotMatch(socialCard, /9 sources officielles/);
 });
 
@@ -69,7 +70,7 @@ test("the homepage distinguishes data points from automatic checks", () => {
   const stats = source("src/components/sections/Stats.astro");
 
   assert.match(stats, /250\+/);
-  assert.match(stats, /contr(?:ô|&ocirc;)les automatiques appliqu(?:é|&eacute;)s aux 230\+ donn(?:é|&eacute;)es/i);
+  assert.match(stats, /contr(?:ô|&ocirc;)les automatiques sur plus de 230 points potentiels selon le bien/i);
 });
 
 test("public copy never promises a free personalized report", () => {
