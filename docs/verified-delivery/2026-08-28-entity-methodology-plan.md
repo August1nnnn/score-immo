@@ -74,13 +74,13 @@ Commandes attendues :
 
 ## Tâche 5 : production et preuve
 
-- [ ] committer et pousser la branche autorisée ;
-- [ ] créer une PR avec les preuves ;
-- [ ] attendre les garde-fous verts et vérifier le SHA ;
-- [ ] fusionner la PR ;
-- [ ] attendre le workflow Cloudflare et IndexNow ;
-- [ ] contrôler en production les statuts, contenus visibles, canonicals, JSON-LD, sitemap et 301 ;
-- [ ] créer le dossier de preuve et mettre à jour la mémoire canonique ;
+- [x] committer et pousser la branche autorisée ;
+- [x] créer une PR avec les preuves ;
+- [x] attendre les garde-fous verts et vérifier le SHA ;
+- [x] fusionner la PR ;
+- [x] attendre le workflow Cloudflare et IndexNow ;
+- [x] contrôler en production les statuts, contenus visibles, canonicals, JSON-LD, sitemap et 301 ;
+- [x] créer le dossier de preuve et mettre à jour la mémoire canonique ;
 - [ ] envoyer le checkpoint sans secret sur le bus Codex/Claude.
 
 Rollback : annuler le commit de fusion. Aucune migration ou donnée externe n'est à restaurer.

@@ -49,4 +49,21 @@ Exécutées le 28 août 2026 dans le worktree isolé `entity-methodology-2026082
 
 ## Production
 
-À compléter après fusion et vérification HTTP réelle.
+- PR principale : `#7`, livraison `678394c944876b618397d06e2e63c09bcf901b45`, fusion `727dc41bbe30661736f7f755d83e136aa20f80aa`.
+- Correctif de ponctuation détecté au contrôle live : PR `#8`, livraison `378fac7`, fusion `16cbd7827f34b807791c8decc0f90d45209743e6`.
+- Garde-fous `main` : runs `33129472140` et `33129642611`, réussis.
+- Déploiements Cloudflare Pages et IndexNow : runs `33129472134` et `33129642642`, réussis.
+- Vérification HTTP réelle : homepage, À propos, Méthodologie, Pro, Baromètre, fiche Lyon et guide d'analyse répondent 200 avec leur canonical et l'organisation partagée.
+- Les deux variantes de l'ancienne formule répondent 301 avec `Location: /methodologie`.
+- Le sitemap répond 200, contient `/a-propos` et `/methodologie`, et ne contient pas l'ancienne page.
+- Tous les blocs JSON-LD des sept pages live contrôlées sont syntaxiquement valides.
+- Le contrôle final de la page Pro confirme `Score-Immo Pro · Pour les mandataires` et l'absence de l'ancienne ponctuation.
+
+La fusion avec suppression de branche a bien fusionné la PR `#7`, puis a échoué uniquement lors de l'opération Git locale, car un autre worktree utilisait déjà `main`. La fusion distante et le déploiement n'ont pas été affectés. La PR `#8` a ensuite été fusionnée sans suppression locale de branche.
+
+## Mémoire et App Store
+
+- Mémoire canonique mise à jour : `/Users/lestoilettesdeminette/Documents/Obsidian Vault/Score Immo - vérité des données et plan croissance - 2026-08-27.md`.
+- Pointeur mis à jour : `/Users/lestoilettesdeminette/codex-context/projects/scoreimmo/data-truth-growth-plan-2026-08-27.md`.
+- Dossier d'antériorité et préflight App Store : `/Users/lestoilettesdeminette/codex-context/projects/scoreimmo/evidence/2026-08-28-app-store-prior-use.md`.
+- Nom prévu pour une future soumission : `Score-Immo`, avec le tiret.
