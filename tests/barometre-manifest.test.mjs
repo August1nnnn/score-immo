@@ -38,6 +38,14 @@ function fixture(overrides = {}) {
   };
 }
 
+const partialCurrentScores = {
+  prix: 8,
+  dpe: 5,
+  risques: 6,
+  environnement: 8,
+  urbanisme: 9,
+};
+
 test("le manifeste expose uniquement le contrat public, trié et versionné", () => {
   const manifest = buildBarometreManifest([
     fixture({ slug: "z-fiche" }),
@@ -55,6 +63,32 @@ test("le manifeste expose uniquement le contrat public, trié et versionné", ()
   assert.equal(manifest.reports[0].publie, true);
   assert.equal("details" in manifest.reports[0], false);
   assert.equal("source_kind" in manifest.reports[0], false);
+});
+
+test("le manifeste préserve une grille courante partielle sans créer les notes absentes", () => {
+  const [report] = buildBarometreManifest([
+    fixture({ score_sections: partialCurrentScores }),
+  ]).reports;
+
+  assert.deepEqual(report.score_sections, partialCurrentScores);
+  assert.equal("transports" in report.score_sections, false);
+});
+
+test("le manifeste conserve la grille historique exacte de cinq sections", () => {
+  const legacyScores = {
+    prix: 7,
+    dpe: 8,
+    risques: 6,
+    urbanisme: 5,
+    environnement: 7,
+  };
+  const [report] = buildBarometreManifest([fixture({
+    mois: "2026-06",
+    methodology_version: "legacy-five-section-2026-06",
+    score_sections: legacyScores,
+  })]).reports;
+
+  assert.deepEqual(report.score_sections, legacyScores);
 });
 
 test("le manifeste refuse les slugs dangereux ou dupliqués", () => {
@@ -79,7 +113,7 @@ test("le manifeste refuse tout instantané que l'app rejetterait", () => {
     fixture({ prix_demande: Number.NaN }),
     fixture({ score_global: 101 }),
     fixture({ alertes_cles: [null] }),
-    fixture({ score_sections: { prix: 8 } }),
+    fixture({ score_sections: { prix: 8, dpe: 5, risques: 6, environnement: 8 } }),
     fixture({ score_sections: { ...fixture().score_sections, extra: 5 } }),
     fixture({ methodology_version: "legacy-five-section-2026-06" }),
   ]) assert.throws(() => buildBarometreManifest([invalid]), /invalid/i);

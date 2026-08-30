@@ -22,6 +22,15 @@ const currentScores = {
   urbanisme: 5.5,
 };
 
+const partialCurrentScores = {
+  prix: 7.2,
+  dpe: 9,
+  risques: 8.4,
+  environnement: 7.5,
+  urbanisme: 5.5,
+  transports: 7.7,
+};
+
 function row(overrides = {}) {
   return {
     mois: "2026-08",
@@ -64,6 +73,14 @@ test("les lignes courantes conservent la date exacte et la grille de treize sect
   assert.equal(fiche.source_report_id, undefined);
 });
 
+test("une ligne courante partielle conserve uniquement ses sections réellement notées", () => {
+  const [fiche] = normalizePublishedRows([row({ score_sections: partialCurrentScores })]);
+
+  assert.deepEqual(fiche.score_sections, partialCurrentScores);
+  assert.equal(Object.keys(fiche.score_sections).length, 6);
+  assert.equal("cout" in fiche.score_sections, false);
+});
+
 test("les fiches historiques gardent la methode cinq sections sans reecriture", () => {
   const [fiche] = normalizePublishedRows([row({
     mois: "2026-06",
@@ -98,7 +115,7 @@ test("les collisions de slug ou de source arretent la generation", () => {
   );
 });
 
-test("une edition courante sans provenance, avec date incoherente ou mauvaise grille est rejetee", () => {
+test("une edition courante sans provenance, avec date incoherente ou grille insuffisante est rejetee", () => {
   assert.throws(
     () => normalizePublishedRows([row({ details_json: {} })]),
     /provenance/i,
@@ -118,7 +135,13 @@ test("une edition courante sans provenance, avec date incoherente ou mauvaise gr
   );
   assert.throws(
     () => normalizePublishedRows([row({ score_sections: { prix: 7 } })]),
-    /treize sections/i,
+    /au moins cinq sections/i,
+  );
+  assert.throws(
+    () => normalizePublishedRows([row({
+      score_sections: { ...partialCurrentScores, score_invente: 4 },
+    })]),
+    /section inconnue/i,
   );
 });
 

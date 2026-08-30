@@ -20,3 +20,14 @@ test("le footer compacte les liens utiles sans supprimer les destinations", () =
     assert.match(footer, new RegExp(`>${label}<`));
   }
 });
+
+test("le rendu Baromètre n'invente aucune section absente", () => {
+  const detail = read("src/pages/barometre/[slug].astro");
+  const hub = read("src/pages/barometre/index.astro");
+  const region = read("src/pages/barometre/region/[slug].astro");
+
+  assert.match(detail, /sectionsForScoreGrid\(fiche\.methodology_version, fiche\.score_sections\)/);
+  assert.doesNotMatch(detail, /fiche\.score_sections\[s\.key\]\s*\?\?\s*0/);
+  assert.match(hub, /scoreSectionCountRange\(current\)/);
+  assert.match(region, /scoreSectionCountRange\(fiches\)/);
+});

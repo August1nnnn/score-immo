@@ -4,6 +4,8 @@ import test from "node:test";
 import {
   aggregateEdition,
   groupByEdition,
+  scoreSectionCountRange,
+  sectionsForScoreGrid,
   sectionsForMethod,
   selectLatestEdition,
   selectLatestRegionalEdition,
@@ -18,6 +20,11 @@ function fiche(overrides = {}) {
     prix_m2: 4000,
     region: "Occitanie",
     date_analyse: "2026-08-18",
+    score_sections: {
+      actualites: 6, commerces: 8, cout: 7, dpe: 5, ecoles: 9,
+      environnement: 8, population: 7, prix: 8, rendement: 6,
+      risques: 6, taxe_fonciere: 5, transports: 9, urbanisme: 9,
+    },
     ...overrides,
   };
 }
@@ -69,6 +76,29 @@ test("les definitions de section suivent la methode cinq ou treize axes", () => 
   assert.equal(sectionsForMethod("legacy-five-section-2026-06").length, 5);
   assert.equal(sectionsForMethod("current-category-grid-2026-08").length, 13);
   assert.throws(() => sectionsForMethod("unknown"), /méthode/i);
+});
+
+test("les sections visibles suivent uniquement les notes présentes dans une grille courante partielle", () => {
+  const scores = { prix: 8, dpe: 5, risques: 6, environnement: 8, urbanisme: 9 };
+  assert.deepEqual(
+    sectionsForScoreGrid("current-category-grid-2026-08", scores).map(({ key }) => key),
+    ["prix", "dpe", "risques", "environnement", "urbanisme"],
+  );
+  assert.equal(
+    sectionsForScoreGrid("current-category-grid-2026-08", scores)
+      .some(({ key }) => key === "transports"),
+    false,
+  );
+});
+
+test("la plage de sections d'une édition reflète les grilles exactes et partielles", () => {
+  const partial = fiche({
+    slug: "fixture-partielle",
+    score_sections: { prix: 8, dpe: 5, risques: 6, environnement: 8, urbanisme: 9 },
+  });
+
+  assert.deepEqual(scoreSectionCountRange([fiche(), partial]), { minimum: 5, maximum: 13 });
+  assert.deepEqual(scoreSectionCountRange([fiche()]), { minimum: 13, maximum: 13 });
 });
 
 test("une page regionale retient la derniere edition ayant assez de fiches", () => {

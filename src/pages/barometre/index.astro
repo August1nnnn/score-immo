@@ -5,7 +5,7 @@ import AnalyzerBox from '@/components/AnalyzerBox.astro';
 import FAQ from '@/components/FAQ.astro';
 import { getCollection } from 'astro:content';
 import { slugifyRegion, groupByRegion, REGION_MIN } from '@/lib/regions';
-import { aggregateEdition, groupByEdition, selectLatestEdition, sectionsForMethod } from '@/lib/barometre-editions';
+import { aggregateEdition, groupByEdition, scoreSectionCountRange, selectLatestEdition } from '@/lib/barometre-editions';
 import { BRAND_NAME, ORGANIZATION_ID, SITE_URL, WEBSITE_ID } from '@/data/entity';
 
 const canonical = `${SITE_URL}/barometre`;
@@ -21,7 +21,11 @@ const archiveTotal = all.length - total;
 const avg = stats.avgScore;
 const regions = stats.regions;
 const best = current.slice(0, 3);
-const sectionCount = sectionsForMethod(latestEdition.methodology).length;
+const sectionRange = scoreSectionCountRange(current);
+const sectionCountLabel = sectionRange.minimum === sectionRange.maximum
+  ? `${sectionRange.minimum}`
+  : `${sectionRange.minimum} à ${sectionRange.maximum}`;
+const sectionCountPhrase = `${sectionCountLabel} section${sectionRange.maximum > 1 ? 's' : ''}`;
 const editionLabel = new Date(`${latestEdition.month}-01T12:00:00Z`).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long' });
 
 const title = `Baromètre immobilier : ${total} annonces, ${editionLabel} | ${BRAND_NAME}`;
@@ -30,7 +34,7 @@ const description = `Édition ${editionLabel} : ${total} annonces analysées par
 const tldr = [
   `Édition ${editionLabel} : ${total} annonces analysées et notées sur 100 dans ${regions} régions.`,
   `Score moyen de cette édition homogène : ${avg}/100.`,
-  `${sectionCount} sections sont affichées selon la méthode utilisée lors de chaque analyse.`,
+  `Chaque fiche affiche ${sectionCountPhrase} réellement notées selon les données disponibles lors de l'analyse.`,
   `${archiveTotal} fiche(s) antérieure(s) restent accessibles dans les archives, sans être mélangées aux chiffres de ${editionLabel}.`,
 ];
 
@@ -59,8 +63,8 @@ const faq: { q: string; a: string }[] = [
     a: `L'édition ${editionLabel} publie ${total} analyses datées, réparties sur ${regions} régions françaises. Les ${archiveTotal} fiches antérieures sont conservées séparément et ne sont pas incluses dans les agrégats de cette édition.`,
   },
   {
-    q: `Pourquoi certaines fiches affichent-elles cinq sections et d'autres treize ?`,
-    a: `Les fiches de juin 2026 conservent la grille historique de cinq sections utilisée lors de leur publication. L'édition d'août 2026 affiche la grille résidentielle courante de treize sections. Les anciennes fiches ne sont pas recalculées silencieusement.`,
+    q: `Pourquoi certaines fiches affichent-elles cinq sections et d'autres jusqu'à treize ?`,
+    a: `Les fiches de juin 2026 conservent la grille historique exacte de cinq sections utilisée lors de leur publication. Les fiches courantes affichent uniquement les sections réellement notées, au moins cinq parmi les treize axes connus. Les notes absentes ne sont ni remplacées par zéro ni recalculées silencieusement.`,
   },
   {
     q: `Quelles sont les limites des notes du Baromètre ?`,
@@ -79,12 +83,12 @@ const datasetSchema = {
   ...(lastDate ? { dateModified: lastDate } : {}),
   spatialCoverage: { '@type': 'Place', name: 'France' },
   temporalCoverage: latestEdition.month,
-  measurementTechnique: `Instantanés datés produits avec la grille résidentielle de ${sectionCount} sections documentée sur la page Méthodologie.`,
+  measurementTechnique: `Instantanés datés produits avec la méthode résidentielle courante ; chaque fiche publie ${sectionCountPhrase} selon les données disponibles lors de son analyse.`,
   variableMeasured: [
     { '@type': 'PropertyValue', name: 'Annonces analysées', value: total },
     { '@type': 'PropertyValue', name: 'Score moyen de l’échantillon (0-100)', value: avg },
     { '@type': 'PropertyValue', name: 'Régions couvertes', value: regions },
-    { '@type': 'PropertyValue', name: 'Sections visibles par fiche', value: sectionCount },
+    { '@type': 'PropertyValue', name: 'Sections visibles par fiche', value: sectionCountLabel },
   ],
 };
 
@@ -136,12 +140,12 @@ const jsonLd: any[] = [
         <p class="bar-edition">Édition {editionLabel}</p>
         <h1 class="si-article-title">Le Baromètre immobilier Score-Immo</h1>
         <p class="bar-hub-lead">Un observatoire de fiches issues d'annonces réellement analysées, publié édition par édition.
-        Chaque instantané affiche son score, ses {sectionCount} sections, sa date d'analyse et ses limites.</p>
+        Chaque instantané affiche son score, ses sections réellement notées, sa date d'analyse et ses limites.</p>
         <div class="bar-stats">
           <div><strong>{total}</strong><span>annonces notées</span></div>
           <div><strong>{avg}/100</strong><span>score moyen</span></div>
           <div><strong>{regions}</strong><span>régions</span></div>
-          <div><strong>{sectionCount}</strong><span>sections publiées</span></div>
+          <div><strong>{sectionCountLabel}</strong><span>sections par fiche</span></div>
         </div>
       </header>
 
@@ -192,10 +196,13 @@ const jsonLd: any[] = [
           <p>Les éditions antérieures restent consultables dans leur état d'origine. Leurs scores ne sont pas mélangés avec ceux de {editionLabel}.</p>
           {archiveEditions.map((edition) => {
             const label = new Date(`${edition.month}-01T12:00:00Z`).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long' });
-            const archivedSections = sectionsForMethod(edition.methodology).length;
+            const archivedRange = scoreSectionCountRange(edition.fiches);
+            const archivedSections = archivedRange.minimum === archivedRange.maximum
+              ? `${archivedRange.minimum}`
+              : `${archivedRange.minimum} à ${archivedRange.maximum}`;
             return (
               <details>
-                <summary>{label} : {edition.fiches.length} fiches, méthode à {archivedSections} sections</summary>
+                <summary>{label} : {edition.fiches.length} fiches, {archivedSections} sections visibles par fiche</summary>
                 <div class="bar-grid bar-archive-grid">
                   {edition.fiches.map((f) => (
                     <a class="bar-card" href={`/barometre/${f.slug}`}>

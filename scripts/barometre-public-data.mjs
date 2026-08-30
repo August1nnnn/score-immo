@@ -25,6 +25,23 @@ function assertExactScoreGrid(scores, keys, message) {
   }
 }
 
+function assertCurrentScoreGrid(scores) {
+  if (!scores || typeof scores !== "object" || Array.isArray(scores)) {
+    throw new Error("Une fiche courante doit avoir au moins cinq sections");
+  }
+  const actual = Object.keys(scores);
+  if (actual.length < 5) {
+    throw new Error("Une fiche courante doit avoir au moins cinq sections");
+  }
+  const unknown = actual.find((key) => !CURRENT_KEYS.includes(key));
+  if (unknown) throw new Error(`Section inconnue dans une fiche courante: ${unknown}`);
+  for (const value of Object.values(scores)) {
+    if (!Number.isFinite(Number(value)) || Number(value) < 0 || Number(value) > 10) {
+      throw new Error("Une note de section est hors de l'echelle 0-10");
+    }
+  }
+}
+
 function validateBaseRow(row) {
   if (!validMonth(row.mois)) throw new Error(`Mois invalide pour ${row.slug ?? "ligne inconnue"}`);
   if (typeof row.slug !== "string" || !row.slug) throw new Error("Slug public manquant");
@@ -68,7 +85,7 @@ function publicationFor(row) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(publication.analyzed_at ?? "") || publication.analyzed_at.slice(0, 7) !== row.mois) {
     throw new Error(`Date d'analyse incoherente avec le mois pour ${row.slug}`);
   }
-  assertExactScoreGrid(row.score_sections, CURRENT_KEYS, "Une fiche courante doit avoir treize sections");
+  assertCurrentScoreGrid(row.score_sections);
   return publication;
 }
 

@@ -6,7 +6,7 @@ import SourcesSection from '@/components/SourcesSection.astro';
 import AnalyzerBox from '@/components/AnalyzerBox.astro';
 import { getCollection } from 'astro:content';
 import { slugifyRegion as slugify, groupByRegion, REGION_MIN } from '@/lib/regions';
-import { aggregateEdition, selectLatestRegionalEdition, sectionsForMethod } from '@/lib/barometre-editions';
+import { aggregateEdition, scoreSectionCountRange, selectLatestRegionalEdition } from '@/lib/barometre-editions';
 import { BRAND_NAME, ORGANIZATION_ID, SITE_URL, WEBSITE_ID } from '@/data/entity';
 
 export async function getStaticPaths() {
@@ -40,7 +40,11 @@ const lastDateFmt = lastDate
   ? new Date(lastDate).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long' })
   : null;
 const editionLabel = new Date(`${edition.month}-01T12:00:00Z`).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long' });
-const sectionCount = sectionsForMethod(edition.methodology).length;
+const sectionRange = scoreSectionCountRange(fiches);
+const sectionCountLabel = sectionRange.minimum === sectionRange.maximum
+  ? `${sectionRange.minimum}`
+  : `${sectionRange.minimum} à ${sectionRange.maximum}`;
+const sectionCountPhrase = `${sectionCountLabel} section${sectionRange.maximum > 1 ? 's' : ''}`;
 
 const title = `Annonces immobilières analysées en ${region} | Baromètre ${BRAND_NAME}`;
 const description = `Édition ${editionLabel} : ${n} annonces analysées par ${BRAND_NAME} en ${region}, dans ${communes} communes. Score moyen de l'échantillon : ${avgScore}/100.`.slice(0, 160);
@@ -48,7 +52,7 @@ const description = `Édition ${editionLabel} : ${n} annonces analysées par ${B
 const tldr = [
   `Édition ${editionLabel} : ${n} annonces analysées dans ${communes} communes de ${region}.`,
   `Score ${BRAND_NAME} moyen de cette édition homogène : ${avgScore}/100.`,
-  `Chaque fiche de cette édition affiche ${sectionCount} sections et sa propre date d'analyse.`,
+  `Chaque fiche de cette édition affiche ${sectionCountPhrase} réellement notées et sa propre date d'analyse.`,
 ].filter(Boolean) as string[];
 
 const faq = [
@@ -62,7 +66,7 @@ const faq = [
   },
   {
     q: `Comment lire les scores de cet échantillon ?`,
-    a: `Chaque fiche est un instantané daté utilisant les ${sectionCount} sections de sa méthode. Les agrégats de cette page ne mélangent jamais deux mois ou deux grilles de notation. La méthode complète est documentée sur la page Méthodologie.`,
+    a: `Chaque fiche est un instantané daté utilisant la même méthode, avec ${sectionCountPhrase} réellement notées selon les données disponibles. Les agrégats de cette page ne mélangent jamais deux mois ou deux méthodes de notation.`,
   },
 ].filter(Boolean) as { q: string; a: string }[];
 
@@ -98,12 +102,12 @@ const jsonLd: any[] = [
     ...(lastDate ? { dateModified: lastDate } : {}),
     temporalCoverage: edition.month,
     spatialCoverage: { '@type': 'Place', name: region, address: { '@type': 'PostalAddress', addressRegion: region, addressCountry: 'FR' } },
-    measurementTechnique: `Instantanés datés produits avec une grille homogène de ${sectionCount} sections, sans mélange avec les autres éditions.`,
+    measurementTechnique: `Instantanés datés produits avec une même méthode ; chaque fiche publie ${sectionCountPhrase}, sans mélange avec les autres éditions.`,
     variableMeasured: [
       { '@type': 'PropertyValue', name: 'Biens analysés', value: n },
       { '@type': 'PropertyValue', name: 'Score moyen de l’échantillon (0-100)', value: avgScore },
       { '@type': 'PropertyValue', name: 'Communes représentées', value: communes },
-      { '@type': 'PropertyValue', name: 'Sections visibles par fiche', value: sectionCount },
+      { '@type': 'PropertyValue', name: 'Sections visibles par fiche', value: sectionCountLabel },
     ],
   },
   {
@@ -135,7 +139,7 @@ const jsonLd: any[] = [
         <p class="reg-edition">Édition {editionLabel}</p>
         <h1 class="si-article-title">Annonces immobilières analysées en {region}</h1>
         <p class="reg-lead">Un échantillon homogène de {n} annonces dans {communes} communes de {region}, publié sous
-        forme d'instantanés datés avec les {sectionCount} sections visibles lors de chaque analyse.</p>
+        forme d'instantanés datés avec uniquement les sections réellement notées lors de chaque analyse.</p>
         <div class="reg-stats">
           <div><strong>{n}</strong><span>biens analysés</span></div>
           <div><strong>{avgScore}/100</strong><span>score moyen</span></div>
@@ -163,7 +167,7 @@ const jsonLd: any[] = [
         <AnalyzerBox blog="villes" medium="barometre_region" />
         <SourcesSection sources={sources} />
         <p class="reg-method">Méthodologie : les agrégats décrivent uniquement cette édition de {n} fiches et cette
-        méthode à {sectionCount} sections. Ils ne constituent pas un baromètre de prix de toute la région. Les instantanés
+        méthode, avec {sectionCountPhrase} par fiche. Ils ne constituent pas un baromètre de prix de toute la région. Les instantanés
         ne sont pas recalculés lorsque le moteur évolue. <a href="/methodologie">Lire la méthode et ses limites.</a></p>
       </div>
     </div>

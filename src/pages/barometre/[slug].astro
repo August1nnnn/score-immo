@@ -5,7 +5,7 @@ import SourcesSection from '@/components/SourcesSection.astro';
 import AnalyzerBox from '@/components/AnalyzerBox.astro';
 import FAQ from '@/components/FAQ.astro';
 import { buildBarometreMetaDescription } from '@/lib/barometre-meta-description.js';
-import { sectionsForMethod } from '@/lib/barometre-editions';
+import { sectionsForScoreGrid } from '@/lib/barometre-editions';
 import { BRAND_NAME, ORGANIZATION_ID, SITE_URL } from '@/data/entity';
 import { getCollection } from 'astro:content';
 
@@ -33,7 +33,7 @@ const description = buildBarometreMetaDescription(fiche);
 const scoreColor = fiche.score_global >= 70 ? '#16A34A' : fiche.score_global >= 40 ? '#B45309' : '#DC2626';
 const scoreWord = fiche.score_global >= 70 ? 'Excellent' : fiche.score_global >= 40 ? 'Correct' : 'Risqué';
 
-const SECTIONS = sectionsForMethod(fiche.methodology_version);
+const SECTIONS = sectionsForScoreGrid(fiche.methodology_version, fiche.score_sections);
 const sectionCount = SECTIONS.length;
 const sectionColor = (s: number) => (s >= 7 ? '#16A34A' : s >= 4 ? '#B45309' : '#DC2626');
 
@@ -72,7 +72,6 @@ const ss: Record<string, number> = (fiche.score_sections as any) || {};
 const demo = fiche.type_bien === 'appartement' ? 'cet' : 'cette';
 const demoCap = fiche.type_bien === 'appartement' ? 'Cet' : 'Cette';
 const sectionLine = SECTIONS
-  .filter((s) => ss[s.key] != null)
   .map((s) => `${s.label.toLowerCase()} ${ss[s.key]}/10`)
   .join(', ');
 
@@ -83,12 +82,14 @@ const faq: { q: string; a: string }[] = [
   },
   {
     q: `Pourquoi ce bien est-il noté ${fiche.score_global}/100 ?`,
-    a: `Cet instantané daté combine les ${sectionCount} sections visibles de la grille publiée${sectionLine ? ` : ${sectionLine}` : ''}. La note globale de ${fiche.score_global}/100 en est la synthèse.`,
+    a: `Cet instantané daté publie ${sectionCount} sections réellement notées${sectionLine ? ` : ${sectionLine}` : ''}. La note globale de ${fiche.score_global}/100 est conservée telle qu'elle a été calculée lors de l'analyse ; aucune section absente n'est recréée.`,
   },
   ...(prixM2Fmt
     ? [{
         q: `Le prix de ${prixM2Fmt} €/m² est-il justifié à ${fiche.ville} ?`,
-        a: `Affiché à ${prixFmt} € pour ${fiche.surface} m² (${prixM2Fmt} €/m²), ce bien obtient ${ss.prix != null ? `${ss.prix}/10 sur le critère prix vs marché` : 'sa note prix'} à partir des transactions réelles DVF du secteur.`,
+        a: ss.prix != null
+          ? `Affiché à ${prixFmt} € pour ${fiche.surface} m² (${prixM2Fmt} €/m²), ce bien obtient ${ss.prix}/10 sur le critère prix face au marché à partir des transactions réelles DVF du secteur.`
+          : `Affiché à ${prixFmt} € pour ${fiche.surface} m² (${prixM2Fmt} €/m²), ce bien conserve son contexte DVF, mais aucune note prix n'est publiée pour cet instantané.`,
       }]
     : []),
   {
@@ -113,7 +114,7 @@ const datasetSchema = {
   measurementTechnique: `Grille de ${sectionCount} sections correspondant à la méthode ${fiche.methodology_version}.`,
   variableMeasured: [
     { '@type': 'PropertyValue', name: `Score global ${BRAND_NAME} (0-100)`, value: fiche.score_global },
-    ...SECTIONS.filter((s) => ss[s.key] != null).map((s) => ({ '@type': 'PropertyValue', name: `${s.label} (0-10)`, value: ss[s.key] })),
+    ...SECTIONS.map((s) => ({ '@type': 'PropertyValue', name: `${s.label} (0-10)`, value: ss[s.key] })),
   ],
 };
 
@@ -194,9 +195,10 @@ const jsonLd: any[] = [
         <p class="bar-verdict">{fiche.verdict}</p>
 
         <h2>Le détail du score</h2>
+        <p class="bar-section-note">Seules les {sectionCount} sections réellement notées lors de cette analyse sont affichées. Une section absente n'est jamais remplacée par une note nulle.</p>
         <div class="bar-bars">
           {SECTIONS.map((s) => {
-            const v = fiche.score_sections[s.key] ?? 0;
+            const v = fiche.score_sections[s.key];
             return (
               <div class="bar-row">
                 <span class="bar-row-label">{s.label}</span>
@@ -372,6 +374,7 @@ const jsonLd: any[] = [
   .bar-facts dd { margin: 0.1rem 0 0; font-size: 1.15rem; font-weight: 700; color: var(--si-foreground); font-family: var(--si-font-heading); }
 
   .bar-verdict { font-size: 1.15rem !important; font-weight: 500; }
+  .bar-section-note { color: var(--si-muted-foreground, #64748B) !important; font-size: 0.9rem !important; }
   .bar-bars { display: flex; flex-direction: column; gap: 0.75rem; margin: 1rem 0; }
   .bar-row { display: grid; grid-template-columns: 150px 1fr 48px; align-items: center; gap: 0.75rem; }
   .bar-row-label { font-size: 0.9rem; color: var(--si-foreground); }

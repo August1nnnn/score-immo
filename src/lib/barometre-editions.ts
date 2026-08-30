@@ -9,6 +9,7 @@ export type BarometreFiche = {
   prix_m2?: number | null;
   region: string;
   date_analyse: string;
+  score_sections?: Record<string, number>;
   [key: string]: unknown;
 };
 
@@ -46,6 +47,29 @@ export function sectionsForMethod(methodology: string) {
   if (methodology === LEGACY_BAROMETRE_METHOD) return LEGACY_SECTIONS;
   if (methodology === CURRENT_BAROMETRE_METHOD) return CURRENT_SECTIONS;
   throw new Error(`Méthode Baromètre inconnue : ${methodology}`);
+}
+
+export function sectionsForScoreGrid(
+  methodology: string,
+  scores: Record<string, number> | null | undefined,
+) {
+  const publishedScores = scores && typeof scores === 'object' && !Array.isArray(scores)
+    ? scores
+    : {};
+  return sectionsForMethod(methodology).filter(({ key }) => (
+    Object.prototype.hasOwnProperty.call(publishedScores, key)
+  ));
+}
+
+export function scoreSectionCountRange<T extends BarometreFiche>(fiches: T[]) {
+  if (fiches.length === 0) throw new Error('Impossible de compter les sections d’une édition vide');
+  const counts = fiches.map((fiche) => (
+    sectionsForScoreGrid(fiche.methodology_version, fiche.score_sections).length
+  ));
+  return {
+    minimum: Math.min(...counts),
+    maximum: Math.max(...counts),
+  };
 }
 
 export function groupByEdition<T extends BarometreFiche>(fiches: T[]): BarometreEdition<T>[] {

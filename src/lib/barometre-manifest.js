@@ -30,6 +30,14 @@ function hasExactScores(scores, expectedKeys) {
     && Object.values(scores).every((score) => isFiniteInRange(score, 0, 10));
 }
 
+function hasCurrentScores(scores) {
+  if (!isRecord(scores)) return false;
+  const keys = Object.keys(scores);
+  return keys.length >= 5
+    && keys.every((key) => CURRENT_SECTION_KEYS.includes(key))
+    && Object.values(scores).every((score) => isFiniteInRange(score, 0, 10));
+}
+
 function isValidPublicEntry(entry) {
   if (!isRecord(entry) || !SAFE_SLUG.test(entry.slug ?? "")) return false;
   for (const value of [
@@ -57,8 +65,9 @@ function isValidPublicEntry(entry) {
   const isCurrent = entry.mois >= "2026-08";
   const expectedMethod = isCurrent ? CURRENT_METHOD : LEGACY_METHOD;
   if (entry.methodology_version !== expectedMethod) return false;
-  const expectedSections = isCurrent ? CURRENT_SECTION_KEYS : LEGACY_SECTION_KEYS;
-  return hasExactScores(entry.score_sections, expectedSections);
+  return isCurrent
+    ? hasCurrentScores(entry.score_sections)
+    : hasExactScores(entry.score_sections, LEGACY_SECTION_KEYS);
 }
 
 function publicReport(entry) {
