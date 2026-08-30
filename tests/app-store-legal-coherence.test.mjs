@@ -71,16 +71,18 @@ test("legal notices expose the canonical Cloudflare and Supabase entities", () =
     "Cloudflare, Inc.",
     "101 Townsend St.",
     "San Francisco, CA 94107",
-    "Supabase, Inc.",
-    "3500 S. DuPont Highway",
-    "Dover",
-    "Delaware",
+    "SUPABASE PTE. LTD.",
+    "65 Chulia Street #38-02/03",
+    "OCBC Centre",
+    "Singapore 049513",
   ]) {
     assert.match(
       legal,
       new RegExp(expected.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "iu"),
     );
   }
+
+  assert.doesNotMatch(legal, /Supabase, Inc\.|3500 S\. DuPont Highway|Dover, Delaware/iu);
 });
 
 test("canonical legal pages describe mixed public sources without exclusivity claims", () => {
