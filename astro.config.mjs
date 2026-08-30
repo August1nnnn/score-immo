@@ -8,6 +8,7 @@ const sitemapExcludedPaths = new Set([
   '/404',
   '/pages/efficity',
   '/pages/llms-txt',
+  '/pages/tarifs',
 ]);
 
 export default defineConfig({

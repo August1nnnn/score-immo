@@ -15,11 +15,16 @@ test("the homepage uses a stable, descriptive H1", () => {
 test("public machine-readable facts use canonical URLs and source counts", () => {
   const llms = read("public/llms.txt");
   assert.match(llms, /Sources publiques et ouvertes mobilisables \(10\)/);
-  assert.match(llms, /plus de 230 points de donnees potentiels/);
+  assert.match(llms, /plus de 230 points de données potentiels/);
   assert.match(llms, /https:\/\/score-immo\.fr\/methodologie/);
   assert.match(llms, /https:\/\/score-immo\.fr\/barometre/);
   assert.doesNotMatch(llms, /https:\/\/app\.score-immo\.fr\/barometre/);
   assert.doesNotMatch(llms, /premier outil|sources de donnees officielles francaises/i);
+  const prose = llms.replace(/https?:\/\/[^\s)]+/g, "");
+  assert.doesNotMatch(
+    prose,
+    /\b(francaise|donnees|concue|immobiliere|methodologie|echantillon|verifier|decision|reglementaire|confidentialite)\b/i,
+  );
 });
 
 test("high-impression pages target their observed search intent", () => {
@@ -100,6 +105,8 @@ test("IndexNow runs after deployment and targets changed article URLs", () => {
       "--changed-files",
       "src/content/articles/villes/prix-immobilier-paris-marche-plancher.json",
       "src/data/pages/tarifs.json",
+      "src/pages/pages/tarifs.astro",
+      "src/pages/tarifs.astro",
     ],
     { cwd: new URL("..", import.meta.url), encoding: "utf8" },
   );
@@ -108,6 +115,7 @@ test("IndexNow runs after deployment and targets changed article URLs", () => {
     result.stdout,
     /https:\/\/score-immo\.fr\/blogs\/villes\/prix-immobilier-paris-marche-plancher/,
   );
-  assert.match(result.stdout, /https:\/\/score-immo\.fr\/pages\/tarifs/);
+  assert.match(result.stdout, /https:\/\/score-immo\.fr\/tarifs/);
+  assert.doesNotMatch(result.stdout, /https:\/\/score-immo\.fr\/pages\/tarifs/);
   assert.doesNotMatch(result.stdout, /Pinging 303 URLs/);
 });
