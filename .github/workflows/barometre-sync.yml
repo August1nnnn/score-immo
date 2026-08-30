@@ -2,8 +2,8 @@ name: Barometre - synchronize published snapshots by PR
 
 on:
   schedule:
-    # Monthly, after the prior month can be curated and reviewed.
-    - cron: '23 6 2 * *'
+    # Daily detection of any database/site drift. Content changes still require review.
+    - cron: '23 6 * * *'
   workflow_dispatch:
 
 concurrency:
@@ -50,6 +50,9 @@ jobs:
       - name: Detect a reviewed content change
         id: changes
         run: |
+          removed_count="$(git diff --name-only --diff-filter=D -- src/content/barometre | wc -l | tr -d ' ')"
+          echo "removed_count=$removed_count" >> "$GITHUB_OUTPUT"
+          echo "Barometre snapshot removals requiring explicit reviewer verification: $removed_count" >> "$GITHUB_STEP_SUMMARY"
           if git diff --quiet -- src/content/barometre; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
@@ -76,11 +79,18 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           BRANCH_NAME: automation/barometre-sync
+          REMOVED_COUNT: ${{ steps.changes.outputs.removed_count }}
         run: |
-          body="Automated static synchronization of already published Barometre rows. Tests, editorial truth checks, build and internal-link integrity passed. This workflow never merges or deploys automatically."
+          body="Automated static synchronization of already published Barometre rows. Tests, editorial truth checks, build and internal-link integrity passed. Snapshot removals requiring explicit reviewer verification: ${REMOVED_COUNT}. This workflow never merges or deploys automatically."
           pr_number="$(gh pr list --repo "$GITHUB_REPOSITORY" --head "$BRANCH_NAME" --state open --json number --jq '.[0].number // empty')"
           if [ -n "$pr_number" ]; then
             gh pr edit "$pr_number" --repo "$GITHUB_REPOSITORY" --body "$body"
           else
             gh pr create --repo "$GITHUB_REPOSITORY" --base main --head "$BRANCH_NAME" --title "chore(barometre): synchronize published snapshots" --body "$body"
           fi
+
+      - name: Verify live deployed parity when no synchronization is pending
+        if: steps.changes.outputs.changed == 'false'
+        env:
+          SCOREIMMO_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.SCOREIMMO_SUPABASE_PUBLISHABLE_KEY }}
+        run: npm run barometre:verify-live

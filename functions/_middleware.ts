@@ -16,8 +16,7 @@ const ASSET_EXT =
   /\.(js|mjs|css|png|jpe?g|webp|avif|gif|svg|ico|woff2?|ttf|otf|eot|map|json|xml|txt|mp4|webm|mp3|pdf|zip)$/i;
 
 // These utility/partner pages intentionally stay reachable but must not be
-// indexed. The response header overrides the global `index, follow` rule from
-// public/_headers so crawlers never receive contradictory directives.
+// indexed. The response header gives crawlers one unambiguous directive.
 const NOINDEX_PATHS = new Set([
   '/pages/efficity',
   '/pages/llms-txt',
@@ -99,7 +98,7 @@ export const onRequest: PagesFunction<Env> = async (context) => {
   // (2) Bot crawl logger (no-op for assets/non-HTML/non-bot/no-env-vars)
   logBotIfRelevant(context.request, response, context.env, context.waitUntil);
 
-  // (3) Custom 404s and explicit noindex pages override the global index header.
+  // (3) Custom 404s and explicit noindex pages receive one response directive.
   const headers = new Headers(response.headers);
   const normalizedPath = url.pathname.replace(/\/$/, '') || '/';
   if (response.status === 404 || NOINDEX_PATHS.has(normalizedPath)) {

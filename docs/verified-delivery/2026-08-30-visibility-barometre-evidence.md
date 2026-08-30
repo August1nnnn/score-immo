@@ -15,7 +15,10 @@ Le lot rend le Baromètre publiable et maintenable sans mélanger des méthodes 
 - 112 fiches statiques au total, sans rapport client non opt-in ;
 - agrégats nationaux et régionaux limités à un mois et une méthode homogènes ;
 - quatre géographies invalides rendues non publiées et Cayenne réparée de `France` vers `Guyane` ;
-- workflow mensuel de synchronisation en lecture seule, avec revue par pull request obligatoire ;
+- workflow quotidien de synchronisation en lecture seule, avec revue par pull
+  request obligatoire et contrôle live des URL partagées par l'app ;
+- manifeste JSON public pré-rendu depuis les mêmes 112 fiches, validé et exclu
+  du sitemap, destiné au rendu cohérent du Baromètre dans l'app ;
 - neuf descriptions éditoriales trompeuses du Baromètre corrigées ;
 - déclarations personnelles, partenariats ou observations de marché non attribuables neutralisés dans les contenus repérés pendant l'audit.
 
@@ -96,6 +99,15 @@ Rollback données : rendre `publie=false` les 15 lignes du mois `2026-08`, puis 
 - clé publishable uniquement dans le workflow de synchronisation ;
 - aucune clé de gestion Supabase ou service role dans GitHub Actions ;
 - workflow limité à une PR : aucune fusion ni aucun déploiement automatique.
+- gate quotidien : égalité exacte entre les slugs éligibles en base, le
+  manifeste et le sitemap live, puis requête HEAD exigeant HTTP 200 pour chaque
+  fiche.
+- projection du manifeste allowlistée et validation miroir de l'app ;
+- relation mois, version de méthode et grille 5/13 vérifiée avant génération ;
+- CORS public sans credentials, cache revalidé, `nosniff`, `noindex` et absence
+  explicite de tout sitemap.
+- aucune directive `index` globale dans `_headers` : les pages HTML utilisent
+  leur meta robots et le manifeste reçoit un seul `X-Robots-Tag: noindex`.
 
 Secret GitHub présent : `SCOREIMMO_SUPABASE_PUBLISHABLE_KEY`, valeur non imprimée. Dernière mise à jour vérifiée le 30 août 2026.
 
@@ -103,12 +115,15 @@ Secret GitHub présent : `SCOREIMMO_SUPABASE_PUBLISHABLE_KEY`, valeur non imprim
 
 | Gate | Résultat |
 |---|---|
-| Tests automatisés | 143/143 PASS |
+| Tests automatisés | 154/154 PASS |
 | Vérité éditoriale | PASS |
 | Build Astro | 313 pages PASS |
 | Intégrité du site | 12 229 liens internes, 35 redirections, PASS |
 | JSON-LD | 1 510 scripts parsés sur 313 HTML, PASS |
 | Données Baromètre | 112 total, 15 août, 97 juin, PASS |
+| Pages existantes live avant manifeste | 112/112 slugs, 112 HEAD HTTP 200, PASS |
+| Endpoint manifeste live | en attente du déploiement, HTTP 404 attendu à ce stade |
+| Manifeste build | schéma 1, 112 rapports, 75 604 octets, bijection pages PASS |
 | Grilles | août 13 sections, juin 5 sections, PASS |
 | PII Baromètre | zéro clé interdite, PASS |
 | Scan de valeurs secrètes | zéro finding, PASS |
@@ -141,10 +156,19 @@ La première passe finale a détecté une référence à un helper de formatage 
 - le générateur public sélectionne explicitement ses colonnes et n'utilise plus `select=*` ;
 - le contrôle de fraîcheur appartient au workflow de synchronisation et ne bloque pas les déploiements urgents du site ;
 - la branche d'automatisation est mise à jour avec `--force-with-lease` après récupération de sa référence distante ;
+- chaque suppression d'instantané est comptée et signalée dans la PR pour
+  vérification explicite avant toute fusion ;
 - le workflow cherche uniquement une PR ouverte, ce qui évite de réutiliser silencieusement une ancienne PR fermée ;
+- le contrôle live s'exécute seulement lorsqu'aucun diff de synchronisation
+  n'est en attente ; une vraie dérive ouvre une PR verte, puis la parité est
+  rejouée après déploiement au lieu d'échouer contre l'ancien site live ;
+- l'app ne dépend plus de la table publique pour son rendu : le manifeste et
+  les pages sont produits par le même build atomique ;
 - les éditions et leurs sections sont centralisées dans un helper testé ;
+- une édition ne peut contenir qu'une seule fiche éditoriale ;
 - les pages régionales historiques restent disponibles lorsqu'aucune édition plus récente ne possède trois fiches ;
-- aucune finding Critical ou Important ne reste ouverte dans ce lot.
+- aucune finding Critical ou Important de code ne reste ouverte ; le gate
+  externe du manifeste live reste en attente du déploiement.
 
 ## 8. Test de reconnaissance d'entité sans nom
 

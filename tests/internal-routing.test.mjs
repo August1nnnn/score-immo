@@ -93,7 +93,7 @@ test("the site defines a crawl-safe custom 404 page", () => {
   assert.match(source, /href="\/"/);
 });
 
-test("404 responses override the global index crawler header", () => {
+test("404 responses receive an explicit noindex crawler header", () => {
   const middleware = readFileSync(
     new URL("../functions/_middleware.ts", import.meta.url),
     "utf8",

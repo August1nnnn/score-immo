@@ -4,7 +4,9 @@
 
 - tâches 1 à 6 : terminées et vérifiées ;
 - tâche 7, contrôles locaux : terminée ;
-- tâche 7, PR, déploiement et smoke test live : en cours ;
+- tâche 7, contrôle des pages live existantes : terminé ;
+- tâche 8, contrôle du manifeste live : en attente du déploiement ;
+- tâche 7, PR, déploiement et smoke test live final : en cours ;
 - preuve : `docs/verified-delivery/2026-08-30-visibility-barometre-evidence.md`.
 
 ## Contraintes globales
@@ -110,15 +112,21 @@ Rollback : restaurer individuellement les articles concernés.
 Fichiers :
 
 - créer `.github/workflows/barometre-sync.yml` ;
+- créer `scripts/verify-live-barometre.mjs` ;
+- créer `tests/barometre-live-parity.test.mjs` ;
 - créer ou étendre un test de contrat workflow.
 
 Étapes :
 
-1. écrire le test RED : clé publishable seulement, permissions minimales, PR obligatoire, aucune fusion, fraîcheur contrôlée ;
+1. écrire le test RED : clé publishable seulement, permissions minimales, PR
+   obligatoire, aucune fusion, fraîcheur et parité live contrôlées ;
 2. implémenter le workflow idempotent ;
 3. installer la clé publishable comme secret du dépôt sans imprimer sa valeur ;
-4. exécuter un `workflow_dispatch` après fusion et vérifier qu'il ne crée aucun diff parasite ;
-5. contrôler les permissions et logs non secrets.
+4. en l'absence de diff, vérifier quotidiennement l'égalité exacte entre base,
+   manifeste et sitemap, puis le statut HTTP 200 des fiches ; si un diff vient
+   d'ouvrir une PR, différer ce contrôle jusqu'au déploiement ;
+5. exécuter un `workflow_dispatch` après fusion et vérifier qu'il ne crée aucun diff parasite ;
+6. contrôler les permissions et logs non secrets.
 
 Rollback : retirer le schedule ou revert du workflow, puis supprimer le secret si le pipeline est abandonné.
 
@@ -138,6 +146,29 @@ Rollback : retirer le schedule ou revert du workflow, puis supprimer le secret s
 10. programmer les re-mesures GSC à J+7, J+14 et J+28.
 
 Rollback : annuler le commit de fusion ; si la donnée d'août est en cause, rendre ses lignes `publie=false` avant la nouvelle génération.
+
+### Tâche 8 : contrat atomique avec l'app
+
+Fichiers :
+
+- créer `src/lib/barometre-manifest.js` ;
+- créer `src/pages/barometre-manifest.json.ts` ;
+- modifier `public/_headers`, `astro.config.mjs` et le contrôle d'intégrité ;
+- étendre le moniteur live et ses tests.
+
+Étapes :
+
+1. écrire les tests RED sur la projection publique, les formats adversariaux,
+   les doublons, CORS, noindex et l'exclusion du sitemap ;
+2. pré-rendre le manifeste depuis la collection statique avec un schéma
+   versionné et une allowlist stricte ;
+3. faire échouer le build si le manifeste et les fiches ne sont pas en bijection ;
+4. étendre le moniteur quotidien à la parité base, manifeste, sitemap et HTTP ;
+5. déployer le site avant l'app et vérifier une requête CORS depuis l'origine
+   native, sans credentials.
+
+Rollback : revert du manifeste et de ses contrôles, puis conserver l'app
+actuelle tant que l'endpoint public n'est pas disponible.
 
 ## Couverture des critères
 
