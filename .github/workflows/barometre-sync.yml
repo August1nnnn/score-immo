@@ -1,8 +1,8 @@
-name: Barometre - synchronize published snapshots by PR
+name: Barometre - automatically synchronize published snapshots
 
 on:
   schedule:
-    # Daily detection of any database/site drift. Content changes still require review.
+    # Daily safety net if an immediate app-triggered synchronization could not start.
     - cron: '23 6 * * *'
   workflow_dispatch:
 
@@ -12,7 +12,6 @@ concurrency:
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
   synchronize:
@@ -47,47 +46,34 @@ jobs:
           npm run build
           npm run test:site-integrity
 
-      - name: Detect a reviewed content change
+      - name: Detect a public snapshot change
         id: changes
         run: |
           removed_count="$(git diff --name-only --diff-filter=D -- src/content/barometre | wc -l | tr -d ' ')"
           echo "removed_count=$removed_count" >> "$GITHUB_OUTPUT"
-          echo "Barometre snapshot removals requiring explicit reviewer verification: $removed_count" >> "$GITHUB_STEP_SUMMARY"
-          if git diff --quiet -- src/content/barometre; then
+          echo "Barometre snapshot removals: $removed_count" >> "$GITHUB_STEP_SUMMARY"
+          git diff --exit-code -- . ':(exclude)src/content/barometre/**'
+          if [ -n "$(git status --porcelain --untracked-files=all -- . ':(exclude)src/content/barometre/**')" ]; then
+            echo "Unexpected generated changes outside src/content/barometre" >&2
+            git status --short -- . ':(exclude)src/content/barometre/**' >&2
+            exit 1
+          fi
+          if [ -z "$(git status --porcelain --untracked-files=all -- src/content/barometre)" ]; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Push the synchronization branch
+      - name: Publish the verified snapshots on main
         if: steps.changes.outputs.changed == 'true'
-        env:
-          BRANCH_NAME: automation/barometre-sync
         run: |
           git config user.name "score-immo-barometre-bot"
           git config user.email "actions@users.noreply.github.com"
-          if git ls-remote --exit-code --heads origin "$BRANCH_NAME" >/dev/null 2>&1; then
-            git fetch origin "$BRANCH_NAME:refs/remotes/origin/$BRANCH_NAME"
-          fi
-          git checkout -B "$BRANCH_NAME"
           git add src/content/barometre
           git commit -m "chore(barometre): synchronize published snapshots"
-          git push --force-with-lease --set-upstream origin "$BRANCH_NAME"
-
-      - name: Open or refresh the review PR
-        if: steps.changes.outputs.changed == 'true'
-        env:
-          GH_TOKEN: ${{ github.token }}
-          BRANCH_NAME: automation/barometre-sync
-          REMOVED_COUNT: ${{ steps.changes.outputs.removed_count }}
-        run: |
-          body="Automated static synchronization of already published Barometre rows. Tests, editorial truth checks, build and internal-link integrity passed. Snapshot removals requiring explicit reviewer verification: ${REMOVED_COUNT}. This workflow never merges or deploys automatically."
-          pr_number="$(gh pr list --repo "$GITHUB_REPOSITORY" --head "$BRANCH_NAME" --state open --json number --jq '.[0].number // empty')"
-          if [ -n "$pr_number" ]; then
-            gh pr edit "$pr_number" --repo "$GITHUB_REPOSITORY" --body "$body"
-          else
-            gh pr create --repo "$GITHUB_REPOSITORY" --base main --head "$BRANCH_NAME" --title "chore(barometre): synchronize published snapshots" --body "$body"
-          fi
+          git fetch origin main
+          test "$(git rev-parse HEAD^)" = "$(git rev-parse origin/main)"
+          git push origin HEAD:main
 
       - name: Verify live deployed parity when no synchronization is pending
         if: steps.changes.outputs.changed == 'false'

@@ -1,10 +1,10 @@
 import assert from "node:assert/strict";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { basename, join, relative, sep } from "node:path";
 import test from "node:test";
 
-const ROOT = new URL("../", import.meta.url);
-const ARTICLES = new URL("../src/content/articles/", import.meta.url);
+const ARTICLES = fileURLToPath(new URL("../src/content/articles/", import.meta.url));
 
 function walkJson(directory) {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -15,7 +15,7 @@ function walkJson(directory) {
 }
 
 function articleRoute(path) {
-  const category = relative(ARTICLES.pathname, path).split(sep)[0];
+  const category = relative(ARTICLES, path).split(sep)[0];
   return `/blogs/${category}/${basename(path, ".json")}`;
 }
 
@@ -44,7 +44,7 @@ const LEGACY_ACCENTED_ROUTES = new Map([
 ]);
 
 test("all internal article links resolve to a canonical article route", () => {
-  const files = walkJson(ARTICLES.pathname);
+  const files = walkJson(ARTICLES);
   const routes = new Set([
     "/blogs/guides",
     "/blogs/pro",

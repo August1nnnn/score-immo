@@ -1,5 +1,12 @@
 # Visibilité durable et Baromètre Score-Immo, 30 août 2026
 
+> Avenant du 30 août 2026 : une décision utilisateur postérieure remplace la
+> synchronisation par PR par une synchronisation automatique après consentement
+> explicite dans l'app. Les mêmes contrôles de contenu, build, intégrité et
+> parité restent fail-closed avant tout commit automatisé, et le déploiement
+> passe par le workflow existant. Les formulations conservatrices plus bas sont
+> la trace du design initial.
+
 ## Mission
 
 Rendre le Baromètre public frais, reproductible, honnête sur son échantillon et utile au parcours d'analyse d'annonce, puis corriger les incohérences éditoriales qui affaiblissent la confiance dans l'écosystème Score-Immo.

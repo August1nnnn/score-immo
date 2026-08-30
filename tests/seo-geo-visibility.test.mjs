@@ -82,9 +82,10 @@ test("IndexNow runs after deployment and targets changed article URLs", () => {
   const blogAuto = read(".github/workflows/blog-auto.yml");
   const blogWorkflowName = "Blog Auto - publish prepared or queue next article";
   assert.match(blogAuto, new RegExp(`^name: ${blogWorkflowName}$`, "m"));
-  assert.ok(
-    deploy.includes(`workflows: ["${blogWorkflowName}"]`),
-    "the deploy workflow_run trigger must exactly match the blog workflow name",
+  assert.match(
+    deploy,
+    new RegExp(`workflows:[\\s\\S]*[\"']${blogWorkflowName}[\"']`),
+    "the deploy workflow_run trigger must include the exact blog workflow name",
   );
   assert.ok(
     deploy.indexOf("Deploy to Cloudflare Pages") < deploy.indexOf("Notify IndexNow after deployment"),

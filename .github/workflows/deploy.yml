@@ -15,7 +15,9 @@ on:
       - 'cloudflare-pages/**'
   workflow_run:
     # Trigger deploy after blog-auto commit (bot commits don't fire `on: push`)
-    workflows: ["Blog Auto - publish prepared or queue next article"]
+    workflows:
+      - "Blog Auto - publish prepared or queue next article"
+      - "Barometre - automatically synchronize published snapshots"
     types: [completed]
     branches: [main]
   workflow_dispatch:
@@ -62,6 +64,12 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           wranglerVersion: "4.123.0"
           command: pages deploy dist --project-name=score-immo --branch=main
+
+      - name: Verify the automatically published Barometre
+        if: github.event_name == 'workflow_run' && github.event.workflow_run.name == 'Barometre - automatically synchronize published snapshots'
+        env:
+          SCOREIMMO_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.SCOREIMMO_SUPABASE_PUBLISHABLE_KEY }}
+        run: npm run barometre:verify-live
 
       - name: Collect changed files for IndexNow
         if: github.event_name == 'push' && github.event.before != '0000000000000000000000000000000000000000'

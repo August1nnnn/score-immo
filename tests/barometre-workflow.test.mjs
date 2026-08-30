@@ -4,17 +4,17 @@ import test from "node:test";
 
 const workflowUrl = new URL("../.github/workflows/barometre-sync.yml", import.meta.url);
 
-test("la synchronisation Barometre est planifiee et ouvrable manuellement", () => {
+test("la synchronisation Barometre est planifiee et declenchable a chaque consentement", () => {
   const source = readFileSync(workflowUrl, "utf8");
   assert.match(source, /schedule:/);
   assert.match(source, /workflow_dispatch:/);
   assert.match(source, /cron:/);
   assert.match(source, /cron: ['"]23 6 \* \* \*['"]/);
   assert.match(source, /contents: write/);
-  assert.match(source, /pull-requests: write/);
+  assert.doesNotMatch(source, /pull-requests: write/);
 });
 
-test("le workflow utilise seulement la cle publishable et valide avant PR", () => {
+test("le workflow utilise seulement la cle publishable et valide avant publication", () => {
   const source = readFileSync(workflowUrl, "utf8");
   for (const command of [
     "npm ci",
@@ -23,7 +23,7 @@ test("le workflow utilise seulement la cle publishable et valide avant PR", () =
     "npm run test:content-truth",
     "npm run build",
     "npm run test:site-integrity",
-    "gh pr create",
+    "git push origin HEAD:main",
     "npm run barometre:verify-live",
   ]) assert.ok(source.includes(command), command);
   assert.match(source, /SCOREIMMO_SUPABASE_PUBLISHABLE_KEY/);
@@ -31,16 +31,18 @@ test("le workflow utilise seulement la cle publishable et valide avant PR", () =
   assert.match(
     source,
     /Verify live[^\n]*\n\s+if: steps\.changes\.outputs\.changed == 'false'[\s\S]*npm run barometre:verify-live/,
-    "live parity must run only when no synchronization PR is pending",
+    "live parity must run only when no synchronization is pending",
   );
   assert.match(source, /git diff --name-only --diff-filter=D -- src\/content\/barometre/);
-  assert.match(source, /REMOVED_COUNT/);
-  assert.match(source, /removal.*explicit reviewer verification/i);
+  assert.match(source, /git diff --exit-code -- \. ':\(exclude\)src\/content\/barometre\/\*\*'/);
+  assert.match(source, /git status --porcelain --untracked-files=all -- src\/content\/barometre/);
+  assert.doesNotMatch(source, /git diff --quiet -- src\/content\/barometre/);
 });
 
-test("le workflow ne fusionne et ne deploie jamais automatiquement", () => {
+test("le workflow publie sans validation humaine et le deploiement attend son succes", () => {
   const source = readFileSync(workflowUrl, "utf8");
-  assert.doesNotMatch(source, /gh pr merge|auto-merge|wrangler|pages deploy/i);
-  assert.match(source, /automation\/barometre-sync/);
-  assert.match(source, /gh pr list.*--state open/);
+  const deploy = readFileSync(new URL("../.github/workflows/deploy.yml", import.meta.url), "utf8");
+  assert.doesNotMatch(source, /gh pr create|gh pr merge|automation\/barometre-sync/);
+  assert.match(source, /git push origin HEAD:main/);
+  assert.match(deploy, /Barometre - automatically synchronize published snapshots/);
 });

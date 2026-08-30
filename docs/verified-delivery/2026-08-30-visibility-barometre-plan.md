@@ -1,5 +1,13 @@
 # Plan exécutable, visibilité et Baromètre Score-Immo
 
+> Avenant du 30 août 2026 : après la livraison de ce plan conservateur,
+> Augustin a demandé que tout rapport explicitement accepté dans l'app soit
+> publié automatiquement, sans file de validation. Le workflow garde les tests,
+> le build, l'intégrité et la parité comme barrières obligatoires, puis pousse
+> l'instantané vérifié sur `main` et déclenche le déploiement par `workflow_run`.
+> Les passages « PR obligatoire » et « aucune automatisation » ci-dessous sont
+> conservés comme historique du plan initial, pas comme contrat actuel.
+
 ## État au 30 août 2026
 
 - tâches 1 à 6 : terminées et vérifiées ;

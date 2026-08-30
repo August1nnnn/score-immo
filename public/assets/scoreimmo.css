@@ -922,6 +922,11 @@ body.si-page-bg {
   justify-content: center;
 }
 
+.si-footer-links--compact {
+  column-gap: 0.75rem;
+  row-gap: 0.5rem;
+}
+
 .si-footer-links a {
   font-size: 0.875rem;
   color: var(--si-muted-foreground);
