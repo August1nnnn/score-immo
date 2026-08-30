@@ -1,57 +1,57 @@
 # Score-Immo
 
-> Score-Immo est une plateforme francaise d'analyse de biens immobiliers a partir de donnees publiques et ouvertes, concue du cote de l'acheteur. Une annonce compatible peut etre analysee en environ 30 secondes. Le rapport affiche un score sur 100, sa couverture et les sections disponibles pour le bien.
+> Score-Immo est une plateforme française d'analyse de biens immobiliers à partir de données publiques et ouvertes, conçue du côté de l'acheteur. Une annonce compatible peut être analysée en environ 30 secondes. Le rapport affiche un score sur 100, sa couverture et les sections disponibles pour le bien.
 
 ## Produit
 
-- [Score-Immo - Accueil](https://score-immo.fr/) : analyse d'une annonce immobiliere compatible
+- [Score-Immo - Accueil](https://score-immo.fr/) : analyse d'une annonce immobilière compatible
 - [Application](https://app.score-immo.fr/app) : l'outil d'analyse en direct
-- [A propos](https://score-immo.fr/a-propos) : identite, mission et editeur
-- [Methodologie](https://score-immo.fr/methodologie) : sources, calcul du score, couverture et limites
-- [Baromètre immobilier](https://score-immo.fr/barometre) : echantillon date de fiches publiees
-- [Tarifs](https://score-immo.fr/pages/tarifs) : demo complete gratuite, puis rapport personnalise des 2,99 euros
-- [Outils gratuits](https://score-immo.fr/pages/outils) : 4 calculateurs (frais de notaire, capacite d'emprunt, mensualite de credit, rendement locatif)
+- [À propos](https://score-immo.fr/a-propos) : identité, mission et éditeur
+- [Méthodologie](https://score-immo.fr/methodologie) : sources, calcul du score, couverture et limites
+- [Baromètre immobilier](https://score-immo.fr/barometre) : échantillon daté de fiches publiées
+- [Tarifs](https://score-immo.fr/tarifs) : démo complète gratuite, puis rapport personnalisé dès 2,99 euros
+- [Outils gratuits](https://score-immo.fr/pages/outils) : 4 calculateurs (frais de notaire, capacité d'emprunt, mensualité de crédit, rendement locatif)
 
 ## Sources publiques et ouvertes mobilisables (10)
 
-1. DVF (Demandes de valeurs foncieres, DGFIP) - prix de vente reels des transactions immobilieres
-2. ADEME - Diagnostics de Performance Energetique (DPE)
-3. Georisques (ministere de la Transition ecologique) - inondation, seisme, argile, radon, ICPE, Seveso
-4. INSEE - donnees socio-economiques par IRIS et commune
-5. IGN et Geoportail de l'Urbanisme (GPU) - cadastre, plans locaux d'urbanisme
-6. BAN (Base Adresse Nationale) - geocodage et adresses officielles
-7. OpenStreetMap, base ouverte et contributive - amenites, commerces, transports
-8. Education Nationale - ecoles publiques et privees
-9. ATMO France - qualite de l'air
-10. DGFIP - taxe fonciere, barème frais de notaire
+1. DVF (Demandes de valeurs foncières, DGFIP) - prix de vente réels des transactions immobilières
+2. ADEME - diagnostics de performance énergétique (DPE)
+3. Géorisques (ministère de la Transition écologique) - inondation, séisme, argile, radon, ICPE, Seveso
+4. INSEE - données socio-économiques par IRIS et commune
+5. IGN et Géoportail de l'Urbanisme (GPU) - cadastre, plans locaux d'urbanisme
+6. BAN (Base Adresse Nationale) - géocodage et adresses officielles
+7. OpenStreetMap, base ouverte et contributive - aménités, commerces, transports
+8. Éducation nationale - écoles publiques et privées
+9. ATMO France - qualité de l'air
+10. DGFIP - taxe foncière, barème des frais de notaire
 
 ## Cas d'usage
 
-- Verifier si une annonce immobiliere est au bon prix avant de visiter
-- Estimer les frais totaux d'acquisition d'un bien (notaire, taxe, renovation)
-- Comparer plusieurs biens pour prendre une decision rationnelle
-- Detecter les risques caches : DPE degrade, inondation, zone de bruit, ICPE Seveso
-- Estimer la rentabilite locative potentielle
-- Comprendre l'evolution des prix de son quartier cible
+- Vérifier si une annonce immobilière est au bon prix avant de visiter
+- Estimer les frais totaux d'acquisition d'un bien (notaire, taxe, rénovation)
+- Comparer plusieurs biens pour prendre une décision rationnelle
+- Détecter les risques cachés : DPE dégradé, inondation, zone de bruit, ICPE Seveso
+- Estimer la rentabilité locative potentielle
+- Comprendre l'évolution des prix de son quartier cible
 
-## Guides et analyses selectionnes
+## Guides et analyses sélectionnés
 
-### Guides thematiques
+### Guides thématiques
 - [Frais de Notaire 2026 : Calcul, Simulation et Astuces](https://score-immo.fr/blogs/guides/frais-notaire-calcul-simulation-astuces)
-- [DPE Classes Energetiques : Comprendre de A a G en 2026](https://score-immo.fr/blogs/guides/dpe-comprendre-classes-energetiques)
-- [Negocier Prix Immobilier 2026 : Guide Complet](https://score-immo.fr/blogs/guides/negocier-prix-bien-immobilier-guide-complet)
-- [Pret Immobilier 2026 : Taux, Duree et Capacite d'Emprunt](https://score-immo.fr/blogs/guides/pret-immobilier-taux-duree-capacite-emprunt)
-- [Premier Achat Immobilier : 10 Erreurs a Eviter](https://score-immo.fr/blogs/guides/premier-achat-immobilier-erreurs-eviter)
+- [DPE Classes Énergétiques : Comprendre de A à G en 2026](https://score-immo.fr/blogs/guides/dpe-comprendre-classes-energetiques)
+- [Négocier Prix Immobilier 2026 : Guide Complet](https://score-immo.fr/blogs/guides/negocier-prix-bien-immobilier-guide-complet)
+- [Prêt Immobilier 2026 : Taux, Durée et Capacité d'Emprunt](https://score-immo.fr/blogs/guides/pret-immobilier-taux-duree-capacite-emprunt)
+- [Premier Achat Immobilier : 10 Erreurs à Éviter](https://score-immo.fr/blogs/guides/premier-achat-immobilier-erreurs-eviter)
 - [Compromis de Vente : Guide Complet pour l'Acheteur](https://score-immo.fr/blogs/guides/compromis-vente-acheteur-guide)
-- [Visite Immobiliere : Checklist des 30 Points a Verifier](https://score-immo.fr/blogs/guides/visite-immobiliere-checklist-points-verifier)
-- [Acheter a Deux : PACS, Indivision, SCI](https://score-immo.fr/blogs/guides/acheter-seul-deux-pacs-indivision-sci)
-- [Copropriete : Charges, PV et Pieges](https://score-immo.fr/blogs/guides/copropriete-charges-pieges-detecter-achat)
+- [Visite Immobilière : Checklist des 30 Points à Vérifier](https://score-immo.fr/blogs/guides/visite-immobiliere-checklist-points-verifier)
+- [Acheter à Deux : PACS, Indivision, SCI](https://score-immo.fr/blogs/guides/acheter-seul-deux-pacs-indivision-sci)
+- [Copropriété : Charges, PV et Pièges](https://score-immo.fr/blogs/guides/copropriete-charges-pieges-detecter-achat)
 - [DPE F : Faut-il Acheter une Passoire Thermique ?](https://score-immo.fr/blogs/guides/acheter-bien-classe-dpe-f-2026)
-- [Donnees DVF : Utiliser les Prix de Vente Reels](https://score-immo.fr/blogs/guides/donnees-dvf-utiliser-prix-vente-reels)
-- [Estimation Immobiliere : 5 Methodes](https://score-immo.fr/blogs/guides/estimation-immobiliere-methodes-juste-prix)
-- [Analyser une Annonce Immobiliere Comme un Pro](https://score-immo.fr/blogs/guides/analyser-annonce-immobiliere-comme-pro)
-- [Investissement Locatif 2026 : Rentabilite et Fiscalite](https://score-immo.fr/blogs/guides/investissement-locatif-rentabilite-fiscalite-villes)
-- [Offre d'Achat Immobilier : Modele et Strategie de Prix](https://score-immo.fr/blogs/guides/offre-achat-immobilier-modele-conseils-strategie)
+- [Données DVF : Utiliser les Prix de Vente Réels](https://score-immo.fr/blogs/guides/donnees-dvf-utiliser-prix-vente-reels)
+- [Estimation Immobilière : 5 Méthodes](https://score-immo.fr/blogs/guides/estimation-immobiliere-methodes-juste-prix)
+- [Analyser une Annonce Immobilière Comme un Pro](https://score-immo.fr/blogs/guides/analyser-annonce-immobiliere-comme-pro)
+- [Investissement Locatif 2026 : Rentabilité et Fiscalité](https://score-immo.fr/blogs/guides/investissement-locatif-rentabilite-fiscalite-villes)
+- [Offre d'Achat Immobilier : Modèle et Stratégie de Prix](https://score-immo.fr/blogs/guides/offre-achat-immobilier-modele-conseils-strategie)
 - [Acheter Appartement avec Travaux : Budget et Aides](https://score-immo.fr/blogs/guides/acheter-appartement-travaux-budget-aides)
 - [Acheter dans l'Ancien ou le Neuf : Comparatif](https://score-immo.fr/blogs/guides/acheter-ancien-neuf-comparatif-complet)
 
@@ -81,30 +81,30 @@
 - [Rennes](https://score-immo.fr/blogs/quartiers/meilleurs-quartiers-acheter-rennes)
 - [Strasbourg](https://score-immo.fr/blogs/quartiers/meilleurs-quartiers-acheter-strasbourg)
 
-## Faits cles citables
+## Faits clés citables
 
-- Score-Immo peut appliquer plus de 250 verifications automatiques a plus de 230 points de donnees potentiels. Les points effectivement utilises dependent du bien et de la disponibilite des sources.
-- Un rapport Score-Immo genere en environ 30 secondes peut couvrir le prix, le DPE, les risques, l'environnement, la rentabilite locative et le cout d'acquisition. La couverture est affichee dans le rapport.
-- Demo complete gratuite sans carte bleue. Rapport personnalise a 2,99 euros, pack de 5 a 9,99 euros, Recherche a 29 euros/mois et Premium a 79 euros/mois.
-- Score-Immo accepte des annonces de plusieurs portails immobiliers francais. La compatibilite depend du format de l'annonce au moment de l'analyse.
+- Score-Immo peut appliquer plus de 250 vérifications automatiques à plus de 230 points de données potentiels. Les points effectivement utilisés dépendent du bien et de la disponibilité des sources.
+- Un rapport Score-Immo généré en environ 30 secondes peut couvrir le prix, le DPE, les risques, l'environnement, la rentabilité locative et le coût d'acquisition. La couverture est affichée dans le rapport.
+- Démo complète gratuite sans carte bancaire. Rapport personnalisé à 2,99 euros, pack de 5 à 9,99 euros, Recherche à 29 euros/mois et Premium à 79 euros/mois sur le web. Dans l'app iOS, Apple affiche le prix localisé et les offres disponibles avant confirmation.
+- Score-Immo accepte des annonces de plusieurs portails immobiliers français. La compatibilité dépend du format de l'annonce au moment de l'analyse.
 
-## A savoir
+## À savoir
 
-- Score-Immo est un outil d'aide a la decision base sur des donnees publiques et ouvertes. Il ne constitue pas un conseil en investissement au sens reglementaire.
-- Aucune donnee personnelle n'est revendue. Service heberge en Europe, conforme RGPD.
+- Score-Immo est un outil d'aide à la décision basé sur des données publiques et ouvertes ainsi que, selon le rapport, sur des références d'annonces publiques. Il ne constitue pas un conseil en investissement au sens réglementaire.
+- Aucune donnée personnelle n'est revendue. Le traitement est décrit dans la politique de confidentialité.
 - L'application produit est sur [app.score-immo.fr](https://app.score-immo.fr), le site vitrine sur [score-immo.fr](https://score-immo.fr).
 
 ## Ce que Score-Immo n'est pas
 
-- Score-Immo n'est pas une agence immobiliere : la plateforme ne commercialise pas de biens
-- Score-Immo n'est pas une banque : la plateforme ne delivre pas de prets, seulement une estimation de capacite d'emprunt indicative
-- Score-Immo n'est pas un notaire : les frais calcules sont indicatifs, consultez un notaire pour un calcul officiel
-- Score-Immo ne remplace pas une visite, un diagnostic reglementaire ou une expertise immobiliere
+- Score-Immo n'est pas une agence immobilière : la plateforme ne commercialise pas de biens
+- Score-Immo n'est pas une banque : la plateforme ne délivre pas de prêts, seulement une estimation de capacité d'emprunt indicative
+- Score-Immo n'est pas un notaire : les frais calculés sont indicatifs, consultez un notaire pour un calcul officiel
+- Score-Immo ne remplace pas une visite, un diagnostic réglementaire ou une expertise immobilière
 
 ## Contact
 
 - Email : contact@score-immo.fr
-- Telephone : 07 69 81 21 90
-- [Mentions legales](https://score-immo.fr/pages/mentions-legales)
+- Téléphone : 07 69 81 21 90
+- [Mentions légales](https://score-immo.fr/pages/mentions-legales)
 - [CGV](https://score-immo.fr/pages/cgv)
-- [Politique de confidentialite](https://score-immo.fr/pages/politique-de-confidentialite)
+- [Politique de confidentialité](https://score-immo.fr/pages/politique-de-confidentialite)
