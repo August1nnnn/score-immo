@@ -1,0 +1,101 @@
+{
+  "slug": "le-lavandou-appartement-28m2-196k-2026-08",
+  "ville": "Le Lavandou",
+  "code_postal": "83980",
+  "region": "Provence-Alpes-Côte d'Azur",
+  "type_bien": "appartement",
+  "surface": 28,
+  "prix_demande": 196000,
+  "prix_m2": 7000,
+  "score_global": 64,
+  "score_sections": {
+    "dpe": 5,
+    "cout": 8,
+    "prix": 5,
+    "ecoles": 5,
+    "risques": 5,
+    "commerces": 9,
+    "rendement": 5,
+    "urbanisme": 9,
+    "actualites": 4,
+    "population": 6,
+    "transports": 9,
+    "environnement": 6,
+    "taxe_fonciere": 9
+  },
+  "dpe": "D",
+  "points_forts": [
+    "Bonne note de desserte dans la grille analysée"
+  ],
+  "alertes_cles": [],
+  "verdict": "Instantané indicatif d'une annonce analysée. Vérifier le bien, les pièces et le financement avant toute décision.",
+  "mois": "2026-08",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-08-22",
+  "methodology_version": "current-category-grid-2026-08",
+  "source_kind": "admin-test",
+  "sample_policy": "all-eligible-monthly-reports",
+  "details": {
+    "taxe": {
+      "annee": 2025,
+      "annuelle": 588,
+      "taux_communal": 30.75
+    },
+    "marche": {
+      "p25": 5152,
+      "p75": 7429,
+      "prix_m2": 7000,
+      "diff_pct": 11.2,
+      "median_m2": 6294,
+      "comparables": 521
+    },
+    "energie": {
+      "dpe": "D",
+      "ges": "D",
+      "conso": 188,
+      "cout_max": 1523,
+      "cout_min": 1125,
+      "emission_ges": 45
+    },
+    "risques": {
+      "count": 5,
+      "level": null
+    },
+    "quartier": {
+      "sante": 8,
+      "ecoles": 3,
+      "loisirs": 35,
+      "services": 28,
+      "commerces": 145,
+      "transports": 35
+    },
+    "rendement": {
+      "net": 3.7,
+      "brut": 4,
+      "roi_ans": 25,
+      "loyer_estime": 653
+    },
+    "historique": {
+      "nb_mutations": 4,
+      "plus_value_pct": 6.1,
+      "duree_detention_ans": 0.7
+    },
+    "acquisition": {
+      "prix": 196000,
+      "total": 211680,
+      "agence": 0,
+      "notaire": 15680,
+      "travaux": 0,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 220,
+      "population": 6646,
+      "revenu_median": 22500,
+      "pct_locataires": 45,
+      "pct_proprietaires": 55
+    }
+  }
+}

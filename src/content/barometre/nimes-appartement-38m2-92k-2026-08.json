@@ -1,0 +1,104 @@
+{
+  "slug": "nimes-appartement-38m2-92k-2026-08",
+  "ville": "Nîmes",
+  "code_postal": "30000",
+  "region": "Occitanie",
+  "type_bien": "appartement",
+  "surface": 38,
+  "prix_demande": 92000,
+  "prix_m2": 2421,
+  "score_global": 63,
+  "score_sections": {
+    "dpe": 1,
+    "cout": 8,
+    "prix": 6,
+    "ecoles": 8,
+    "risques": 4,
+    "commerces": 9,
+    "rendement": 8,
+    "urbanisme": 9,
+    "actualites": 4,
+    "population": 5,
+    "transports": 9,
+    "environnement": 7,
+    "taxe_fonciere": 9
+  },
+  "dpe": "F",
+  "points_forts": [
+    "Bonne note de desserte dans la grille analysée",
+    "Rendement brut estimé supérieur ou égal à 5 %"
+  ],
+  "alertes_cles": [
+    "DPE F : rénovation énergétique à chiffrer"
+  ],
+  "verdict": "Instantané indicatif d'une annonce analysée. Vérifier le bien, les pièces et le financement avant toute décision.",
+  "mois": "2026-08",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-08-13",
+  "methodology_version": "current-category-grid-2026-08",
+  "source_kind": "admin-test",
+  "sample_policy": "all-eligible-monthly-reports",
+  "details": {
+    "taxe": {
+      "annee": 2025,
+      "annuelle": 276,
+      "taux_communal": 53.2
+    },
+    "marche": {
+      "p25": 1875,
+      "p75": 2797,
+      "prix_m2": 2421,
+      "diff_pct": 4.9,
+      "median_m2": 2308,
+      "comparables": 898
+    },
+    "energie": {
+      "dpe": "F",
+      "ges": "C",
+      "conso": 121,
+      "cout_max": 1331,
+      "cout_min": 983,
+      "emission_ges": 25
+    },
+    "risques": {
+      "count": 5,
+      "level": null
+    },
+    "quartier": {
+      "sante": 58,
+      "ecoles": 13,
+      "loisirs": 124,
+      "services": 78,
+      "commerces": 169,
+      "transports": 362
+    },
+    "rendement": {
+      "net": 5.7,
+      "brut": 6,
+      "roi_ans": 16.7,
+      "loyer_estime": 460
+    },
+    "historique": {
+      "nb_mutations": 4,
+      "plus_value_pct": 318.2,
+      "duree_detention_ans": 0.6
+    },
+    "acquisition": {
+      "prix": 92000,
+      "total": 99360,
+      "agence": 0,
+      "notaire": 7360,
+      "travaux": 0,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 942,
+      "population": 151839,
+      "revenu_median": 21000,
+      "pct_locataires": 62,
+      "pct_proprietaires": 38
+    }
+  }
+}

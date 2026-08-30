@@ -1,0 +1,86 @@
+name: Barometre - synchronize published snapshots by PR
+
+on:
+  schedule:
+    # Monthly, after the prior month can be curated and reviewed.
+    - cron: '23 6 2 * *'
+  workflow_dispatch:
+
+concurrency:
+  group: barometre-static-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  synchronize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Regenerate public Barometre snapshots
+        env:
+          SCOREIMMO_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.SCOREIMMO_SUPABASE_PUBLISHABLE_KEY }}
+        run: npm run barometre:sync
+
+      - name: Run behavioral and editorial tests
+        run: |
+          npm test
+          npm run test:content-truth
+
+      - name: Build and validate generated routes
+        run: |
+          npm run build
+          npm run test:site-integrity
+
+      - name: Detect a reviewed content change
+        id: changes
+        run: |
+          if git diff --quiet -- src/content/barometre; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Push the synchronization branch
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          BRANCH_NAME: automation/barometre-sync
+        run: |
+          git config user.name "score-immo-barometre-bot"
+          git config user.email "actions@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin "$BRANCH_NAME" >/dev/null 2>&1; then
+            git fetch origin "$BRANCH_NAME:refs/remotes/origin/$BRANCH_NAME"
+          fi
+          git checkout -B "$BRANCH_NAME"
+          git add src/content/barometre
+          git commit -m "chore(barometre): synchronize published snapshots"
+          git push --force-with-lease --set-upstream origin "$BRANCH_NAME"
+
+      - name: Open or refresh the review PR
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH_NAME: automation/barometre-sync
+        run: |
+          body="Automated static synchronization of already published Barometre rows. Tests, editorial truth checks, build and internal-link integrity passed. This workflow never merges or deploys automatically."
+          pr_number="$(gh pr list --repo "$GITHUB_REPOSITORY" --head "$BRANCH_NAME" --state open --json number --jq '.[0].number // empty')"
+          if [ -n "$pr_number" ]; then
+            gh pr edit "$pr_number" --repo "$GITHUB_REPOSITORY" --body "$body"
+          else
+            gh pr create --repo "$GITHUB_REPOSITORY" --base main --head "$BRANCH_NAME" --title "chore(barometre): synchronize published snapshots" --body "$body"
+          fi

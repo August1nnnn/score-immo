@@ -1,4 +1,10 @@
 const SUPABASE_URL = "https://afvtxiklivnmakqixkml.supabase.co";
+const PUBLIC_COLUMNS = [
+  "mois", "ville", "code_postal", "region", "type_bien", "surface",
+  "prix_demande", "score_global", "score_sections", "dpe", "alertes_cles",
+  "points_forts", "verdict", "is_edito", "edito_label", "slug",
+  "source_report_id", "details_json",
+].join(",");
 
 export function getBarometrePublishableKey(environment = process.env) {
   const key = environment.SCOREIMMO_SUPABASE_PUBLISHABLE_KEY;
@@ -18,7 +24,7 @@ export async function fetchPublishedBarometreRows({
 
   const response = await fetchImpl(
     // Only real scanned listings (source_report_id set) — never publish seed/mock rows to SEO.
-    `${SUPABASE_URL}/rest/v1/barometre_reports?publie=eq.true&source_report_id=not.is.null&order=score_global.desc&select=*`,
+    `${SUPABASE_URL}/rest/v1/barometre_reports?publie=eq.true&source_report_id=not.is.null&order=mois.desc%2Cscore_global.desc&select=${PUBLIC_COLUMNS}`,
     { headers: { apikey: publishableKey } },
   );
   if (!response.ok) {

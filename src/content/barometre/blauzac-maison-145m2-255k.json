@@ -27,6 +27,9 @@
   "is_edito": true,
   "edito_label": "Le cas du mois",
   "date_analyse": "2026-06-01",
+  "methodology_version": "legacy-five-section-2026-06",
+  "source_kind": "historical-curation",
+  "sample_policy": "historical-curated-sample",
   "details": {
     "taxe": {
       "annee": 2025,

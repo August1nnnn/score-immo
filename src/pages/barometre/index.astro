@@ -5,34 +5,40 @@ import AnalyzerBox from '@/components/AnalyzerBox.astro';
 import FAQ from '@/components/FAQ.astro';
 import { getCollection } from 'astro:content';
 import { slugifyRegion, groupByRegion, REGION_MIN } from '@/lib/regions';
+import { aggregateEdition, groupByEdition, selectLatestEdition, sectionsForMethod } from '@/lib/barometre-editions';
 import { BRAND_NAME, ORGANIZATION_ID, SITE_URL, WEBSITE_ID } from '@/data/entity';
 
 const canonical = `${SITE_URL}/barometre`;
 
 const all = (await getCollection('barometre')).map((e) => e.data);
-all.sort((a, b) => b.score_global - a.score_global);
+const editions = groupByEdition(all);
+const latestEdition = selectLatestEdition(all);
+const current = latestEdition.fiches;
+const archiveEditions = editions.slice(1);
+const stats = aggregateEdition(current);
+const total = current.length;
+const archiveTotal = all.length - total;
+const avg = stats.avgScore;
+const regions = stats.regions;
+const best = current.slice(0, 3);
+const sectionCount = sectionsForMethod(latestEdition.methodology).length;
+const editionLabel = new Date(`${latestEdition.month}-01T12:00:00Z`).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long' });
 
-const total = all.length;
-const avg = total ? Math.round(all.reduce((s, f) => s + f.score_global, 0) / total) : 0;
-const regions = [...new Set(all.map((f) => f.region))].length;
-const best = all.slice(0, 3);
-const worst = [...all].slice(-3).reverse();
-
-const title = `Le Baromètre Immobilier ${BRAND_NAME} : ${total} annonces notées sur 100`;
-const description = `Échantillon de ${total} annonces analysées par ${BRAND_NAME} dans ${regions} régions. Instantanés datés avec score, prix, DPE et points de vigilance.`.slice(0, 160);
+const title = `Baromètre immobilier : ${total} annonces, ${editionLabel} | ${BRAND_NAME}`;
+const description = `Édition ${editionLabel} : ${total} annonces analysées par ${BRAND_NAME} dans ${regions} régions. Scores datés sur 100, DPE et points de vigilance.`.slice(0, 160);
 
 const tldr = [
-  `${total} annonces réelles analysées et notées sur 100 dans ${regions} régions.`,
-  `Score moyen du panel : ${avg}/100.`,
-  `Ces résultats décrivent uniquement l'échantillon de fiches publiées et datées.`,
-  `Le meilleur du mois : ${best[0]?.ville} (${best[0]?.score_global}/100).`,
+  `Édition ${editionLabel} : ${total} annonces analysées et notées sur 100 dans ${regions} régions.`,
+  `Score moyen de cette édition homogène : ${avg}/100.`,
+  `${sectionCount} sections sont affichées selon la méthode utilisée lors de chaque analyse.`,
+  `${archiveTotal} fiche(s) antérieure(s) restent accessibles dans les archives, sans être mélangées aux chiffres de ${editionLabel}.`,
 ];
 
 const scoreColor = (s: number) => (s >= 70 ? '#16A34A' : s >= 40 ? '#B45309' : '#DC2626');
 const typeLabel = (t: string) => (t === 'appartement' ? 'Appartement' : 'Maison');
 
 // Region aggregates -> links to the regional pages (real aggregates, >=3 fiches).
-const regionLinks = [...groupByRegion(all).entries()]
+const regionLinks = [...groupByRegion(current).entries()]
   .filter(([, fs]) => fs.length >= REGION_MIN)
   .map(([region, fs]) => ({
     region, slug: slugifyRegion(region), count: fs.length,
@@ -40,26 +46,21 @@ const regionLinks = [...groupByRegion(all).entries()]
   }))
   .sort((a, b) => b.count - a.count);
 
-// Aggregate first-party figures (real, computed from the published fiches) for the
-// Dataset + FAQ. This turns the hub into a citable primary source for queries like
-// "score immobilier moyen" / "combien d'annonces analysees".
-const withM2 = all.filter((f) => f.prix_m2);
-const avgM2 = withM2.length ? Math.round(withM2.reduce((s, f) => s + (f.prix_m2 as number), 0) / withM2.length) : null;
-const lastDate = all.map((f) => f.date_analyse).filter(Boolean).sort().slice(-1)[0] || null;
+const lastDate = stats.latestAnalysisDate;
 const lastDateFmt = lastDate ? new Date(lastDate).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long' }) : null;
 
 const faq: { q: string; a: string }[] = [
   {
     q: `Quel est le score moyen de l'échantillon publié par Score-Immo ?`,
-    a: `Sur les ${total} annonces de cet échantillon dans ${regions} régions, le score moyen est de ${avg}/100. La meilleure note du panel est ${best[0]?.score_global}/100 (${best[0]?.ville}). Ce chiffre ne représente pas l'ensemble du marché français.`,
+    a: `Dans l'édition ${editionLabel}, les ${total} annonces publiées dans ${regions} régions obtiennent un score moyen de ${avg}/100. La meilleure note de l'échantillon est ${best[0]?.score_global}/100 (${best[0]?.ville}). Ce chiffre ne représente pas l'ensemble du marché français.`,
   },
   {
     q: `Combien d'annonces immobilières Score-Immo publie-t-il dans ce Baromètre ?`,
-    a: `Le Baromètre Score-Immo publie ${total} analyses datées${avgM2 ? `, avec un prix moyen observé de ${avgM2.toLocaleString('fr-FR')} €/m² dans cet échantillon` : ''}, réparties sur ${regions} régions françaises.`,
+    a: `L'édition ${editionLabel} publie ${total} analyses datées, réparties sur ${regions} régions françaises. Les ${archiveTotal} fiches antérieures sont conservées séparément et ne sont pas incluses dans les agrégats de cette édition.`,
   },
   {
-    q: `Comment lire une ancienne fiche du Baromètre ?`,
-    a: `Chaque fiche est un instantané daté qui publie cinq sections visibles : prix face au marché, performance énergétique, risques, urbanisme et environnement. La méthode actuelle de l'application est documentée séparément et peut évoluer.`,
+    q: `Pourquoi certaines fiches affichent-elles cinq sections et d'autres treize ?`,
+    a: `Les fiches de juin 2026 conservent la grille historique de cinq sections utilisée lors de leur publication. L'édition d'août 2026 affiche la grille résidentielle courante de treize sections. Les anciennes fiches ne sont pas recalculées silencieusement.`,
   },
   {
     q: `Quelles sont les limites des notes du Baromètre ?`,
@@ -70,19 +71,20 @@ const faq: { q: string; a: string }[] = [
 const datasetSchema = {
   '@context': 'https://schema.org',
   '@type': 'Dataset',
-  name: `Baromètre Immobilier ${BRAND_NAME} : ${total} instantanés datés`,
-  description: `Échantillon de ${total} annonces immobilières analysées dans ${regions} régions françaises. Score moyen de l'échantillon ${avg}/100${avgM2 ? `, prix moyen observé ${avgM2} €/m²` : ''}.`,
+  name: `Baromètre ${BRAND_NAME}, édition ${editionLabel} : ${total} analyses d'annonces`,
+  description: `Échantillon de ${total} annonces immobilières analysées dans ${regions} régions françaises en ${editionLabel}. Score moyen de l'édition : ${avg}/100.`,
   url: canonical,
   isAccessibleForFree: true,
   creator: { '@id': ORGANIZATION_ID },
   ...(lastDate ? { dateModified: lastDate } : {}),
   spatialCoverage: { '@type': 'Place', name: 'France' },
-  measurementTechnique: 'Instantanés datés produits avec la grille historique visible de cinq sections : prix face au marché, performance énergétique, risques naturels, urbanisme et environnement.',
+  temporalCoverage: latestEdition.month,
+  measurementTechnique: `Instantanés datés produits avec la grille résidentielle de ${sectionCount} sections documentée sur la page Méthodologie.`,
   variableMeasured: [
     { '@type': 'PropertyValue', name: 'Annonces analysées', value: total },
     { '@type': 'PropertyValue', name: 'Score moyen de l’échantillon (0-100)', value: avg },
     { '@type': 'PropertyValue', name: 'Régions couvertes', value: regions },
-    ...(avgM2 ? [{ '@type': 'PropertyValue', name: 'Prix moyen observé (€/m²)', value: avgM2 }] : []),
+    { '@type': 'PropertyValue', name: 'Sections visibles par fiche', value: sectionCount },
   ],
 };
 
@@ -106,7 +108,7 @@ const jsonLd: any[] = [
   {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    itemListElement: all.map((f, i) => ({
+    itemListElement: current.map((f, i) => ({
       '@type': 'ListItem', position: i + 1, name: `${f.ville} · ${typeLabel(f.type_bien)} ${f.surface} m² (${f.score_global}/100)`,
       url: `${SITE_URL}/barometre/${f.slug}`,
     })),
@@ -131,14 +133,15 @@ const jsonLd: any[] = [
       </nav>
 
       <header class="bar-hub-header">
-        <h1 class="si-article-title">Le Baromètre Immobilier Score-Immo</h1>
-        <p class="bar-hub-lead">Un échantillon de fiches publiées pour examiner des annonces réelles à une date donnée.
-        Chaque instantané affiche son score, ses cinq sections, sa date d'analyse et les sources disponibles.</p>
+        <p class="bar-edition">Édition {editionLabel}</p>
+        <h1 class="si-article-title">Le Baromètre des annonces immobilières Score-Immo</h1>
+        <p class="bar-hub-lead">Un observatoire de fiches issues d'annonces réellement analysées, publié édition par édition.
+        Chaque instantané affiche son score, ses {sectionCount} sections, sa date d'analyse et ses limites.</p>
         <div class="bar-stats">
           <div><strong>{total}</strong><span>annonces notées</span></div>
           <div><strong>{avg}/100</strong><span>score moyen</span></div>
           <div><strong>{regions}</strong><span>régions</span></div>
-          <div><strong>5</strong><span>sections publiées</span></div>
+          <div><strong>{sectionCount}</strong><span>sections publiées</span></div>
         </div>
       </header>
 
@@ -146,7 +149,7 @@ const jsonLd: any[] = [
         <TLDRBox items={tldr} />
       </div>
 
-      <h2 class="bar-h2">Le top du moment</h2>
+      <h2 class="bar-h2">Les meilleures notes de l'édition</h2>
       <div class="bar-grid">
         {best.map((f) => (
           <a class="bar-card bar-card-top" href={`/barometre/${f.slug}`}>
@@ -159,7 +162,7 @@ const jsonLd: any[] = [
 
       {regionLinks.length > 0 && (
         <>
-          <h2 class="bar-h2">Prix et scores par région</h2>
+          <h2 class="bar-h2">Échantillons régionaux de l'édition</h2>
           <div class="bar-grid">
             {regionLinks.map((r) => (
               <a class="bar-card" href={`/barometre/region/${r.slug}`}>
@@ -171,9 +174,9 @@ const jsonLd: any[] = [
         </>
       )}
 
-      <h2 class="bar-h2">Toutes les analyses</h2>
+      <h2 class="bar-h2">Toutes les analyses de {editionLabel}</h2>
       <div class="bar-grid">
-        {all.map((f) => (
+        {current.map((f) => (
           <a class="bar-card" href={`/barometre/${f.slug}`}>
             <span class="bar-card-score" style={`color:${scoreColor(f.score_global)}`}>{f.score_global}<small>/100</small></span>
             <span class="bar-card-city">{f.ville}{f.is_edito ? ' ★' : ''}</span>
@@ -183,12 +186,37 @@ const jsonLd: any[] = [
         ))}
       </div>
 
+      {archiveEditions.length > 0 && (
+        <section class="bar-archives" aria-labelledby="bar-archives-title">
+          <h2 class="bar-h2" id="bar-archives-title">Archives par méthode</h2>
+          <p>Les éditions antérieures restent consultables dans leur état d'origine. Leurs scores ne sont pas mélangés avec ceux de {editionLabel}.</p>
+          {archiveEditions.map((edition) => {
+            const label = new Date(`${edition.month}-01T12:00:00Z`).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long' });
+            const archivedSections = sectionsForMethod(edition.methodology).length;
+            return (
+              <details>
+                <summary>{label} : {edition.fiches.length} fiches, méthode à {archivedSections} sections</summary>
+                <div class="bar-grid bar-archive-grid">
+                  {edition.fiches.map((f) => (
+                    <a class="bar-card" href={`/barometre/${f.slug}`}>
+                      <span class="bar-card-score" style={`color:${scoreColor(f.score_global)}`}>{f.score_global}<small>/100</small></span>
+                      <span class="bar-card-city">{f.ville}</span>
+                      <span class="bar-card-meta">{typeLabel(f.type_bien)} · {f.surface} m² · {f.prix_demande.toLocaleString('fr-FR')} €</span>
+                    </a>
+                  ))}
+                </div>
+              </details>
+            );
+          })}
+        </section>
+      )}
+
       <div class="bar-hub-narrow">
         <FAQ items={faq} />
         <AnalyzerBox blog="villes" medium="barometre_hub" />
         <p class="bar-method">Méthodologie : le Baromètre contient des instantanés datés, pas une estimation du marché
-        immobilier français. Les agrégats décrivent uniquement cet échantillon. Les fiches ne sont pas recalculées
-        automatiquement lorsque le moteur évolue. <a href="/methodologie">Lire la méthode et ses limites.</a></p>
+        immobilier français. Les agrégats décrivent une seule édition et une seule méthode. Les fiches archivées ne sont
+        pas recalculées automatiquement lorsque le moteur évolue. <a href="/methodologie">Lire la méthode et ses limites.</a></p>
       </div>
     </div>
   </section>
@@ -199,6 +227,7 @@ const jsonLd: any[] = [
   .si-breadcrumb a { color: var(--si-muted-foreground, #64748B); text-decoration: none; }
   .si-breadcrumb a:hover { color: var(--si-accent, #3B82F6); }
   .bar-hub-header { max-width: 48rem; margin: 0 auto 1rem; text-align: center; }
+  .bar-edition { margin: 0 0 0.5rem; color: var(--si-accent, #2563EB); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.8rem; }
   .si-article-title { font-family: var(--si-font-heading, 'DM Sans', sans-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.025em; margin: 0 0 1rem; color: var(--si-foreground); }
   .bar-hub-lead { font-size: 1.1rem; line-height: 1.7; color: var(--si-muted-foreground, #64748B); margin: 0 auto 1.5rem; }
   .bar-hub-narrow { max-width: 48rem; margin: 0 auto; }
@@ -218,4 +247,8 @@ const jsonLd: any[] = [
   .bar-card-region { font-size: 0.8rem; color: var(--si-muted-foreground); }
   .bar-method { font-size: 0.875rem; color: var(--si-muted-foreground); line-height: 1.6; margin-top: 1.5rem; }
   .bar-method a { color: var(--si-accent, #3B82F6); }
+  .bar-archives > p { max-width: 48rem; color: var(--si-muted-foreground); line-height: 1.6; }
+  .bar-archives details { border-top: 1px solid var(--si-border, #E2E8F0); padding: 1rem 0; }
+  .bar-archives summary { cursor: pointer; color: var(--si-foreground); font-weight: 700; }
+  .bar-archive-grid { margin-top: 1rem; }
 </style>

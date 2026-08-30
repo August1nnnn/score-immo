@@ -1,0 +1,102 @@
+{
+  "slug": "montagny-les-lanches-appartement-62m2-309k-2026-08",
+  "ville": "Montagny-les-Lanches",
+  "code_postal": "74600",
+  "region": "Auvergne-Rhône-Alpes",
+  "type_bien": "appartement",
+  "surface": 62,
+  "prix_demande": 309000,
+  "prix_m2": 4984,
+  "score_global": 67,
+  "score_sections": {
+    "dpe": 7,
+    "cout": 8,
+    "prix": 4,
+    "ecoles": 8,
+    "risques": 4,
+    "commerces": 9,
+    "rendement": 7,
+    "urbanisme": 9,
+    "actualites": 4,
+    "population": 6,
+    "transports": 9,
+    "environnement": 8,
+    "taxe_fonciere": 9
+  },
+  "dpe": "C",
+  "points_forts": [
+    "Bonne note de desserte dans la grille analysée",
+    "Rendement brut estimé supérieur ou égal à 5 %"
+  ],
+  "alertes_cles": [],
+  "verdict": "Instantané indicatif d'une annonce analysée. Vérifier le bien, les pièces et le financement avant toute décision.",
+  "mois": "2026-08",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-08-02",
+  "methodology_version": "current-category-grid-2026-08",
+  "source_kind": "admin-test",
+  "sample_policy": "all-eligible-monthly-reports",
+  "details": {
+    "taxe": {
+      "annee": 2025,
+      "annuelle": 927,
+      "taux_communal": 26.26
+    },
+    "marche": {
+      "p25": 3230,
+      "p75": 3961,
+      "prix_m2": 4984,
+      "diff_pct": 45.1,
+      "median_m2": 3436,
+      "comparables": 9
+    },
+    "energie": {
+      "dpe": "C",
+      "ges": "C",
+      "conso": 68,
+      "cout_max": 1220,
+      "cout_min": 902,
+      "emission_ges": 2
+    },
+    "risques": {
+      "count": 5,
+      "level": null
+    },
+    "quartier": {
+      "sante": 111,
+      "ecoles": 10,
+      "loisirs": 239,
+      "services": 176,
+      "commerces": 664,
+      "transports": 468
+    },
+    "rendement": {
+      "net": 4.7,
+      "brut": 5,
+      "roi_ans": 20,
+      "loyer_estime": 1288
+    },
+    "historique": {
+      "nb_mutations": 5,
+      "plus_value_pct": 37.9,
+      "duree_detention_ans": 8.6
+    },
+    "acquisition": {
+      "prix": 309000,
+      "total": 333720,
+      "agence": 0,
+      "notaire": 24720,
+      "travaux": 0,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 188,
+      "population": 830,
+      "revenu_median": 23000,
+      "pct_locataires": 32,
+      "pct_proprietaires": 68
+    }
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "slug": "cannes-appartement-74m2-470k-2026-08",
+  "ville": "Cannes",
+  "code_postal": "06400",
+  "region": "Provence-Alpes-Côte d'Azur",
+  "type_bien": "appartement",
+  "surface": 74.09,
+  "prix_demande": 470000,
+  "prix_m2": 6344,
+  "score_global": 65,
+  "score_sections": {
+    "dpe": 5,
+    "cout": 8,
+    "prix": 6,
+    "ecoles": 8,
+    "risques": 4,
+    "commerces": 9,
+    "rendement": 5,
+    "urbanisme": 9,
+    "actualites": 4,
+    "population": 5,
+    "transports": 9,
+    "environnement": 5,
+    "taxe_fonciere": 9
+  },
+  "dpe": "C",
+  "points_forts": [
+    "Bonne note de desserte dans la grille analysée"
+  ],
+  "alertes_cles": [],
+  "verdict": "Instantané indicatif d'une annonce analysée. Vérifier le bien, les pièces et le financement avant toute décision.",
+  "mois": "2026-08",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-08-13",
+  "methodology_version": "current-category-grid-2026-08",
+  "source_kind": "admin-test",
+  "sample_policy": "all-eligible-monthly-reports",
+  "details": {
+    "taxe": {
+      "annee": 2025,
+      "annuelle": 1410,
+      "taux_communal": 27.12
+    },
+    "marche": {
+      "p25": 3939,
+      "p75": 7647,
+      "prix_m2": 6344,
+      "diff_pct": 17.6,
+      "median_m2": 5396,
+      "comparables": 1956
+    },
+    "energie": {
+      "dpe": "C",
+      "ges": "A",
+      "conso": 165,
+      "cout_max": 3537,
+      "cout_min": 2615,
+      "emission_ges": 6
+    },
+    "risques": {
+      "count": 5,
+      "level": null
+    },
+    "quartier": {
+      "sante": 43,
+      "ecoles": 11,
+      "loisirs": 83,
+      "services": 29,
+      "commerces": 55,
+      "transports": 143
+    },
+    "rendement": {
+      "net": 3.7,
+      "brut": 4,
+      "roi_ans": 25,
+      "loyer_estime": 1567
+    },
+    "historique": {
+      "nb_mutations": 5,
+      "plus_value_pct": -33.3,
+      "duree_detention_ans": 0.6
+    },
+    "acquisition": {
+      "prix": 470000,
+      "total": 507600,
+      "agence": 0,
+      "notaire": 37600,
+      "travaux": 0,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 3580,
+      "population": 74350,
+      "revenu_median": 21500,
+      "pct_locataires": 58,
+      "pct_proprietaires": 42
+    }
+  }
+}

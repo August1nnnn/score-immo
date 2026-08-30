@@ -118,7 +118,7 @@ const jsonLd = [
     url: canonical,
     name: title,
     description,
-    dateModified: '2026-08-28',
+    dateModified: '2026-08-30',
     inLanguage: 'fr-FR',
     isPartOf: { '@id': WEBSITE_ID },
     about: { '@id': APPLICATION_ID },
@@ -142,7 +142,7 @@ const jsonLd = [
       </nav>
 
       <header class="si-method-header">
-        <p class="si-method-kicker">Version publique de la méthode en vigueur au 28 août 2026</p>
+        <p class="si-method-kicker">Version publique de la méthode en vigueur au 30 août 2026</p>
         <h1>Méthodologie Score-Immo</h1>
         <p>Le score sur 100 résume les sections dont la donnée est suffisamment fiable pour le bien analysé. Il doit toujours être lu avec sa couverture, ses sources et le détail du rapport.</p>
       </header>
@@ -228,8 +228,10 @@ const jsonLd = [
 
       <section>
         <h2>7. Baromètre et échantillons publiés</h2>
-        <p>Les pages du <a href="/barometre">Baromètre</a> sont des instantanés datés. Elles publient une grille historique de cinq sections visible sur chaque fiche. Elles ne sont pas recalculées automatiquement lorsque le moteur courant évolue.</p>
-        <p>Une moyenne régionale, une médiane de prix ou toute autre statistique du Baromètre décrit uniquement l’échantillon de fiches publiées. Le nombre de biens et la date doivent accompagner le chiffre. Ces agrégats ne représentent pas l’ensemble du marché national ou régional.</p>
+        <p>Les pages du <a href="/barometre">Baromètre</a> sont des instantanés datés d'annonces analysées. L'archive de juin 2026 conserve la grille historique de cinq sections utilisée lors de sa publication. L'édition d'août 2026 utilise la grille résidentielle courante de treize sections. Les anciennes fiches ne sont pas recalculées automatiquement lorsque le moteur évolue.</p>
+        <p>L'édition d'août comprend les 15 analyses internes de test qui étaient réussies, complètes et non supprimées sur le mois. Elles ont toutes été retenues sans sélection selon leur score. Aucun rapport client n'a été publié, car aucun ne disposait d'un accord explicite pour le Baromètre.</p>
+        <p>Pour une future analyse qui ne relève pas du corpus de test interne, la publication exige un opt-in Baromètre explicite. La projection publique retire l'adresse exacte, l'URL de l'annonce, l'identifiant du compte et les données brutes du rapport.</p>
+        <p>Une moyenne régionale ou toute autre statistique du Baromètre décrit uniquement une édition et une méthode homogènes. Le nombre de biens et le mois accompagnent le chiffre. Ces agrégats ne représentent pas l'ensemble du marché national ou régional.</p>
       </section>
 
       <section>
@@ -249,6 +251,7 @@ const jsonLd = [
         <p>Une erreur factuelle confirmée est corrigée sur la page concernée. Lorsqu’elle affecte la compréhension de la méthode, la date de mise à jour et la nature du changement sont ajoutées ici.</p>
         <h3>Journal public</h3>
         <ul>
+          <li><strong>30 août 2026 :</strong> ajout de l'édition d'août, séparation des agrégats par mois et méthode, publication des règles de sélection et de confidentialité du Baromètre.</li>
           <li><strong>28 août 2026 :</strong> publication de la source de vérité actuelle, remplacement de l’ancienne formule publique à cinq axes par les grilles par catégorie, la couverture et la repondération réellement utilisées.</li>
         </ul>
       </section>

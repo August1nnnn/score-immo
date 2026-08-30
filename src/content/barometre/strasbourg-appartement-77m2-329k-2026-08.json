@@ -1,0 +1,102 @@
+{
+  "slug": "strasbourg-appartement-77m2-329k-2026-08",
+  "ville": "Strasbourg",
+  "code_postal": "67000",
+  "region": "Grand Est",
+  "type_bien": "appartement",
+  "surface": 76.63,
+  "prix_demande": 329000,
+  "prix_m2": 4293,
+  "score_global": 65,
+  "score_sections": {
+    "dpe": 5,
+    "cout": 8,
+    "prix": 4,
+    "ecoles": 9,
+    "risques": 4,
+    "commerces": 9,
+    "rendement": 7,
+    "urbanisme": 9,
+    "actualites": 4,
+    "population": 6,
+    "transports": 9,
+    "environnement": 7,
+    "taxe_fonciere": 9
+  },
+  "dpe": "C",
+  "points_forts": [
+    "Bonne note de desserte dans la grille analysée",
+    "Rendement brut estimé supérieur ou égal à 5 %"
+  ],
+  "alertes_cles": [],
+  "verdict": "Instantané indicatif d'une annonce analysée. Vérifier le bien, les pièces et le financement avant toute décision.",
+  "mois": "2026-08",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-08-20",
+  "methodology_version": "current-category-grid-2026-08",
+  "source_kind": "admin-test",
+  "sample_policy": "all-eligible-monthly-reports",
+  "details": {
+    "taxe": {
+      "annee": 2025,
+      "annuelle": 987,
+      "taux_communal": 37.44
+    },
+    "marche": {
+      "p25": null,
+      "p75": null,
+      "prix_m2": 4293,
+      "diff_pct": null,
+      "median_m2": null,
+      "comparables": 0
+    },
+    "energie": {
+      "dpe": "C",
+      "ges": "A",
+      "conso": 145.1,
+      "cout_max": 3218,
+      "cout_min": 2378,
+      "emission_ges": 5.1
+    },
+    "risques": {
+      "count": 5,
+      "level": null
+    },
+    "quartier": {
+      "sante": 149,
+      "ecoles": 20,
+      "loisirs": 456,
+      "services": 166,
+      "commerces": 1205,
+      "transports": 472
+    },
+    "rendement": {
+      "net": 4.7,
+      "brut": 5,
+      "roi_ans": 20,
+      "loyer_estime": 1371
+    },
+    "historique": {
+      "nb_mutations": 0,
+      "plus_value_pct": null,
+      "duree_detention_ans": null
+    },
+    "acquisition": {
+      "prix": 329000,
+      "total": 355320,
+      "agence": 0,
+      "notaire": 26320,
+      "travaux": 0,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 3756,
+      "population": 293771,
+      "revenu_median": 22500,
+      "pct_locataires": 65,
+      "pct_proprietaires": 35
+    }
+  }
+}

@@ -56,6 +56,12 @@ const barometre = defineCollection({
     is_edito: z.boolean().default(false),
     edito_label: z.string().nullable().optional(),
     date_analyse: z.string(),
+    methodology_version: z.enum([
+      'legacy-five-section-2026-06',
+      'current-category-grid-2026-08',
+    ]),
+    source_kind: z.enum(['historical-curation', 'admin-test', 'user-optin']),
+    sample_policy: z.enum(['historical-curated-sample', 'all-eligible-monthly-reports']),
     details: z.any().nullable().optional(),
   }),
 });

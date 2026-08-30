@@ -5,6 +5,7 @@ import SourcesSection from '@/components/SourcesSection.astro';
 import AnalyzerBox from '@/components/AnalyzerBox.astro';
 import FAQ from '@/components/FAQ.astro';
 import { buildBarometreMetaDescription } from '@/lib/barometre-meta-description.js';
+import { sectionsForMethod } from '@/lib/barometre-editions';
 import { BRAND_NAME, ORGANIZATION_ID, SITE_URL } from '@/data/entity';
 import { getCollection } from 'astro:content';
 
@@ -32,13 +33,8 @@ const description = buildBarometreMetaDescription(fiche);
 const scoreColor = fiche.score_global >= 70 ? '#16A34A' : fiche.score_global >= 40 ? '#B45309' : '#DC2626';
 const scoreWord = fiche.score_global >= 70 ? 'Excellent' : fiche.score_global >= 40 ? 'Correct' : 'Risqué';
 
-const SECTIONS = [
-  { key: 'prix', label: 'Prix vs marché' },
-  { key: 'dpe', label: 'Performance énergétique' },
-  { key: 'risques', label: 'Risques naturels' },
-  { key: 'urbanisme', label: 'Urbanisme' },
-  { key: 'environnement', label: 'Environnement' },
-];
+const SECTIONS = sectionsForMethod(fiche.methodology_version);
+const sectionCount = SECTIONS.length;
 const sectionColor = (s: number) => (s >= 7 ? '#16A34A' : s >= 4 ? '#B45309' : '#DC2626');
 
 // Full report detail (aggregate, non-identifying). Null on older fiches.
@@ -87,7 +83,7 @@ const faq: { q: string; a: string }[] = [
   },
   {
     q: `Pourquoi ce bien est-il noté ${fiche.score_global}/100 ?`,
-    a: `Cet instantané daté combine les cinq sections visibles de la grille publiée${sectionLine ? ` : ${sectionLine}` : ''}. La note globale de ${fiche.score_global}/100 en est la synthèse.`,
+    a: `Cet instantané daté combine les ${sectionCount} sections visibles de la grille publiée${sectionLine ? ` : ${sectionLine}` : ''}. La note globale de ${fiche.score_global}/100 en est la synthèse.`,
   },
   ...(prixM2Fmt
     ? [{
@@ -114,7 +110,7 @@ const datasetSchema = {
     '@type': 'Place', name: fiche.ville,
     address: { '@type': 'PostalAddress', addressLocality: fiche.ville, postalCode: fiche.code_postal, addressRegion: fiche.region, addressCountry: 'FR' },
   },
-  measurementTechnique: 'Grille historique visible de cinq sections : prix face au marché, performance énergétique, risques naturels, urbanisme et environnement.',
+  measurementTechnique: `Grille de ${sectionCount} sections correspondant à la méthode ${fiche.methodology_version}.`,
   variableMeasured: [
     { '@type': 'PropertyValue', name: `Score global ${BRAND_NAME} (0-100)`, value: fiche.score_global },
     ...SECTIONS.filter((s) => ss[s.key] != null).map((s) => ({ '@type': 'PropertyValue', name: `${s.label} (0-10)`, value: ss[s.key] })),
@@ -337,7 +333,7 @@ const jsonLd: any[] = [
         )}
 
         <h2>Comment lire ce score daté</h2>
-        <p>Cette fiche est un instantané daté. Elle rassemble les cinq sections visibles ci-dessus à partir des données
+        <p>Cette fiche est un instantané daté. Elle rassemble les {sectionCount} sections visibles ci-dessus à partir des données
         disponibles lors de l'analyse. Elle n'est pas recalculée automatiquement lorsque le moteur de Score-Immo évolue.
         Consultez la <a href="/methodologie">méthodologie actuelle, la gestion des données manquantes et les limites</a>.
         Cette analyse est indicative et ne constitue pas une expertise immobilière ni un conseil en investissement.</p>

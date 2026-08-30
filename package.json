@@ -9,6 +9,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "test": "node --test tests/*.test.mjs",
+    "barometre:sync": "node scripts/gen-barometre.mjs",
     "test:content-truth": "node scripts/check-content-truth.mjs",
     "test:site-integrity": "node scripts/check-built-links.mjs"
   },

@@ -1,0 +1,102 @@
+{
+  "slug": "terrasson-lavilledieu-appartement-32m2-42k-2026-08",
+  "ville": "Terrasson-Lavilledieu",
+  "code_postal": "24120",
+  "region": "Nouvelle-Aquitaine",
+  "type_bien": "appartement",
+  "surface": 32,
+  "prix_demande": 42000,
+  "prix_m2": 1313,
+  "score_global": 67,
+  "score_sections": {
+    "dpe": 5,
+    "cout": 8,
+    "prix": 6,
+    "ecoles": 7,
+    "risques": 5,
+    "commerces": 9,
+    "rendement": 8,
+    "urbanisme": 9,
+    "actualites": 4,
+    "population": 6,
+    "transports": 9,
+    "environnement": 6,
+    "taxe_fonciere": 8
+  },
+  "dpe": "D",
+  "points_forts": [
+    "Bonne note de desserte dans la grille analysée",
+    "Rendement brut estimé supérieur ou égal à 5 %"
+  ],
+  "alertes_cles": [],
+  "verdict": "Instantané indicatif d'une annonce analysée. Vérifier le bien, les pièces et le financement avant toute décision.",
+  "mois": "2026-08",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-08-01",
+  "methodology_version": "current-category-grid-2026-08",
+  "source_kind": "admin-test",
+  "sample_policy": "all-eligible-monthly-reports",
+  "details": {
+    "taxe": {
+      "annee": 2025,
+      "annuelle": 238,
+      "taux_communal": 57.64
+    },
+    "marche": {
+      "p25": 797,
+      "p75": 1585,
+      "prix_m2": 1313,
+      "diff_pct": 12.5,
+      "median_m2": 1167,
+      "comparables": 14
+    },
+    "energie": {
+      "dpe": "D",
+      "ges": "C",
+      "conso": 106,
+      "cout_max": 981,
+      "cout_min": 725,
+      "emission_ges": 21
+    },
+    "risques": {
+      "count": 5,
+      "level": null
+    },
+    "quartier": {
+      "sante": 7,
+      "ecoles": 8,
+      "loisirs": 15,
+      "services": 28,
+      "commerces": 35,
+      "transports": 14
+    },
+    "rendement": {
+      "net": 6.4,
+      "brut": 7,
+      "roi_ans": 14.3,
+      "loyer_estime": 245
+    },
+    "historique": {
+      "nb_mutations": 5,
+      "plus_value_pct": 122.2,
+      "duree_detention_ans": 8.4
+    },
+    "acquisition": {
+      "prix": 42000,
+      "total": 45360,
+      "agence": 0,
+      "notaire": 3360,
+      "travaux": 0,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 158,
+      "population": 6218,
+      "revenu_median": 22500,
+      "pct_locataires": 45,
+      "pct_proprietaires": 55
+    }
+  }
+}
