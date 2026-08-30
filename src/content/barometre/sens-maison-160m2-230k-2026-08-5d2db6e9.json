@@ -1,0 +1,158 @@
+{
+  "slug": "sens-maison-160m2-230k-2026-08-5d2db6e9",
+  "ville": "Sens",
+  "code_postal": "89100",
+  "region": "Bourgogne-Franche-Comté",
+  "type_bien": "maison",
+  "surface": 160,
+  "prix_demande": 230000,
+  "prix_m2": 1438,
+  "score_global": 81,
+  "score_sections": {
+    "cout": 8,
+    "prix": 8,
+    "ecoles": 9,
+    "risques": 6,
+    "commerces": 9,
+    "rendement": 8,
+    "urbanisme": 9,
+    "transports": 9,
+    "taxe_fonciere": 9
+  },
+  "dpe": "E",
+  "points_forts": [
+    "Positionnement de prix favorable dans la grille analysée",
+    "Bonne note de desserte dans la grille analysée",
+    "Rendement brut estimé supérieur ou égal à 5 %"
+  ],
+  "alertes_cles": [],
+  "verdict": "Instantané indicatif d'une annonce analysée. Vérifier le bien, les pièces et le financement avant toute décision.",
+  "mois": "2026-08",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-08-30",
+  "methodology_version": "current-category-grid-2026-08",
+  "source_kind": "user-optin",
+  "sample_policy": "all-eligible-monthly-reports",
+  "details": {
+    "taxe": {
+      "annee": 2025,
+      "annuelle": 1005,
+      "taux_communal": 46.15
+    },
+    "marche": {
+      "p25": 1262,
+      "p75": 2061,
+      "prix_m2": 1438,
+      "diff_pct": -13.4,
+      "median_m2": 1661,
+      "comparables": 159
+    },
+    "energie": {
+      "dpe": "E",
+      "ges": "B",
+      "conso": 261,
+      "cout_max": 12083,
+      "cout_min": 8931,
+      "date_dpe": "2026-08-24",
+      "emission_ges": 10
+    },
+    "risques": [
+      {
+        "label": "Inondation",
+        "level": "Faible"
+      },
+      {
+        "label": "Sismicité",
+        "level": "Faible"
+      },
+      {
+        "label": "Radon",
+        "level": "Faible"
+      },
+      {
+        "label": "Retrait-gonflement argiles",
+        "level": "Faible"
+      },
+      {
+        "label": "Mouvement de terrain",
+        "level": "Moyen"
+      },
+      {
+        "label": "Feux de forêt",
+        "level": "Faible"
+      },
+      {
+        "label": "Industriel",
+        "level": "Moyen"
+      },
+      {
+        "label": "Minier",
+        "level": "Faible"
+      }
+    ],
+    "quartier": {
+      "sante": 40,
+      "ecoles": 20,
+      "loisirs": 98,
+      "services": 55,
+      "commerces": 174,
+      "transports": 257
+    },
+    "rendement": {
+      "net": 5.6,
+      "brut": 6,
+      "roi_ans": 16.7,
+      "loyer_estime": 1150
+    },
+    "urbanisme": {
+      "libelle": "Uc",
+      "zone_plu": "U",
+      "constructible": true
+    },
+    "historique": {
+      "ventes": [
+        {
+          "date": "2025-12-18",
+          "prix": 265000,
+          "prix_m2": 1656
+        },
+        {
+          "date": "2025-11-10",
+          "prix": 407210,
+          "prix_m2": 2561
+        },
+        {
+          "date": "2025-10-23",
+          "prix": 139000,
+          "prix_m2": 986
+        },
+        {
+          "date": "2025-10-17",
+          "prix": 173000,
+          "prix_m2": 1006
+        }
+      ],
+      "nb_mutations": 4,
+      "plus_value_pct": 32.9,
+      "duree_detention_ans": 0.9
+    },
+    "acquisition": {
+      "prix": 230000,
+      "total": 248400,
+      "agence": 0,
+      "notaire": 18400,
+      "travaux": 0,
+      "agence_pct": 0,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 1241,
+      "population": 27106,
+      "revenu_median": 22000,
+      "pct_locataires": 52,
+      "pct_proprietaires": 48
+    }
+  }
+}
