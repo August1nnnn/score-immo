@@ -106,6 +106,8 @@ test("IndexNow runs after deployment and targets changed article URLs", () => {
       "--changed-files",
       "src/content/articles/villes/prix-immobilier-paris-marche-plancher.json",
       "src/data/pages/tarifs.json",
+      "src/pages/pages/tarifs.astro",
+      "src/pages/tarifs.astro",
     ],
     { cwd: new URL("..", import.meta.url), encoding: "utf8" },
   );

@@ -53,6 +53,14 @@ def changed_files_to_urls(paths):
         if not path:
             continue
 
+        if path in {
+            "src/data/pages/tarifs.json",
+            "src/pages/pages/tarifs.astro",
+            "src/pages/tarifs.astro",
+        }:
+            urls.append(f"https://{HOST}/tarifs")
+            continue
+
         if path.startswith(GLOBAL_PREFIXES) or path in GLOBAL_FILES:
             return None
 
@@ -75,7 +83,7 @@ def changed_files_to_urls(paths):
 
         if path.startswith("src/data/pages/") and path.endswith(".json"):
             page_handle = Path(path).stem
-            public_route = "/tarifs" if page_handle == "tarifs" else f"/pages/{page_handle}"
+            public_route = f"/pages/{page_handle}"
             urls.append(f"https://{HOST}{public_route}")
             continue
 
