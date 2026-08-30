@@ -121,8 +121,8 @@ Secret GitHub présent : `SCOREIMMO_SUPABASE_PUBLISHABLE_KEY`, valeur non imprim
 | Intégrité du site | 12 229 liens internes, 35 redirections, PASS |
 | JSON-LD | 1 510 scripts parsés sur 313 HTML, PASS |
 | Données Baromètre | 112 total, 15 août, 97 juin, PASS |
-| Pages existantes live avant manifeste | 112/112 slugs, 112 HEAD HTTP 200, PASS |
-| Endpoint manifeste live | en attente du déploiement, HTTP 404 attendu à ce stade |
+| Pages Baromètre live | 112/112 slugs, 112 HEAD HTTP 200, PASS |
+| Endpoint manifeste live | HTTP 200 JSON, schéma 1, CORS `*`, `noindex`, 75 604 octets, PASS |
 | Manifeste build | schéma 1, 112 rapports, 75 604 octets, bijection pages PASS |
 | Grilles | août 13 sections, juin 5 sections, PASS |
 | PII Baromètre | zéro clé interdite, PASS |
@@ -136,6 +136,15 @@ Secret GitHub présent : `SCOREIMMO_SUPABASE_PUBLISHABLE_KEY`, valeur non imprim
 | Core Web Vitals laboratoire | LCP 1 806 ms, CLS 0,0249 |
 
 La première passe finale a détecté une référence à un helper de formatage supprimé à tort. Le build a bloqué avant commit ; le helper a été restauré et la chaîne complète ci-dessus a été rejouée depuis le début.
+
+La PR [#12](https://github.com/August1nnnn/score-immo/pull/12) a été
+fusionnée au SHA `a7de5a74ba78c296e1eff0163a7b6dc20d01ec7e`. Le déploiement
+Cloudflare [#33321761533](https://github.com/August1nnnn/score-immo/actions/runs/33321761533)
+et les garde-fous SEO
+[#33321761580](https://github.com/August1nnnn/score-immo/actions/runs/33321761580)
+sont verts. Le contrôle indépendant base vers manifeste, sitemap et 112 pages
+live [#33321883191](https://github.com/August1nnnn/score-immo/actions/runs/33321883191)
+est vert sans diff de synchronisation ni PR automatique.
 
 ## 7. Revue conformité et revue qualité
 
@@ -167,8 +176,8 @@ La première passe finale a détecté une référence à un helper de formatage 
 - les éditions et leurs sections sont centralisées dans un helper testé ;
 - une édition ne peut contenir qu'une seule fiche éditoriale ;
 - les pages régionales historiques restent disponibles lorsqu'aucune édition plus récente ne possède trois fiches ;
-- aucune finding Critical ou Important de code ne reste ouverte ; le gate
-  externe du manifeste live reste en attente du déploiement.
+- aucune finding Critical ou Important de code ne reste ouverte ; le manifeste
+  public et sa parité avec la base, le sitemap et les pages sont vérifiés live.
 
 ## 8. Test de reconnaissance d'entité sans nom
 
@@ -269,4 +278,11 @@ Dates cibles :
 
 ## 10. État de clôture
 
-Localement, le lot satisfait les critères techniques, éditoriaux, sécurité, confidentialité, performance et rollback. La clôture définitive exige encore : pull request verte, fusion, déploiement Cloudflare, contrôle IndexNow et smoke test sur les URL de production.
+Le lot principal `a7de5a74` satisfait les critères techniques, éditoriaux,
+sécurité, confidentialité, performance et rollback ; sa PR, son déploiement
+Cloudflare, IndexNow et son smoke test de production sont vérifiés. La
+contre-revue live a relevé uniquement une duplication sans impact de l'en-tête
+`X-Content-Type-Options: nosniff`. Le présent micro-correctif la retire de la
+règle exacte tout en conservant la règle de sécurité globale. Ses tests et son
+build sont verts ; sa PR, son déploiement puis la vérification d'une seule
+valeur `nosniff` restent les derniers gates de ce finding mineur.

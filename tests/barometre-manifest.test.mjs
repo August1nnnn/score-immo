@@ -90,12 +90,15 @@ test("la route et les en-têtes rendent le manifeste public mais non indexable",
   const headers = read("public/_headers");
   const astroConfig = read("astro.config.mjs");
   const globalRule = /^\/\*\n(?:[ \t]+.*(?:\n|$))*/m.exec(headers)?.[0] ?? "";
+  const manifestRule = /^\/barometre-manifest\.json\n(?:[ \t]+.*(?:\n|$))*/m.exec(headers)?.[0] ?? "";
   assert.match(route, /buildBarometreManifest/);
   assert.match(route, /getCollection\('barometre'\)/);
-  assert.match(headers, /\/barometre-manifest\.json[\s\S]*Access-Control-Allow-Origin: \*/);
-  assert.match(headers, /\/barometre-manifest\.json[\s\S]*X-Robots-Tag: noindex/);
+  assert.match(manifestRule, /Access-Control-Allow-Origin: \*/);
+  assert.match(manifestRule, /X-Robots-Tag: noindex/);
   assert.doesNotMatch(globalRule, /X-Robots-Tag/i);
-  assert.match(headers, /\/barometre-manifest\.json[\s\S]*Cache-Control: public, max-age=0, must-revalidate/);
+  assert.match(globalRule, /X-Content-Type-Options: nosniff/);
+  assert.doesNotMatch(manifestRule, /X-Content-Type-Options/i);
+  assert.match(manifestRule, /Cache-Control: public, max-age=0, must-revalidate/);
   assert.match(astroConfig, /['"]\/barometre-manifest\.json['"]/);
 });
 
