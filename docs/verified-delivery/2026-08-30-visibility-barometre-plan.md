@@ -5,8 +5,10 @@
 - tâches 1 à 6 : terminées et vérifiées ;
 - tâche 7, contrôles locaux : terminée ;
 - tâche 7, contrôle des pages live existantes : terminé ;
-- tâche 8, contrôle du manifeste live : en attente du déploiement ;
-- tâche 7, PR, déploiement et smoke test live final : en cours ;
+- tâche 8, contrôle du manifeste live : terminé ;
+- tâche 7, PR, déploiement et smoke test live final : terminé ;
+- micro-correctif d'unicité de l'en-tête `nosniff` : contrôles locaux terminés,
+  PR et vérification live encore requises pour clore ce finding mineur ;
 - preuve : `docs/verified-delivery/2026-08-30-visibility-barometre-evidence.md`.
 
 ## Contraintes globales
