@@ -1,0 +1,102 @@
+{
+  "slug": "lecci-maison-53m2-549k-2026-08",
+  "ville": "Lecci",
+  "code_postal": "20137",
+  "region": "Corse",
+  "type_bien": "maison",
+  "surface": 53,
+  "prix_demande": 549000,
+  "prix_m2": 10358,
+  "score_global": 69,
+  "score_sections": {
+    "dpe": 10,
+    "cout": 8,
+    "prix": 4,
+    "ecoles": 2,
+    "risques": 9,
+    "commerces": 9,
+    "rendement": 5,
+    "urbanisme": 3,
+    "actualites": 4,
+    "population": 6,
+    "transports": 9,
+    "environnement": 8,
+    "taxe_fonciere": 9
+  },
+  "dpe": "A",
+  "points_forts": [
+    "DPE A",
+    "Bonne note de desserte dans la grille analysée"
+  ],
+  "alertes_cles": [],
+  "verdict": "Instantané indicatif d'une annonce analysée. Vérifier le bien, les pièces et le financement avant toute décision.",
+  "mois": "2026-08",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-08-30",
+  "methodology_version": "current-category-grid-2026-08",
+  "source_kind": "admin-test",
+  "sample_policy": "all-eligible-monthly-reports",
+  "details": {
+    "taxe": {
+      "annee": 2025,
+      "annuelle": 1647,
+      "taux_communal": 19.37
+    },
+    "marche": {
+      "p25": 5327,
+      "p75": 7280,
+      "prix_m2": 10358,
+      "diff_pct": 53.5,
+      "median_m2": 6750,
+      "comparables": 16
+    },
+    "energie": {
+      "dpe": "A",
+      "ges": "A",
+      "conso": 142,
+      "cout_max": 2178,
+      "cout_min": 1610,
+      "emission_ges": 5
+    },
+    "risques": {
+      "count": 1,
+      "level": null
+    },
+    "quartier": {
+      "sante": 15,
+      "ecoles": 0,
+      "loisirs": 12,
+      "services": 29,
+      "commerces": 57,
+      "transports": 9
+    },
+    "rendement": {
+      "net": 3.7,
+      "brut": 4,
+      "roi_ans": 25,
+      "loyer_estime": 1830
+    },
+    "historique": {
+      "nb_mutations": 4,
+      "plus_value_pct": 39,
+      "duree_detention_ans": 2.4
+    },
+    "acquisition": {
+      "prix": 549000,
+      "total": 592920,
+      "agence": 0,
+      "notaire": 43920,
+      "travaux": 0,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 79,
+      "population": 2134,
+      "revenu_median": 23000,
+      "pct_locataires": 32,
+      "pct_proprietaires": 68
+    }
+  }
+}

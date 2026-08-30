@@ -1,0 +1,105 @@
+{
+  "slug": "le-cannet-appartement-45m2-255k-2026-08",
+  "ville": "Le Cannet",
+  "code_postal": "06110",
+  "region": "Provence-Alpes-Côte d'Azur",
+  "type_bien": "appartement",
+  "surface": 45,
+  "prix_demande": 255000,
+  "prix_m2": 5667,
+  "score_global": 67,
+  "score_sections": {
+    "dpe": 9,
+    "cout": 8,
+    "prix": 3,
+    "ecoles": 9,
+    "risques": 4,
+    "commerces": 9,
+    "rendement": 7,
+    "urbanisme": 9,
+    "actualites": 4,
+    "population": 6,
+    "transports": 9,
+    "environnement": 6,
+    "taxe_fonciere": 9
+  },
+  "dpe": "B",
+  "points_forts": [
+    "DPE B",
+    "Bonne note de desserte dans la grille analysée",
+    "Rendement brut estimé supérieur ou égal à 5 %"
+  ],
+  "alertes_cles": [
+    "Positionnement de prix à vérifier face aux références locales"
+  ],
+  "verdict": "Instantané indicatif d'une annonce analysée. Vérifier le bien, les pièces et le financement avant toute décision.",
+  "mois": "2026-08",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-08-02",
+  "methodology_version": "current-category-grid-2026-08",
+  "source_kind": "admin-test",
+  "sample_policy": "all-eligible-monthly-reports",
+  "details": {
+    "taxe": {
+      "annee": 2025,
+      "annuelle": 765,
+      "taux_communal": 29.59
+    },
+    "marche": {
+      "p25": 3200,
+      "p75": 4438,
+      "prix_m2": 5667,
+      "diff_pct": 50.9,
+      "median_m2": 3756,
+      "comparables": 1531
+    },
+    "energie": {
+      "dpe": "B",
+      "ges": "D",
+      "conso": 212.9,
+      "cout_max": 2772,
+      "cout_min": 2049,
+      "emission_ges": 40.4
+    },
+    "risques": {
+      "count": 4,
+      "level": null
+    },
+    "quartier": {
+      "sante": 108,
+      "ecoles": 20,
+      "loisirs": 190,
+      "services": 112,
+      "commerces": 593,
+      "transports": 378
+    },
+    "rendement": {
+      "net": 4.7,
+      "brut": 5,
+      "roi_ans": 20,
+      "loyer_estime": 1063
+    },
+    "historique": {
+      "nb_mutations": 4,
+      "plus_value_pct": -3.8,
+      "duree_detention_ans": 0.6
+    },
+    "acquisition": {
+      "prix": 255000,
+      "total": 275400,
+      "agence": 0,
+      "notaire": 20400,
+      "travaux": 0,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 5449,
+      "population": 41938,
+      "revenu_median": 22000,
+      "pct_locataires": 52,
+      "pct_proprietaires": 48
+    }
+  }
+}

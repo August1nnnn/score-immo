@@ -1,0 +1,103 @@
+{
+  "slug": "chenove-appartement-40m2-100k-2026-08",
+  "ville": "Chenôve",
+  "code_postal": "21300",
+  "region": "Bourgogne-Franche-Comté",
+  "type_bien": "appartement",
+  "surface": 40.44,
+  "prix_demande": 99500,
+  "prix_m2": 2460,
+  "score_global": 79,
+  "score_sections": {
+    "dpe": 10,
+    "cout": 8,
+    "prix": 8,
+    "ecoles": 9,
+    "risques": 5,
+    "commerces": 9,
+    "rendement": 8,
+    "urbanisme": 9,
+    "actualites": 4,
+    "population": 6,
+    "transports": 9,
+    "environnement": 6,
+    "taxe_fonciere": 9
+  },
+  "dpe": "A",
+  "points_forts": [
+    "DPE A",
+    "Positionnement de prix favorable dans la grille analysée",
+    "Bonne note de desserte dans la grille analysée"
+  ],
+  "alertes_cles": [],
+  "verdict": "Instantané indicatif d'une annonce analysée. Vérifier le bien, les pièces et le financement avant toute décision.",
+  "mois": "2026-08",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-08-06",
+  "methodology_version": "current-category-grid-2026-08",
+  "source_kind": "admin-test",
+  "sample_policy": "all-eligible-monthly-reports",
+  "details": {
+    "taxe": {
+      "annee": 2025,
+      "annuelle": 299,
+      "taux_communal": 47.28
+    },
+    "marche": {
+      "p25": 1340,
+      "p75": 4012,
+      "prix_m2": 2460,
+      "diff_pct": 1.9,
+      "median_m2": 2415,
+      "comparables": 126
+    },
+    "energie": {
+      "dpe": "A",
+      "ges": "A",
+      "conso": 216,
+      "cout_max": 2528,
+      "cout_min": 1868,
+      "emission_ges": 47
+    },
+    "risques": {
+      "count": 3,
+      "level": null
+    },
+    "quartier": {
+      "sante": 126,
+      "ecoles": 20,
+      "loisirs": 352,
+      "services": 108,
+      "commerces": 117,
+      "transports": 265
+    },
+    "rendement": {
+      "net": 5.7,
+      "brut": 6,
+      "roi_ans": 16.6,
+      "loyer_estime": 498
+    },
+    "historique": {
+      "nb_mutations": 5,
+      "plus_value_pct": 13.1,
+      "duree_detention_ans": 1
+    },
+    "acquisition": {
+      "prix": 99500,
+      "total": 107460,
+      "agence": 0,
+      "notaire": 7960,
+      "travaux": 0,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 1908,
+      "population": 14244,
+      "revenu_median": 22500,
+      "pct_locataires": 45,
+      "pct_proprietaires": 55
+    }
+  }
+}

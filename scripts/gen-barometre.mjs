@@ -11,6 +11,10 @@ import {
   fetchPublishedBarometreRows,
   getBarometrePublishableKey,
 } from './barometre-supabase.mjs';
+import {
+  assertFreshLatestEdition,
+  normalizePublishedRows,
+} from './barometre-public-data.mjs';
 
 const PUBLISHABLE_KEY = getBarometrePublishableKey();
 
@@ -21,13 +25,14 @@ if (!PUBLISHABLE_KEY) {
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT = join(__dirname, '..', 'src', 'content', 'barometre');
+// Defense in depth for the four known legacy rows while the generic validator
+// below rejects any row whose region is missing or equal to France.
 const REJECTED_SOURCE_SLUGS = new Set([
   'la-roche-guyon-appartement-45m2-99k',
   'maxeville-appartement-74m2-97k',
   'nancy-appartement-47m2-96k',
   'sons-et-roncheres-maison-92m2-25k',
 ]);
-
 let rows;
 try {
   rows = await fetchPublishedBarometreRows({ publishableKey: PUBLISHABLE_KEY });
@@ -36,14 +41,18 @@ try {
   process.exit(1);
 }
 
-const invalidRows = rows.filter((row) =>
-  REJECTED_SOURCE_SLUGS.has(row.slug) || !row.region || row.region.trim() === 'France'
-);
-if (invalidRows.length > 0) {
-  console.error(
-    'Barometre generation stopped: invalid geography for',
-    invalidRows.map((row) => row.slug).join(', '),
+let fiches;
+try {
+  const rejectedRows = rows.filter((row) =>
+    REJECTED_SOURCE_SLUGS.has(row.slug) || !row.region || row.region.trim() === 'France'
   );
+  if (rejectedRows.length > 0) {
+    throw new Error(`Geographie invalide: ${rejectedRows.map((row) => row.slug).join(', ')}`);
+  }
+  fiches = normalizePublishedRows(rows);
+  assertFreshLatestEdition(fiches);
+} catch (error) {
+  console.error(error instanceof Error ? error.message : String(error));
   process.exit(1);
 }
 
@@ -53,32 +62,7 @@ if (existsSync(OUT)) {
   mkdirSync(OUT, { recursive: true });
 }
 
-let n = 0;
-for (const r of rows) {
-  const surface = Number(r.surface) || 0;
-  const prix = Number(r.prix_demande) || 0;
-  const fiche = {
-    slug: r.slug,
-    ville: r.ville,
-    code_postal: r.code_postal,
-    region: r.region,
-    type_bien: r.type_bien,
-    surface,
-    prix_demande: prix,
-    prix_m2: surface > 0 ? Math.round(prix / surface) : null,
-    score_global: r.score_global,
-    score_sections: r.score_sections || {},
-    dpe: r.dpe || null,
-    points_forts: r.points_forts || [],
-    alertes_cles: r.alertes_cles || [],
-    verdict: r.verdict || '',
-    mois: r.mois,
-    is_edito: !!r.is_edito,
-    edito_label: r.edito_label || null,
-    date_analyse: `${r.mois}-01`,
-    details: r.details_json || null,
-  };
-  writeFileSync(join(OUT, `${r.slug}.json`), JSON.stringify(fiche, null, 2) + '\n');
-  n++;
+for (const fiche of fiches) {
+  writeFileSync(join(OUT, `${fiche.slug}.json`), JSON.stringify(fiche, null, 2) + '\n');
 }
-console.log(`Wrote ${n} barometre fiches to src/content/barometre/`);
+console.log(`Wrote ${fiches.length} barometre fiches to src/content/barometre/`);

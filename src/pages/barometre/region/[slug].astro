@@ -6,66 +6,63 @@ import SourcesSection from '@/components/SourcesSection.astro';
 import AnalyzerBox from '@/components/AnalyzerBox.astro';
 import { getCollection } from 'astro:content';
 import { slugifyRegion as slugify, groupByRegion, REGION_MIN } from '@/lib/regions';
+import { aggregateEdition, selectLatestRegionalEdition, sectionsForMethod } from '@/lib/barometre-editions';
 import { BRAND_NAME, ORGANIZATION_ID, SITE_URL, WEBSITE_ID } from '@/data/entity';
 
 export async function getStaticPaths() {
   const all = (await getCollection('barometre')).map((e) => e.data);
   const g = groupByRegion(all);
-  return [...g.entries()]
-    .filter(([, fiches]) => fiches.length >= REGION_MIN)
-    .map(([region]) => ({ params: { slug: slugify(region) }, props: { region } }));
+  return [...g.entries()].flatMap(([region, fiches]) => {
+    try {
+      selectLatestRegionalEdition(fiches, { minCount: REGION_MIN });
+      return [{ params: { slug: slugify(region) }, props: { region } }];
+    } catch {
+      return [];
+    }
+  });
 }
 
 const { region } = Astro.props;
 const all = (await getCollection('barometre')).map((e) => e.data);
-const fiches = groupByRegion(all).get(region)!.sort((a, b) => b.score_global - a.score_global);
+const regionalFiches = groupByRegion(all).get(region)!;
+const edition = selectLatestRegionalEdition(regionalFiches, { minCount: REGION_MIN });
+const fiches = edition.fiches;
+const editionStats = aggregateEdition(fiches);
 const canonical = `${SITE_URL}/barometre/region/${slugify(region)}`;
 
 const typeLabel = (t: string) => (t === 'appartement' ? 'Appartement' : 'Maison');
-const median = (arr: number[]) => {
-  if (!arr.length) return null;
-  const s = [...arr].sort((a, b) => a - b);
-  return s[Math.floor(s.length / 2)];
-};
 const fr = (n: number | null) => (n == null ? null : n.toLocaleString('fr-FR'));
-
 const n = fiches.length;
-const avgScore = Math.round(fiches.reduce((s, f) => s + f.score_global, 0) / n);
-// DVF medians per sector (real, from details.marche.median_m2)
-const dvf = fiches.map((f) => f.details?.marche?.median_m2).filter((x: any) => x > 0) as number[];
-const medM2 = median(dvf);
-const minM2 = dvf.length ? Math.min(...dvf) : null;
-const maxM2 = dvf.length ? Math.max(...dvf) : null;
-const lastDate = fiches.map((f) => f.date_analyse).filter(Boolean).sort().slice(-1)[0] || null;
+const avgScore = editionStats.avgScore;
+const communes = new Set(fiches.map((f) => f.ville)).size;
+const lastDate = editionStats.latestAnalysisDate;
 const lastDateFmt = lastDate
   ? new Date(lastDate).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long' })
   : null;
+const editionLabel = new Date(`${edition.month}-01T12:00:00Z`).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long' });
+const sectionCount = sectionsForMethod(edition.methodology).length;
 
-const title = `Prix au m² et scores immobiliers en ${region} | Baromètre ${BRAND_NAME}`;
-const description = `Échantillon de ${n} biens analysés par ${BRAND_NAME} en ${region} : score moyen ${avgScore}/100${medM2 ? `, médiane DVF observée ${fr(medM2)} €/m²` : ''}.`.slice(0, 160);
+const title = `Annonces immobilières analysées en ${region} | Baromètre ${BRAND_NAME}`;
+const description = `Édition ${editionLabel} : ${n} annonces analysées par ${BRAND_NAME} en ${region}, dans ${communes} communes. Score moyen de l'échantillon : ${avgScore}/100.`.slice(0, 160);
 
 const tldr = [
-  `${n} biens immobiliers dans l'échantillon publié en ${region}.`,
-  `Score ${BRAND_NAME} moyen de l'échantillon : ${avgScore}/100.`,
-  medM2 ? `Prix médian observé (DVF) : ${fr(medM2)} €/m²${minM2 && maxM2 ? `, de ${fr(minM2)} à ${fr(maxM2)} €/m² selon les communes.` : '.'}` : null,
+  `Édition ${editionLabel} : ${n} annonces analysées dans ${communes} communes de ${region}.`,
+  `Score ${BRAND_NAME} moyen de cette édition homogène : ${avgScore}/100.`,
+  `Chaque fiche de cette édition affiche ${sectionCount} sections et sa propre date d'analyse.`,
 ].filter(Boolean) as string[];
 
 const faq = [
-  medM2 ? {
-    q: `Quel est le prix immobilier au m² en ${region} ?`,
-    a: `Dans cet échantillon de ${n} biens publiés par ${BRAND_NAME} en ${region}, la médiane des références DVF associées est de ${fr(medM2)} €/m²${minM2 && maxM2 ? `, dans une fourchette de ${fr(minM2)} à ${fr(maxM2)} €/m² selon les communes` : ''}. Ce résultat ne représente pas tout le marché régional.`,
-  } : null,
   {
     q: `Quel est le score immobilier moyen en ${region} ?`,
-    a: `Les ${n} biens de l'échantillon publié en ${region} obtiennent un score moyen de ${avgScore}/100. Le meilleur du panel est ${fiches[0].ville} (${fiches[0].score_global}/100).`,
+    a: `Dans l'édition ${editionLabel}, les ${n} annonces de l'échantillon publié en ${region} obtiennent un score moyen de ${avgScore}/100. La meilleure note du panel est ${fiches[0].score_global}/100 à ${fiches[0].ville}.`,
   },
   {
     q: `Combien de biens Score-Immo publie-t-il dans cet échantillon en ${region} ?`,
-    a: `${BRAND_NAME} publie ${n} instantanés datés de biens immobiliers en ${region}. Chaque fiche indique les sections et sources disponibles lors de l'analyse.${lastDateFmt ? ` Dernière analyse publiée : ${lastDateFmt}.` : ''}`,
+    a: `${BRAND_NAME} retient ${n} instantanés datés dans l'édition régionale ${editionLabel}, répartis dans ${communes} communes. Chaque fiche indique les sections et sources disponibles lors de l'analyse.${lastDateFmt ? ` Dernière analyse de cette édition : ${lastDateFmt}.` : ''}`,
   },
   {
     q: `Comment lire les scores de cet échantillon ?`,
-    a: `Chaque fiche est un instantané daté utilisant les cinq sections visibles du Baromètre. La méthode actuelle de l'application, qui gère plusieurs catégories de biens et les données manquantes, est documentée sur la page Méthodologie.`,
+    a: `Chaque fiche est un instantané daté utilisant les ${sectionCount} sections de sa méthode. Les agrégats de cette page ne mélangent jamais deux mois ou deux grilles de notation. La méthode complète est documentée sur la page Méthodologie.`,
   },
 ].filter(Boolean) as { q: string; a: string }[];
 
@@ -76,7 +73,7 @@ const sources = [
   { title: 'Revenus et démographie communale', url: 'https://www.insee.fr/', publisher: 'INSEE' },
 ];
 
-const scoreColor = (s: number) => (s >= 70 ? '#16A34A' : s >= 40 ? '#F59E0B' : '#DC2626');
+const scoreColor = (s: number) => (s >= 70 ? '#16A34A' : s >= 40 ? '#B45309' : '#DC2626');
 
 const jsonLd: any[] = [
   {
@@ -93,18 +90,20 @@ const jsonLd: any[] = [
   {
     '@context': 'https://schema.org',
     '@type': 'Dataset',
-    name: `Prix au m² et scores ${BRAND_NAME} en ${region}`,
-    description: `Échantillon de ${n} instantanés datés en ${region}. Score moyen ${avgScore}/100${medM2 ? `, médiane DVF observée ${medM2} €/m²` : ''}.`,
+    name: `Annonces analysées par ${BRAND_NAME} en ${region}, édition ${editionLabel}`,
+    description: `Échantillon de ${n} instantanés datés dans ${communes} communes de ${region}. Score moyen de l'édition ${editionLabel} : ${avgScore}/100.`,
     url: canonical,
     isAccessibleForFree: true,
     creator: { '@id': ORGANIZATION_ID },
     ...(lastDate ? { dateModified: lastDate } : {}),
+    temporalCoverage: edition.month,
     spatialCoverage: { '@type': 'Place', name: region, address: { '@type': 'PostalAddress', addressRegion: region, addressCountry: 'FR' } },
-    measurementTechnique: 'Instantanés datés produits avec la grille historique visible de cinq sections : prix face au marché, performance énergétique, risques naturels, urbanisme et environnement.',
+    measurementTechnique: `Instantanés datés produits avec une grille homogène de ${sectionCount} sections, sans mélange avec les autres éditions.`,
     variableMeasured: [
       { '@type': 'PropertyValue', name: 'Biens analysés', value: n },
       { '@type': 'PropertyValue', name: 'Score moyen de l’échantillon (0-100)', value: avgScore },
-      ...(medM2 ? [{ '@type': 'PropertyValue', name: 'Prix médian DVF (€/m²)', value: medM2 }] : []),
+      { '@type': 'PropertyValue', name: 'Communes représentées', value: communes },
+      { '@type': 'PropertyValue', name: 'Sections visibles par fiche', value: sectionCount },
     ],
   },
   {
@@ -133,13 +132,14 @@ const jsonLd: any[] = [
       </nav>
 
       <header class="reg-header">
-        <h1 class="si-article-title">Prix au m² et scores immobiliers en {region}</h1>
-        <p class="reg-lead">Un échantillon de {n} biens immobiliers en {region}, publié sous forme d'instantanés datés
-        avec les cinq sections visibles lors de chaque analyse.</p>
+        <p class="reg-edition">Édition {editionLabel}</p>
+        <h1 class="si-article-title">Annonces immobilières analysées en {region}</h1>
+        <p class="reg-lead">Un échantillon homogène de {n} annonces dans {communes} communes de {region}, publié sous
+        forme d'instantanés datés avec les {sectionCount} sections visibles lors de chaque analyse.</p>
         <div class="reg-stats">
           <div><strong>{n}</strong><span>biens analysés</span></div>
           <div><strong>{avgScore}/100</strong><span>score moyen</span></div>
-          {medM2 && <div><strong>{fr(medM2)} €</strong><span>prix médian /m² (DVF)</span></div>}
+          <div><strong>{communes}</strong><span>communes représentées</span></div>
         </div>
       </header>
 
@@ -162,9 +162,9 @@ const jsonLd: any[] = [
         <FAQ items={faq} />
         <AnalyzerBox blog="villes" medium="barometre_region" />
         <SourcesSection sources={sources} />
-        <p class="reg-method">Méthodologie : les agrégats décrivent uniquement cet échantillon de fiches publiées.
-        Les références de prix proviennent des données DVF associées à ces fiches. Les instantanés ne sont pas recalculés
-        lorsque le moteur évolue. <a href="/methodologie">Lire la méthode et ses limites.</a></p>
+        <p class="reg-method">Méthodologie : les agrégats décrivent uniquement cette édition de {n} fiches et cette
+        méthode à {sectionCount} sections. Ils ne constituent pas un baromètre de prix de toute la région. Les instantanés
+        ne sont pas recalculés lorsque le moteur évolue. <a href="/methodologie">Lire la méthode et ses limites.</a></p>
       </div>
     </div>
   </section>
@@ -175,6 +175,7 @@ const jsonLd: any[] = [
   .si-breadcrumb a { color: var(--si-muted-foreground, #64748B); text-decoration: none; }
   .si-breadcrumb a:hover { color: var(--si-accent, #3B82F6); }
   .reg-header { max-width: 48rem; margin: 0 auto 1rem; text-align: center; }
+  .reg-edition { margin: 0 0 0.5rem; color: var(--si-accent, #2563EB); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.8rem; }
   .si-article-title { font-family: var(--si-font-heading, 'DM Sans', sans-serif); font-size: clamp(1.9rem, 5vw, 2.8rem); font-weight: 700; line-height: 1.12; letter-spacing: -0.025em; margin: 0 0 1rem; color: var(--si-foreground); }
   .reg-lead { font-size: 1.1rem; line-height: 1.7; color: var(--si-muted-foreground, #64748B); margin: 0 auto 1.5rem; }
   .reg-narrow { max-width: 48rem; margin: 0 auto; }

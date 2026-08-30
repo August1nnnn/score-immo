@@ -55,8 +55,12 @@ test("barometre generation emits the exact query with apikey only", async () => 
   assert.equal(url.pathname, "/rest/v1/barometre_reports");
   assert.equal(url.searchParams.get("publie"), "eq.true");
   assert.equal(url.searchParams.get("source_report_id"), "not.is.null");
-  assert.equal(url.searchParams.get("order"), "score_global.desc");
-  assert.equal(url.searchParams.get("select"), "*");
+  assert.equal(url.searchParams.get("order"), "mois.desc,score_global.desc");
+  assert.equal(
+    url.searchParams.get("select"),
+    "mois,ville,code_postal,region,type_bien,surface,prix_demande,score_global,score_sections,dpe,alertes_cles,points_forts,verdict,is_edito,edito_label,slug,source_report_id,details_json",
+  );
+  assert.notEqual(url.searchParams.get("select"), "*");
   assert.deepEqual(calls[0].options.headers, {
     apikey: "sb_publishable_test",
   });
