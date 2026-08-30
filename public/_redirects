@@ -8,8 +8,10 @@
 
 # Catch old contact variations
 /contact /pages/contact 301
-/tarifs /pages/tarifs 301
-/pricing /pages/tarifs 301
+/tarifs/ /tarifs 301
+/pages/tarifs /tarifs 301
+/pages/tarifs/ /tarifs 301
+/pricing /tarifs 301
 /cgv /pages/cgv 301
 /mentions-legales /pages/mentions-legales 301
 

@@ -74,7 +74,9 @@ def changed_files_to_urls(paths):
             continue
 
         if path.startswith("src/data/pages/") and path.endswith(".json"):
-            urls.append(f"https://{HOST}/pages/{Path(path).stem}")
+            page_handle = Path(path).stem
+            public_route = "/tarifs" if page_handle == "tarifs" else f"/pages/{page_handle}"
+            urls.append(f"https://{HOST}{public_route}")
             continue
 
         if path == "src/pages/index.astro":

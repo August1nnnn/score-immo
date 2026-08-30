@@ -9,6 +9,7 @@ const sitemapExcludedPaths = new Set([
   '/barometre-manifest.json',
   '/pages/efficity',
   '/pages/llms-txt',
+  '/pages/tarifs',
 ]);
 
 export default defineConfig({
