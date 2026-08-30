@@ -69,6 +69,41 @@ const redirectedLinks = new Set();
 const noindexRoutes = new Set();
 let checkedLinks = 0;
 
+const manifestPath = join(dist, "barometre-manifest.json");
+if (!existsSync(manifestPath)) {
+  errors.push("Missing dist/barometre-manifest.json");
+} else {
+  try {
+    const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
+    const reports = manifest?.schema_version === 1 && Array.isArray(manifest.reports)
+      ? manifest.reports
+      : null;
+    if (!reports) {
+      errors.push("Barometre manifest must use schema_version 1 with a reports array");
+    } else {
+      const slugs = reports.map((report) => report?.slug);
+      const safeSlugs = slugs.filter((slug) => (
+        typeof slug === "string" && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)
+      ));
+      if (safeSlugs.length !== reports.length || new Set(safeSlugs).size !== reports.length) {
+        errors.push("Barometre manifest contains invalid or duplicate slugs");
+      }
+      const manifestRoutes = new Set(safeSlugs.map((slug) => `/barometre/${slug}`));
+      const detailRoutes = [...routes].filter((route) => (
+        /^\/barometre\/[^/]+$/.test(route) && !route.startsWith("/barometre/region/")
+      ));
+      for (const route of manifestRoutes) {
+        if (!routes.has(route)) errors.push(`Barometre manifest page does not exist: ${route}`);
+      }
+      for (const route of detailRoutes) {
+        if (!manifestRoutes.has(route)) errors.push(`Barometre detail missing from manifest: ${route}`);
+      }
+    }
+  } catch (error) {
+    errors.push(`Invalid dist/barometre-manifest.json: ${error.message}`);
+  }
+}
+
 for (const htmlFile of htmlFiles) {
   const from = routeForHtml(htmlFile);
   const html = readFileSync(htmlFile, "utf8");
@@ -144,6 +179,9 @@ if (!existsSync(notFoundPath)) {
 
 for (const sitemap of files.filter((path) => /sitemap.*\.xml$/.test(path))) {
   const xml = readFileSync(sitemap, "utf8");
+  if (/https:\/\/score-immo\.fr\/barometre-manifest\.json(?:<|\/|$)/.test(xml)) {
+    errors.push(`${webPath(sitemap)} contains the noindex Barometre manifest`);
+  }
   if (/https:\/\/score-immo\.fr\/404(?:<|\/|$)/.test(xml)) {
     errors.push(`${webPath(sitemap)} contains the noindex 404 URL`);
   }

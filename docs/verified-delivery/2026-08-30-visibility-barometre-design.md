@@ -39,7 +39,8 @@ Le `ok go` d'Augustin du 30 août 2026 autorise les modifications locales, la PR
 - rendre non publiées les quatre lignes à géographie invalide déjà exclues du site ;
 - corriger de façon ciblée la région de Cayenne en `Guyane`, avec contrôle du code postal `97300` ;
 - synchroniser les JSON statiques depuis la vue publique avec une clé publishable dédiée ;
-- ajouter un workflow récurrent qui ouvre ou met à jour une PR, sans fusion automatique ;
+- ajouter un workflow quotidien qui ouvre ou met à jour une PR, sans fusion
+  automatique, et contrôle la parité des URL utilisées par l'app ;
 - afficher les statistiques de la dernière édition sans les mélanger aux archives ;
 - afficher cinq sections sur les fiches historiques et treize sections sur les fiches courantes ;
 - repositionner les hubs régionaux sur les annonces analysées, avec agrégats bornés à une édition homogène ;
@@ -78,9 +79,24 @@ Le générateur public continue de lire uniquement `barometre_reports` via RLS e
 
 ### 3. Synchronisation par PR
 
-Le workflow planifié utilise uniquement la clé publishable. Il régénère, teste et construit le site. S'il existe un diff, il pousse une branche d'automatisation et ouvre ou met à jour une PR. Il ne fusionne ni ne déploie automatiquement. Une donnée trop ancienne fait échouer ce workflow dédié sans bloquer les déploiements urgents sans rapport.
+Le workflow quotidien utilise uniquement la clé publishable. Il régénère, teste
+et construit le site. S'il existe un diff, il pousse une branche d'automatisation
+et ouvre ou met à jour une PR. S'il n'existe aucun diff à réviser, il exige une
+égalité exacte entre la base, le manifeste et le sitemap live, puis un statut
+HTTP 200 pour chaque fiche. Lorsqu'il vient de créer un diff, cette vérification
+live est différée jusqu'au déploiement, car la production ne peut pas encore
+contenir le changement. Il ne fusionne ni ne déploie automatiquement.
 
-### 4. Présentation homogène
+### 4. Instantané public commun au site et à l'app
+
+Le build pré-rend `/barometre-manifest.json` depuis la même collection que les
+fiches. La projection est explicite et exclut détails, provenance, adresse, URL
+d'annonce et identifiants utilisateur. Elle est versionnée, validée avec les
+mêmes invariants que l'app, accessible en CORS sans cookie, non indexable et
+absente du sitemap. Le contrôle d'intégrité exige une bijection exacte entre ses
+slugs et les pages générées.
+
+### 5. Présentation homogène
 
 - Le hub principal décrit la dernière édition et sépare clairement les archives.
 - Les agrégats et le Dataset portent uniquement sur une édition homogène.
@@ -99,6 +115,7 @@ Classe de risque : élevée, car le lot combine SEO public, automatisation GitHu
 | doublon ou collision SEO | source et slug contrôlés avant écriture | tests d'unicité et requête post-apply | rollback transaction ou dépublication ciblée |
 | agrégat mélangeant deux méthodes | calcul par mois/méthode homogène | tests sur fixture juin + août | revert du lot site |
 | automatisation qui déploie seule | PR obligatoire, aucune auto-fusion | audit du workflow | désactiver le schedule ou revert du workflow |
+| app partageant une fiche absente du site | l'app lit l'instantané déployé atomiquement avec les pages | bijection manifeste/pages au build et contrôle quotidien base/manifeste/sitemap/HTTP | fusionner la PR contrôlée ou dépublier la ligne concernée |
 | conflit avec App Store | fichiers juridiques et `llms.txt` interdits | diff final et resynchronisation `main` | rebase, résolution sans prendre leurs changements |
 | perte SEO | URL et canonical conservées, contenu plus précis | GSC à J+7, J+14 et J+28 | rollback seulement sur perte matérielle confirmée |
 
@@ -113,7 +130,10 @@ Rollback code : annuler le commit de fusion du lot. Rollback données : rendre `
 - le hub affiche août 2026 comme dernière édition et borne chaque agrégat à cette édition ;
 - les fiches août affichent les treize sections courantes, les fiches juin gardent leurs cinq sections historiques ;
 - aucun score moyen régional ne mélange des éditions ou méthodes différentes ;
-- le workflow n'utilise qu'une clé publishable et ne fusionne jamais automatiquement ;
+- le workflow quotidien n'utilise qu'une clé publishable, vérifie les pages live
+  utilisées par l'app et ne fusionne jamais automatiquement ;
+- le manifeste public contient exactement les 112 fiches, exclut les champs
+  internes, accepte CORS sans cookie, reste non indexable et absent du sitemap ;
 - les liens éditoriaux ne décrivent plus le Baromètre comme une source de tendances locales exhaustives ;
 - tests complets, vérité éditoriale, build, liens, JSON-LD, mobile, Lighthouse, secrets, diff et statut Git verts ;
 - PR, déploiement Cloudflare et IndexNow verts, puis HTTP/canonical/contenu live vérifiés ;

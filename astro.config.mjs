@@ -6,6 +6,7 @@ import tailwindcss from 'tailwindcss';
 
 const sitemapExcludedPaths = new Set([
   '/404',
+  '/barometre-manifest.json',
   '/pages/efficity',
   '/pages/llms-txt',
 ]);
