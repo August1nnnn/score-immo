@@ -954,6 +954,25 @@ body.si-page-bg {
   color: var(--si-foreground);
 }
 
+.si-footer-socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  column-gap: 1rem;
+  row-gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.si-footer-socials-label {
+  color: var(--si-muted-foreground);
+  font-family: var(--si-font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
 @media (min-width: 768px) {
   .si-footer-inner {
     flex-direction: row;

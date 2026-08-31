@@ -5,6 +5,13 @@ export const ORGANIZATION_ID = 'https://score-immo.fr/#organization';
 export const WEBSITE_ID = 'https://score-immo.fr/#website';
 export const APPLICATION_ID = 'https://score-immo.fr/#application';
 
+export const SOCIAL_PROFILES = [
+  { name: 'TikTok', url: 'https://www.tiktok.com/@scoreimmo' },
+  { name: 'YouTube', url: 'https://www.youtube.com/@scoreimmo' },
+  { name: 'Facebook', url: 'https://www.facebook.com/people/Score-Immo/61594068807617/' },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/company/score-immo-fr/' },
+] as const;
+
 export const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
@@ -14,7 +21,10 @@ export const organizationJsonLd = {
   url: SITE_URL,
   logo: `${SITE_URL}/favicon.svg`,
   description: "Plateforme française d'analyse de biens immobiliers à partir de données publiques, conçue du côté de l'acheteur.",
-  sameAs: ['https://www.wikidata.org/wiki/Q140289914'],
+  sameAs: [
+    'https://www.wikidata.org/wiki/Q140289914',
+    ...SOCIAL_PROFILES.map((profile) => profile.url),
+  ],
   areaServed: { '@type': 'Country', name: 'France' },
   knowsAbout: [
     'Immobilier résidentiel',

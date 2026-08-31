@@ -1,4 +1,6 @@
 ---
+import { SOCIAL_PROFILES } from '@/data/entity';
+
 const year = new Date().getFullYear();
 ---
 <footer class="si-footer">
@@ -38,6 +40,14 @@ const year = new Date().getFullYear();
           <a href="mailto:contact@score-immo.fr">contact@score-immo.fr</a>
         </div>
       </div>
+      <nav class="si-footer-socials" aria-label="Réseaux sociaux Score-Immo">
+        <span class="si-footer-socials-label">Suivre Score-Immo</span>
+        <div class="si-footer-links si-footer-links--compact">
+          {SOCIAL_PROFILES.map((profile) => (
+            <a href={profile.url} target="_blank" rel="me noopener noreferrer">{profile.name}</a>
+          ))}
+        </div>
+      </nav>
     </div>
   </div>
 </footer>
