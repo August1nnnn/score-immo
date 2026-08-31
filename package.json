@@ -12,7 +12,8 @@
     "barometre:sync": "node scripts/gen-barometre.mjs",
     "barometre:verify-live": "node scripts/verify-live-barometre.mjs",
     "test:content-truth": "node scripts/check-content-truth.mjs",
-    "test:site-integrity": "node scripts/check-built-links.mjs"
+    "test:site-integrity": "node scripts/check-built-links.mjs",
+    "test:layout-geometry": "node scripts/check-layout-geometry.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.5",
@@ -23,5 +24,8 @@
     "astro": "^7.2.0",
     "autoprefixer": "^10.4.21",
     "tailwindcss": "^3.4.0"
+  },
+  "devDependencies": {
+    "playwright": "^1.62.1"
   }
 }

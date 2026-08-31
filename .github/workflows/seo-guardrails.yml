@@ -49,6 +49,14 @@ jobs:
         working-directory: ${{ steps.detect.outputs.site_dir }}
         run: npm run test:site-integrity
 
+      - name: Install Chromium for layout geometry
+        working-directory: ${{ steps.detect.outputs.site_dir }}
+        run: npx playwright install --with-deps chromium
+
+      - name: Layout geometry (texte hors de sa boite, scroll horizontal)
+        working-directory: ${{ steps.detect.outputs.site_dir }}
+        run: npm run test:layout-geometry
+
       - name: Guardrail 1 — No external font CDN in built HTML
         working-directory: ${{ steps.detect.outputs.site_dir }}
         run: |
