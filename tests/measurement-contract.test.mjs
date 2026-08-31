@@ -159,7 +159,7 @@ test("consent clamps a 13-month expiry to the last valid target day", async () =
   assert.match(consentWrite, /Expires=Sun, 28 Feb 2027 12:00:00 GMT/);
 });
 
-test("GA4 defaults to denied, loads only after acceptance and strips query strings", async () => {
+test("Google measurement defaults to denied, loads GA4 and GTM only after acceptance", async () => {
   const source = await read("public/ga4.js");
   const callbacks = [];
   const appended = [];
@@ -204,10 +204,28 @@ test("GA4 defaults to denied, loads only after acceptance and strips query strin
   );
 
   callbacks[0]("accepted");
-  assert.equal(appended.length, 1);
+  assert.equal(appended.length, 2);
   assert.equal(
     appended[0].src,
+    "https://www.googletagmanager.com/gtm.js?id=GTM-N8TVQPKH",
+  );
+  assert.equal(
+    appended[1].src,
     "https://www.googletagmanager.com/gtag/js?id=G-FL8T0DN7GH",
+  );
+  const consentGranted = window.dataLayer.find(
+    (entry) => entry[0] === "consent" && entry[1] === "update",
+  );
+  assert.deepEqual(JSON.parse(JSON.stringify(consentGranted[2])), {
+    ad_storage: "granted",
+    analytics_storage: "granted",
+    ad_user_data: "granted",
+    ad_personalization: "denied",
+  });
+  assert.ok(
+    window.dataLayer.some(
+      (entry) => entry.event === "gtm.js" && Number.isFinite(entry["gtm.start"]),
+    ),
   );
   const pageView = window.dataLayer.find(
     (entry) => entry[0] === "event" && entry[1] === "page_view",
@@ -222,6 +240,17 @@ test("GA4 defaults to denied, loads only after acceptance and strips query strin
   assert.equal(config[2].page_referrer, "https://app.score-immo.fr/app");
   assert.ok(!JSON.stringify(pageView).includes("private@example.test"));
   assert.ok(!JSON.stringify(pageView).includes("example.test/listing"));
+
+  callbacks[0]("rejected");
+  const consentDenied = window.dataLayer.findLast(
+    (entry) => entry[0] === "consent" && entry[1] === "update",
+  );
+  assert.deepEqual(JSON.parse(JSON.stringify(consentDenied[2])), {
+    ad_storage: "denied",
+    analytics_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+  });
 });
 
 test("first-party tracker is silent without consent and strips unsafe metadata", async () => {

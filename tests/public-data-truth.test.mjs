@@ -47,11 +47,15 @@ test("privacy policy names the controller and actual core processors", () => {
     "Stripe",
     "Resend",
     "Google Analytics",
+    "Google Ads",
+    "Google Tag Manager",
   ]) {
     assert.match(privacy, new RegExp(expected.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"));
   }
 
   assert.doesNotMatch(privacy, /\[PRÉNOM NOM\]|Shopify|TRIXI|claude\.ai/i);
+  assert.match(privacy, /l'efficacité des campagnes publicitaires/i);
+  assert.match(privacy, /uniquement après consentement/i);
 });
 
 test("sales terms use the same verified publisher identity and address", () => {
