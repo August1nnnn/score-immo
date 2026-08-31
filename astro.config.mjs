@@ -25,6 +25,7 @@ export default defineConfig({
       priority: 0.7,
       filter: (page) => {
         const pathname = new URL(page).pathname.replace(/\/$/, '') || '/';
+        if (pathname.startsWith('/barometre/editions/')) return false;
         return !pathname.startsWith('/admin') && !sitemapExcludedPaths.has(pathname);
       },
     }),

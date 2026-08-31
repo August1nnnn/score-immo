@@ -20,3 +20,8 @@
   Access-Control-Allow-Origin: *
   Cache-Control: public, max-age=0, must-revalidate
   X-Robots-Tag: noindex
+
+/barometre/editions/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600, must-revalidate
+  X-Robots-Tag: noindex
