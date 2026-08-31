@@ -72,7 +72,43 @@
 - Barrière respectée : aucune URL n'est transmise avant le déploiement et le
   contrôle de production.
 
-## État avant publication
+## Publication et production
 
-Artefact local vérifié. Les SHA de commit et de fusion, le workflow Cloudflare,
-le HTML live et le statut final eReferer seront ajoutés après observation.
+- Commit d'artefact : `e881d53d9dd391a84e13833391f47050ff289dfd`.
+- PR : `#16`, fusionnée le 31 août 2026.
+- Commit de fusion : `6d3e4aa7d7f4c363e8db570004da779470df875f`.
+- Garde-fous SEO `33402252488` : succès sur le SHA de fusion.
+- Déploiement Cloudflare Pages `33402252454` : succès en 1 min 24 s.
+- Étapes de build, validation des routes, déploiement, collecte des URL et
+  notification IndexNow : succès.
+
+## Vérification publique
+
+Vérifiée le 31 août 2026 après le déploiement :
+
+- page, image et sitemap : HTTP 200 ;
+- page : 45 620 octets, image WebP : 79 796 octets ;
+- canonical exact, robots `index, follow`, un H1 ;
+- image complète de 1200 x 630 px ;
+- lien partenaire unique, premier lien du corps, ancre, destination et
+  `rel="noopener"` exacts ;
+- Article avec `wordCount` 2 374 et deux citations ;
+- FAQPage avec six questions ;
+- URL présente dans le sitemap ;
+- desktop 1440 x 900 et mobile 390 x 844 sans débordement ;
+- tableau contenu dans le corps sur les deux viewports ;
+- aucun message d'erreur, avertissement ou issue dans la console live.
+
+## Clôture eReferer
+
+- POST `/bo/exchange-site-proposals-validate` : HTTP 200.
+- Réponse : `result=success`, proposition `676904`, publication validée.
+- Gain crédité : 8,90 euros ; solde observé de 46,52 à 55,42 euros.
+- Onglet `À publier` : aucun résultat après rechargement.
+- Onglet `Terminés` : URL exacte affichée, rédaction `par le webmaster`, date
+  `31/08/2026`, prix `8.9€`.
+
+## État final
+
+`PROD_VERIFIED` pour la page publique et `VALIDÉE` dans eReferer. L'effet SEO
+ou commercial au-delà du crédit contractuel n'est pas encore mesuré.
