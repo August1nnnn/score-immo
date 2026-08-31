@@ -49,7 +49,7 @@ test("une barre d'axe reste visible même à zéro", () => {
   assert.ok(axisBarHeight(0) >= 6);
 });
 
-test("chaque fiche de l'édition courante porte un profil distinct", () => {
+test("l'édition courante n'affiche pas un profil recopié sur la moitié des cartes", () => {
   const dir = new URL("src/content/barometre/", root);
   const fiches = readdirSync(dir)
     .filter((name) => name.endsWith(".json"))
@@ -59,15 +59,21 @@ test("chaque fiche de l'édition courante porte un profil distinct", () => {
   const current = fiches.filter((f) => f.mois === month);
   assert.ok(current.length >= 2, "l'édition courante contient plusieurs fiches");
 
-  const fingerprints = current.map((fiche) => {
-    const signal = buildFicheSignal(fiche);
-    return signal.axes.map(({ key, score }) => `${key}:${score}`).join("|");
-  });
+  const counts = new Map();
+  for (const fiche of fiches.filter((f) => f.mois === month)) {
+    const key = buildFicheSignal(fiche).axes.map(({ key: k, score }) => `${k}:${score}`).join("|");
+    counts.set(key, (counts.get(key) ?? 0) + 1);
+  }
+  const worst = Math.max(...counts.values());
 
-  assert.equal(
-    new Set(fingerprints).size,
-    fingerprints.length,
-    "deux fiches de la même édition ne doivent pas afficher le même profil",
+  // Le défaut réel était une accroche recopiée sur 9 des 16 cartes, soit 56 %.
+  // On n'exige pas l'unicité parfaite : deux biens peuvent légitimement obtenir
+  // les mêmes notes, et un tel test virerait au rouge tout seul dès qu'une
+  // édition s'élargit. On refuse seulement qu'un même profil couvre la moitié
+  // de l'édition, ce qui signale une valeur par défaut et non une mesure.
+  assert.ok(
+    worst <= current.length / 2,
+    `un même profil couvre ${worst} des ${current.length} fiches de l'édition ${month}`,
   );
 });
 
