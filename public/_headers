@@ -25,3 +25,8 @@
   Access-Control-Allow-Origin: *
   Cache-Control: public, max-age=3600, must-revalidate
   X-Robots-Tag: noindex
+
+/barometre/capitales/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=14400, must-revalidate
+  X-Robots-Tag: noindex

@@ -54,3 +54,13 @@ test('cookie actions remain on one balanced row on mobile', () => {
     /\.si-cookie-action\s*\{[\s\S]*?min-height:\s*44px/,
   );
 });
+
+test('capital data exports are public downloads but excluded from indexing', () => {
+  const headers = readFileSync(new URL('public/_headers', root), 'utf8');
+  const astroConfig = readFileSync(new URL('astro.config.mjs', root), 'utf8');
+  assert.match(
+    headers,
+    /\/barometre\/capitales\/\*[\s\S]*?Access-Control-Allow-Origin: \*[\s\S]*?X-Robots-Tag: noindex/,
+  );
+  assert.match(astroConfig, /pathname\.startsWith\('\/barometre\/capitales\/'\)/);
+});
