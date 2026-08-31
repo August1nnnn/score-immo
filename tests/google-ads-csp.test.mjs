@@ -19,6 +19,7 @@ test("Google Ads conversion endpoints are explicitly allowed by the CSP", () => 
   for (const origin of [
     "https://www.googleadservices.com",
     "https://www.google.com",
+    "https://www.google.fr",
     "https://ad.doubleclick.net",
   ]) {
     assert.ok(allowed.includes(origin), `${origin} must be explicitly allowed`);
