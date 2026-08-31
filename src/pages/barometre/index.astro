@@ -14,6 +14,7 @@ import { buildEditionInsights } from '@/lib/barometre-insights';
 import { buildFicheSignal, axisBarHeight } from '@/lib/barometre-signal.ts';
 import { buildEditionExport } from '@/lib/barometre-edition-export.js';
 import { BRAND_NAME, ORGANIZATION_ID, SITE_URL, WEBSITE_ID } from '@/data/entity';
+import capitalesAout from '@/data/barometre-capitales-2026-08.json';
 import dmSans800Url from '@fontsource/dm-sans/files/dm-sans-latin-800-normal.woff2?url';
 import inter400Url from '@fontsource/inter/files/inter-latin-400-normal.woff2?url';
 
@@ -59,6 +60,18 @@ const lastDateFmt = lastDate
 const editionJsonUrl = `/barometre/editions/${latestEdition.month}.json`;
 const editionCsvUrl = `/barometre/editions/${latestEdition.month}.csv`;
 const citation = `${BRAND_NAME}, Le Baromètre immobilier des annonces analysées, édition ${editionLabel}, échantillon de ${total} annonces, version ${latestEdition.month}, ${SITE_URL}${editionJsonUrl}.`;
+const capitalObservations = capitalesAout.observations;
+const unavailableCapitals = capitalesAout.indisponibles;
+const capitalJsonUrl = '/barometre/capitales/2026-08.json';
+const capitalCsvUrl = '/barometre/capitales/2026-08.csv';
+const capitalMapPoints = capitalObservations
+  .filter(({ region_code }) => !['01', '02'].includes(region_code))
+  .map((observation) => ({
+    ...observation,
+    x: Math.max(5, Math.min(95, ((observation.longitude_capitale + 5.5) / 15) * 100)),
+    y: Math.max(5, Math.min(95, ((51.2 - observation.latitude_capitale) / 10.2) * 100)),
+  }));
+const overseasCapitalObservations = capitalObservations.filter(({ region_code }) => ['01', '02'].includes(region_code));
 
 const faq: { q: string; a: string }[] = [
   {
@@ -80,6 +93,10 @@ const faq: { q: string; a: string }[] = [
   {
     q: `Quelles sont les limites des notes du Baromètre ?`,
     a: `Les notes sont des instantanés indicatifs fondés sur les données disponibles lors de l'analyse. Elles ne constituent ni une expertise immobilière ni un conseil en investissement.${lastDateFmt ? ` Dernière analyse publiée : ${lastDateFmt}.` : ''}`,
+  },
+  {
+    q: `Que mesure le relevé des capitales régionales ?`,
+    a: `Le relevé d'août 2026 retient une annonce complète dans 15 chefs-lieux régionaux : prix affiché, surface, prix au m² et DPE. Il ne publie aucun score Score-Immo et ne représente ni un prix moyen de la ville ni un indice de marché.`,
   },
 ];
 
@@ -132,6 +149,41 @@ const faqSchema = {
   })),
 };
 
+const regionalCapitalDatasetSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Dataset',
+  '@id': `${canonical}#capitales-regionales-2026-08`,
+  identifier: `${canonical}#capitales-regionales-2026-08`,
+  version: capitalesAout.mois,
+  name: `Repères d'annonces dans les capitales régionales, août 2026`,
+  description: `Une annonce d'août 2026 avec prix, surface et DPE dans 15 chefs-lieux régionaux. Prix affichés, sans score Score-Immo et sans extrapolation au marché local.`,
+  url: canonical,
+  isAccessibleForFree: true,
+  creator: { '@id': ORGANIZATION_ID },
+  dateModified: capitalesAout.capture_date,
+  temporalCoverage: capitalesAout.mois,
+  spatialCoverage: capitalObservations.map(({ capitale, region }) => ({
+    '@type': 'Place',
+    name: `${capitale}, ${region}`,
+  })),
+  measurementTechnique: capitalesAout.selection_policy,
+  citation: [
+    { '@type': 'Dataset', name: capitalesAout.official_geography.name, url: capitalesAout.official_geography.url },
+    { '@type': 'WebSite', name: capitalesAout.source.name, url: capitalesAout.source.url },
+  ],
+  distribution: [
+    { '@type': 'DataDownload', encodingFormat: 'application/json', contentUrl: `${SITE_URL}${capitalJsonUrl}` },
+    { '@type': 'DataDownload', encodingFormat: 'text/csv', contentUrl: `${SITE_URL}${capitalCsvUrl}` },
+  ],
+  variableMeasured: [
+    { '@type': 'PropertyValue', name: 'Capitales observées', value: capitalObservations.length },
+    { '@type': 'PropertyValue', name: 'Prix affiché', unitText: 'EUR' },
+    { '@type': 'PropertyValue', name: 'Prix affiché au m²', unitText: 'EUR par m²' },
+    { '@type': 'PropertyValue', name: 'Surface', unitText: 'm²' },
+    { '@type': 'PropertyValue', name: 'Classe DPE' },
+  ],
+};
+
 const jsonLd: any[] = [
   {
     '@context': 'https://schema.org',
@@ -163,6 +215,7 @@ const jsonLd: any[] = [
     ],
   },
   datasetSchema,
+  regionalCapitalDatasetSchema,
   faqSchema,
 ];
 ---
@@ -218,6 +271,87 @@ const jsonLd: any[] = [
         <div><dt>Grille visible</dt><dd>{sectionCountPhrase}</dd></div>
         <div><dt>Dernière analyse</dt><dd>{lastDateFmt}</dd></div>
       </dl>
+
+      <section class="bar-section bar-capitals" aria-labelledby="bar-capitals-title">
+        <div class="bar-section-heading bar-section-heading-row">
+          <div>
+            <p class="bar-overline">Couverture géographique · août 2026</p>
+            <h2 id="bar-capitals-title">Repères dans les capitales régionales</h2>
+            <p>Une annonce complète observée dans <strong>{capitalObservations.length} chefs-lieux sur 18</strong>. Ce relevé compare des prix affichés, pas des prix de vente, et reste volontairement sans score Score-Immo.</p>
+          </div>
+          <p class="bar-result-count">Relevé du 31 août 2026</p>
+        </div>
+
+        <div class="bar-capital-layout">
+          <figure class="bar-capital-map">
+            <div class="bar-card-heading">
+              <div>
+                <p class="bar-overline">Carte de couverture</p>
+                <h3>13 chefs-lieux en métropole et Corse</h3>
+              </div>
+              <span class="bar-card-note">Position des villes</span>
+            </div>
+            <svg viewBox="0 0 100 100" role="img" aria-labelledby="capital-map-title capital-map-desc">
+              <title id="capital-map-title">Capitales régionales couvertes en métropole et en Corse</title>
+              <desc id="capital-map-desc">Schéma de position des treize chefs-lieux disposant d'une annonce complète dans le relevé d'août 2026.</desc>
+              <path class="bar-map-shape" d="M43 5 L67 10 L91 34 L82 71 L59 94 L31 88 L10 62 L14 32 L27 13 Z" />
+              {capitalMapPoints.map((observation) => (
+                <g class="bar-map-point" transform={`translate(${observation.x} ${observation.y})`}>
+                  <circle r="2.8" />
+                  <title>{observation.capitale} · {observation.prix_m2.toLocaleString('fr-FR')} €/m² · DPE {observation.dpe}</title>
+                </g>
+              ))}
+            </svg>
+            <figcaption>Schéma de localisation, sans représentation des frontières régionales. Les positions sont celles des chefs-lieux officiels, pas celles des biens.</figcaption>
+            <div class="bar-overseas-capitals" aria-label="Chefs-lieux ultramarins observés">
+              {overseasCapitalObservations.map((observation) => (
+                <span><strong>{observation.capitale}</strong><small>{observation.region} · DPE {observation.dpe}</small></span>
+              ))}
+            </div>
+          </figure>
+
+          <article class="bar-capital-data">
+            <div class="bar-card-heading">
+              <div>
+                <p class="bar-overline">15 observations datées</p>
+                <h3>Prix affiché et DPE par capitale</h3>
+              </div>
+            </div>
+            <div class="bar-table-wrap bar-capital-table">
+              <table>
+                <thead><tr><th>Capitale</th><th>Annonce</th><th>Prix affiché</th><th>Prix/m²</th><th>DPE</th></tr></thead>
+                <tbody>
+                  {capitalObservations.map((observation) => (
+                    <tr>
+                      <th scope="row"><strong>{observation.capitale}</strong><small>{observation.region} · {observation.code_postal}</small></th>
+                      <td>{typeLabel(observation.type_bien)} · {observation.surface.toLocaleString('fr-FR')} m²</td>
+                      <td>{observation.prix_affiche.toLocaleString('fr-FR')} €</td>
+                      <td><strong>{observation.prix_m2.toLocaleString('fr-FR')} €/m²</strong></td>
+                      <td><span class={`bar-dpe-pill bar-dpe-${observation.dpe.toLowerCase()}`}>{observation.dpe}</span></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+
+        <div class="bar-capital-method">
+          <div>
+            <strong>Règle de sélection</strong>
+            <p>{capitalesAout.selection_policy} Une observation décrit une annonce, jamais le niveau de prix de la ville.</p>
+          </div>
+          <div>
+            <strong>3 chefs-lieux non publiés</strong>
+            <p>{unavailableCapitals.map(({ capitale }) => capitale).join(', ')} : aucune annonce d'août répondant au contrat complet dans la source consultée.</p>
+          </div>
+          <div class="bar-capital-downloads">
+            <a href={capitalJsonUrl} download>JSON</a>
+            <a href={capitalCsvUrl} download>CSV</a>
+          </div>
+        </div>
+        <p class="bar-capital-source">Sources consultées le 31 août 2026 : <a href={capitalesAout.official_geography.url}>API Découpage administratif</a> pour les chefs-lieux et codes postaux ; <a href={capitalesAout.source.url}>Bien’ici</a> pour les caractéristiques publiques de l'annonce. Aucun identifiant vendeur, contact, photo, adresse exacte ou URL d'annonce n'est publié.</p>
+      </section>
 
       <section class="bar-section" aria-labelledby="bar-reading-title">
         <div class="bar-section-heading">
@@ -669,6 +803,7 @@ const jsonLd: any[] = [
   .bar-proof-strip dt { color: #64748b; font-size: 0.69rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
   .bar-proof-strip dd { margin: 0.28rem 0 0; color: #0f172a; font-weight: 800; }
   .bar-section { padding-top: clamp(3.5rem, 7vw, 6rem); scroll-margin-top: 5rem; }
+  #bar-capitals-title { scroll-margin-top: 6rem; }
   .bar-section-heading { max-width: 48rem; margin-bottom: 1.6rem; }
   .bar-section-heading h2, .bar-inline-cta h2, .bar-citation h2, .bar-method-card h2 { margin: 0; color: #0f172a; font-family: var(--si-font-heading, 'DM Sans', sans-serif); font-size: clamp(1.65rem, 3vw, 2.35rem); line-height: 1.1; letter-spacing: -0.025em; }
   .bar-section-heading > p:last-child { margin: 0.8rem 0 0; color: #64748b; line-height: 1.65; }
@@ -676,6 +811,29 @@ const jsonLd: any[] = [
   .bar-section-heading-row > div { max-width: 48rem; }
   .bar-section-heading-row > div > p:last-child { margin: 0.8rem 0 0; color: #64748b; line-height: 1.65; }
   .bar-section-heading.bar-section-heading-row > p.bar-result-count { color: #1e3a8a; }
+  .bar-capital-layout { display: grid; grid-template-columns: minmax(300px, 0.72fr) minmax(0, 1.28fr); gap: 1rem; align-items: stretch; }
+  .bar-capital-map, .bar-capital-data { min-width: 0; margin: 0; border: 1px solid #dbe4f0; border-radius: 1.25rem; padding: clamp(1.15rem, 3vw, 1.6rem); background: #fff; box-shadow: 0 12px 32px rgba(15, 23, 42, 0.05); }
+  .bar-capital-map svg { display: block; width: min(100%, 27rem); margin: 0 auto; overflow: visible; }
+  .bar-map-shape { fill: #eff6ff; stroke: #93c5fd; stroke-width: 0.8; vector-effect: non-scaling-stroke; }
+  .bar-map-point circle { fill: #1d4ed8; stroke: #fff; stroke-width: 1.2; vector-effect: non-scaling-stroke; filter: drop-shadow(0 2px 3px rgba(15, 23, 42, 0.25)); }
+  .bar-capital-map figcaption { margin-top: 0.8rem; color: #64748b; font-size: 0.72rem; line-height: 1.5; }
+  .bar-overseas-capitals { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.55rem; margin-top: 1rem; }
+  .bar-overseas-capitals span { display: grid; gap: 0.18rem; border: 1px solid #dbeafe; border-radius: 0.75rem; padding: 0.7rem; background: #f8fbff; color: #0f172a; }
+  .bar-overseas-capitals small { color: #64748b; font-size: 0.7rem; }
+  .bar-capital-table { max-height: 34rem; overflow: auto; scrollbar-gutter: stable; }
+  .bar-capital-table thead { position: sticky; top: 0; z-index: 1; background: #fff; }
+  .bar-capital-table tbody th { white-space: normal; }
+  .bar-capital-table tbody th strong, .bar-capital-table tbody th small { display: block; }
+  .bar-capital-table tbody th small { margin-top: 0.2rem; color: #64748b; font-weight: 500; }
+  .bar-capital-table .bar-dpe-pill { display: inline-grid; min-width: 2rem; place-items: center; }
+  .bar-capital-method { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) auto; gap: 1px; margin-top: 1rem; overflow: hidden; border: 1px solid #dbe4f0; border-radius: 1rem; background: #dbe4f0; }
+  .bar-capital-method > div { min-width: 0; padding: 1rem; background: #fff; }
+  .bar-capital-method strong { color: #0f172a; font-size: 0.82rem; }
+  .bar-capital-method p { margin: 0.35rem 0 0; color: #64748b; font-size: 0.76rem; line-height: 1.5; }
+  .bar-capital-downloads { display: flex; align-items: center; gap: 0.5rem; }
+  .bar-capital-downloads a { border: 1px solid #bfdbfe; border-radius: 0.55rem; padding: 0.55rem 0.7rem; color: #1d4ed8; font-size: 0.74rem; font-weight: 800; text-decoration: none; }
+  .bar-capital-source { margin: 0.85rem 0 0; color: #64748b; font-size: 0.74rem; line-height: 1.55; }
+  .bar-capital-source a { color: #1d4ed8; }
   .bar-insight-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; align-items: stretch; }
   .bar-insight-card { min-width: 0; border: 1px solid #dbe4f0; border-radius: 1.25rem; padding: clamp(1.25rem, 3vw, 1.75rem); background: #fff; box-shadow: 0 12px 32px rgba(15, 23, 42, 0.05); }
   .bar-insight-card-wide { grid-column: 1 / -1; }
@@ -793,6 +951,10 @@ const jsonLd: any[] = [
   .bar-method-card a { color: #1d4ed8; font-weight: 800; }
   .bar-analyzer { max-width: 52rem; margin: 0 auto; }
   @media (max-width: 1050px) {
+    .bar-capital-layout { grid-template-columns: 1fr; }
+    .bar-capital-map svg { max-height: 28rem; }
+    .bar-capital-method { grid-template-columns: 1fr 1fr; }
+    .bar-capital-downloads { grid-column: 1 / -1; }
     .bar-card-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .bar-filters { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .bar-search { grid-column: span 2; }
@@ -802,6 +964,7 @@ const jsonLd: any[] = [
     .bar-hero .si-article-title { max-width: 15ch; }
     .bar-score-panel { max-width: 38rem; }
     .bar-proof-strip { grid-template-columns: repeat(2, 1fr); }
+    .bar-capital-table { max-height: 30rem; }
     .bar-insight-grid, .bar-citation, .bar-bottom-grid { grid-template-columns: 1fr; }
     .bar-insight-card-wide { grid-column: auto; }
     .bar-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -821,6 +984,9 @@ const jsonLd: any[] = [
     .bar-result-count { display: inline-block; margin-top: 1rem; }
     .bar-insight-grid { grid-template-columns: 1fr; }
     .bar-card-heading { display: block; }
+    .bar-capital-map, .bar-capital-data { padding: 1rem; }
+    .bar-capital-method { grid-template-columns: 1fr; }
+    .bar-capital-downloads { grid-column: auto; }
     .bar-card-note { display: inline-block; margin-top: 0.7rem; }
     .bar-inline-cta { display: grid; gap: 1.2rem; }
     .bar-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 0.8rem; }
