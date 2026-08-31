@@ -13,7 +13,8 @@ test("la bannière est une région de consentement nommée et concise", () => {
   assert.match(banner, /aria-describedby="si-cookie-description"/);
   assert.match(banner, /id="si-cookie-title"/);
   assert.match(banner, /id="si-cookie-description"/);
-  assert.match(banner, /La mesure d'audience reste désactivée sans ton accord/);
+  assert.match(banner, /La mesure d'audience et de l'efficacité de nos publicités reste désactivée sans ton accord/);
+  assert.match(banner, /Nous ne personnalisons pas les annonces avec ce choix/);
   assert.match(banner, />Refuser<\/button>/);
   assert.match(banner, />Détails<\/a>/);
   assert.match(banner, />Accepter<\/button>/);
