@@ -93,7 +93,7 @@ test("editorial responsibility never relies on the three unverified biographies"
   const unsupportedNames = /Camille Renard|Léa Moreau|Thomas Varin/;
   const articleFiles = listJsonFiles("src/content/articles/");
 
-  assert.equal(articleFiles.length, 168);
+  assert.equal(articleFiles.length, 169);
   for (const path of articleFiles) {
     const article = JSON.parse(read(path));
     assert.equal(article.author, "Score-Immo", path);
