@@ -76,6 +76,7 @@ const capitalMapPoints = capitalObservations
   }));
 const overseasCapitalObservations = allCapitalObservations
   .filter(({ region_code }) => ['01', '02', '03', '04'].includes(region_code));
+const capitalRowId = (regionCode: string) => `capital-row-${regionCode}`;
 
 const faq: { q: string; a: string }[] = [
   {
@@ -288,31 +289,83 @@ const jsonLd: any[] = [
           <p class="bar-result-count">Relevé du 31 août 2026</p>
         </div>
 
+        <div class="bar-corpus-split" aria-label="Différence entre les analyses classées et les observations géographiques">
+          <div>
+            <strong>{total} analyses Score-Immo classées</strong>
+            <span>Analyses complètes avec score, utilisées dans les statistiques et le classement de l’édition.</span>
+            <a href="#analyses">Voir le classement</a>
+          </div>
+          <div>
+            <strong>{allCapitalObservations.length} observations géographiques hors classement</strong>
+            <span>Prix et surface relevés par capitale, sans score Score-Immo et sans effet sur la moyenne.</span>
+          </div>
+        </div>
+
         <div class="bar-capital-layout">
           <figure class="bar-capital-map">
             <div class="bar-card-heading">
               <div>
-                <p class="bar-overline">Carte de couverture</p>
-                <h3>13 chefs-lieux en métropole et Corse</h3>
+                <p class="bar-overline">Explorer les capitales</p>
+                <h3>13 chefs-lieux sur la carte</h3>
               </div>
-              <span class="bar-card-note">Position des villes</span>
+              <span class="bar-card-note">Cliquer sur un point</span>
             </div>
-            <svg viewBox="0 0 100 100" role="img" aria-labelledby="capital-map-title capital-map-desc">
-              <title id="capital-map-title">Capitales régionales couvertes en métropole et en Corse</title>
-              <desc id="capital-map-desc">Schéma de position des treize chefs-lieux disposant d'une annonce complète dans le relevé d'août 2026.</desc>
-              <path class="bar-map-shape" d="M43 5 L67 10 L91 34 L82 71 L59 94 L31 88 L10 62 L14 32 L27 13 Z" />
+            <div class="bar-map-stage">
+              <svg viewBox="0 0 100 100" role="img" aria-labelledby="capital-map-title capital-map-desc">
+                <title id="capital-map-title">Capitales régionales couvertes en métropole et en Corse</title>
+                <desc id="capital-map-desc">Schéma de position des treize chefs-lieux disposant d'une annonce complète dans le relevé d'août 2026. Les boutons superposés permettent de consulter chaque observation.</desc>
+                <path class="bar-map-shape" d="M43 5 L67 10 L91 34 L82 71 L59 94 L31 88 L10 62 L14 32 L27 13 Z" />
+              </svg>
               {capitalMapPoints.map((observation) => (
-                <g class="bar-map-point" transform={`translate(${observation.x} ${observation.y})`}>
-                  <circle r="2.8" />
-                  <title>{observation.capitale} · {observation.prix_m2.toLocaleString('fr-FR')} €/m² · DPE {observation.dpe}</title>
-                </g>
+                <button
+                  type="button"
+                  class="bar-map-point"
+                  style={`--x:${observation.x}%;--y:${observation.y}%`}
+                  data-capital-selector
+                  data-capital={observation.capitale}
+                  data-region={observation.region}
+                  data-listing={`${typeLabel(observation.type_bien)} · ${observation.surface.toLocaleString('fr-FR')} m²`}
+                  data-price={observation.prix_affiche}
+                  data-price-m2={observation.prix_m2}
+                  data-dpe={observation.dpe}
+                  data-date={observation.date_publication}
+                  data-row-id={capitalRowId(observation.region_code)}
+                  aria-controls="capital-selection"
+                  aria-pressed="false"
+                  aria-label={`Afficher l’observation de ${observation.capitale}`}
+                ><span aria-hidden="true"></span><span class="si-sr-only">{observation.capitale}</span></button>
               ))}
-            </svg>
+            </div>
             <figcaption>Schéma de localisation, sans représentation des frontières régionales. Les positions sont celles des chefs-lieux officiels, pas celles des biens.</figcaption>
             <div class="bar-overseas-capitals" aria-label="Chefs-lieux ultramarins observés">
               {overseasCapitalObservations.map((observation) => (
-                <span><strong>{observation.capitale}</strong><small>{observation.region} · {observation.dpe ? `DPE ${observation.dpe}` : 'DPE non renseigné'}</small></span>
+                <button
+                  type="button"
+                  data-capital-selector
+                  data-capital={observation.capitale}
+                  data-region={observation.region}
+                  data-listing={`${typeLabel(observation.type_bien)} · ${observation.surface.toLocaleString('fr-FR')} m²`}
+                  data-price={observation.prix_affiche}
+                  data-price-m2={observation.prix_m2}
+                  data-dpe={observation.dpe || ''}
+                  data-date={observation.date_publication}
+                  data-row-id={capitalRowId(observation.region_code)}
+                  aria-controls="capital-selection"
+                  aria-pressed="false"
+                  aria-label={`Afficher l’observation de ${observation.capitale}`}
+                ><strong>{observation.capitale}</strong><small>{observation.region} · {observation.dpe ? `DPE ${observation.dpe}` : 'DPE non renseigné'}</small></button>
               ))}
+            </div>
+            <div id="capital-selection" class="bar-capital-selection" data-capital-selection aria-live="polite">
+              <div>
+                <p class="bar-overline">Observation sélectionnée</p>
+                <h4 data-capital-selection-name>Sélectionnez un lieu</h4>
+                <p data-capital-selection-summary>Cliquez sur un point de la carte ou sur un chef-lieu ultramarin.</p>
+              </div>
+              <div class="bar-capital-selection-actions">
+                <span data-capital-selection-dpe>Aucune sélection</span>
+                <button type="button" data-capital-scroll disabled>Voir dans le tableau</button>
+              </div>
             </div>
           </figure>
 
@@ -328,12 +381,12 @@ const jsonLd: any[] = [
                 <thead><tr><th>Capitale</th><th>Annonce</th><th>Prix affiché</th><th>Prix/m²</th><th>DPE</th></tr></thead>
                 <tbody>
                   {allCapitalObservations.map((observation) => (
-                    <tr>
+                    <tr id={capitalRowId(observation.region_code)} data-capital-row tabindex="-1">
                       <th scope="row"><strong>{observation.capitale}</strong><small>{observation.region} · {observation.code_postal}</small></th>
-                      <td>{typeLabel(observation.type_bien)} · {observation.surface.toLocaleString('fr-FR')} m²</td>
-                      <td>{observation.prix_affiche.toLocaleString('fr-FR')} €</td>
-                      <td><strong>{observation.prix_m2.toLocaleString('fr-FR')} €/m²</strong></td>
-                      <td>
+                      <td data-label="Annonce">{typeLabel(observation.type_bien)} · {observation.surface.toLocaleString('fr-FR')} m²</td>
+                      <td data-label="Prix affiché">{observation.prix_affiche.toLocaleString('fr-FR')} €</td>
+                      <td data-label="Prix/m²"><strong>{observation.prix_m2.toLocaleString('fr-FR')} €/m²</strong></td>
+                      <td data-label="DPE">
                         {observation.dpe
                           ? <span class={`bar-dpe-pill bar-dpe-${observation.dpe.toLowerCase()}`}>{observation.dpe}</span>
                           : <span class="bar-dpe-missing">Non renseigné</span>}
@@ -606,19 +659,46 @@ const jsonLd: any[] = [
               : `${archivedRange.minimum} à ${archivedRange.maximum}`;
             return (
               <details>
-                <summary><span>{label}</span><small>{edition.fiches.length} fiches · {archivedSections} sections visibles</small></summary>
-                <div class="bar-archive-actions">
-                  <a href={`/barometre/editions/${edition.month}.json`} download>JSON</a>
-                  <a href={`/barometre/editions/${edition.month}.csv`} download>CSV</a>
+                <summary><span>{label}</span><small>{edition.fiches.length} analyses · grille historique de {archivedSections} sections</small></summary>
+                <div class="bar-archive-intro">
+                  <p><strong>Lecture détaillée conservée.</strong> Prix, DPE, profil des axes et accès à la fiche complète restent visibles. Les scores historiques ne sont pas recalculés avec la méthode d’août.</p>
+                  <div class="bar-archive-actions">
+                    <a href={`/barometre/editions/${edition.month}.json`} download>JSON</a>
+                    <a href={`/barometre/editions/${edition.month}.csv`} download>CSV</a>
+                  </div>
                 </div>
                 <div class="bar-archive-grid">
-                  {edition.fiches.map((fiche) => (
-                    <a class="bar-archive-card" href={`/barometre/${fiche.slug}`}>
-                      <strong>{fiche.score_global}<small>/100</small></strong>
-                      <span>{fiche.ville}</span>
-                      <small>{typeLabel(fiche.type_bien)} · {fiche.surface} m²</small>
-                    </a>
-                  ))}
+                  {edition.fiches.map((fiche) => {
+                    const archiveSignal = buildFicheSignal(fiche);
+                    return (
+                      <a class="bar-archive-card" href={`/barometre/${fiche.slug}`}>
+                        <div class="bar-listing-top">
+                          <span class="bar-listing-score" style={`color:${scoreColor(fiche.score_global)}`}>{fiche.score_global}<small>/100</small></span>
+                          <span class={`bar-dpe-pill bar-dpe-${fiche.dpe?.toLowerCase()}`}>DPE {fiche.dpe}</span>
+                        </div>
+                        <h3>{fiche.ville}</h3>
+                        <p class="bar-listing-meta">{typeLabel(fiche.type_bien)} · {fiche.surface.toLocaleString('fr-FR')} m² · {fiche.prix_demande.toLocaleString('fr-FR')} €</p>
+                        <p class="bar-listing-region">{fiche.region} · {fiche.prix_m2.toLocaleString('fr-FR')} €/m²</p>
+                        <div class="bar-signal">
+                          <span class="bar-signal-chart" aria-hidden="true">
+                            {archiveSignal.axes.map((axis) => (
+                              <span
+                                class="bar-signal-bar"
+                                data-level={axis.score >= 8 ? 'high' : axis.score >= 5 ? 'mid' : 'low'}
+                                style={`--h:${axisBarHeight(axis.score)}%`}
+                              ></span>
+                            ))}
+                          </span>
+                          <p class="bar-signal-read">
+                            {archiveSignal.strongest && <span class="bar-signal-axis is-strong">{archiveSignal.strongest.label} <b>{archiveSignal.strongest.score}/10</b></span>}
+                            {archiveSignal.weakest && archiveSignal.weakest.key !== archiveSignal.strongest?.key && <span class="bar-signal-axis is-weak">{archiveSignal.weakest.label} <b>{archiveSignal.weakest.score}/10</b></span>}
+                          </p>
+                          <p class="bar-signal-scope">{archiveSignal.axes.length} axes historiques notés</p>
+                        </div>
+                        <span class="bar-listing-link">Voir l’analyse détaillée <span aria-hidden="true">→</span></span>
+                      </a>
+                    );
+                  })}
                 </div>
               </details>
             );
@@ -668,6 +748,47 @@ const jsonLd: any[] = [
     .toLocaleLowerCase('fr');
 
   const motionOk = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const capitalSelectors = [...document.querySelectorAll<HTMLButtonElement>('[data-capital-selector]')];
+  const capitalSelection = document.querySelector<HTMLElement>('[data-capital-selection]');
+  const capitalSelectionName = capitalSelection?.querySelector<HTMLElement>('[data-capital-selection-name]');
+  const capitalSelectionSummary = capitalSelection?.querySelector<HTMLElement>('[data-capital-selection-summary]');
+  const capitalSelectionDpe = capitalSelection?.querySelector<HTMLElement>('[data-capital-selection-dpe]');
+  const capitalScroll = capitalSelection?.querySelector<HTMLButtonElement>('[data-capital-scroll]');
+  const capitalRows = [...document.querySelectorAll<HTMLElement>('[data-capital-row]')];
+  const euro = new Intl.NumberFormat('fr-FR');
+  const capitalDate = new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  const selectCapital = (selector: HTMLButtonElement) => {
+    const rowId = selector.dataset.rowId || '';
+    capitalSelectors.forEach((item) => {
+      const active = item === selector;
+      item.setAttribute('aria-pressed', String(active));
+      item.classList.toggle('is-active', active);
+    });
+    capitalRows.forEach((row) => row.classList.toggle('is-selected', row.id === rowId));
+
+    const price = Number(selector.dataset.price);
+    const priceM2 = Number(selector.dataset.priceM2);
+    const date = selector.dataset.date ? new Date(`${selector.dataset.date}T12:00:00Z`) : null;
+    if (capitalSelectionName) capitalSelectionName.textContent = `${selector.dataset.capital} · ${selector.dataset.region}`;
+    if (capitalSelectionSummary) {
+      capitalSelectionSummary.textContent = `${selector.dataset.listing} · ${euro.format(price)} € affichés · ${euro.format(priceM2)} €/m²${date ? ` · publiée le ${capitalDate.format(date)}` : ''}.`;
+    }
+    if (capitalSelectionDpe) capitalSelectionDpe.textContent = selector.dataset.dpe ? `DPE ${selector.dataset.dpe}` : 'DPE non renseigné';
+    if (capitalScroll) {
+      capitalScroll.disabled = !rowId;
+      capitalScroll.dataset.target = rowId;
+    }
+  };
+
+  capitalSelectors.forEach((selector) => selector.addEventListener('click', () => selectCapital(selector)));
+  capitalScroll?.addEventListener('click', () => {
+    const row = document.getElementById(capitalScroll.dataset.target || '');
+    row?.scrollIntoView({ behavior: motionOk ? 'smooth' : 'auto', block: 'center', inline: 'nearest' });
+    window.setTimeout(() => row?.focus({ preventScroll: true }), motionOk ? 380 : 0);
+  });
+  if (capitalSelectors[0]) selectCapital(capitalSelectors[0]);
 
   const explorer = document.querySelector<HTMLElement>('[data-barometre-explorer]');
   if (explorer) {
@@ -821,17 +942,41 @@ const jsonLd: any[] = [
   .bar-section-heading-row > div { max-width: 48rem; }
   .bar-section-heading-row > div > p:last-child { margin: 0.8rem 0 0; color: #64748b; line-height: 1.65; }
   .bar-section-heading.bar-section-heading-row > p.bar-result-count { color: #1e3a8a; }
-  .bar-capital-layout { display: grid; grid-template-columns: minmax(300px, 0.72fr) minmax(0, 1.28fr); gap: 1rem; align-items: stretch; }
+  .bar-corpus-split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; margin: -0.4rem 0 1rem; overflow: hidden; border: 1px solid #dbe4f0; border-radius: 1rem; background: #dbe4f0; }
+  .bar-corpus-split > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.35rem 1rem; padding: 0.9rem 1rem; background: #fff; }
+  .bar-corpus-split strong { color: #0f172a; font-size: 0.84rem; }
+  .bar-corpus-split span { grid-column: 1 / -1; color: #64748b; font-size: 0.76rem; line-height: 1.45; }
+  .bar-corpus-split a { grid-column: 2; grid-row: 1; color: #1d4ed8; font-size: 0.74rem; font-weight: 800; }
+  .bar-capital-layout { display: grid; grid-template-columns: minmax(300px, 0.72fr) minmax(0, 1.28fr); gap: 1rem; align-items: start; }
   .bar-capital-map, .bar-capital-data { min-width: 0; margin: 0; border: 1px solid #dbe4f0; border-radius: 1.25rem; padding: clamp(1.15rem, 3vw, 1.6rem); background: #fff; box-shadow: 0 12px 32px rgba(15, 23, 42, 0.05); }
-  .bar-capital-map svg { display: block; width: min(100%, 27rem); margin: 0 auto; overflow: visible; }
+  .bar-map-stage { position: relative; width: min(100%, 27rem); margin: 0 auto; }
+  .bar-capital-map svg { display: block; width: 100%; margin: 0; overflow: visible; }
   .bar-map-shape { fill: #eff6ff; stroke: #93c5fd; stroke-width: 0.8; vector-effect: non-scaling-stroke; }
-  .bar-map-point circle { fill: #1d4ed8; stroke: #fff; stroke-width: 1.2; vector-effect: non-scaling-stroke; filter: drop-shadow(0 2px 3px rgba(15, 23, 42, 0.25)); }
+  .bar-map-point { position: absolute; left: var(--x); top: var(--y); display: grid; width: 36px; height: 36px; transform: translate(-50%, -50%); place-items: center; border: 0; border-radius: 50%; padding: 0; background: transparent; cursor: pointer; }
+  .bar-map-point > span[aria-hidden] { width: 16px; height: 16px; border: 2px solid #fff; border-radius: 50%; background: #1d4ed8; box-shadow: 0 3px 8px rgba(15, 23, 42, 0.3); transition: transform 0.18s ease, box-shadow 0.18s ease; }
+  .bar-map-point::after { position: absolute; bottom: calc(100% + 0.2rem); left: 50%; z-index: 3; width: max-content; max-width: 9rem; transform: translate(-50%, 0.2rem); border-radius: 0.45rem; padding: 0.28rem 0.42rem; background: #0f172a; color: #fff; font-size: 0.66rem; font-weight: 800; opacity: 0; pointer-events: none; transition: opacity 0.16s ease, transform 0.16s ease; content: attr(data-capital); }
+  .bar-map-point:hover::after, .bar-map-point:focus-visible::after { transform: translate(-50%, 0); opacity: 1; }
+  .bar-map-point:hover > span[aria-hidden], .bar-map-point.is-active > span[aria-hidden] { transform: scale(1.25); box-shadow: 0 0 0 5px rgba(37, 99, 235, 0.18), 0 3px 8px rgba(15, 23, 42, 0.3); }
+  .bar-map-point:focus-visible { outline: 3px solid #2563eb; outline-offset: 1px; }
   .bar-capital-map figcaption { margin-top: 0.8rem; color: #64748b; font-size: 0.72rem; line-height: 1.5; }
   .bar-overseas-capitals { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.55rem; margin-top: 1rem; }
-  .bar-overseas-capitals span { display: grid; gap: 0.18rem; border: 1px solid #dbeafe; border-radius: 0.75rem; padding: 0.7rem; background: #f8fbff; color: #0f172a; }
+  .bar-overseas-capitals button { display: grid; min-width: 0; min-height: 52px; gap: 0.18rem; border: 1px solid #dbeafe; border-radius: 0.75rem; padding: 0.7rem; background: #f8fbff; color: #0f172a; text-align: left; cursor: pointer; }
+  .bar-overseas-capitals button:hover, .bar-overseas-capitals button.is-active { border-color: #60a5fa; background: #eff6ff; }
+  .bar-overseas-capitals button:focus-visible { outline: 3px solid #2563eb; outline-offset: 2px; }
   .bar-overseas-capitals small { color: #64748b; font-size: 0.7rem; }
-  .bar-capital-table { max-height: 34rem; overflow: auto; scrollbar-gutter: stable; }
+  .bar-capital-selection { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 0.8rem; margin-top: 0.8rem; border: 1px solid #bfdbfe; border-radius: 0.85rem; padding: 0.8rem; background: #eff6ff; }
+  .bar-capital-selection .bar-overline { margin-bottom: 0.2rem; font-size: 0.62rem; }
+  .bar-capital-selection h4 { margin: 0; color: #0f172a; font: 800 0.92rem/1.3 var(--si-font-heading); }
+  .bar-capital-selection p[data-capital-selection-summary] { margin: 0.25rem 0 0; color: #475569; font-size: 0.72rem; line-height: 1.45; }
+  .bar-capital-selection-actions { display: grid; justify-items: end; gap: 0.4rem; }
+  .bar-capital-selection-actions span { color: #475569; font-size: 0.68rem; font-weight: 800; }
+  .bar-capital-selection-actions button { min-height: 40px; border: 1px solid #93c5fd; border-radius: 0.6rem; padding: 0 0.7rem; background: #fff; color: #1d4ed8; font-size: 0.72rem; font-weight: 800; cursor: pointer; }
+  .bar-capital-selection-actions button:disabled { cursor: default; opacity: 0.55; }
+  .bar-capital-table { max-height: none; overflow-x: auto; overflow-y: visible; }
   .bar-capital-table thead { position: sticky; top: 0; z-index: 1; background: #fff; }
+  .bar-capital-table tbody tr { transition: background-color 0.2s ease; }
+  .bar-capital-table tbody tr.is-selected > * { background: #eff6ff; }
+  .bar-capital-table tbody tr:focus-visible { outline: 3px solid #2563eb; outline-offset: -3px; }
   .bar-capital-table tbody th { white-space: normal; }
   .bar-capital-table tbody th strong, .bar-capital-table tbody th small { display: block; }
   .bar-capital-table tbody th small { margin-top: 0.2rem; color: #64748b; font-weight: 500; }
@@ -938,13 +1083,17 @@ const jsonLd: any[] = [
   .bar-archives details { border-top: 1px solid #cbd5e1; padding: 1rem 0; }
   .bar-archives summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; color: #0f172a; cursor: pointer; font-weight: 800; }
   .bar-archives summary small { color: #64748b; font-weight: 600; }
-  .bar-archive-actions { display: flex; gap: 0.5rem; margin-top: 1rem; }
+  .bar-archive-intro { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1rem; border-radius: 0.8rem; padding: 0.85rem 1rem; background: #eff6ff; }
+  .bar-archive-intro p { max-width: 56rem; margin: 0; color: #475569; font-size: 0.78rem; line-height: 1.5; }
+  .bar-archive-intro p strong { color: #0f172a; }
+  .bar-archive-actions { display: flex; flex-shrink: 0; gap: 0.5rem; }
   .bar-archive-actions a { display: inline-flex; min-height: 44px; align-items: center; border: 1px solid #cbd5e1; border-radius: 0.5rem; padding: 0 0.85rem; color: #1d4ed8; font-size: 0.75rem; font-weight: 800; text-decoration: none; transition: border-color 0.2s ease, background-color 0.2s ease; }
   .bar-archive-actions a:hover { border-color: #93c5fd; background: #eff6ff; }
-  .bar-archive-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.65rem; margin-top: 0.8rem; }
-  .bar-archive-card { display: grid; gap: 0.2rem; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 0.8rem; background: #fff; color: #0f172a; text-decoration: none; }
-  .bar-archive-card strong { color: #1d4ed8; }
-  .bar-archive-card strong small, .bar-archive-card > small { color: #64748b; }
+  .bar-archive-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 0.8rem; margin-top: 0.8rem; }
+  .bar-archive-card { display: flex; min-width: 0; min-height: 255px; flex-direction: column; border: 1px solid #dbe4f0; border-radius: 1rem; padding: 1rem; background: #fff; color: #0f172a; text-decoration: none; box-shadow: 0 7px 22px rgba(15, 23, 42, 0.04); transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease; }
+  .bar-archive-card:hover { transform: translateY(-2px); border-color: #93c5fd; box-shadow: 0 12px 26px rgba(15, 23, 42, 0.08); }
+  .bar-archive-card:focus-visible { outline: 3px solid #2563eb; outline-offset: 3px; }
+  .bar-archive-card h3 { margin: 0.9rem 0 0.35rem; color: #0f172a; font: 800 1rem/1.25 var(--si-font-heading); }
   .bar-bottom-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr); gap: 1.2rem; align-items: start; padding-top: 2rem; }
   .bar-bottom-aside { position: sticky; top: 5rem; display: grid; gap: 1rem; margin-top: 2.5rem; }
   .bar-recap-card { border: 1px solid #dbe4f0; border-radius: 1rem; padding: 1.3rem; background: #fff; box-shadow: 0 12px 32px rgba(15, 23, 42, 0.05); }
@@ -975,7 +1124,6 @@ const jsonLd: any[] = [
     .bar-hero .si-article-title { max-width: 15ch; }
     .bar-score-panel { max-width: 38rem; }
     .bar-proof-strip { grid-template-columns: repeat(2, 1fr); }
-    .bar-capital-table { max-height: 30rem; }
     .bar-insight-grid, .bar-citation, .bar-bottom-grid { grid-template-columns: 1fr; }
     .bar-insight-card-wide { grid-column: auto; }
     .bar-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -993,9 +1141,25 @@ const jsonLd: any[] = [
     .bar-proof-strip dd { font-size: 0.86rem; }
     .bar-section-heading-row { display: block; }
     .bar-result-count { display: inline-block; margin-top: 1rem; }
+    .bar-corpus-split { grid-template-columns: 1fr; }
+    .bar-corpus-split > div { grid-template-columns: 1fr; }
+    .bar-corpus-split a { grid-column: 1; grid-row: auto; }
     .bar-insight-grid { grid-template-columns: 1fr; }
     .bar-card-heading { display: block; }
     .bar-capital-map, .bar-capital-data { padding: 1rem; }
+    .bar-capital-selection { grid-template-columns: 1fr; align-items: start; }
+    .bar-capital-selection-actions { justify-items: start; }
+    .bar-capital-table { overflow: visible; }
+    .bar-capital-table table, .bar-capital-table tbody { display: block; width: 100%; }
+    .bar-capital-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
+    .bar-capital-table tbody { display: grid; gap: 0.65rem; }
+    .bar-capital-table tbody tr { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.65rem; border: 1px solid #dbe4f0; border-radius: 0.8rem; padding: 0.8rem; background: #fff; }
+    .bar-capital-table tbody tr.is-selected { border-color: #60a5fa; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12); }
+    .bar-capital-table tbody tr.is-selected > * { background: transparent; }
+    .bar-capital-table tbody th, .bar-capital-table tbody td { min-width: 0; border: 0; padding: 0; text-align: left; white-space: normal; }
+    .bar-capital-table tbody th { grid-column: 1 / -1; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.65rem; }
+    .bar-capital-table tbody td { display: grid; align-content: start; gap: 0.2rem; color: #0f172a; font-size: 0.78rem; }
+    .bar-capital-table td::before { color: #64748b; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; content: attr(data-label); }
     .bar-capital-method { grid-template-columns: 1fr; }
     .bar-capital-downloads { grid-column: auto; }
     .bar-card-note { display: inline-block; margin-top: 0.7rem; }
@@ -1009,6 +1173,8 @@ const jsonLd: any[] = [
     .bar-citation-actions { align-items: flex-start; flex-direction: column; }
     .bar-downloads > a { align-items: flex-start; flex-direction: column; gap: 0.25rem; }
     .bar-archives summary { align-items: flex-start; flex-direction: column; }
+    .bar-archive-intro { align-items: flex-start; flex-direction: column; }
+    .bar-archive-grid { grid-template-columns: 1fr; }
   }
   /* Interactions des cartes */
   .bar-listing-card > a { position: relative; overflow: hidden; }

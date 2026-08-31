@@ -65,6 +65,39 @@ test('the public hub distinguishes capital observations from scored analyses', (
   assert.match(page, /#bar-capitals-title\s*\{[^}]*scroll-margin-top:/s);
 });
 
+test('the capital map is an accessible explorer synchronized with the table', () => {
+  const page = readFileSync(new URL('src/pages/barometre/index.astro', root), 'utf8');
+  assert.match(page, /data-capital-selector/);
+  assert.match(page, /aria-controls="capital-selection"/);
+  assert.match(page, /id="capital-selection"[^>]*data-capital-selection/);
+  assert.match(page, /data-capital-scroll/);
+  assert.match(page, /data-capital-row/);
+  assert.match(page, /setAttribute\('aria-pressed'/);
+  assert.match(page, /scrollIntoView/);
+});
+
+test('the hub explains why 16 scored analyses and 17 capital observations do not mix', () => {
+  const page = readFileSync(new URL('src/pages/barometre/index.astro', root), 'utf8');
+  assert.match(page, /\{total\} analyses Score-Immo classées/i);
+  assert.match(page, /\{allCapitalObservations\.length\} observations géographiques hors classement/i);
+});
+
+test('the capital table exposes every row without a nested vertical scroller or stretched card', () => {
+  const page = readFileSync(new URL('src/pages/barometre/index.astro', root), 'utf8');
+  assert.match(page, /\.bar-capital-layout\s*\{[^}]*align-items:\s*start/s);
+  assert.match(page, /\.bar-capital-table\s*\{[^}]*max-height:\s*none[^}]*overflow-x:\s*auto[^}]*overflow-y:\s*visible/s);
+  assert.doesNotMatch(page, /\.bar-capital-table\s*\{[^}]*max-height:\s*(?:30|34)rem/s);
+});
+
+test('capital observations become complete readable cards on narrow screens', () => {
+  const page = readFileSync(new URL('src/pages/barometre/index.astro', root), 'utf8');
+  for (const label of ['Annonce', 'Prix affiché', 'Prix/m²', 'DPE']) {
+    assert.match(page, new RegExp(`data-label="${label.replace('/', '\\/')}"`));
+  }
+  assert.match(page, /@media \(max-width:\s*620px\)[\s\S]*?\.bar-capital-table tbody tr\s*\{[^}]*display:\s*grid/s);
+  assert.match(page, /\.bar-capital-table td::before\s*\{[^}]*content:\s*attr\(data-label\)/s);
+});
+
 test('the CSV export includes complete and partial observations with an explicit status', () => {
   const route = readFileSync(new URL('src/pages/barometre/capitales/2026-08.csv.ts', root), 'utf8');
   assert.match(route, /observations_partielles/);
