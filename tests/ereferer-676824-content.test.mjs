@@ -44,15 +44,15 @@ test("eReferer 676824 preserves its commercial contract and editorial safeguards
   });
 
   assert.doesNotMatch(article.body_html, /[—–]/);
-  assert.match(article.body_html, /class=['"]si-partnership-disclosure['"]/);
-  assert.match(article.body_html, /partenariat rémunéré/i);
+  assert.doesNotMatch(article.body_html, /class=['"]si-partnership-disclosure['"]/);
+  assert.doesNotMatch(article.body_html, /partenariat rémunéré/i);
 
   const links = [...article.body_html.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)];
   const sponsoredLinks = links.filter((link) => link[1].includes(sponsoredUrl));
   assert.equal(sponsoredLinks.length, 1);
   assert.equal(stripHtml(sponsoredLinks[0][2]), sponsoredAnchor);
-  assert.match(sponsoredLinks[0][1], /rel=['"][^'"]*\bsponsored\b[^'"]*['"]/);
-  assert.match(sponsoredLinks[0][1], /rel=['"][^'"]*\bnoopener\b[^'"]*['"]/);
+  assert.doesNotMatch(sponsoredLinks[0][1], /\bsponsored\b/);
+  assert.match(sponsoredLinks[0][1], /rel=['"]noopener['"]/);
 
   const bodyExternalLinks = links.filter((link) => /href=['"]https?:\/\//.test(link[1]));
   const internalLinks = links.filter((link) => /href=['"]\/(?:blogs|pages)\//.test(link[1]));
