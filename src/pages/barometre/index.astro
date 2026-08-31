@@ -866,10 +866,91 @@ const jsonLd: any[] = [
     .bar-dpe-row { grid-template-columns: 1.7rem minmax(0, 1fr) 4.6rem; }
   }
 
+  /* ---- Mouvement, en CSS seul -------------------------------------------
+     Règle unique : l'opacité d'un contenu n'est jamais animée, et aucune
+     animation ne conditionne la lecture. Seules les jauges, qui sont des
+     décors doublés par un chiffre écrit à côté, partent de zéro. Si une
+     animation ne se joue jamais, on perd un effet, jamais une information.
+
+     Aucun JavaScript n'intervient : pas d'observateur, pas de classe posée
+     à l'exécution, donc aucun bloc ne peut rester masqué.
+
+     animation-timeline: view() déclenche au défilement là où c'est supporté.
+     Ailleurs, l'animation se joue simplement au chargement. Les deux chemins
+     finissent sur le même état, garanti par animation-fill-mode: both. */
+
+  @keyframes bar-grow-x { from { width: 0; } to { width: var(--w, 0%); } }
+  @keyframes bar-grow-y { from { height: 6%; } to { height: var(--h, 6%); } }
+  @keyframes bar-settle { from { transform: translateY(12px); } to { transform: none; } }
+  @keyframes bar-score-in { from { transform: scale(0.94); } to { transform: none; } }
+
+  .bar-dpe-fill { animation: bar-grow-x 0.85s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .bar-distribution-track span { animation: bar-grow-x 0.9s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .bar-signal-bar { animation: bar-grow-y 0.55s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .bar-main-score strong { display: inline-block; animation: bar-score-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+  /* Décalage en cascade : la lecture descend l'échelle DPE au lieu de la
+     recevoir d'un bloc. Les valeurs restent lisibles pendant la montée. */
+  .bar-dpe-row:nth-child(1) .bar-dpe-fill { animation-delay: 0ms; }
+  .bar-dpe-row:nth-child(2) .bar-dpe-fill { animation-delay: 60ms; }
+  .bar-dpe-row:nth-child(3) .bar-dpe-fill { animation-delay: 120ms; }
+  .bar-dpe-row:nth-child(4) .bar-dpe-fill { animation-delay: 180ms; }
+  .bar-dpe-row:nth-child(5) .bar-dpe-fill { animation-delay: 240ms; }
+  .bar-dpe-row:nth-child(6) .bar-dpe-fill { animation-delay: 300ms; }
+  .bar-dpe-row:nth-child(7) .bar-dpe-fill { animation-delay: 360ms; }
+  .bar-distribution-row:nth-child(1) .bar-distribution-track span { animation-delay: 0ms; }
+  .bar-distribution-row:nth-child(2) .bar-distribution-track span { animation-delay: 80ms; }
+  .bar-distribution-row:nth-child(3) .bar-distribution-track span { animation-delay: 160ms; }
+  .bar-distribution-row:nth-child(4) .bar-distribution-track span { animation-delay: 240ms; }
+  .bar-distribution-row:nth-child(5) .bar-distribution-track span { animation-delay: 320ms; }
+  .bar-signal-bar:nth-child(2n) { animation-delay: 40ms; }
+  .bar-signal-bar:nth-child(3n) { animation-delay: 80ms; }
+
+  /* La carte se pose : transform uniquement, jamais l'opacité. Une carte
+     restée décalée de douze pixels reste entièrement lisible.
+     L'animation porte sur l'article, pas sur le lien : une animation gagne
+     sur une déclaration ordinaire, donc l'appliquer au lien écraserait son
+     translateY de survol. */
+  .bar-listing-card,
+  .bar-insight-card { animation: bar-settle 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .bar-proof-strip div { animation: bar-settle 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .bar-proof-strip div:nth-child(2) { animation-delay: 60ms; }
+  .bar-proof-strip div:nth-child(3) { animation-delay: 120ms; }
+  .bar-proof-strip div:nth-child(4) { animation-delay: 180ms; }
+
+  /* Là où le défilement pilote l'animation, la cascade ne vient plus d'un
+     délai en millisecondes mais d'une plage d'entrée décalée : chaque ligne
+     se remplit un peu plus tard dans la remontée du bloc. */
+  @supports (animation-timeline: view()) {
+    .bar-dpe-fill, .bar-distribution-track span, .bar-signal-bar,
+    .bar-listing-card, .bar-insight-card, .bar-proof-strip div {
+      animation-timeline: view();
+      animation-delay: 0s;
+      animation-range: entry 8% cover 32%;
+    }
+    .bar-dpe-row:nth-child(2) .bar-dpe-fill,
+    .bar-distribution-row:nth-child(2) .bar-distribution-track span { animation-range: entry 12% cover 36%; }
+    .bar-dpe-row:nth-child(3) .bar-dpe-fill,
+    .bar-distribution-row:nth-child(3) .bar-distribution-track span { animation-range: entry 16% cover 40%; }
+    .bar-dpe-row:nth-child(4) .bar-dpe-fill,
+    .bar-distribution-row:nth-child(4) .bar-distribution-track span { animation-range: entry 20% cover 44%; }
+    .bar-dpe-row:nth-child(5) .bar-dpe-fill,
+    .bar-distribution-row:nth-child(5) .bar-distribution-track span { animation-range: entry 24% cover 48%; }
+    .bar-dpe-row:nth-child(6) .bar-dpe-fill { animation-range: entry 28% cover 52%; }
+    .bar-dpe-row:nth-child(7) .bar-dpe-fill { animation-range: entry 32% cover 56%; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .bar-button, .bar-listing-card > a { transition: none; }
     .bar-button:hover, .bar-listing-card > a:hover { transform: none; }
     .bar-dpe-fill, .bar-distribution-track span, .bar-signal-bar, .bar-listing-link span,
     .bar-listing-card > a::before, .bar-result-count, .bar-card-grid { transition: none !important; }
+    .bar-dpe-fill, .bar-distribution-track span, .bar-signal-bar, .bar-main-score strong,
+    .bar-listing-card, .bar-insight-card, .bar-proof-strip div { animation: none !important; }
+  }
+
+  @media print {
+    .bar-dpe-fill, .bar-distribution-track span, .bar-signal-bar, .bar-main-score strong,
+    .bar-listing-card, .bar-insight-card, .bar-proof-strip div { animation: none !important; }
   }
 </style>
