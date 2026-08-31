@@ -1,21 +1,5 @@
 #!/usr/bin/env node
-/**
- * Garde-fou géométrique.
- *
- * Les tests du dépôt lisent le source : ils ne peuvent pas voir qu'un texte
- * sort de sa boîte. Le débordement des badges DPE d'août 2026 est passé en
- * production avec une CI entièrement verte pour cette raison exacte.
- *
- * Ce script rend les pages construites dans un vrai navigateur et compare des
- * rectangles. Il échoue si un texte déborde de son parent, ou si la page
- * défile horizontalement.
- *
- * Usage : node scripts/check-layout-geometry.mjs [--pages a,b] [--dist dist]
- *
- * Sans Playwright, le script ÉCHOUE. Un garde-fou qui s'auto-désactive en
- * silence est un garde-fou mort : il rend la CI verte sans avoir rien mesuré.
- * Pour l'ignorer volontairement, il faut le dire : --allow-missing.
- */
+// Vérifie dans Chromium les débordements de texte et le scroll horizontal.
 import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import { extname, join, resolve } from 'node:path';
@@ -31,10 +15,12 @@ const DIST = resolve(readArg('--dist', 'dist'));
 const PAGES = readArg('--pages', 'barometre.html,index.html,tarifs.html').split(',');
 const VIEWPORTS = [
   { name: 'desktop', width: 1440, height: 900 },
+  { name: 'desktop-nav-min', width: 1152, height: 900 },
+  { name: 'desktop-compact', width: 1024, height: 900 },
+  { name: 'tablette', width: 768, height: 1024 },
   { name: 'mobile', width: 390, height: 844 },
   { name: 'mobile-etroit', width: 320, height: 844 },
 ];
-/** Marge de tolérance : le sous-pixel de rendu ne doit pas faire échouer. */
 const SPILL_TOLERANCE_PX = 1.5;
 
 let chromium;
@@ -82,7 +68,23 @@ const origin = `http://127.0.0.1:${server.address().port}`;
 
 const PROBE = `(() => {
   const report = { scrollWidth: document.documentElement.scrollWidth,
-                   clientWidth: document.documentElement.clientWidth, spills: [] };
+                   clientWidth: document.documentElement.clientWidth,
+                   headerGap: null, logoNavGap: null, navActionsGap: null,
+                   logoTextHeight: null, spills: [] };
+  const logo = document.querySelector('.si-header .si-logo');
+  const logoText = document.querySelector('.si-header .si-logo-text');
+  const nav = document.querySelector('.si-header .si-header-nav');
+  const actions = document.querySelector('.si-header .si-header-actions');
+  if (logo && actions && logo.getBoundingClientRect().width > 0) {
+    report.headerGap = actions.getBoundingClientRect().left - logo.getBoundingClientRect().right;
+  }
+  if (logoText && logoText.getBoundingClientRect().width > 0) {
+    report.logoTextHeight = logoText.getBoundingClientRect().height;
+  }
+  if (logo && nav && actions && nav.getBoundingClientRect().width > 0) {
+    report.logoNavGap = nav.getBoundingClientRect().left - logo.getBoundingClientRect().right;
+    report.navActionsGap = actions.getBoundingClientRect().left - nav.getBoundingClientRect().right;
+  }
   for (const node of document.querySelectorAll('body *')) {
     if (node.children.length) continue;
     if (!(node.textContent || '').trim()) continue;
@@ -116,14 +118,27 @@ for (const page of PAGES) {
       reducedMotion: 'reduce',
     });
     const tab = await context.newPage();
-    await tab.goto(`${origin}/${page}`, { waitUntil: 'networkidle' });
+    const response = await tab.goto(`${origin}/${page}`, { waitUntil: 'networkidle' });
     await tab.waitForTimeout(400);
     const report = await tab.evaluate(PROBE);
     checked += 1;
 
     const where = `${page} @ ${viewport.name} (${viewport.width}px)`;
+    if (!response?.ok()) failures.push(`${where} : HTTP ${response?.status() ?? 'inconnu'}`);
     if (report.scrollWidth > report.clientWidth) {
       failures.push(`${where} : défilement horizontal ${report.scrollWidth} > ${report.clientWidth}`);
+    }
+    if (report.headerGap !== null && report.headerGap < 4) {
+      failures.push(`${where} : logo et actions se chevauchent (${report.headerGap.toFixed(1)}px)`);
+    }
+    if (report.logoNavGap !== null && report.logoNavGap < 4) {
+      failures.push(`${where} : logo et navigation se chevauchent (${report.logoNavGap.toFixed(1)}px)`);
+    }
+    if (report.navActionsGap !== null && report.navActionsGap < 4) {
+      failures.push(`${where} : navigation et actions se chevauchent (${report.navActionsGap.toFixed(1)}px)`);
+    }
+    if (report.logoTextHeight !== null && report.logoTextHeight > 34) {
+      failures.push(`${where} : le nom de marque passe sur plusieurs lignes (${report.logoTextHeight.toFixed(1)}px)`);
     }
     for (const spill of report.spills) {
       const overshoot = spill.right > 0 ? `+${spill.right}px à droite` : `+${spill.left}px à gauche`;

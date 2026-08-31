@@ -7,13 +7,10 @@ export type SignalAxis = {
 };
 
 export type FicheSignal = {
-  /** Axes réellement notés, dans l'ordre canonique de la méthode. */
   axes: SignalAxis[];
-  /** Nombre d'axes de la méthode qui n'ont pas été notés pour cette fiche. */
   missing: number;
   strongest: SignalAxis | null;
   weakest: SignalAxis | null;
-  /** Première alerte publiée, si la fiche en porte une. */
   alert: string | null;
 };
 
@@ -26,19 +23,12 @@ type SignalFiche = {
 const SCORE_MAX = 10;
 
 function readScore(value: unknown): number | null {
-  // Number(null) vaut 0 : une note absente doit être rejetée sur son type,
-  // jamais convertie, sinon elle s'affiche comme un vrai zéro.
   if (typeof value !== 'number') return null;
   if (!Number.isFinite(value)) return null;
   if (value < 0 || value > SCORE_MAX) return null;
   return value;
 }
 
-/**
- * Décrit une fiche par ses notes réelles, sans jamais combler une note absente.
- * Un axe non noté est compté dans `missing` et reste hors de `axes` : il ne doit
- * pas être rendu comme un zéro.
- */
 export function buildFicheSignal(fiche: SignalFiche): FicheSignal {
   const scores = fiche.score_sections ?? {};
   const graded = sectionsForScoreGrid(fiche.methodology_version, scores);
@@ -73,7 +63,6 @@ export function buildFicheSignal(fiche: SignalFiche): FicheSignal {
   };
 }
 
-/** Hauteur de barre en pourcentage, bornée pour rester visible à 0/10. */
 export function axisBarHeight(score: number) {
   return Math.max(Math.round((score / SCORE_MAX) * 100), 6);
 }

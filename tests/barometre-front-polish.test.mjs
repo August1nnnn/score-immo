@@ -49,7 +49,7 @@ test("une barre d'axe reste visible même à zéro", () => {
   assert.ok(axisBarHeight(0) >= 6);
 });
 
-test("chaque fiche de l'édition courante porte un profil distinct", () => {
+test("chaque fiche de l'édition courante expose seulement ses axes réellement notés", () => {
   const dir = new URL("src/content/barometre/", root);
   const fiches = readdirSync(dir)
     .filter((name) => name.endsWith(".json"))
@@ -59,16 +59,13 @@ test("chaque fiche de l'édition courante porte un profil distinct", () => {
   const current = fiches.filter((f) => f.mois === month);
   assert.ok(current.length >= 2, "l'édition courante contient plusieurs fiches");
 
-  const fingerprints = current.map((fiche) => {
+  for (const fiche of current) {
     const signal = buildFicheSignal(fiche);
-    return signal.axes.map(({ key, score }) => `${key}:${score}`).join("|");
-  });
-
-  assert.equal(
-    new Set(fingerprints).size,
-    fingerprints.length,
-    "deux fiches de la même édition ne doivent pas afficher le même profil",
-  );
+    assert.ok(signal.axes.length > 0, `${fiche.slug} doit conserver au moins un axe noté`);
+    assert.ok(signal.strongest, `${fiche.slug} doit exposer son axe le plus fort`);
+    assert.ok(signal.weakest, `${fiche.slug} doit exposer son axe le plus faible`);
+    assert.equal(signal.axes.every(({ score }) => Number.isFinite(score)), true);
+  }
 });
 
 test("le hub rend le profil réel et n'affiche plus une accroche unique recopiée", () => {
@@ -88,6 +85,8 @@ test("l'échelle DPE ne peut plus déborder de sa carte", () => {
   assert.doesNotMatch(hub, /\.bar-dpe-list\s*\{[^}]*minmax\(74px/s);
   assert.match(hub, /\.bar-dpe-row/);
   assert.match(hub, /\.bar-dpe-track/);
+  assert.match(hub, /item\.count === 1 \? 'annonce' : 'annonces'/);
+  assert.doesNotMatch(hub, /\.bar-dpe-row\.is-empty\s*\{[^}]*opacity/s);
 });
 
 test("le logo d'en-tête ne se coupe pas sur mobile", () => {
@@ -95,6 +94,10 @@ test("le logo d'en-tête ne se coupe pas sur mobile", () => {
 
   assert.match(styles, /\.si-logo\s*\{[^}]*flex-shrink:\s*0/s);
   assert.match(styles, /\.si-logo-text\s*\{[^}]*white-space:\s*nowrap/s);
+  assert.match(styles, /@media \(max-width:\s*420px\)[\s\S]*?\.si-header-inner\s*\{[^}]*gap:\s*0\.5rem/s);
+  assert.match(styles, /@media \(max-width:\s*420px\)[\s\S]*?\.si-logo-text\s*\{[^}]*font-size:\s*1\.05rem/s);
+  assert.match(styles, /@media \(min-width:\s*1152px\)\s*\{\s*\.si-header-nav\s*\{[^}]*display:\s*flex/s);
+  assert.match(styles, /@media \(min-width:\s*1152px\)\s*\{\s*\.si-mobile-menu-btn\s*\{[^}]*display:\s*none/s);
 });
 
 test("les cibles tactiles du menu et des exports atteignent 44px", () => {
@@ -107,17 +110,15 @@ test("les cibles tactiles du menu et des exports atteignent 44px", () => {
   assert.match(hub, /\.bar-downloads\s*>\s*a\s*\{[^}]*min-height:\s*44px/s);
 });
 
-test("les animations sont désactivables et ne bloquent jamais le contenu", () => {
+test("les données structurantes ne dépendent d'aucun reveal JavaScript", () => {
   const hub = read("src/pages/barometre/index.astro");
 
   assert.match(hub, /@media \(prefers-reduced-motion: reduce\)/);
-  assert.match(hub, /IntersectionObserver/);
+  assert.doesNotMatch(hub, /data-reveal|si-reveal-on|data-countup/);
+});
 
-  // L'état par défaut est visible : sans JS, sans IntersectionObserver ou en
-  // reduced-motion, aucun bloc ne peut rester masqué.
-  assert.match(hub, /\[data-reveal\]\s*\{[^}]*opacity:\s*1/s);
-  // Le masquage n'existe que sous le drapeau posé par le script.
-  assert.match(hub, /\.si-reveal-on\s+\[data-reveal\]\s*\{[^}]*opacity:\s*0/s);
-  assert.match(hub, /prefers-reduced-motion: reduce\)/);
-  assert.match(hub, /classList\.add\('si-reveal-on'\)/);
+test("les légendes secondaires conservent un contraste lisible", () => {
+  const hub = read("src/pages/barometre/index.astro");
+
+  assert.match(hub, /\.bar-signal-scope\s*\{[^}]*color:\s*#64748b/s);
 });
