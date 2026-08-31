@@ -6,6 +6,7 @@ import AnalyzerBox from '@/components/AnalyzerBox.astro';
 import FAQ from '@/components/FAQ.astro';
 import { buildBarometreMetaDescription } from '@/lib/barometre-meta-description.js';
 import { sectionsForScoreGrid } from '@/lib/barometre-editions';
+import ScaleBars from '@/components/ScaleBars.astro';
 import { BRAND_NAME, ORGANIZATION_ID, SITE_URL } from '@/data/entity';
 import { getCollection } from 'astro:content';
 
@@ -196,18 +197,19 @@ const jsonLd: any[] = [
 
         <h2>Le détail du score</h2>
         <p class="bar-section-note">Seules les {sectionCount} sections réellement notées lors de cette analyse sont affichées. Une section absente n'est jamais remplacée par une note nulle.</p>
-        <div class="bar-bars">
-          {SECTIONS.map((s) => {
+        <ScaleBars
+          ariaLabel={`Détail du score, ${sectionCount} sections notées`}
+          max={10}
+          rows={SECTIONS.map((s) => {
             const v = fiche.score_sections[s.key];
-            return (
-              <div class="bar-row">
-                <span class="bar-row-label">{s.label}</span>
-                <span class="bar-track"><span class="bar-fill" style={`width:${v * 10}%;background:${sectionColor(v)}`}></span></span>
-                <span class="bar-row-val">{v}/10</span>
-              </div>
-            );
+            return {
+              label: s.label,
+              value: typeof v === 'number' ? v : null,
+              display: typeof v === 'number' ? `${v}/10` : 'Non notée',
+              tone: typeof v === 'number' ? sectionColor(v) : undefined,
+            };
           })}
-        </div>
+        />
 
         {fiche.points_forts.length > 0 && (
           <>
@@ -264,13 +266,35 @@ const jsonLd: any[] = [
         {d && d.acquisition && d.acquisition.total && (
           <>
             <h2>Coût d'acquisition total</h2>
-            <div class="bar-bars">
-              <div class="bar-row"><span class="bar-row-label">Prix affiché</span><span class="bar-track"></span><span class="bar-row-val2">{eur(d.acquisition.prix)}</span></div>
-              {d.acquisition.notaire && <div class="bar-row"><span class="bar-row-label">Frais de notaire {d.acquisition.notaire_pct ? `(~${d.acquisition.notaire_pct}%)` : ''}</span><span class="bar-track"></span><span class="bar-row-val2">{eur(d.acquisition.notaire)}</span></div>}
-              {d.acquisition.agence != null && <div class="bar-row"><span class="bar-row-label">Frais d'agence {d.acquisition.agence_pct ? `(~${d.acquisition.agence_pct}%)` : ''}</span><span class="bar-track"></span><span class="bar-row-val2">{eur(d.acquisition.agence)}</span></div>}
-              {d.acquisition.travaux ? <div class="bar-row"><span class="bar-row-label">Travaux estimés</span><span class="bar-track"></span><span class="bar-row-val2">{eur(d.acquisition.travaux)}</span></div> : null}
-              <div class="bar-row bar-row-total"><span class="bar-row-label">Budget total</span><span class="bar-track"></span><span class="bar-row-val2">{eur(d.acquisition.total)}</span></div>
-            </div>
+            <ScaleBars
+              ariaLabel="Composition du coût d'acquisition"
+              max={d.acquisition.total}
+              labelWidth="13rem"
+              rows={[
+                { label: 'Prix affiché', value: d.acquisition.prix, display: eur(d.acquisition.prix), tone: '#2563eb' },
+                ...(d.acquisition.notaire ? [{
+                  label: 'Frais de notaire',
+                  note: d.acquisition.notaire_pct ? `environ ${d.acquisition.notaire_pct} %` : undefined,
+                  value: d.acquisition.notaire,
+                  display: eur(d.acquisition.notaire),
+                  tone: '#f59e0b',
+                }] : []),
+                ...(d.acquisition.agence != null ? [{
+                  label: "Frais d'agence",
+                  note: d.acquisition.agence_pct ? `environ ${d.acquisition.agence_pct} %` : undefined,
+                  value: d.acquisition.agence,
+                  display: eur(d.acquisition.agence),
+                  tone: '#f97316',
+                }] : []),
+                ...(d.acquisition.travaux ? [{
+                  label: 'Travaux estimés',
+                  value: d.acquisition.travaux,
+                  display: eur(d.acquisition.travaux),
+                  tone: '#fb7185',
+                }] : []),
+                { label: 'Budget total', value: d.acquisition.total, display: eur(d.acquisition.total), tone: '#0f172a', emphasis: true },
+              ]}
+            />
           </>
         )}
 

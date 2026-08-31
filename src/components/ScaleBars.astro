@@ -1,0 +1,138 @@
+---
+/**
+ * Échelle de barres proportionnelles, dans la grammaire de l'échelle DPE du
+ * Baromètre : un libellé, une piste qui se remplit, une valeur écrite à côté.
+ *
+ * Deux invariants, hérités du lot Baromètre :
+ *  - la valeur est TOUJOURS un texte lisible à côté de la barre. La barre est
+ *    un décor. Si son animation ne se joue jamais, on perd un effet, pas une
+ *    information ;
+ *  - aucune opacité de contenu n'est animée, et aucun JavaScript n'intervient.
+ *
+ * Une ligne dont la valeur est absente reste affichée avec sa piste vide : on
+ * ne comble jamais une donnée manquante par un zéro.
+ */
+export type ScaleRow = {
+  label: string;
+  /** Valeur numérique servant à la longueur de barre. `null` = non mesurée. */
+  value: number | null;
+  /** Texte affiché à droite. À défaut, la valeur brute. */
+  display?: string;
+  /** Couleur de la barre. */
+  tone?: string;
+  /** Ligne de synthèse : barre pleine largeur et graisse renforcée. */
+  emphasis?: boolean;
+  /** Précision optionnelle sous le libellé. */
+  note?: string;
+};
+
+interface Props {
+  rows: ScaleRow[];
+  /** Référence de longueur. À défaut, la plus grande valeur présente. */
+  max?: number;
+  ariaLabel: string;
+  /** Largeur de la colonne des libellés. */
+  labelWidth?: string;
+}
+
+const { rows, max, ariaLabel, labelWidth = '11rem' } = Astro.props;
+
+const values = rows.map((row) => row.value).filter((v): v is number => typeof v === 'number' && Number.isFinite(v));
+const scale = max ?? (values.length ? Math.max(...values) : 0);
+
+const share = (value: number | null) => {
+  if (typeof value !== 'number' || !Number.isFinite(value) || scale <= 0) return null;
+  // Un zéro réel doit laisser la piste vide. Lui donner une longueur minimale
+  // ferait croire à un montant, ce que la valeur écrite à côté dément.
+  if (value <= 0) return 0;
+  return Math.max(Math.min((value / scale) * 100, 100), 1.5);
+};
+---
+
+<ul class="si-scale" aria-label={ariaLabel} style={`--si-scale-label:${labelWidth}`}>
+  {rows.map((row, index) => {
+    const width = share(row.value);
+    return (
+      <li class:list={['si-scale-row', { 'is-emphasis': row.emphasis, 'is-missing': width === null }]} style={`--i:${index}`}>
+        <span class="si-scale-label">
+          {row.label}
+          {row.note && <small>{row.note}</small>}
+        </span>
+        <span class="si-scale-track" aria-hidden="true">
+          {width !== null && (
+            <span class="si-scale-fill" style={`--w:${width.toFixed(2)}%;--tone:${row.tone || '#2563eb'}`}></span>
+          )}
+        </span>
+        <span class="si-scale-value">{row.display ?? (row.value === null ? 'Non mesuré' : String(row.value))}</span>
+      </li>
+    );
+  })}
+</ul>
+
+<style is:global>
+  .si-scale { display: grid; gap: 0.45rem; margin: 1rem 0 1.5rem; padding: 0; list-style: none; }
+  .si-scale-row {
+    display: grid;
+    grid-template-columns: var(--si-scale-label, 11rem) minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .si-scale-label { min-width: 0; color: #0f172a; font-size: 0.88rem; line-height: 1.3; }
+  .si-scale-label small { display: block; color: #64748b; font-size: 0.72rem; }
+  .si-scale-track { min-width: 0; height: 0.7rem; border-radius: 999px; background: #f1f5f9; }
+  .si-scale-fill { display: block; width: var(--w, 0%); height: 100%; border-radius: inherit; background: var(--tone, #2563eb); }
+  .si-scale-value {
+    min-width: 4.5rem;
+    color: #0f172a;
+    font-size: 0.86rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+    white-space: nowrap;
+  }
+  .si-scale-row.is-emphasis { margin-top: 0.35rem; padding-top: 0.6rem; border-top: 1px solid #e2e8f0; }
+  .si-scale-row.is-emphasis .si-scale-label,
+  .si-scale-row.is-emphasis .si-scale-value { font-weight: 800; }
+  .si-scale-row.is-emphasis .si-scale-track { height: 0.9rem; }
+  .si-scale-row.is-missing .si-scale-value { color: #64748b; font-weight: 600; }
+
+  /* Le remplissage part de zéro et se joue au défilement là où c'est supporté,
+     au chargement ailleurs. animation-fill-mode: both garantit le même état
+     final sur les deux chemins. */
+  @keyframes si-scale-grow { from { width: 0; } to { width: var(--w, 0%); } }
+  .si-scale-fill {
+    animation: si-scale-grow 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--i, 0) * 55ms);
+  }
+
+  @supports (animation-timeline: view()) {
+    .si-scale-fill { animation-timeline: view(); animation-delay: 0s; animation-range: entry 8% cover 32%; }
+    .si-scale-row:nth-child(2) .si-scale-fill { animation-range: entry 11% cover 35%; }
+    .si-scale-row:nth-child(3) .si-scale-fill { animation-range: entry 14% cover 38%; }
+    .si-scale-row:nth-child(4) .si-scale-fill { animation-range: entry 17% cover 41%; }
+    .si-scale-row:nth-child(5) .si-scale-fill { animation-range: entry 20% cover 44%; }
+    .si-scale-row:nth-child(6) .si-scale-fill { animation-range: entry 23% cover 47%; }
+    .si-scale-row:nth-child(7) .si-scale-fill { animation-range: entry 26% cover 50%; }
+    .si-scale-row:nth-child(8) .si-scale-fill { animation-range: entry 29% cover 53%; }
+    .si-scale-row:nth-child(9) .si-scale-fill { animation-range: entry 32% cover 56%; }
+    .si-scale-row:nth-child(10) .si-scale-fill { animation-range: entry 35% cover 59%; }
+    .si-scale-row:nth-child(11) .si-scale-fill { animation-range: entry 38% cover 62%; }
+    .si-scale-row:nth-child(12) .si-scale-fill { animation-range: entry 41% cover 65%; }
+    .si-scale-row:nth-child(n + 13) .si-scale-fill { animation-range: entry 44% cover 68%; }
+  }
+
+  @media (max-width: 520px) {
+    .si-scale-row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: 'label value' 'track track'; row-gap: 0.3rem; }
+    .si-scale-label { grid-area: label; }
+    .si-scale-value { grid-area: value; }
+    .si-scale-track { grid-area: track; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .si-scale-fill { animation: none !important; }
+  }
+
+  @media print {
+    .si-scale-fill { animation: none !important; }
+  }
+</style>
