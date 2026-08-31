@@ -61,6 +61,9 @@ const editionJsonUrl = `/barometre/editions/${latestEdition.month}.json`;
 const editionCsvUrl = `/barometre/editions/${latestEdition.month}.csv`;
 const citation = `${BRAND_NAME}, Le Baromètre immobilier des annonces analysées, édition ${editionLabel}, échantillon de ${total} annonces, version ${latestEdition.month}, ${SITE_URL}${editionJsonUrl}.`;
 const capitalObservations = capitalesAout.observations;
+const partialCapitalObservations = capitalesAout.observations_partielles;
+const allCapitalObservations = [...capitalObservations, ...partialCapitalObservations]
+  .sort((left, right) => left.region_code.localeCompare(right.region_code, 'fr'));
 const unavailableCapitals = capitalesAout.indisponibles;
 const capitalJsonUrl = '/barometre/capitales/2026-08.json';
 const capitalCsvUrl = '/barometre/capitales/2026-08.csv';
@@ -71,7 +74,8 @@ const capitalMapPoints = capitalObservations
     x: Math.max(5, Math.min(95, ((observation.longitude_capitale + 5.5) / 15) * 100)),
     y: Math.max(5, Math.min(95, ((51.2 - observation.latitude_capitale) / 10.2) * 100)),
   }));
-const overseasCapitalObservations = capitalObservations.filter(({ region_code }) => ['01', '02'].includes(region_code));
+const overseasCapitalObservations = allCapitalObservations
+  .filter(({ region_code }) => ['01', '02', '03', '04'].includes(region_code));
 
 const faq: { q: string; a: string }[] = [
   {
@@ -96,7 +100,7 @@ const faq: { q: string; a: string }[] = [
   },
   {
     q: `Que mesure le relevé des capitales régionales ?`,
-    a: `Le relevé d'août 2026 retient une annonce complète dans 15 chefs-lieux régionaux : prix affiché, surface, prix au m² et DPE. Il ne publie aucun score Score-Immo et ne représente ni un prix moyen de la ville ni un indice de marché.`,
+    a: `Le relevé d'août 2026 publie une annonce avec prix et surface dans 17 chefs-lieux sur 18 : 15 avec un DPE A-G et 2 sans DPE renseigné. Il ne publie aucun score Score-Immo et ne représente ni un prix moyen de la ville ni un indice de marché.`,
   },
 ];
 
@@ -156,17 +160,17 @@ const regionalCapitalDatasetSchema = {
   identifier: `${canonical}#capitales-regionales-2026-08`,
   version: capitalesAout.mois,
   name: `Repères d'annonces dans les capitales régionales, août 2026`,
-  description: `Une annonce d'août 2026 avec prix, surface et DPE dans 15 chefs-lieux régionaux. Prix affichés, sans score Score-Immo et sans extrapolation au marché local.`,
+  description: `Une annonce d'août 2026 avec prix et surface dans 17 chefs-lieux régionaux : 15 avec un DPE A-G et 2 sans DPE renseigné. Prix affichés, sans score Score-Immo et sans extrapolation au marché local.`,
   url: canonical,
   isAccessibleForFree: true,
   creator: { '@id': ORGANIZATION_ID },
   dateModified: capitalesAout.capture_date,
   temporalCoverage: capitalesAout.mois,
-  spatialCoverage: capitalObservations.map(({ capitale, region }) => ({
+  spatialCoverage: allCapitalObservations.map(({ capitale, region }) => ({
     '@type': 'Place',
     name: `${capitale}, ${region}`,
   })),
-  measurementTechnique: capitalesAout.selection_policy,
+  measurementTechnique: `${capitalesAout.selection_policy} ${capitalesAout.partial_selection_policy}`,
   citation: [
     { '@type': 'Dataset', name: capitalesAout.official_geography.name, url: capitalesAout.official_geography.url },
     { '@type': 'WebSite', name: capitalesAout.source.name, url: capitalesAout.source.url },
@@ -176,7 +180,9 @@ const regionalCapitalDatasetSchema = {
     { '@type': 'DataDownload', encodingFormat: 'text/csv', contentUrl: `${SITE_URL}${capitalCsvUrl}` },
   ],
   variableMeasured: [
-    { '@type': 'PropertyValue', name: 'Capitales observées', value: capitalObservations.length },
+    { '@type': 'PropertyValue', name: 'Capitales observées', value: allCapitalObservations.length },
+    { '@type': 'PropertyValue', name: 'Observations avec DPE A-G', value: capitalObservations.length },
+    { '@type': 'PropertyValue', name: 'Observations sans DPE renseigné', value: partialCapitalObservations.length },
     { '@type': 'PropertyValue', name: 'Prix affiché', unitText: 'EUR' },
     { '@type': 'PropertyValue', name: 'Prix affiché au m²', unitText: 'EUR par m²' },
     { '@type': 'PropertyValue', name: 'Surface', unitText: 'm²' },
@@ -277,7 +283,7 @@ const jsonLd: any[] = [
           <div>
             <p class="bar-overline">Couverture géographique · août 2026</p>
             <h2 id="bar-capitals-title">Repères dans les capitales régionales</h2>
-            <p>Une annonce complète observée dans <strong>{capitalObservations.length} chefs-lieux sur 18</strong>. Ce relevé compare des prix affichés, pas des prix de vente, et reste volontairement sans score Score-Immo.</p>
+            <p>Une annonce avec prix et surface observée dans <strong>17 chefs-lieux sur 18</strong> : 15 avec DPE renseigné et 2 sans DPE renseigné. Ce relevé compare des prix affichés, pas des prix de vente, et reste volontairement sans score Score-Immo.</p>
           </div>
           <p class="bar-result-count">Relevé du 31 août 2026</p>
         </div>
@@ -305,7 +311,7 @@ const jsonLd: any[] = [
             <figcaption>Schéma de localisation, sans représentation des frontières régionales. Les positions sont celles des chefs-lieux officiels, pas celles des biens.</figcaption>
             <div class="bar-overseas-capitals" aria-label="Chefs-lieux ultramarins observés">
               {overseasCapitalObservations.map((observation) => (
-                <span><strong>{observation.capitale}</strong><small>{observation.region} · DPE {observation.dpe}</small></span>
+                <span><strong>{observation.capitale}</strong><small>{observation.region} · {observation.dpe ? `DPE ${observation.dpe}` : 'DPE non renseigné'}</small></span>
               ))}
             </div>
           </figure>
@@ -313,7 +319,7 @@ const jsonLd: any[] = [
           <article class="bar-capital-data">
             <div class="bar-card-heading">
               <div>
-                <p class="bar-overline">15 observations datées</p>
+                <p class="bar-overline">17 observations datées</p>
                 <h3>Prix affiché et DPE par capitale</h3>
               </div>
             </div>
@@ -321,13 +327,17 @@ const jsonLd: any[] = [
               <table>
                 <thead><tr><th>Capitale</th><th>Annonce</th><th>Prix affiché</th><th>Prix/m²</th><th>DPE</th></tr></thead>
                 <tbody>
-                  {capitalObservations.map((observation) => (
+                  {allCapitalObservations.map((observation) => (
                     <tr>
                       <th scope="row"><strong>{observation.capitale}</strong><small>{observation.region} · {observation.code_postal}</small></th>
                       <td>{typeLabel(observation.type_bien)} · {observation.surface.toLocaleString('fr-FR')} m²</td>
                       <td>{observation.prix_affiche.toLocaleString('fr-FR')} €</td>
                       <td><strong>{observation.prix_m2.toLocaleString('fr-FR')} €/m²</strong></td>
-                      <td><span class={`bar-dpe-pill bar-dpe-${observation.dpe.toLowerCase()}`}>{observation.dpe}</span></td>
+                      <td>
+                        {observation.dpe
+                          ? <span class={`bar-dpe-pill bar-dpe-${observation.dpe.toLowerCase()}`}>{observation.dpe}</span>
+                          : <span class="bar-dpe-missing">Non renseigné</span>}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -339,11 +349,11 @@ const jsonLd: any[] = [
         <div class="bar-capital-method">
           <div>
             <strong>Règle de sélection</strong>
-            <p>{capitalesAout.selection_policy} Une observation décrit une annonce, jamais le niveau de prix de la ville.</p>
+            <p>{capitalesAout.selection_policy} {capitalesAout.partial_selection_policy} Une observation décrit une annonce, jamais le niveau de prix de la ville.</p>
           </div>
           <div>
-            <strong>3 chefs-lieux non publiés</strong>
-            <p>{unavailableCapitals.map(({ capitale }) => capitale).join(', ')} : aucune annonce d'août répondant au contrat complet dans la source consultée.</p>
+            <strong>2 DPE non renseignés, 1 absence</strong>
+            <p>Cayenne et Saint-Denis conservent leur prix et leur surface sans DPE. {unavailableCapitals.map(({ capitale, raison }) => `${capitale} : ${raison}`).join(' ')}</p>
           </div>
           <div class="bar-capital-downloads">
             <a href={capitalJsonUrl} download>JSON</a>
@@ -826,6 +836,7 @@ const jsonLd: any[] = [
   .bar-capital-table tbody th strong, .bar-capital-table tbody th small { display: block; }
   .bar-capital-table tbody th small { margin-top: 0.2rem; color: #64748b; font-weight: 500; }
   .bar-capital-table .bar-dpe-pill { display: inline-grid; min-width: 2rem; place-items: center; }
+  .bar-dpe-missing { display: inline-block; color: #64748b; font-size: 0.72rem; font-weight: 700; }
   .bar-capital-method { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) auto; gap: 1px; margin-top: 1rem; overflow: hidden; border: 1px solid #dbe4f0; border-radius: 1rem; background: #dbe4f0; }
   .bar-capital-method > div { min-width: 0; padding: 1rem; background: #fff; }
   .bar-capital-method strong { color: #0f172a; font-size: 0.82rem; }

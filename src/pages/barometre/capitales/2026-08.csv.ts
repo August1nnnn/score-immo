@@ -7,6 +7,7 @@ const columns = [
   'region_code',
   'region',
   'capitale',
+  'statut_donnees',
   'code_insee',
   'code_postal',
   'type_bien',
@@ -24,9 +25,19 @@ function csvCell(value: unknown): string {
 }
 
 export const GET: APIRoute = () => {
+  const observations = [
+    ...capitalesAout.observations.map((observation) => ({
+      ...observation,
+      statut_donnees: 'complet' as const,
+    })),
+    ...capitalesAout.observations_partielles.map((observation) => ({
+      ...observation,
+      statut_donnees: 'partiel_dpe_non_renseigne' as const,
+    })),
+  ].sort((left, right) => left.region_code.localeCompare(right.region_code, 'fr'));
   const lines = [
     columns.join(','),
-    ...capitalesAout.observations.map((observation) => (
+    ...observations.map((observation) => (
       columns.map((column) => csvCell(observation[column])).join(',')
     )),
   ];

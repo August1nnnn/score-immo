@@ -3,6 +3,7 @@
   "mois": "2026-08",
   "capture_date": "2026-08-31",
   "selection_policy": "Annonce la plus récente avec prix, surface et DPE A-G dans les codes postaux officiels du chef-lieu régional.",
+  "partial_selection_policy": "À défaut de DPE A-G, annonce la plus récente avec prix et surface dans les codes postaux officiels du chef-lieu régional.",
   "source": {
     "name": "Bien’ici",
     "url": "https://www.bienici.com/",
@@ -255,24 +256,57 @@
       "longitude_capitale": 8.7058
     }
   ],
-  "indisponibles": [
+  "observations_partielles": [
     {
       "region_code": "03",
       "region": "Guyane",
       "capitale": "Cayenne",
-      "raison": "Aucune annonce d’août avec prix, surface et DPE A-G dans la source consultée."
+      "code_insee": "97302",
+      "code_postal": "97300",
+      "type_bien": "maison",
+      "surface": 288,
+      "prix_affiche": 450000,
+      "prix_m2": 1563,
+      "dpe": null,
+      "ges": null,
+      "date_publication": "2026-08-25",
+      "latitude_capitale": 4.9464,
+      "longitude_capitale": -52.3319,
+      "statut_donnees": "partiel_dpe_non_renseigne",
+      "raison_partielle": "DPE non renseigné dans la source consultée."
     },
     {
       "region_code": "04",
       "region": "La Réunion",
       "capitale": "Saint-Denis",
-      "raison": "Aucune annonce d’août avec prix, surface et DPE A-G dans la source consultée."
-    },
+      "code_insee": "97411",
+      "code_postal": "97490",
+      "type_bien": "maison",
+      "surface": 200,
+      "prix_affiche": 630000,
+      "prix_m2": 3150,
+      "dpe": null,
+      "ges": null,
+      "date_publication": "2026-08-31",
+      "latitude_capitale": -20.9434,
+      "longitude_capitale": 55.4444,
+      "statut_donnees": "partiel_dpe_non_renseigne",
+      "raison_partielle": "DPE non renseigné dans la source consultée."
+    }
+  ],
+  "indisponibles": [
     {
       "region_code": "06",
       "region": "Mayotte",
       "capitale": "Mamoudzou",
-      "raison": "Aucune annonce d’août complète dans la source consultée."
+      "code_insee": "97611",
+      "codes_postaux": [
+        "97600",
+        "97605"
+      ],
+      "latitude_capitale": -12.7875,
+      "longitude_capitale": 45.1964,
+      "raison": "Aucune annonce d’août repérée dans la source consultée."
     }
   ]
 }
