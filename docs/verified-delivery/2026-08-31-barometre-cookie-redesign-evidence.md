@@ -70,3 +70,62 @@ Branche : `codex/barometre-cookie-redesign-20260831`
 - aucun finding Critical ou Important ne reste ouvert avant intégration.
 
 Rollback de l'incrément : revert du commit de fusion Baromètre, puis redéploiement par le workflow GitHub normal.
+
+## Incrément 1 : vérification en production
+
+- PR : `#18` ; commit de fusion : `5976cfc9e94ef6feee9c966a79a374be7c9767d1` ;
+- workflow Cloudflare : `33405046078`, succès ;
+- guardrails `main` : `33405046080`, succès ;
+- notification IndexNow : succès dans le workflow de déploiement ;
+- `/barometre`, le JSON, le CSV et la carte sociale répondent HTTP 200 ;
+- le JSON live expose CORS, cache contrôlé, `nosniff` et `X-Robots-Tag: noindex` ;
+- le JSON live contient 16 rapports et uniquement les 14 clés publiques attendues ;
+- canonical, title, H1, score 68, médiane 67 et Dataset `2026-08` sont présents ;
+- le filtre maisons retourne 6 fiches et le reset 16 ;
+- aucun débordement ni message console à 390 px ;
+- Lighthouse mobile live après refus : 100 dans les quatre catégories auditées.
+
+Statut de l'incrément 1 : `PROD_VERIFIED`.
+
+## Incrément 2 : bannière cookies, validation locale
+
+Branche : `codex/cookie-banner-redesign-20260831`, créée depuis le commit de fusion Baromètre.
+
+### Développement dirigé par les contrats
+
+- le premier lancement de `node --test tests/cookie-banner-ux.test.mjs` a produit trois échecs attendus sur la région accessible, l'opacité et la grille ;
+- le test final couvre le nom accessible, la copie concise, la surface opaque, l'absence de flou, la grille à trois colonnes, les cibles de 44 px, la symétrie des choix et la délégation au contrôleur existant ;
+- résultat ciblé avec les contrats de mesure : 14/14 PASS ;
+- suite complète : 183/183 PASS.
+
+### Mesures visuelles et fonctionnelles
+
+| Viewport | Bannière | Actions | Débordement |
+|---|---:|---|---|
+| 320 x 568 | 296 x 179 px | une ligne, 86,8 x 44 px chacune | aucun |
+| 360 x 800 | 336 x 160 px | une ligne, 100,1 x 44 px chacune | aucun |
+| 390 x 844 | 366 x 165 px | une ligne, 106,4 x 44 px chacune | aucun |
+| 768 x 900 | 744 x 91 px | une ligne, 91,7 x 44 px chacune | aucun |
+| 1440 x 900 | 860 x 91 px | une ligne, 91,7 x 44 px chacune | aucun |
+| équivalent 200 % desktop, 720 x 450 CSS | 696 x 110 px | une ligne, hauteur 44 px | aucun |
+
+- fond calculé : `rgb(255, 255, 255)` ; `backdrop-filter: none` ;
+- refus et acceptation ont la même largeur, la même hauteur, la même couleur et le même niveau visuel ;
+- focus clavier : contour bleu continu de 3 px ; ordre constaté `Refuser`, `Détails`, `Accepter` ;
+- activation clavier de `Accepter` masque la bannière et enregistre `accepted` ;
+- le réglage du footer rouvre la bannière ; activation clavier de `Refuser` masque la bannière et enregistre `rejected` ;
+- Lighthouse snapshot avec bannière ouverte, mobile et desktop : 100 dans les quatre catégories ;
+- trace mobile avec bannière : LCP 78 ms, CLS 0, sans throttling ;
+- console navigateur : aucun message.
+
+### Invariance et sécurité
+
+- `public/consent.js` est inchangé ;
+- le bloc script du composant conserve exactement son SHA-256 `ea6ded3c4b682e490a05b004f3e841eb045eae9edebc4903d44d80a0293ed89b` ;
+- le composant n'écrit directement ni cookie ni stockage local ;
+- aucune dépendance, requête externe ou finalité de suivi ajoutée ;
+- `npm audit --omit=dev` : zéro vulnérabilité ;
+- contenu, build, intégrité du site et scan de secrets : PASS ;
+- aucun finding Critical ou Important ne reste ouvert avant intégration.
+
+Rollback de l'incrément : revert du commit de fusion cookies, sans revert du Baromètre.
