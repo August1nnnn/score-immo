@@ -77,6 +77,15 @@ test("le hub rend le profil réel et n'affiche plus une accroche unique recopié
   assert.doesNotMatch(hub, /fiche\.alertes_cles\[0\] \|\| fiche\.points_forts\[0\] \|\| fiche\.verdict/);
 });
 
+test("l'archive rapproche sa lecture de l'édition courante sans recalculer juin", () => {
+  const hub = read("src/pages/barometre/index.astro");
+
+  assert.match(hub, /grille historique de \{archivedSections\} sections/i);
+  assert.match(hub, /const archiveSignal = buildFicheSignal\(fiche\)/);
+  assert.match(hub, /bar-archive-card[\s\S]*?fiche\.dpe[\s\S]*?fiche\.prix_m2/s);
+  assert.match(hub, /Les scores historiques ne sont pas recalculés/i);
+});
+
 test("l'échelle DPE ne peut plus déborder de sa carte", () => {
   const hub = read("src/pages/barometre/index.astro");
 
