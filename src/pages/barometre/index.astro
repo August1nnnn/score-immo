@@ -1,66 +1,75 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import TLDRBox from '@/components/TLDRBox.astro';
 import AnalyzerBox from '@/components/AnalyzerBox.astro';
 import FAQ from '@/components/FAQ.astro';
 import { getCollection } from 'astro:content';
-import { slugifyRegion, groupByRegion, REGION_MIN } from '@/lib/regions';
-import { aggregateEdition, groupByEdition, scoreSectionCountRange, selectLatestEdition } from '@/lib/barometre-editions';
+import { slugifyRegion, REGION_MIN } from '@/lib/regions';
+import {
+  aggregateEdition,
+  groupByEdition,
+  scoreSectionCountRange,
+  selectLatestEdition,
+} from '@/lib/barometre-editions';
+import { buildEditionInsights } from '@/lib/barometre-insights';
+import { buildEditionExport } from '@/lib/barometre-edition-export.js';
 import { BRAND_NAME, ORGANIZATION_ID, SITE_URL, WEBSITE_ID } from '@/data/entity';
+import dmSans800Url from '@fontsource/dm-sans/files/dm-sans-latin-800-normal.woff2?url';
+import inter400Url from '@fontsource/inter/files/inter-latin-400-normal.woff2?url';
 
 const canonical = `${SITE_URL}/barometre`;
 
-const all = (await getCollection('barometre')).map((e) => e.data);
+const all = (await getCollection('barometre')).map((entry) => entry.data);
 const editions = groupByEdition(all);
 const latestEdition = selectLatestEdition(all);
 const current = latestEdition.fiches;
 const archiveEditions = editions.slice(1);
 const stats = aggregateEdition(current);
+const insights = buildEditionInsights(current);
+const editionExport = buildEditionExport(current, SITE_URL);
 const total = current.length;
 const archiveTotal = all.length - total;
 const avg = stats.avgScore;
 const regions = stats.regions;
-const best = current.slice(0, 3);
 const sectionRange = scoreSectionCountRange(current);
 const sectionCountLabel = sectionRange.minimum === sectionRange.maximum
   ? `${sectionRange.minimum}`
   : `${sectionRange.minimum} à ${sectionRange.maximum}`;
 const sectionCountPhrase = `${sectionCountLabel} section${sectionRange.maximum > 1 ? 's' : ''}`;
-const editionLabel = new Date(`${latestEdition.month}-01T12:00:00Z`).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long' });
+const editionLabel = new Date(`${latestEdition.month}-01T12:00:00Z`).toLocaleDateString('fr-FR', {
+  year: 'numeric',
+  month: 'long',
+});
 
 const title = `Baromètre immobilier : ${total} annonces, ${editionLabel} | ${BRAND_NAME}`;
 const description = `Édition ${editionLabel} : ${total} annonces analysées par ${BRAND_NAME} dans ${regions} régions. Scores datés sur 100, DPE et points de vigilance.`.slice(0, 160);
 
-const tldr = [
-  `Édition ${editionLabel} : ${total} annonces analysées et notées sur 100 dans ${regions} régions.`,
-  `Score moyen de cette édition homogène : ${avg}/100.`,
-  `Chaque fiche affiche ${sectionCountPhrase} réellement notées selon les données disponibles lors de l'analyse.`,
-  `${archiveTotal} fiche(s) antérieure(s) restent accessibles dans les archives, sans être mélangées aux chiffres de ${editionLabel}.`,
-];
-
 const scoreColor = (s: number) => (s >= 70 ? '#16A34A' : s >= 40 ? '#B45309' : '#DC2626');
-const typeLabel = (t: string) => (t === 'appartement' ? 'Appartement' : 'Maison');
-
-// Region aggregates -> links to the regional pages (real aggregates, >=3 fiches).
-const regionLinks = [...groupByRegion(current).entries()]
-  .filter(([, fs]) => fs.length >= REGION_MIN)
-  .map(([region, fs]) => ({
-    region, slug: slugifyRegion(region), count: fs.length,
-    avg: Math.round(fs.reduce((s, f) => s + f.score_global, 0) / fs.length),
-  }))
-  .sort((a, b) => b.count - a.count);
-
+const typeLabel = (type: string) => (type === 'appartement' ? 'Appartement' : 'Maison');
+const regionOptions = [...new Set(current.map((fiche) => fiche.region))].sort((a, b) => a.localeCompare(b, 'fr'));
+const dpeOptions = [...new Set(current.map((fiche) => fiche.dpe).filter(Boolean))].sort();
+const dpeCount = (labels: string[]) => insights.dpe
+  .filter(({ label }) => labels.includes(label))
+  .reduce((sum, { count }) => sum + count, 0);
 const lastDate = stats.latestAnalysisDate;
-const lastDateFmt = lastDate ? new Date(lastDate).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long' }) : null;
+const lastDateFmt = lastDate
+  ? new Date(`${lastDate}T12:00:00Z`).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })
+  : null;
+const editionJsonUrl = `/barometre/editions/${latestEdition.month}.json`;
+const editionCsvUrl = `/barometre/editions/${latestEdition.month}.csv`;
+const citation = `${BRAND_NAME}, Le Baromètre immobilier des annonces analysées, édition ${editionLabel}, échantillon de ${total} annonces, version ${latestEdition.month}, ${SITE_URL}${editionJsonUrl}.`;
 
 const faq: { q: string; a: string }[] = [
   {
     q: `Quel est le score moyen de l'échantillon publié par Score-Immo ?`,
-    a: `Dans l'édition ${editionLabel}, les ${total} annonces publiées dans ${regions} régions obtiennent un score moyen de ${avg}/100. La meilleure note de l'échantillon est ${best[0]?.score_global}/100 (${best[0]?.ville}). Ce chiffre ne représente pas l'ensemble du marché français.`,
+    a: `Dans l'édition ${editionLabel}, les ${total} annonces analysées dans ${regions} régions obtiennent un score moyen de ${avg}/100 et un score médian de ${insights.medianScore}/100. La plage observée va de ${insights.minimumScore} à ${insights.maximumScore}/100. Ces chiffres décrivent cet échantillon, pas l'ensemble du marché français.`,
   },
   {
     q: `Combien d'annonces immobilières Score-Immo publie-t-il dans ce Baromètre ?`,
-    a: `L'édition ${editionLabel} publie ${total} analyses datées, réparties sur ${regions} régions françaises. Les ${archiveTotal} fiches antérieures sont conservées séparément et ne sont pas incluses dans les agrégats de cette édition.`,
+    a: `L'édition ${editionLabel} publie ${total} analyses datées, réparties sur ${regions} régions françaises. Les ${archiveTotal} analyses antérieures sont conservées séparément et ne sont pas incluses dans les agrégats de cette édition.`,
+  },
+  {
+    q: `Peut-on télécharger et citer les données de l'édition ?`,
+    a: `Oui. Les données publiques de l'édition ${editionLabel} sont disponibles en JSON et en CSV. La citation proposée précise l'édition, la taille de l'échantillon et son URL stable. Aucune licence de réutilisation plus large n'est déclarée à ce stade.`,
   },
   {
     q: `Pourquoi certaines fiches affichent-elles cinq sections et d'autres jusqu'à treize ?`,
@@ -75,18 +84,37 @@ const faq: { q: string; a: string }[] = [
 const datasetSchema = {
   '@context': 'https://schema.org',
   '@type': 'Dataset',
+  '@id': `${canonical}#edition-${latestEdition.month}`,
+  identifier: `${canonical}#edition-${latestEdition.month}`,
+  version: latestEdition.month,
   name: `Baromètre ${BRAND_NAME}, édition ${editionLabel} : ${total} analyses d'annonces`,
-  description: `Échantillon de ${total} annonces immobilières analysées dans ${regions} régions françaises en ${editionLabel}. Score moyen de l'édition : ${avg}/100.`,
+  description: `Échantillon descriptif de ${total} annonces immobilières analysées dans ${regions} régions françaises en ${editionLabel}. Score moyen de l'édition : ${avg}/100.`,
   url: canonical,
   isAccessibleForFree: true,
   creator: { '@id': ORGANIZATION_ID },
   ...(lastDate ? { dateModified: lastDate } : {}),
   spatialCoverage: { '@type': 'Place', name: 'France' },
   temporalCoverage: latestEdition.month,
+  keywords: ['annonces immobilières analysées', 'score immobilier', 'DPE', 'échantillon immobilier'],
   measurementTechnique: `Instantanés datés produits avec la méthode résidentielle courante ; chaque fiche publie ${sectionCountPhrase} selon les données disponibles lors de son analyse.`,
+  distribution: [
+    {
+      '@type': 'DataDownload',
+      name: `Données JSON, édition ${editionLabel}`,
+      encodingFormat: 'application/json',
+      contentUrl: editionExport.downloads.json,
+    },
+    {
+      '@type': 'DataDownload',
+      name: `Données CSV, édition ${editionLabel}`,
+      encodingFormat: 'text/csv',
+      contentUrl: editionExport.downloads.csv,
+    },
+  ],
   variableMeasured: [
     { '@type': 'PropertyValue', name: 'Annonces analysées', value: total },
     { '@type': 'PropertyValue', name: 'Score moyen de l’échantillon (0-100)', value: avg },
+    { '@type': 'PropertyValue', name: 'Score médian de l’échantillon (0-100)', value: insights.medianScore },
     { '@type': 'PropertyValue', name: 'Régions couvertes', value: regions },
     { '@type': 'PropertyValue', name: 'Sections visibles par fiche', value: sectionCountLabel },
   ],
@@ -95,7 +123,11 @@ const datasetSchema = {
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  mainEntity: faq.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
 };
 
 const jsonLd: any[] = [
@@ -107,14 +139,17 @@ const jsonLd: any[] = [
     url: canonical,
     inLanguage: 'fr-FR',
     isPartOf: { '@id': WEBSITE_ID },
-    speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.si-article-title', '.si-tldr'] },
+    speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.si-article-title', '.bar-short-answer'] },
   },
   {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    itemListElement: current.map((f, i) => ({
-      '@type': 'ListItem', position: i + 1, name: `${f.ville} · ${typeLabel(f.type_bien)} ${f.surface} m² (${f.score_global}/100)`,
-      url: `${SITE_URL}/barometre/${f.slug}`,
+    numberOfItems: total,
+    itemListElement: current.map((fiche, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: `${fiche.ville} · ${typeLabel(fiche.type_bien)} ${fiche.surface} m² (${fiche.score_global}/100)`,
+      url: `${SITE_URL}/barometre/${fiche.slug}`,
     })),
   },
   {
@@ -129,71 +164,255 @@ const jsonLd: any[] = [
   faqSchema,
 ];
 ---
-<BaseLayout {title} {description} {canonical} {jsonLd}>
-  <section class="si-section">
+<BaseLayout {title} {description} {canonical} {jsonLd} image="/assets/barometre-og.svg">
+  <link slot="head" rel="preload" href={dmSans800Url} as="font" type="font/woff2" crossorigin="anonymous" />
+  <link slot="head" rel="preload" href={inter400Url} as="font" type="font/woff2" crossorigin="anonymous" />
+  <div class="bar-page">
     <div class="si-container">
       <nav class="si-breadcrumb" aria-label="Fil d'Ariane">
         <a href="/">Accueil</a><span> &rsaquo; </span><span>Le Baromètre immobilier</span>
       </nav>
+    </div>
 
-      <header class="bar-hub-header">
-        <p class="bar-edition">Édition {editionLabel}</p>
-        <h1 class="si-article-title">Le Baromètre immobilier Score-Immo</h1>
-        <p class="bar-hub-lead">Un observatoire de fiches issues d'annonces réellement analysées, publié édition par édition.
-        Chaque instantané affiche son score, ses sections réellement notées, sa date d'analyse et ses limites.</p>
-        <div class="bar-stats">
-          <div><strong>{total}</strong><span>annonces notées</span></div>
-          <div><strong>{avg}/100</strong><span>score moyen</span></div>
-          <div><strong>{regions}</strong><span>régions</span></div>
-          <div><strong>{sectionCountLabel}</strong><span>sections par fiche</span></div>
-        </div>
-      </header>
+    <section class="bar-hero" aria-labelledby="bar-title">
+      <div class="si-container bar-hero-grid">
+        <header class="bar-hero-copy">
+          <p class="bar-edition">Édition {editionLabel} · Données mises à jour</p>
+          <h1 class="si-article-title" id="bar-title">Le Baromètre immobilier Score-Immo</h1>
+          <p class="bar-short-answer">Cette édition décrit <strong>{total} annonces réellement analysées</strong> dans {regions} régions. Leur score moyen est de <strong>{avg}/100</strong>, avec une médiane de {insights.medianScore}/100.</p>
+          <p class="bar-hero-limit">Il s'agit d'un échantillon descriptif d'annonces, pas d'un indice des prix ni d'une représentation du marché immobilier français.</p>
+          <div class="bar-hero-actions">
+            <a class="bar-button bar-button-primary" href="#analyses">Explorer les {total} analyses</a>
+            <a class="bar-button bar-button-secondary" href="/methodologie">Comprendre la méthode</a>
+          </div>
+        </header>
 
-      <div class="bar-hub-narrow">
-        <TLDRBox items={tldr} />
-      </div>
-
-      <h2 class="bar-h2">Les meilleures notes de l'édition</h2>
-      <div class="bar-grid">
-        {best.map((f) => (
-          <a class="bar-card bar-card-top" href={`/barometre/${f.slug}`}>
-            <span class="bar-card-score" style={`color:${scoreColor(f.score_global)}`}>{f.score_global}<small>/100</small></span>
-            <span class="bar-card-city">{f.ville}</span>
-            <span class="bar-card-meta">{typeLabel(f.type_bien)} · {f.surface} m² · {f.region}</span>
-          </a>
-        ))}
-      </div>
-
-      {regionLinks.length > 0 && (
-        <>
-          <h2 class="bar-h2">Échantillons régionaux de l'édition</h2>
-          <div class="bar-grid">
-            {regionLinks.map((r) => (
-              <a class="bar-card" href={`/barometre/region/${r.slug}`}>
-                <span class="bar-card-city">{r.region}</span>
-                <span class="bar-card-meta">{r.count} biens analysés · score moyen {r.avg}/100</span>
-              </a>
+        <aside class="bar-score-panel" data-barometre-insights aria-label={`Synthèse de l'édition ${editionLabel}`}>
+          <p class="bar-panel-kicker">Score moyen de l'échantillon</p>
+          <p class="bar-main-score"><strong>{avg}</strong><span>/100</span></p>
+          <dl class="bar-score-definitions">
+            <div><dt>Médiane</dt><dd>{insights.medianScore}/100</dd></div>
+            <div><dt>Plage observée</dt><dd>{insights.minimumScore} à {insights.maximumScore}</dd></div>
+          </dl>
+          <div class="bar-distribution" aria-label="Distribution des scores">
+            {insights.scoreBands.map((band) => (
+              <div class="bar-distribution-row">
+                <span>{band.label}</span>
+                <span class="bar-distribution-track" aria-hidden="true">
+                  <span style={`width:${band.count ? Math.max((band.count / total) * 100, 7) : 0}%`}></span>
+                </span>
+                <strong>{band.count}</strong>
+              </div>
             ))}
           </div>
-        </>
-      )}
-
-      <h2 class="bar-h2">Toutes les analyses de {editionLabel}</h2>
-      <div class="bar-grid">
-        {current.map((f) => (
-          <a class="bar-card" href={`/barometre/${f.slug}`}>
-            <span class="bar-card-score" style={`color:${scoreColor(f.score_global)}`}>{f.score_global}<small>/100</small></span>
-            <span class="bar-card-city">{f.ville}{f.is_edito ? ' ★' : ''}</span>
-            <span class="bar-card-meta">{typeLabel(f.type_bien)} · {f.surface} m² · {f.prix_demande.toLocaleString('fr-FR')} €</span>
-            <span class="bar-card-region">{f.region}{f.dpe ? ` · DPE ${f.dpe}` : ''}</span>
-          </a>
-        ))}
+        </aside>
       </div>
+    </section>
+
+    <div class="si-container">
+      <dl class="bar-proof-strip" aria-label="Périmètre de l'édition">
+        <div><dt>Échantillon</dt><dd>{total} annonces</dd></div>
+        <div><dt>Couverture</dt><dd>{regions} régions</dd></div>
+        <div><dt>Grille visible</dt><dd>{sectionCountPhrase}</dd></div>
+        <div><dt>Dernière analyse</dt><dd>{lastDateFmt}</dd></div>
+      </dl>
+
+      <section class="bar-section" aria-labelledby="bar-reading-title">
+        <div class="bar-section-heading">
+          <p class="bar-overline">Lecture de l'édition</p>
+          <h2 id="bar-reading-title">Ce que montre l'échantillon, édition {editionLabel}</h2>
+          <p>Les comparaisons ci-dessous décrivent uniquement ces {total} annonces. Chaque groupe affiche sa taille pour éviter toute extrapolation.</p>
+        </div>
+
+        <div class="bar-insight-grid">
+          <article class="bar-insight-card bar-insight-card-wide">
+            <div class="bar-card-heading">
+              <div>
+                <p class="bar-overline">Comparaison descriptive</p>
+                <h3>Appartements et maisons</h3>
+              </div>
+              <span class="bar-card-note">Prix demandés, pas prix de vente</span>
+            </div>
+            <div class="bar-table-wrap">
+              <table>
+                <thead>
+                  <tr><th>Type</th><th>Annonces</th><th>Score moyen</th><th>Score médian</th><th>Prix demandé médian</th></tr>
+                </thead>
+                <tbody>
+                  {insights.propertyTypes.map((group) => (
+                    <tr>
+                      <th scope="row">{group.label}</th>
+                      <td>{group.count}</td>
+                      <td>{group.averageScore}/100</td>
+                      <td>{group.medianScore}/100</td>
+                      <td>{group.medianPriceM2?.toLocaleString('fr-FR')} €/m²</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="bar-insight-card">
+            <div class="bar-card-heading">
+              <div>
+                <p class="bar-overline">Énergie</p>
+                <h3>DPE de l'échantillon</h3>
+              </div>
+            </div>
+            <div class="bar-dpe-list" aria-label="Répartition des classes DPE">
+              {insights.dpe.filter(({ count }) => count > 0).map((item) => (
+                <div class={`bar-dpe bar-dpe-${item.label.toLowerCase()}`}>
+                  <span>{item.label}</span><strong>{item.count}</strong><small>annonce{item.count > 1 ? 's' : ''}</small>
+                </div>
+              ))}
+            </div>
+            <dl class="bar-dpe-summary">
+              <div><dt>Classes A ou B</dt><dd>{dpeCount(['A', 'B'])}</dd></div>
+              <div><dt>Classes C à E</dt><dd>{dpeCount(['C', 'D', 'E'])}</dd></div>
+              <div><dt>Classes F ou G</dt><dd>{dpeCount(['F', 'G'])}</dd></div>
+            </dl>
+          </article>
+
+          <article class="bar-insight-card">
+            <div class="bar-card-heading">
+              <div>
+                <p class="bar-overline">Couverture</p>
+                <h3>{regions} régions représentées</h3>
+              </div>
+            </div>
+            <ul class="bar-region-list">
+              {insights.regions.map((region) => (
+                <li>
+                  {region.count >= REGION_MIN
+                    ? <a href={`/barometre/region/${slugifyRegion(region.name)}`}>{region.name}</a>
+                    : <span>{region.name}</span>}
+                  <strong>{region.count}</strong>
+                </li>
+              ))}
+            </ul>
+            <p class="bar-card-footnote">Un lien régional apparaît à partir de {REGION_MIN} fiches dans une édition homogène.</p>
+          </article>
+        </div>
+      </section>
+
+      <aside class="bar-inline-cta" aria-label="Analyser une annonce">
+        <div>
+          <p class="bar-overline">Passer du baromètre à ton projet</p>
+          <h2>Une annonce mérite une vérification complète ?</h2>
+          <p>Colle son lien pour confronter son prix, son DPE, ses risques et son environnement aux données disponibles.</p>
+        </div>
+        <a class="bar-button bar-button-light" href="https://app.score-immo.fr/app?utm_source=site&amp;utm_medium=barometre_hub">Analyser mon annonce</a>
+      </aside>
+
+      <section class="bar-section" id="analyses" data-barometre-explorer aria-labelledby="bar-explorer-title">
+        <div class="bar-section-heading bar-section-heading-row">
+          <div>
+            <p class="bar-overline">Corpus public</p>
+            <h2 id="bar-explorer-title">Explorer les analyses, édition {editionLabel}</h2>
+            <p>Recherche une ville ou affine la sélection. Chaque fiche conserve sa date, ses données disponibles et ses limites.</p>
+          </div>
+          <p class="bar-result-count"><span data-barometre-count aria-live="polite">{total}</span> analyses affichées</p>
+        </div>
+
+        <form class="bar-filters" data-barometre-filters>
+          <label class="bar-search">
+            <span>Rechercher</span>
+            <input type="search" name="search" placeholder="Ville ou région" autocomplete="off" data-filter-search />
+          </label>
+          <label>
+            <span>Type de bien</span>
+            <select name="type" autocomplete="off" data-filter-type>
+              <option value="">Tous les biens</option>
+              <option value="appartement">Appartements</option>
+              <option value="maison">Maisons</option>
+            </select>
+          </label>
+          <label>
+            <span>DPE</span>
+            <select name="dpe" autocomplete="off" data-filter-dpe>
+              <option value="">Tous les DPE</option>
+              {dpeOptions.map((dpe) => <option value={dpe}>{dpe}</option>)}
+            </select>
+          </label>
+          <label>
+            <span>Région</span>
+            <select name="region" autocomplete="off" data-filter-region>
+              <option value="">Toutes les régions</option>
+              {regionOptions.map((region) => <option value={region}>{region}</option>)}
+            </select>
+          </label>
+          <label>
+            <span>Trier</span>
+            <select name="sort" autocomplete="off" data-filter-sort>
+              <option value="score-desc">Score décroissant</option>
+              <option value="score-asc">Score croissant</option>
+              <option value="city-asc">Ville de A à Z</option>
+            </select>
+          </label>
+          <button class="bar-reset" type="reset" data-barometre-reset>Réinitialiser</button>
+        </form>
+        <noscript><p class="bar-noscript">Les filtres nécessitent JavaScript. Les {total} analyses restent toutes accessibles ci-dessous.</p></noscript>
+
+        <div class="bar-card-grid" data-barometre-list>
+          {current.map((fiche) => {
+            const highlight = fiche.alertes_cles[0] || fiche.points_forts[0] || fiche.verdict;
+            return (
+              <article
+                class="bar-listing-card"
+                data-barometre-card
+                data-search={`${fiche.ville} ${fiche.region}`}
+                data-type={fiche.type_bien}
+                data-dpe={fiche.dpe || ''}
+                data-region={fiche.region}
+                data-score={fiche.score_global}
+                data-city={fiche.ville}
+              >
+                <a href={`/barometre/${fiche.slug}`}>
+                  <div class="bar-listing-top">
+                    <span class="bar-listing-score" style={`color:${scoreColor(fiche.score_global)}`}>{fiche.score_global}<small>/100</small></span>
+                    <span class={`bar-dpe-pill bar-dpe-${fiche.dpe?.toLowerCase()}`}>DPE {fiche.dpe}</span>
+                  </div>
+                  <h3>{fiche.ville}{fiche.is_edito ? <span class="bar-editorial">Sélection éditoriale</span> : null}</h3>
+                  <p class="bar-listing-meta">{typeLabel(fiche.type_bien)} · {fiche.surface.toLocaleString('fr-FR')} m² · {fiche.prix_demande.toLocaleString('fr-FR')} €</p>
+                  <p class="bar-listing-region">{fiche.region}</p>
+                  {highlight && <p class={`bar-listing-highlight ${fiche.alertes_cles[0] ? 'is-alert' : ''}`}>{highlight}</p>}
+                  <span class="bar-listing-link">Voir l'analyse <span aria-hidden="true">→</span></span>
+                </a>
+              </article>
+            );
+          })}
+        </div>
+        <p class="bar-empty" data-barometre-empty hidden>Aucune analyse ne correspond à ces filtres.</p>
+      </section>
+
+      <section class="bar-citation" aria-labelledby="bar-citation-title">
+        <div class="bar-citation-copy">
+          <p class="bar-overline">Source vérifiable</p>
+          <h2 id="bar-citation-title">Citer l'édition {editionLabel}</h2>
+          <p>Cette référence mentionne la version et la taille de l'échantillon. Les fichiers mensuels restent stables lorsque le hub passe à une nouvelle édition.</p>
+          <blockquote data-citation-text>{citation}</blockquote>
+          <div class="bar-citation-actions">
+            <button type="button" class="bar-button bar-button-primary" data-copy-citation>Copier la citation</button>
+            <span class="bar-copy-status" data-copy-status aria-live="polite"></span>
+          </div>
+        </div>
+        <div class="bar-downloads">
+          <p class="bar-download-title">Données publiques de l'édition</p>
+          <a href={editionJsonUrl} download>Télécharger le JSON <span>application/json</span></a>
+          <a href={editionCsvUrl} download>Télécharger le CSV <span>tableur</span></a>
+          <a href="/methodologie">Lire la méthode et ses limites <span>documentation</span></a>
+          <p>Les exports ne contiennent ni adresse exacte, ni URL d'annonce, ni identité utilisateur. Aucune licence de réutilisation plus large n'est déclarée.</p>
+        </div>
+      </section>
 
       {archiveEditions.length > 0 && (
-        <section class="bar-archives" aria-labelledby="bar-archives-title">
-          <h2 class="bar-h2" id="bar-archives-title">Archives par méthode</h2>
-          <p>Les éditions antérieures restent consultables dans leur état d'origine. Leurs scores ne sont pas mélangés avec ceux de {editionLabel}.</p>
+        <section class="bar-section bar-archives" aria-labelledby="bar-archives-title">
+          <div class="bar-section-heading">
+            <p class="bar-overline">Historique</p>
+            <h2 id="bar-archives-title">Archives par méthode</h2>
+            <p>Les éditions antérieures restent consultables dans leur état d'origine. Leurs scores ne sont pas mélangés avec ceux de l'édition {editionLabel}.</p>
+          </div>
           {archiveEditions.map((edition) => {
             const label = new Date(`${edition.month}-01T12:00:00Z`).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long' });
             const archivedRange = scoreSectionCountRange(edition.fiches);
@@ -202,13 +421,17 @@ const jsonLd: any[] = [
               : `${archivedRange.minimum} à ${archivedRange.maximum}`;
             return (
               <details>
-                <summary>{label} : {edition.fiches.length} fiches, {archivedSections} sections visibles par fiche</summary>
-                <div class="bar-grid bar-archive-grid">
-                  {edition.fiches.map((f) => (
-                    <a class="bar-card" href={`/barometre/${f.slug}`}>
-                      <span class="bar-card-score" style={`color:${scoreColor(f.score_global)}`}>{f.score_global}<small>/100</small></span>
-                      <span class="bar-card-city">{f.ville}</span>
-                      <span class="bar-card-meta">{typeLabel(f.type_bien)} · {f.surface} m² · {f.prix_demande.toLocaleString('fr-FR')} €</span>
+                <summary><span>{label}</span><small>{edition.fiches.length} fiches · {archivedSections} sections visibles</small></summary>
+                <div class="bar-archive-actions">
+                  <a href={`/barometre/editions/${edition.month}.json`} download>JSON</a>
+                  <a href={`/barometre/editions/${edition.month}.csv`} download>CSV</a>
+                </div>
+                <div class="bar-archive-grid">
+                  {edition.fiches.map((fiche) => (
+                    <a class="bar-archive-card" href={`/barometre/${fiche.slug}`}>
+                      <strong>{fiche.score_global}<small>/100</small></strong>
+                      <span>{fiche.ville}</span>
+                      <small>{typeLabel(fiche.type_bien)} · {fiche.surface} m²</small>
                     </a>
                   ))}
                 </div>
@@ -218,44 +441,266 @@ const jsonLd: any[] = [
         </section>
       )}
 
-      <div class="bar-hub-narrow">
-        <FAQ items={faq} />
-        <AnalyzerBox blog="villes" medium="barometre_hub" />
-        <p class="bar-method">Méthodologie : le Baromètre contient des instantanés datés, pas une estimation du marché
-        immobilier français. Les agrégats décrivent une seule édition et une seule méthode. Les fiches archivées ne sont
-        pas recalculées automatiquement lorsque le moteur évolue. <a href="/methodologie">Lire la méthode et ses limites.</a></p>
+      <div class="bar-bottom-grid">
+        <div><FAQ items={faq} /></div>
+        <aside class="bar-method-card">
+          <p class="bar-overline">À retenir</p>
+          <h2>Un corpus d'annonces, pas une estimation du marché</h2>
+          <p>Les agrégats décrivent une seule édition et une seule méthode. Les fiches archivées ne sont pas recalculées lorsque le moteur évolue.</p>
+          <a href="/methodologie">Consulter le protocole complet</a>
+        </aside>
       </div>
+
+      <div class="bar-analyzer"><AnalyzerBox blog="villes" medium="barometre_hub" /></div>
     </div>
-  </section>
+  </div>
 </BaseLayout>
 
+<script>
+  const fold = (value: string) => value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLocaleLowerCase('fr');
+
+  const explorer = document.querySelector<HTMLElement>('[data-barometre-explorer]');
+  if (explorer) {
+    const form = explorer.querySelector<HTMLFormElement>('[data-barometre-filters]');
+    const list = explorer.querySelector<HTMLElement>('[data-barometre-list]');
+    const cards = [...explorer.querySelectorAll<HTMLElement>('[data-barometre-card]')];
+    const count = explorer.querySelector<HTMLElement>('[data-barometre-count]');
+    const empty = explorer.querySelector<HTMLElement>('[data-barometre-empty]');
+    const search = explorer.querySelector<HTMLInputElement>('[data-filter-search]');
+    const type = explorer.querySelector<HTMLSelectElement>('[data-filter-type]');
+    const dpe = explorer.querySelector<HTMLSelectElement>('[data-filter-dpe]');
+    const region = explorer.querySelector<HTMLSelectElement>('[data-filter-region]');
+    const sort = explorer.querySelector<HTMLSelectElement>('[data-filter-sort]');
+    const collator = new Intl.Collator('fr', { sensitivity: 'base' });
+
+    const applyFilters = () => {
+      const query = fold(search?.value || '');
+      const visible = cards.filter((card) => {
+        const matches = (
+          (!query || fold(card.dataset.search || '').includes(query))
+          && (!type?.value || card.dataset.type === type.value)
+          && (!dpe?.value || card.dataset.dpe === dpe.value)
+          && (!region?.value || card.dataset.region === region.value)
+        );
+        card.hidden = !matches;
+        return matches;
+      });
+
+      const ordered = [...cards].sort((a, b) => {
+        if (sort?.value === 'score-asc') return Number(a.dataset.score) - Number(b.dataset.score);
+        if (sort?.value === 'city-asc') return collator.compare(a.dataset.city || '', b.dataset.city || '');
+        return Number(b.dataset.score) - Number(a.dataset.score);
+      });
+      ordered.forEach((card) => list?.append(card));
+      if (count) count.textContent = String(visible.length);
+      if (empty) empty.hidden = visible.length > 0;
+    };
+
+    form?.addEventListener('input', applyFilters);
+    form?.addEventListener('change', applyFilters);
+    form?.addEventListener('submit', (event) => event.preventDefault());
+    form?.addEventListener('reset', () => requestAnimationFrame(applyFilters));
+  }
+
+  const copyButton = document.querySelector<HTMLButtonElement>('[data-copy-citation]');
+  const citation = document.querySelector<HTMLElement>('[data-citation-text]');
+  const copyStatus = document.querySelector<HTMLElement>('[data-copy-status]');
+  copyButton?.addEventListener('click', async () => {
+    const text = citation?.textContent?.trim() || '';
+    if (!text) return;
+    try {
+      await navigator.clipboard.writeText(text);
+      if (copyStatus) copyStatus.textContent = 'Citation copiée.';
+    } catch (_error) {
+      const selection = window.getSelection();
+      const range = document.createRange();
+      if (citation && selection) {
+        range.selectNodeContents(citation);
+        selection.removeAllRanges();
+        selection.addRange(range);
+      }
+      if (copyStatus) copyStatus.textContent = 'Citation sélectionnée, utilise la commande Copier.';
+    }
+  });
+</script>
+
 <style is:global>
-  .si-breadcrumb { font-size: 0.875rem; color: var(--si-muted-foreground, #64748B); margin: 1rem 0 2rem; }
-  .si-breadcrumb a { color: var(--si-muted-foreground, #64748B); text-decoration: none; }
-  .si-breadcrumb a:hover { color: var(--si-accent, #3B82F6); }
-  .bar-hub-header { max-width: 48rem; margin: 0 auto 1rem; text-align: center; }
-  .bar-edition { margin: 0 0 0.5rem; color: var(--si-accent, #2563EB); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.8rem; }
-  .si-article-title { font-family: var(--si-font-heading, 'DM Sans', sans-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.025em; margin: 0 0 1rem; color: var(--si-foreground); }
-  .bar-hub-lead { font-size: 1.1rem; line-height: 1.7; color: var(--si-muted-foreground, #64748B); margin: 0 auto 1.5rem; }
-  .bar-hub-narrow { max-width: 48rem; margin: 0 auto; }
-  .bar-stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 2rem; margin: 1.5rem 0; }
-  .bar-stats div { display: flex; flex-direction: column; }
-  .bar-stats strong { font-family: var(--si-font-heading); font-size: 1.75rem; font-weight: 800; color: var(--si-accent, #3B82F6); }
-  .bar-stats span { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--si-muted-foreground); }
-  .bar-h2 { font-family: var(--si-font-heading); font-size: 1.5rem; font-weight: 700; margin: 2.5rem 0 1rem; color: var(--si-foreground); }
-  .bar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
-  .bar-card { display: flex; flex-direction: column; gap: 0.25rem; padding: 1.1rem 1.25rem; border: 1px solid var(--si-border, #E2E8F0); border-radius: var(--si-radius, 0.75rem); background: var(--si-card, #fff); text-decoration: none; transition: box-shadow 0.2s, transform 0.2s; }
-  .bar-card:hover { box-shadow: var(--si-shadow-lg, 0 10px 15px -3px rgba(0,0,0,0.1)); transform: translateY(-2px); }
-  .bar-card-top { border-color: rgba(59,130,246,0.35); }
-  .bar-card-score { font-family: var(--si-font-heading); font-size: 1.9rem; font-weight: 800; line-height: 1; }
-  .bar-card-score small { font-size: 0.8rem; color: var(--si-muted-foreground); font-weight: 600; }
-  .bar-card-city { font-weight: 700; font-size: 1.05rem; color: var(--si-foreground); }
-  .bar-card-meta { font-size: 0.85rem; color: var(--si-foreground); }
-  .bar-card-region { font-size: 0.8rem; color: var(--si-muted-foreground); }
-  .bar-method { font-size: 0.875rem; color: var(--si-muted-foreground); line-height: 1.6; margin-top: 1.5rem; }
-  .bar-method a { color: var(--si-accent, #3B82F6); }
-  .bar-archives > p { max-width: 48rem; color: var(--si-muted-foreground); line-height: 1.6; }
-  .bar-archives details { border-top: 1px solid var(--si-border, #E2E8F0); padding: 1rem 0; }
-  .bar-archives summary { cursor: pointer; color: var(--si-foreground); font-weight: 700; }
-  .bar-archive-grid { margin-top: 1rem; }
+  .bar-page { background: #f8fafc; padding-bottom: 4rem; }
+  .si-breadcrumb { font-size: 0.875rem; color: #64748b; margin: 0; padding: 1rem 0; }
+  .si-breadcrumb a { color: #475569; text-decoration: none; }
+  .si-breadcrumb a { text-decoration: underline; text-underline-offset: 0.16em; }
+  .si-breadcrumb a:hover { color: #1d4ed8; }
+  .bar-hero { background: radial-gradient(circle at 90% 10%, rgba(59, 130, 246, 0.24), transparent 34%), linear-gradient(145deg, #0b1328 0%, #111f3d 58%, #0d3260 100%); color: #fff; overflow: hidden; }
+  .bar-hero-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; padding-top: clamp(3rem, 7vw, 5.5rem); padding-bottom: clamp(3rem, 7vw, 5.5rem); }
+  .bar-hero-copy { max-width: 46rem; }
+  .bar-edition, .bar-overline { margin: 0 0 0.65rem; color: #2563eb; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase; }
+  .bar-hero .bar-edition { color: #93c5fd; }
+  .bar-hero .si-article-title { max-width: 12ch; margin: 0 0 1.25rem; color: #fff; font-family: var(--si-font-heading, 'DM Sans', sans-serif); font-size: clamp(2.35rem, 5vw, 4.6rem); font-weight: 800; letter-spacing: -0.045em; line-height: 0.98; text-wrap: balance; }
+  .bar-short-answer { max-width: 42rem; margin: 0; color: #e2e8f0; font-size: clamp(1.05rem, 2vw, 1.28rem); line-height: 1.6; }
+  .bar-short-answer strong { color: #fff; }
+  .bar-hero-limit { max-width: 42rem; margin: 1rem 0 0; color: #aebed4; font-size: 0.88rem; line-height: 1.55; }
+  .bar-hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.6rem; }
+  .bar-button { display: inline-flex; min-height: 46px; align-items: center; justify-content: center; border: 1px solid transparent; border-radius: 0.75rem; padding: 0.72rem 1.1rem; font: 700 0.9rem/1 var(--si-font-body, 'Inter', sans-serif); text-decoration: none; cursor: pointer; transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease; }
+  .bar-button:hover { transform: translateY(-1px); }
+  .bar-button:focus-visible, .bar-reset:focus-visible, .bar-filters input:focus-visible, .bar-filters select:focus-visible { outline: 3px solid #60a5fa; outline-offset: 3px; }
+  .bar-button-primary { background: #2563eb; color: #fff; box-shadow: 0 10px 30px rgba(37, 99, 235, 0.28); }
+  .bar-button-primary:hover { background: #1d4ed8; color: #fff; }
+  .bar-button-secondary { border-color: rgba(255, 255, 255, 0.28); background: rgba(255, 255, 255, 0.08); color: #fff; }
+  .bar-button-secondary:hover { background: rgba(255, 255, 255, 0.14); color: #fff; }
+  .bar-button-light { background: #fff; color: #0f172a; white-space: nowrap; }
+  .bar-score-panel { border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 1.5rem; padding: clamp(1.4rem, 3vw, 2rem); background: rgba(6, 16, 36, 0.72); box-shadow: 0 28px 70px rgba(0, 0, 0, 0.28); }
+  .bar-panel-kicker { margin: 0; color: #bfdbfe; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+  .bar-main-score { display: flex; align-items: baseline; margin: 0.3rem 0 1.1rem; }
+  .bar-main-score strong { font: 800 clamp(4.6rem, 10vw, 7.4rem)/0.92 var(--si-font-heading, 'DM Sans', sans-serif); letter-spacing: -0.07em; }
+  .bar-main-score span { margin-left: 0.4rem; color: #93c5fd; font-size: 1.25rem; font-weight: 700; }
+  .bar-score-definitions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 0 0 1.4rem; }
+  .bar-score-definitions div { padding: 0.85rem; border-radius: 0.8rem; background: rgba(255, 255, 255, 0.07); }
+  .bar-score-definitions dt { color: #94a3b8; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
+  .bar-score-definitions dd { margin: 0.25rem 0 0; color: #fff; font-weight: 800; }
+  .bar-distribution { display: grid; gap: 0.55rem; }
+  .bar-distribution-row { display: grid; grid-template-columns: 3.7rem 1fr 1.5rem; gap: 0.65rem; align-items: center; color: #cbd5e1; font-size: 0.75rem; }
+  .bar-distribution-row strong { color: #fff; text-align: right; }
+  .bar-distribution-track { height: 0.45rem; overflow: hidden; border-radius: 1rem; background: rgba(255, 255, 255, 0.1); }
+  .bar-distribution-track span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #60a5fa, #38bdf8); }
+  .bar-proof-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin: 0; border: 1px solid #dbe4f0; border-radius: 0 0 1.25rem 1.25rem; overflow: hidden; background: #dbe4f0; box-shadow: 0 14px 32px rgba(15, 23, 42, 0.06); }
+  .bar-proof-strip div { min-width: 0; padding: 1rem 1.2rem; background: #fff; }
+  .bar-proof-strip dt { color: #64748b; font-size: 0.69rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
+  .bar-proof-strip dd { margin: 0.28rem 0 0; color: #0f172a; font-weight: 800; }
+  .bar-section { padding-top: clamp(3.5rem, 7vw, 6rem); scroll-margin-top: 5rem; }
+  .bar-section-heading { max-width: 48rem; margin-bottom: 1.6rem; }
+  .bar-section-heading h2, .bar-inline-cta h2, .bar-citation h2, .bar-method-card h2 { margin: 0; color: #0f172a; font-family: var(--si-font-heading, 'DM Sans', sans-serif); font-size: clamp(1.65rem, 3vw, 2.35rem); line-height: 1.1; letter-spacing: -0.025em; }
+  .bar-section-heading > p:last-child { margin: 0.8rem 0 0; color: #64748b; line-height: 1.65; }
+  .bar-section-heading-row { display: flex; max-width: none; align-items: end; justify-content: space-between; gap: 2rem; }
+  .bar-section-heading-row > div { max-width: 48rem; }
+  .bar-section-heading-row > div > p:last-child { margin: 0.8rem 0 0; color: #64748b; line-height: 1.65; }
+  .bar-section-heading.bar-section-heading-row > p.bar-result-count { color: #1e3a8a; }
+  .bar-insight-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; align-items: start; }
+  .bar-insight-card { min-width: 0; border: 1px solid #dbe4f0; border-radius: 1.25rem; padding: clamp(1.25rem, 3vw, 1.75rem); background: #fff; box-shadow: 0 12px 32px rgba(15, 23, 42, 0.05); }
+  .bar-insight-card-wide { grid-column: 1 / -1; }
+  .bar-card-heading { display: flex; align-items: start; justify-content: space-between; gap: 1rem; margin-bottom: 1.2rem; }
+  .bar-card-heading h3 { margin: 0; color: #0f172a; font-family: var(--si-font-heading); font-size: 1.25rem; }
+  .bar-card-note { flex-shrink: 0; border-radius: 999px; padding: 0.38rem 0.65rem; background: #f1f5f9; color: #475569; font-size: 0.72rem; font-weight: 700; }
+  .bar-table-wrap { overflow-x: auto; }
+  .bar-table-wrap table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  .bar-table-wrap th, .bar-table-wrap td { padding: 0.8rem 0.7rem; border-bottom: 1px solid #e2e8f0; text-align: right; white-space: nowrap; }
+  .bar-table-wrap th:first-child, .bar-table-wrap td:first-child { padding-left: 0; text-align: left; }
+  .bar-table-wrap thead th { color: #64748b; font-size: 0.72rem; text-transform: uppercase; }
+  .bar-table-wrap tbody th { color: #0f172a; }
+  .bar-dpe-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(74px, 1fr)); gap: 0.65rem; }
+  .bar-dpe { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 0.15rem 0.55rem; border-radius: 0.8rem; padding: 0.75rem; color: #0f172a; }
+  .bar-dpe > span { grid-row: 1 / 3; display: grid; width: 2.1rem; height: 2.1rem; place-items: center; border-radius: 0.55rem; background: rgba(255, 255, 255, 0.7); font-weight: 900; }
+  .bar-dpe strong { align-self: end; font-size: 1.15rem; }
+  .bar-dpe small { align-self: start; color: #475569; }
+  .bar-dpe-a { background: #bbf7d0; } .bar-dpe-b { background: #d9f99d; } .bar-dpe-c { background: #fef08a; } .bar-dpe-d { background: #fed7aa; } .bar-dpe-e { background: #fdba74; } .bar-dpe-f { background: #fecaca; } .bar-dpe-g { background: #fca5a5; }
+  .bar-dpe-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin: 1.2rem 0 0; }
+  .bar-dpe-summary div { border-radius: 0.7rem; padding: 0.7rem; background: #f8fafc; text-align: center; }
+  .bar-dpe-summary dt { color: #64748b; font-size: 0.68rem; font-weight: 700; }
+  .bar-dpe-summary dd { margin: 0.25rem 0 0; color: #0f172a; font-size: 1.1rem; font-weight: 800; }
+  .bar-region-list { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+  .bar-region-list li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.58rem 0; border-bottom: 1px solid #e2e8f0; color: #334155; }
+  .bar-region-list a { color: #1d4ed8; font-weight: 700; text-decoration: none; }
+  .bar-region-list strong { display: grid; min-width: 1.75rem; height: 1.75rem; place-items: center; border-radius: 999px; background: #eff6ff; color: #1d4ed8; font-size: 0.78rem; }
+  .bar-card-footnote { margin: 1rem 0 0; color: #64748b; font-size: 0.78rem; line-height: 1.5; }
+  .bar-inline-cta { display: flex; align-items: center; justify-content: space-between; gap: 2rem; margin-top: clamp(3rem, 6vw, 5rem); border-radius: 1.25rem; padding: clamp(1.4rem, 4vw, 2.2rem); background: linear-gradient(135deg, #1d4ed8, #0f3b75); color: #fff; box-shadow: 0 18px 42px rgba(29, 78, 216, 0.2); }
+  .bar-inline-cta .bar-overline { color: #bfdbfe; }
+  .bar-inline-cta h2 { color: #fff; font-size: clamp(1.35rem, 2.7vw, 2rem); }
+  .bar-inline-cta p:last-child { max-width: 48rem; margin: 0.55rem 0 0; color: #dbeafe; line-height: 1.55; }
+  .bar-section .bar-result-count { flex-shrink: 0; margin: 0; border-radius: 999px; padding: 0.55rem 0.8rem; background: #e0ecff; color: #1e3a8a; font-size: 0.82rem; font-weight: 700; }
+  .bar-filters { display: grid; grid-template-columns: minmax(180px, 1.5fr) repeat(4, minmax(125px, 1fr)) auto; gap: 0.7rem; align-items: end; border: 1px solid #dbe4f0; border-radius: 1rem; padding: 1rem; background: #fff; }
+  .bar-filters label { display: grid; gap: 0.35rem; color: #475569; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; }
+  .bar-filters input, .bar-filters select { width: 100%; min-width: 0; height: 44px; border: 1px solid #cbd5e1; border-radius: 0.65rem; background: #fff; color: #0f172a; padding: 0 0.7rem; font: 500 0.84rem var(--si-font-body, 'Inter', sans-serif); text-transform: none; }
+  .bar-reset { height: 44px; border: 1px solid #cbd5e1; border-radius: 0.65rem; padding: 0 0.8rem; background: #f8fafc; color: #334155; font-weight: 700; cursor: pointer; }
+  .bar-noscript, .bar-empty { border-radius: 0.75rem; padding: 1rem; background: #fff7ed; color: #9a3412; }
+  .bar-card-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.9rem; margin-top: 1rem; }
+  .bar-listing-card { min-width: 0; }
+  .bar-listing-card[hidden] { display: none; }
+  .bar-listing-card > a { display: flex; height: 100%; min-height: 270px; flex-direction: column; border: 1px solid #dbe4f0; border-radius: 1rem; padding: 1.1rem; background: #fff; color: inherit; text-decoration: none; box-shadow: 0 7px 22px rgba(15, 23, 42, 0.045); transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease; }
+  .bar-listing-card > a:hover { transform: translateY(-3px); border-color: #93c5fd; box-shadow: 0 15px 32px rgba(15, 23, 42, 0.1); }
+  .bar-listing-card > a:focus-visible { outline: 3px solid #2563eb; outline-offset: 3px; }
+  .bar-listing-top { display: flex; align-items: start; justify-content: space-between; gap: 0.6rem; }
+  .bar-listing-score { font: 800 2rem/1 var(--si-font-heading); letter-spacing: -0.04em; }
+  .bar-listing-score small { margin-left: 0.12rem; color: #64748b; font-size: 0.72rem; letter-spacing: 0; }
+  .bar-dpe-pill { border-radius: 999px; padding: 0.32rem 0.48rem; color: #0f172a; font-size: 0.7rem; font-weight: 800; }
+  .bar-listing-card h3 { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 1rem 0 0.35rem; color: #0f172a; font: 800 1.05rem/1.25 var(--si-font-heading); }
+  .bar-editorial { border-radius: 999px; padding: 0.2rem 0.4rem; background: #fef3c7; color: #92400e; font: 700 0.62rem var(--si-font-body); }
+  .bar-listing-meta, .bar-listing-region { margin: 0; color: #475569; font-size: 0.79rem; line-height: 1.5; }
+  .bar-listing-region { color: #64748b; }
+  .bar-listing-highlight { margin: 0.8rem 0 0; border-left: 3px solid #60a5fa; padding-left: 0.65rem; color: #334155; font-size: 0.76rem; line-height: 1.45; }
+  .bar-listing-highlight.is-alert { border-color: #f97316; }
+  .bar-listing-link { margin-top: auto; padding-top: 0.9rem; color: #1d4ed8; font-size: 0.8rem; font-weight: 800; }
+  .bar-citation { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(270px, 0.75fr); gap: clamp(1.5rem, 4vw, 3rem); margin-top: clamp(3.5rem, 7vw, 6rem); border-radius: 1.5rem; padding: clamp(1.4rem, 4vw, 2.6rem); background: #0f172a; color: #e2e8f0; }
+  .bar-citation .bar-overline { color: #93c5fd; }
+  .bar-citation h2 { color: #fff; }
+  .bar-citation-copy > p { color: #aebed4; line-height: 1.6; }
+  .bar-citation blockquote { margin: 1.2rem 0; border: 1px solid #334155; border-radius: 0.8rem; padding: 1rem; background: #111f36; color: #f8fafc; font-size: 0.88rem; line-height: 1.6; }
+  .bar-citation-actions { display: flex; align-items: center; gap: 0.8rem; }
+  .bar-copy-status { color: #bfdbfe; font-size: 0.8rem; }
+  .bar-downloads { border-radius: 1rem; padding: 1.1rem; background: #fff; color: #0f172a; }
+  .bar-download-title { margin: 0 0 0.5rem; font-weight: 800; }
+  .bar-downloads > a { display: flex; justify-content: space-between; gap: 1rem; padding: 0.8rem 0; border-bottom: 1px solid #e2e8f0; color: #1d4ed8; font-size: 0.86rem; font-weight: 700; text-decoration: none; }
+  .bar-downloads > a span { color: #64748b; font-size: 0.7rem; font-weight: 500; }
+  .bar-downloads > p:last-child { margin: 1rem 0 0; color: #64748b; font-size: 0.75rem; line-height: 1.5; }
+  .bar-archives details { border-top: 1px solid #cbd5e1; padding: 1rem 0; }
+  .bar-archives summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; color: #0f172a; cursor: pointer; font-weight: 800; }
+  .bar-archives summary small { color: #64748b; font-weight: 600; }
+  .bar-archive-actions { display: flex; gap: 0.5rem; margin-top: 1rem; }
+  .bar-archive-actions a { border: 1px solid #cbd5e1; border-radius: 0.5rem; padding: 0.4rem 0.7rem; color: #1d4ed8; font-size: 0.75rem; font-weight: 800; text-decoration: none; }
+  .bar-archive-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.65rem; margin-top: 0.8rem; }
+  .bar-archive-card { display: grid; gap: 0.2rem; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 0.8rem; background: #fff; color: #0f172a; text-decoration: none; }
+  .bar-archive-card strong { color: #1d4ed8; }
+  .bar-archive-card strong small, .bar-archive-card > small { color: #64748b; }
+  .bar-bottom-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr); gap: 1.2rem; align-items: start; padding-top: 2rem; }
+  .bar-method-card { position: sticky; top: 5rem; margin-top: 2.5rem; border: 1px solid #bfdbfe; border-radius: 1rem; padding: 1.3rem; background: #eff6ff; }
+  .bar-method-card h2 { font-size: 1.3rem; }
+  .bar-method-card p { color: #475569; line-height: 1.6; }
+  .bar-method-card a { color: #1d4ed8; font-weight: 800; }
+  .bar-analyzer { max-width: 52rem; margin: 0 auto; }
+  @media (max-width: 1050px) {
+    .bar-card-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .bar-filters { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .bar-search { grid-column: span 2; }
+  }
+  @media (max-width: 800px) {
+    .bar-hero-grid { grid-template-columns: 1fr; }
+    .bar-hero .si-article-title { max-width: 15ch; }
+    .bar-score-panel { max-width: 38rem; }
+    .bar-proof-strip { grid-template-columns: repeat(2, 1fr); }
+    .bar-insight-grid, .bar-citation, .bar-bottom-grid { grid-template-columns: 1fr; }
+    .bar-insight-card-wide { grid-column: auto; }
+    .bar-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .bar-method-card { position: static; margin-top: 0; }
+  }
+  @media (max-width: 620px) {
+    .bar-page { padding-bottom: 2rem; }
+    .bar-hero-grid { gap: 2rem; padding-top: 2.5rem; padding-bottom: 2.5rem; }
+    .bar-hero .si-article-title { font-size: clamp(2.2rem, 12vw, 3.25rem); }
+    .bar-hero-actions { display: grid; grid-template-columns: 1fr; }
+    .bar-score-panel { padding: 1.15rem; border-radius: 1rem; }
+    .bar-main-score strong { font-size: 4.6rem; }
+    .bar-proof-strip { border-radius: 0 0 1rem 1rem; }
+    .bar-proof-strip div { padding: 0.8rem; }
+    .bar-proof-strip dd { font-size: 0.86rem; }
+    .bar-section-heading-row { display: block; }
+    .bar-result-count { display: inline-block; margin-top: 1rem; }
+    .bar-insight-grid { grid-template-columns: 1fr; }
+    .bar-card-heading { display: block; }
+    .bar-card-note { display: inline-block; margin-top: 0.7rem; }
+    .bar-inline-cta { display: grid; gap: 1.2rem; }
+    .bar-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 0.8rem; }
+    .bar-search { grid-column: 1 / -1; }
+    .bar-reset { width: 100%; }
+    .bar-card-grid { grid-template-columns: 1fr; }
+    .bar-listing-card > a { min-height: 0; }
+    .bar-citation { padding: 1.2rem; }
+    .bar-citation-actions { align-items: flex-start; flex-direction: column; }
+    .bar-downloads > a { align-items: flex-start; flex-direction: column; gap: 0.25rem; }
+    .bar-archives summary { align-items: flex-start; flex-direction: column; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bar-button, .bar-listing-card > a { transition: none; }
+    .bar-button:hover, .bar-listing-card > a:hover { transform: none; }
+  }
 </style>
