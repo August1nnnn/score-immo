@@ -11,6 +11,7 @@ import {
   selectLatestEdition,
 } from '@/lib/barometre-editions';
 import { buildEditionInsights } from '@/lib/barometre-insights';
+import { buildFicheSignal, axisBarHeight } from '@/lib/barometre-signal.ts';
 import { buildEditionExport } from '@/lib/barometre-edition-export.js';
 import { BRAND_NAME, ORGANIZATION_ID, SITE_URL, WEBSITE_ID } from '@/data/entity';
 import dmSans800Url from '@fontsource/dm-sans/files/dm-sans-latin-800-normal.woff2?url';
@@ -50,6 +51,7 @@ const dpeOptions = [...new Set(current.map((fiche) => fiche.dpe).filter(Boolean)
 const dpeCount = (labels: string[]) => insights.dpe
   .filter(({ label }) => labels.includes(label))
   .reduce((sum, { count }) => sum + count, 0);
+const dpePeak = Math.max(...insights.dpe.map(({ count }) => count), 1);
 const lastDate = stats.latestAnalysisDate;
 const lastDateFmt = lastDate
   ? new Date(`${lastDate}T12:00:00Z`).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })
@@ -189,17 +191,17 @@ const jsonLd: any[] = [
 
         <aside class="bar-score-panel" data-barometre-insights aria-label={`Synthèse de l'édition ${editionLabel}`}>
           <p class="bar-panel-kicker">Score moyen de l'échantillon</p>
-          <p class="bar-main-score"><strong>{avg}</strong><span>/100</span></p>
+          <p class="bar-main-score"><strong data-countup={avg}>{avg}</strong><span>/100</span></p>
           <dl class="bar-score-definitions">
             <div><dt>Médiane</dt><dd>{insights.medianScore}/100</dd></div>
             <div><dt>Plage observée</dt><dd>{insights.minimumScore} à {insights.maximumScore}</dd></div>
           </dl>
           <div class="bar-distribution" aria-label="Distribution des scores">
-            {insights.scoreBands.map((band) => (
-              <div class="bar-distribution-row">
+            {insights.scoreBands.map((band, index) => (
+              <div class="bar-distribution-row" data-reveal style={`--d:${index * 70}ms`}>
                 <span>{band.label}</span>
                 <span class="bar-distribution-track" aria-hidden="true">
-                  <span style={`width:${band.count ? Math.max((band.count / total) * 100, 7) : 0}%`}></span>
+                  <span style={`--w:${band.count ? Math.max((band.count / total) * 100, 7) : 0}%`}></span>
                 </span>
                 <strong>{band.count}</strong>
               </div>
@@ -211,10 +213,10 @@ const jsonLd: any[] = [
 
     <div class="si-container">
       <dl class="bar-proof-strip" aria-label="Périmètre de l'édition">
-        <div><dt>Échantillon</dt><dd>{total} annonces</dd></div>
-        <div><dt>Couverture</dt><dd>{regions} régions</dd></div>
-        <div><dt>Grille visible</dt><dd>{sectionCountPhrase}</dd></div>
-        <div><dt>Dernière analyse</dt><dd>{lastDateFmt}</dd></div>
+        <div data-reveal style="--d:0ms"><dt>Échantillon</dt><dd>{total} annonces</dd></div>
+        <div data-reveal style="--d:60ms"><dt>Couverture</dt><dd>{regions} régions</dd></div>
+        <div data-reveal style="--d:120ms"><dt>Grille visible</dt><dd>{sectionCountPhrase}</dd></div>
+        <div data-reveal style="--d:180ms"><dt>Dernière analyse</dt><dd>{lastDateFmt}</dd></div>
       </dl>
 
       <section class="bar-section" aria-labelledby="bar-reading-title">
@@ -225,7 +227,7 @@ const jsonLd: any[] = [
         </div>
 
         <div class="bar-insight-grid">
-          <article class="bar-insight-card bar-insight-card-wide">
+          <article class="bar-insight-card bar-insight-card-wide" data-reveal>
             <div class="bar-card-heading">
               <div>
                 <p class="bar-overline">Comparaison descriptive</p>
@@ -253,20 +255,30 @@ const jsonLd: any[] = [
             </div>
           </article>
 
-          <article class="bar-insight-card">
+          <article class="bar-insight-card" data-reveal style="--d:90ms">
             <div class="bar-card-heading">
               <div>
                 <p class="bar-overline">Énergie</p>
                 <h3>DPE de l'échantillon</h3>
               </div>
             </div>
-            <div class="bar-dpe-list" aria-label="Répartition des classes DPE">
-              {insights.dpe.filter(({ count }) => count > 0).map((item) => (
-                <div class={`bar-dpe bar-dpe-${item.label.toLowerCase()}`}>
-                  <span>{item.label}</span><strong>{item.count}</strong><small>annonce{item.count > 1 ? 's' : ''}</small>
-                </div>
+            <ul class="bar-dpe-list" aria-label="Répartition des classes DPE">
+              {insights.dpe.map((item, index) => (
+                <li class={`bar-dpe-row${item.count === 0 ? ' is-empty' : ''}`} data-reveal style={`--d:${index * 45}ms`}>
+                  <span class={`bar-dpe-key bar-dpe-${item.label.toLowerCase()}`}>{item.label}</span>
+                  <span class="bar-dpe-track" aria-hidden="true">
+                    <span
+                      class={`bar-dpe-fill bar-dpe-${item.label.toLowerCase()}`}
+                      style={`--w:${Math.round((item.count / dpePeak) * 100)}%`}
+                    ></span>
+                  </span>
+                  <span class="bar-dpe-count">
+                    <strong>{item.count}</strong>
+                    <small>{item.count > 1 ? 'annonces' : 'annonce'}</small>
+                  </span>
+                </li>
               ))}
-            </div>
+            </ul>
             <dl class="bar-dpe-summary">
               <div><dt>Classes A ou B</dt><dd>{dpeCount(['A', 'B'])}</dd></div>
               <div><dt>Classes C à E</dt><dd>{dpeCount(['C', 'D', 'E'])}</dd></div>
@@ -274,7 +286,7 @@ const jsonLd: any[] = [
             </dl>
           </article>
 
-          <article class="bar-insight-card">
+          <article class="bar-insight-card" data-reveal style="--d:180ms">
             <div class="bar-card-heading">
               <div>
                 <p class="bar-overline">Couverture</p>
@@ -296,7 +308,7 @@ const jsonLd: any[] = [
         </div>
       </section>
 
-      <aside class="bar-inline-cta" aria-label="Analyser une annonce">
+      <aside class="bar-inline-cta" data-reveal aria-label="Analyser une annonce">
         <div>
           <p class="bar-overline">Passer du baromètre à ton projet</p>
           <h2>Une annonce mérite une vérification complète ?</h2>
@@ -355,11 +367,13 @@ const jsonLd: any[] = [
         <noscript><p class="bar-noscript">Les filtres nécessitent JavaScript. Les {total} analyses restent toutes accessibles ci-dessous.</p></noscript>
 
         <div class="bar-card-grid" data-barometre-list>
-          {current.map((fiche) => {
-            const highlight = fiche.alertes_cles[0] || fiche.points_forts[0] || fiche.verdict;
+          {current.map((fiche, index) => {
+            const signal = buildFicheSignal(fiche);
             return (
               <article
                 class="bar-listing-card"
+                data-reveal
+                style={`--d:${Math.min(index, 8) * 55}ms`}
                 data-barometre-card
                 data-search={`${fiche.ville} ${fiche.region}`}
                 data-type={fiche.type_bien}
@@ -376,7 +390,36 @@ const jsonLd: any[] = [
                   <h3>{fiche.ville}{fiche.is_edito ? <span class="bar-editorial">Sélection éditoriale</span> : null}</h3>
                   <p class="bar-listing-meta">{typeLabel(fiche.type_bien)} · {fiche.surface.toLocaleString('fr-FR')} m² · {fiche.prix_demande.toLocaleString('fr-FR')} €</p>
                   <p class="bar-listing-region">{fiche.region}</p>
-                  {highlight && <p class={`bar-listing-highlight ${fiche.alertes_cles[0] ? 'is-alert' : ''}`}>{highlight}</p>}
+
+                  {signal.axes.length > 0 && (
+                    <div class="bar-signal">
+                      <span class="bar-signal-chart" aria-hidden="true">
+                        {signal.axes.map((axis) => (
+                          <span
+                            class="bar-signal-bar"
+                            data-level={axis.score >= 8 ? 'high' : axis.score >= 5 ? 'mid' : 'low'}
+                            title={`${axis.label} : ${axis.score}/10`}
+                            style={`--h:${axisBarHeight(axis.score)}%`}
+                          ></span>
+                        ))}
+                      </span>
+                      <p class="bar-signal-read">
+                        {signal.strongest && (
+                          <span class="bar-signal-axis is-strong">
+                            {signal.strongest.label} <b>{signal.strongest.score}/10</b>
+                          </span>
+                        )}
+                        {signal.weakest && signal.weakest.key !== signal.strongest?.key && (
+                          <span class="bar-signal-axis is-weak">
+                            {signal.weakest.label} <b>{signal.weakest.score}/10</b>
+                          </span>
+                        )}
+                      </p>
+                      <p class="bar-signal-scope">{signal.axes.length} axes notés sur cette fiche</p>
+                    </div>
+                  )}
+
+                  {signal.alert && <p class="bar-listing-highlight is-alert">{signal.alert}</p>}
                   <span class="bar-listing-link">Voir l'analyse <span aria-hidden="true">→</span></span>
                 </a>
               </article>
@@ -386,7 +429,7 @@ const jsonLd: any[] = [
         <p class="bar-empty" data-barometre-empty hidden>Aucune analyse ne correspond à ces filtres.</p>
       </section>
 
-      <section class="bar-citation" aria-labelledby="bar-citation-title">
+      <section class="bar-citation" data-reveal aria-labelledby="bar-citation-title">
         <div class="bar-citation-copy">
           <p class="bar-overline">Source vérifiable</p>
           <h2 id="bar-citation-title">Citer l'édition {editionLabel}</h2>
@@ -443,12 +486,32 @@ const jsonLd: any[] = [
 
       <div class="bar-bottom-grid">
         <div><FAQ items={faq} /></div>
-        <aside class="bar-method-card">
-          <p class="bar-overline">À retenir</p>
-          <h2>Un corpus d'annonces, pas une estimation du marché</h2>
-          <p>Les agrégats décrivent une seule édition et une seule méthode. Les fiches archivées ne sont pas recalculées lorsque le moteur évolue.</p>
-          <a href="/methodologie">Consulter le protocole complet</a>
-        </aside>
+        <div class="bar-bottom-aside">
+          <aside class="bar-method-card">
+            <p class="bar-overline">À retenir</p>
+            <h2>Un corpus d'annonces, pas une estimation du marché</h2>
+            <p>Les agrégats décrivent une seule édition et une seule méthode. Les fiches archivées ne sont pas recalculées lorsque le moteur évolue.</p>
+            <a href="/methodologie">Consulter le protocole complet</a>
+          </aside>
+
+          <aside class="bar-recap-card" aria-label={`Repères de l'édition ${editionLabel}`}>
+            <p class="bar-overline">Repères de l'édition</p>
+            <dl class="bar-recap-list">
+              <div><dt>Score moyen</dt><dd>{avg}/100</dd></div>
+              <div><dt>Score médian</dt><dd>{insights.medianScore}/100</dd></div>
+              <div><dt>Plage observée</dt><dd>{insights.minimumScore} à {insights.maximumScore}</dd></div>
+              <div><dt>Échantillon</dt><dd>{total} annonces</dd></div>
+              <div><dt>Couverture</dt><dd>{regions} régions</dd></div>
+              <div><dt>Grille visible</dt><dd>{sectionCountPhrase}</dd></div>
+              {lastDateFmt && <div><dt>Dernière analyse</dt><dd>{lastDateFmt}</dd></div>}
+            </dl>
+            <div class="bar-recap-links">
+              <a href={editionJsonUrl} download>JSON</a>
+              <a href={editionCsvUrl} download>CSV</a>
+              <a href="#analyses">Explorer</a>
+            </div>
+          </aside>
+        </div>
       </div>
 
       <div class="bar-analyzer"><AnalyzerBox blog="villes" medium="barometre_hub" /></div>
@@ -461,6 +524,60 @@ const jsonLd: any[] = [
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .toLocaleLowerCase('fr');
+
+  // Le mouvement n'est activ\u00e9 que si l'utilisateur l'accepte et si le
+  // navigateur sait observer l'entr\u00e9e \u00e0 l'\u00e9cran. Sinon la page reste statique
+  // et enti\u00e8rement visible : aucun contenu ne d\u00e9pend d'une animation.
+  const motionOk = 'IntersectionObserver' in window
+    && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (motionOk) {
+    document.documentElement.classList.add('si-reveal-on');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.classList.add('is-in');
+        revealObserver.unobserve(entry.target);
+      }
+      // La marge haute tr\u00e8s large fait qu'un bloc d\u00e9j\u00e0 d\u00e9pass\u00e9 compte encore
+      // comme visible. Sans elle, un saut de d\u00e9filement (ancre #analyses,
+      // position restaur\u00e9e par le navigateur, molette rapide) enjambe des blocs
+      // qui ne redeviennent jamais visibles.
+    }, { rootMargin: '10000px 0px -8% 0px', threshold: 0.12 });
+
+    for (const node of document.querySelectorAll('[data-reveal]')) revealObserver.observe(node);
+
+    // Dernier filet : au bout d'une seconde et demie, plus rien ne reste masqu\u00e9
+    // au-dessus du bas de l'\u00e9cran, quoi qu'ait fait l'observateur.
+    window.setTimeout(() => {
+      for (const node of document.querySelectorAll('[data-reveal]:not(.is-in)')) {
+        if (node.getBoundingClientRect().top < window.innerHeight) node.classList.add('is-in');
+      }
+    }, 1500);
+
+    const counter = document.querySelector<HTMLElement>('[data-countup]');
+    const target = Number(counter?.dataset.countup);
+    if (counter && Number.isFinite(target)) {
+      const duration = 900;
+      let start = 0;
+      const step = (now: number) => {
+        if (!start) start = now;
+        const ratio = Math.min((now - start) / duration, 1);
+        // easeOutCubic : rapide puis freinage, le chiffre se pose.
+        const eased = 1 - Math.pow(1 - ratio, 3);
+        counter.textContent = String(Math.round(target * eased));
+        if (ratio < 1) requestAnimationFrame(step);
+        else counter.textContent = String(target);
+      };
+      const scoreObserver = new IntersectionObserver((entries) => {
+        if (!entries[0]?.isIntersecting) return;
+        scoreObserver.disconnect();
+        requestAnimationFrame(step);
+      }, { threshold: 0.4 });
+      scoreObserver.observe(counter);
+    }
+  }
 
   const explorer = document.querySelector<HTMLElement>('[data-barometre-explorer]');
   if (explorer) {
@@ -495,9 +612,40 @@ const jsonLd: any[] = [
         return Number(b.dataset.score) - Number(a.dataset.score);
       });
       ordered.forEach((card) => list?.append(card));
-      if (count) count.textContent = String(visible.length);
       if (empty) empty.hidden = visible.length > 0;
+
+      if (count && count.textContent !== String(visible.length)) {
+        count.textContent = String(visible.length);
+        const badge = count.closest('.bar-result-count');
+        if (badge && motionOk) {
+          badge.classList.remove('is-pulsing');
+          // Forcer un reflow pour rejouer la transition sur des filtres successifs.
+          void (badge as HTMLElement).offsetWidth;
+          badge.classList.add('is-pulsing');
+          window.setTimeout(() => badge.classList.remove('is-pulsing'), 260);
+        }
+      }
     };
+
+    if (motionOk && list) {
+      let settle = 0;
+      form?.addEventListener('input', () => {
+        list.classList.add('is-filtering');
+        window.clearTimeout(settle);
+        settle = window.setTimeout(() => list.classList.remove('is-filtering'), 180);
+      });
+    }
+
+    // Ombre sur la barre de filtres uniquement lorsqu'elle est réellement collée.
+    if (form && 'IntersectionObserver' in window) {
+      const sentinel = document.createElement('div');
+      sentinel.setAttribute('aria-hidden', 'true');
+      form.before(sentinel);
+      new IntersectionObserver(
+        ([entry]) => form.classList.toggle('is-stuck', !entry.isIntersecting),
+        { rootMargin: '-77px 0px 0px 0px', threshold: 1 },
+      ).observe(sentinel);
+    }
 
     form?.addEventListener('input', applyFilters);
     form?.addEventListener('change', applyFilters);
@@ -514,6 +662,13 @@ const jsonLd: any[] = [
     try {
       await navigator.clipboard.writeText(text);
       if (copyStatus) copyStatus.textContent = 'Citation copiée.';
+      const label = copyButton.textContent;
+      copyButton.classList.add('is-done');
+      copyButton.textContent = 'Citation copiée';
+      window.setTimeout(() => {
+        copyButton.classList.remove('is-done');
+        copyButton.textContent = label;
+      }, 1800);
     } catch (_error) {
       const selection = window.getSelection();
       const range = document.createRange();
@@ -564,7 +719,7 @@ const jsonLd: any[] = [
   .bar-distribution-row { display: grid; grid-template-columns: 3.7rem 1fr 1.5rem; gap: 0.65rem; align-items: center; color: #cbd5e1; font-size: 0.75rem; }
   .bar-distribution-row strong { color: #fff; text-align: right; }
   .bar-distribution-track { height: 0.45rem; overflow: hidden; border-radius: 1rem; background: rgba(255, 255, 255, 0.1); }
-  .bar-distribution-track span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #60a5fa, #38bdf8); }
+  .bar-distribution-track span { display: block; width: var(--w, 0%); height: 100%; border-radius: inherit; background: linear-gradient(90deg, #60a5fa, #38bdf8); }
   .bar-proof-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin: 0; border: 1px solid #dbe4f0; border-radius: 0 0 1.25rem 1.25rem; overflow: hidden; background: #dbe4f0; box-shadow: 0 14px 32px rgba(15, 23, 42, 0.06); }
   .bar-proof-strip div { min-width: 0; padding: 1rem 1.2rem; background: #fff; }
   .bar-proof-strip dt { color: #64748b; font-size: 0.69rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
@@ -589,19 +744,28 @@ const jsonLd: any[] = [
   .bar-table-wrap th:first-child, .bar-table-wrap td:first-child { padding-left: 0; text-align: left; }
   .bar-table-wrap thead th { color: #64748b; font-size: 0.72rem; text-transform: uppercase; }
   .bar-table-wrap tbody th { color: #0f172a; }
-  .bar-dpe-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(74px, 1fr)); gap: 0.65rem; }
-  .bar-dpe { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 0.15rem 0.55rem; border-radius: 0.8rem; padding: 0.75rem; color: #0f172a; }
-  .bar-dpe > span { grid-row: 1 / 3; display: grid; width: 2.1rem; height: 2.1rem; place-items: center; border-radius: 0.55rem; background: rgba(255, 255, 255, 0.7); font-weight: 900; }
-  .bar-dpe strong { align-self: end; font-size: 1.15rem; }
-  .bar-dpe small { align-self: start; color: #475569; }
+  /* Échelle DPE : une ligne par classe. La piste absorbe toute largeur
+     disponible, donc aucun texte ne peut sortir de la carte. */
+  .bar-dpe-list { display: grid; gap: 0.4rem; margin: 0; padding: 0; list-style: none; }
+  .bar-dpe-row { display: grid; grid-template-columns: 1.85rem minmax(0, 1fr) 5.4rem; align-items: center; gap: 0.6rem; }
+  .bar-dpe-key { display: grid; height: 1.85rem; place-items: center; border-radius: 0.5rem; color: #0f172a; font: 900 0.85rem/1 var(--si-font-heading); }
+  .bar-dpe-track { min-width: 0; height: 0.85rem; border-radius: 999px; background: #f1f5f9; }
+  .bar-dpe-fill { display: block; width: var(--w, 0%); height: 100%; border-radius: inherit; transition: width 0.85s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0ms); }
+  .bar-dpe-count { display: flex; align-items: baseline; gap: 0.28rem; min-width: 0; color: #475569; }
+  .bar-dpe-count strong { color: #0f172a; font-size: 1rem; font-variant-numeric: tabular-nums; }
+  .bar-dpe-count small { overflow: hidden; font-size: 0.72rem; text-overflow: ellipsis; white-space: nowrap; }
+  .bar-dpe-row.is-empty { opacity: 0.45; }
+  .bar-dpe-row.is-empty .bar-dpe-count strong { color: #64748b; }
   .bar-dpe-a { background: #bbf7d0; } .bar-dpe-b { background: #d9f99d; } .bar-dpe-c { background: #fef08a; } .bar-dpe-d { background: #fed7aa; } .bar-dpe-e { background: #fdba74; } .bar-dpe-f { background: #fecaca; } .bar-dpe-g { background: #fca5a5; }
   .bar-dpe-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin: 1.2rem 0 0; }
   .bar-dpe-summary div { border-radius: 0.7rem; padding: 0.7rem; background: #f8fafc; text-align: center; }
   .bar-dpe-summary dt { color: #64748b; font-size: 0.68rem; font-weight: 700; }
   .bar-dpe-summary dd { margin: 0.25rem 0 0; color: #0f172a; font-size: 1.1rem; font-weight: 800; }
   .bar-region-list { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
-  .bar-region-list li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.58rem 0; border-bottom: 1px solid #e2e8f0; color: #334155; }
+  .bar-region-list li { display: flex; align-items: center; justify-content: space-between; gap: 1rem; border-bottom: 1px solid #e2e8f0; color: #334155; }
+  .bar-region-list li > a, .bar-region-list li > span { display: flex; min-height: 44px; align-items: center; padding: 0.35rem 0; }
   .bar-region-list a { color: #1d4ed8; font-weight: 700; text-decoration: none; }
+  .bar-region-list a:hover { text-decoration: underline; }
   .bar-region-list strong { display: grid; min-width: 1.75rem; height: 1.75rem; place-items: center; border-radius: 999px; background: #eff6ff; color: #1d4ed8; font-size: 0.78rem; }
   .bar-card-footnote { margin: 1rem 0 0; color: #64748b; font-size: 0.78rem; line-height: 1.5; }
   .bar-inline-cta { display: flex; align-items: center; justify-content: space-between; gap: 2rem; margin-top: clamp(3rem, 6vw, 5rem); border-radius: 1.25rem; padding: clamp(1.4rem, 4vw, 2.2rem); background: linear-gradient(135deg, #1d4ed8, #0f3b75); color: #fff; box-shadow: 0 18px 42px rgba(29, 78, 216, 0.2); }
@@ -630,6 +794,22 @@ const jsonLd: any[] = [
   .bar-listing-region { color: #64748b; }
   .bar-listing-highlight { margin: 0.8rem 0 0; border-left: 3px solid #60a5fa; padding-left: 0.65rem; color: #334155; font-size: 0.76rem; line-height: 1.45; }
   .bar-listing-highlight.is-alert { border-color: #f97316; }
+
+  /* Profil de la fiche : une barre par axe réellement noté. Les axes non notés
+     ne sont pas rendus du tout, jamais ramenés à zéro. */
+  .bar-signal { margin-top: 0.9rem; }
+  .bar-signal-chart { display: flex; align-items: flex-end; gap: 2px; height: 2.1rem; padding: 0 0.05rem; border-bottom: 1px solid #e2e8f0; }
+  .bar-signal-bar { flex: 1 1 0; min-width: 0; height: var(--h, 6%); border-radius: 2px 2px 0 0; background: #cbd5e1; transform-origin: bottom; transition: height 0.5s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.25s ease; }
+  .bar-signal-bar[data-level='high'] { background: #34d399; }
+  .bar-signal-bar[data-level='mid'] { background: #93c5fd; }
+  .bar-signal-bar[data-level='low'] { background: #fbbf24; }
+  .bar-signal-read { display: flex; flex-wrap: wrap; gap: 0.3rem 0.5rem; margin: 0.55rem 0 0; }
+  .bar-signal-axis { display: inline-flex; align-items: baseline; gap: 0.25rem; min-width: 0; color: #475569; font-size: 0.71rem; line-height: 1.3; }
+  .bar-signal-axis b { color: #0f172a; font-variant-numeric: tabular-nums; }
+  .bar-signal-axis::before { flex-shrink: 0; width: 0.42rem; height: 0.42rem; border-radius: 50%; content: ''; }
+  .bar-signal-axis.is-strong::before { background: #10b981; }
+  .bar-signal-axis.is-weak::before { background: #f59e0b; }
+  .bar-signal-scope { margin: 0.4rem 0 0; color: #94a3b8; font-size: 0.68rem; }
   .bar-listing-link { margin-top: auto; padding-top: 0.9rem; color: #1d4ed8; font-size: 0.8rem; font-weight: 800; }
   .bar-citation { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(270px, 0.75fr); gap: clamp(1.5rem, 4vw, 3rem); margin-top: clamp(3.5rem, 7vw, 6rem); border-radius: 1.5rem; padding: clamp(1.4rem, 4vw, 2.6rem); background: #0f172a; color: #e2e8f0; }
   .bar-citation .bar-overline { color: #93c5fd; }
@@ -640,20 +820,32 @@ const jsonLd: any[] = [
   .bar-copy-status { color: #bfdbfe; font-size: 0.8rem; }
   .bar-downloads { border-radius: 1rem; padding: 1.1rem; background: #fff; color: #0f172a; }
   .bar-download-title { margin: 0 0 0.5rem; font-weight: 800; }
-  .bar-downloads > a { display: flex; justify-content: space-between; gap: 1rem; padding: 0.8rem 0; border-bottom: 1px solid #e2e8f0; color: #1d4ed8; font-size: 0.86rem; font-weight: 700; text-decoration: none; }
+  .bar-downloads > a { display: flex; min-height: 44px; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.8rem 0; border-bottom: 1px solid #e2e8f0; color: #1d4ed8; font-size: 0.86rem; font-weight: 700; text-decoration: none; transition: color 0.2s ease; }
+  .bar-downloads > a:hover { color: #1e40af; }
   .bar-downloads > a span { color: #64748b; font-size: 0.7rem; font-weight: 500; }
   .bar-downloads > p:last-child { margin: 1rem 0 0; color: #64748b; font-size: 0.75rem; line-height: 1.5; }
   .bar-archives details { border-top: 1px solid #cbd5e1; padding: 1rem 0; }
   .bar-archives summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; color: #0f172a; cursor: pointer; font-weight: 800; }
   .bar-archives summary small { color: #64748b; font-weight: 600; }
   .bar-archive-actions { display: flex; gap: 0.5rem; margin-top: 1rem; }
-  .bar-archive-actions a { border: 1px solid #cbd5e1; border-radius: 0.5rem; padding: 0.4rem 0.7rem; color: #1d4ed8; font-size: 0.75rem; font-weight: 800; text-decoration: none; }
+  .bar-archive-actions a { display: inline-flex; min-height: 44px; align-items: center; border: 1px solid #cbd5e1; border-radius: 0.5rem; padding: 0 0.85rem; color: #1d4ed8; font-size: 0.75rem; font-weight: 800; text-decoration: none; transition: border-color 0.2s ease, background-color 0.2s ease; }
+  .bar-archive-actions a:hover { border-color: #93c5fd; background: #eff6ff; }
   .bar-archive-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.65rem; margin-top: 0.8rem; }
   .bar-archive-card { display: grid; gap: 0.2rem; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 0.8rem; background: #fff; color: #0f172a; text-decoration: none; }
   .bar-archive-card strong { color: #1d4ed8; }
   .bar-archive-card strong small, .bar-archive-card > small { color: #64748b; }
   .bar-bottom-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr); gap: 1.2rem; align-items: start; padding-top: 2rem; }
-  .bar-method-card { position: sticky; top: 5rem; margin-top: 2.5rem; border: 1px solid #bfdbfe; border-radius: 1rem; padding: 1.3rem; background: #eff6ff; }
+  .bar-bottom-aside { position: sticky; top: 5rem; display: grid; gap: 1rem; margin-top: 2.5rem; }
+  .bar-recap-card { border: 1px solid #dbe4f0; border-radius: 1rem; padding: 1.3rem; background: #fff; box-shadow: 0 12px 32px rgba(15, 23, 42, 0.05); }
+  .bar-recap-list { display: grid; gap: 0; margin: 0.75rem 0 0; }
+  .bar-recap-list div { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: 0.55rem 0; border-bottom: 1px solid #eef2f7; }
+  .bar-recap-list div:last-child { border-bottom: 0; }
+  .bar-recap-list dt { color: #64748b; font-size: 0.78rem; }
+  .bar-recap-list dd { margin: 0; color: #0f172a; font-size: 0.85rem; font-weight: 800; text-align: right; font-variant-numeric: tabular-nums; }
+  .bar-recap-links { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1rem; }
+  .bar-recap-links a { display: inline-flex; min-height: 44px; align-items: center; border: 1px solid #cbd5e1; border-radius: 0.6rem; padding: 0 0.85rem; color: #1d4ed8; font-size: 0.78rem; font-weight: 800; text-decoration: none; transition: border-color 0.2s ease, background-color 0.2s ease; }
+  .bar-recap-links a:hover { border-color: #93c5fd; background: #eff6ff; }
+  .bar-method-card { border: 1px solid #bfdbfe; border-radius: 1rem; padding: 1.3rem; background: #eff6ff; }
   .bar-method-card h2 { font-size: 1.3rem; }
   .bar-method-card p { color: #475569; line-height: 1.6; }
   .bar-method-card a { color: #1d4ed8; font-weight: 800; }
@@ -699,8 +891,67 @@ const jsonLd: any[] = [
     .bar-downloads > a { align-items: flex-start; flex-direction: column; gap: 0.25rem; }
     .bar-archives summary { align-items: flex-start; flex-direction: column; }
   }
+  /* ---- Mouvement ----------------------------------------------------------
+     Par défaut tout est visible. L'état masqué n'est appliqué que si le script
+     a pu poser .si-reveal-on sur <html>, c'est-à-dire si IntersectionObserver
+     existe et que l'utilisateur n'a pas demandé moins d'animations. Sans JS,
+     sans observateur ou en reduced-motion, la page reste entièrement lisible. */
+  [data-reveal] { opacity: 1; transform: none; }
+
+  .si-reveal-on [data-reveal] {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.55s ease var(--d, 0ms), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0ms);
+  }
+  .si-reveal-on [data-reveal].is-in { opacity: 1; transform: none; }
+
+  /* Les jauges ne se remplissent qu'au moment où leur bloc entre à l'écran. */
+  .si-reveal-on [data-reveal] .bar-dpe-fill,
+  .si-reveal-on [data-reveal] .bar-distribution-track span { width: 0; }
+  .si-reveal-on [data-reveal].is-in .bar-dpe-fill,
+  .si-reveal-on [data-reveal].is-in .bar-distribution-track span { width: var(--w, 0%); }
+  .si-reveal-on [data-reveal] .bar-signal-bar { height: 6%; }
+  .si-reveal-on [data-reveal].is-in .bar-signal-bar { height: var(--h, 6%); }
+
+  /* Carte : le score prend sa couleur pleine et la flèche avance au survol. */
+  .bar-listing-card > a { position: relative; overflow: hidden; }
+  .bar-listing-card > a::before {
+    position: absolute; inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, #2563eb, #38bdf8);
+    transform: scaleX(0); transform-origin: left; transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); content: '';
+  }
+  .bar-listing-card > a:hover::before, .bar-listing-card > a:focus-visible::before { transform: scaleX(1); }
+  .bar-listing-link span { display: inline-block; transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1); }
+  .bar-listing-card > a:hover .bar-listing-link span { transform: translateX(4px); }
+  .bar-listing-card > a:hover .bar-signal-bar[data-level='high'] { background: #10b981; }
+  .bar-listing-card > a:hover .bar-signal-bar[data-level='mid'] { background: #60a5fa; }
+
+  /* La barre de filtres reste accessible pendant le parcours de la grille. */
+  .bar-filters { position: sticky; top: 4.75rem; z-index: 5; transition: box-shadow 0.25s ease, border-color 0.25s ease; }
+  .bar-filters.is-stuck { border-color: #bfdbfe; box-shadow: 0 12px 30px rgba(15, 23, 42, 0.1); }
+
+  /* Le comptage et la grille accusent réception du filtrage. */
+  .bar-result-count { transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.25s ease; }
+  .bar-result-count.is-pulsing { transform: scale(1.06); background: #dbeafe; }
+  .bar-card-grid { transition: opacity 0.18s ease; }
+  .bar-card-grid.is-filtering { opacity: 0.45; }
+
+  .bar-copy-status { transition: opacity 0.25s ease; }
+  .bar-button-primary[data-copy-citation].is-done { background: #047857; }
+
+  @media (max-width: 800px) {
+    .bar-bottom-aside { position: static; margin-top: 0; }
+  }
+
+  @media (max-width: 620px) {
+    .bar-filters { position: static; }
+    .bar-dpe-row { grid-template-columns: 1.7rem minmax(0, 1fr) 4.6rem; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .bar-button, .bar-listing-card > a { transition: none; }
     .bar-button:hover, .bar-listing-card > a:hover { transform: none; }
+    [data-reveal], [data-reveal].is-in { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .bar-dpe-fill, .bar-distribution-track span, .bar-signal-bar, .bar-listing-link span,
+    .bar-listing-card > a::before, .bar-result-count, .bar-card-grid { transition: none !important; }
   }
 </style>
