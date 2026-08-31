@@ -43,9 +43,9 @@ test("the primary accent passes WCAG AA with white text", () => {
   assert.match(css, /--si-accent-hover:\s*#1D4ED8/i);
 });
 
-test("the shared stylesheet is cache-busted after accessibility changes", () => {
+test("the shared stylesheet is cache-busted after the Baromètre responsive changes", () => {
   const layout = read("src/layouts/BaseLayout.astro");
-  assert.match(layout, /\/assets\/scoreimmo\.css\?v=20260730-seo-geo/g);
+  assert.match(layout, /\/assets\/scoreimmo\.css\?v=20260831-barometre-ui/g);
 });
 
 test("the decorative report preview does not introduce a skipped heading", () => {
