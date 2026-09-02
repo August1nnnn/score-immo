@@ -165,7 +165,9 @@ test("Google measurement defaults to denied, loads GA4 and GTM only after accept
   const appended = [];
   const consent = {
     getStatus: () => null,
+    getAdvertisingStatus: () => null,
     onChange: (callback) => callbacks.push(callback),
+    onAdvertisingChange: (callback) => callbacks.push(callback),
   };
   const window = { ScoreImmoConsent: consent };
   const document = {
@@ -217,9 +219,9 @@ test("Google measurement defaults to denied, loads GA4 and GTM only after accept
     (entry) => entry[0] === "consent" && entry[1] === "update",
   );
   assert.deepEqual(JSON.parse(JSON.stringify(consentGranted[2])), {
-    ad_storage: "granted",
+    ad_storage: "denied",
     analytics_storage: "granted",
-    ad_user_data: "granted",
+    ad_user_data: "denied",
     ad_personalization: "denied",
   });
   assert.ok(
