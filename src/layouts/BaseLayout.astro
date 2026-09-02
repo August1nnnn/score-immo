@@ -54,6 +54,7 @@ const {
 
 const image = toAbsolute(imageProp || '/assets/og-default.svg');
 const siteName = BRAND_NAME;
+const metaPixelId = import.meta.env.PUBLIC_META_PIXEL_ID || '';
 const structuredData = [organizationJsonLd, ...jsonLd];
 ---
 <!doctype html>
@@ -82,6 +83,7 @@ const structuredData = [organizationJsonLd, ...jsonLd];
     {!noindex && <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />}
 
     <meta name="author" content={articleMeta?.author || BRAND_NAME} />
+    {metaPixelId && <meta name="scoreimmo-meta-pixel-id" content={metaPixelId} />}
 
     <!-- Open Graph -->
     <meta property="og:type" content={articleMeta ? 'article' : 'website'} />
@@ -108,6 +110,7 @@ const structuredData = [organizationJsonLd, ...jsonLd];
 
     <script is:inline src="/consent.js"></script>
     <script is:inline src="/ga4.js"></script>
+    <script is:inline src="/meta-pixel.js"></script>
 
     <slot name="head" />
   </head>

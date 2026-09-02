@@ -132,14 +132,15 @@
 
   const consent = window.ScoreImmoConsent;
   const existing = consent?.getStatus() || null;
-  if (!existing) show();
+  const advertising = consent?.getAdvertisingStatus() || null;
+  if (!existing || !advertising) show();
 
   document.getElementById('si-cookie-accept')?.addEventListener('click', () => {
-    consent?.setStatus('accepted');
+    consent?.setAllStatus('accepted');
     hide();
   });
   document.getElementById('si-cookie-reject')?.addEventListener('click', () => {
-    consent?.setStatus('rejected');
+    consent?.setAllStatus('rejected');
     hide();
   });
 

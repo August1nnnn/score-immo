@@ -5,12 +5,14 @@
   if (window.ScoreImmoConsent) return;
 
   var CONSENT_KEY = "si_cookie_consent";
+  var AD_CONSENT_KEY = "si_ad_consent";
   var JOURNEY_KEY = "si_journey_id";
   var COOKIE_SCOPE = "Domain=.score-immo.fr; Path=/; Secure; SameSite=Lax";
   var VALID_STATUS = /^(accepted|rejected)$/;
   var UUID_RE =
     /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
   var listeners = [];
+  var advertisingListeners = [];
 
   function readCookie(name) {
     var prefix = name + "=";
@@ -82,6 +84,22 @@
     }
   }
 
+  function clearAdvertisingCookies() {
+    try {
+      var names = ["_fbp", "_fbc"];
+      for (var i = 0; i < names.length; i += 1) {
+        var expired =
+          names[i] +
+          "=; Path=/; SameSite=Lax; Expires=Thu, 01 Jan 1970 00:00:00 GMT; Max-Age=0";
+        document.cookie = expired;
+        document.cookie = expired + "; Domain=.score-immo.fr; Secure";
+        document.cookie = expired + "; Domain=score-immo.fr; Secure";
+      }
+    } catch (_error) {
+      // Cookie cleanup must not break consent controls.
+    }
+  }
+
   function readLegacyConsent() {
     try {
       var value = JSON.parse(localStorage.getItem(CONSENT_KEY) || "null");
@@ -119,6 +137,11 @@
     return value && VALID_STATUS.test(value) ? value : null;
   }
 
+  function getAdvertisingStatus() {
+    var value = readCookie(AD_CONSENT_KEY);
+    return value && VALID_STATUS.test(value) ? value : null;
+  }
+
   function getJourneyId() {
     if (getStatus() !== "accepted") return null;
     var value = readCookie(JOURNEY_KEY);
@@ -136,6 +159,23 @@
     try {
       window.dispatchEvent(
         new CustomEvent("si:consent", { detail: { status: status } }),
+      );
+    } catch (_error) {
+      // CustomEvent is optional in older embedded browsers.
+    }
+  }
+
+  function notifyAdvertising(status) {
+    for (var i = 0; i < advertisingListeners.length; i += 1) {
+      try {
+        advertisingListeners[i](status);
+      } catch (_error) {
+        // Consent changes must not break the page.
+      }
+    }
+    try {
+      window.dispatchEvent(
+        new CustomEvent("si:ad-consent", { detail: { status: status } }),
       );
     } catch (_error) {
       // CustomEvent is optional in older embedded browsers.
@@ -163,12 +203,39 @@
     return true;
   }
 
+  function setAdvertisingStatus(status) {
+    if (!VALID_STATUS.test(String(status || ""))) return false;
+    var now = Date.now();
+    writeCookie(AD_CONSENT_KEY, status, now);
+    if (status === "rejected") clearAdvertisingCookies();
+    notifyAdvertising(status);
+    return true;
+  }
+
+  function setAllStatus(status) {
+    if (!VALID_STATUS.test(String(status || ""))) return false;
+    // Advertising is notified first so a global acceptance applies its consent
+    // state before the audience controller emits the initial page view.
+    setAdvertisingStatus(status);
+    setStatus(status);
+    return true;
+  }
+
   function onChange(listener) {
     if (typeof listener !== "function") return function () {};
     listeners.push(listener);
     return function () {
       var index = listeners.indexOf(listener);
       if (index >= 0) listeners.splice(index, 1);
+    };
+  }
+
+  function onAdvertisingChange(listener) {
+    if (typeof listener !== "function") return function () {};
+    advertisingListeners.push(listener);
+    return function () {
+      var index = advertisingListeners.indexOf(listener);
+      if (index >= 0) advertisingListeners.splice(index, 1);
     };
   }
 
@@ -186,11 +253,16 @@
     deleteCookie(JOURNEY_KEY);
     clearAnalyticsCookies();
   }
+  if (getAdvertisingStatus() !== "accepted") clearAdvertisingCookies();
 
   window.ScoreImmoConsent = {
     getStatus: getStatus,
+    getAdvertisingStatus: getAdvertisingStatus,
     getJourneyId: getJourneyId,
     setStatus: setStatus,
+    setAdvertisingStatus: setAdvertisingStatus,
+    setAllStatus: setAllStatus,
     onChange: onChange,
+    onAdvertisingChange: onAdvertisingChange,
   };
 })();

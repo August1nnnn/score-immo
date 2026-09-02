@@ -44,8 +44,8 @@ test("les trois actions restent sur une ligne et les choix sont symétriques", (
 test("le contrat de consentement reste délégué au contrôleur existant", () => {
   const banner = read("src/components/CookieBanner.astro");
 
-  assert.match(banner, /consent\?\.setStatus\('accepted'\)/);
-  assert.match(banner, /consent\?\.setStatus\('rejected'\)/);
+  assert.match(banner, /consent\?\.setAllStatus\('accepted'\)/);
+  assert.match(banner, /consent\?\.setAllStatus\('rejected'\)/);
   assert.match(banner, /window\.siOpenCookieBanner\s*=\s*show/);
   assert.doesNotMatch(banner, /document\.cookie\s*=/);
   assert.doesNotMatch(banner, /localStorage\./);

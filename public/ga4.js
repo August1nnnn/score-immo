@@ -11,6 +11,10 @@
   var ga4Loaded = false;
   var gtmLoaded = false;
   var pageViewSent = false;
+  var audienceStatus = consent ? consent.getStatus() : null;
+  var advertisingStatus = consent && consent.getAdvertisingStatus
+    ? consent.getAdvertisingStatus()
+    : null;
 
   window.dataLayer = window.dataLayer || [];
   window.gtag =
@@ -86,32 +90,31 @@
     });
   }
 
-  function enable() {
+  function syncConsent() {
     window.gtag("consent", "update", {
-      ad_storage: "granted",
-      analytics_storage: "granted",
-      ad_user_data: "granted",
+      ad_storage: advertisingStatus === "accepted" ? "granted" : "denied",
+      analytics_storage: audienceStatus === "accepted" ? "granted" : "denied",
+      ad_user_data: advertisingStatus === "accepted" ? "granted" : "denied",
       ad_personalization: "denied",
     });
-    loadGtm();
-    loadGa4();
-    sendPageView();
-  }
-
-  function disable() {
-    window.gtag("consent", "update", {
-      ad_storage: "denied",
-      analytics_storage: "denied",
-      ad_user_data: "denied",
-      ad_personalization: "denied",
-    });
+    if (audienceStatus === "accepted" || advertisingStatus === "accepted") {
+      loadGtm();
+      loadGa4();
+    }
+    if (audienceStatus === "accepted") sendPageView();
   }
 
   if (consent) {
-    if (consent.getStatus() === "accepted") enable();
+    if (audienceStatus || advertisingStatus) syncConsent();
     consent.onChange(function (status) {
-      if (status === "accepted") enable();
-      else disable();
+      audienceStatus = status;
+      syncConsent();
     });
+    if (consent.onAdvertisingChange) {
+      consent.onAdvertisingChange(function (status) {
+        advertisingStatus = status;
+        syncConsent();
+      });
+    }
   }
 })();
