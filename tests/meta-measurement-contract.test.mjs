@@ -119,3 +119,8 @@ test("the CSP permits only the Meta Pixel origins needed by the browser", async 
   assert.match(middleware, /connect-src[^\n]+https:\/\/www\.facebook\.com/);
   assert.doesNotMatch(middleware, /https:\/\/\*\.facebook\.com/);
 });
+
+test("the production build receives the public Meta Pixel ID", async () => {
+  const workflow = await read(".github/workflows/deploy.yml");
+  assert.match(workflow, /PUBLIC_META_PIXEL_ID:\s*\$\{\{ vars\.PUBLIC_META_PIXEL_ID \}\}/);
+});
