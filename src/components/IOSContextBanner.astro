@@ -1,0 +1,82 @@
+---
+import { IOS_APP_URL } from '@/data/ios-app';
+
+interface Props {
+  medium?: string;
+  campaign?: string;
+}
+const { medium = 'ios_banner', campaign = '' } = Astro.props;
+const params = new URLSearchParams({ utm_source: 'site', utm_medium: medium });
+if (/^[a-z0-9-]{1,80}$/.test(campaign)) params.set('utm_campaign', campaign);
+const analyzeURL = `https://app.score-immo.fr/app?${params}`;
+---
+<aside class="si-ios-context-banner" data-ios-context-banner aria-label="Analyser un bien sur le web ou sur iOS">
+  <div class="si-ios-context-copy">
+    <p class="si-ios-context-kicker">Score-Immo, à votre façon</p>
+    <h2>Votre prochaine visite se prépare ici</h2>
+    <p>Analysez une annonce sur le web ou retrouvez Score-Immo sur iPhone et iPad.</p>
+  </div>
+  <div class="si-ios-context-actions">
+    <a href={analyzeURL} class="si-btn si-btn-primary">Analyser une annonce</a>
+    <a href={IOS_APP_URL} class="si-btn si-btn-secondary">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path stroke-linecap="round" d="M10 5h4m-3 14h2"/></svg>
+      Télécharger l’app sur iOS
+    </a>
+  </div>
+</aside>
+
+<style>
+  .si-ios-context-banner {
+    display: grid;
+    gap: 1.5rem;
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+    border: 1px solid var(--si-border, #e2e8f0);
+    border-radius: var(--si-radius-2xl, 1.5rem);
+    background: linear-gradient(120deg, #fff, #eef3ff);
+    box-shadow: 0 8px 32px rgb(59 130 246 / 6%);
+    text-align: center;
+  }
+  .si-ios-context-copy { min-width: 0; }
+  .si-ios-context-kicker {
+    margin: 0 0 0.5rem;
+    color: #1d4ed8;
+    font-size: 0.8125rem;
+    font-weight: 700;
+  }
+  .si-ios-context-copy h2 {
+    margin: 0 0 0.625rem;
+    color: var(--si-foreground, #0f172a);
+    font-family: var(--si-font-heading);
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+  }
+  .si-ios-context-copy > p:last-child {
+    margin: 0;
+    color: var(--si-muted-foreground, #64748b);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+  .si-ios-context-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  .si-ios-context-actions a {
+    min-height: 48px;
+    max-width: 100%;
+    justify-content: center;
+    gap: 0.5rem;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.4;
+  }
+  .si-ios-context-actions svg { flex-shrink: 0; }
+  .si-ios-context-actions a:focus-visible { outline: 3px solid #2563eb; outline-offset: 4px; }
+  @media (max-width: 580px) {
+    .si-ios-context-actions { flex-direction: column; }
+    .si-ios-context-actions a { width: 100%; padding-inline: 0.75rem; font-size: 0.875rem; }
+  }
+</style>

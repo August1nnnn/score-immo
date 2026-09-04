@@ -3,6 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import TLDRBox from '@/components/TLDRBox.astro';
 import SourcesSection from '@/components/SourcesSection.astro';
 import AnalyzerBox from '@/components/AnalyzerBox.astro';
+import IOSContextBanner from '@/components/IOSContextBanner.astro';
 import BarometreLinks from '@/components/BarometreLinks.astro';
 import ProValueCTA from '@/components/ProValueCTA.astro';
 import { applyCuratedInternalLinks } from '@/lib/curated-internal-links.js';
@@ -103,6 +104,7 @@ if (faqPairs.length > 0) {
 
 ---
 <BaseLayout
+  showIOSBanner={false}
   {title}
   {description}
   image={image}
@@ -164,8 +166,8 @@ if (faqPairs.length > 0) {
           Contenu informatif fondé sur des données publiques officielles, à jour à la date de révision indiquée. Ne constitue pas un conseil en investissement ni un avis juridique ou fiscal personnalisé.
         </p>
 
-        <footer class="si-article-footer">
-          <AnalyzerBox blog={article.blog} medium="blog_end" campaign={article.handle} />
+        <footer class="si-article-footer" style="margin-top:2.5rem;">
+          <IOSContextBanner medium="blog_end" campaign={article.handle} />
         </footer>
       </article>
     </div>
