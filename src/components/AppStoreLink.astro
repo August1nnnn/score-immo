@@ -1,0 +1,14 @@
+---
+import { IOS_APP_URL } from '@/data/ios-app';
+interface Props { compact?: boolean; }
+const { compact = false } = Astro.props;
+---
+<a href={IOS_APP_URL} class:list={['si-app-store-link', { 'si-btn si-btn-secondary': !compact }]}>
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path stroke-linecap="round" d="M10 5h4m-3 14h2"/></svg>
+  <span>{compact ? 'Application iPhone et iPad' : 'Télécharger sur l’App Store'}</span>
+</a>
+<style>
+  .si-app-store-link { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; }
+  .si-app-store-link svg { flex-shrink: 0; }
+  .si-app-store-link:focus-visible { outline: 2px solid var(--si-accent); outline-offset: 4px; }
+</style>

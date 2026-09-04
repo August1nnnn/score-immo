@@ -1,4 +1,5 @@
 ---
+import AppStoreLink from '@/components/AppStoreLink.astro';
 // Hero aligne sur l'app, avec un H1 stable pour préserver le LCP et des
 // exemples de portails qui restent animés dans le champ de saisie.
 import { SUPPORTED_PORTAL_HOSTS } from '@/lib/portal-hosts.js';
@@ -72,6 +73,11 @@ import { SUPPORTED_PORTAL_HOSTS } from '@/lib/portal-hosts.js';
       <p class="si-hero-reassurance si-reveal si-reveal-delay-4" style="margin-top:0.95rem;font-size:0.875rem;color:var(--si-muted-foreground);">
         Démo complète gratuite · Rapport personnalisé dès 2,99 €
       </p>
+
+      <div class="si-hero-ios" style="margin-top:1.25rem;">
+        <AppStoreLink />
+        <p style="margin-top:0.5rem;font-size:0.8125rem;color:var(--si-muted-foreground);">Sur iPhone et iPad. Connectez-vous avec votre compte Score-Immo.</p>
+      </div>
 
       <!-- Portals marquee -->
       <div class="si-portals-marquee si-reveal si-reveal-delay-4" style="margin-top:2rem;">
