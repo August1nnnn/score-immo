@@ -3,7 +3,7 @@ import { IOS_APP_ID } from '@/data/ios-app';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import CookieBanner from '@/components/CookieBanner.astro';
-import IOSDownloadPrompt from '@/components/IOSDownloadPrompt.astro';
+import IOSContextBanner from '@/components/IOSContextBanner.astro';
 import { BRAND_NAME, organizationJsonLd } from '@/data/entity';
 // Self-hosted fonts via @fontsource (eliminate fonts.googleapis CDN)
 import '@fontsource/inter/latin-400.css';
@@ -22,6 +22,7 @@ interface Props {
   image?: string;
   canonical?: string;
   noindex?: boolean;
+  showIOSBanner?: boolean;
   articleMeta?: {
     publishedTime?: string;
     modifiedTime?: string;
@@ -49,6 +50,7 @@ const {
   image: imageProp,
   canonical = new URL(cleanPath, SITE).toString(),
   noindex = false,
+  showIOSBanner = true,
   articleMeta,
   jsonLd = [],
   bodyClass = '',
@@ -124,11 +126,15 @@ const structuredData = [organizationJsonLd, ...jsonLd];
 
     <main id="MainContent" role="main">
       <slot />
+      {showIOSBanner && (
+        <div class="si-container" data-ios-banner-global style="max-width:64rem;padding-block:2rem 3rem;">
+          <IOSContextBanner />
+        </div>
+      )}
     </main>
 
     <Footer />
     <CookieBanner />
-    <IOSDownloadPrompt />
 
     <!-- Micro-interactions ScoreImmo -->
     <script src="/attribution.js?v=20260904" defer></script>
