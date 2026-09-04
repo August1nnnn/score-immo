@@ -1,10 +1,12 @@
 ---
+import AppStoreLink from '@/components/AppStoreLink.astro';
 import { SOCIAL_PROFILES } from '@/data/entity';
 
 const year = new Date().getFullYear();
 ---
 <footer class="si-footer">
   <div class="si-container">
+    <div style="margin-bottom:1.25rem;"><AppStoreLink compact /></div>
     <div class="si-footer-inner">
       <div class="si-footer-left">
         <div class="si-footer-logo"><span>SI</span></div>

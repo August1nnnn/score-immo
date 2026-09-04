@@ -36,6 +36,9 @@ jobs:
           SCOREIMMO_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.SCOREIMMO_SUPABASE_PUBLISHABLE_KEY }}
         run: npm run barometre:sync
 
+      - name: Install Chromium for browser behavior tests
+        run: npx playwright install --with-deps chromium
+
       - name: Run behavioral and editorial tests
         run: |
           npm test

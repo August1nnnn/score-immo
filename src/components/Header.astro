@@ -1,4 +1,5 @@
 ---
+import AppStoreLink from '@/components/AppStoreLink.astro';
 const path = Astro.url.pathname;
 const isHome = path === '/' || path === '';
 const isGuide = path.includes('/pages/guide') || path.includes('/blogs/');
@@ -79,6 +80,7 @@ const isPro = path.startsWith('/pro') || path.includes('/blogs/pro');
     </a>
   </div>
   <div class="si-mobile-drawer-footer">
+    <div style="margin-bottom:1rem;"><AppStoreLink compact /></div>
     <a href="https://app.score-immo.fr/app?utm_source=site&utm_medium=nav" class="si-btn si-btn-primary" style="width:100%;text-align:center;justify-content:center;">
       Analyser une annonce
     </a>
