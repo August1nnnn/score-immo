@@ -1,0 +1,105 @@
+import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+import test from "node:test";
+import vm from "node:vm";
+
+const root = new URL("../", import.meta.url);
+const read = (path) => readFile(new URL(path, root), "utf8");
+
+async function loadAttribution(search, fixtures = {}) {
+  const source = await read("public/attribution.js");
+  const listeners = new Map();
+  const document = {
+    addEventListener: (name, callback) => listeners.set(name, callback),
+    querySelectorAll: (selector) => selector.startsWith("a[")
+      ? (fixtures.anchors || [])
+      : (fixtures.forms || []),
+    createElement: () => ({ setAttribute() {} }),
+  };
+  const window = {
+    location: {
+      href: `https://score-immo.fr/${search}`,
+      search,
+    },
+    addEventListener() {},
+    ScoreImmoConsent: {
+      getStatus: () => "accepted",
+      getAdvertisingStatus: () => "accepted",
+      onChange() {},
+      onAdvertisingChange() {},
+    },
+  };
+  const sessionStorage = {
+    getItem: () => null,
+    setItem() {},
+    removeItem() {},
+  };
+
+  vm.runInNewContext(source, {
+    window,
+    document,
+    sessionStorage,
+    URL,
+    URLSearchParams,
+    MutationObserver: class { observe() {} },
+  });
+  return window.ScoreImmoAttribution;
+}
+
+test("paid attribution overrides site fallback on app links", async () => {
+  const attribution = await loadAttribution(
+    "?utm_source=google&utm_medium=cpc&utm_campaign=search_pilot_2026_09&gclid=click_123",
+  );
+  const decorated = new URL(attribution.decorateUrl(
+    "https://app.score-immo.fr/app?utm_source=site&utm_medium=nav&url=https%3A%2F%2Fexample.test%2Flisting",
+  ));
+
+  assert.equal(decorated.searchParams.get("utm_source"), "google");
+  assert.equal(decorated.searchParams.get("utm_medium"), "cpc");
+  assert.equal(decorated.searchParams.get("utm_campaign"), "search_pilot_2026_09");
+  assert.equal(decorated.searchParams.get("gclid"), "click_123");
+  assert.equal(decorated.searchParams.get("url"), "https://example.test/listing");
+});
+
+test("Meta attribution reaches checkout routes without altering other origins", async () => {
+  const attribution = await loadAttribution(
+    "?utm_source=meta&utm_medium=paid_social&utm_campaign=meta_pilot_2026_09&utm_content=avant_visite&fbclid=fb_123",
+  );
+  const checkout = new URL(attribution.decorateUrl(
+    "https://app.score-immo.fr/go/checkout/unit",
+  ));
+
+  assert.equal(checkout.searchParams.get("utm_source"), "meta");
+  assert.equal(checkout.searchParams.get("utm_content"), "avant_visite");
+  assert.equal(checkout.searchParams.get("fbclid"), "fb_123");
+  assert.equal(
+    attribution.decorateUrl("https://example.test/?utm_source=site"),
+    "https://example.test/?utm_source=site",
+  );
+});
+
+test("GET analyzer forms receive hidden attribution fields", async () => {
+  const inputs = new Map();
+  const form = {
+    getAttribute: (name) => name === "action" ? "https://app.score-immo.fr/app" : null,
+    querySelector: (selector) => {
+      const name = selector.match(/name="([^"]+)"/)?.[1];
+      return name ? inputs.get(name) || null : null;
+    },
+    appendChild: (input) => inputs.set(input.name, input),
+  };
+
+  await loadAttribution(
+    "?utm_source=google&utm_medium=cpc&utm_campaign=search_pilot_2026_09",
+    { forms: [form] },
+  );
+
+  assert.equal(inputs.get("utm_source").value, "google");
+  assert.equal(inputs.get("utm_medium").value, "cpc");
+  assert.equal(inputs.get("utm_campaign").value, "search_pilot_2026_09");
+});
+
+test("the attribution bridge is loaded on every layout page", async () => {
+  const layout = await read("src/layouts/BaseLayout.astro");
+  assert.match(layout, /<script src="\/attribution\.js\?v=20260904" defer><\/script>/);
+});

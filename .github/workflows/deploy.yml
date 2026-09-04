@@ -52,7 +52,11 @@ jobs:
       - run: npm ci
 
       - name: Build
-        run: npm run build
+        env:
+          PUBLIC_META_PIXEL_ID: ${{ vars.PUBLIC_META_PIXEL_ID }}
+        run: |
+          test -n "$PUBLIC_META_PIXEL_ID"
+          npm run build
 
       - name: Validate generated routes
         run: npm run test:site-integrity
