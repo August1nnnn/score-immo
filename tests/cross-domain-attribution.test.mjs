@@ -23,16 +23,16 @@ async function loadAttribution(search, fixtures = {}) {
     },
     addEventListener() {},
     ScoreImmoConsent: {
-      getStatus: () => "accepted",
-      getAdvertisingStatus: () => "accepted",
-      onChange() {},
-      onAdvertisingChange() {},
+      getStatus: () => fixtures.analytics ?? "accepted",
+      getAdvertisingStatus: () => fixtures.advertising ?? "accepted",
+      onChange(callback) { fixtures.onChange = callback; },
+      onAdvertisingChange(callback) { fixtures.onAdvertisingChange = callback; },
     },
   };
   const sessionStorage = {
-    getItem: () => null,
-    setItem() {},
-    removeItem() {},
+    getItem: () => fixtures.stored || null,
+    setItem(_key, value) { fixtures.stored = value; },
+    removeItem() { fixtures.stored = null; },
   };
 
   vm.runInNewContext(source, {
@@ -101,5 +101,45 @@ test("GET analyzer forms receive hidden attribution fields", async () => {
 
 test("the attribution bridge is loaded on every layout page", async () => {
   const layout = await read("src/layouts/BaseLayout.astro");
-  assert.match(layout, /<script src="\/attribution\.js\?v=20260904" defer><\/script>/);
+  assert.match(layout, /<script src="\/attribution\.js\?v=20260905" defer><\/script>/);
+});
+
+
+test("analytics acceptance never grants permission to retain advertising click IDs", async () => {
+  const fixtures = { analytics: "accepted", advertising: "rejected" };
+  const attribution = await loadAttribution("?utm_source=google&gclid=private_click", fixtures);
+  const url = new URL(attribution.decorateUrl("https://app.score-immo.fr/app"));
+  assert.equal(url.searchParams.get("utm_source"), "google");
+  assert.equal(url.searchParams.get("gclid"), null);
+  assert.ok(!fixtures.stored?.includes("private_click"));
+});
+test("withdrawal removes decorated IDs and stored attribution", async () => {
+  const fixtures = { analytics: "accepted", advertising: "accepted" };
+  const attribution = await loadAttribution("?utm_source=google&gclid=private_click", fixtures);
+  const first = attribution.decorateUrl("https://app.score-immo.fr/app");
+  fixtures.analytics = "rejected"; fixtures.advertising = "rejected"; fixtures.onChange();
+  const url = new URL(attribution.decorateUrl(first));
+  assert.equal(url.searchParams.get("utm_source"), null); assert.equal(url.searchParams.get("gclid"), null);
+  assert.equal(fixtures.stored, null);
+});
+test("consented campaign survives navigation without retaining private values", async () => {
+  const fixtures = {};
+  await loadAttribution("?utm_source=google&utm_campaign=person%40example.com&gclid=click_123", fixtures);
+  const attribution = await loadAttribution("", fixtures);
+  const url = new URL(attribution.decorateUrl("https://app.score-immo.fr/app"));
+  assert.equal(url.searchParams.get("utm_source"), "google"); assert.equal(url.searchParams.get("gclid"), "click_123");
+  assert.equal(url.searchParams.get("utm_campaign"), null);
+});
+
+
+test("original navigation tags are restored after late consent, and removed again on rejection", async () => {
+  let href = 'https://app.score-immo.fr/app?utm_source=site&utm_medium=nav';
+  const anchor = { getAttribute: () => href, setAttribute: (_name, value) => { href = value; } };
+  const fixtures = { analytics: 'rejected', advertising: 'rejected', anchors: [anchor] };
+  await loadAttribution('', fixtures);
+  assert.equal(new URL(href).searchParams.get('utm_source'), null);
+  fixtures.analytics = 'accepted'; fixtures.onChange();
+  assert.equal(new URL(href).searchParams.get('utm_source'), 'site');
+  fixtures.analytics = 'rejected'; fixtures.onChange();
+  assert.equal(new URL(href).searchParams.get('utm_source'), null);
 });

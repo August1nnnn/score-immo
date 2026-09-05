@@ -16,73 +16,59 @@
     "msclkid",
   ];
 
-  function safeValue(value) {
+  var originalAnchors = new WeakMap();
+  var originalForms = new WeakMap();
+  var MAX_AGE = 90 * 24 * 60 * 60 * 1000;
+  function allowed(name) {
+    try {
+      var consent = window.ScoreImmoConsent;
+      return Boolean(consent && (name.indexOf("utm_") === 0
+        ? consent.getStatus() === "accepted"
+        : consent.getAdvertisingStatus() === "accepted"));
+    } catch (_error) { return false; }
+  }
+  function safeValue(name, value) {
     if (typeof value !== "string") return null;
     var normalized = value.trim();
-    if (!normalized || normalized.length > 200 || /[\u0000-\u001f\u007f]/.test(normalized)) {
-      return null;
-    }
-    return normalized;
+    if (name === "fbclid" && normalized.length > 160) return null;
+    return (name.indexOf("utm_") === 0
+      ? /^[\p{L}\p{N} ._-]{1,80}$/u.test(normalized)
+      : /^[A-Za-z0-9_-]{1,200}$/.test(normalized)) ? normalized : null;
   }
-
   function paramsFromSearch(search) {
-    var source = new URLSearchParams(search || "");
-    var result = {};
+    var source = new URLSearchParams(search || ""); var result = {};
     PARAM_NAMES.forEach(function (name) {
-      var value = safeValue(source.get(name));
+      var value = allowed(name) && safeValue(name, source.get(name));
       if (value) result[name] = value;
     });
     return result;
   }
-
-  function hasValues(value) {
-    return Object.keys(value).length > 0;
-  }
-
-  function measurementAllowed() {
-    try {
-      var consent = window.ScoreImmoConsent;
-      return Boolean(
-        consent
-        && (consent.getStatus() === "accepted"
-          || consent.getAdvertisingStatus() === "accepted")
-      );
-    } catch (_error) {
-      return false;
-    }
-  }
-
+  function hasValues(value) { return Object.keys(value).length > 0; }
   function readStored() {
-    if (!measurementAllowed()) return {};
     try {
-      var parsed = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || "{}");
+      var stored = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || "null");
+      if (!stored || !Number.isFinite(stored.capturedAt) || Date.now() - stored.capturedAt > MAX_AGE || stored.capturedAt > Date.now()) return {};
       var result = {};
       PARAM_NAMES.forEach(function (name) {
-        var value = safeValue(parsed[name]);
+        var value = allowed(name) && safeValue(name, stored.params && stored.params[name]);
         if (value) result[name] = value;
       });
       return result;
-    } catch (_error) {
-      return {};
-    }
+    } catch (_error) { return {}; }
   }
-
-  var current = paramsFromSearch(window.location.search);
-  var attribution = hasValues(current) ? current : readStored();
-
+  var attribution = {};
   function syncStorage() {
     try {
-      if (!measurementAllowed()) {
-        sessionStorage.removeItem(STORAGE_KEY);
-        return;
+      var current = paramsFromSearch(window.location.search);
+      attribution = hasValues(current) ? current : readStored();
+      if (!hasValues(attribution)) sessionStorage.removeItem(STORAGE_KEY);
+      else {
+        var old = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || "null");
+        var capturedAt = !hasValues(current) && old ? old.capturedAt : Date.now();
+        sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ params: attribution, capturedAt: capturedAt }));
       }
-      if (hasValues(current)) {
-        sessionStorage.setItem(STORAGE_KEY, JSON.stringify(current));
-        attribution = current;
-      }
-    } catch (_error) {
-      // Storage is optional; same-page propagation still works.
-    }
+    } catch (_error) { /* Storage remains optional. */ }
+    decorateAll(document);
   }
 
   function appUrl(rawUrl) {
@@ -96,9 +82,12 @@
 
   function decorateUrl(rawUrl) {
     var url = appUrl(rawUrl);
-    if (!url || !hasValues(attribution)) return rawUrl;
+    if (!url) return rawUrl;
+    PARAM_NAMES.forEach(function (name) {
+      if (!allowed(name) || !safeValue(name, url.searchParams.get(name))) url.searchParams.delete(name);
+    });
     Object.keys(attribution).forEach(function (name) {
-      url.searchParams.set(name, attribution[name]);
+      if (allowed(name)) url.searchParams.set(name, attribution[name]);
     });
     return url.toString();
   }
@@ -106,14 +95,30 @@
   function decorateAnchor(anchor) {
     var rawUrl = anchor && anchor.getAttribute && anchor.getAttribute("href");
     if (!rawUrl) return;
-    var decorated = decorateUrl(rawUrl);
+    if (!originalAnchors.has(anchor)) originalAnchors.set(anchor, rawUrl);
+    var decorated = decorateUrl(originalAnchors.get(anchor));
     if (decorated !== rawUrl) anchor.setAttribute("href", decorated);
   }
 
   function decorateForm(form) {
     var rawAction = form && form.getAttribute && form.getAttribute("action");
-    if (!rawAction || !appUrl(rawAction) || !hasValues(attribution)) return;
-    Object.keys(attribution).forEach(function (name) {
+    if (!rawAction || !appUrl(rawAction)) return;
+    if (!originalForms.has(form)) {
+      var originals = {};
+      PARAM_NAMES.forEach(function (name) {
+        var input = form.querySelector('input[name="' + name + '"]');
+        if (input && safeValue(name, input.value)) originals[name] = input.value;
+      });
+      originalForms.set(form, originals);
+    }
+    var defaults = originalForms.get(form);
+    PARAM_NAMES.forEach(function (name) {
+      var old = form.querySelector('input[name="' + name + '"]');
+      if (old && !allowed(name) && old.remove) old.remove();
+    });
+    var formValues = Object.assign({}, defaults, attribution);
+    Object.keys(formValues).forEach(function (name) {
+      if (!allowed(name)) return;
       var input = form.querySelector('input[name="' + name + '"]');
       if (!input) {
         input = document.createElement("input");
@@ -122,7 +127,7 @@
         input.setAttribute("data-scoreimmo-attribution", "true");
         form.appendChild(input);
       }
-      input.value = attribution[name];
+      input.value = formValues[name];
     });
   }
 
