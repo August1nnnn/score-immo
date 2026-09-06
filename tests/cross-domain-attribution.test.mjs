@@ -102,7 +102,7 @@ test("GET analyzer forms receive hidden attribution fields", async () => {
 
 test("the attribution bridge is loaded on every layout page", async () => {
   const layout = await read("src/layouts/BaseLayout.astro");
-  assert.match(layout, /<script src="\/attribution\.js\?v=20260906" defer><\/script>/);
+  assert.match(layout, /<script src="\/attribution\.js\?v=20260906-openai" defer><\/script>/);
 });
 
 
@@ -163,4 +163,28 @@ test('explicit campaigns take precedence over an external referrer', async () =>
   const url = new URL(bridge.decorateUrl('https://app.score-immo.fr/app'));
   assert.equal(url.searchParams.get('utm_medium'), 'cpc');
   assert.equal(url.searchParams.get('si_referrer'), null);
+});
+
+test('OpenAI click ID reaches app links/forms after advertising opt-in and is removed on withdrawal', async () => {
+  const inputs = new Map();
+  const form = {getAttribute: () => 'https://app.score-immo.fr/app', querySelector: s => inputs.get(s.match(/name="([^"]+)"/)?.[1]) || null, appendChild: input => { input.remove = () => inputs.delete(input.name); inputs.set(input.name,input); }};
+  const fixtures = {analytics:'rejected',advertising:'accepted',forms:[form]};
+  const bridge = await loadAttribution('?oppref=oai_click-123.signature', fixtures);
+  const href = bridge.decorateUrl('https://app.score-immo.fr/app');
+  assert.equal(new URL(href).searchParams.get('oppref'),'oai_click-123.signature');
+  assert.equal(inputs.get('oppref')?.value,'oai_click-123.signature');
+  const next = await loadAttribution('', fixtures);
+  assert.equal(new URL(next.decorateUrl('https://app.score-immo.fr/pricing')).searchParams.get('oppref'),'oai_click-123.signature');
+  fixtures.advertising='rejected';fixtures.onAdvertisingChange();
+  assert.equal(new URL(next.decorateUrl(href)).searchParams.get('oppref'),null);
+  assert.equal(inputs.has('oppref'),false);
+  assert.equal(fixtures.stored,null);
+});
+test('OpenAI click ID never persists before opt-in or when malformed', async () => {
+  for(const [advertising,token] of [['rejected','private-click'],['accepted','person%40example.test'],['accepted','x'.repeat(2049)]]) {
+    const fixtures={advertising};
+    const bridge=await loadAttribution('?oppref='+token,fixtures);
+    assert.equal(new URL(bridge.decorateUrl('https://app.score-immo.fr/app')).searchParams.get('oppref'),null);
+    assert.ok(!fixtures.stored?.includes('oppref'));
+  }
 });
