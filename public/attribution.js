@@ -15,6 +15,7 @@
     "wbraid",
     "fbclid",
     "msclkid",
+    "oppref",
   ];
 
   var originalAnchors = new WeakMap();
@@ -41,6 +42,7 @@
     if (name === "si_referrer") return safeHost(value);
     if (typeof value !== "string") return null;
     var normalized = value.trim();
+    if (name === "oppref") return /^[A-Za-z0-9._~+\/=\-]{1,2048}$/.test(normalized) ? normalized : null;
     if (name === "fbclid" && normalized.length > 160) return null;
     return (name.indexOf("utm_") === 0
       ? /^[\p{L}\p{N} ._-]{1,80}$/u.test(normalized)
