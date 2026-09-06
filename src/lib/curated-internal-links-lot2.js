@@ -297,8 +297,8 @@ export const LOT_2_LINKS = [
     from: "villes/prix-immobilier-paris-marche-plancher",
     href: "/blogs/villes/marche-immobilier-luxe-paris-2026",
     anchorText: "marché immobilier de luxe à Paris",
-    needle: "<h3>Arrondissements premium : résistance et sélectivité</h3>",
-    insertion: "\n<p>Ce segment obéit à des critères particuliers, détaillés dans notre analyse du <a href=\"/blogs/villes/marche-immobilier-luxe-paris-2026\">marché immobilier de luxe à Paris</a>.</p>",
+    needle: "<h2 id=\"disparites-arrondissements\">Où consulter les prix par arrondissement et par quartier ?</h2>",
+    insertion: "\n<p>Pour les biens haut de gamme, examinez séparément les critères du <a href=\"/blogs/villes/marche-immobilier-luxe-paris-2026\">marché immobilier de luxe à Paris</a>.</p>",
   },
   {
     from: "guides/investissement-locatif-rentabilite-fiscalite-villes",

@@ -94,17 +94,11 @@ test("the city hub owns the comparison intent and links to priority pages", () =
   assert.doesNotMatch(hub, /color:\s*var\(--si-muted,/);
 });
 
-test("the Paris metadata stays unchanged until its source data is refreshed", () => {
-  const paris = article(
-    "src/content/articles/villes/prix-immobilier-paris-marche-plancher.json",
-  );
-  assert.equal(
-    paris.title,
-    "Prix immobilier à Paris en 2026 : carte et prix au m² par arrondissement",
-  );
-  assert.equal(
-    paris.meta_title,
-    "Prix immobilier Paris 2026 : carte du m² par arrondissement",
-  );
-  assert.equal(paris.updated_at, "2026-06-02");
+test("the refreshed Paris snippet describes its sourced comparison instead of promising a missing map", () => {
+  const paris = article("src/content/articles/villes/prix-immobilier-paris-marche-plancher.json");
+  assert.match(paris.title, /Prix immobilier à Paris en 2026/);
+  assert.match(paris.meta_title, /repères notaires et quartiers/);
+  assert.ok(paris.meta_description.length <= 160);
+  assert.ok(paris.sources.some(s => s.url.includes('de-fevrier-avril-2026')));
+  assert.equal(paris.updated_at, "2026-09-06");
 });

@@ -22,6 +22,8 @@ export async function getStaticPaths() {
 
 const { article } = Astro.props;
 
+const modifiedAt = article.last_reviewed || article.updated_at || article.published_at;
+const formatDate = (value: string) => new Date(value).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Paris' });
 const title = article.meta_title || `${article.title} | ${BRAND_NAME}`;
 const description = article.meta_description || article.title;
 const image = article.image?.src;
@@ -47,7 +49,7 @@ const jsonLd: any[] = [
     description,
     image: image ? [image.startsWith('http') ? image : `${SITE_URL}${image}`] : undefined,
     datePublished: article.published_at,
-    dateModified: article.last_reviewed || article.updated_at || article.published_at,
+    dateModified: modifiedAt,
     author: { '@id': ORGANIZATION_ID },
     publisher: { '@id': ORGANIZATION_ID },
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
@@ -112,7 +114,7 @@ if (faqPairs.length > 0) {
   {jsonLd}
   articleMeta={{
     publishedTime: article.published_at,
-    modifiedTime: article.last_reviewed || article.updated_at || article.published_at,
+    modifiedTime: modifiedAt,
     author: BRAND_NAME,
   }}
 >
@@ -129,6 +131,11 @@ if (faqPairs.length > 0) {
       <article class="si-article">
         <header class="si-article-header">
           <h1 class="si-article-title">{article.title}</h1>
+          <p class="si-editorial-meta">
+            Par <a href="/a-propos">{BRAND_NAME}</a> · Publié le <time datetime={article.published_at}>{formatDate(article.published_at)}</time>
+            {modifiedAt !== article.published_at && <> · Mis à jour le <time datetime={modifiedAt}>{formatDate(modifiedAt)}</time></>}
+          </p>
+          <p class="si-editorial-meta"><a href="/methodologie#politique-editoriale">Sources, méthode éditoriale et corrections</a></p>
           {image && (
             <img
               src={image}
@@ -163,7 +170,7 @@ if (faqPairs.length > 0) {
         )}
 
         <p class="si-article-disclaimer">
-          Contenu informatif fondé sur des données publiques officielles, à jour à la date de révision indiquée. Ne constitue pas un conseil en investissement ni un avis juridique ou fiscal personnalisé.
+          Contenu informatif publié par Score-Immo, qui commercialise des rapports d’analyse immobilière. Les sources et leur période de référence sont indiquées dans le guide. Ne constitue pas un conseil en investissement ni un avis juridique ou fiscal personnalisé.
         </p>
 
         <footer class="si-article-footer" style="margin-top:2.5rem;">
@@ -175,6 +182,8 @@ if (faqPairs.length > 0) {
 </BaseLayout>
 
 <style is:global>
+  .si-editorial-meta { color: var(--si-muted-foreground, #64748B); font-size: 0.875rem; line-height: 1.6; margin: 0.5rem 0; }
+  .si-editorial-meta a { text-decoration: underline; text-underline-offset: 0.15em; }
   .si-breadcrumb {
     font-size: 0.875rem;
     color: var(--si-muted-foreground, #64748B);

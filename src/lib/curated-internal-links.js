@@ -102,10 +102,9 @@ const RULES = new Map([
   }]],
   ['villes/prix-immobilier-paris-marche-plancher', [{
     href: '/blogs/quartiers/meilleurs-quartiers-acheter-paris',
-    needle: 'Tu découvriras ici les zones où le plancher est réellement atteint et celles qui résistent encore.</p>',
-    replacement: 'Tu découvriras ici les zones où le plancher est réellement atteint et celles qui résistent encore. Pour passer de la tendance générale au choix d\'une adresse, consulte les <a href="/blogs/quartiers/meilleurs-quartiers-acheter-paris">meilleurs quartiers où acheter à Paris</a>.</p>',
-  }]],
-  ['quartiers/meilleurs-quartiers-acheter-lille', [{
+    needle: 'Ce guide explique où consulter la carte officielle, comment choisir des comparables et quelles questions préparer avant la visite.</p>',
+    replacement: 'Ce guide explique où consulter la carte officielle, comment choisir des comparables et quelles questions préparer avant la visite. Pour préciser votre secteur de recherche, consultez les <a href="/blogs/quartiers/meilleurs-quartiers-acheter-paris">meilleurs quartiers où acheter à Paris</a>.</p>',
+  }]],  ['quartiers/meilleurs-quartiers-acheter-lille', [{
     href: '/blogs/villes/prix-immobilier-lille-metropole-sous-cotee',
     needle: '<p>Entre les quartiers historiques du Vieux-Lille aux pavés authentiques et les secteurs émergents comme Euralille, chaque zone possède sa personnalité et ses opportunités d\'investissement. Les dernières données <abbr title="Demande de Valeurs Foncières">DVF</abbr> révèlent des écarts de prix pouvant atteindre 2 000 €/m² entre les arrondissements, rendant crucial le choix de votre future adresse.</p>',
     replacement: '<p>Entre les quartiers historiques du Vieux-Lille aux pavés authentiques et les secteurs émergents comme Euralille, chaque zone possède sa personnalité et ses opportunités d\'investissement. Les dernières données <abbr title="Demande de Valeurs Foncières">DVF</abbr> révèlent des écarts de prix pouvant atteindre 2 000 €/m² entre les arrondissements, rendant crucial le choix de votre future adresse. Pour replacer ces écarts dans la tendance générale, consultez notre analyse du <a href="/blogs/villes/prix-immobilier-lille-metropole-sous-cotee">prix immobilier à Lille</a>.</p>',
