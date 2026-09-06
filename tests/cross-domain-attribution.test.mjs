@@ -102,7 +102,7 @@ test("GET analyzer forms receive hidden attribution fields", async () => {
 
 test("the attribution bridge is loaded on every layout page", async () => {
   const layout = await read("src/layouts/BaseLayout.astro");
-  assert.match(layout, /<script src="\/attribution\.js\?v=20260905" defer><\/script>/);
+  assert.match(layout, /<script src="\/attribution\.js\?v=20260906" defer><\/script>/);
 });
 
 
