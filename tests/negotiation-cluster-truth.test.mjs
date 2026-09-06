@@ -100,10 +100,10 @@ test("the procedural guide keeps its recent search signal and loses fabricated r
   );
   assert.equal(
     procedure.meta_description,
-    "Préparez votre négociation immobilière : analyse du prix, arguments, offre d'achat et contre-proposition pour négocier un bien en 2026.",
+    "Préparez votre offre d'achat : ventes comparables, travaux documentés et tableau des justificatifs pour négocier sans décote automatique.",
   );
-  assert.equal(procedure.updated_at, "2026-08-28");
-  assert.equal(procedure.last_reviewed, "2026-08-28");
+  assert.equal(procedure.updated_at, "2026-09-06");
+  assert.equal(procedure.last_reviewed, "2026-09-06");
   assert.equal(procedure.word_count, text.split(" ").length);
   assert.ok(procedure.word_count >= 1500);
 

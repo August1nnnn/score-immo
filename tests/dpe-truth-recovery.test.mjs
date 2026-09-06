@@ -31,7 +31,7 @@ test("the DPE guide states only bounded and sourced 2026 facts", () => {
   const textBody = body.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ");
   const tldr = article.tldr.join(" ");
 
-  assert.equal(article.last_reviewed, "2026-08-27");
+  assert.equal(article.last_reviewed, "2026-09-06");
   assert.match(body, /coefficient[^<]{0,100}1,9/);
   assert.match(body, /1er janvier 2026/);
   assert.match(body, /attestation officielle/);
@@ -94,7 +94,7 @@ test("the DPE sources resolve to specific primary references", () => {
 test("the product CTA cannot be mistaken for a FAQ question", () => {
   const faqPairs = extractFaq(article.body_html);
 
-  assert.equal(faqPairs.length, 5);
+  assert.equal(faqPairs.length, 6);
   assert.doesNotMatch(
     faqPairs.map(({ q }) => q).join(" "),
     /Vérifiez le DPE dans le contexte du bien/,
