@@ -10,6 +10,7 @@ async function loadAttribution(search, fixtures = {}) {
   const source = await read("public/attribution.js");
   const listeners = new Map();
   const document = {
+    referrer: fixtures.referrer || "",
     addEventListener: (name, callback) => listeners.set(name, callback),
     querySelectorAll: (selector) => selector.startsWith("a[")
       ? (fixtures.anchors || [])
@@ -142,4 +143,24 @@ test("original navigation tags are restored after late consent, and removed agai
   assert.equal(new URL(href).searchParams.get('utm_source'), 'site');
   fixtures.analytics = 'rejected'; fixtures.onChange();
   assert.equal(new URL(href).searchParams.get('utm_source'), null);
+});
+
+test('external referrer survives the site-to-app handoff without private URL parts', async () => {
+  const fixtures = {referrer:'https://www.google.fr/search?q=private'};
+  const bridge = await loadAttribution('', fixtures);
+  const url = new URL(bridge.decorateUrl('https://app.score-immo.fr/app?utm_source=site&utm_medium=nav'));
+  assert.equal(url.searchParams.get('si_referrer'), 'google.fr');
+  assert.equal(url.searchParams.get('utm_source'), null);
+  assert.ok(!JSON.stringify(fixtures.stored).includes('private'));
+  fixtures.referrer = 'https://score-immo.fr/article';
+  const next = await loadAttribution('', fixtures);
+  assert.equal(new URL(next.decorateUrl('https://app.score-immo.fr/app')).searchParams.get('si_referrer'), 'google.fr');
+  fixtures.analytics = 'rejected'; fixtures.onChange();
+  assert.equal(new URL(next.decorateUrl(url.href)).searchParams.get('si_referrer'), null);
+});
+test('explicit campaigns take precedence over an external referrer', async () => {
+  const bridge = await loadAttribution('?utm_source=google&utm_medium=cpc', {referrer:'https://www.google.fr/'});
+  const url = new URL(bridge.decorateUrl('https://app.score-immo.fr/app'));
+  assert.equal(url.searchParams.get('utm_medium'), 'cpc');
+  assert.equal(url.searchParams.get('si_referrer'), null);
 });
