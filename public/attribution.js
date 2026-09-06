@@ -4,6 +4,7 @@
   var APP_ORIGIN = "https://app.score-immo.fr";
   var STORAGE_KEY = "si_campaign_attribution";
   var PARAM_NAMES = [
+    "si_referrer",
     "utm_source",
     "utm_medium",
     "utm_campaign",
@@ -22,12 +23,22 @@
   function allowed(name) {
     try {
       var consent = window.ScoreImmoConsent;
-      return Boolean(consent && (name.indexOf("utm_") === 0
+      return Boolean(consent && ((name.indexOf("utm_") === 0 || name === "si_referrer")
         ? consent.getStatus() === "accepted"
         : consent.getAdvertisingStatus() === "accepted"));
     } catch (_error) { return false; }
   }
+  function safeHost(value) {
+    return typeof value === "string" && /^(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,24}$/.test(value)
+      && !/(^|\.)(score-immo\.fr|stripe\.com|supabase\.co)$/.test(value)
+      && value !== "accounts.google.com" && value !== "appleid.apple.com" ? value : null;
+  }
+  function externalReferrer() {
+    try { var url = new URL(document.referrer); return /^https?:$/.test(url.protocol) ? safeHost(url.hostname.toLowerCase().replace(/^www\./, "")) : null; }
+    catch (_error) { return null; }
+  }
   function safeValue(name, value) {
+    if (name === "si_referrer") return safeHost(value);
     if (typeof value !== "string") return null;
     var normalized = value.trim();
     if (name === "fbclid" && normalized.length > 160) return null;
@@ -61,6 +72,10 @@
     try {
       var current = paramsFromSearch(window.location.search);
       attribution = hasValues(current) ? current : readStored();
+      if (!hasValues(attribution) && allowed("si_referrer")) {
+        var referrer = externalReferrer();
+        if (referrer) attribution = { si_referrer: referrer };
+      }
       if (!hasValues(attribution)) sessionStorage.removeItem(STORAGE_KEY);
       else {
         var old = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || "null");
@@ -86,6 +101,9 @@
     PARAM_NAMES.forEach(function (name) {
       if (!allowed(name) || !safeValue(name, url.searchParams.get(name))) url.searchParams.delete(name);
     });
+    if (attribution.si_referrer && /^(site|score-immo\.fr|app\.score-immo\.fr)$/i.test(url.searchParams.get("utm_source") || "")) {
+      ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach(function (name) { url.searchParams.delete(name); });
+    }
     Object.keys(attribution).forEach(function (name) {
       if (allowed(name)) url.searchParams.set(name, attribution[name]);
     });
@@ -117,6 +135,13 @@
       if (old && !allowed(name) && old.remove) old.remove();
     });
     var formValues = Object.assign({}, defaults, attribution);
+    if (attribution.si_referrer && /^(site|score-immo\.fr|app\.score-immo\.fr)$/i.test(formValues.utm_source || "")) {
+      ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach(function (name) {
+        delete formValues[name];
+        var input = form.querySelector('input[name="' + name + '"]');
+        if (input && input.remove) input.remove();
+      });
+    }
     Object.keys(formValues).forEach(function (name) {
       if (!allowed(name)) return;
       var input = form.querySelector('input[name="' + name + '"]');
