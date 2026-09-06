@@ -7,13 +7,13 @@ const canonical = `${SITE_URL}/pro`;
 const appUrl = 'https://app.score-immo.fr/iad?utm_source=site&utm_medium=pro_landing';
 
 const title = `${BRAND_NAME} Pro : l'outil d'analyse des mandataires`;
-const description = "L'outil d'estimation et d'analyse pour les mandataires immobiliers : un rapport objectif sur 100, à votre marque, pour décrocher des mandats et rassurer vos clients.";
+const description = "L'outil d'estimation et d'analyse pour les mandataires immobiliers : des données traçables et un rapport à votre marque pour documenter un bien et préparer les échanges avec vos clients.";
 
 const faq = [
   { q: "Score-Immo, c'est pour quels professionnels de l'immobilier ?", a: "Pour les mandataires immobiliers, les agents et les négociateurs qui veulent documenter leur analyse avec les données disponibles pour le bien." },
   { q: "Qu'est-ce qui rend le rapport crédible face à un vendeur ?", a: "Il réunit des données publiques et ouvertes, indique leur source et signale les informations indisponibles ou insuffisamment fiables. La négociation peut ainsi s'appuyer sur des éléments vérifiables." },
-  { q: "Puis-je remettre un rapport à ma marque ?", a: "Oui, l'offre Pro permet un rapport co-brandé (votre nom, votre logo). Le client repart avec un document professionnel qui porte votre image, un vrai outil de closing." },
-  { q: "Combien de temps prend une analyse ?", a: "Environ 30 secondes : vous collez le lien d'une annonce, l'outil génère le rapport complet avec un score sur 100." },
+  { q: "Puis-je remettre un rapport à ma marque ?", a: "Oui, l'offre Pro permet un rapport co-brandé (votre nom, votre logo). Le client repart avec un document professionnel qui porte votre image, un support pour vos échanges." },
+  { q: "Combien de temps prend une analyse ?", a: "Le délai dépend du bien et des sources accessibles. Après l'achat d'une formule adaptée, le rapport présente les informations disponibles et leur couverture." },
   { q: "Puis-je voir un rapport avant de souscrire ?", a: "Oui. La démo complète et les exemples du Baromètre sont accessibles gratuitement. Les rapports personnalisés sont disponibles avec une offre payante." },
 ];
 
@@ -47,11 +47,11 @@ const jsonLd = [
 
       <header class="pro-hero">
         <p class="pro-kicker">Score-Immo Pro · Pour les mandataires</p>
-        <h1 class="pro-h1">Votre rapport d'expert immobilier, à votre marque</h1>
+        <h1 class="pro-h1">Votre rapport d'analyse immobilière, à votre marque</h1>
         <p class="pro-lead">Documentez un bien avec les données publiques et ouvertes disponibles, un score sur 100 et la couverture des informations utilisées.</p>
         <div class="pro-actions">
           <a class="pro-btn pro-btn-primary" href={appUrl}>Voir l'offre mandataire</a>
-          <a class="pro-btn pro-btn-ghost" href="/barometre">Voir un exemple d'analyse</a>
+          <a class="pro-btn pro-btn-ghost" href="https://app.score-immo.fr/r/demo">Voir la démo gratuite</a>
         </div>
       </header>
 
@@ -59,9 +59,9 @@ const jsonLd = [
         <h2 class="pro-h2">Pourquoi les mandataires utilisent Score-Immo</h2>
         <div class="pro-cards">
           <div class="pro-card"><h3>Données traçables</h3><p>Le rapport relie les informations disponibles à leur source et indique les limites de couverture. Votre analyse devient vérifiable.</p></div>
-          <div class="pro-card"><h3>À votre marque</h3><p>Remettez un rapport co-brandé, avec votre nom et votre logo. Un document professionnel qui vous valorise et sert d'outil de closing.</p></div>
-          <div class="pro-card"><h3>En 30 secondes</h3><p>Collez le lien d'une annonce, obtenez un rapport complet : prix au m² réels, DPE, risques, environnement et un score sur 100.</p></div>
-          <div class="pro-card"><h3>Pour décrocher le mandat</h3><p>Transformez la négociation de prix en discussion de données. Le vendeur accepte le bon prix quand il est prouvé.</p></div>
+          <div class="pro-card"><h3>À votre marque</h3><p>Remettez un rapport co-brandé, avec votre nom et votre logo. Un document professionnel qui vous valorise et documente les échanges.</p></div>
+          <div class="pro-card"><h3>Préparer une analyse</h3><p>Collez le lien d'une annonce, obtenez un rapport complet : prix au m² réels, DPE, risques, environnement et un score sur 100.</p></div>
+          <div class="pro-card"><h3>Pour documenter le prix</h3><p>Transformez la négociation de prix en discussion de données. Présentez les références disponibles et les points à vérifier avec le vendeur.</p></div>
         </div>
       </section>
 
@@ -69,8 +69,8 @@ const jsonLd = [
         <h2 class="pro-h2">Comment ça marche</h2>
         <ol class="pro-steps">
           <li><strong>Collez le lien</strong> d'une annonce immobilière (ou saisissez l'adresse).</li>
-          <li><strong>Recevez le rapport</strong> complet en 30 secondes : score sur 100, prix vs marché, DPE, risques, environnement, commerces.</li>
-          <li><strong>Remettez-le à votre client</strong>, à votre marque, pour justifier le prix et emporter la décision.</li>
+          <li><strong>Recevez le rapport</strong> personnalisé avec une formule payante : score sur 100, prix vs marché, DPE, risques, environnement, commerces.</li>
+          <li><strong>Remettez-le à votre client</strong>, à votre marque, pour expliquer les données disponibles et préparer la discussion.</li>
         </ol>
       </section>
 
@@ -79,9 +79,9 @@ const jsonLd = [
       </section>
 
       <section class="pro-block">
-        <h2 class="pro-h2">Ce que contient chaque rapport</h2>
+        <h2 class="pro-h2">Les informations recherchées pour le rapport</h2>
         <ul class="pro-data">
-          <li>Prix au m² réels du secteur (DVF)</li>
+          <li>Ventes de référence du secteur (DVF), selon les données disponibles</li>
           <li>Position vs marché (sur ou sous-évalué)</li>
           <li>Performance énergétique (DPE)</li>
           <li>Risques naturels et technologiques</li>
@@ -94,11 +94,19 @@ const jsonLd = [
 
       <section class="pro-block pro-pricing">
         <h2 class="pro-h2">L'offre Pro</h2>
-        <p><strong>Un seul mandat décroché rembourse des années d'abonnement.</strong> Une offre pensée pour les mandataires, avec rapport co-brandé à votre marque et analyses illimitées à 79&nbsp;€/mois. Consultez la démo complète gratuitement, puis choisissez votre formule sur notre <a href="/tarifs">page tarifs</a>.</p>
+        <p>Une offre pensée pour les mandataires, avec rapport co-brandé à votre marque et analyses illimitées à 79&nbsp;€/mois. Consultez la démo complète gratuitement, puis choisissez votre formule sur notre <a href="/tarifs">page tarifs</a>.</p>
         <div class="pro-actions">
           <a class="pro-btn pro-btn-primary" href={appUrl}>Voir l'offre mandataire</a>
           <a class="pro-btn pro-btn-ghost" href="/tarifs">Voir les tarifs</a>
         </div>
+      </section>
+
+      <section class="pro-block">
+        <h2 class="pro-h2">Faire découvrir Score-Immo à vos clients</h2>
+        <p>Agents, mandataires, courtiers ou créateurs de contenu : commencez par montrer la <a href="https://app.score-immo.fr/r/demo">démonstration gratuite</a> et la <a href="/methodologie">méthodologie et ses limites</a>. Le rapport personnalisé est payant et ne remplace pas une visite ou une expertise technique.</p>
+        <p>Selon le projet de votre interlocuteur, partagez notre guide pour <a href="/blogs/guides/estimation-immobiliere-methodes-juste-prix">vérifier si le prix demandé est cohérent</a> ou pour <a href="/blogs/guides/analyser-annonce-immobiliere-comme-pro">préparer une visite à partir de l'annonce</a>.</p>
+        <p>Exemple de présentation : « Avant votre prochaine visite, vous pouvez consulter cette démonstration d'analyse immobilière. Elle montre les informations disponibles et leurs limites. L'analyse personnalisée est payante. »</p>
+        <p><a href="https://app.score-immo.fr/r/demo?utm_source=site&amp;utm_medium=referral&amp;utm_campaign=prescripteurs&amp;utm_content=pro_demo">Ouvrir le lien de démonstration à partager</a></p>
       </section>
 
       <section class="pro-block">
