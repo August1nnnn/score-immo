@@ -22,6 +22,8 @@ test('pro offers a direct demonstration and usable referral resources without pr
   const pro = read('src/pages/pro.astro');
   assert.match(pro, /https:\/\/app.score-immo.fr\/r\/demo/);
   assert.match(pro, /Faire découvrir Score-Immo/);
+  assert.ok(pro.includes('https://app.score-immo.fr/pricing?source=pro_landing'));
+  assert.doesNotMatch(pro, /app.score-immo.fr\/iad/);
   for (const slug of slugs) assert.ok(pro.includes(slug));
   assert.doesNotMatch(pro, /CREATEUR|Un seul mandat décroché rembourse|Le vendeur accepte le bon prix|rapport d'expert|emporter la décision/);
 });
