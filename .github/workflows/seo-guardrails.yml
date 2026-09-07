@@ -33,7 +33,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: ${{ steps.detect.outputs.site_dir }}
-        run: npm install --include=optional --no-audit --no-fund
+        run: npm ci --include=optional --no-audit --no-fund
 
       - name: Install Chromium for browser behavior and layout geometry
         working-directory: ${{ steps.detect.outputs.site_dir }}
