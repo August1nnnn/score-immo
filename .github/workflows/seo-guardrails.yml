@@ -59,7 +59,7 @@ jobs:
 
       - name: Verify inline iOS banners and article funnel
         working-directory: ${{ steps.detect.outputs.site_dir }}
-        run: node --test tests/browser/ios-context-banners.test.mjs
+        run: node --test tests/browser/ios-context-banners.test.mjs tests/browser/editorial-motion.test.mjs
 
       - name: Layout geometry (texte hors de sa boite, scroll horizontal)
         working-directory: ${{ steps.detect.outputs.site_dir }}

@@ -1,10 +1,11 @@
 ---
+import ReadingHeading from '../ReadingHeading.astro';
 ---
 <!-- Score-Immo - Ce que Score-Immo analyse (13 features - pills interactives) -->
 <section id="features" class="si-section" aria-label="Fonctionnalit&eacute;s d'analyse immobili&egrave;re Score-Immo">
   <div class="si-container">
-    <div style="text-align:center;margin-bottom:2rem;" class="si-reveal">
-      <h2 class="si-section-title">Tout ce qu'il faut pour d&eacute;cider sereinement</h2>
+    <div style="text-align:center;margin-bottom:2rem;">
+      <ReadingHeading text="Une annonce séduit. Les données éclairent." />
       <p class="si-section-subtitle">Score-Immo agr&egrave;ge 10 sources publiques et ouvertes pour restituer les informations disponibles sur chaque bien.</p>
     </div>
 
@@ -85,15 +86,15 @@
     risques:{title:'Risques & Obligations',desc:'Inondation, sismicit\u00e9, radon, ICPE : donn\u00e9es G\u00e9orisques officielles. Identifiez tous les risques naturels et technologiques autour du bien.',tags:['Inondation','Sismicit\u00e9','Radon & ICPE']},
     quartier:{title:'Quartier & Services',desc:'\u00c9coles, transports, commerces, loisirs, d\u00e9linquance, QPV. Tout ce qui d\u00e9finit la qualit\u00e9 de vie autour du bien.',tags:['\u00c9coles','Transports','Commerces','QPV']},
     dpe:{title:'Performance \u00c9nerg\u00e9tique',desc:'DPE, alertes passoire \u00e9nerg\u00e9tique, estimation co\u00fbt travaux et aides disponibles (MaPrimeR\u00e9nov, CEE).',tags:['Classe DPE','Co\u00fbt travaux','Alerte passoire']},
-    pdf:{title:'Rapport Complet PDF',desc:'Partagez le rapport avec ton entourage, conseiller ou artisan. Export PDF professionnel avec toutes les donn\u00e9es.',tags:['Export PDF','Lien partageable','Donn\u00e9es compl\u00e8tes']},
+    pdf:{title:'Rapport Complet PDF',desc:'Partagez le rapport avec votre entourage, conseiller ou artisan. Export PDF professionnel avec toutes les donn\u00e9es.',tags:['Export PDF','Lien partageable','Donn\u00e9es compl\u00e8tes']},
     import:{title:'Import en 1 Clic',desc:'Collez un lien depuis LeBonCoin, SeLoger, PAP, Bien\'ici et bien d\'autres. Extraction automatique des donn\u00e9es de l\'annonce.',tags:['Collez l\'URL','Extraction auto','R\u00e9sultat en 30s']},
-    cout:{title:'Co\u00fbt Total d\'Acquisition',desc:'Frais de notaire, travaux, ameublement : calculez le vrai co\u00fbt total de ton achat, pas seulement le prix affich\u00e9.',tags:['Frais notaire','Travaux','Budget total']},
+    cout:{title:'Co\u00fbt Total d\'Acquisition',desc:'Frais de notaire, travaux, ameublement : calculez le vrai co\u00fbt total de votre achat, pas seulement le prix affich\u00e9.',tags:['Frais notaire','Travaux','Budget total']},
     locatif:{title:'Estimation Locative',desc:'Estimation du loyer potentiel et calcul du rendement locatif brut. Id\u00e9al pour les investisseurs.',tags:['Loyer estim\u00e9','Rendement brut','Comparaison']},
     urbanisme:{title:'Urbanisme & PLU',desc:'Plan Local d\'Urbanisme, zone constructible, servitudes et projets d\'am\u00e9nagement \u00e0 proximit\u00e9.',tags:['Zone PLU','Servitudes','Projets']},
     taxe:{title:'Taxe Fonci\u00e8re',desc:'Estimation de la taxe fonci\u00e8re bas\u00e9e sur les taux communaux et la valeur locative cadastrale.',tags:['Taux communal','Estimation','Historique']},
     environnement:{title:'Environnement',desc:'Qualit\u00e9 de l\'air, bruit, antennes relais, sites pollu\u00e9s (BASOL/BASIAS). Donn\u00e9es officielles.',tags:['Qualit\u00e9 air','Bruit','Sites pollu\u00e9s']},
     vie:{title:'Vie de Quartier',desc:'D\u00e9mographie, revenus m\u00e9dians, taux de ch\u00f4mage, s\u00e9curit\u00e9. Portrait socio-\u00e9conomique du quartier.',tags:['Population','Revenus','S\u00e9curit\u00e9']},
-    checklist:{title:'Checklist Visite',desc:'Liste de v\u00e9rification personnalis\u00e9e pour ne rien oublier lors de tes visites immobili\u00e8res.',tags:['Points \u00e0 v\u00e9rifier','Personnalis\u00e9e','Partageable']}
+    checklist:{title:'Checklist Visite',desc:'Liste de v\u00e9rification personnalis\u00e9e pour ne rien oublier lors de vos visites immobili\u00e8res.',tags:['Points \u00e0 v\u00e9rifier','Personnalis\u00e9e','Partageable']}
   };
 
   var pills=document.querySelectorAll('.si-fpill');
