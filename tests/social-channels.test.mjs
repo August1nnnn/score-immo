@@ -6,6 +6,7 @@ const root = new URL("../", import.meta.url);
 const read = (path) => readFileSync(new URL(path, root), "utf8");
 
 const officialProfiles = [
+  ["Instagram", "https://www.instagram.com/score_immo/"],
   ["TikTok", "https://www.tiktok.com/@scoreimmo"],
   ["YouTube", "https://www.youtube.com/@scoreimmo"],
   ["Facebook", "https://www.facebook.com/people/Score-Immo/61594068807617/"],
