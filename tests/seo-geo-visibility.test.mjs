@@ -12,9 +12,11 @@ test("the homepage uses a stable, descriptive H1", () => {
   assert.doesNotMatch(hero, /Mot rotatif du titre/);
 });
 
-test("public machine-readable facts use canonical URLs and source counts", () => {
+test("public machine-readable facts use canonical URLs and explicit source limitations", () => {
   const llms = read("public/llms.txt");
-  assert.match(llms, /Sources publiques et ouvertes mobilisables \(10\)/);
+  assert.match(llms, /Sources et limites/);
+  assert.match(llms, /ATMO non intégrée/);
+  assert.match(llms, /exemple-rapport/);
   assert.match(llms, /plus de 230 points de données potentiels/);
   assert.match(llms, /https:\/\/score-immo\.fr\/methodologie/);
   assert.match(llms, /https:\/\/score-immo\.fr\/barometre/);

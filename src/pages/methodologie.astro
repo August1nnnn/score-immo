@@ -196,10 +196,11 @@ const jsonLd = [
 
       <section>
         <h2>4. Données manquantes, poids effectif et couverture</h2>
+        <p>Les actualités servent au contexte et sont exclues du score, même lorsqu’elles sont disponibles. Un loyer calculé à partir d’un rendement cible est une simulation, pas une observation locative. Un taux fiscal communal ne permet pas d’inventer la taxe du logement. Ces simulations sont également exclues du score. La grille ci-dessus conserve les poids source historiques pour rendre les exclusions lisibles.</p>
         <p>Une section n’entre dans le total que si la donnée requise est disponible et suffisamment autoritative. Un DPE seulement rapproché au code postal, un zonage estimé ou une référence de prix inexploitable ne sont pas notés comme des faits certains.</p>
         <p>Le <strong>poids source</strong> vient de la grille de la catégorie. Lorsqu’une section est exclue, le <strong>poids effectif</strong> de chaque section conservée est calculé ainsi :</p>
         <p class="si-formula">poids effectif = poids source ÷ somme des poids disponibles × 100</p>
-        <p>Le score final est la somme de chaque note sur 10 multipliée par son poids effectif. La couverture correspond à la somme des poids source disponibles divisée par 100. Si aucune section n’est disponible, le moteur ne produit pas de score.</p>
+        <p>Le score final sur 100 est la somme de chaque note sur 10 multipliée par son poids effectif puis divisée par 10. La couverture correspond à la somme des poids source disponibles divisée par 100. Si aucune section n’est disponible, le moteur ne produit pas de score.</p>
       </section>
 
       <section>
@@ -236,6 +237,7 @@ const jsonLd = [
 
       <section>
         <h2>8. Limites d’interprétation</h2>
+        <p><a href="/exemple-rapport">Lire l’exemple complet de rapport, entièrement fictif</a> : prix, score détaillé, DPE, risques, budget et simulation locative, avec les limites de chaque rubrique. La même page est lisible sans application ni connexion.</p>
         <ul>
           <li>Le prix d’une annonce est un prix demandé. DVF décrit des transactions passées et ne contient pas le prix initial de l’annonce.</li>
           <li>Une médiane locale peut mal représenter un bien atypique, neuf, de prestige ou très différent des comparables.</li>

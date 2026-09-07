@@ -1,0 +1,64 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import artifact from '@/data/public-demo.json';
+const r=artifact.report;
+const money=(n:number)=>new Intl.NumberFormat('fr-FR',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n);
+const pct=(n:number)=>new Intl.NumberFormat('fr-FR',{maximumFractionDigits:1}).format(n)+' %';
+const title='Exemple complet de rapport immobilier Score-Immo : démo fictive';
+const description='Consultez un rapport Score-Immo complet en lecture libre : score détaillé, prix, DPE, risques, budget et simulation locative. Exemple fictif, pas une expertise immobilière.';
+const canonical='https://score-immo.fr/exemple-rapport';
+const jsonLd=[{'@context':'https://schema.org','@type':'WebPage','@id':canonical+'#webpage',url:canonical,name:title,description,inLanguage:'fr-FR',isPartOf:{'@id':'https://score-immo.fr/#website'}}];
+const annualRent=r.loyer*12;
+---
+<BaseLayout {title} {description} {canonical} {jsonLd}>
+<article class="demo-document">
+  <nav aria-label="Fil d’Ariane"><a href="/">Score-Immo</a> / Exemple de rapport</nav>
+  <h1>Exemple complet de rapport immobilier Score-Immo</h1>
+  <p class="notice"><strong>Démo entièrement fictive.</strong> Les chiffres, adresses, distances, événements et résultats ci-dessous servent uniquement à expliquer la lecture du produit. Ils ne constituent ni des observations sur un logement réel à Lyon ni un rapport client. Aucun achat n’est nécessaire pour lire cet exemple.</p>
+  <p>Cette version de lecture reprend la <a href="https://app.score-immo.fr/r/demo">démo interactive</a>. Pour comprendre la sélection des données, consultez la <a href="/methodologie">méthodologie et les limites du score</a>. Les <a href="/tarifs">analyses personnalisées commencent à 4,99 €</a>, sans abonnement pour l’achat à l’unité.</p>
+  <h2>1. Bien et localisation de démonstration</h2>
+  <p>{r.title}, {r.rooms} pièces, {r.bedrooms} chambres, {r.floor}. Adresse fictive : {r.address}. Localisation illustrative au quartier, pas à la parcelle.</p>
+  <dl><dt>Prix affiché, honoraires inclus</dt><dd>{money(r.price)}</dd><dt>Surface</dt><dd>{r.surface} m²</dd><dt>Prix au m²</dt><dd>{money(r.pricePerSqm)}/m²</dd></dl>
+  <h3>Critères de recherche fictifs</h3>
+  <p>Exemple de comparaison avec des préférences personnelles, distinct du score de qualité du bien :</p>
+  <ul>{artifact.match.criteria.map(c=><li><strong>{c.label} :</strong> {c.detail}</li>)}</ul>
+  <h2>2. Score et contributions illustratives</h2>
+  <p>Score de la démo : <strong>{r.score}/100</strong>. Il résulte des contributions ci-dessous, arrondies pour l’affichage. Les actualités, le montant fiscal simulé, le rendement hypothétique et l’environnement non mesuré sont exclus du score. Ce score fictif n’évalue aucun logement réel.</p>
+  <div class="table-scroll"><table><caption>Décomposition du score de démonstration</caption><thead><tr><th>Section</th><th>Note sur 10</th><th>Poids effectif</th><th>Contribution sur 100</th></tr></thead><tbody>{r.sectionScores.map(s=><tr><th scope="row">{s.label}</th><td>{s.score}</td><td>{pct(s.weight)}</td><td>{s.weighted.toFixed(1)}</td></tr>)}</tbody></table></div>
+  <h2>3. Prix et échantillon de ventes fictif</h2>
+  <p>Dans cet exemple, {r.nbComparables} ventes illustratives donnent une médiane de {money(r.medianLocal)}/m², entre {money(r.p25)} et {money(r.p75)}/m² pour les quartiles. Le prix affiché se situe à {pct(r.diffPercent)} de cette médiane. Cet écart n’est ni une économie prouvée ni un objectif de négociation : état, étage, date et localisation des comparables doivent être vérifiés.</p>
+  <p>Un véritable rapport distingue ventes <a href="https://www.data.gouv.fr/fr/datasets/demandes-de-valeurs-foncieres/">DVF</a> et prix d’annonces. Les ventes antérieures ne prédisent pas une plus-value.</p>
+  <h2>4. Énergie et diagnostic</h2>
+  <p>Classe DPE illustrative : {r.dpe}. Classe climat GES illustrative : {r.ges}. Ces deux indicateurs ne mesurent pas la même chose. Aucun budget de travaux, gain de classe ou coût énergétique n’est déduit de ces seules lettres.</p>
+  <p>Dans un rapport réel, le DPE déclaré et un diagnostic <a href="https://observatoire-dpe-audit.ademe.fr/">ADEME</a> voisin ne doivent pas être mélangés. Une contradiction doit être vérifiée sur le document du logement ; la classe n’est pas corrigée automatiquement.</p>
+  <h2>5. Risques de démonstration</h2>
+  <ul>{r.risks.map(risk=><li><strong>{risk.label} :</strong> {risk.level}, valeur fictive pour illustrer le rendu.</li>)}</ul>
+  <p>La portée dépend du zonage : commune ou parcelle. Une catégorie inconnue reste à vérifier. Le potentiel radon communal ne mesure pas la concentration dans un bâtiment. Source à consulter pour un bien réel : <a href="https://www.georisques.gouv.fr/">Géorisques</a>.</p>
+  <h2>6. Budget d’acquisition</h2>
+  <dl><dt>Prix FAI</dt><dd>{money(r.price)}</dd><dt>Frais de notaire simulés ({pct(r.acquisitionCost.frais_notaire_pct)})</dt><dd>{money(r.acquisitionCost.frais_notaire)}</dd><dt>Honoraires à ajouter</dt><dd>{money(r.acquisitionCost.frais_agence)}, déjà inclus</dd><dt>Budget d’acquisition hors travaux</dt><dd>{money(r.acquisitionCost.cout_total)}</dd></dl>
+  <p>Les frais sont indicatifs ; un décompte notarial et les conditions de vente déterminent le budget réel. Aucun coût de travaux n’est présumé ici.</p>
+  <h2>7. Simulation locative et taxe foncière</h2>
+  <p><strong>Hypothèse de loyer : {money(r.loyer)}/mois.</strong> Ce montant ne vient pas d’une observation locative et sa faisabilité n’est pas vérifiée. L’encadrement applicable, le bail et les charges doivent être contrôlés séparément.</p>
+  <dl><dt>Loyers bruts annuels hypothétiques</dt><dd>{money(annualRent)}</dd><dt>Rendement brut sur prix d’achat</dt><dd>{pct(annualRent/r.price*100)}</dd><dt>Rendement brut sur budget d’acquisition</dt><dd>{pct(annualRent/r.acquisitionCost.cout_total*100)}</dd><dt>Taxe annuelle, hypothèse de démonstration</dt><dd>{money(r.taxeFonciere.estimation_annuelle)}</dd><dt>Rendement après cette seule taxe</dt><dd>{pct((annualRent-r.taxeFonciere.estimation_annuelle)/r.price*100)}</dd></dl>
+  <p>Les autres charges, la vacance, le financement et la fiscalité des revenus ne sont pas déduits : il ne s’agit pas d’un rendement net complet. La taxe réelle dépend de la base cadastrale et des taux applicables, pas du prix d’achat. Demandez l’avis fiscal : <a href="https://www.impots.gouv.fr/particulier/base-de-calcul">base de calcul des impôts locaux</a>.</p>
+  <div class="table-scroll"><table><caption>Cumul hypothétique des loyers bruts, à loyer constant</caption><thead><tr><th>Durée</th><th>Loyers cumulés</th><th>Part du prix d’achat</th></tr></thead><tbody>{[1,3,5,10].map(year=><tr><th>{year} an(s)</th><td>{money(annualRent*year)}</td><td>{pct(annualRent*year/r.price*100)}</td></tr>)}</tbody></table></div>
+  <h2>8. Urbanisme et environnement</h2>
+  <p>Zonage fictif : {r.zonePlu}, {r.zonePluLibelle}. Une zone U ne constitue pas un certificat de constructibilité. Vérifiez le règlement, les servitudes et le projet auprès du <a href="https://www.geoportail-urbanisme.gouv.fr/">Géoportail de l’urbanisme</a> et de la mairie.</p>
+  <p>Bruit : aucune mesure acoustique dans cet exemple. La proximité d’une route ou d’un arrêt ne permet pas d’inventer un niveau en décibels ni de conclure à la tranquillité. Qualité de l’air : aucune mesure locale vérifiée présentée.</p>
+  <h2>9. Profil socio-démographique illustratif</h2>
+  <p>Valeurs fictives, sans affirmation sur la population réelle du secteur : population {r.socio.population.toLocaleString('fr-FR')}, revenu médian {money(r.socio.revenu_median)}, chômage {pct(r.socio.taux_chomage)}, propriétaires {pct(r.socio.pct_proprietaires)}, locataires {pct(r.socio.pct_locataires)}. Périmètres et millésimes doivent accompagner les données <a href="https://www.insee.fr/">INSEE</a> d’un rapport réel. La proportion de locataires ne démontre pas la demande locative.</p>
+  <h2>10. Quartier, équipements et distances fictives</h2>
+  <p>Toutes les valeurs de cette section sont des exemples de présentation. Un classement QPV n’est pas une mesure de sécurité.</p>
+  {artifact.neighborhood.map(section=><section><h3>{section.title}</h3><ul>{section.items.map(item=><li><strong>{item.label} :</strong> {item.value}{'distance' in item ? `, distance illustrative ${item.distance}` : ''}</li>)}</ul><p class="source-note">{section.source}</p></section>)}
+  <h2>11. Actualités et historique fictifs</h2>
+  <p>Les titres suivants sont inventés pour la démo, sans lien vers de vrais articles et sans contribution au score :</p>
+  <ul>{r.localNews.articles.map(a=><li>{a.title} ({a.published_at}, exemple fictif)</li>)}</ul>
+  <div class="table-scroll"><table><caption>Mutations fictives, pas un historique immobilier réel</caption><thead><tr><th>Date illustrative</th><th>Prix</th><th>Surface</th></tr></thead><tbody>{r.history.previous_sales.map(sale=><tr><td>{sale.date}</td><td>{money(sale.price)}</td><td>{sale.surface} m²</td></tr>)}</tbody></table></div>
+  <h2>12. Ce qu’il reste à vérifier avant une décision</h2>
+  <p>Un rapport aide à organiser les vérifications. Il ne remplace ni visite, diagnostic, étude juridique, avis fiscal, règlement de copropriété, devis de travaux ou expertise de valeur. La disponibilité des sources dépend du bien et de l’adresse. Cette page ne publie aucune donnée client.</p>
+  <p><a href="/methodologie">Lire la méthode complète</a> · <a href="/tarifs">Choisir une analyse à l’unité ou un pack</a> · <a href="https://app.score-immo.fr/r/demo">Explorer la démo interactive</a></p>
+</article>
+</BaseLayout>
+<style>
+.demo-document{max-width:920px;margin:auto;padding:3rem 1.25rem;line-height:1.75;color:#24354b}.demo-document h1{font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.2;margin:1.5rem 0}.demo-document h2{font-size:1.5rem;margin-top:2.5rem}.demo-document h3{font-size:1.15rem;margin-top:1.5rem}.demo-document p{margin:1rem 0}.demo-document a{color:#176650;text-decoration:underline}.notice{padding:1.25rem;background:#edf7f2;border-left:4px solid #176650;border-radius:8px}.demo-document ul{padding-left:1.25rem;list-style:disc}.demo-document dl{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:.5rem 1rem;padding:1rem;background:#f6f8fa}.demo-document dd{font-weight:600}.table-scroll{overflow-x:auto}table{width:100%;border-collapse:collapse;text-align:left}caption{font-weight:600;text-align:left;margin:1rem 0}th,td{border-bottom:1px solid #dfe5e7;padding:.7rem}.source-note{font-size:.85rem;color:#526477}@media(max-width:500px){.demo-document dl{grid-template-columns:1fr}.demo-document dd{margin-bottom:.6rem}}
+</style>

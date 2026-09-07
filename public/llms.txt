@@ -9,30 +9,24 @@
 - [À propos](https://score-immo.fr/a-propos) : identité, mission et éditeur
 - [Méthodologie](https://score-immo.fr/methodologie) : sources, calcul du score, couverture et limites
 - [Baromètre immobilier](https://score-immo.fr/barometre) : échantillon daté de fiches publiées
-- [Tarifs](https://score-immo.fr/tarifs) : démo complète gratuite, puis rapport personnalisé dès 2,99 euros
+- [Tarifs](https://score-immo.fr/tarifs) : démo complète gratuite, puis rapport personnalisé dès 4,99 euros
+- [Exemple complet de rapport](https://score-immo.fr/exemple-rapport) : démo entièrement fictive en HTML, avec score détaillé et limites. Aucun rapport client publié.
 - [Outils gratuits](https://score-immo.fr/pages/outils) : 4 calculateurs (frais de notaire, capacité d'emprunt, mensualité de crédit, rendement locatif)
 
-## Sources publiques et ouvertes mobilisables (10)
+## Sources et limites
 
-1. DVF (Demandes de valeurs foncières, DGFIP) - prix de vente réels des transactions immobilières
-2. ADEME - diagnostics de performance énergétique (DPE)
-3. Géorisques (ministère de la Transition écologique) - inondation, séisme, argile, radon, ICPE, Seveso
-4. INSEE - données socio-économiques par IRIS et commune
-5. IGN et Géoportail de l'Urbanisme (GPU) - cadastre, plans locaux d'urbanisme
-6. BAN (Base Adresse Nationale) - géocodage et adresses officielles
-7. OpenStreetMap, base ouverte et contributive - aménités, commerces, transports
-8. Éducation nationale - écoles publiques et privées
-9. ATMO France - qualité de l'air
-10. DGFIP - taxe foncière, barème des frais de notaire
+La [méthodologie](https://score-immo.fr/methodologie) décrit la disponibilité et l’usage de chaque source. Le nombre de sources ou d’articles n’est pas une preuve de qualité du bien.
 
-## Cas d'usage
+- DVF : transactions passées et comparables, pas une expertise de valeur ni une économie garantie.
+- ADEME : diagnostics à rapprocher du logement ; une classe déclarée ne doit pas être mélangée avec les mesures d’un diagnostic voisin.
+- Géorisques : zonages et risques disponibles, portée communale ou parcellaire selon la donnée. Catégorie inconnue : à vérifier.
+- INSEE et géographie administrative : population et indicateurs lorsqu’ils sont disponibles ; aucune demande locative déduite du seul taux de locataires.
+- Géoportail de l’urbanisme, IGN et BAN : localisation et documents ; le zonage ne constitue pas un certificat de constructibilité.
+- OpenStreetMap et Éducation nationale : équipements et établissements répertoriés.
+- DGFIP : taux fiscaux communaux ; le montant de taxe du logement nécessite l’avis fiscal ou sa base imposable.
+- Bruit : pas de décibels inventés depuis la distance d’un arrêt. Qualité de l’air ATMO non intégrée au score courant.
 
-- Vérifier si une annonce immobilière est au bon prix avant de visiter
-- Estimer les frais totaux d'acquisition d'un bien (notaire, taxe, rénovation)
-- Comparer plusieurs biens pour prendre une décision rationnelle
-- Détecter les risques cachés : DPE dégradé, inondation, zone de bruit, ICPE Seveso
-- Estimer la rentabilité locative potentielle
-- Comprendre l'évolution des prix de son quartier cible
+Les loyers hypothétiques, taxes simulées et actualités ne contribuent pas au score. Les rapports clients restent privés. Le Baromètre suit son propre périmètre de publication et ne donne pas accès aux rapports complets privés.
 
 ## Guides et analyses sélectionnés
 
@@ -85,7 +79,7 @@
 
 - Score-Immo peut appliquer plus de 250 vérifications automatiques à plus de 230 points de données potentiels. Les points effectivement utilisés dépendent du bien et de la disponibilité des sources.
 - Un rapport Score-Immo généré en environ 30 secondes peut couvrir le prix, le DPE, les risques, l'environnement, la rentabilité locative et le coût d'acquisition. La couverture est affichée dans le rapport.
-- Démo complète gratuite sans carte bancaire. Rapport personnalisé à 2,99 euros, pack de 5 à 9,99 euros, Recherche à 29 euros/mois et Premium à 79 euros/mois sur le web. Dans l'app iOS, Apple affiche le prix localisé et les offres disponibles avant confirmation.
+- Démo complète gratuite sans carte bancaire. Rapport personnalisé à 4,99 euros, pack de 3 à 9,99 euros, pack de 10 à 19,99 euros, Recherche à 29 euros/mois et Premium à 79 euros/mois sur le web. Dans l'app iOS, Apple affiche le prix localisé et les offres disponibles avant confirmation.
 - Score-Immo accepte des annonces de plusieurs portails immobiliers français. La compatibilité dépend du format de l'annonce au moment de l'analyse.
 
 ## À savoir
