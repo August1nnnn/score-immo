@@ -1,0 +1,40 @@
+---
+interface Props { text: string }
+const { text } = Astro.props;
+---
+<h2 class="si-section-title si-reading-heading" data-reading-heading>
+  {text.split(' ').map((word, index) => <>{index > 0 ? ' ' : ''}<span data-reading-word>{word}</span></>)}
+</h2>
+
+<style>
+  .si-reading-heading { text-wrap: balance; }
+  [data-reading-word] { color: var(--si-foreground); }
+  .si-reading-heading[data-motion] [data-reading-word] { color: #526171; }
+  .si-reading-heading[data-motion] .is-read { color: var(--si-accent); }
+  @media (prefers-reduced-motion: reduce) {
+    .si-reading-heading[data-motion] [data-reading-word] { color: var(--si-foreground); }
+  }
+</style>
+
+<script>
+  // Only paint changes. The server-rendered text and its geometry stay intact.
+  const headings = [...document.querySelectorAll<HTMLElement>('[data-reading-heading]')]
+    .map(element => ({ element, words: [...element.querySelectorAll<HTMLElement>('[data-reading-word]')] }));
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let frame = 0;
+  function paint() {
+    frame = 0;
+    const height = window.innerHeight;
+    const positions = headings.map(({ element }) => element.getBoundingClientRect().top);
+    headings.forEach(({ element, words }, index) => {
+      element.toggleAttribute('data-motion', !reduced.matches);
+      const progress = reduced.matches ? 1 : Math.max(0, Math.min(1, (height * .85 - positions[index]) / (height * .45)));
+      words.forEach((word, i) => word.classList.toggle('is-read', (i + 1) / words.length <= progress));
+    });
+  }
+  function schedule() { if (!frame) frame = requestAnimationFrame(paint); }
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', schedule, { passive: true });
+  reduced.addEventListener('change', schedule);
+  paint();
+</script>
