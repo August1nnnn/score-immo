@@ -1,4 +1,5 @@
 ---
+const reportBenefits = ["Jusqu'à 13 sections d'analyse", "Score sur 100 et prix vs marché", "Profil Match acheteur", "Export PDF", "Favoris & historique", "Lien de partage"];
 const pricingFaq = [
   {
     question: 'Quelles données contient un rapport Score-Immo ?',
@@ -6,7 +7,7 @@ const pricingFaq = [
   },
   {
     question: 'Quels sites immobiliers sont compatibles ?',
-    answer: "Score-Immo fonctionne avec Leboncoin, SeLoger, Bien'ici, PAP, Logic-Immo, Century 21, Orpi, Laforêt et d'autres portails. Colle une URL d'annonce immobilière française pour vérifier sa compatibilité.",
+    answer: "Score-Immo fonctionne avec Leboncoin, SeLoger, Bien'ici, PAP, Logic-Immo, Century 21, Orpi, Laforêt et d'autres portails. Collez une URL d'annonce immobilière française pour vérifier sa compatibilité.",
   },
   {
     question: 'Quel plan choisir ?',
@@ -14,7 +15,7 @@ const pricingFaq = [
   },
   {
     question: 'Y a-t-il un abonnement ou un renouvellement automatique ?',
-    answer: "Recherche et Premium sont des abonnements mensuels, annulables à tout moment en 1 clic. Analyse unique, Pack 3 et Pack 10 sont des paiements uniques sans abonnement. Tes rapports restent accessibles même après annulation.",
+    answer: "Recherche et Premium sont des abonnements mensuels, annulables à tout moment en 1 clic. Analyse unique, Pack 3 et Pack 10 sont des paiements uniques sans abonnement. Vos rapports restent accessibles même après annulation.",
   },
   {
     question: "D'où viennent les données ?",
@@ -22,7 +23,7 @@ const pricingFaq = [
   },
   {
     question: 'Mes données sont-elles protégées ?',
-    answer: 'Oui. Score-Immo applique le principe de minimisation RGPD. Tu peux exporter ou supprimer tes données à tout moment depuis ton profil.',
+    answer: 'Oui. Score-Immo applique le principe de minimisation RGPD. Vous pouvez exporter ou supprimer vos données à tout moment depuis votre profil.',
   },
 ];
 
@@ -56,7 +57,7 @@ const pricingFaqItems = pricingFaq.map((item, index) => ({
       <span class="si-badge" style="margin-bottom:1rem;display:inline-block;">100% ind&eacute;pendant &middot; Donn&eacute;es publiques &middot; Non contractuel</span>
     </div>
     <h1 class="si-section-title si-reveal si-reveal-delay-1" style="font-size:2rem;line-height:1.25;margin-bottom:1rem;">
-      Analyse n'importe quelle annonce immobili&egrave;re en 30 secondes
+      Analysez n'importe quelle annonce immobili&egrave;re en 30 secondes
     </h1>
     <p class="si-section-subtitle si-reveal si-reveal-delay-2" style="font-size:1.0625rem;max-width:36rem;margin:0 auto 2rem;">
       Score sur 100, risques, DPE, prix du march&eacute;, rentabilit&eacute; : tout ce qu'il faut pour d&eacute;cider.
@@ -75,8 +76,8 @@ const pricingFaqItems = pricingFaq.map((item, index) => ({
 <section id="si-pricing" class="si-section" style="padding-top:1rem;padding-bottom:2.5rem;">
   <div class="si-container" style="max-width:60rem;">
     <div class="si-reveal" style="text-align:center;margin-bottom:0.5rem;">
-      <h2 class="si-section-title" style="font-size:1.5rem;margin-bottom:0.5rem;">Analyse un bien, sans abonnement</h2>
-      <p class="si-section-subtitle">D&eacute;mo compl&egrave;te gratuite. Rapports personnalis&eacute;s d&egrave;s 4,99&nbsp;&euro;. Tes cr&eacute;dits ne sont d&eacute;bit&eacute;s que si le rapport est g&eacute;n&eacute;r&eacute; avec succ&egrave;s.</p>
+      <h2 class="si-section-title" style="font-size:1.5rem;margin-bottom:0.5rem;">Analysez un bien, sans abonnement</h2>
+      <p class="si-section-subtitle">D&eacute;mo compl&egrave;te gratuite. Rapports personnalis&eacute;s d&egrave;s 4,99&nbsp;&euro;. Vos cr&eacute;dits ne sont d&eacute;bit&eacute;s que si le rapport est g&eacute;n&eacute;r&eacute; avec succ&egrave;s.</p>
     </div>
 
     <div class="si-pricing-grid si-pricing-oneoff si-reveal si-reveal-delay-1" style="margin-top:2rem;">
@@ -92,22 +93,8 @@ const pricingFaqItems = pricingFaq.map((item, index) => ({
           <p style="font-size:0.75rem;color:var(--si-muted-foreground);margin-top:0.25rem;">paiement unique</p>
         </div>
         <ul class="si-pricing-features">
-          <li class="si-pricing-feature">
-            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            <strong>1 rapport complet</strong>
-          </li>
-          <li class="si-pricing-feature">
-            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            13 sections d'analyse
-          </li>
-          <li class="si-pricing-feature">
-            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            Score sur 100 et prix vs march&eacute;
-          </li>
-          <li class="si-pricing-feature">
-            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            Export PDF et partage
-          </li>
+          <li class="si-pricing-feature"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><strong>1 rapport complet</strong></li>
+          {reportBenefits.map(benefit => <li class="si-pricing-feature"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>{benefit}</li>)}
         </ul>
         <p style="font-size:0.75rem;color:var(--si-muted-foreground);margin-top:auto;padding-top:1rem;">Un seul paiement. Aucun renouvellement.</p>
         <a href="https://app.score-immo.fr/go/checkout/unit_v2" class="si-btn si-btn-primary si-pricing-cta" style="width:100%;justify-content:center;margin-top:1rem;">
@@ -121,35 +108,13 @@ const pricingFaqItems = pricingFaq.map((item, index) => ({
           <h3 style="font-family:var(--si-font-heading);font-weight:700;font-size:1.125rem;">Pack 3</h3>
           <p style="font-size:0.8125rem;color:var(--si-muted-foreground);margin-top:0.25rem;">Pour v&eacute;rifier quelques biens avant de visiter.</p>
           <div style="margin-top:1rem;">
-            <span class="si-price" data-counter="9" data-suffix=",99&nbsp;&euro;">9,99&nbsp;&euro;</span>
+            <span class="si-price">9,99&nbsp;&euro;</span>
           </div>
           <p style="font-size:0.75rem;color:var(--si-muted-foreground);margin-top:0.25rem;">soit 3,33&nbsp;&euro; par analyse</p>
         </div>
         <ul class="si-pricing-features">
-          <li class="si-pricing-feature">
-            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            <strong>3 rapports complets</strong>
-          </li>
-          <li class="si-pricing-feature">
-            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            13 sections d'analyse
-          </li>
-          <li class="si-pricing-feature">
-            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            Score sur 100
-          </li>
-          <li class="si-pricing-feature">
-            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            Profil Match acheteur
-          </li>
-          <li class="si-pricing-feature">
-            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            Export PDF
-          </li>
-          <li class="si-pricing-feature">
-            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            Lien de partage
-          </li>
+          <li class="si-pricing-feature"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><strong>3 rapports complets</strong></li>
+          {reportBenefits.map(benefit => <li class="si-pricing-feature"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>{benefit}</li>)}
         </ul>
         <p style="font-size:0.75rem;color:var(--si-muted-foreground);margin-top:auto;padding-top:1rem;">Paiement unique. Pas d'abonnement.</p>
         <a href="https://app.score-immo.fr/go/checkout/pack_3" class="si-btn si-btn-secondary si-pricing-cta" style="width:100%;justify-content:center;margin-top:1rem;">
@@ -161,37 +126,15 @@ const pricingFaqItems = pricingFaq.map((item, index) => ({
       <div class="si-pricing-card-v2">
         <div style="text-align:center;padding-bottom:1.25rem;border-bottom:1px solid var(--si-border);margin-bottom:1.25rem;">
           <h3 style="font-family:var(--si-font-heading);font-weight:700;font-size:1.125rem;">Pack 10</h3>
-          <p style="font-size:0.8125rem;color:var(--si-muted-foreground);margin-top:0.25rem;">Pour comparer davantage de biens pendant ta recherche.</p>
+          <p style="font-size:0.8125rem;color:var(--si-muted-foreground);margin-top:0.25rem;">Pour comparer davantage de biens pendant votre recherche.</p>
           <div style="margin-top:1rem;">
-            <span class="si-price" data-counter="19" data-suffix=",99&nbsp;&euro;">19,99&nbsp;&euro;</span>
+            <span class="si-price">19,99&nbsp;&euro;</span>
           </div>
           <p style="font-size:0.75rem;color:var(--si-muted-foreground);margin-top:0.25rem;">soit environ 2&nbsp;&euro; par analyse</p>
         </div>
         <ul class="si-pricing-features">
-          <li class="si-pricing-feature">
-            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            <strong>10 rapports complets</strong>
-          </li>
-          <li class="si-pricing-feature">
-            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            13 sections d'analyse
-          </li>
-          <li class="si-pricing-feature">
-            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            Score sur 100
-          </li>
-          <li class="si-pricing-feature">
-            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            Profil Match acheteur
-          </li>
-          <li class="si-pricing-feature">
-            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            Export PDF
-          </li>
-          <li class="si-pricing-feature">
-            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            Lien de partage
-          </li>
+          <li class="si-pricing-feature"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><strong>10 rapports complets</strong></li>
+          {reportBenefits.map(benefit => <li class="si-pricing-feature"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>{benefit}</li>)}
         </ul>
         <p style="font-size:0.75rem;color:var(--si-muted-foreground);margin-top:auto;padding-top:1rem;">Paiement unique. Pas d'abonnement.</p>
         <a href="https://app.score-immo.fr/go/checkout/pack_10" class="si-btn si-btn-secondary si-pricing-cta" style="width:100%;justify-content:center;margin-top:1rem;">
@@ -201,6 +144,7 @@ const pricingFaqItems = pricingFaq.map((item, index) => ({
 
     </div>
 
+    <p style="font-size:0.875rem;color:var(--si-muted-foreground);margin-top:1.5rem;">Les mêmes fonctionnalités sont incluses dans chaque rapport. Les sections dépendent du bien et des données disponibles. Le Profil Match concerne les biens résidentiels et nécessite un profil acheteur renseigné.</p>
     <section id="si-subscriptions" aria-labelledby="si-subscriptions-title" style="margin-top:3rem;">
       <div class="si-reveal" style="text-align:center;margin-bottom:1.5rem;">
         <h2 id="si-subscriptions-title" class="si-section-title" style="font-size:1.5rem;margin-bottom:0.5rem;">Pour un usage r&eacute;gulier ou professionnel</h2>
@@ -211,7 +155,7 @@ const pricingFaqItems = pricingFaq.map((item, index) => ({
       <div class="si-pricing-card-v2">
         <div style="text-align:center;padding-bottom:1.25rem;border-bottom:1px solid rgba(59,130,246,0.2);margin-bottom:1.25rem;">
           <h3 style="font-family:var(--si-font-heading);font-weight:700;font-size:1.125rem;">Recherche</h3>
-          <p style="font-size:0.8125rem;color:var(--si-muted-foreground);margin-top:0.25rem;">Compare jusqu'&agrave; 60 biens par mois.</p>
+          <p style="font-size:0.8125rem;color:var(--si-muted-foreground);margin-top:0.25rem;">Comparez jusqu'&agrave; 60 biens par mois.</p>
           <div style="margin-top:1rem;text-align:center;">
             <span class="si-price">29&nbsp;&euro;</span>
             <p style="font-size:0.8125rem;color:var(--si-muted-foreground);margin-top:0.25rem;">par mois</p>
@@ -279,7 +223,7 @@ const pricingFaqItems = pricingFaq.map((item, index) => ({
           </li>
           <li class="si-pricing-feature">
             <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            PDF brand&eacute; avec ton logo
+            PDF brand&eacute; avec votre logo
           </li>
           <li class="si-pricing-feature">
             <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--si-success)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
@@ -290,7 +234,7 @@ const pricingFaqItems = pricingFaq.map((item, index) => ({
             Support prioritaire
           </li>
         </ul>
-        <p style="font-size:0.75rem;color:var(--si-muted-foreground);margin-top:auto;padding-top:1rem;">Rapport &agrave; ta marque. Annulable en 1 clic.</p>
+        <p style="font-size:0.75rem;color:var(--si-muted-foreground);margin-top:auto;padding-top:1rem;">Rapport &agrave; votre marque. Annulable en 1 clic.</p>
         <a href="https://app.score-immo.fr/go/checkout/premium" class="si-btn si-btn-secondary si-pricing-cta" style="width:100%;justify-content:center;margin-top:1rem;">
           Choisir Premium
         </a>
@@ -302,9 +246,9 @@ const pricingFaqItems = pricingFaq.map((item, index) => ({
 
     <!-- Offre professionnelle publique -->
     <aside class="si-reveal si-reveal-delay-2" style="margin-top:2.5rem;padding:1.75rem;border-radius:var(--si-radius-xl,1rem);background:linear-gradient(135deg,var(--si-primary,#0F172A),#1e293b);color:#fff;text-align:center;">
-      <p style="font-family:var(--si-font-heading,'DM Sans',sans-serif);font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--si-accent,#3B82F6);margin:0 0 0.5rem;">Tu es mandataire ?</p>
-      <h3 style="font-family:var(--si-font-heading,'DM Sans',sans-serif);font-size:clamp(1.25rem,3vw,1.6rem);font-weight:700;margin:0 0 0.75rem;color:#fff;">Des rapports &agrave; ta marque pour tes clients</h3>
-      <p style="max-width:40rem;margin:0 auto 1.5rem;line-height:1.6;color:rgba(255,255,255,0.9);font-size:0.98rem;">&Agrave; 79&nbsp;&euro;/mois, remets un rapport objectif &agrave; ta marque qui transforme la n&eacute;gociation de prix en discussion de donn&eacute;es. C'est l'outil pens&eacute; pour les mandataires.</p>
+      <p style="font-family:var(--si-font-heading,'DM Sans',sans-serif);font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--si-accent,#3B82F6);margin:0 0 0.5rem;">Vous êtes mandataire ?</p>
+      <h3 style="font-family:var(--si-font-heading,'DM Sans',sans-serif);font-size:clamp(1.25rem,3vw,1.6rem);font-weight:700;margin:0 0 0.75rem;color:#fff;">Des rapports &agrave; votre marque pour vos clients</h3>
+      <p style="max-width:40rem;margin:0 auto 1.5rem;line-height:1.6;color:rgba(255,255,255,0.9);font-size:0.98rem;">&Agrave; 79&nbsp;&euro;/mois, remettez un rapport objectif &agrave; votre marque qui transforme la n&eacute;gociation de prix en discussion de donn&eacute;es. C'est l'outil pens&eacute; pour les mandataires.</p>
       <div style="display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;">
         <a class="si-btn si-btn-primary" href="https://app.score-immo.fr/go/checkout/premium" style="justify-content:center;">Voir l'offre mandataire</a>
         <a class="si-btn" href="/pro" style="justify-content:center;background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.25);">En savoir plus</a>
@@ -375,8 +319,8 @@ const pricingFaqItems = pricingFaq.map((item, index) => ({
 
       <div class="si-card si-reveal si-reveal-delay-1" style="padding:1.5rem;border-radius:var(--si-radius-2xl);text-align:center;position:relative;z-index:1;">
         <div style="width:3rem;height:3rem;border-radius:var(--si-radius-xl);background:var(--si-primary);color:var(--si-primary-foreground);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-family:var(--si-font-heading);font-weight:700;font-size:1.25rem;">1</div>
-        <h3 style="font-family:var(--si-font-heading);font-weight:600;font-size:1rem;margin-bottom:0.375rem;">Colle l'URL</h3>
-        <p style="font-size:0.8125rem;color:var(--si-muted-foreground);line-height:1.5;">Copie le lien de l'annonce depuis n'importe quel site immobilier.</p>
+        <h3 style="font-family:var(--si-font-heading);font-weight:600;font-size:1rem;margin-bottom:0.375rem;">Collez l'URL</h3>
+        <p style="font-size:0.8125rem;color:var(--si-muted-foreground);line-height:1.5;">Copiez le lien de l'annonce depuis n'importe quel site immobilier.</p>
       </div>
       <div class="si-card si-reveal si-reveal-delay-2" style="padding:1.5rem;border-radius:var(--si-radius-2xl);text-align:center;position:relative;z-index:1;">
         <div style="width:3rem;height:3rem;border-radius:var(--si-radius-xl);background:var(--si-primary);color:var(--si-primary-foreground);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-family:var(--si-font-heading);font-weight:700;font-size:1.25rem;">2</div>
@@ -385,7 +329,7 @@ const pricingFaqItems = pricingFaq.map((item, index) => ({
       </div>
       <div class="si-card si-reveal si-reveal-delay-3" style="padding:1.5rem;border-radius:var(--si-radius-2xl);text-align:center;position:relative;z-index:1;">
         <div style="width:3rem;height:3rem;border-radius:var(--si-radius-xl);background:var(--si-primary);color:var(--si-primary-foreground);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-family:var(--si-font-heading);font-weight:700;font-size:1.25rem;">3</div>
-        <h3 style="font-family:var(--si-font-heading);font-weight:600;font-size:1rem;margin-bottom:0.375rem;">D&eacute;cide en confiance</h3>
+        <h3 style="font-family:var(--si-font-heading);font-weight:600;font-size:1rem;margin-bottom:0.375rem;">D&eacute;cidez en confiance</h3>
         <p style="font-size:0.8125rem;color:var(--si-muted-foreground);line-height:1.5;">Score sur 100, risques, march&eacute;, DPE, quartier : tout est l&agrave;.</p>
       </div>
     </div>
@@ -508,8 +452,8 @@ const pricingFaqItems = pricingFaq.map((item, index) => ({
 <section class="si-section" style="padding-top:0;padding-bottom:3rem;">
   <div class="si-container" style="max-width:42rem;">
     <div class="si-card si-reveal" style="padding:2.5rem 2rem;border-radius:var(--si-radius-2xl);border-color:rgba(59,130,246,0.2);background:linear-gradient(135deg, rgba(59,130,246,0.04) 0%, rgba(59,130,246,0.08) 100%);text-align:center;">
-      <h2 style="font-family:var(--si-font-heading);font-weight:700;font-size:1.5rem;margin-bottom:0.5rem;">Pr&ecirc;t &agrave; analyser ta prochaine annonce ?</h2>
-      <p style="color:var(--si-muted-foreground);margin-bottom:1.5rem;font-size:0.9375rem;">Consulte la d&eacute;mo compl&egrave;te, puis analyse ton bien d&egrave;s 4,99&nbsp;&euro;.</p>
+      <h2 style="font-family:var(--si-font-heading);font-weight:700;font-size:1.5rem;margin-bottom:0.5rem;">Pr&ecirc;t &agrave; analyser votre prochaine annonce ?</h2>
+      <p style="color:var(--si-muted-foreground);margin-bottom:1.5rem;font-size:0.9375rem;">Consultez la d&eacute;mo compl&egrave;te, puis analysez votre bien d&egrave;s 4,99&nbsp;&euro;.</p>
       <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
         <a href="https://app.score-immo.fr/go/checkout/unit_v2" class="si-btn si-btn-primary si-cta-glow">
           Analyser pour 4,99&nbsp;&euro;
@@ -670,7 +614,7 @@ const pricingFaqItems = pricingFaq.map((item, index) => ({
       dpe:{title:'DPE & \u00e9nergie (ADEME)',desc:'Classe énergétique, émissions GES et consommation selon les informations disponibles. La provenance et les limites du rapprochement sont indiquées ; le diagnostic du bien reste à vérifier.',tags:['Classe DPE','Co\u00fbt annuel','Alerte passoire']},
       quartier:{title:'Quartier & commodit\u00e9s',desc:'\u00c9coles, commerces, transports, sant\u00e9, loisirs et espaces verts dans un rayon adapt\u00e9 \u00e0 la densit\u00e9 (500m en ville, 2km en campagne). Donn\u00e9es OpenStreetMap et \u00c9ducation Nationale.',tags:['\u00c9coles','Transports','Commerces']},
       environnement:{title:'Environnement',desc:'Informations disponibles sur la qualité de l’air et le bruit autour du bien. La couverture varie selon le lieu : une donnée absente ne signifie pas une absence de nuisance.',tags:['Qualit\u00e9 air','Bruit','ATMO']},
-      urbanisme:{title:'Urbanisme (PLU)',desc:'Zone PLU (U, AU, A, N), r\u00e8gles de constructibilit\u00e9 via le G\u00e9oportail de l\'Urbanisme (IGN). Essentiel pour savoir si tu peux agrandir ou construire.',tags:['Zone PLU','Constructibilit\u00e9','Projets']},
+      urbanisme:{title:'Urbanisme (PLU)',desc:'Zone PLU (U, AU, A, N), r\u00e8gles de constructibilit\u00e9 via le G\u00e9oportail de l\'Urbanisme (IGN). Essentiel pour savoir si vous pouvez agrandir ou construire.',tags:['Zone PLU','Constructibilit\u00e9','Projets']},
       taxe:{title:'Taxe fonci\u00e8re',desc:'Estimation indicative de la taxe foncière lorsque les données permettent de la calculer. Seul le dernier avis du propriétaire confirme le montant du bien.',tags:['Estimation','Taux communal','Co\u00fbt annuel']},
       population:{title:'Population & revenus (INSEE)',desc:'D\u00e9mographie, revenu m\u00e9dian, taux de ch\u00f4mage et densit\u00e9. Un revenu \u00e9lev\u00e9 et un ch\u00f4mage faible sont des indicateurs de stabilit\u00e9 du march\u00e9 immobilier local.',tags:['Revenus','Ch\u00f4mage','D\u00e9mographie']},
       locatif:{title:'Rendement locatif',desc:'Simulation du rendement et du cash-flow selon les données disponibles et les hypothèses indiquées. Un loyer simulé ne constitue pas un loyer observé ni une garantie de revenu.',tags:['Brut','Net','Cash-flow']},

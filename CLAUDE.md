@@ -1,7 +1,10 @@
 # score-immo.fr — site Astro
 
 Site SSG d'aide à la décision immobilière (analyse d'annonces, scoring A-E sur 100).
-App séparée : app.score-immo.fr (Lovable). Backend Supabase `afvtxiklivnmakqixkml`.
+App séparée : app.score-immo.fr (React/Vite, déployée sur Cloudflare Pages par
+`deploy-pages.yml`). Plus de Lovable depuis le 23/08/2026 : il reste seulement une
+dépendance résiduelle dans `package.json`, ce n'est pas un chemin de déploiement.
+Backend Supabase `afvtxiklivnmakqixkml`.
 
 ## Refs
 - **Domaine** : score-immo.fr (Astro + CF Pages). Repo `August1nnnn/score-immo`.
@@ -13,8 +16,13 @@ App séparée : app.score-immo.fr (Lovable). Backend Supabase `afvtxiklivnmakqix
 - **Paid-first** : aucun rapport complet personnalisé gratuit. Avant paiement,
   l'app peut afficher seulement les informations réellement extraites de
   l'annonce, sans score ni enrichissement multi-source. `/r/demo` reste
-  gratuite. Offres canoniques : 2,99 € / 1 rapport, 9,99 € /
-  5 rapports, 29 €/mois / 60 rapports, 79 €/mois / illimité. Les anciens plans
+  gratuite. Offres canoniques web depuis le 07/09/2026 : 4,99 € / 1 rapport
+  (`unit_v2`), 9,99 € / 3 rapports (`pack_3`), 19,99 € / 10 rapports (`pack_10`),
+  29 €/mois / 60 rapports (`search`), 79 €/mois / illimité (`premium`). Les anciennes
+  clés `unit` et `discovery` sont remappées côté serveur vers `unit_v2` et `pack_3` :
+  tout ancien lien ou article annonçant 2,99 € encaisse désormais 4,99 €. L'écart iOS
+  est volontaire, le produit Apple `fr.scoreimmo.report.pack5` garde 5 crédits car
+  changer un produit IAP demande une revue App Store ; ne pas réaligner sans accord. Les anciens plans
   ou textes mentionnant `first_free`, `free_weekly`, un essai personnalisé
   gratuit ou un premier mois standard à 1 € sont historiques. Source :
   `docs/superpowers/specs/2026-07-30-paid-formulas-source-of-truth.md`.
@@ -49,3 +57,9 @@ But = être *cité* par les LLM, pas juste ranker. Pattern en place :
 
 ## Conversion / Stripe
 - Axe mandataire (carte Pro -> `/iad`), gotcha `STRIPE_PRICE_PRO_MANDATAIRE` non configuré : voir mémoire `project-scoreimmo-conversion-mandataire-17juin`.
+
+## Préférences commerciales durables (utilisateur, 07/09/2026)
+
+- Vouvoyer la cible dans toutes les pages commerciales.
+- Les analyses à l’unité et les packs donnent accès aux mêmes capacités du rapport complet. Seule la quantité de crédits change ; ne pas inventer de différences de contenu pour distinguer ces offres.
+- Le branding personnalisé reste un avantage distinct de l’offre Premium. Ne pas le promettre dans les offres à l’unité ou les packs.

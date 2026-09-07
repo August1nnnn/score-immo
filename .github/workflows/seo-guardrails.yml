@@ -53,6 +53,10 @@ jobs:
         working-directory: ${{ steps.detect.outputs.site_dir }}
         run: npm run test:site-integrity
 
+      - name: Verify prices and offers across the entire built blog
+        working-directory: ${{ steps.detect.outputs.site_dir }}
+        run: npm run test:content-truth -- --built-blog
+
       - name: Verify inline iOS banners and article funnel
         working-directory: ${{ steps.detect.outputs.site_dir }}
         run: node --test tests/browser/ios-context-banners.test.mjs
