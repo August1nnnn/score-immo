@@ -8,8 +8,9 @@ for (const slug of slugs) {
     const d = JSON.parse(read(`src/content/articles/guides/${slug}.json`));
     assert.match(d.body_html, /href="https:\/\/app.score-immo.fr\/r\/demo"/);
     assert.match(d.body_html, /href="https:\/\/app.score-immo.fr\/app"/);
-    assert.match(d.body_html, /2,99/);
-    assert.match(d.body_html, /9,99/);
+    assert.match(d.body_html, /4,99/);
+    assert.match(d.body_html, /9,99 € pour 3 crédits/);
+    assert.match(d.body_html, /19,99 € pour 10 crédits/);
     assert.match(d.body_html, /href="\/methodologie"/);
     assert.match(d.body_html, /href="https:\/\/www.data.gouv.fr\/datasets\/demandes-de-valeurs-foncieres"/);
     assert.doesNotMatch(JSON.stringify(d), /68%|5,2%|230\+|Que Choisir|garantit une estimation|2 à 3%|plus complète du marché|quasi-invendable/i);

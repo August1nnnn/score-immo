@@ -117,8 +117,9 @@ test("FAQ structured data is visible and generated from the same pricing source"
   assert.doesNotMatch(pricing, /["']@type["']:\s*["']Product["']/);
   assert.match(pricingPage, /["']@type["']:\s*["']Product["']/);
   assert.doesNotMatch(pricing.split('---')[1], /&(?:eacute|egrave|ecirc|agrave|ocirc|ccedil);/i);
-  assert.doesNotMatch(pricing, /\b(?:vous|vos|votre|collez|copiez|remettez)\b/i);
-  assert.doesNotMatch(pricing, /D&eacute;cidez/i);
+  assert.match(pricing, /\b(?:vous|vos|votre|collez|copiez|remettez)\b/i);
+  assert.doesNotMatch(pricing, /(?<![\p{L}])(?:tu|ton|ta|tes|remets)(?![\p{L}])/iu);
+  assert.match(pricing, /D&eacute;cidez/i);
 });
 
 test("legal privacy links and verified publisher fields are first-party", () => {
