@@ -35,16 +35,46 @@
     if (!document.referrer) return "";
     try {
       var referrer = new URL(document.referrer);
+      if (!/^https?:$/.test(referrer.protocol)) return "";
+      var host = referrer.hostname.toLowerCase();
+      if (host === "accounts.google.com" || host === "appleid.apple.com"
+        || /(^|\.)(stripe\.com|supabase\.co)$/.test(host)) return "";
       return referrer.origin + referrer.pathname;
     } catch (_error) {
       return "";
     }
   }
 
+  function campaignFields() {
+    if (audienceStatus !== "accepted") return {};
+    var params = new URL(location.search || "", location.origin + "/").searchParams;
+    var fields = {};
+    var mapping = { utm_source: "campaign_source", utm_medium: "campaign_medium",
+      utm_campaign: "campaign_name", utm_content: "campaign_content", utm_term: "campaign_term" };
+    Object.keys(mapping).forEach(function (key) {
+      var value = (params.get(key) || "").trim();
+      if (/^[\p{L}\p{N} ._-]{1,80}$/u.test(value)) fields[mapping[key]] = value;
+    });
+    return fields;
+  }
+
+  function cleanLocation() {
+    var url = new URL(location.pathname || "/", location.origin);
+    if (advertisingStatus === "accepted") {
+      var params = new URL(location.search || "", location.origin + "/").searchParams;
+      ["gclid", "gbraid", "wbraid"].forEach(function (key) {
+        var value = params.get(key) || "";
+        if (/^[A-Za-z0-9_-]{1,200}$/.test(value)) url.searchParams.set(key, value);
+      });
+    }
+    return url.toString();
+  }
+
   function cleanPage() {
     return {
+      ...campaignFields(),
       page_path: location.pathname || "/",
-      page_location: location.origin + (location.pathname || "/"),
+      page_location: cleanLocation(),
       page_referrer: cleanReferrer(),
       page_title: document.title || undefined,
     };
@@ -81,12 +111,23 @@
       encodeURIComponent(GA4_ID);
     document.head.appendChild(script);
     window.gtag("js", new Date());
+  }
+
+  var configuredCampaign = {};
+  function configureGa4() {
+    var fields = campaignFields();
+    // Explicitly clear defaults set before a consent withdrawal.
+    Object.keys(configuredCampaign).forEach(function (key) {
+      if (!(key in fields)) fields[key] = "";
+    });
+    configuredCampaign = fields;
     window.gtag("config", GA4_ID, {
       send_page_view: false,
+      ...fields,
       cookie_domain: "score-immo.fr",
       cookie_flags: "SameSite=Lax;Secure",
-      page_location: location.origin + (location.pathname || "/"),
-      page_referrer: cleanReferrer(),
+      page_location: cleanLocation(),
+      page_referrer: audienceStatus === "accepted" ? cleanReferrer() : "",
     });
   }
 
@@ -101,6 +142,7 @@
       loadGtm();
       loadGa4();
     }
+    if (ga4Loaded) configureGa4();
     if (audienceStatus === "accepted") sendPageView();
   }
 
