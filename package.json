@@ -13,7 +13,9 @@
     "barometre:verify-live": "node scripts/verify-live-barometre.mjs",
     "test:content-truth": "node scripts/check-content-truth.mjs",
     "test:site-integrity": "node scripts/check-built-links.mjs",
-    "test:layout-geometry": "node scripts/check-layout-geometry.mjs"
+    "test:layout-geometry": "node scripts/check-layout-geometry.mjs",
+    "demo:sync": "node scripts/sync-public-demo.mjs",
+    "demo:check": "node scripts/sync-public-demo.mjs --check"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.5",

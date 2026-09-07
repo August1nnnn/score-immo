@@ -2,8 +2,8 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Pricing from '@/components/sections/Pricing.astro';
 
-const title = "Tarifs Score-Immo - Rapports dès 2,99 €";
-const description = "Rapport personnalisé dès 2,99 € : Analyse unique, Découverte 9,99 € pour 5 rapports, Recherche 29 €/mois et Premium 79 €/mois. Démo complète gratuite.";
+const title = "Tarifs Score-Immo - Rapports dès 4,99 €";
+const description = "Rapport personnalisé dès 4,99 € : Analyse unique, Pack 3 9,99 € pour 3 rapports, Pack 10 19,99 € pour 10 rapports, Recherche 29 €/mois et Premium 79 €/mois. Démo complète gratuite.";
 const canonical = "https://score-immo.fr/tarifs";
 
 const jsonLd = [
@@ -17,20 +17,29 @@ const jsonLd = [
       {
         "@type": "Offer",
         "name": "Analyse unique",
-        "price": "2.99",
+        "price": "4.99",
         "priceCurrency": "EUR",
         "description": "1 rapport personnalisé, paiement unique, sans abonnement",
         "availability": "https://schema.org/InStock",
-        "url": "https://app.score-immo.fr/go/checkout/unit"
+        "url": "https://app.score-immo.fr/go/checkout/unit_v2"
       },
       {
         "@type": "Offer",
-        "name": "Découverte",
+        "name": "Pack 3",
         "price": "9.99",
         "priceCurrency": "EUR",
-        "description": "5 analyses, paiement unique, sans engagement",
+        "description": "3 analyses, paiement unique, sans engagement",
         "availability": "https://schema.org/InStock",
-        "url": "https://app.score-immo.fr/go/checkout/discovery"
+        "url": "https://app.score-immo.fr/go/checkout/pack_3"
+      },
+      {
+        "@type": "Offer",
+        "name": "Pack 10",
+        "price": "19.99",
+        "priceCurrency": "EUR",
+        "description": "10 analyses, paiement unique, sans engagement",
+        "availability": "https://schema.org/InStock",
+        "url": "https://app.score-immo.fr/go/checkout/pack_10"
       },
       {
         "@type": "Offer",
@@ -78,4 +87,5 @@ const jsonLd = [
 ---
 <BaseLayout {title} {description} {canonical} {jsonLd}>
   <Pricing />
+  <p class="si-container" style="text-align:center;margin:2rem auto;"><a href="/exemple-rapport">Lire l’exemple complet de rapport</a></p>
 </BaseLayout>

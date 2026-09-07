@@ -34,20 +34,23 @@ const partnerPaths = new Set([
   "src/pages/pages/efficity.astro",
 ]);
 
-test("the pricing page exposes the four canonical paid offers", () => {
+test("the pricing page exposes the five canonical paid offers", () => {
   const pricing = source("src/components/sections/Pricing.astro");
 
   for (const expected of [
     "Analyse unique",
-    "2,99",
-    "Découverte",
+    "4,99",
+    "Pack 3",
     "9,99",
+    "Pack 10",
+    "19,99",
+    "/go/checkout/pack_10",
     "Recherche",
     "29",
     "Premium",
     "79",
-    "/go/checkout/unit",
-    "/go/checkout/discovery",
+    "/go/checkout/unit_v2",
+    "/go/checkout/pack_3",
     "/go/checkout/search",
     "/go/checkout/premium",
     "/r/demo",
@@ -119,10 +122,10 @@ test("structured data uses the canonical paid-first formula", () => {
   const homepage = source("src/data/homepage-jsonld.ts");
   const tariffs = source("src/pages/pages/tarifs.astro");
 
-  assert.match(homepage, /"name": "Analyse unique"[\s\S]*?"price": "2\.99"/);
+  assert.match(homepage, /"name": "Analyse unique"[\s\S]*?"price": "4\.99"/);
   assert.doesNotMatch(homepage, /"name": "Gratuit"[\s\S]*?"price": "0"/);
-  assert.match(tariffs, /"name": "Analyse unique"[\s\S]*?"price": "2\.99"/);
-  assert.match(tariffs, /Rapport personnalisé dès 2,99/);
+  assert.match(tariffs, /"name": "Analyse unique"[\s\S]*?"price": "4\.99"/);
+  assert.match(tariffs, /Rapport personnalisé dès 4,99/);
 });
 
 test("the Efficity exception stays explicit but never grants a free report", () => {
@@ -135,4 +138,39 @@ test("the Efficity exception stays explicit but never grants a free report", () 
     /(?:premi[eè]re|1[eè]re)\s+analyse\s+(?:est\s+)?(?:offerte|gratuite)/iu,
   );
   assert.doesNotMatch(partner, /analyser une annonce gratuitement/iu);
+});
+
+test("one-off offers precede a separate subscription section at every viewport", () => {
+  const pricing = source("src/components/sections/Pricing.astro");
+  const unit = pricing.indexOf('<!-- Analyse unique -->');
+  const pack = pricing.indexOf('<!-- Pack 3 -->');
+  const packTen = pricing.indexOf('<!-- Pack 10 -->');
+  const subscriptions = pricing.indexOf('id="si-subscriptions"');
+  const search = pricing.indexOf('<!-- Pass Recherche');
+  assert.ok(unit < pack && pack < packTen && packTen < subscriptions && subscriptions < search, 'subscriptions must follow the three one-off offers');
+  assert.match(pricing.slice(unit, pack), /si-pricing-primary/);
+  assert.match(pricing.slice(unit, pack), /si-btn si-btn-primary si-pricing-cta/);
+  assert.doesNotMatch(pricing.slice(search), /si-pricing-popular|Populaire|autant de biens que tu veux/);
+  assert.doesNotMatch(pricing, /order:\s*-1|repeat\(4,\s*1fr\)/);
+});
+
+test("the public professional offer never routes through the exclusive IAD offer", () => {
+  const pricing = source("src/components/sections/Pricing.astro");
+  assert.doesNotMatch(pricing, /app\.score-immo\.fr\/iad/);
+  assert.match(pricing, /href="https:\/\/app\.score-immo\.fr\/go\/checkout\/premium"/);
+});
+
+test("pricing feature descriptions distinguish simulations from sourced observations", () => {
+  const pricing = source("src/components/sections/Pricing.astro");
+  assert.doesNotMatch(pricing, /sur les loyers m\\u00e9dians|cartographie PPBE en d\\u00e9cibels|Donn\\u00e9es directes ADEME|10 \\u00e0 20%/);
+  assert.match(pricing, /hypothèses/);
+  assert.match(pricing, /diagnostic/);
+});
+
+test("active sales surfaces use the new catalog without rewriting historic purchases", () => {
+  const files = ['src/components/AnalyzerBox.astro','src/components/sections/Hero.astro','src/components/sections/CTA.astro','src/components/sections/Pricing.astro','src/pages/pages/tarifs.astro','src/data/homepage-jsonld.ts','src/data/pages/cgv.json','src/data/pages/outils.json','public/llms.txt'];
+  for (const file of files) {
+    assert.doesNotMatch(source(file), /2,99|"2\.99"|checkout\/(?:unit|discovery)(?:"|\?)|pack de 5|5 rapports|5 analyses/i, file);
+  }
+  assert.match(source('src/data/pages/cgv.json'), /achats antérieurs restent inchangés/);
 });
