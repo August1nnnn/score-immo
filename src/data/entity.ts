@@ -6,6 +6,7 @@ export const WEBSITE_ID = 'https://score-immo.fr/#website';
 export const APPLICATION_ID = 'https://score-immo.fr/#application';
 
 export const SOCIAL_PROFILES = [
+  { name: 'Instagram', url: 'https://www.instagram.com/score_immo/' },
   { name: 'TikTok', url: 'https://www.tiktok.com/@scoreimmo' },
   { name: 'YouTube', url: 'https://www.youtube.com/@scoreimmo' },
   { name: 'Facebook', url: 'https://www.facebook.com/people/Score-Immo/61594068807617/' },
