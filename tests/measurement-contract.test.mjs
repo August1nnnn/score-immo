@@ -160,7 +160,7 @@ test("consent clamps a 13-month expiry to the last valid target day", async () =
 });
 
 test("Google measurement defaults to denied, loads GA4 and GTM only after acceptance", async () => {
-  const source = await read("public/ga4.js");
+  const source = await read("public/ga4.js?v=20260907-attribution");
   const callbacks = [];
   const appended = [];
   const consent = {
@@ -470,13 +470,13 @@ test("layout initializes consent before analytics and does not mount legacy dire
   const legacyAnalytics = await read("src/components/Analytics.astro");
   const legacyGa4 = await read("src/components/GA4Tracker.astro");
   const consentPosition = layout.indexOf('src="/consent.js"');
-  const ga4Position = layout.indexOf('src="/ga4.js"');
+  const ga4Position = layout.indexOf('src="/ga4.js?v=20260907-attribution"');
   assert.ok(consentPosition >= 0);
   assert.ok(ga4Position > consentPosition);
   assert.match(layout, /src="\/track\.js\?v=20260827-lot2"/);
   assert.doesNotMatch(layout, /<Analytics\s*\/>/);
   assert.doesNotMatch(legacyAnalytics, /rest\/v1\/page_views/);
-  assert.match(legacyGa4, /src="\/ga4\.js"/);
+  assert.match(legacyGa4, /src="\/ga4\.js\?v=20260907-attribution"/);
 });
 
 test("footer exposes an accessible consent settings control", async () => {
