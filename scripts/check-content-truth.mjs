@@ -16,12 +16,12 @@ function blogOfferIssues(source) {
   if (/rapport détaillé[^.!?]{0,120}gratuit/i.test(text)) issues.push('free detailed report promise');
   if (/analysez\s+(?:gratuitement\s+(?:une|l['’])\s*annonce|une annonce gratuitement)/i.test(text)) issues.push('free personalized report promise');
   if (/text-décoration\s*:/i.test(source)) issues.push('invalid text-décoration CSS');
-  if (/(?:\/go)?\/checkout\/(?:unit|discovery)(?=[?"'\s<\\/]|$)/i.test(source)) issues.push('legacy checkout SKU');
+  if (/(?:\/go)?\/checkout\/(?:unit_v2|pack_3)(?=[?"'\s<\\/]|$)/i.test(source)) issues.push('legacy checkout SKU');
   // Currency amounts only: mortgage rates and other market statistics are untouched.
-  if (/(?:rapport personnalisé|analyse[rz] (?:une|mon|votre) annonce|rapport complet|Score[- ]?Immo)[^.!?]{0,100}\b2[,.]99\s*(?:€|EUR(?:OS)?\b)/i.test(text)) issues.push('obsolete unit price');
-  if (/9[,.]99\s*(?:€|EUR(?:OS)?\b)\s*(?:pour|les|\/)?\s*5\s*(?:crédits|rapports|analyses)/i.test(text)) issues.push('obsolete five-credit offer');
+  if (/(?:rapport personnalisé|analyse[rz] (?:une|mon|votre) annonce|rapport complet|Score[- ]?Immo)[^.!?]{0,100}\b4[,.]99\s*(?:€|EUR(?:OS)?\b)/i.test(text)) issues.push('obsolete unit price');
+  if (/9[,.]99\s*(?:€|EUR(?:OS)?\b)\s*(?:pour|les|\/)?\s*3\s*(?:crédits|rapports|analyses)/i.test(text)) issues.push('obsolete three-credit offer');
   if (/(?:Score[- ]?Immo|pack|rapports|analyses)[^.!?]{0,80}\b14[,.]95\s*(?:€|EUR(?:OS)?\b)/i.test(text)) issues.push('obsolete ten-report offer');
-  if (/5\s*(?:crédits|rapports|analyses)\s*(?:à|pour|:|au prix de)?\s*9[,.]99\s*(?:€|EUR(?:OS)?\b)/i.test(text)) issues.push('obsolete five-credit offer');
+  if (/3\s*(?:crédits|rapports|analyses)\s*(?:à|pour|:|au prix de)?\s*9[,.]99\s*(?:€|EUR(?:OS)?\b)/i.test(text)) issues.push('obsolete three-credit offer');
   return issues;
 }
 function allFiles(dir) {
@@ -32,28 +32,28 @@ function allFiles(dir) {
 }
 if (process.argv.includes('--self-test-blog')) {
   const cases = [
-    ['Analyser une annonce dès 2,99 €', true],
-    ['Rapport personnalisé payant : 2,99 € pour 1 crédit', true],
-    ['9,99 € pour 5 crédits', true],
-    ['<a href="/go/checkout/discovery">Acheter</a>', true],
-    ['<a href="/go/checkout/unit_v2">Acheter</a>', false],
+    ['Analyser une annonce dès 4,99 €', true],
+    ['Rapport personnalisé payant : 4,99 € pour 1 crédit', true],
+    ['9,99 € pour 3 crédits', true],
+    ['<a href="/go/checkout/pack_3">Acheter</a>', true],
+    ['<a href="/go/checkout/unit">Acheter</a>', false],
     ['text-décoration: none', true],
     ["Notez n'importe quelle annonce gratuitement.", true],
     ['Estimez votre futur bien gratuitement.', true],
     ['Un rapport détaillé avec le score, gratuitement.', true],
     ['Calculateur de frais de notaire gratuit', false],
     ['Calculateur de mensualité crédit gratuit', false],
-    ['Rapport complet : 2,99 &euro;', true],
-    ['Rapport personnalisé : 2,99 &#8364;', true],
-    ['Analyser une annonce dès 2,99 EUR', true],
-    ['Score-Immo à 2.99 &#x20ac;', true],
-    ['5 analyses à 9,99 &euro;', true],
-    ['9,99 EUR pour 5 analyses', true],
+    ['Rapport complet : 4,99 &euro;', true],
+    ['Rapport personnalisé : 4,99 &#8364;', true],
+    ['Analyser une annonce dès 4,99 EUR', true],
+    ['Score-Immo à 4.99 &#x20ac;', true],
+    ['3 analyses à 9,99 &euro;', true],
+    ['9,99 EUR pour 3 analyses', true],
     ['Analysez gratuitement une annonce', true],
     ['Analysez une annonce gratuitement.', true],
     ['Voir un rapport de démonstration gratuit', false],
-    ['Taux immobilier de 2,99 % ; concurrent à 2,99 €', false],
-    ['4,99 € pour 1 crédit ; 9,99 € pour 3 crédits ; 19,99 € pour 10 crédits', false],
+    ['Taux immobilier de 4,99 % ; concurrent à 4,99 €', false],
+    ['2,99 € pour 1 crédit ; 9,99 € pour 5 crédits ; 19,99 € pour 10 crédits', false],
   ];
   for (const [source, expected] of cases) {
     if ((blogOfferIssues(source).length > 0) !== expected) throw new Error(`Blog audit regression: ${source}`);

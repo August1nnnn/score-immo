@@ -51,8 +51,8 @@ export const homepageJsonLd = [
         ],
         "screenshot": "https://score-immo.fr/assets/og-default.svg",
         "offers": [
-          { "@type": "Offer", "name": "Analyse unique", "price": "4.99", "priceCurrency": "EUR", "description": "1 rapport personnalisé, paiement unique" },
-          { "@type": "Offer", "name": "Pack 3", "price": "9.99", "priceCurrency": "EUR", "description": "3 analyses, paiement unique" },
+          { "@type": "Offer", "name": "Analyse unique", "price": "2.99", "priceCurrency": "EUR", "description": "1 rapport personnalisé, paiement unique" },
+          { "@type": "Offer", "name": "Pack 5", "price": "9.99", "priceCurrency": "EUR", "description": "5 analyses, paiement unique" },
           { "@type": "Offer", "name": "Pack 10", "price": "19.99", "priceCurrency": "EUR", "description": "10 analyses, paiement unique" },
           { "@type": "Offer", "name": "Recherche", "price": "29", "priceCurrency": "EUR", "description": "60 analyses par mois" },
           { "@type": "Offer", "name": "Premium", "price": "79", "priceCurrency": "EUR", "description": "Analyses illimitées, PDF brandé et modes Achat/Vente" }

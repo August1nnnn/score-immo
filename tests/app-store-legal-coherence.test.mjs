@@ -24,8 +24,8 @@ test("sales terms distinguish web Stripe purchases from iOS Apple purchases", ()
   assert.match(terms, /Sign in with Apple[\s\S]*Google/iu);
 
   for (const webOffer of [
-    /Analyse unique[^<]*4,99\s*€/u,
-    /Pack 3[^<]*9,99\s*€/u,
+    /Analyse unique[^<]*2,99\s*€/u,
+    /Pack 5[^<]*9,99\s*€/u,
     /Recherche[^<]*29\s*€/u,
     /Premium[^<]*79\s*€/u,
   ]) {

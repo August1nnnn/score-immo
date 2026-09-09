@@ -1,3 +1,5 @@
+> Catalogue restauré sur GO PROD le09/09/2026 : unité2,99 €, pack5 9,99 €, pack10 19,99 €.
+
 # score-immo.fr — site Astro
 
 Site SSG d'aide à la décision immobilière (analyse d'annonces, scoring A-E sur 100).
@@ -16,11 +18,11 @@ Backend Supabase `afvtxiklivnmakqixkml`.
 - **Paid-first** : aucun rapport complet personnalisé gratuit. Avant paiement,
   l'app peut afficher seulement les informations réellement extraites de
   l'annonce, sans score ni enrichissement multi-source. `/r/demo` reste
-  gratuite. Offres canoniques web depuis le 07/09/2026 : 4,99 € / 1 rapport
-  (`unit_v2`), 9,99 € / 3 rapports (`pack_3`), 19,99 € / 10 rapports (`pack_10`),
+  gratuite. Offres canoniques web depuis le 07/09/2026 : 2,99 € / 1 rapport
+  (`unit`), 9,99 € / 5 rapports (`discovery`), 19,99 € / 10 rapports (`pack_10`),
   29 €/mois / 60 rapports (`search`), 79 €/mois / illimité (`premium`). Les anciennes
-  clés `unit` et `discovery` sont remappées côté serveur vers `unit_v2` et `pack_3` :
-  tout ancien lien ou article annonçant 2,99 € encaisse désormais 4,99 €. L'écart iOS
+  clés `unit` et `discovery` sont remappées côté serveur vers `unit` et `discovery` :
+  tout ancien lien ou article annonçant 2,99 € encaisse désormais 2,99 €. L'écart iOS
   est volontaire, le produit Apple `fr.scoreimmo.report.pack5` garde 5 crédits car
   changer un produit IAP demande une revue App Store ; ne pas réaligner sans accord. Les anciens plans
   ou textes mentionnant `first_free`, `free_weekly`, un essai personnalisé
