@@ -61,7 +61,7 @@ test("article analyzer is truthful, natively validated and privacy-safe", () => 
   const analyzer = read("src/components/AnalyzerBox.astro");
 
   assert.match(analyzer, /Démo complète gratuite/);
-  assert.match(analyzer, /Rapport personnalisé dès 4,99 €/);
+  assert.match(analyzer, /Rapport personnalisé dès 2,99 €/);
   assert.doesNotMatch(analyzer, /Gratuit pour commencer/);
   assert.doesNotMatch(analyzer, /<form[^>]*\bnovalidate\b/);
   assert.match(analyzer, /<input[\s\S]*type="url"[\s\S]*required/);
@@ -190,7 +190,7 @@ test("bounded visible French copy keeps required accents", () => {
     "capacité d'emprunt",
     "Mensualité de crédit",
     "coût total de l'achat",
-    "dès 4,99 euros",
+    "dès 2,99 euros",
   ]) assert.match(tools, new RegExp(text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"));
   assert.match(demo, /Quartier estimé/);
   assert.match(demo, /Prix affiché/);
