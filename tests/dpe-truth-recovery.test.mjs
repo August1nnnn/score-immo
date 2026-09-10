@@ -31,7 +31,7 @@ test("the DPE guide states only bounded and sourced 2026 facts", () => {
   const textBody = body.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ");
   const tldr = article.tldr.join(" ");
 
-  assert.equal(article.last_reviewed, "2026-09-06");
+  assert.equal(article.last_reviewed, "2026-09-10");
   assert.match(body, /coefficient[^<]{0,100}1,9/);
   assert.match(body, /1er janvier 2026/);
   assert.match(body, /attestation officielle/);
