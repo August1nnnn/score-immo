@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Castorus ou Score-Immo pour analyser un bien immobilier</title>
+  <desc id="desc">Comparaison visuelle entre le suivi d'une annonce et l'analyse multi-source d'un bien.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#101d3c"/><stop offset="1" stop-color="#173c76"/></linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#57c7ff"/><stop offset="1" stop-color="#7dffca"/></linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1100" cy="90" r="210" fill="#2f61ae" opacity=".22"/>
+  <circle cx="80" cy="610" r="250" fill="#0a162f" opacity=".42"/>
+  <text x="76" y="92" fill="#8edcff" font-family="Arial,sans-serif" font-size="24" font-weight="700" letter-spacing="3">GUIDE DE CHOIX</text>
+  <text x="76" y="156" fill="#fff" font-family="Arial,sans-serif" font-size="48" font-weight="700">Castorus ou Score-Immo ?</text>
+  <text x="76" y="202" fill="#d5e5ff" font-family="Arial,sans-serif" font-size="25">Deux outils, deux questions immobilières</text>
+  <rect x="76" y="252" width="474" height="254" rx="24" fill="#fff" opacity=".96"/>
+  <rect x="650" y="252" width="474" height="254" rx="24" fill="#fff" opacity=".96"/>
+  <rect x="108" y="284" width="56" height="56" rx="14" fill="#e8f1ff"/>
+  <path d="M121 325h30M121 313h22M121 301h13" stroke="#2864bb" stroke-width="6" stroke-linecap="round"/>
+  <text x="184" y="323" fill="#14213d" font-family="Arial,sans-serif" font-size="31" font-weight="700">Castorus</text>
+  <text x="108" y="382" fill="#334764" font-family="Arial,sans-serif" font-size="22">Historique de l'annonce</text>
+  <text x="108" y="422" fill="#334764" font-family="Arial,sans-serif" font-size="22">Prix, ancienneté, modifications</text>
+  <text x="108" y="462" fill="#334764" font-family="Arial,sans-serif" font-size="22">Suivi dans le navigateur</text>
+  <rect x="682" y="284" width="56" height="56" rx="14" fill="#e1fff4"/>
+  <path d="M695 325l11-13 9 7 12-20" fill="none" stroke="#0b9166" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="758" y="323" fill="#14213d" font-family="Arial,sans-serif" font-size="31" font-weight="700">Score-Immo</text>
+  <text x="682" y="382" fill="#334764" font-family="Arial,sans-serif" font-size="22">Prix de vente, DPE, risques</text>
+  <text x="682" y="422" fill="#334764" font-family="Arial,sans-serif" font-size="22">Urbanisme et environnement</text>
+  <text x="682" y="462" fill="#334764" font-family="Arial,sans-serif" font-size="22">Rapport multi-source</text>
+  <rect x="76" y="550" width="1048" height="6" rx="3" fill="url(#accent)"/>
+  <text x="76" y="594" fill="#d5e5ff" font-family="Arial,sans-serif" font-size="21">Comparatif factuel vérifié le 12 septembre 2026</text>
+</svg>
