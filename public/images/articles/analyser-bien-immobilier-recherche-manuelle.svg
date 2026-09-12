@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Analyser un bien immobilier avec des sites officiels ou Score-Immo</title>
+  <desc id="desc">Un parcours de recherche immobilière relie les ventes, le DPE, les risques, l'urbanisme et la synthèse.</desc>
+  <defs><linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071a33"/><stop offset="1" stop-color="#135c65"/></linearGradient></defs>
+  <rect width="1200" height="630" fill="url(#bg2)"/>
+  <text x="72" y="91" fill="#8bf0d1" font-family="Arial,sans-serif" font-size="23" font-weight="700" letter-spacing="3">RECHERCHE IMMOBILIÈRE 2026</text>
+  <text x="72" y="154" fill="#fff" font-family="Arial,sans-serif" font-size="45" font-weight="700">Du signal dispersé à la décision</text>
+  <text x="72" y="198" fill="#d3eced" font-family="Arial,sans-serif" font-size="24">Sources officielles en direct ou rapport structuré</text>
+  <g font-family="Arial,sans-serif">
+    <g transform="translate(72 270)"><rect width="178" height="142" rx="19" fill="#fff"/><text x="89" y="57" text-anchor="middle" fill="#0d3750" font-size="25" font-weight="700">DVF</text><text x="89" y="92" text-anchor="middle" fill="#466173" font-size="18">Ventes réelles</text></g>
+    <g transform="translate(280 270)"><rect width="178" height="142" rx="19" fill="#fff"/><text x="89" y="57" text-anchor="middle" fill="#0d3750" font-size="25" font-weight="700">DPE</text><text x="89" y="92" text-anchor="middle" fill="#466173" font-size="18">Énergie</text></g>
+    <g transform="translate(488 270)"><rect width="178" height="142" rx="19" fill="#fff"/><text x="89" y="57" text-anchor="middle" fill="#0d3750" font-size="25" font-weight="700">Risques</text><text x="89" y="92" text-anchor="middle" fill="#466173" font-size="18">À l'adresse</text></g>
+    <g transform="translate(696 270)"><rect width="178" height="142" rx="19" fill="#fff"/><text x="89" y="57" text-anchor="middle" fill="#0d3750" font-size="25" font-weight="700">PLU</text><text x="89" y="92" text-anchor="middle" fill="#466173" font-size="18">Urbanisme</text></g>
+    <g transform="translate(904 270)"><rect width="224" height="142" rx="19" fill="#8bf0d1"/><text x="112" y="57" text-anchor="middle" fill="#083b3e" font-size="25" font-weight="700">Synthèse</text><text x="112" y="92" text-anchor="middle" fill="#245a5c" font-size="18">Points à vérifier</text></g>
+    <path d="M250 341h29M458 341h29M666 341h29M874 341h29" stroke="#8bf0d1" stroke-width="7" stroke-linecap="round"/>
+    <text x="72" y="500" fill="#fff" font-size="26" font-weight="700">La donnée éclaire. La visite et les documents confirment.</text>
+    <text x="72" y="548" fill="#d3eced" font-size="21">Méthode, limites et coûts comparés sans promesse automatique</text>
+  </g>
+</svg>
