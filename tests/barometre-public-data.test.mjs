@@ -135,7 +135,7 @@ test("une edition courante sans provenance, avec date incoherente ou grille insu
   );
   assert.throws(
     () => normalizePublishedRows([row({ score_sections: { prix: 7 } })]),
-    /au moins cinq sections/i,
+    /au moins trois sections/i,
   );
   assert.throws(
     () => normalizePublishedRows([row({

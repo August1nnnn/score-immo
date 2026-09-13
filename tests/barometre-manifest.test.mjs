@@ -113,7 +113,7 @@ test("le manifeste refuse tout instantané que l'app rejetterait", () => {
     fixture({ prix_demande: Number.NaN }),
     fixture({ score_global: 101 }),
     fixture({ alertes_cles: [null] }),
-    fixture({ score_sections: { prix: 8, dpe: 5, risques: 6, environnement: 8 } }),
+    fixture({ score_sections: { dpe: 5, cout: 6 } }),
     fixture({ score_sections: { ...fixture().score_sections, extra: 5 } }),
     fixture({ methodology_version: "legacy-five-section-2026-06" }),
   ]) assert.throws(() => buildBarometreManifest([invalid]), /invalid/i);
