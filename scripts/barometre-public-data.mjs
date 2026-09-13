@@ -27,11 +27,11 @@ function assertExactScoreGrid(scores, keys, message) {
 
 function assertCurrentScoreGrid(scores) {
   if (!scores || typeof scores !== "object" || Array.isArray(scores)) {
-    throw new Error("Une fiche courante doit avoir au moins cinq sections");
+    throw new Error("Une fiche courante doit avoir au moins trois sections");
   }
   const actual = Object.keys(scores);
-  if (actual.length < 5) {
-    throw new Error("Une fiche courante doit avoir au moins cinq sections");
+  if (actual.length < 3) {
+    throw new Error("Une fiche courante doit avoir au moins trois sections");
   }
   const unknown = actual.find((key) => !CURRENT_KEYS.includes(key));
   if (unknown) throw new Error(`Section inconnue dans une fiche courante: ${unknown}`);

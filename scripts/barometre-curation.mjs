@@ -257,7 +257,7 @@ export function isEligibleReport(candidate) {
     return { eligible: false, reason: "invalid-score" };
   }
   const scores = buildScoreSections(candidate);
-  if (Object.values(scores).some((value) => value === null)) return { eligible: false, reason: "incomplete-score-grid" };
+  if (Object.values(scores).filter((value) => value !== null).length < 3) return { eligible: false, reason: "incomplete-score-grid" };
   if (!candidate?.report_json || typeof candidate.report_json !== "object" || Object.keys(candidate.report_json).length === 0) {
     return { eligible: false, reason: "missing-structured-report" };
   }
@@ -299,7 +299,7 @@ export function buildBarometreRow(candidate, { month }) {
     surface,
     prix_demande: price,
     score_global: Number(candidate.score_total),
-    score_sections: scoreSections,
+    score_sections: Object.fromEntries(Object.entries(scoreSections).filter(([, value]) => value !== null)),
     dpe,
     alertes_cles: summary.alertes_cles,
     points_forts: summary.points_forts,

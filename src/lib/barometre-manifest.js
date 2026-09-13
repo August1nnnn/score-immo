@@ -33,7 +33,7 @@ function hasExactScores(scores, expectedKeys) {
 function hasCurrentScores(scores) {
   if (!isRecord(scores)) return false;
   const keys = Object.keys(scores);
-  return keys.length >= 5
+  return keys.length >= 3
     && keys.every((key) => CURRENT_SECTION_KEYS.includes(key))
     && Object.values(scores).every((score) => isFiniteInRange(score, 0, 10));
 }
