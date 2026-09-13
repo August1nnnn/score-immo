@@ -1,0 +1,96 @@
+{
+  "slug": "nantes-appartement-95m2-350k-2026-09",
+  "ville": "Nantes",
+  "code_postal": "44000",
+  "region": "Pays de la Loire",
+  "type_bien": "appartement",
+  "surface": 95,
+  "prix_demande": 350000,
+  "prix_m2": 3684,
+  "score_global": 53,
+  "score_sections": {
+    "dpe": 1,
+    "cout": 8,
+    "ecoles": 9,
+    "urbanisme": 9
+  },
+  "dpe": "F",
+  "points_forts": [
+    "Rendement brut estimé supérieur ou égal à 5 %"
+  ],
+  "alertes_cles": [
+    "DPE F : rénovation énergétique à chiffrer",
+    "Positionnement de prix à vérifier face aux références locales",
+    "Risques à examiner avant toute décision"
+  ],
+  "verdict": "Instantané indicatif d'une annonce analysée. Vérifier le bien, les pièces et le financement avant toute décision.",
+  "mois": "2026-09",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-09-13",
+  "methodology_version": "current-category-grid-2026-08",
+  "source_kind": "admin-test",
+  "sample_policy": "all-eligible-monthly-reports",
+  "details": {
+    "taxe": {
+      "annee": 2025,
+      "annuelle": null,
+      "taux_communal": 46.34
+    },
+    "marche": {
+      "p25": null,
+      "p75": null,
+      "prix_m2": 3684,
+      "diff_pct": null,
+      "median_m2": null,
+      "comparables": 0
+    },
+    "energie": {
+      "dpe": "F",
+      "ges": "F",
+      "conso": 271,
+      "cout_max": null,
+      "cout_min": null,
+      "emission_ges": 75
+    },
+    "risques": {
+      "count": 6,
+      "level": null
+    },
+    "quartier": {
+      "sante": 5,
+      "ecoles": 20,
+      "loisirs": 4,
+      "services": 3,
+      "commerces": 14,
+      "transports": 5
+    },
+    "rendement": {
+      "net": null,
+      "brut": 5,
+      "roi_ans": 20,
+      "loyer_estime": 1458
+    },
+    "historique": {
+      "nb_mutations": 0,
+      "plus_value_pct": null,
+      "duree_detention_ans": null
+    },
+    "acquisition": {
+      "prix": 350000,
+      "total": 378000,
+      "agence": 0,
+      "notaire": 28000,
+      "travaux": 0,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 4986,
+      "population": 327734,
+      "revenu_median": null,
+      "pct_locataires": null,
+      "pct_proprietaires": null
+    }
+  }
+}

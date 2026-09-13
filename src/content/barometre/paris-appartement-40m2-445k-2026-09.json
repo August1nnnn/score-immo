@@ -1,0 +1,93 @@
+{
+  "slug": "paris-appartement-40m2-445k-2026-09",
+  "ville": "Paris",
+  "code_postal": "75004",
+  "region": "Île-de-France",
+  "type_bien": "appartement",
+  "surface": 40,
+  "prix_demande": 445000,
+  "prix_m2": 11125,
+  "score_global": 45,
+  "score_sections": {
+    "dpe": 1,
+    "cout": 8,
+    "urbanisme": 9
+  },
+  "dpe": "F",
+  "points_forts": [],
+  "alertes_cles": [
+    "DPE F : rénovation énergétique à chiffrer",
+    "Positionnement de prix à vérifier face aux références locales",
+    "Risques à examiner avant toute décision"
+  ],
+  "verdict": "Instantané indicatif d'une annonce analysée. Vérifier le bien, les pièces et le financement avant toute décision.",
+  "mois": "2026-09",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-09-13",
+  "methodology_version": "current-category-grid-2026-08",
+  "source_kind": "admin-test",
+  "sample_policy": "all-eligible-monthly-reports",
+  "details": {
+    "taxe": {
+      "annee": 2026,
+      "annuelle": 4450,
+      "taux_communal": null
+    },
+    "marche": {
+      "p25": null,
+      "p75": null,
+      "prix_m2": 11125,
+      "diff_pct": null,
+      "median_m2": null,
+      "comparables": 0
+    },
+    "energie": {
+      "dpe": "F",
+      "ges": "E",
+      "conso": 400,
+      "cout_max": null,
+      "cout_min": null,
+      "emission_ges": 52
+    },
+    "risques": {
+      "count": 0,
+      "level": null
+    },
+    "quartier": {
+      "sante": 5,
+      "ecoles": 0,
+      "loisirs": 4,
+      "services": 3,
+      "commerces": 14,
+      "transports": 5
+    },
+    "rendement": {
+      "net": 2.2,
+      "brut": 3.2,
+      "roi_ans": 31.2,
+      "loyer_estime": 1187
+    },
+    "historique": {
+      "nb_mutations": 0,
+      "plus_value_pct": null,
+      "duree_detention_ans": null
+    },
+    "acquisition": {
+      "prix": 445000,
+      "total": 480600,
+      "agence": 0,
+      "notaire": 35600,
+      "travaux": 0,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": null,
+      "densite": null,
+      "population": null,
+      "revenu_median": null,
+      "pct_locataires": null,
+      "pct_proprietaires": null
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "slug": "saint-denis-appartement-42m2-151k-2026-09",
+  "ville": "Saint-Denis",
+  "code_postal": "97400",
+  "region": "La Réunion",
+  "type_bien": "appartement",
+  "surface": 42,
+  "prix_demande": 151293,
+  "prix_m2": 3602,
+  "score_global": 42,
+  "score_sections": {
+    "dpe": 5,
+    "cout": 9,
+    "ecoles": 4,
+    "urbanisme": 1
+  },
+  "dpe": "D",
+  "points_forts": [
+    "Rendement brut estimé supérieur ou égal à 5 %"
+  ],
+  "alertes_cles": [
+    "Positionnement de prix à vérifier face aux références locales",
+    "Risques à examiner avant toute décision"
+  ],
+  "verdict": "Instantané indicatif d'une annonce analysée. Vérifier le bien, les pièces et le financement avant toute décision.",
+  "mois": "2026-09",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-09-13",
+  "methodology_version": "current-category-grid-2026-08",
+  "source_kind": "admin-test",
+  "sample_policy": "all-eligible-monthly-reports",
+  "details": {
+    "taxe": {
+      "annee": 2026,
+      "annuelle": 1513,
+      "taux_communal": null
+    },
+    "marche": {
+      "p25": null,
+      "p75": null,
+      "prix_m2": 3602,
+      "diff_pct": null,
+      "median_m2": null,
+      "comparables": 0
+    },
+    "energie": {
+      "dpe": "D",
+      "ges": "D",
+      "conso": null,
+      "cout_max": null,
+      "cout_min": null,
+      "emission_ges": null
+    },
+    "risques": {
+      "count": 4,
+      "level": null
+    },
+    "quartier": {
+      "sante": 5,
+      "ecoles": 2,
+      "loisirs": 4,
+      "services": 3,
+      "commerces": 14,
+      "transports": 5
+    },
+    "rendement": {
+      "net": 4,
+      "brut": 5,
+      "roi_ans": 20,
+      "loyer_estime": 630
+    },
+    "historique": {
+      "nb_mutations": 0,
+      "plus_value_pct": null,
+      "duree_detention_ans": null
+    },
+    "acquisition": {
+      "prix": 151293,
+      "total": 163396,
+      "agence": 0,
+      "notaire": 12103,
+      "travaux": 0,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 1093,
+      "population": 155634,
+      "revenu_median": null,
+      "pct_locataires": null,
+      "pct_proprietaires": null
+    }
+  }
+}

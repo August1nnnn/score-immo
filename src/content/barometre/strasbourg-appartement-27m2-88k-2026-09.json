@@ -1,0 +1,95 @@
+{
+  "slug": "strasbourg-appartement-27m2-88k-2026-09",
+  "ville": "Strasbourg",
+  "code_postal": "67000",
+  "region": "Grand Est",
+  "type_bien": "appartement",
+  "surface": 27.34,
+  "prix_demande": 88480,
+  "prix_m2": 3236,
+  "score_global": 90,
+  "score_sections": {
+    "dpe": 9,
+    "cout": 9,
+    "urbanisme": 9
+  },
+  "dpe": "B",
+  "points_forts": [
+    "DPE B",
+    "Rendement brut estimé supérieur ou égal à 5 %"
+  ],
+  "alertes_cles": [
+    "Positionnement de prix à vérifier face aux références locales",
+    "Risques à examiner avant toute décision"
+  ],
+  "verdict": "Instantané indicatif d'une annonce analysée. Vérifier le bien, les pièces et le financement avant toute décision.",
+  "mois": "2026-09",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-09-13",
+  "methodology_version": "current-category-grid-2026-08",
+  "source_kind": "admin-test",
+  "sample_policy": "all-eligible-monthly-reports",
+  "details": {
+    "taxe": {
+      "annee": 2026,
+      "annuelle": 885,
+      "taux_communal": null
+    },
+    "marche": {
+      "p25": null,
+      "p75": null,
+      "prix_m2": 3236,
+      "diff_pct": null,
+      "median_m2": null,
+      "comparables": 0
+    },
+    "energie": {
+      "dpe": "B",
+      "ges": "B",
+      "conso": 65,
+      "cout_max": null,
+      "cout_min": null,
+      "emission_ges": 11
+    },
+    "risques": {
+      "count": 0,
+      "level": null
+    },
+    "quartier": {
+      "sante": 5,
+      "ecoles": 0,
+      "loisirs": 4,
+      "services": 3,
+      "commerces": 14,
+      "transports": 5
+    },
+    "rendement": {
+      "net": 4,
+      "brut": 5,
+      "roi_ans": 20,
+      "loyer_estime": 369
+    },
+    "historique": {
+      "nb_mutations": 0,
+      "plus_value_pct": null,
+      "duree_detention_ans": null
+    },
+    "acquisition": {
+      "prix": 88480,
+      "total": 95558,
+      "agence": 0,
+      "notaire": 7078,
+      "travaux": 0,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": null,
+      "densite": null,
+      "population": null,
+      "revenu_median": null,
+      "pct_locataires": null,
+      "pct_proprietaires": null
+    }
+  }
+}

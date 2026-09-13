@@ -1,0 +1,96 @@
+{
+  "slug": "lyon-appartement-95m2-425k-2026-09",
+  "ville": "Lyon",
+  "code_postal": "69009",
+  "region": "Auvergne-Rhône-Alpes",
+  "type_bien": "appartement",
+  "surface": 95,
+  "prix_demande": 425000,
+  "prix_m2": 4474,
+  "score_global": 72,
+  "score_sections": {
+    "dpe": 9,
+    "cout": 8,
+    "prix": 5,
+    "ecoles": 8,
+    "urbanisme": 9
+  },
+  "dpe": "B",
+  "points_forts": [
+    "DPE B",
+    "Rendement brut estimé supérieur ou égal à 5 %"
+  ],
+  "alertes_cles": [
+    "Risques à examiner avant toute décision"
+  ],
+  "verdict": "Instantané indicatif d'une annonce analysée. Vérifier le bien, les pièces et le financement avant toute décision.",
+  "mois": "2026-09",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-09-13",
+  "methodology_version": "current-category-grid-2026-08",
+  "source_kind": "admin-test",
+  "sample_policy": "all-eligible-monthly-reports",
+  "details": {
+    "taxe": {
+      "annee": null,
+      "annuelle": null,
+      "taux_communal": null
+    },
+    "marche": {
+      "p25": 2703,
+      "p75": 4583,
+      "prix_m2": 4474,
+      "diff_pct": 26.3,
+      "median_m2": 3542,
+      "comparables": 1080
+    },
+    "energie": {
+      "dpe": "B",
+      "ges": "B",
+      "conso": 73,
+      "cout_max": null,
+      "cout_min": null,
+      "emission_ges": 10
+    },
+    "risques": {
+      "count": 0,
+      "level": null
+    },
+    "quartier": {
+      "sante": null,
+      "ecoles": 12,
+      "loisirs": null,
+      "services": null,
+      "commerces": null,
+      "transports": null
+    },
+    "rendement": {
+      "net": null,
+      "brut": 5,
+      "roi_ans": 20,
+      "loyer_estime": 1771
+    },
+    "historique": {
+      "nb_mutations": 5,
+      "plus_value_pct": null,
+      "duree_detention_ans": null
+    },
+    "acquisition": {
+      "prix": 425000,
+      "total": 459000,
+      "agence": 0,
+      "notaire": 34000,
+      "travaux": 0,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 7106,
+      "population": 53567,
+      "revenu_median": null,
+      "pct_locataires": null,
+      "pct_proprietaires": null
+    }
+  }
+}

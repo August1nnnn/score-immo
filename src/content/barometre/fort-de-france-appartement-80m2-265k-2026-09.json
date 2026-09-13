@@ -1,0 +1,95 @@
+{
+  "slug": "fort-de-france-appartement-80m2-265k-2026-09",
+  "ville": "Fort-de-France",
+  "code_postal": "97200",
+  "region": "Martinique",
+  "type_bien": "appartement",
+  "surface": 80,
+  "prix_demande": 265000,
+  "prix_m2": 3313,
+  "score_global": 64,
+  "score_sections": {
+    "dpe": 5,
+    "cout": 8,
+    "ecoles": 5,
+    "urbanisme": 9
+  },
+  "dpe": "D",
+  "points_forts": [
+    "Rendement brut estimé supérieur ou égal à 5 %"
+  ],
+  "alertes_cles": [
+    "Positionnement de prix à vérifier face aux références locales",
+    "Risques à examiner avant toute décision"
+  ],
+  "verdict": "Instantané indicatif d'une annonce analysée. Vérifier le bien, les pièces et le financement avant toute décision.",
+  "mois": "2026-09",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-09-13",
+  "methodology_version": "current-category-grid-2026-08",
+  "source_kind": "admin-test",
+  "sample_policy": "all-eligible-monthly-reports",
+  "details": {
+    "taxe": {
+      "annee": 2025,
+      "annuelle": null,
+      "taux_communal": 48.7
+    },
+    "marche": {
+      "p25": null,
+      "p75": null,
+      "prix_m2": 3313,
+      "diff_pct": null,
+      "median_m2": null,
+      "comparables": 0
+    },
+    "energie": {
+      "dpe": "D",
+      "ges": "A",
+      "conso": 218,
+      "cout_max": null,
+      "cout_min": null,
+      "emission_ges": null
+    },
+    "risques": {
+      "count": 4,
+      "level": null
+    },
+    "quartier": {
+      "sante": 5,
+      "ecoles": 3,
+      "loisirs": 4,
+      "services": 3,
+      "commerces": 14,
+      "transports": 5
+    },
+    "rendement": {
+      "net": null,
+      "brut": 5,
+      "roi_ans": 20,
+      "loyer_estime": 1104
+    },
+    "historique": {
+      "nb_mutations": 0,
+      "plus_value_pct": null,
+      "duree_detention_ans": null
+    },
+    "acquisition": {
+      "prix": 265000,
+      "total": 286200,
+      "agence": 0,
+      "notaire": 21200,
+      "travaux": 0,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 1715,
+      "population": 75506,
+      "revenu_median": null,
+      "pct_locataires": null,
+      "pct_proprietaires": null
+    }
+  }
+}

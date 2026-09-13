@@ -1,0 +1,93 @@
+{
+  "slug": "bordeaux-maison-310m2-1820k-2026-09",
+  "ville": "Bordeaux",
+  "code_postal": "33000",
+  "region": "Nouvelle-Aquitaine",
+  "type_bien": "maison",
+  "surface": 310,
+  "prix_demande": 1820000,
+  "prix_m2": 5871,
+  "score_global": 62,
+  "score_sections": {
+    "dpe": 3,
+    "cout": 8,
+    "ecoles": 9,
+    "urbanisme": 9
+  },
+  "dpe": "E",
+  "points_forts": [],
+  "alertes_cles": [
+    "Positionnement de prix à vérifier face aux références locales",
+    "Risques à examiner avant toute décision"
+  ],
+  "verdict": "Instantané indicatif d'une annonce analysée. Vérifier le bien, les pièces et le financement avant toute décision.",
+  "mois": "2026-09",
+  "is_edito": false,
+  "edito_label": null,
+  "date_analyse": "2026-09-13",
+  "methodology_version": "current-category-grid-2026-08",
+  "source_kind": "admin-test",
+  "sample_policy": "all-eligible-monthly-reports",
+  "details": {
+    "taxe": {
+      "annee": 2025,
+      "annuelle": null,
+      "taux_communal": 48.48
+    },
+    "marche": {
+      "p25": null,
+      "p75": null,
+      "prix_m2": 5871,
+      "diff_pct": null,
+      "median_m2": null,
+      "comparables": 0
+    },
+    "energie": {
+      "dpe": "E",
+      "ges": "E",
+      "conso": 252,
+      "cout_max": null,
+      "cout_min": null,
+      "emission_ges": 50
+    },
+    "risques": {
+      "count": 5,
+      "level": null
+    },
+    "quartier": {
+      "sante": 5,
+      "ecoles": 20,
+      "loisirs": 4,
+      "services": 3,
+      "commerces": 14,
+      "transports": 5
+    },
+    "rendement": {
+      "net": null,
+      "brut": 4,
+      "roi_ans": 25,
+      "loyer_estime": 6067
+    },
+    "historique": {
+      "nb_mutations": 0,
+      "plus_value_pct": null,
+      "duree_detention_ans": null
+    },
+    "acquisition": {
+      "prix": 1820000,
+      "total": 1965600,
+      "agence": 0,
+      "notaire": 145600,
+      "travaux": 0,
+      "notaire_pct": 8
+    },
+    "demographie": {
+      "annee": 2021,
+      "densite": 5384,
+      "population": 267991,
+      "revenu_median": null,
+      "pct_locataires": null,
+      "pct_proprietaires": null
+    }
+  }
+}
