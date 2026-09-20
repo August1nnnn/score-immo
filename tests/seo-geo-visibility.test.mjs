@@ -20,6 +20,10 @@ test("public machine-readable facts use canonical URLs and explicit source limit
   assert.match(llms, /plus de 230 points de données potentiels/);
   assert.match(llms, /https:\/\/score-immo\.fr\/methodologie/);
   assert.match(llms, /https:\/\/score-immo\.fr\/barometre/);
+  assert.match(llms, /Identité officielle/);
+  assert.match(llms, /Augustin Foucheres/);
+  assert.match(llms, /SIREN 890 838 709/);
+  assert.match(llms, /app\.score-immo\.fr/);
   assert.doesNotMatch(llms, /https:\/\/app\.score-immo\.fr\/barometre/);
   assert.doesNotMatch(llms, /premier outil|sources de donnees officielles francaises/i);
   const prose = llms.replace(/https?:\/\/[^\s)]+/g, "");

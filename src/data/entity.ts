@@ -18,10 +18,17 @@ export const organizationJsonLd = {
   '@type': 'Organization',
   '@id': ORGANIZATION_ID,
   name: BRAND_NAME,
+  legalName: 'Augustin Foucheres',
   alternateName: [...BRAND_ALTERNATE_NAMES],
   url: SITE_URL,
   logo: `${SITE_URL}/favicon.svg`,
   description: "Plateforme française d'analyse de biens immobiliers à partir de données publiques, conçue du côté de l'acheteur.",
+  disambiguatingDescription: "Service officiel Score-Immo accessible sur score-immo.fr et app.score-immo.fr, édité en France par Augustin Foucheres, entrepreneur individuel (SIREN 890 838 709).",
+  identifier: {
+    '@type': 'PropertyValue',
+    propertyID: 'SIREN',
+    value: '890 838 709',
+  },
   sameAs: [
     'https://www.wikidata.org/wiki/Q140289914',
     ...SOCIAL_PROFILES.map((profile) => profile.url),
