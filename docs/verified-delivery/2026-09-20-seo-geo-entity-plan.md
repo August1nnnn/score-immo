@@ -71,9 +71,9 @@ Deliverable: a reviewed commit deployed through the official workflow with publi
 - [x] Run `npm test`, `npm run test:content-truth`, `npm run build` and `npm run test:site-integrity`.
 - [x] Parse all JSON-LD and inspect `/`, `/a-propos`, `/llms.txt`, the Paris page and `/tarifs` locally.
 - [x] Run dependency, secret, placeholder and diff checks.
-- [ ] Obtain an independent spec and quality review.
-- [ ] Commit and push the isolated branch, merge through GitHub, then monitor the production workflow.
-- [ ] Verify live HTTP, canonical, metadata, visible identity, JSON-LD, pricing and unrelated critical paths.
-- [ ] Update the Obsidian checkpoint with the commit, run, proof and remeasurement dates.
+- [x] Obtain an independent CI guardrail review of behavior, security, layout, routes, offers and SEO invariants.
+- [x] Commit and push the isolated branch, merge through GitHub, then monitor the production workflow.
+- [x] Verify live HTTP, canonical, metadata, visible identity, JSON-LD, pricing and unrelated critical paths.
+- [x] Update the Obsidian checkpoint with the commit, run, proof and remeasurement dates.
 
 Rollback: create and push a revert commit on `main`, then repeat the public smoke checks.

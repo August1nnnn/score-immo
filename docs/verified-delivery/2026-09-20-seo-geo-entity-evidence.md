@@ -30,7 +30,18 @@
 
 ## Production evidence
 
-Pending merge and live verification.
+- Pull request: `#55`, merged on 20 September 2026.
+- Delivery commit: `69278406e6db4b4d7fe9b9e3e5945ef0eae6a959`.
+- Merge commit on `main`: `c9aaa8b6d923d0ee6b50c201619a4ae228c50799`.
+- Independent PR guardrail run: `35528563180`, successful after clean Linux install, browser geometry, behavioral, security, route, offer and SEO checks.
+- Production workflow: `35528640386`, successful on the exact merge SHA; Cloudflare deployment and IndexNow notification passed.
+- Public HTTP: homepage, About, Paris article, pricing, `llms.txt`, `robots.txt`, sitemap and application returned 200.
+- Public canonical URLs: exact on homepage, About, Paris article, pricing and application.
+- Public entity proof: visible official-identity section and Organization JSON-LD expose Score-Immo, official domains, legal publisher and SIREN consistently.
+- Public Paris proof: the dated 9,530 EUR/m2 title and description are active while the H1 and URL are unchanged.
+- Public commercial proof: the five catalog prices and the five expected checkout routes remain present.
+- Public browser smoke at 390 by 844 and 1440 by 1000: no horizontal overflow and no console errors on About, Paris and pricing.
+- Rollback: revert merge commit `c9aaa8b6` through the standard `main` workflow if a material regression is observed.
 
 ## Monitoring
 
