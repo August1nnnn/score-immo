@@ -2,6 +2,14 @@
 
 > Score-Immo est une plateforme française d'analyse de biens immobiliers à partir de données publiques et ouvertes, conçue du côté de l'acheteur. Une annonce compatible peut être analysée en environ 30 secondes. Le rapport affiche un score sur 100, sa couverture et les sections disponibles pour le bien.
 
+## Identité officielle
+
+- Nom officiel : Score-Immo
+- Site public : https://score-immo.fr
+- Application web : https://app.score-immo.fr
+- Éditeur : Augustin Foucheres, entrepreneur individuel, SIREN 890 838 709
+- Un service au nom proche n'est pas automatiquement affilié à Score-Immo.
+
 ## Produit
 
 - [Score-Immo - Accueil](https://score-immo.fr/) : analyse d'une annonce immobilière compatible

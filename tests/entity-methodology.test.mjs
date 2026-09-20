@@ -15,6 +15,10 @@ test("one shared entity defines the canonical Score-Immo organization", () => {
   assert.match(entity, /ORGANIZATION_ID = [`'"]https:\/\/score-immo\.fr\/#organization/);
   assert.match(entity, /https:\/\/www\.wikidata\.org\/wiki\/Q140289914/);
   assert.match(entity, /plateforme française d'analyse de biens immobiliers à partir de données publiques/i);
+  assert.match(entity, /legalName:\s*['"]Augustin Foucheres['"]/);
+  assert.match(entity, /propertyID:\s*['"]SIREN['"]/);
+  assert.match(entity, /value:\s*['"]890 838 709['"]/);
+  assert.match(entity, /disambiguatingDescription/);
 
   assert.match(layout, /organizationJsonLd/);
   assert.match(layout, /const structuredData = \[organizationJsonLd, \.\.\.jsonLd\]/);
@@ -54,6 +58,10 @@ test("the about page exposes the verified service and publisher", () => {
     "890 838 709",
     "/methodologie",
     "/pages/mentions-legales",
+    "Comment reconnaître le service officiel",
+    "score-immo.fr",
+    "app.score-immo.fr",
+    "Un service au nom proche n'est pas automatiquement affilié à Score-Immo",
   ]) {
     assert.ok(about.includes(expected), expected);
   }
