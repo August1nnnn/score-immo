@@ -1,6 +1,6 @@
 {
   "id": "valeur-immeuble-par-rapport-loyer",
-  "status": "pending",
+  "status": "published",
   "publish_at": "2026-09-25T08:00:00+02:00",
   "article": {
     "source": "blog-auto/scheduled-content/valeur-immeuble-par-rapport-loyer.json",
@@ -16,5 +16,6 @@
     "anchor": "le faire estimé par Montclair",
     "url": "https://www.montclair.fr/estimation-immeuble-de-rapport-en-ligne/",
     "rel": "sponsored"
-  }
+  },
+  "published_at": "2026-09-25T11:48:19.702278+00:00"
 }
