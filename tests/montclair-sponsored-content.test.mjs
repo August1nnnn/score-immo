@@ -68,18 +68,26 @@ test("the FAQ schema recognizes the editorial Questions fréquentes heading", ()
   assert.match(faqExtractor, /\(\?:FAQ\|Questions fréquentes\)/);
 });
 
-test("the September article is sealed outside the live collection", () => {
-  const article = parse(scheduledPath);
+test("the September article preserves its sealed content through publication", () => {
   const manifest = parse(manifestPath);
+  assert.ok(["pending", "published"].includes(manifest.status));
+  const published = manifest.status === "published";
+  const articlePath = published ? manifest.article.target : scheduledPath;
+  const assetPath = published ? manifest.asset.target : manifest.asset.source;
+  const article = parse(articlePath);
   assertScoreImmoArticle(article, {
     anchor: "le faire estimé par Montclair",
     url: "https://www.montclair.fr/estimation-immeuble-de-rapport-en-ligne/",
   });
   assert.equal(article.handle, "valeur-immeuble-par-rapport-loyer");
-  assert.equal(manifest.status, "pending");
   assert.equal(manifest.publish_at, "2026-09-25T08:00:00+02:00");
-  assert.equal(manifest.article.sha256, sha256(scheduledPath));
-  assert.equal(manifest.asset.sha256, sha256("blog-auto/scheduled-assets/valeur-immeuble-par-rapport-loyer.webp"));
-  assert.equal(existsSync(new URL(manifest.article.target, ROOT)), false);
-  assert.equal(existsSync(new URL(manifest.asset.target, ROOT)), false);
+  assert.equal(manifest.article.sha256, sha256(articlePath));
+  assert.equal(manifest.asset.sha256, sha256(assetPath));
+  assert.equal(existsSync(new URL(manifest.article.target, ROOT)), published);
+  assert.equal(existsSync(new URL(manifest.asset.target, ROOT)), published);
+  if (published) {
+    assert.ok(Date.parse(manifest.published_at) >= Date.parse(manifest.publish_at));
+    assert.equal(existsSync(new URL(manifest.article.source, ROOT)), false);
+    assert.equal(existsSync(new URL(manifest.asset.source, ROOT)), false);
+  }
 });
