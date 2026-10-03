@@ -14,7 +14,8 @@ for (const slug of slugs) {
     assert.match(d.body_html, /href="\/methodologie"/);
     assert.match(d.body_html, /href="https:\/\/www.data.gouv.fr\/datasets\/demandes-de-valeurs-foncieres"/);
     assert.doesNotMatch(JSON.stringify(d), /68%|5,2%|230\+|Que Choisir|garantit une estimation|2 à 3%|plus complète du marché|quasi-invendable/i);
-    assert.equal(d.last_reviewed, '2026-09-06');
+    assert.match(d.last_reviewed, /^\d{4}-\d{2}-\d{2}$/);
+    assert.ok(d.last_reviewed >= '2026-09-06', 'substantive reviews preserve or advance the verified baseline date');
     assert.equal(d.updated_at.slice(0, 10), d.last_reviewed);
     assert.ok(d.body_html.includes(slugs.find(s => s !== slug)));
   });

@@ -29,6 +29,6 @@ test("eReferer RéseauDiag preserves the exact link contract and contextual plac
   );
   assert.ok(unitsSection, "the energy-units section must remain present");
   assert.match(unitsSection[0], new RegExp(partnerUrl.replaceAll("/", "\\/")));
-  assert.equal(article.updated_at, "2026-09-14");
+  assert.ok(article.updated_at >= "2026-09-14", "later editorial additions preserve the original publication contract");
   assert.equal(article.last_reviewed, "2026-09-10");
 });

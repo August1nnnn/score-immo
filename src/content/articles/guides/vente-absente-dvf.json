@@ -1,0 +1,34 @@
+{
+  "id": "organic-20261003-vente-absente-dvf",
+  "title": "Vente absente de DVF : pourquoi et comment vérifier",
+  "handle": "vente-absente-dvf",
+  "blog": "guides",
+  "author": "Score-Immo",
+  "author_handle": "scoreimmo",
+  "published_at": "2026-10-03T10:00:00+02:00",
+  "meta_title": "Vente absente de DVF : délais, couverture et vérifications",
+  "meta_description": "Une vente manque dans DVF ? Vérifiez la date, la couverture géographique, l'adresse et la parcelle. Son absence ne prouve pas un problème du bien.",
+  "image": null,
+  "summary_html": "<p>Une vente manque dans DVF ? Vérifiez la date, la couverture géographique, l'adresse et la parcelle. Son absence ne prouve pas un problème du bien.</p>",
+  "tldr": [
+    "Une vente introuvable dans DVF n'est pas la preuve qu'elle n'a pas eu lieu.",
+    "Commencez par la couverture du fichier, sa période et les critères de recherche.",
+    "Si aucune référence exploitable n'est disponible, indiquez l'incertitude de l'estimation."
+  ],
+  "sources": [
+    {
+      "title": "Demandes de valeurs foncières : couverture et publication",
+      "url": "https://www.data.gouv.fr/datasets/demandes-de-valeurs-foncieres",
+      "publisher": "DGFiP / data.gouv.fr"
+    },
+    {
+      "title": "Connaître le prix d'un logement ou d'un terrain",
+      "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F16832",
+      "publisher": "Service-Public.fr"
+    }
+  ],
+  "body_html": "<p><strong>Une vente absente de DVF peut tenir au calendrier de publication, à la couverture ou à votre recherche.</strong> Ne concluez ni à une fraude ni à une impossibilité d'estimer le logement. Suivez un ordre de contrôle et gardez une trace des recherches réalisées.</p>\n<h2>La vente appartient-elle au territoire et à la période couverts ?</h2>\n<p>La <a href=\"https://www.data.gouv.fr/datasets/demandes-de-valeurs-foncieres\">fiche du producteur DGFiP</a> précise des mises à jour semestrielles en avril et octobre et l'absence de couverture du Bas-Rhin, du Haut-Rhin, de la Moselle et de Mayotte. Elle indique aussi que des mutations peuvent être ajoutées à des millésimes précédents. Un délai universel de six mois n'est donc pas une règle fiable.</p>\n<p>Notez la date de l'acte si vous la connaissez, puis la dernière publication du jeu de données consulté. La date de mise en ligne d'une annonce, celle d'une promesse et celle d'un acte authentique sont différentes : ne les substituez pas pour rechercher la transaction.</p>\n<h2>Contrôler l'adresse et la parcelle sans confondre les logements</h2>\n<ol><li>Vérifiez commune, numéro et nom de voie, y compris les éventuels bis ou ter.</li><li>Cherchez la parcelle concernée si l'adresse ne donne pas de résultat exploitable.</li><li>Vérifiez la date, le type de local et les biens inclus dans le résultat.</li><li>Conservez le résultat « non trouvé » si plusieurs logements restent possibles.</li></ol>\n<p>Une transaction à la même adresse ne suffit pas à identifier un appartement : l'immeuble peut contenir plusieurs logements. La référence cadastrale concerne la parcelle, pas automatiquement la porte du bien. Consultez aussi le guide pour <a href=\"/blogs/guides/lire-plan-cadastral-achat\">lire un plan cadastral avant l'achat</a>.</p>\n<h2>Que demander si le vendeur évoque une vente précédente ?</h2>\n<p>Demandez au vendeur ou à l'agent les éléments qu'il peut partager sur le bien et son acquisition. Si une vérification juridique ou foncière est nécessaire, faites préciser la démarche par votre notaire. Ce guide ne cherche pas à identifier les anciens propriétaires à partir d'un fichier public.</p>\n<p>Pour une estimation, le prix de la précédente vente n'est qu'une référence historique. Vous avez surtout besoin de ventes comparables et de l'état actuel. La <a href=\"https://www.service-public.gouv.fr/particuliers/vosdroits/F16832\">fiche Service-Public sur les prix immobiliers</a> présente les bases accessibles et le recours à un professionnel.</p>\n<h2>Comment préparer une offre sans cette transaction ?</h2>\n<p>Documentez les autres références pertinentes et leur degré de ressemblance. Si vous élargissez le secteur ou la période, indiquez-le explicitement. N'inventez pas une médiane locale à partir d'un échantillon trop faible et ne remplacez pas une donnée manquante par zéro.</p>\n<p>Le <a href=\"/blogs/guides/donnees-dvf-utiliser-prix-vente-reels\">guide de comparaison avec DVF</a> vous aide à organiser les références ; le <a href=\"/blogs/guides/prix-annonce-dvf-ecart\">guide des écarts entre annonce et DVF</a> distingue prix de vente et prix demandé. Quand les informations restent insuffisantes, obtenez un avis local plutôt que de présenter une valeur certaine.</p>\n<p>Retrouvez la prochaine vérification dans le <a href=\"/pages/guide#parcours-achat\">parcours avant achat immobilier</a>.</p>\n<h2 id=\"faq\">Questions fréquentes</h2>\n<h3>Pourquoi une vente récente n'apparaît-elle pas dans DVF ?</h3><p>Le jeu publié peut ne pas encore la contenir. Vérifiez la date de l'acte, la dernière publication et les critères de recherche avant toute conclusion.</p>\n<h3>Peut-on trouver toutes les ventes à Strasbourg dans DVF ?</h3><p>Non. Le Bas-Rhin figure parmi les territoires non couverts par le fichier DVF national. Ne présentez pas son absence comme une erreur de recherche.</p>\n<h3>Une référence absente doit-elle compter comme un prix nul ?</h3><p>Non. Une donnée manquante doit rester manquante et être signalée dans la comparaison. Un prix nul produirait un résultat trompeur.</p>\n\n<section class=\"si-cta-box\" aria-label=\"Passer des vérifications à l'analyse\">\n<h2>Rassemblez les vérifications de votre annonce</h2>\n<p>Regardez un <a href=\"/exemple-rapport\">exemple de rapport gratuit</a> pour voir les informations disponibles et leurs limites. Le rapport personnalisé est payant, dès 2,99 € pour un crédit. Il complète vos vérifications et ne remplace pas la visite, les diagnostics ou l'avis d'un professionnel.</p>\n<p><a class=\"si-btn si-btn-primary\" href=\"https://app.score-immo.fr/app?utm_source=site&amp;utm_medium=guide_decision&amp;utm_campaign=vente-absente-dvf\">Analyser mon annonce</a> <a href=\"/tarifs\">Voir les formules</a></p>\n<p>Plusieurs annonces à comparer : 9,99 € pour cinq crédits ou 19,99 € pour dix crédits. Consultez la <a href=\"/methodologie\">méthodologie de Score-Immo</a>.</p></section>",
+  "updated_at": "2026-10-03",
+  "last_reviewed": "2026-10-03",
+  "word_count": 633
+}

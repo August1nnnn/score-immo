@@ -1,0 +1,34 @@
+{
+  "id": "organic-20261003-dvf-mutation-plusieurs-lots",
+  "title": "DVF et ventes avec plusieurs lots : éviter un faux prix au m²",
+  "handle": "dvf-mutation-plusieurs-lots",
+  "blog": "guides",
+  "author": "Score-Immo",
+  "author_handle": "scoreimmo",
+  "published_at": "2026-10-03T10:00:00+02:00",
+  "meta_title": "DVF : plusieurs lots, prix répété et calcul du m²",
+  "meta_description": "Une vente DVF contient plusieurs lignes, lots ou dépendances ? Comprenez le prix répété et évitez de diviser le montant global par une seule surface.",
+  "image": null,
+  "summary_html": "<p>Une vente DVF contient plusieurs lignes, lots ou dépendances ? Comprenez le prix répété et évitez de diviser le montant global par une seule surface.</p>",
+  "tldr": [
+    "Plusieurs lignes DVF peuvent correspondre à une seule mutation.",
+    "Un prix global répété ne doit pas être additionné comme autant de ventes.",
+    "Sans ventilation démontrée, ne publiez pas un prix au m² précis pour chaque logement."
+  ],
+  "sources": [
+    {
+      "title": "Notice descriptive DVF : prix, dispositions et surfaces",
+      "url": "https://static.data.gouv.fr/resources/demandes-de-valeurs-foncieres/20221017-153319/notice-descriptive-du-fichier-dvf-20221017.pdf",
+      "publisher": "DGFiP"
+    },
+    {
+      "title": "Connaître le prix d'un logement ou d'un terrain",
+      "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F16832",
+      "publisher": "Service-Public.fr"
+    }
+  ],
+  "body_html": "<p><strong>Une ligne DVF n'est pas forcément une vente indépendante.</strong> Un achat groupant plusieurs biens peut produire plusieurs lignes. Avant de calculer un prix au m², déterminez ce que représente le montant et quelle surface vous utilisez.</p>\n<h2>Pourquoi le même prix apparaît-il plusieurs fois ?</h2>\n<p>La <a href=\"https://static.data.gouv.fr/resources/demandes-de-valeurs-foncieres/20221017-153319/notice-descriptive-du-fichier-dvf-20221017.pdf\">notice descriptive DGFiP, partie sur les dispositions</a>, explique qu'une mutation peut occuper plusieurs lignes avec un prix répété. Les lots juridiques et les locaux fiscaux ne décrivent pas le même découpage. Compter les lignes comme des transactions fausse donc les statistiques.</p>\n<h2>Exemple fictif : appartement et dépendance vendus ensemble</h2>\n<p>Imaginons un appartement de 60 m² et un parking vendus ensemble pour 250 000 €. Diviser 250 000 € par 60 donne environ 4 167 €/m² pour le montant du lot global rapporté à la surface du logement. Cela ne démontre pas que l'appartement seul vaut 4 167 €/m² : la valeur propre du parking n'est pas isolée. Ne la retranchez pas à partir d'un forfait inventé.</p>\n<p>Si ce montant apparaît sur deux lignes de la même mutation, les additionner donnerait 500 000 € et ferait doubler artificiellement le prix. Cet exemple est pédagogique et ne correspond à aucune vente réelle publiée par Score-Immo.</p>\n<h2>Quelles références utiliser pour comparer une annonce ?</h2>\n<ol><li>Identifiez la mutation dans le jeu utilisé et rassemblez les lignes correspondantes.</li><li>Vérifiez les types de locaux, lots, parcelles et surfaces concernés.</li><li>Comparez de préférence des périmètres similaires à celui de l'annonce.</li><li>Écartez du calcul précis les références dont le prix ne peut pas être rattaché au logement pertinent.</li><li>Conservez séparément les références utiles seulement comme contexte.</li></ol>\n<p>La manière de regrouper les lignes dépend du fichier brut ou enrichi que vous utilisez. Ne dédupliquez pas seulement par adresse ou montant : deux ventes distinctes peuvent partager ces informations. Documentez votre règle de regroupement et la version du jeu de données.</p>\n<h2>Que faire si plusieurs logements sont vendus dans le même acte ?</h2>\n<p>Ne répartissez pas automatiquement le montant au prorata des surfaces. Deux logements de même taille peuvent avoir des valeurs différentes. Une ventilation nécessite des éléments fiables sur la vente ; à défaut, gardez le prix global et signalez qu'il ne permet pas une comparaison unitaire propre.</p>\n<p>Le <a href=\"/blogs/guides/donnees-dvf-utiliser-prix-vente-reels\">guide des ventes DVF</a> explique la sélection des comparables. Pour comprendre l'autre source fréquente d'écart, lisez la <a href=\"/blogs/guides/surface-carrez-habitable-dvf\">différence entre Carrez, surface habitable et surface DVF</a>.</p>\n<h2>Comment discuter ce point avec le vendeur ?</h2>\n<p>Présentez la référence comme une vente groupée et demandez quel périmètre est inclus dans votre annonce. Une cave, un parking ou une parcelle peuvent modifier la comparaison. Votre objectif est de vérifier les éléments de prix, pas de transformer une ligne ambiguë en preuve de surévaluation.</p>\n<p>Retrouvez la prochaine vérification dans le <a href=\"/pages/guide#parcours-achat\">parcours avant achat immobilier</a>.</p>\n<h2 id=\"faq\">Questions fréquentes</h2>\n<h3>Plusieurs lignes DVF correspondent-elles forcément à plusieurs ventes ?</h3><p>Non. Vérifiez leur appartenance à une même mutation avant de compter les transactions ou d'additionner leurs prix.</p>\n<h3>Peut-on attribuer un prix à chaque lot au prorata des surfaces ?</h3><p>Ce calcul serait une hypothèse, pas une ventilation démontrée. Il faut des éléments sur la vente pour attribuer les valeurs aux différents biens.</p>\n<h3>Que faire d'une vente groupée dans une estimation ?</h3><p>Gardez-la comme contexte ou comparez-la à un périmètre similaire. Si la ventilation est inconnue, écartez-la d'un prix au m² précis pour un logement seul.</p>\n\n<section class=\"si-cta-box\" aria-label=\"Passer des vérifications à l'analyse\">\n<h2>Rassemblez les vérifications de votre annonce</h2>\n<p>Regardez un <a href=\"/exemple-rapport\">exemple de rapport gratuit</a> pour voir les informations disponibles et leurs limites. Le rapport personnalisé est payant, dès 2,99 € pour un crédit. Il complète vos vérifications et ne remplace pas la visite, les diagnostics ou l'avis d'un professionnel.</p>\n<p><a class=\"si-btn si-btn-primary\" href=\"https://app.score-immo.fr/app?utm_source=site&amp;utm_medium=guide_decision&amp;utm_campaign=dvf-mutation-plusieurs-lots\">Analyser mon annonce</a> <a href=\"/tarifs\">Voir les formules</a></p>\n<p>Plusieurs annonces à comparer : 9,99 € pour cinq crédits ou 19,99 € pour dix crédits. Consultez la <a href=\"/methodologie\">méthodologie de Score-Immo</a>.</p></section>",
+  "updated_at": "2026-10-03",
+  "last_reviewed": "2026-10-03",
+  "word_count": 628
+}
