@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import BuyerJourney from '@/components/BuyerJourney.astro';
 
 const all = await getCollection('articles');
 const dateOf = (a: any) => a.data.updated_at || a.data.published_at || '';
@@ -24,6 +25,11 @@ const artTitle = (a: any) => (a ? (a.data.title || '') : '');
     <div style="text-align:center;margin-bottom:3rem;" class="si-reveal">
       <h1 class="si-section-title">Le Guide de l'Acheteur</h1>
       <p class="si-section-subtitle">Tout ce qu'il faut savoir avant d'acheter : guides pratiques, analyses par ville et quartiers recommand&eacute;s.</p>
+      <p style="margin-top:1rem;"><a href="#parcours-achat" class="si-btn si-btn-secondary">Que vérifier avant d'acheter ?</a></p>
+    </div>
+
+    <div id="parcours-achat" style="scroll-margin-top:6rem;">
+      <BuyerJourney />
     </div>
 
     <!-- 3 blog cards -->

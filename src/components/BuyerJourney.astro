@@ -1,0 +1,43 @@
+---
+import { BUYER_JOURNEY } from '@/data/buyer-journey.mjs';
+---
+<section class="si-buyer-journey" aria-labelledby="buyer-journey-title">
+  <h2 id="buyer-journey-title">Que vérifier avant un achat immobilier ?</h2>
+  <p>Avancez selon votre question du moment : annonce, prix, diagnostics, risques, budget ou offre. Une donnée absente reste un point à demander ; une analyse en ligne complète la visite et les documents du bien.</p>
+  <div class="si-buyer-journey-grid">
+    {BUYER_JOURNEY.map((step) => (
+      <section class="si-buyer-journey-step" aria-labelledby={`buyer-step-${step.id}`}>
+        <h3 id={`buyer-step-${step.id}`}>{step.title}</h3>
+        <p>{step.description}</p>
+        <ul>
+          {step.links.map(([handle, label]) => (
+            <li><a href={`/blogs/guides/${handle}`}>{label}</a></li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+  <aside class="si-buyer-journey-action" aria-label="Utiliser Score-Immo pour votre recherche">
+    <h3>Voir les informations rassemblées dans un rapport</h3>
+    <p>Consultez un <a href="/exemple-rapport">exemple gratuit de rapport immobilier</a> et la <a href="/methodologie">méthodologie</a>, puis choisissez si une analyse de votre annonce vous aide. Le rapport personnalisé est payant, dès 2,99 € pour un crédit ; il ne remplace pas une visite ni une expertise sur place.</p>
+    <a class="si-btn si-btn-primary" href="https://app.score-immo.fr/app?utm_source=site&amp;utm_medium=guide_journey&amp;utm_campaign=parcours-achat">Analyser mon annonce</a>
+    <a class="si-buyer-journey-pricing" href="/tarifs">Comparer les formules</a>
+  </aside>
+</section>
+
+<style>
+  .si-buyer-journey { margin: 3rem 0; scroll-margin-top: 6rem; }
+  .si-buyer-journey h2 { font-family: var(--si-font-heading); font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 1rem; }
+  .si-buyer-journey > p { max-width: 52rem; margin-bottom: 1.5rem; line-height: 1.7; }
+  .si-buyer-journey-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  .si-buyer-journey-step { padding: 1.5rem; border: 1px solid var(--si-border); border-radius: var(--si-radius-xl); background: var(--si-card); }
+  .si-buyer-journey-step h3, .si-buyer-journey-action h3 { font-family: var(--si-font-heading); font-size: 1.125rem; font-weight: 700; margin-bottom: .75rem; }
+  .si-buyer-journey-step p { color: var(--si-muted-foreground); line-height: 1.6; margin-bottom: .75rem; }
+  .si-buyer-journey-step ul { padding-left: 1.25rem; }
+  .si-buyer-journey-step li { margin: .55rem 0; line-height: 1.55; }
+  .si-buyer-journey a:not(.si-btn) { color: var(--si-accent); text-decoration: underline; text-underline-offset: .2em; }
+  .si-buyer-journey-action { margin-top: 1.5rem; padding: 1.5rem; background: var(--si-muted); border-radius: var(--si-radius-xl); }
+  .si-buyer-journey-action p { line-height: 1.7; margin-bottom: 1rem; }
+  .si-buyer-journey-pricing { display: inline-block; margin: .75rem 1rem; }
+  @media (max-width: 640px) { .si-buyer-journey-grid { grid-template-columns: 1fr; } }
+</style>

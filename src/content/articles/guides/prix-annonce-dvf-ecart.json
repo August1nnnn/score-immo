@@ -1,0 +1,34 @@
+{
+  "id": "organic-20261003-prix-annonce-dvf-ecart",
+  "title": "Prix d'annonce et DVF : comprendre l'écart avant de négocier",
+  "handle": "prix-annonce-dvf-ecart",
+  "blog": "guides",
+  "author": "Score-Immo",
+  "author_handle": "scoreimmo",
+  "published_at": "2026-10-03T10:00:00+02:00",
+  "meta_title": "Prix d'annonce et DVF : expliquer l'écart de prix",
+  "meta_description": "Pourquoi le prix d'une annonce diffère-t-il de DVF ? Vérifiez frais, date, lots et état du bien avant d'en déduire une marge de négociation.",
+  "image": null,
+  "summary_html": "<p>Pourquoi le prix d'une annonce diffère-t-il de DVF ? Vérifiez frais, date, lots et état du bien avant d'en déduire une marge de négociation.</p>",
+  "tldr": [
+    "DVF publie une valeur déclarée lors d'une mutation, pas le prix initial de l'annonce.",
+    "Un écart entre annonce et vente comparable n'est pas une remise négociée.",
+    "Alignez les frais, les lots, la surface et la date avant de comparer les montants."
+  ],
+  "sources": [
+    {
+      "title": "Notice descriptive DVF : prix, dispositions et surfaces",
+      "url": "https://static.data.gouv.fr/resources/demandes-de-valeurs-foncieres/20221017-153319/notice-descriptive-du-fichier-dvf-20221017.pdf",
+      "publisher": "DGFiP"
+    },
+    {
+      "title": "Informations d'une annonce de vente immobilière",
+      "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F32061",
+      "publisher": "Service-Public.fr"
+    }
+  ],
+  "body_html": "<p><strong>Un prix d'annonce supérieur à une vente DVF ne démontre pas, à lui seul, qu'un bien est trop cher.</strong> Vous comparez un prix demandé aujourd'hui à une valeur de vente passée. Avant de discuter une offre, vérifiez ce qui est inclus et si les logements sont vraiment comparables.</p>\n<h2>DVF correspond-il au prix net vendeur ou au prix avec frais ?</h2>\n<p>La <a href=\"https://static.data.gouv.fr/resources/demandes-de-valeurs-foncieres/20221017-153319/notice-descriptive-du-fichier-dvf-20221017.pdf\">notice DGFiP, colonne « valeur foncière »</a>, distingue les honoraires selon qui les paie : ceux à la charge du vendeur sont inclus ; ceux à la charge de l'acquéreur sont exclus, ainsi que les frais de notaire et le mobilier mentionné à l'acte. Assimiler systématiquement DVF au net vendeur est donc trompeur.</p>\n<p>Relevez le prix avec honoraires, le prix hors honoraires lorsqu'il est indiqué et la partie qui les paie. Si l'information est ambiguë, demandez une confirmation écrite à l'agent. La <a href=\"https://www.service-public.gouv.fr/particuliers/vosdroits/F32061\">fiche officielle sur les annonces</a> permet de contrôler leur présentation. Vous pouvez ensuite distinguer la <a href=\"/blogs/guides/frais-agence-immobiliere-negocier\">discussion sur les honoraires</a> de celle sur le bien.</p>\n<h2>Pourquoi deux logements du même immeuble peuvent-ils avoir des prix différents ?</h2>\n<p>La date de vente, l'étage, l'exposition, les annexes, les travaux et la situation d'occupation peuvent différer. La proximité géographique sert à chercher des références ; elle ne rend pas les biens identiques. Consignez ce qui est connu et ce qui reste à demander, sans appliquer un coefficient inventé à chaque différence.</p>\n<ul><li><strong>Date :</strong> replacez la vente dans son contexte ; une donnée ancienne est un repère historique.</li><li><strong>Périmètre :</strong> vérifiez si cave, parking, terrain ou autre logement ont été vendus ensemble.</li><li><strong>Surface :</strong> comparez la même définition de superficie ; ne mélangez pas Carrez et surface cadastrale.</li><li><strong>État :</strong> un montant de vente ne décrit pas les finitions, l'entretien ou les travaux.</li></ul>\n<h2>Exemple fictif : un écart brut qui ne mesure pas une négociation</h2>\n<p>Une annonce imaginaire affiche 260 000 € honoraires inclus, dont 10 000 € à la charge de l'acquéreur. Son prix hors honoraires est donc 250 000 €. Une vente voisine à 240 000 € donne un écart brut de 20 000 € avec l'annonce, ou de 10 000 € après retrait de ces honoraires. Ni l'un ni l'autre n'est la remise effectivement acceptée par un vendeur. L'état, les lots et les dates restent à comparer. Cet exemple est une démonstration arithmétique, pas une donnée du marché.</p>\n<h2>Comment utiliser cet écart dans votre offre ?</h2>\n<p>Présentez les références retenues, les différences documentées et les devis nécessaires. Demandez l'explication du prix plutôt que d'affirmer que la vente voisine fixe automatiquement la valeur. Appuyez-vous sur la <a href=\"/blogs/guides/estimation-immobiliere-methodes-juste-prix\">méthode pour vérifier un prix demandé</a> puis sur les <a href=\"/blogs/guides/negocier-prix-bien-immobilier-guide-complet\">arguments pour préparer une négociation</a>.</p>\n<p>Si vous ne connaissez pas les biens inclus dans la vente de référence, classez-la comme incertaine. Le guide des <a href=\"/blogs/guides/dvf-mutation-plusieurs-lots\">mutations DVF avec plusieurs lots</a> explique cette vérification. Une conclusion moins précise est préférable à un pourcentage artificiel.</p>\n<p>Retrouvez la prochaine vérification dans le <a href=\"/pages/guide#parcours-achat\">parcours avant achat immobilier</a>.</p>\n<h2 id=\"faq\">Questions fréquentes</h2>\n<h3>DVF permet-il de connaître le prix initial d'une annonce ?</h3><p>Non. Ce fichier ne donne pas le prix initial demandé. Il ne permet donc pas de calculer une remise entre ce prix et la vente finale.</p>\n<h3>Un écart avec DVF prouve-t-il que le prix est trop élevé ?</h3><p>Non. Vérifiez d'abord les dates, les frais, les surfaces, les lots et l'état des biens. L'écart devient un point à expliquer, pas une preuve automatique.</p>\n<h3>Faut-il retrancher les mêmes frais de toutes les ventes ?</h3><p>Non. Le traitement des honoraires dépend de la partie qui les supporte et du périmètre de la valeur publiée. Une correction forfaitaire risque de fausser la comparaison.</p>\n\n<section class=\"si-cta-box\" aria-label=\"Passer des vérifications à l'analyse\">\n<h2>Rassemblez les vérifications de votre annonce</h2>\n<p>Regardez un <a href=\"/exemple-rapport\">exemple de rapport gratuit</a> pour voir les informations disponibles et leurs limites. Le rapport personnalisé est payant, dès 2,99 € pour un crédit. Il complète vos vérifications et ne remplace pas la visite, les diagnostics ou l'avis d'un professionnel.</p>\n<p><a class=\"si-btn si-btn-primary\" href=\"https://app.score-immo.fr/app?utm_source=site&amp;utm_medium=guide_decision&amp;utm_campaign=prix-annonce-dvf-ecart\">Analyser mon annonce</a> <a href=\"/tarifs\">Voir les formules</a></p>\n<p>Plusieurs annonces à comparer : 9,99 € pour cinq crédits ou 19,99 € pour dix crédits. Consultez la <a href=\"/methodologie\">méthodologie de Score-Immo</a>.</p></section>",
+  "updated_at": "2026-10-03",
+  "last_reviewed": "2026-10-03",
+  "word_count": 677
+}
