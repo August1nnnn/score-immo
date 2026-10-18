@@ -1,18 +1,21 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import AnalyzerBox from '@/components/AnalyzerBox.astro';
 import { BRAND_NAME, ORGANIZATION_ID, SITE_URL } from '@/data/entity';
+import demo from '@/data/public-demo.json';
 
 const canonical = `${SITE_URL}/pro`;
 const appUrl = 'https://app.score-immo.fr/pricing?source=pro_landing';
+const demoUrl = 'https://app.score-immo.fr/r/demo?mode=sell';
+const money = (value: number) => value.toLocaleString('fr-FR');
 
 const title = `${BRAND_NAME} Pro : l'outil d'analyse des mandataires`;
-const description = "L'outil d'estimation et d'analyse pour les mandataires immobiliers : des données traçables et un rapport à votre marque pour documenter un bien et préparer les échanges avec vos clients.";
+const description = "Agents et mandataires : préparez vos échanges vendeurs avec un rapport d'analyse immobilière. Premium à 79 €/mois, analyses illimitées et PDF avec votre logo. Exemple fictif en accès libre.";
 
 const faq = [
   { q: "Score-Immo, c'est pour quels professionnels de l'immobilier ?", a: "Pour les mandataires immobiliers, les agents et les négociateurs qui veulent documenter leur analyse avec les données disponibles pour le bien." },
   { q: "Qu'est-ce qui rend le rapport crédible face à un vendeur ?", a: "Il réunit des données publiques et ouvertes, indique leur source et signale les informations indisponibles ou insuffisamment fiables. La négociation peut ainsi s'appuyer sur des éléments vérifiables." },
-  { q: "Puis-je remettre un rapport à ma marque ?", a: "Oui, l'offre Pro permet un rapport co-brandé (votre nom, votre logo). Le client repart avec un document professionnel qui porte votre image, un support pour vos échanges." },
+  { q: "Puis-je remettre un rapport à ma marque ?", a: "Oui, Premium à 79 €/mois inclut les analyses illimitées et le PDF co-brandé avec votre nom et votre logo, à renseigner dans votre profil professionnel. Recherche à 29 €/mois inclut 60 analyses ; la personnalisation du PDF avec votre logo est incluse dans Premium." },
+  { q: "Est-ce un logiciel d'avis de valeur complet ?", a: "Score-Immo est un support d'analyse pour préparer votre estimation et vos échanges. Le mode Vente présente le positionnement du prix et les références disponibles. Il ne remplace pas votre connaissance du terrain, la visite ni une expertise de valeur et ne constitue pas un avis de valeur complet." },
   { q: "Combien de temps prend une analyse ?", a: "Le délai dépend du bien et des sources accessibles. Après l'achat d'une formule adaptée, le rapport présente les informations disponibles et leur couverture." },
   { q: "Puis-je voir un rapport avant de souscrire ?", a: "Oui. La démo complète et les exemples du Baromètre sont accessibles gratuitement. Les rapports personnalisés sont disponibles avec une offre payante." },
 ];
@@ -46,20 +49,33 @@ const jsonLd = [
       </nav>
 
       <header class="pro-hero">
-        <p class="pro-kicker">Score-Immo Pro · Pour les mandataires</p>
-        <h1 class="pro-h1">Votre rapport d'analyse immobilière, à votre marque</h1>
-        <p class="pro-lead">Documentez un bien avec les données publiques et ouvertes disponibles, un score sur 100 et la couverture des informations utilisées.</p>
-        <div class="pro-actions">
-          <a class="pro-btn pro-btn-primary" href={appUrl}>Voir l'offre mandataire</a>
-          <a class="pro-btn pro-btn-ghost" href="https://app.score-immo.fr/r/demo">Voir la démo gratuite</a>
+        <div>
+          <p class="pro-kicker">Pour les agents et mandataires immobiliers</p>
+          <h1 class="pro-h1">Un rapport à votre marque pour vos échanges vendeurs</h1>
+          <p class="pro-lead">Préparez votre argumentation sur le prix avec les références disponibles, le DPE, les risques et l'environnement du bien.</p>
+          <p class="pro-offer"><strong>Premium : 79&nbsp;€/mois</strong><br />Analyses illimitées et PDF avec votre nom et votre logo.</p>
+          <div class="pro-actions">
+            <a class="pro-btn pro-btn-primary" href={appUrl}>Voir Premium à 79 €/mois</a>
+            <a class="pro-btn pro-btn-ghost" href={demoUrl}>Voir l'exemple vendeur</a>
+          </div>
+          <p class="pro-terms">Abonnement mensuel à renouvellement automatique, annulable à tout moment. Exemple fictif gratuit, sans compte.</p>
         </div>
+        <aside class="pro-preview" aria-label="Aperçu fictif du rapport vendeur">
+          <div class="pro-preview-brand"><span class="pro-preview-logo" aria-label="Logo fictif">AD</span><div><strong>Agence de démonstration</strong><br /><span>Exemple d'identité pour votre PDF</span></div></div>
+          <p class="pro-preview-notice">Données et identité entièrement fictives</p>
+          <h2>Préparer le positionnement du prix</h2>
+          <p>{demo.report.title}<br />{demo.report.city}, adresse fictive</p>
+          <dl><div><dt>Prix affiché fictif</dt><dd>{money(demo.report.pricePerSqm)} €/m²</dd></div><div><dt>Médiane fictive</dt><dd>{money(demo.report.medianLocal)} €/m²</dd></div></dl>
+          <p>Comparer les caractéristiques du bien, vérifier les références et relever les points à expliquer au vendeur.</p>
+          <a href={demoUrl}>Explorer le rapport en mode Vente</a>
+        </aside>
       </header>
 
       <section class="pro-block">
-        <h2 class="pro-h2">Pourquoi les mandataires utilisent Score-Immo</h2>
+        <h2 class="pro-h2">Un support pour votre analyse professionnelle</h2>
         <div class="pro-cards">
           <div class="pro-card"><h3>Données traçables</h3><p>Le rapport relie les informations disponibles à leur source et indique les limites de couverture. Votre analyse devient vérifiable.</p></div>
-          <div class="pro-card"><h3>À votre marque</h3><p>Remettez un rapport co-brandé, avec votre nom et votre logo. Un document professionnel qui vous valorise et documente les échanges.</p></div>
+          <div class="pro-card"><h3>À votre marque</h3><p>Premium inclut le PDF co-brandé, avec votre nom et votre logo. Renseignez votre profil professionnel puis exportez le rapport pour votre client.</p></div>
           <div class="pro-card"><h3>Préparer une analyse</h3><p>Collez le lien d'une annonce, obtenez un rapport complet : prix au m² réels, DPE, risques, environnement et un score sur 100.</p></div>
           <div class="pro-card"><h3>Pour documenter le prix</h3><p>Transformez la négociation de prix en discussion de données. Présentez les références disponibles et les points à vérifier avec le vendeur.</p></div>
         </div>
@@ -68,14 +84,14 @@ const jsonLd = [
       <section class="pro-block">
         <h2 class="pro-h2">Comment ça marche</h2>
         <ol class="pro-steps">
-          <li><strong>Collez le lien</strong> d'une annonce immobilière (ou saisissez l'adresse).</li>
-          <li><strong>Recevez le rapport</strong> personnalisé avec une formule payante : score sur 100, prix vs marché, DPE, risques, environnement, commerces.</li>
-          <li><strong>Remettez-le à votre client</strong>, à votre marque, pour expliquer les données disponibles et préparer la discussion.</li>
+          <li><strong>Choisissez votre formule</strong>, puis collez le lien d'une annonce et vérifiez les informations extraites.</li>
+          <li><strong>Préparez votre rapport</strong> en mode Vente avec Premium : positionnement du prix, données disponibles, points forts et points de vigilance.</li>
+          <li><strong>Complétez votre profil professionnel</strong> avec votre nom et votre logo. Exportez le PDF co-brandé pour préparer l'échange avec votre client.</li>
         </ol>
       </section>
 
       <section class="pro-block">
-        <AnalyzerBox blog="pro" medium="pro_landing_tool" />
+        <p class="pro-note">Le rapport documente votre analyse : il ne remplace pas la visite, les diagnostics ni une expertise de valeur. Les références et les sections disponibles dépendent du bien, de la précision de son adresse et de la couverture des sources. Il ne constitue pas un avis de valeur complet.</p>
       </section>
 
       <section class="pro-block">
@@ -93,20 +109,22 @@ const jsonLd = [
       </section>
 
       <section class="pro-block pro-pricing">
-        <h2 class="pro-h2">L'offre Pro</h2>
-        <p>Une offre pensée pour les mandataires, avec rapport co-brandé à votre marque et analyses illimitées à 79&nbsp;€/mois. Consultez la démo complète gratuitement, puis choisissez votre formule sur notre <a href="/tarifs">page tarifs</a>.</p>
+        <h2 class="pro-h2">Choisissez selon votre usage</h2>
+        <p><strong>Premium à 79&nbsp;€/mois :</strong> analyses illimitées, modes Achat et Vente, PDF co-brandé avec votre nom et votre logo.</p>
+        <p><strong>Recherche à 29&nbsp;€/mois :</strong> 60 analyses par mois, export PDF et partage. La personnalisation du PDF avec votre logo est incluse dans Premium.</p>
+        <p>Ces abonnements mensuels se renouvellent automatiquement et sont annulables à tout moment depuis votre compte. Vous pouvez consulter l'exemple fictif avant de choisir.</p>
         <div class="pro-actions">
-          <a class="pro-btn pro-btn-primary" href={appUrl}>Voir l'offre mandataire</a>
+          <a class="pro-btn pro-btn-primary" href={appUrl}>Comparer les offres Pro</a>
           <a class="pro-btn pro-btn-ghost" href="/tarifs">Voir les tarifs</a>
         </div>
       </section>
 
       <section class="pro-block">
         <h2 class="pro-h2">Faire découvrir Score-Immo à vos clients</h2>
-        <p>Agents, mandataires, courtiers ou créateurs de contenu : commencez par montrer la <a href="https://app.score-immo.fr/r/demo">démonstration gratuite</a> et la <a href="/methodologie">méthodologie et ses limites</a>. Le rapport personnalisé est payant et ne remplace pas une visite ou une expertise technique.</p>
+        <p>Agents, mandataires, courtiers ou créateurs de contenu : commencez par montrer l'<a href={demoUrl}>exemple vendeur fictif</a> et la <a href="/methodologie">méthodologie et ses limites</a>. Le rapport personnalisé est payant et ne remplace pas une visite ou une expertise technique.</p>
         <p>Selon le projet de votre interlocuteur, partagez notre guide pour <a href="/blogs/guides/estimation-immobiliere-methodes-juste-prix">vérifier si le prix demandé est cohérent</a> ou pour <a href="/blogs/guides/analyser-annonce-immobiliere-comme-pro">préparer une visite à partir de l'annonce</a>.</p>
         <p>Exemple de présentation : « Avant votre prochaine visite, vous pouvez consulter cette démonstration d'analyse immobilière. Elle montre les informations disponibles et leurs limites. L'analyse personnalisée est payante. »</p>
-        <p><a href="https://app.score-immo.fr/r/demo?utm_source=site&amp;utm_medium=referral&amp;utm_campaign=prescripteurs&amp;utm_content=pro_demo">Ouvrir le lien de démonstration à partager</a></p>
+        <p><a href={demoUrl}>Ouvrir l'exemple vendeur à partager</a></p>
       </section>
 
       <section class="pro-block">
@@ -122,11 +140,28 @@ const jsonLd = [
 <style is:global>
   .si-breadcrumb { font-size: 0.875rem; color: var(--si-muted-foreground, #64748B); margin: 1rem 0 2rem; }
   .si-breadcrumb a { color: var(--si-muted-foreground, #64748B); text-decoration: none; }
-  .pro-hero { max-width: 46rem; margin: 0 auto 3rem; text-align: center; }
-  .pro-kicker { font-family: var(--si-font-heading,'DM Sans',sans-serif); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--si-accent,#3B82F6); margin: 0 0 0.75rem; }
+  .pro-hero { max-width: 70rem; margin: 0 auto 3rem; display: grid; grid-template-columns: minmax(0,1.3fr) minmax(0,1fr); gap: 3rem; align-items: center; text-align: left; }
+  .pro-kicker { font-family: var(--si-font-heading,'DM Sans',sans-serif); font-size: 0.875rem; font-weight: 600; color: var(--si-muted-foreground,#64748B); margin: 0 0 0.75rem; }
   .pro-h1 { font-family: var(--si-font-heading,'DM Sans',sans-serif); font-size: clamp(2rem,5vw,3rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.025em; margin: 0 0 1rem; color: var(--si-foreground); }
   .pro-lead { font-size: 1.15rem; line-height: 1.7; color: var(--si-muted-foreground,#64748B); margin: 0 0 1.75rem; }
   .pro-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
+  .pro-hero .pro-actions { justify-content: flex-start; }
+  .pro-offer { line-height: 1.6; margin: 0 0 1rem; }
+  .pro-offer strong { font-family: var(--si-font-heading,'DM Sans',sans-serif); font-size: 1.5rem; }
+  .pro-terms { color: var(--si-muted-foreground,#64748B); font-size: .8rem; line-height: 1.6; margin: 1rem 0 0; }
+  .pro-preview { background: var(--si-card,#fff); border: 1px solid var(--si-border,#E2E8F0); border-radius: var(--si-radius-xl,1rem); padding: 1.5rem; line-height: 1.6; }
+  .pro-preview-brand { display: flex; align-items: center; gap: .75rem; font-size: .875rem; }
+  .pro-preview-brand span:not(.pro-preview-logo) { color: var(--si-muted-foreground,#64748B); font-size: .75rem; }
+  .pro-preview-logo { display: flex; align-items: center; justify-content: center; width: 3rem; height: 3rem; flex-shrink: 0; border-radius: var(--si-radius,.75rem); color: var(--si-accent,#3B82F6); background: var(--si-muted,#F1F5F9); font-weight: 700; }
+  .pro-preview h2 { font-family: var(--si-font-heading,'DM Sans',sans-serif); font-size: 1.3rem; font-weight: 700; margin: 1.5rem 0 .5rem; }
+  .pro-preview p { font-size: .875rem; color: var(--si-muted-foreground,#64748B); }
+  .pro-preview .pro-preview-notice { font-size: .75rem; margin-top: 1rem; }
+  .pro-preview dl { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin: 1.25rem 0; padding: 1rem 0; border-top: 1px solid var(--si-border,#E2E8F0); border-bottom: 1px solid var(--si-border,#E2E8F0); }
+  .pro-preview dt { font-size: .75rem; color: var(--si-muted-foreground,#64748B); }
+  .pro-preview dd { font-family: var(--si-font-heading,'DM Sans',sans-serif); font-size: 1.25rem; font-weight: 700; }
+  .pro-preview a { display: inline-flex; align-items: center; min-height: 44px; color: var(--si-accent,#3B82F6); text-decoration: underline; margin-top: .75rem; }
+  .pro-btn:focus-visible, .pro-preview a:focus-visible { outline: 2px solid var(--si-accent,#3B82F6); outline-offset: 4px; }
+  @media (max-width: 800px) { .pro-hero { grid-template-columns: minmax(0,1fr); gap: 2rem; } }
   .pro-btn { display: inline-flex; align-items: center; justify-content: center; height: 2.9rem; padding: 0 1.6rem; border-radius: var(--si-radius,0.75rem); font-weight: 600; text-decoration: none; transition: transform .15s, opacity .15s; }
   .pro-btn:hover { transform: translateY(-1px); }
   .pro-btn-primary { background: var(--si-accent,#3B82F6); color: #fff; }
@@ -143,10 +178,11 @@ const jsonLd = [
   .pro-data { columns: 2; column-gap: 2rem; padding-left: 1.2rem; line-height: 1.9; }
   @media (max-width: 520px) { .pro-data { columns: 1; } }
   .pro-note { margin-top: 1.5rem; color: var(--si-muted-foreground,#64748B); }
-  .pro-note a, .pro-pricing a { color: var(--si-accent,#3B82F6); }
+  .pro-note a, .pro-pricing p a { color: var(--si-accent,#3B82F6); }
   .pro-pricing { text-align: center; padding: 2rem; border: 1px solid var(--si-border,#E2E8F0); border-radius: var(--si-radius-xl,1rem); background: var(--si-muted,#F1F5F9); }
   .pro-pricing p { max-width: 38rem; margin: 0 auto 1.5rem; line-height: 1.7; }
   .pro-faq { margin-bottom: 1.25rem; }
   .pro-faq h3 { font-family: var(--si-font-heading,'DM Sans',sans-serif); font-size: 1.05rem; font-weight: 700; margin: 0 0 0.4rem; color: var(--si-foreground); }
   .pro-faq p { margin: 0; line-height: 1.65; color: var(--si-muted-foreground,#64748B); }
+  @media (prefers-reduced-motion: reduce) { .pro-btn { transition: none; } .pro-btn:hover { transform: none; } }
 </style>
