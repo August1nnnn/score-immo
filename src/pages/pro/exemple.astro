@@ -1,0 +1,67 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import artifact from '@/data/public-demo.json';
+
+const r = artifact.report;
+const number = (n: number) => n.toLocaleString('fr-FR');
+const title = 'Exemple fictif de synthèse vendeur | Score-Immo Pro';
+const description = 'Un exemple fictif pour préparer un échange vendeur : prix et références de marché, DPE, risques, points à vérifier et identité professionnelle de démonstration.';
+---
+<BaseLayout {title} {description} canonical="https://score-immo.fr/pro/exemple">
+  <article class="seller-example">
+    <nav aria-label="Fil d'Ariane"><a href="/pro">Score-Immo Pro</a> &rsaquo; Exemple vendeur</nav>
+    <p class="seller-notice"><strong>Démonstration entièrement fictive.</strong> Le bien, l'identité professionnelle, les références et les valeurs ci-dessous servent uniquement à illustrer la lecture d'un rapport. Aucune vente ni donnée de terrain n'a été observée pour cette adresse.</p>
+    <header class="seller-cover">
+      <div class="seller-identity"><span role="img" aria-label="Logo fictif" class="seller-logo">AD</span><div><strong>Agence de démonstration</strong><p>Identité fictive pour illustrer un PDF co-brandé</p></div></div>
+      <h1>Préparer le positionnement du prix avec le vendeur</h1>
+      <p>Exemple de synthèse en mode Vente</p>
+      <h2>{r.title}</h2>
+      <p>{r.address}, adresse fictive</p>
+      <dl class="seller-facts"><div><dt>Prix affiché fictif</dt><dd>{number(r.price)} €</dd></div><div><dt>Surface fictive</dt><dd>{r.surface} m²</dd></div><div><dt>DPE fictif</dt><dd>{r.dpe}</dd></div><div><dt>Score illustratif</dt><dd>{r.score}/100</dd></div></dl>
+    </header>
+    <section>
+      <h2>Synthèse pour l'échange vendeur</h2>
+      <p>Dans cet exemple, le prix affiché est inférieur à la médiane fictive. Cet écart ne suffit pas à déterminer une valeur de marché ou une marge de négociation : l'état du bien, son étage, ses caractéristiques et la pertinence des références doivent être vérifiés.</p>
+      <dl class="seller-market"><div><dt>Prix affiché fictif au m²</dt><dd>{number(r.pricePerSqm)} €/m²</dd></div><div><dt>Médiane fictive du secteur</dt><dd>{number(r.medianLocal)} €/m²</dd></div><div><dt>Écart illustratif à cette médiane</dt><dd>{r.diffPercent.toLocaleString('fr-FR')} %</dd></div></dl>
+      <p class="seller-source">Échantillon fictif de {r.nbComparables} transactions. Aucune transaction DVF réelle n'est présentée ici. Dans un rapport personnalisé, la disponibilité, la période et la localisation des références doivent accompagner leur lecture.</p>
+    </section>
+    <section>
+      <h2>Les points à expliquer et à confirmer</h2>
+      <ul>
+        <li><strong>Prix :</strong> comparer les caractéristiques des références avec celles du bien, puis expliquer les écarts au vendeur.</li>
+        <li><strong>DPE :</strong> la classe {r.dpe} est fictive dans cet exemple. Pour un vrai bien, confirmer le diagnostic en vigueur et son périmètre.</li>
+        <li><strong>Risques :</strong> le retrait-gonflement des argiles est classé moyen dans les données fictives de cette démonstration. Confirmer l'adresse et les documents réglementaires ; un résultat de quartier ne conclut pas sur une parcelle.</li>
+        <li><strong>Environnement :</strong> le bruit et la qualité de l'air ne sont pas mesurés dans cet exemple. Une information indisponible reste à vérifier.</li>
+      </ul>
+      <p>Le rapport rassemble les informations disponibles et leurs limites pour préparer la discussion. Il ne remplace ni la visite, ni les diagnostics, ni une expertise de valeur. Il ne constitue pas un avis de valeur complet.</p>
+    </section>
+    <section class="seller-next">
+      <h2>Préparer votre propre rapport</h2>
+      <ol><li>Choisissez votre formule et collez le lien de l'annonce. Vérifiez les informations extraites.</li><li>Avec Premium, choisissez le mode Vente et renseignez votre nom et votre logo dans votre profil professionnel.</li><li>Après génération, utilisez le menu de partage pour exporter le PDF co-brandé et relisez les références avant de le remettre à votre client.</li></ol>
+      <p><strong>Premium : 79 €/mois</strong>, analyses illimitées et PDF avec votre logo. <strong>Recherche : 29 €/mois</strong>, 60 analyses avec export PDF ; la personnalisation du PDF est incluse dans Premium. Abonnements mensuels à renouvellement automatique, annulables à tout moment.</p>
+      <div class="seller-actions"><a class="seller-primary" href="https://app.score-immo.fr/go/checkout/premium">Choisir Premium à 79 €/mois</a><a href="/pro#offres-pro">Comparer les offres Pro</a></div>
+    </section>
+    <p><a href="/exemple-rapport">Consulter aussi l'exemple complet côté acheteur</a> · <a href="/methodologie">Méthodologie et sources</a></p>
+  </article>
+</BaseLayout>
+<style>
+  .seller-example { max-width: 52rem; padding: 2rem 1.25rem 4rem; margin: auto; line-height: 1.7; color: var(--si-foreground,#0F172A); }
+  .seller-example nav, .seller-example p, .seller-example ul, .seller-example ol { margin: 1rem 0; }
+  .seller-example h1 { font-family: var(--si-font-heading,'DM Sans',sans-serif); font-size: clamp(1.9rem,4vw,2.6rem); line-height: 1.2; font-weight: 800; margin: 2rem 0 1rem; }
+  .seller-example h2 { font-family: var(--si-font-heading,'DM Sans',sans-serif); font-weight: 700; font-size: 1.4rem; line-height: 1.3; margin: 0 0 1rem; }
+  .seller-example section { margin-top: 2rem; }
+  .seller-notice { padding: 1rem; border: 1px solid var(--si-border,#E2E8F0); border-radius: var(--si-radius,.75rem); color: var(--si-muted-foreground,#64748B); font-size: .875rem; }
+  .seller-cover { padding: 1.5rem; border-radius: var(--si-radius-xl,1rem); background: var(--si-card,#fff); border: 1px solid var(--si-border,#E2E8F0); }
+  .seller-identity { display: flex; align-items: center; gap: 1rem; }
+  .seller-identity p { font-size: .8rem; color: var(--si-muted-foreground,#64748B); margin: .2rem 0 0; }
+  .seller-logo { display: flex; align-items: center; justify-content: center; width: 3rem; height: 3rem; flex-shrink: 0; border-radius: var(--si-radius,.75rem); background: var(--si-muted,#F1F5F9); color: var(--si-accent,#3B82F6); font-weight: 700; }
+  .seller-facts, .seller-market { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem; padding: 1rem 0; border-top: 1px solid var(--si-border,#E2E8F0); border-bottom: 1px solid var(--si-border,#E2E8F0); }
+  dt, .seller-source { font-size: .8rem; color: var(--si-muted-foreground,#64748B); }
+  dd { font-family: var(--si-font-heading,'DM Sans',sans-serif); font-size: 1.25rem; font-weight: 700; }
+  .seller-example ul { list-style: disc; padding-left: 1.25rem; }.seller-example ol { list-style: decimal; padding-left: 1.25rem; }.seller-example li { margin-bottom: .75rem; }
+  .seller-example a { color: var(--si-accent,#3B82F6); text-decoration: underline; text-underline-offset: 3px; }
+  .seller-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem; }.seller-actions a { display: inline-flex; min-height: 44px; align-items: center; }
+  .seller-actions .seller-primary { background: var(--si-accent,#3B82F6); color: #fff; font-weight: 600; text-decoration: none; border-radius: var(--si-radius,.75rem); padding: .75rem 1rem; }
+  .seller-example a:focus-visible { outline: 2px solid var(--si-accent,#3B82F6); outline-offset: 4px; }
+  @media(max-width:360px) { .seller-facts, .seller-market { grid-template-columns: minmax(0,1fr); } }
+</style>

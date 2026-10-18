@@ -4,8 +4,8 @@ import { BRAND_NAME, ORGANIZATION_ID, SITE_URL } from '@/data/entity';
 import demo from '@/data/public-demo.json';
 
 const canonical = `${SITE_URL}/pro`;
-const appUrl = 'https://app.score-immo.fr/pricing?source=pro_landing';
-const demoUrl = 'https://app.score-immo.fr/r/demo?mode=sell';
+const appUrl = 'https://app.score-immo.fr/go/checkout/premium';
+const demoUrl = '/pro/exemple';
 const money = (value: number) => value.toLocaleString('fr-FR');
 
 const title = `${BRAND_NAME} Pro : l'outil d'analyse des mandataires`;
@@ -55,7 +55,7 @@ const jsonLd = [
           <p class="pro-lead">Préparez votre argumentation sur le prix avec les références disponibles, le DPE, les risques et l'environnement du bien.</p>
           <p class="pro-offer"><strong>Premium : 79&nbsp;€/mois</strong><br />Analyses illimitées et PDF avec votre nom et votre logo.</p>
           <div class="pro-actions">
-            <a class="pro-btn pro-btn-primary" href={appUrl}>Voir Premium à 79 €/mois</a>
+            <a class="pro-btn pro-btn-primary" href={appUrl}>Choisir Premium à 79 €/mois</a>
             <a class="pro-btn pro-btn-ghost" href={demoUrl}>Voir l'exemple vendeur</a>
           </div>
           <p class="pro-terms">Abonnement mensuel à renouvellement automatique, annulable à tout moment. Exemple fictif gratuit, sans compte.</p>
@@ -108,13 +108,14 @@ const jsonLd = [
         <p class="pro-note">Découvrez des analyses publiées dans <a href="/barometre">le Baromètre Score-Immo</a>, notre <a href="/methodologie">méthodologie</a> et nos guides métier dans <a href="/blogs/pro">l'espace mandataires</a>.</p>
       </section>
 
-      <section class="pro-block pro-pricing">
+      <section class="pro-block pro-pricing" id="offres-pro">
         <h2 class="pro-h2">Choisissez selon votre usage</h2>
         <p><strong>Premium à 79&nbsp;€/mois :</strong> analyses illimitées, modes Achat et Vente, PDF co-brandé avec votre nom et votre logo.</p>
         <p><strong>Recherche à 29&nbsp;€/mois :</strong> 60 analyses par mois, export PDF et partage. La personnalisation du PDF avec votre logo est incluse dans Premium.</p>
         <p>Ces abonnements mensuels se renouvellent automatiquement et sont annulables à tout moment depuis votre compte. Vous pouvez consulter l'exemple fictif avant de choisir.</p>
         <div class="pro-actions">
-          <a class="pro-btn pro-btn-primary" href={appUrl}>Comparer les offres Pro</a>
+          <a class="pro-btn pro-btn-primary" href={appUrl}>Choisir Premium à 79 €/mois</a>
+          <a class="pro-btn pro-btn-ghost" href="https://app.score-immo.fr/go/checkout/search">Choisir Recherche à 29 €/mois</a>
           <a class="pro-btn pro-btn-ghost" href="/tarifs">Voir les tarifs</a>
         </div>
       </section>
@@ -125,6 +126,7 @@ const jsonLd = [
         <p>Selon le projet de votre interlocuteur, partagez notre guide pour <a href="/blogs/guides/estimation-immobiliere-methodes-juste-prix">vérifier si le prix demandé est cohérent</a> ou pour <a href="/blogs/guides/analyser-annonce-immobiliere-comme-pro">préparer une visite à partir de l'annonce</a>.</p>
         <p>Exemple de présentation : « Avant votre prochaine visite, vous pouvez consulter cette démonstration d'analyse immobilière. Elle montre les informations disponibles et leurs limites. L'analyse personnalisée est payante. »</p>
         <p><a href={demoUrl}>Ouvrir l'exemple vendeur à partager</a></p>
+        <p>Pour explorer toutes les rubriques, consultez aussi la <a href="https://app.score-immo.fr/r/demo">démonstration interactive côté acheteur</a>, avec ses données fictives.</p>
       </section>
 
       <section class="pro-block">
