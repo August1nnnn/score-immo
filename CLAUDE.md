@@ -1,4 +1,4 @@
-> **Exception Pro autorisée le 18/10/2026, préparation non publiée :** un premier rapport Vente avec nom et logo est offert aux professionnels vérifiés, une fois par entreprise, sans crédit générique ni abonnement automatique. Le paid-first B2C reste inchangé. Publier les CTA uniquement après vérification de la disponibilité effective du parcours applicatif `/pro/essai`.
+> **Exception Pro web autorisée le18/10/2026 :** premier rapport Vente avec nom/logo offert une fois par entreprise. Validation automatique sur compte confirmé, SIRET/entreprise/établissement actifs68.31Z, marque et attestation, y compris Gmail ; le domaine réseau reste un signal. Anomalies en revue manuelle avec notification admin. Plafonds50/10, avertissement80% et liste d’attente. B2C payé inchangé, mise à jour iOS différée. Vérifier le déploiement de la nouvelle politique avant toute affirmation de conformité.
 
 > Catalogue restauré sur GO PROD le09/09/2026 : unité2,99 €, pack5 9,99 €, pack10 19,99 €.
 
