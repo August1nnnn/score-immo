@@ -12,34 +12,34 @@ const description = 'Un exemple fictif pour préparer un échange vendeur : prix
     <nav aria-label="Fil d'Ariane"><a href="/pro">Score-Immo Pro</a> &rsaquo; Exemple vendeur</nav>
     <p class="seller-notice"><strong>Démonstration entièrement fictive.</strong> Le bien, l'identité professionnelle, les références et les valeurs ci-dessous servent uniquement à illustrer la lecture d'un rapport. Aucune vente ni donnée de terrain n'a été observée pour cette adresse.</p>
     <header class="seller-cover">
-      <div class="seller-identity"><span role="img" aria-label="Logo fictif" class="seller-logo">AD</span><div><strong>Agence de démonstration</strong><p>Identité fictive pour illustrer un PDF co-brandé</p></div></div>
+      <div class="seller-identity"><span role="img" aria-label="Logo de démonstration" class="seller-logo">AD</span><div><strong>Agence de démonstration</strong><p>Exemple d'identité pour un PDF co-brandé</p></div></div>
       <h1>Préparer le positionnement du prix avec le vendeur</h1>
       <p>Exemple de synthèse en mode Vente</p>
       <h2>{r.title}</h2>
-      <p>{r.address}, adresse fictive</p>
-      <dl class="seller-facts"><div><dt>Prix affiché fictif</dt><dd>{number(r.price)} €</dd></div><div><dt>Surface fictive</dt><dd>{r.surface} m²</dd></div><div><dt>DPE fictif</dt><dd>{r.dpe}</dd></div><div><dt>Score illustratif</dt><dd>{r.score}/100</dd></div></dl>
+      <p>{r.address}</p>
+      <dl class="seller-facts"><div><dt>Prix affiché</dt><dd>{number(r.price)} €</dd></div><div><dt>Surface</dt><dd>{r.surface} m²</dd></div><div><dt>DPE</dt><dd>{r.dpe}</dd></div><div><dt>Score illustratif</dt><dd>{r.score}/100</dd></div></dl>
     </header>
     <section>
       <h2>Synthèse pour l'échange vendeur</h2>
-      <p>Dans cet exemple, le prix affiché est inférieur à la médiane fictive. Cet écart ne suffit pas à déterminer une valeur de marché ou une marge de négociation : l'état du bien, son étage, ses caractéristiques et la pertinence des références doivent être vérifiés.</p>
-      <dl class="seller-market"><div><dt>Prix affiché fictif au m²</dt><dd>{number(r.pricePerSqm)} €/m²</dd></div><div><dt>Médiane fictive du secteur</dt><dd>{number(r.medianLocal)} €/m²</dd></div><div><dt>Écart illustratif à cette médiane</dt><dd>{r.diffPercent.toLocaleString('fr-FR')} %</dd></div></dl>
+      <p>Dans cet exemple, le prix affiché est inférieur à la médiane. Cet écart ne suffit pas à déterminer une valeur de marché ou une marge de négociation : l'état du bien, son étage, ses caractéristiques et la pertinence des références doivent être vérifiés.</p>
+      <dl class="seller-market"><div><dt>Prix affiché au m²</dt><dd>{number(r.pricePerSqm)} €/m²</dd></div><div><dt>Médiane du secteur</dt><dd>{number(r.medianLocal)} €/m²</dd></div><div><dt>Écart illustratif à cette médiane</dt><dd>{r.diffPercent.toLocaleString('fr-FR')} %</dd></div></dl>
       <p class="seller-source">Échantillon fictif de {r.nbComparables} transactions. Aucune transaction DVF réelle n'est présentée ici. Dans un rapport personnalisé, la disponibilité, la période et la localisation des références doivent accompagner leur lecture.</p>
     </section>
     <section>
       <h2>Les points à expliquer et à confirmer</h2>
       <ul>
         <li><strong>Prix :</strong> comparer les caractéristiques des références avec celles du bien, puis expliquer les écarts au vendeur.</li>
-        <li><strong>DPE :</strong> la classe {r.dpe} est fictive dans cet exemple. Pour un vrai bien, confirmer le diagnostic en vigueur et son périmètre.</li>
-        <li><strong>Risques :</strong> le retrait-gonflement des argiles est classé moyen dans les données fictives de cette démonstration. Confirmer l'adresse et les documents réglementaires ; un résultat de quartier ne conclut pas sur une parcelle.</li>
+        <li><strong>DPE :</strong> la classe {r.dpe} illustre cette rubrique. Pour un vrai bien, confirmer le diagnostic en vigueur et son périmètre.</li>
+        <li><strong>Risques :</strong> la démonstration illustre un retrait-gonflement des argiles classé moyen. Confirmer l'adresse et les documents réglementaires ; un résultat de quartier ne conclut pas sur une parcelle.</li>
         <li><strong>Environnement :</strong> le bruit et la qualité de l'air ne sont pas mesurés dans cet exemple. Une information indisponible reste à vérifier.</li>
       </ul>
       <p>Le rapport rassemble les informations disponibles et leurs limites pour préparer la discussion. Il ne remplace ni la visite, ni les diagnostics, ni une expertise de valeur. Il ne constitue pas un avis de valeur complet.</p>
     </section>
     <section class="seller-next">
       <h2>Préparer votre propre rapport</h2>
-      <ol><li>Choisissez votre formule et collez le lien de l'annonce. Vérifiez les informations extraites.</li><li>Avec Premium, choisissez le mode Vente et renseignez votre nom et votre logo dans votre profil professionnel.</li><li>Après génération, utilisez le menu de partage pour exporter le PDF co-brandé et relisez les références avant de le remettre à votre client.</li></ol>
+      <ol><li>Demandez votre essai Pro : compte confirmé, nom, logo et SIRET. Votre activité et votre rattachement professionnel sont vérifiés avant l'accès à l'offre.</li><li>Collez le lien de votre annonce et vérifiez les informations extraites. Votre premier rapport en mode Vente est offert, une fois par entreprise, sans carte bancaire ni abonnement automatique.</li><li>Utilisez le menu de partage pour exporter le PDF co-brandé et relisez les références avant de le remettre à votre client.</li></ol>
       <p><strong>Premium : 79 €/mois</strong>, analyses illimitées et PDF avec votre logo. <strong>Recherche : 29 €/mois</strong>, 60 analyses avec export PDF ; la personnalisation du PDF est incluse dans Premium. Abonnements mensuels à renouvellement automatique, annulables à tout moment.</p>
-      <div class="seller-actions"><a class="seller-primary" href="https://app.score-immo.fr/go/checkout/premium">Choisir Premium à 79 €/mois</a><a href="/pro#offres-pro">Comparer les offres Pro</a></div>
+      <div class="seller-actions"><a class="seller-primary" href="https://app.score-immo.fr/pro/essai">Demander mon rapport vendeur offert</a><a href="https://app.score-immo.fr/go/checkout/premium">Choisir Premium à 79 €/mois</a><a href="/pro#offres-pro">Comparer les offres Pro</a></div>
     </section>
     <p><a href="/exemple-rapport">Consulter aussi l'exemple complet côté acheteur</a> · <a href="/methodologie">Méthodologie et sources</a></p>
   </article>
