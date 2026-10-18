@@ -1,3 +1,5 @@
+> **Exception Pro autorisée le 18/10/2026, préparation non publiée :** un premier rapport Vente avec nom et logo est offert aux professionnels vérifiés, une fois par entreprise, sans crédit générique ni abonnement automatique. Le paid-first B2C reste inchangé. Publier les CTA uniquement après vérification de la disponibilité effective du parcours applicatif `/pro/essai`.
+
 > Catalogue restauré sur GO PROD le09/09/2026 : unité2,99 €, pack5 9,99 €, pack10 19,99 €.
 
 # score-immo.fr — site Astro

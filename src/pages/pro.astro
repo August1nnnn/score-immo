@@ -2,10 +2,12 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { BRAND_NAME, ORGANIZATION_ID, SITE_URL } from '@/data/entity';
 import demo from '@/data/public-demo.json';
+import AnalyzerBox from '@/components/AnalyzerBox.astro';
 
 const canonical = `${SITE_URL}/pro`;
 const appUrl = 'https://app.score-immo.fr/go/checkout/premium';
 const demoUrl = '/pro/exemple';
+const trialUrl = 'https://app.score-immo.fr/pro/essai';
 const money = (value: number) => value.toLocaleString('fr-FR');
 
 const title = `${BRAND_NAME} Pro : l'outil d'analyse des mandataires`;
@@ -17,7 +19,7 @@ const faq = [
   { q: "Puis-je remettre un rapport à ma marque ?", a: "Oui, Premium à 79 €/mois inclut les analyses illimitées et le PDF co-brandé avec votre nom et votre logo, à renseigner dans votre profil professionnel. Recherche à 29 €/mois inclut 60 analyses ; la personnalisation du PDF avec votre logo est incluse dans Premium." },
   { q: "Est-ce un logiciel d'avis de valeur complet ?", a: "Score-Immo est un support d'analyse pour préparer votre estimation et vos échanges. Le mode Vente présente le positionnement du prix et les références disponibles. Il ne remplace pas votre connaissance du terrain, la visite ni une expertise de valeur et ne constitue pas un avis de valeur complet." },
   { q: "Combien de temps prend une analyse ?", a: "Le délai dépend du bien et des sources accessibles. Après l'achat d'une formule adaptée, le rapport présente les informations disponibles et leur couverture." },
-  { q: "Puis-je voir un rapport avant de souscrire ?", a: "Oui. La démo complète et les exemples du Baromètre sont accessibles gratuitement. Les rapports personnalisés sont disponibles avec une offre payante." },
+  { q: "Puis-je voir un rapport avant de souscrire ?", a: "Oui. L'exemple vendeur est accessible librement. Un premier rapport en mode Vente, avec votre nom et votre logo, est offert aux professionnels après vérification de leur activité et de leur rattachement. Cette offre est limitée à un rapport par entreprise, sans carte bancaire ni abonnement automatique. Les analyses suivantes sont payantes." },
 ];
 
 const jsonLd = [
@@ -55,21 +57,23 @@ const jsonLd = [
           <p class="pro-lead">Préparez votre argumentation sur le prix avec les références disponibles, le DPE, les risques et l'environnement du bien.</p>
           <p class="pro-offer"><strong>Premium : 79&nbsp;€/mois</strong><br />Analyses illimitées et PDF avec votre nom et votre logo.</p>
           <div class="pro-actions">
-            <a class="pro-btn pro-btn-primary" href={appUrl}>Choisir Premium à 79 €/mois</a>
+            <a class="pro-btn pro-btn-primary" href={trialUrl}>Demander mon rapport vendeur offert</a>
             <a class="pro-btn pro-btn-ghost" href={demoUrl}>Voir l'exemple vendeur</a>
+            <a class="pro-btn pro-btn-ghost" href={appUrl}>Choisir Premium à 79 €/mois</a>
           </div>
-          <p class="pro-terms">Abonnement mensuel à renouvellement automatique, annulable à tout moment. Exemple fictif gratuit, sans compte.</p>
+          <p class="pro-terms">Essai réservé aux professionnels vérifiés, une fois par entreprise, sans carte bancaire ni abonnement automatique. Premium : abonnement mensuel renouvelable, annulable à tout moment.</p>
         </div>
         <aside class="pro-preview" aria-label="Aperçu fictif du rapport vendeur">
-          <div class="pro-preview-brand"><span class="pro-preview-logo" aria-label="Logo fictif">AD</span><div><strong>Agence de démonstration</strong><br /><span>Exemple d'identité pour votre PDF</span></div></div>
+          <div class="pro-preview-brand"><span class="pro-preview-logo" aria-label="Logo de démonstration">AD</span><div><strong>Agence de démonstration</strong><br /><span>Exemple d'identité pour votre PDF</span></div></div>
           <p class="pro-preview-notice">Données et identité entièrement fictives</p>
           <h2>Préparer le positionnement du prix</h2>
-          <p>{demo.report.title}<br />{demo.report.city}, adresse fictive</p>
-          <dl><div><dt>Prix affiché fictif</dt><dd>{money(demo.report.pricePerSqm)} €/m²</dd></div><div><dt>Médiane fictive</dt><dd>{money(demo.report.medianLocal)} €/m²</dd></div></dl>
+          <p>{demo.report.title}<br />{demo.report.city}</p>
+          <dl><div><dt>Prix affiché</dt><dd>{money(demo.report.pricePerSqm)} €/m²</dd></div><div><dt>Médiane du secteur</dt><dd>{money(demo.report.medianLocal)} €/m²</dd></div></dl>
           <p>Comparer les caractéristiques du bien, vérifier les références et relever les points à expliquer au vendeur.</p>
           <a href={demoUrl}>Explorer le rapport en mode Vente</a>
         </aside>
       </header>
+      <section class="pro-block"><AnalyzerBox blog="pro" medium="pro_landing" professionalTrial={true} /></section>
 
       <section class="pro-block">
         <h2 class="pro-h2">Un support pour votre analyse professionnelle</h2>
@@ -84,9 +88,9 @@ const jsonLd = [
       <section class="pro-block">
         <h2 class="pro-h2">Comment ça marche</h2>
         <ol class="pro-steps">
-          <li><strong>Choisissez votre formule</strong>, puis collez le lien d'une annonce et vérifiez les informations extraites.</li>
-          <li><strong>Préparez votre rapport</strong> en mode Vente avec Premium : positionnement du prix, données disponibles, points forts et points de vigilance.</li>
-          <li><strong>Complétez votre profil professionnel</strong> avec votre nom et votre logo. Exportez le PDF co-brandé pour préparer l'échange avec votre client.</li>
+          <li><strong>Demandez votre essai professionnel</strong> : confirmez votre compte, renseignez votre nom, votre logo et le SIRET de votre activité. Votre rattachement professionnel est vérifié avant l'accès au rapport offert.</li>
+          <li><strong>Analysez votre propre bien</strong> en mode Vente : collez le lien de l'annonce, vérifiez les informations extraites puis préparez votre premier rapport.</li>
+          <li><strong>Exportez le PDF à votre marque</strong> pour préparer l'échange avec votre client. Choisissez ensuite un abonnement selon votre usage.</li>
         </ol>
       </section>
 
@@ -122,7 +126,7 @@ const jsonLd = [
 
       <section class="pro-block">
         <h2 class="pro-h2">Faire découvrir Score-Immo à vos clients</h2>
-        <p>Agents, mandataires, courtiers ou créateurs de contenu : commencez par montrer l'<a href={demoUrl}>exemple vendeur fictif</a> et la <a href="/methodologie">méthodologie et ses limites</a>. Le rapport personnalisé est payant et ne remplace pas une visite ou une expertise technique.</p>
+        <p>Agents, mandataires, courtiers ou créateurs de contenu : commencez par montrer l'<a href={demoUrl}>exemple vendeur</a> et la <a href="/methodologie">méthodologie et ses limites</a>. Un rapport ne remplace pas une visite ou une expertise technique.</p>
         <p>Selon le projet de votre interlocuteur, partagez notre guide pour <a href="/blogs/guides/estimation-immobiliere-methodes-juste-prix">vérifier si le prix demandé est cohérent</a> ou pour <a href="/blogs/guides/analyser-annonce-immobiliere-comme-pro">préparer une visite à partir de l'annonce</a>.</p>
         <p>Exemple de présentation : « Avant votre prochaine visite, vous pouvez consulter cette démonstration d'analyse immobilière. Elle montre les informations disponibles et leurs limites. L'analyse personnalisée est payante. »</p>
         <p><a href={demoUrl}>Ouvrir l'exemple vendeur à partager</a></p>
