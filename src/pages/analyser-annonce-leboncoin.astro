@@ -1,0 +1,49 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import AnalyzerBox from '@/components/AnalyzerBox.astro';
+import FAQ from '@/components/FAQ.astro';
+
+const title = 'Analyser une annonce Leboncoin avant visite | Score-Immo';
+const description = "Collez votre annonce Leboncoin pour préparer la visite : prix, DPE, localisation et points à vérifier. Démonstration gratuite, analyse personnalisée à 2,99 €.";
+const canonical = 'https://score-immo.fr/analyser-annonce-leboncoin';
+const faq = [
+  { q: 'Comment copier le lien de mon annonce Leboncoin ?', a: "Sur ordinateur, ouvrez la fiche du bien et copiez son adresse depuis la barre du navigateur. Dans l'application Leboncoin, utilisez Partager puis Copier le lien. Collez le lien de la fiche, plutôt que celui d'une liste de résultats." },
+  { q: 'Puis-je voir le rapport avant de payer ?', a: "Le rapport de démonstration est accessible gratuitement. Pour votre bien, un compte est nécessaire ; l'aperçu reprend les informations extraites de l'annonce. Une analyse personnalisée coûte 2,99 €, sans abonnement obligatoire. Les tarifs des packs sont présentés avant paiement." },
+  { q: "Que peut-on vérifier si l'annonce ne donne pas l'adresse ?", a: "Les données de la commune peuvent fournir un premier contexte. Elles ne localisent pas le logement : une distance, un risque ou une zone d'urbanisme au point de recherche ne décrivent pas nécessairement la parcelle. Demandez l'adresse et vérifiez la précision de localisation indiquée dans le rapport." },
+  { q: "L'import fonctionne-t-il pour toutes les annonces ?", a: "La disponibilité dépend de la page publique et du portail. Une annonce supprimée, inaccessible ou incomplète peut empêcher l'import. Vérifiez le prix, la surface et la commune repris dans l'aperçu ; une information manquante doit être corrigée avant de conclure." },
+  { q: 'Le rapport permet-il de savoir combien négocier ?', a: "Il aide à comparer les références disponibles et à préparer vos questions. Un écart de prix au m² ne constitue ni une expertise de valeur, ni une remise que le vendeur acceptera. L'état du logement, les travaux, les documents et la pertinence des ventes comparables restent déterminants." },
+];
+const jsonLd = [{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(item => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } })) }];
+---
+<BaseLayout {title} {description} {canonical} {jsonLd}>
+  <article class="listing-tool si-container">
+    <nav class="si-breadcrumb" aria-label="Fil d'Ariane"><a href="/">Accueil</a><span> &rsaquo; </span><span>Annonce Leboncoin</span></nav>
+    <header>
+      <h1>Analyser une annonce Leboncoin avant de visiter</h1>
+      <p class="lead">Le prix et les photos ne suffisent pas pour préparer un achat. Partez de votre annonce, vérifiez les données extraites, puis examinez les références et les informations publiques disponibles.</p>
+    </header>
+    <AnalyzerBox medium="outil" campaign="analyse-leboncoin" heading="Votre annonce, votre point de départ" description="Collez le lien de la fiche du bien pour ouvrir son analyse dans Score-Immo." />
+    <p class="actions"><a class="si-btn si-btn-secondary" href="/exemple-rapport">Voir le rapport de démonstration</a><a href="/tarifs">Consulter les formules</a></p>
+
+    <section>
+      <h2>Les vérifications utiles avant la visite</h2>
+      <div class="checks">
+        <div><h3>Le prix et la surface</h3><p>Contrôlez les valeurs reprises dans l'aperçu. Le prix demandé au m² doit être comparé à des ventes du même type de bien, de surface proche et dans un secteur pertinent. Une moyenne communale ne suffit pas.</p><a href="/verifier-prix-annonce-immobiliere">Comparer le prix avec vos références vérifiées</a></div>
+        <div><h3>La localisation</h3><p>Un repère sur la carte Leboncoin peut couvrir une zone large. Distinguez la commune, le quartier et l'adresse exacte. Sans adresse confirmée, gardez les conclusions sur les risques et le voisinage comme des points à vérifier.</p><a href="/blogs/guides/annonce-immobiliere-sans-adresse">Comprendre les limites d'une annonce sans adresse</a></div>
+        <div><h3>Le DPE et le logement</h3><p>Demandez le diagnostic correspondant au bien. Comparez sa date, son numéro, sa surface de référence et ses deux indicateurs avec l'annonce ; la lettre seule ne renseigne pas tout le dossier.</p><a href="/blogs/guides/verifier-dpe-numero-ademe">Vérifier le numéro et le périmètre du DPE</a></div>
+        <div><h3>Le budget et les documents</h3><p>Relevez les charges de copropriété, la taxe foncière annoncée, les travaux et les annexes vendues. Un studio vendu loué nécessite aussi de lire le bail, le loyer et les conditions d'occupation avant de calculer une rentabilité.</p><a href="/blogs/guides/analyser-annonce-immobiliere-comme-pro">Préparer la liste des questions au vendeur</a></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Que faire si le lien ne peut pas être lu ?</h2>
+      <ol><li>Ouvrez le lien dans votre navigateur et vérifiez que la fiche est toujours publiée.</li><li>Copiez l'URL complète de cette fiche, sans remplacer le lien par une capture d'écran ou une recherche enregistrée.</li><li>Relisez les champs importés. Un code postal, une surface ou un prix incohérent ne doit pas servir de base à une comparaison.</li><li>Si l'information reste inaccessible, demandez les éléments au vendeur et utilisez les sources publiques directement ; ne déduisez pas les données absentes à partir des photos.</li></ol>
+      <p>Le rapport présente la couverture des critères évalués. Une rubrique indisponible et un résultat négatif vérifié sont deux informations différentes. <a href="/methodologie">Lire la méthode et les limites du score</a>.</p>
+    </section>
+    <FAQ items={faq} />
+    <aside><h2>Sources pour poursuivre vos vérifications</h2><ul><li><a href="https://app.dvf.etalab.gouv.fr/faq.html" target="_blank" rel="noopener">Etalab : comprendre les ventes publiées dans DVF</a></li><li><a href="https://observatoire-dpe-audit.ademe.fr/" target="_blank" rel="noopener">ADEME : Observatoire DPE-Audit</a></li><li><a href="https://www.georisques.gouv.fr/" target="_blank" rel="noopener">Géorisques : vérifier les risques à l'adresse</a></li></ul><p>Score-Immo est indépendant de Leboncoin. La marque et les annonces appartiennent à leurs propriétaires respectifs.</p></aside>
+  </article>
+</BaseLayout>
+<style>
+  .listing-tool{max-width:980px;padding-top:1.5rem;padding-bottom:3rem}.listing-tool h1{font:800 clamp(1.9rem,5vw,3rem)/1.12 var(--si-font-heading);letter-spacing:-.035em;margin:1rem 0}.lead{font-size:1.05rem;line-height:1.65;color:var(--si-muted-foreground)}.listing-tool section,.listing-tool aside{margin-top:2.5rem}.listing-tool h2{font:700 1.5rem/1.25 var(--si-font-heading);margin-bottom:1rem}.listing-tool h3{font-weight:700;margin-bottom:.65rem}.listing-tool p,.listing-tool li{line-height:1.75}.listing-tool ul,.listing-tool ol{padding-left:1.3rem}.listing-tool li{margin:.5rem 0}.listing-tool a:not(.si-btn){color:var(--si-accent);text-decoration:underline;text-underline-offset:3px}.checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.checks>div{padding:1.3rem;border:1px solid var(--si-border);border-radius:var(--si-radius-xl);background:var(--si-card)}.checks p{margin-bottom:.75rem}.actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}@media(max-width:600px){.checks{grid-template-columns:1fr}}
+</style>

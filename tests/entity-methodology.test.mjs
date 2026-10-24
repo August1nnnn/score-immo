@@ -76,7 +76,7 @@ test("the methodology page documents the live scoring contract and its limits", 
 
   for (const expected of [
     "Méthodologie Score-Immo",
-    "Version publique de la méthode en vigueur au 30 août 2026",
+    "Méthode et couverture vérifiées le 24 octobre 2026",
     "13 sections",
     "Prix face au marché",
     "18 %",

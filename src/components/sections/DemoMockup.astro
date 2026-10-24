@@ -1,4 +1,9 @@
 ---
+import demo from '@/data/public-demo.json';
+const r = demo.report;
+const money = (value: number) => value.toLocaleString('fr-FR');
+const previewSections = r.sectionScores.slice(0, 6);
+const gaugeOffset = (251.3 * (1 - r.score / 100)).toFixed(1);
 ---
 <!-- Score-Immo - Demo Report Mockup (faithful reproduction, auto-scroll) -->
 <section class="si-section" style="padding-top:1rem;padding-bottom:2rem;">
@@ -6,7 +11,7 @@
 
     <div class="si-dmk si-reveal" style="margin-top:0;">
       <a href="https://app.score-immo.fr/r/demo" class="si-dmk-link">
-        <div class="si-dmk-badge">Rapport exemple</div>
+        <div class="si-dmk-badge">Rapport exemple fictif</div>
         <div class="si-dmk-frame">
           <div class="si-dmk-scroll">
 
@@ -19,12 +24,12 @@
                   Quartier estimé
                 </span>
               </div>
-              <p style="font-family:var(--si-font-heading);font-weight:700;font-size:1.25rem;margin:0;color:#0F172A;">Appartement T3 : 68 m&sup2;</p>
+              <p style="font-family:var(--si-font-heading);font-weight:700;font-size:1.25rem;margin:0;color:#0F172A;">{r.title}</p>
               <p style="display:flex;align-items:center;gap:4px;font-size:0.8125rem;color:#64748B;margin:4px 0 0;">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                Lyon 3e (69003)
+                {r.city}
               </p>
-              <p style="font-size:0.75rem;color:#94A3B8;margin:2px 0 0;">12 rue des Lilas, 69003 Lyon</p>
+              <p style="font-size:0.75rem;color:#94A3B8;margin:2px 0 0;">{r.address} (adresse fictive)</p>
             </div>
 
             <!-- ===== SCORE GAUGE ===== -->
@@ -33,60 +38,27 @@
                 <svg viewBox="0 0 100 100" style="width:100%;height:100%;transform:rotate(-90deg);">
                   <circle cx="50" cy="50" r="40" fill="none" stroke="#F1F5F9" stroke-width="7"/>
                   <circle cx="50" cy="50" r="40" fill="none" stroke="#F59E0B" stroke-width="7"
-                    stroke-dasharray="251.3" stroke-dashoffset="65.3" stroke-linecap="round"
+                    stroke-dasharray="251.3" stroke-dashoffset={gaugeOffset} style={`--demo-gauge-offset:${gaugeOffset};`} stroke-linecap="round"
                     class="si-dmk-gauge-fill"/>
                 </svg>
                 <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;">
-                  <span style="font-family:var(--si-font-heading);font-weight:800;font-size:2rem;color:#F59E0B;line-height:1;" class="si-dmk-score-num">74</span>
+                  <span style="font-family:var(--si-font-heading);font-weight:800;font-size:2rem;color:#F59E0B;line-height:1;" class="si-dmk-score-num">{r.score}</span>
                   <span style="font-size:0.6875rem;color:#64748B;">/100</span>
                 </div>
               </div>
-              <span style="display:inline-block;margin-top:8px;padding:3px 12px;border-radius:20px;font-size:0.75rem;font-weight:600;background:rgba(245,158,11,0.1);color:#D97706;">Correct</span>
+              <span style="display:inline-block;margin-top:8px;padding:3px 12px;border-radius:20px;font-size:0.75rem;font-weight:600;background:rgba(245,158,11,0.1);color:#D97706;">Score illustratif</span>
 
-              <!-- Mini score bars -->
+              <!-- Scores come from the same canonical fictitious report. -->
               <div style="display:flex;flex-direction:column;gap:6px;margin-top:16px;text-align:left;">
-                <div style="display:flex;align-items:center;gap:8px;font-size:11px;">
-                  <span style="width:100px;color:#64748B;white-space:nowrap;">Prix vs Marché</span>
-                  <div style="flex:1;height:6px;border-radius:3px;background:#F1F5F9;overflow:hidden;">
-                    <div style="width:80%;height:100%;border-radius:3px;background:#16A34A;" class="si-dmk-bar"></div>
+                {previewSections.map(section => (
+                  <div style="display:flex;align-items:center;gap:8px;font-size:11px;">
+                    <span style="width:100px;color:#64748B;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{section.label}</span>
+                    <div style="flex:1;height:6px;border-radius:3px;background:#F1F5F9;overflow:hidden;">
+                      <div style={`width:${section.score * 10}%;height:100%;border-radius:3px;background:#16A34A;`} class="si-dmk-bar"></div>
+                    </div>
+                    <span style="font-weight:700;color:#16A34A;width:28px;text-align:right;">{section.score}/10</span>
                   </div>
-                  <span style="font-weight:700;color:#16A34A;width:28px;text-align:right;">8/10</span>
-                </div>
-                <div style="display:flex;align-items:center;gap:8px;font-size:11px;">
-                  <span style="width:100px;color:#64748B;white-space:nowrap;">Énergétique</span>
-                  <div style="flex:1;height:6px;border-radius:3px;background:#F1F5F9;overflow:hidden;">
-                    <div style="width:70%;height:100%;border-radius:3px;background:#16A34A;" class="si-dmk-bar"></div>
-                  </div>
-                  <span style="font-weight:700;color:#16A34A;width:28px;text-align:right;">7/10</span>
-                </div>
-                <div style="display:flex;align-items:center;gap:8px;font-size:11px;">
-                  <span style="width:100px;color:#64748B;white-space:nowrap;">Risques</span>
-                  <div style="flex:1;height:6px;border-radius:3px;background:#F1F5F9;overflow:hidden;">
-                    <div style="width:70%;height:100%;border-radius:3px;background:#16A34A;" class="si-dmk-bar"></div>
-                  </div>
-                  <span style="font-weight:700;color:#16A34A;width:28px;text-align:right;">7/10</span>
-                </div>
-                <div style="display:flex;align-items:center;gap:8px;font-size:11px;">
-                  <span style="width:100px;color:#64748B;white-space:nowrap;">Transports</span>
-                  <div style="flex:1;height:6px;border-radius:3px;background:#F1F5F9;overflow:hidden;">
-                    <div style="width:70%;height:100%;border-radius:3px;background:#16A34A;" class="si-dmk-bar"></div>
-                  </div>
-                  <span style="font-weight:700;color:#16A34A;width:28px;text-align:right;">7/10</span>
-                </div>
-                <div style="display:flex;align-items:center;gap:8px;font-size:11px;">
-                  <span style="width:100px;color:#64748B;white-space:nowrap;">Commerces</span>
-                  <div style="flex:1;height:6px;border-radius:3px;background:#F1F5F9;overflow:hidden;">
-                    <div style="width:80%;height:100%;border-radius:3px;background:#16A34A;" class="si-dmk-bar"></div>
-                  </div>
-                  <span style="font-weight:700;color:#16A34A;width:28px;text-align:right;">8/10</span>
-                </div>
-                <div style="display:flex;align-items:center;gap:8px;font-size:11px;">
-                  <span style="width:100px;color:#64748B;white-space:nowrap;">Environnement</span>
-                  <div style="flex:1;height:6px;border-radius:3px;background:#F1F5F9;overflow:hidden;">
-                    <div style="width:60%;height:100%;border-radius:3px;background:#F59E0B;" class="si-dmk-bar"></div>
-                  </div>
-                  <span style="font-weight:700;color:#F59E0B;width:28px;text-align:right;">6/10</span>
-                </div>
+                ))}
               </div>
             </div>
 
@@ -100,24 +72,24 @@
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
                   <div style="background:#F8FAFC;border-radius:10px;padding:10px;text-align:center;">
                     <p style="font-size:0.5625rem;color:#94A3B8;text-transform:uppercase;letter-spacing:0.05em;">Prix affiché</p>
-                    <p style="font-family:var(--si-font-heading);font-weight:700;font-size:0.9375rem;">285 000 &euro;</p>
+                    <p style="font-family:var(--si-font-heading);font-weight:700;font-size:0.9375rem;">{money(r.price)} €</p>
                   </div>
                   <div style="background:#F8FAFC;border-radius:10px;padding:10px;text-align:center;">
                     <p style="font-size:0.5625rem;color:#94A3B8;text-transform:uppercase;letter-spacing:0.05em;">Surface</p>
-                    <p style="font-family:var(--si-font-heading);font-weight:700;font-size:0.9375rem;">68 m&sup2;</p>
+                    <p style="font-family:var(--si-font-heading);font-weight:700;font-size:0.9375rem;">{r.surface} m²</p>
                   </div>
                   <div style="background:#F8FAFC;border-radius:10px;padding:10px;text-align:center;">
                     <p style="font-size:0.5625rem;color:#94A3B8;text-transform:uppercase;letter-spacing:0.05em;">&euro;/m&sup2; annonce</p>
-                    <p style="font-family:var(--si-font-heading);font-weight:700;font-size:0.9375rem;">4 191 &euro;</p>
+                    <p style="font-family:var(--si-font-heading);font-weight:700;font-size:0.9375rem;">{money(r.pricePerSqm)} €</p>
                   </div>
                   <div style="background:#F8FAFC;border-radius:10px;padding:10px;text-align:center;">
-                    <p style="font-size:0.5625rem;color:#94A3B8;text-transform:uppercase;letter-spacing:0.05em;">Médiane locale</p>
-                    <p style="font-family:var(--si-font-heading);font-weight:700;font-size:0.9375rem;">4 450 &euro;/m&sup2;</p>
+                    <p style="font-size:0.5625rem;color:#94A3B8;text-transform:uppercase;letter-spacing:0.05em;">Médiane fictive</p>
+                    <p style="font-family:var(--si-font-heading);font-weight:700;font-size:0.9375rem;">{money(r.medianLocal)} €/m²</p>
                   </div>
                 </div>
                 <div style="padding:10px;border-radius:10px;background:rgba(22,163,74,0.08);color:#16A34A;font-size:0.8125rem;font-weight:600;display:flex;align-items:center;gap:6px;">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-                  5,8% sous la médiane locale, signal favorable
+                  Écart illustratif de {r.diffPercent.toLocaleString("fr-FR")} % à la médiane, sans conclusion de valeur
                 </div>
               </div>
             </div>
@@ -130,12 +102,12 @@
                   <span style="font-family:var(--si-font-heading);font-weight:700;font-size:0.875rem;">Coût total d'acquisition</span>
                 </div>
                 <div style="font-size:0.8125rem;display:flex;flex-direction:column;gap:6px;">
-                  <div style="display:flex;justify-content:space-between;"><span style="color:#64748B;">Prix du bien</span><span style="font-weight:600;">285 000 &euro;</span></div>
-                  <div style="display:flex;justify-content:space-between;"><span style="color:#64748B;">Frais de notaire (7,8%)</span><span>22 230 &euro;</span></div>
-                  <div style="display:flex;justify-content:space-between;"><span style="color:#64748B;">Frais d'agence (5%)</span><span>14 250 &euro;</span></div>
+                  <div style="display:flex;justify-content:space-between;"><span style="color:#64748B;">Prix du bien</span><span style="font-weight:600;">{money(r.price)} €</span></div>
+                  <div style="display:flex;justify-content:space-between;"><span style="color:#64748B;">Frais de notaire ({r.acquisitionCost.frais_notaire_pct.toLocaleString("fr-FR")} %)</span><span>{money(r.acquisitionCost.frais_notaire)} €</span></div>
+                  <div style="display:flex;justify-content:space-between;"><span style="color:#64748B;">Honoraires déjà inclus (FAI)</span><span>0 € ajouté</span></div>
                   <div style="display:flex;justify-content:space-between;border-top:1px solid #E2E8F0;padding-top:8px;margin-top:4px;">
                     <span style="font-weight:700;">Coût total</span>
-                    <span style="font-family:var(--si-font-heading);font-weight:700;font-size:1rem;color:#3B82F6;">321 480 &euro;</span>
+                    <span style="font-family:var(--si-font-heading);font-weight:700;font-size:1rem;color:#3B82F6;">{money(r.acquisitionCost.cout_total)} €</span>
                   </div>
                 </div>
               </div>
@@ -161,8 +133,8 @@
                 <div style="display:flex;gap:12px;align-items:center;">
                   <div style="width:48px;height:48px;border-radius:12px;background:#cbdb2a;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.25rem;color:#000;">C</div>
                   <div>
-                    <p style="font-size:0.8125rem;font-weight:600;">DPE C : 244 kWh/m&sup2;/an</p>
-                    <p style="font-size:0.75rem;color:#64748B;">GES B : 8 kg CO&sub2;/m&sup2;/an</p>
+                    <p style="font-size:0.8125rem;font-weight:600;">DPE {r.dpe} : diagnostic fictif</p>
+                    <p style="font-size:0.75rem;color:#64748B;">GES {r.ges} : valeur illustrative</p>
                   </div>
                 </div>
               </div>
@@ -203,7 +175,7 @@
   0%,100%{box-shadow:0 8px 40px rgba(0,0,0,0.08);}
   50%{box-shadow:0 8px 40px rgba(59,130,246,0.12),0 0 0 1px rgba(59,130,246,0.08);}
 }
-@keyframes si-dmk-gauge{to{stroke-dashoffset:65.3;}}
+@keyframes si-dmk-gauge{to{stroke-dashoffset:var(--demo-gauge-offset);}}
 @keyframes si-dmk-barfill{to{transform:scaleX(1);}}
 @keyframes si-dmk-fadein{to{opacity:1;}}
 

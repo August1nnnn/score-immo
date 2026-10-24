@@ -17,7 +17,7 @@ export const homepageJsonLd = [
         "url": SITE_URL,
         "name": BRAND_NAME,
         "alternateName": [...BRAND_ALTERNATE_NAMES],
-        "description": "Analyse n'importe quelle annonce immobilière en 30 secondes.",
+        "description": "Analysez une annonce immobilière à partir des données disponibles sur le prix, le DPE, les risques et le quartier.",
         "publisher": { "@id": ORGANIZATION_ID },
         "inLanguage": "fr-FR",
         "potentialAction": {

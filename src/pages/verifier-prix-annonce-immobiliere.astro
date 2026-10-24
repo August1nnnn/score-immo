@@ -1,0 +1,68 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import AnalyzerBox from '@/components/AnalyzerBox.astro';
+import FAQ from '@/components/FAQ.astro';
+
+const title = "Vérifier le prix d'une annonce immobilière | Score-Immo";
+const description = "Calculez le prix au m² d'une annonce et son écart aux ventes comparables que vous avez vérifiées. Calcul gratuit, méthode DVF et préparation de votre visite.";
+const canonical = 'https://score-immo.fr/verifier-prix-annonce-immobiliere';
+const faq = [
+  { q: "Comment savoir si le prix d'une annonce est justifié ?", a: "Commencez par plusieurs ventes du même type de logement, dans un secteur comparable et à des dates pertinentes. Vérifiez la surface, les annexes et le périmètre de chaque vente. L'écart au prix au m² est un repère à expliquer avec l'état, l'étage et les caractéristiques du bien, pas un verdict automatique." },
+  { q: 'Ce calculateur retrouve-t-il les ventes DVF ?', a: "Non. Vous saisissez ici les références de prix au m² que vous avez préalablement vérifiées. Le calcul est gratuit et s'effectue dans votre navigateur. Pour rechercher les ventes, utilisez la carte officielle DVF ; pour analyser votre annonce avec les sources disponibles, ouvrez Score-Immo depuis son lien." },
+  { q: 'Un écart de 10 % signifie-t-il que je peux négocier 10 % ?', a: "Non. Il compare uniquement le prix de votre annonce à la médiane de vos références. Les ventes peuvent concerner des logements différents ; leur prix ne tient pas lieu d'expertise du bien visité. Il faut expliquer les différences avant de préparer une offre." },
+  { q: 'Pourquoi trois références au minimum dans ce calculateur ?', a: "Ce minimum permet de calculer une médiane de plusieurs valeurs. Il ne garantit pas que l'échantillon soit représentatif : la qualité des références, leurs dates et leur comparabilité comptent davantage qu'un nombre minimal." },
+  { q: 'Le prix DVF est-il le budget total de mon achat ?', a: "Non. La valeur foncière publiée ne correspond pas à votre budget complet. Il faut examiner le périmètre de la mutation et la répartition des frais, puis ajouter les dépenses applicables à votre projet, notamment les frais d'acquisition et les travaux documentés." },
+];
+const jsonLd = [{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(item => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } })) }];
+---
+<BaseLayout {title} {description} {canonical} {jsonLd}>
+  <article class="price-tool si-container">
+    <nav class="si-breadcrumb" aria-label="Fil d'Ariane"><a href="/">Accueil</a><span> &rsaquo; </span><span>Vérifier un prix</span></nav>
+    <header><h1>Le prix de cette annonce se justifie-t-il ?</h1><p class="lead">Comparez le prix demandé à des ventes que vous avez vérifiées. Ce calcul gratuit donne un écart chiffré à examiner, sans inventer une valeur de marché ni une remise à négocier.</p></header>
+
+    <section class="calculator" aria-labelledby="calculator-title">
+      <h2 id="calculator-title">Comparer vos références de prix au m²</h2>
+      <p>Relevez des ventes comparables sur la <a href="https://app.dvf.etalab.gouv.fr/" target="_blank" rel="noopener">carte officielle DVF</a>. Saisissez leurs prix au m² après avoir vérifié surface, date et lots vendus.</p>
+      <fieldset id="asking-price-calculator">
+        <legend>Les chiffres de votre comparaison</legend>
+        <div class="fields"><div><label for="asking-price">Prix affiché de l'annonce (€)</label><input id="asking-price" type="number" min="1" step="1" inputmode="decimal" placeholder="Exemple : 220000" /></div><div><label for="asking-surface">Surface du logement (m²)</label><input id="asking-surface" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="Exemple : 50" /></div></div>
+        <label for="asking-references">Prix au m² de vos ventes comparables (au moins trois)</label>
+        <textarea id="asking-references" rows="3" placeholder="Une référence par ligne :&#10;3800&#10;4000&#10;4200" aria-describedby="reference-help"></textarea>
+        <p id="reference-help" class="hint">Une valeur par ligne, ou séparées par un point-virgule. Les chiffres d'exemple sont fictifs ; aucune référence n'est préremplie.</p>
+        <button id="compare-asking-price" type="button" class="si-btn si-btn-primary">Calculer l'écart de prix</button>
+        <p id="comparison-error" role="alert" hidden></p>
+        <div id="comparison-result" role="status" aria-live="polite" hidden><dl><div><dt>Prix demandé au m²</dt><dd id="asking-unit-result"></dd></div><div><dt>Médiane de vos références</dt><dd id="reference-median-result"></dd></div><div><dt>Écart à cette médiane</dt><dd id="asking-difference-result"></dd></div></dl><p id="comparison-scope"></p></div>
+      </fieldset>
+      <p class="hint">Calcul dans votre navigateur, sans compte ni transmission des chiffres saisis. Il ne s'agit pas d'une estimation automatique du logement.</p>
+      <noscript><p>Pour calculer sans JavaScript : divisez le prix affiché par la surface. Triez vos références et retenez la valeur centrale, ou la moyenne des deux valeurs centrales. L'écart en pourcentage vaut (prix demandé au m² / médiane des références - 1) × 100.</p></noscript>
+    </section>
+
+    <section><h2>Trois contrôles qui changent la comparaison</h2><ol><li><strong>Les surfaces :</strong> une surface Carrez, habitable ou réelle bâtie DVF n'a pas automatiquement le même périmètre. <a href="/blogs/guides/surface-carrez-habitable-dvf">Identifier la surface comparable</a>.</li><li><strong>Les lots :</strong> une mutation peut réunir plusieurs logements, un parking ou des dépendances. Le prix de l'ensemble ne doit pas être attribué à un appartement isolé. <a href="/blogs/guides/dvf-mutation-plusieurs-lots">Lire une vente de plusieurs lots</a>.</li><li><strong>La date et le bien :</strong> vérifiez que les ventes sont pertinentes pour le marché et pour les caractéristiques du logement. L'état intérieur, les travaux, l'étage et les prestations ne se déduisent pas d'un prix au m².</li></ol></section>
+    <section><h2>Passer du calcul à l'analyse de votre annonce</h2><p>Le calcul précédent utilise vos références. L'analyse personnalisée de Score-Immo part du lien de l'annonce et présente les informations disponibles sur le prix, le DPE, les risques et le contexte du bien, avec leurs limites.</p><AnalyzerBox medium="outil" campaign="verifier-prix-annonce" heading="Vérifiez aussi ce qui accompagne le prix" description="Collez l'annonce pour ouvrir son analyse ; relisez les informations extraites avant de poursuivre." /><p><a href="/exemple-rapport">Voir la démonstration fictive du rapport</a> · <a href="/methodologie">Lire la méthode et la couverture du score</a> · <a href="/analyser-annonce-leboncoin">Partir d'une annonce Leboncoin</a></p></section>
+    <FAQ items={faq} />
+    <aside><h2>Méthode et sources</h2><p>Le prix au m² est le prix saisi divisé par la surface saisie. La médiane est calculée sur vos références, sans correction géographique ou temporelle automatique. Le calcul ne vérifie pas leur origine ni leur représentativité.</p><ul><li><a href="https://app.dvf.etalab.gouv.fr/faq.html" target="_blank" rel="noopener">Etalab : contenu, couverture et limites de DVF</a></li><li><a href="/blogs/guides/prix-annonce-dvf-ecart">Prix d'annonce et valeur DVF : expliquer un écart</a></li><li><a href="/blogs/guides/estimation-immobiliere-methodes-juste-prix">Méthodes pour examiner un prix demandé</a></li></ul></aside>
+  </article>
+</BaseLayout>
+<script>
+  import { compareAskingPrice } from '../lib/asking-price-comparison.mjs';
+  const number = (value: string) => Number(value.trim().replace(/[\s\u00a0\u202f]/g, '').replace(',', '.'));
+  document.getElementById('compare-asking-price')?.addEventListener('click', () => {
+    const price = document.getElementById('asking-price') as HTMLInputElement;
+    const surface = document.getElementById('asking-surface') as HTMLInputElement;
+    const references = document.getElementById('asking-references') as HTMLTextAreaElement;
+    const error = document.getElementById('comparison-error')!;
+    const output = document.getElementById('comparison-result')!;
+    const result = compareAskingPrice(number(price.value), number(surface.value), references.value.split(/[\n;]+/).filter(value => value.trim()).map(number));
+    output.hidden = !result;
+    error.hidden = Boolean(result);
+    if (!result) { error.textContent = 'Renseignez un prix et une surface positifs, puis au moins trois références de prix au m² valides.'; return; }
+    const money = (value: number) => value.toLocaleString('fr-FR', { maximumFractionDigits: 0 }) + ' €/m²';
+    document.getElementById('asking-unit-result')!.textContent = money(result.pricePerSqm);
+    document.getElementById('reference-median-result')!.textContent = money(result.median);
+    document.getElementById('asking-difference-result')!.textContent = (result.differencePercent > 0 ? '+' : '') + result.differencePercent.toLocaleString('fr-FR', { maximumFractionDigits: 2 }) + ' %';
+    document.getElementById('comparison-scope')!.textContent = `${result.referenceCount} références saisies. Cet écart ne démontre ni une surévaluation, ni une marge de négociation : vérifiez ce qui distingue les biens.`;
+  });
+</script>
+<style>
+  .price-tool{max-width:980px;padding-top:1.5rem;padding-bottom:3rem}.price-tool h1{font:800 clamp(1.9rem,5vw,3rem)/1.12 var(--si-font-heading);letter-spacing:-.035em;margin:1rem 0}.lead{font-size:1.05rem;line-height:1.65;color:var(--si-muted-foreground)}.price-tool section,.price-tool aside{margin-top:2.5rem}.price-tool h2{font:700 1.5rem/1.25 var(--si-font-heading);margin-bottom:1rem}.price-tool p,.price-tool li{line-height:1.75}.price-tool ul,.price-tool ol{padding-left:1.3rem}.price-tool li{margin:.5rem 0}.price-tool a:not(.si-btn){color:var(--si-accent);text-decoration:underline;text-underline-offset:3px}.calculator{padding:1.5rem;border:1px solid var(--si-border);border-radius:var(--si-radius-xl);background:var(--si-card)}.calculator fieldset{border:0;padding:0;min-width:0}.calculator legend{font-weight:700;margin:1.2rem 0 .7rem}.calculator label{display:block;font-size:.875rem;font-weight:600;margin-bottom:.45rem}.fields{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}.calculator input,.calculator textarea{display:block;width:100%;min-width:0;box-sizing:border-box;padding:.8rem;border:1px solid var(--si-border);border-radius:.75rem;font:inherit;background:#fff}.hint{font-size:.8rem;color:var(--si-muted-foreground);margin:.65rem 0 1rem}#comparison-error{color:#b91c1c;margin-top:1rem}#comparison-result{margin-top:1.25rem;padding:1rem;background:var(--si-muted);border-radius:.75rem}#comparison-result dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}#comparison-result dt{font-size:.8rem;color:var(--si-muted-foreground)}#comparison-result dd{margin:.35rem 0;font-weight:700;font-size:1.1rem}#comparison-result p{margin-top:1rem;font-size:.875rem}@media(max-width:600px){.fields,#comparison-result dl{grid-template-columns:1fr}.calculator{padding:1.1rem}}
+</style>
