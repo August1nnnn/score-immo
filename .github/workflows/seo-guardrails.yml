@@ -19,6 +19,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22.23.4'
+      - name: Verify the security-patched npm toolchain
+        run: node "${{ github.workspace }}/.github/verified-npm/bootstrap.mjs"
 
       - name: Detect site directory
         id: detect
