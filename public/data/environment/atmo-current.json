@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "version": "atmo-public-2026-10-24-2ea5196b",
+  "layer": "ind_atmo_2021",
+  "resource_id": "d2b9e8e6-8b0b-4bb6-9851-b4fa2efc8201",
+  "verified_at": "2026-10-24T00:00:00Z",
+  "expires_at": "2026-11-28T00:00:00Z",
+  "source_schema_sha256": "2ea5196b5eb59cac26386c5b8dcade627a4c00fa44e2ef0853595949eaaf2aec",
+  "source_catalog_url": "https://www.data.gouv.fr/api/1/datasets/6149925a2ff0ab6cebdd6fe8/",
+  "fields": [
+    "code_zone",
+    "type_zone",
+    "date_ech",
+    "date_maj",
+    "date_dif",
+    "source",
+    "code_qual",
+    "code_pm25",
+    "code_pm10",
+    "code_no2",
+    "code_o3",
+    "code_so2"
+  ],
+  "source_url": "https://www.data.gouv.fr/datasets/indice-de-la-qualite-de-lair-quotidien-par-commune-indice-atmo",
+  "license": "ODbL-1.0",
+  "attribution": "Indice ATMO : Atmo France / AASQA, licence ODbL",
+  "scope": "Daily communal forecast, not usual sector air quality or indoor air. Published data must match commune and day."
+}
