@@ -7,8 +7,10 @@ interface Props {
   medium?: string;
   campaign?: string;
   professionalTrial?: boolean;
+  heading?: string;
+  description?: string;
 }
-const { blog = 'guides', medium = 'blog_inline', campaign = '', professionalTrial = false } = Astro.props;
+const { blog = 'guides', medium = 'blog_inline', campaign = '', professionalTrial = false, heading, description } = Astro.props;
 const formId = `article_analyzer_${/^[a-z0-9_]{1,40}$/.test(medium) ? medium : 'blog_inline'}`;
 const safeCampaign = /^[a-z0-9-]{1,80}$/.test(campaign) ? campaign : '';
 
@@ -35,8 +37,8 @@ const c = professionalTrial
   : copy[blog] || copy.guides;
 ---
 <div class="sib-card">
-  <h2 class="sib-h">{c.h}</h2>
-  <p class="sib-p">{c.p}</p>
+  <h2 class="sib-h">{heading || c.h}</h2>
+  <p class="sib-p">{description || c.p}</p>
   <form class="sib-form" action={professionalTrial ? 'https://app.score-immo.fr/pro/essai' : 'https://app.score-immo.fr/app'} method="get" data-form-id={formId} data-analyzer-form>
     <input type="hidden" name="utm_source" value="site" />
     <input type="hidden" name="utm_medium" value={medium} />

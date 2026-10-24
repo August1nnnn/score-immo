@@ -1,0 +1,41 @@
+name: BPE - refresh verified public equipment
+on:
+  schedule:
+    - cron: '15 4 7,20 * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: scoreimmo-bpe-equipment
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: self-hosted
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check source selection and privacy filters
+        run: python3 -m unittest discover -s tests -p test_bpe_tiles.py
+      - name: Verify current INSEE edition and prepare anonymous equipment tiles
+        run: python3 scripts/refresh-bpe-tiles.py
+      - name: Commit only the verified public dataset
+        # Validate every checksum and the anonymous schema before Git mutation.
+        run: python3 scripts/verify-bpe-tiles.py
+      - name: Commit the verified snapshot
+        run: |
+          if git diff --quiet -- public/data/bpe && [ -z "$(git ls-files --others --exclude-standard public/data/bpe)" ]; then
+            echo "No dataset change"
+            exit 0
+          fi
+          git config user.name "ScoreImmo equipment maintenance"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/bpe
+          git commit -m "data: refresh verified INSEE BPE equipment snapshot"
+          git pull --rebase origin main
+          git push origin HEAD:main

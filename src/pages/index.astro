@@ -13,7 +13,7 @@ import Blog from '@/components/sections/Blog.astro';
 import Outils from '@/components/sections/Outils.astro';
 import CTA from '@/components/sections/CTA.astro';
 import { BRAND_NAME } from '@/data/entity';
-const title = `${BRAND_NAME} - Analysez une annonce immobilière en 30 secondes`;
+const title = `${BRAND_NAME} - Analysez le prix, le DPE et les risques d’une annonce`;
 const description = "Collez le lien d'une annonce immobilière et obtenez une analyse du prix, du DPE, des risques et du quartier à partir des données disponibles.";
 
 import { homepageJsonLd as jsonLd } from '@/data/homepage-jsonld';
@@ -31,6 +31,7 @@ import { homepageJsonLd as jsonLd } from '@/data/homepage-jsonld';
     <Problem />
     <Blog />
     <Outils />
+    <p class="si-container" style="text-align:center;margin-bottom:2rem;"><a href="/analyser-annonce-leboncoin">Analyser une annonce Leboncoin</a> · <a href="/verifier-prix-annonce-immobiliere">Vérifier le prix au m² avec vos références</a></p>
     <CTA />
   </div>
 </BaseLayout>

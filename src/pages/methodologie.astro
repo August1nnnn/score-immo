@@ -118,7 +118,7 @@ const jsonLd = [
     url: canonical,
     name: title,
     description,
-    dateModified: '2026-09-06',
+    dateModified: '2026-10-24',
     inLanguage: 'fr-FR',
     isPartOf: { '@id': WEBSITE_ID },
     about: { '@id': APPLICATION_ID },
@@ -142,7 +142,7 @@ const jsonLd = [
       </nav>
 
       <header class="si-method-header">
-        <p class="si-method-kicker">Version publique de la méthode en vigueur au 30 août 2026</p>
+        <p class="si-method-kicker">Méthode et couverture vérifiées le 24 octobre 2026</p>
         <h1>Méthodologie Score-Immo</h1>
         <p>Le score sur 100 résume les sections dont la donnée est suffisamment fiable pour le bien analysé. Il doit toujours être lu avec sa couverture, ses sources et le détail du rapport.</p>
       </header>
@@ -201,6 +201,7 @@ const jsonLd = [
         <p>Le <strong>poids source</strong> vient de la grille de la catégorie. Lorsqu’une section est exclue, le <strong>poids effectif</strong> de chaque section conservée est calculé ainsi :</p>
         <p class="si-formula">poids effectif = poids source ÷ somme des poids disponibles × 100</p>
         <p>Le score final sur 100 est la somme de chaque note sur 10 multipliée par son poids effectif puis divisée par 10. La couverture correspond à la somme des poids source disponibles divisée par 100. Si aucune section n’est disponible, le moteur ne produit pas de score.</p>
+        <p>Une analyse payante doit disposer d'une localisation cohérente, d'au moins un critère géographique exploitable et d'une couverture d'au moins 33 %. Ce seuil accepte une comparaison de marché documentée accompagnée d'un DPE déclaré et des frais d'acquisition. Sous 50 % de couverture, le rapport est présenté comme partiel et ne donne pas d'avis global favorable. Un DPE accompagné des seuls frais standard ne suffit pas à livrer l'analyse.</p>
       </section>
 
       <section>
@@ -216,6 +217,7 @@ const jsonLd = [
       <section>
         <h2>6. Sources interrogées</h2>
         <p>Ces sources peuvent être utilisées selon la catégorie, l’adresse et la disponibilité. Elles n’alimentent pas toutes le score de chaque bien et certaines servent uniquement au contexte du rapport.</p>
+        <p><strong>Commerces et équipements :</strong> lorsqu'elle est disponible, la BPE 2025 de l'INSEE fournit des équipements publics diffusibles et précisément géolocalisés dans un rayon de 3 km. Le rapport présente le millésime, le caractère partiel de cet inventaire et des distances approximatives à vol d'oiseau. Aucun nom de professionnel ni adresse individuelle n'est repris. Les gares et aéroports sont distingués des bus et métros, que cette source ne couvre pas. Un faible nombre de commerces dans cet inventaire partiel ne pénalise pas le score. Les totaux à l'échelle de la commune restent un contexte sans distance et sans contribution au score. <a href="https://www.insee.fr/fr/statistiques/8217525" target="_blank" rel="noopener">Source : INSEE, BPE 2025, Licence Ouverte 2.0</a>.</p>
         <div class="si-source-list">
           {sources.map((source) => (
             <article>

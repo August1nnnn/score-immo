@@ -7,6 +7,7 @@
 //   4. Inject CSP security header.
 
 import { verifyOpenAIBot } from "./_oai-verify";
+import { bpeAssetPolicy } from "./_bpe-policy.js";
 import { getSupabaseSecretKey, supabaseHeaders } from "./_supabase.js";
 
 const BOT_RE =
@@ -93,6 +94,11 @@ export const onRequest: PagesFunction<Env> = async (context) => {
     return Response.redirect(target.toString(), 301);
   }
 
+  const bpePolicy = bpeAssetPolicy(url.pathname);
+  if (bpePolicy?.expired) return new Response('Equipment snapshot expired', {
+    status: 410, headers: { 'Cache-Control':'no-store', 'X-Robots-Tag':'noindex, nofollow' },
+  });
+
   const response = await context.next();
 
   // (2) Bot crawl logger (no-op for assets/non-HTML/non-bot/no-env-vars)
@@ -100,6 +106,10 @@ export const onRequest: PagesFunction<Env> = async (context) => {
 
   // (3) Custom 404s and explicit noindex pages receive one response directive.
   const headers = new Headers(response.headers);
+  if (bpePolicy) {
+    headers.set('x-robots-tag','noindex, nofollow');
+    headers.set('cache-control',`public, max-age=${bpePolicy.cacheSeconds}, must-revalidate`);
+  }
   const normalizedPath = url.pathname.replace(/\/$/, '') || '/';
   if (response.status === 404 || NOINDEX_PATHS.has(normalizedPath)) {
     headers.set('x-robots-tag', 'noindex, follow');
