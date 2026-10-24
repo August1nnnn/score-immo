@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "npm_cli_sha256": "8e5f6f3429f8cdbe693cdc29904e9d5a7b127a494bd15c804bd54c7403bfcbe7",
+  "bundled_replacements": {
+    "ip-address": {
+      "from": "10.7.2",
+      "to": "10.7.4"
+    },
+    "undici": {
+      "from": "6.29.0",
+      "to": "6.29.1"
+    }
+  },
+  "archives": [
+    {
+      "name": "npm",
+      "version": "11.21.1",
+      "url": "https://registry.npmjs.org/npm/-/npm-11.21.1.tgz",
+      "integrity": "sha512-YTzL6QBEJXyHcTu0JiUc7RKMp+mzlJtl7rGLmERaXUQeFHIMc9atdr6G9M9C8vDWbv40epoTQAzNL2/PtZVDhQ=="
+    },
+    {
+      "name": "ip-address",
+      "version": "10.7.4",
+      "url": "https://registry.npmjs.org/ip-address/-/ip-address-10.7.4.tgz",
+      "integrity": "sha512-DWBMKyeM25D70nrIiTkgQth59/G+naKOTep6huF9j+GmeK3DMD60Zvxg5d5qQnz+38AHgou6ean2LECX+lrKDg=="
+    },
+    {
+      "name": "undici",
+      "version": "6.29.1",
+      "url": "https://registry.npmjs.org/undici/-/undici-6.29.1.tgz",
+      "integrity": "sha512-EvRlUt/QqAEvXdQeRMYUfwOQsfzpDztykrG2owGEE/rBOBoYv9uF39ZzsNDh4lTFHhTr2XOZjKkYgueD12ZmGA=="
+    }
+  ],
+  "dependency_tree_sha256": "39b2462417eecc454bf064a003006a494aae611b6404396190ad300ee652cae2"
+}
