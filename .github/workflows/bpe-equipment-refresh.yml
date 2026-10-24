@@ -24,7 +24,7 @@ jobs:
         run: python3 -m unittest discover -s tests -p 'test_*.py'
       - name: Verify current INSEE edition and prepare anonymous equipment tiles
         run: python3 scripts/refresh-bpe-tiles.py
-      - name: Verify the public communal noise model schema
+      - name: Verify the public communal noise and air source contracts
         run: python3 scripts/refresh-environment-sources.py
       - name: Commit only the verified public dataset
         # Validate every checksum and the anonymous schema before Git mutation.
