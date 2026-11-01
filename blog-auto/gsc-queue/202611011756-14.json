@@ -1,0 +1,27 @@
+{
+  "type": "refresh",
+  "target_url": "https://score-immo.fr/blogs/guides/analyser-annonce-immobiliere-comme-pro",
+  "target_query": "analyse cette annonce",
+  "cluster": [
+    {
+      "q": "analyse cette annonce",
+      "imp": 37,
+      "pos": 5.0
+    },
+    {
+      "q": "site analyse annonce immobilière",
+      "imp": 39,
+      "pos": 6.1
+    },
+    {
+      "q": "analyse immobilière",
+      "imp": 20,
+      "pos": 17.2
+    }
+  ],
+  "score": 103.4,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "202611011756"
+}

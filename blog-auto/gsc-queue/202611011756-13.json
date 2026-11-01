@@ -1,0 +1,17 @@
+{
+  "type": "new",
+  "target_query": "analyse immo",
+  "cluster": [
+    {
+      "q": "analyse immo",
+      "imp": 34,
+      "pos": 4.9
+    }
+  ],
+  "related_ranking_urls": [],
+  "score": 34,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "202611011756"
+}

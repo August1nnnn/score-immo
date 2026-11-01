@@ -1,0 +1,22 @@
+{
+  "type": "refresh",
+  "target_url": "https://score-immo.fr/blogs/quartiers/meilleurs-quartiers-acheter-strasbourg",
+  "target_query": "meilleur quartier strasbourg",
+  "cluster": [
+    {
+      "q": "meilleur quartier strasbourg",
+      "imp": 54,
+      "pos": 16.6
+    },
+    {
+      "q": "ou acheter à strasbourg",
+      "imp": 22,
+      "pos": 13.2
+    }
+  ],
+  "score": 91.2,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "202611011756"
+}
