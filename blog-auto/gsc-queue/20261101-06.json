@@ -1,0 +1,87 @@
+{
+  "type": "refresh",
+  "target_url": "https://score-immo.fr/blogs/villes/prix-immobilier-toulouse-marche-accessible",
+  "target_query": "marché immobilier toulouse",
+  "cluster": [
+    {
+      "q": "marché immobilier toulouse",
+      "imp": 67,
+      "pos": 19.8
+    },
+    {
+      "q": "toulouse sud immobilier 2025 2026 tendances marché prix évolution muret seysses",
+      "imp": 50,
+      "pos": 9.8
+    },
+    {
+      "q": "prix m2 toulouse",
+      "imp": 35,
+      "pos": 13.7
+    },
+    {
+      "q": "evolution prix immobilier par ville",
+      "imp": 72,
+      "pos": 28.4
+    },
+    {
+      "q": "évolution prix immobilier par ville",
+      "imp": 72,
+      "pos": 27.6
+    },
+    {
+      "q": "evolution prix immobilier toulouse",
+      "imp": 47,
+      "pos": 30.0
+    },
+    {
+      "q": "immobilier neuf prix au m2 par ville",
+      "imp": 25,
+      "pos": 45
+    },
+    {
+      "q": "prix immobilier neuf au m2 par ville",
+      "imp": 23,
+      "pos": 40.8
+    },
+    {
+      "q": "prix immobilier toulouse",
+      "imp": 72,
+      "pos": 21.9
+    },
+    {
+      "q": "prix immobilier bordeaux",
+      "imp": 51,
+      "pos": 36.3
+    },
+    {
+      "q": "prix maitrisé toulouse",
+      "imp": 25,
+      "pos": 47.4
+    },
+    {
+      "q": "prix immobilier bordeaux centre",
+      "imp": 23,
+      "pos": 47.6
+    },
+    {
+      "q": "prix immobilier quartier bordeaux",
+      "imp": 22,
+      "pos": 46.4
+    },
+    {
+      "q": "evolution immobilier nantes",
+      "imp": 30,
+      "pos": 43.7
+    },
+    {
+      "q": "investir immobilier nantes",
+      "imp": 23,
+      "pos": 21.4
+    }
+  ],
+  "score": 712.4,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "20261101"
+}

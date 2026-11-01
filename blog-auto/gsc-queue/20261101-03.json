@@ -1,0 +1,30 @@
+{
+  "type": "new",
+  "target_query": "quartier chic nantes",
+  "cluster": [
+    {
+      "q": "quartier chic nantes",
+      "imp": 62,
+      "pos": 23.4
+    },
+    {
+      "q": "quartier riche nantes",
+      "imp": 37,
+      "pos": 26.6
+    },
+    {
+      "q": "quartier chic lille",
+      "imp": 33,
+      "pos": 23.6
+    }
+  ],
+  "related_ranking_urls": [
+    "https://score-immo.fr/blogs/quartiers/meilleurs-quartiers-acheter-lille",
+    "https://score-immo.fr/blogs/quartiers/meilleurs-quartiers-acheter-nantes"
+  ],
+  "score": 132,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "20261101"
+}

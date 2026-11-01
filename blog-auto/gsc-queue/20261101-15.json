@@ -1,0 +1,17 @@
+{
+  "type": "refresh",
+  "target_url": "https://score-immo.fr/blogs/guides/estimation-immobiliere-methodes-juste-prix",
+  "target_query": "estimer un foncier au juste prix",
+  "cluster": [
+    {
+      "q": "estimer un foncier au juste prix",
+      "imp": 88,
+      "pos": 12.9
+    }
+  ],
+  "score": 105.6,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "20261101"
+}

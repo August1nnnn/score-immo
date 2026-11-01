@@ -1,0 +1,32 @@
+{
+  "type": "refresh",
+  "target_url": "https://score-immo.fr/blogs/guides/estimation-cout-travaux-deplombage",
+  "target_query": "estimation coûts travaux déplombage",
+  "cluster": [
+    {
+      "q": "estimation coûts travaux déplombage",
+      "imp": 25,
+      "pos": 4
+    },
+    {
+      "q": "estimation",
+      "imp": 55,
+      "pos": 27.8
+    },
+    {
+      "q": "estimation prix",
+      "imp": 21,
+      "pos": 22.3
+    },
+    {
+      "q": "estimation travaux appartement",
+      "imp": 34,
+      "pos": 25.9
+    }
+  ],
+  "score": 140.0,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "20261101"
+}

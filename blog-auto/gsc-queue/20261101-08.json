@@ -1,0 +1,37 @@
+{
+  "type": "refresh",
+  "target_url": "https://score-immo.fr/blogs/guides/dpe-comprendre-classes-energetiques",
+  "target_query": "grille dpe",
+  "cluster": [
+    {
+      "q": "grille dpe",
+      "imp": 144,
+      "pos": 8.3
+    },
+    {
+      "q": "grille dpe 2026",
+      "imp": 143,
+      "pos": 8.7
+    },
+    {
+      "q": "tranches dpe 2026",
+      "imp": 94,
+      "pos": 9.3
+    },
+    {
+      "q": "dpe grille 2026",
+      "imp": 45,
+      "pos": 9
+    },
+    {
+      "q": "dpe classes a g",
+      "imp": 54,
+      "pos": 27.1
+    }
+  ],
+  "score": 565.2,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "20261101"
+}

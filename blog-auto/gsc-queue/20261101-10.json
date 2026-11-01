@@ -1,0 +1,32 @@
+{
+  "type": "refresh",
+  "target_url": "https://score-immo.fr/blogs/guides/alternative-castorus-score-immo-comparatif",
+  "target_query": "castorus immo",
+  "cluster": [
+    {
+      "q": "castorus immo",
+      "imp": 40,
+      "pos": 9.9
+    },
+    {
+      "q": "mieux que castorus",
+      "imp": 40,
+      "pos": 9.6
+    },
+    {
+      "q": "équivalent castorus",
+      "imp": 22,
+      "pos": 7.9
+    },
+    {
+      "q": "castorus",
+      "imp": 66,
+      "pos": 30.7
+    }
+  ],
+  "score": 188.39999999999998,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "20261101"
+}

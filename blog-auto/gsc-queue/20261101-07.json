@@ -1,0 +1,24 @@
+{
+  "type": "new",
+  "target_query": "analyse documents immobilier",
+  "cluster": [
+    {
+      "q": "analyse documents immobilier",
+      "imp": 39,
+      "pos": 32.2
+    },
+    {
+      "q": "analyse immobilier",
+      "imp": 33,
+      "pos": 4.3
+    }
+  ],
+  "related_ranking_urls": [
+    "https://score-immo.fr/pages/guide"
+  ],
+  "score": 72,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "20261101"
+}

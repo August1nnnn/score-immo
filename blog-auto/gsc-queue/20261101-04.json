@@ -1,0 +1,42 @@
+{
+  "type": "refresh",
+  "target_url": "https://score-immo.fr/blogs/guides",
+  "target_query": "senzitif-immo.fr barème bâtiment",
+  "cluster": [
+    {
+      "q": "senzitif-immo.fr barème bâtiment",
+      "imp": 143,
+      "pos": 5.3
+    },
+    {
+      "q": "senzitif-immo.fr bâtiment capacité",
+      "imp": 122,
+      "pos": 9.1
+    },
+    {
+      "q": "senzitif-immo.fr bâtiment assurance",
+      "imp": 107,
+      "pos": 6.9
+    },
+    {
+      "q": "senzitif-immo.fr bancaire bâtiment",
+      "imp": 99,
+      "pos": 5.0
+    },
+    {
+      "q": "senzitif-immo.fr bâtiment déclaration",
+      "imp": 84,
+      "pos": 8.4
+    },
+    {
+      "q": "senzitif-immo.fr bâtiment dispositifs",
+      "imp": 61,
+      "pos": 4.7
+    }
+  ],
+  "score": 739.1999999999999,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "20261101"
+}

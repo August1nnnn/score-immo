@@ -1,0 +1,24 @@
+{
+  "type": "new",
+  "target_query": "tableau dpe",
+  "cluster": [
+    {
+      "q": "tableau dpe",
+      "imp": 39,
+      "pos": 39.8
+    },
+    {
+      "q": "dpe tableau",
+      "imp": 20,
+      "pos": 36.6
+    }
+  ],
+  "related_ranking_urls": [
+    "https://score-immo.fr/blogs/guides/dpe-comprendre-classes-energetiques"
+  ],
+  "score": 59,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "20261101"
+}

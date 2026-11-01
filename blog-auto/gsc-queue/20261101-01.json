@@ -1,0 +1,44 @@
+{
+  "type": "new",
+  "target_query": "étude de sol g1",
+  "cluster": [
+    {
+      "q": "étude de sol g1",
+      "imp": 126,
+      "pos": 45.8
+    },
+    {
+      "q": "etude de sol g1",
+      "imp": 68,
+      "pos": 38.9
+    },
+    {
+      "q": "etude g1",
+      "imp": 52,
+      "pos": 31.2
+    },
+    {
+      "q": "étude g1",
+      "imp": 48,
+      "pos": 49.2
+    },
+    {
+      "q": "étude géotechnique g1",
+      "imp": 31,
+      "pos": 46
+    },
+    {
+      "q": "étude de sol g1 tarif",
+      "imp": 27,
+      "pos": 34.9
+    }
+  ],
+  "related_ranking_urls": [
+    "https://score-immo.fr/blogs/guides/etude-de-sol-g1-obligatoire-achat-terrain"
+  ],
+  "score": 352,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "20261101"
+}

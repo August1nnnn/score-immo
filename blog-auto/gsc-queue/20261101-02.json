@@ -1,0 +1,57 @@
+{
+  "type": "refresh",
+  "target_url": "https://score-immo.fr/blogs/guides/syndic-benevole-avantages-limites-conditions-legales",
+  "target_query": "contrat syndic bénévole",
+  "cluster": [
+    {
+      "q": "contrat syndic bénévole",
+      "imp": 21,
+      "pos": 18.8
+    },
+    {
+      "q": "contrat de syndic bénévole",
+      "imp": 20,
+      "pos": 19.3
+    },
+    {
+      "q": "syndic benevole copro",
+      "imp": 696,
+      "pos": 38.5
+    },
+    {
+      "q": "syndic bénévole",
+      "imp": 80,
+      "pos": 28.1
+    },
+    {
+      "q": "syndic bénévole comment faire",
+      "imp": 45,
+      "pos": 31.1
+    },
+    {
+      "q": "syndic de copropriété bénévole",
+      "imp": 43,
+      "pos": 34
+    },
+    {
+      "q": "compte bancaire syndic bénévole",
+      "imp": 24,
+      "pos": 37.2
+    },
+    {
+      "q": "syndic bénévole petite copropriété",
+      "imp": 24,
+      "pos": 26.8
+    },
+    {
+      "q": "syndic bénévole vend son appartement",
+      "imp": 33,
+      "pos": 33.7
+    }
+  ],
+  "score": 994.2,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "20261101"
+}

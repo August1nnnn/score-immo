@@ -1,0 +1,19 @@
+{
+  "type": "new",
+  "target_query": "où vivre à nantes en famille",
+  "cluster": [
+    {
+      "q": "où vivre à nantes en famille",
+      "imp": 48,
+      "pos": 40.5
+    }
+  ],
+  "related_ranking_urls": [
+    "https://score-immo.fr/blogs/quartiers/meilleurs-quartiers-acheter-nantes"
+  ],
+  "score": 48,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "20261101"
+}

@@ -1,0 +1,17 @@
+{
+  "type": "new",
+  "target_query": "agencepassionimmo.fr mètre carré",
+  "cluster": [
+    {
+      "q": "agencepassionimmo.fr mètre carré",
+      "imp": 87,
+      "pos": 6.2
+    }
+  ],
+  "related_ranking_urls": [],
+  "score": 87,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "20261101"
+}

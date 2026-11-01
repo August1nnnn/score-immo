@@ -1,0 +1,17 @@
+{
+  "type": "refresh",
+  "target_url": "https://score-immo.fr/pages/guide",
+  "target_query": "senzitif-immo.fr comparatif achat",
+  "cluster": [
+    {
+      "q": "senzitif-immo.fr comparatif achat",
+      "imp": 96,
+      "pos": 9.7
+    }
+  ],
+  "score": 115.19999999999999,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "20261101"
+}

@@ -1,0 +1,19 @@
+{
+  "type": "new",
+  "target_query": "dans quel quartier investir à nantes",
+  "cluster": [
+    {
+      "q": "dans quel quartier investir à nantes",
+      "imp": 48,
+      "pos": 21.5
+    }
+  ],
+  "related_ranking_urls": [
+    "https://score-immo.fr/blogs/quartiers/meilleurs-quartiers-acheter-nantes"
+  ],
+  "score": 48,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "20261101"
+}
