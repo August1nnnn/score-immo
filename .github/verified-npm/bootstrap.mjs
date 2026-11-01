@@ -72,7 +72,13 @@ export async function verifyInstalled(root,manifest){
  return cli;
 }
 
-async function auditInstalled(root){
+// Upstream-unfixed advisories in npm's own bundled tree, accepted one by one with an
+// expiry date; any other finding, or an expired acceptance, still fails the audit.
+export function isAcceptedAdvisory(list,query,id,now=Date.now()){
+ return (list||[]).some(a=>a.id===id&&a.package===query.package.name&&a.version===query.version&&/^\d{4}-\d{2}-\d{2}$/.test(a.expires)&&now<Date.parse(a.expires+'T23:59:59Z')&&typeof a.reason==='string'&&a.reason.length>20);
+}
+
+async function auditInstalled(root,acceptedAdvisories){
  const packages=new Map();
  async function walk(directory){
   const entries=await fs.readdir(directory,{withFileTypes:true});
@@ -84,15 +90,22 @@ async function auditInstalled(root){
  await walk(path.join(root,'node_modules'));
  if(packages.size!==144)throw Error('Unexpected physical npm dependency inventory');
  const items=[...packages.values()];let controlFound=false;
+ const accepted=[];
  for(let i=0;i<items.length;i+=99){
   const part=items.slice(i,i+99),control={package:{name:'@capacitor/ios',ecosystem:'npm'},version:'8.1.0'};
   const data=JSON.parse((await request('https://api.osv.dev/v1/querybatch',{method:'POST',body:JSON.stringify({queries:[...part,control]}),maxBytes:4*1024*1024})).toString());
   if(!Array.isArray(data.results)||data.results.length!==part.length+1)throw Error('Invalid advisory response');
-  if(data.results.slice(0,-1).some(r=>!r||r.error||r.vulns?.length))throw Error('npm toolchain has unresolved advisory findings');
+  data.results.slice(0,-1).forEach((r,j)=>{
+   if(!r||r.error)throw Error('npm toolchain has unresolved advisory findings');
+   for(const v of r.vulns||[]){
+    if(!isAcceptedAdvisory(acceptedAdvisories,part[j],v.id))throw Error('npm toolchain has unresolved advisory findings: '+part[j].package.name+'@'+part[j].version+' '+v.id);
+    accepted.push(v.id+' '+part[j].package.name+'@'+part[j].version);
+   }
+  });
   controlFound=controlFound||Boolean(data.results.at(-1)?.vulns?.some(v=>v.id==='GHSA-rvm3-566m-v7fv'));
  }
  if(!controlFound)throw Error('Known vulnerable advisory control did not match');
- return {package_versions:packages.size,findings:0,positive_control:true};
+ return {package_versions:packages.size,findings:accepted.length,accepted_advisories:accepted,positive_control:true};
 }
 
 export async function main(){
@@ -132,7 +145,7 @@ export async function main(){
  const targetStat=await fs.lstat(target);
  if(!targetStat.isDirectory()||targetStat.isSymbolicLink()||targetStat.uid!==process.getuid()||(targetStat.mode&0o022))throw Error('Untrusted toolchain cache directory');
  if((await fs.readFile(path.join(target,'manifest.sha256'),'utf8')).trim()!==digest(raw))throw Error('Unrecognized existing toolchain cache');
- const cli=await verifyInstalled(target,manifest),audit=await auditInstalled(target),bin=path.join(target,'bin');await fs.mkdir(bin,{recursive:true});
+ const cli=await verifyInstalled(target,manifest),audit=await auditInstalled(target,manifest.accepted_advisories),bin=path.join(target,'bin');await fs.mkdir(bin,{recursive:true});
  if(!(await fs.lstat(bin)).isDirectory()||(await fs.lstat(bin)).isSymbolicLink())throw Error('Untrusted toolchain bin directory');
  for(const command of ['npm','npx']){
   const entry=path.join(target,'node_modules/npm/bin',command+'-cli.js');

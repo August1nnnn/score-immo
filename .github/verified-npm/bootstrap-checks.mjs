@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
-import {verifyArchive,verifyInstalled,dependencyTreeDigest} from './bootstrap.mjs';
+import {verifyArchive,verifyInstalled,dependencyTreeDigest,isAcceptedAdvisory} from './bootstrap.mjs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
@@ -27,4 +27,13 @@ test('rejects altered dependency code while CLI and all version fields stay unch
   await fs.writeFile(module,'// tampered dependency, same package versions and CLI');
   await assert.rejects(()=>verifyInstalled(root,manifest),/dependency files/);
  }finally{await fs.rm(root,{recursive:true,force:true});}
+});
+
+const acceptance=[{id:'GHSA-g3hv-75wg-m249',package:'minimatch',version:'10.2.5',expires:'2026-11-30',reason:'Build-time only, upstream npm has no fixed release yet.'}];
+const query={package:{name:'minimatch',ecosystem:'npm'},version:'10.2.5'};
+test('accepts only the exact listed advisory before expiry',()=>assert.equal(isAcceptedAdvisory(acceptance,query,'GHSA-g3hv-75wg-m249',Date.parse('2026-11-15T00:00:00Z')),true));
+test('rejects a listed advisory after expiry',()=>assert.equal(isAcceptedAdvisory(acceptance,query,'GHSA-g3hv-75wg-m249',Date.parse('2026-12-01T00:00:00Z')),false));
+test('rejects any other advisory or version',()=>{
+ assert.equal(isAcceptedAdvisory(acceptance,query,'GHSA-other-0000-0000',Date.parse('2026-11-15T00:00:00Z')),false);
+ assert.equal(isAcceptedAdvisory(acceptance,{...query,version:'10.2.6'},'GHSA-g3hv-75wg-m249',Date.parse('2026-11-15T00:00:00Z')),false);
 });

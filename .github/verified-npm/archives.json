@@ -31,5 +31,21 @@
       "integrity": "sha512-EvRlUt/QqAEvXdQeRMYUfwOQsfzpDztykrG2owGEE/rBOBoYv9uF39ZzsNDh4lTFHhTr2XOZjKkYgueD12ZmGA=="
     }
   ],
-  "dependency_tree_sha256": "39b2462417eecc454bf064a003006a494aae611b6404396190ad300ee652cae2"
+  "dependency_tree_sha256": "39b2462417eecc454bf064a003006a494aae611b6404396190ad300ee652cae2",
+  "accepted_advisories": [
+    {
+      "id": "GHSA-g3hv-75wg-m249",
+      "package": "minimatch",
+      "version": "10.2.5",
+      "expires": "2026-11-30",
+      "reason": "Build-time only: npm 11.21.1 to 12.2.1 all bundle minimatch 10.x and no fixed npm exists yet; patterns come from the reviewed repository, never from site visitors. Remove when npm ships minimatch >=11.0.1."
+    },
+    {
+      "id": "GHSA-3g3m-2fjr-6pw4",
+      "package": "glob",
+      "version": "13.0.6",
+      "expires": "2026-11-30",
+      "reason": "Build-time only: npm 11.21.1 to 12.2.1 all bundle glob 13.x and no fixed npm exists yet; AbortSignal is not used with untrusted input in CI installs. Remove when npm ships glob >=14.0.2."
+    }
+  ]
 }
