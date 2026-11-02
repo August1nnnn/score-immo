@@ -40,5 +40,8 @@
   "site": "score-immo",
   "language": "fr",
   "content_dir": "src/content/articles",
-  "generated": "202611011756"
+  "generated": "202611011756",
+  "done_at": "2026-11-02T07:33:00Z",
+  "result_url": "https://score-immo.fr/blogs/guides/etude-de-sol-g1-obligatoire-achat-terrain",
+  "note": "new transformé en refresh (anti-cannibalisation : page existante)"
 }
