@@ -1,5 +1,5 @@
 {
-  "type": "new",
+  "type": "refresh",
   "target_query": "quartier chic nantes",
   "cluster": [
     {
@@ -26,5 +26,9 @@
   "site": "score-immo",
   "language": "fr",
   "content_dir": "src/content/articles",
-  "generated": "202611011756"
+  "generated": "202611011756",
+  "target_slug": "quartiers-chics-nantes-acheter",
+  "original_type": "new",
+  "done_at": "2026-11-05T07:24:07Z",
+  "result_url": "https://score-immo.fr/blogs/quartiers/quartiers-chics-nantes-acheter"
 }
