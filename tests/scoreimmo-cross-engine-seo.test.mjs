@@ -97,12 +97,12 @@ test("the city hub owns the comparison intent and links to priority pages", () =
 test("the refreshed Paris snippet describes its sourced comparison instead of promising a missing map", () => {
   const paris = article("src/content/articles/villes/prix-immobilier-paris-marche-plancher.json");
   assert.match(paris.title, /Prix immobilier à Paris en 2026/);
-  assert.equal(paris.meta_title, "Prix immobilier Paris 2026 : 9 530 €/m², quartiers");
-  assert.equal(paris.meta_description, "À Paris, les Notaires du Grand Paris relevaient 9 530 €/m² en avril 2026. Comparez arrondissements, ventes DVF, DPE et points à vérifier.");
+  assert.equal(paris.meta_title, "Prix immobilier Paris 2026 : 9 590 €/m² et perspectives 2027");
+  assert.equal(paris.meta_description, "Paris : 9 590 €/m² fin août 2026 (-0,5 % sur un an) selon les notaires. Prix des 20 arrondissements, volumes, taux et ce qui change en 2027.");
   assert.ok(paris.meta_title.length <= 60);
   assert.ok(paris.meta_description.length >= 120);
   assert.ok(paris.meta_description.length <= 160);
   assert.ok(paris.sources.some(s => s.url.includes('de-fevrier-avril-2026')));
-  assert.equal(paris.updated_at, "2026-09-20");
-  assert.equal(paris.last_reviewed, "2026-09-20");
+  assert.equal(paris.updated_at, "2026-11-14");
+  assert.equal(paris.last_reviewed, "2026-11-14");
 });

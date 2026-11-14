@@ -10,7 +10,7 @@ export const LOT_2_LINKS = [
     from: "guides/acheter-appartement-dernier-etage",
     href: "/blogs/guides/acheter-appartement-rez-de-jardin",
     anchorText: "acheter un appartement en rez-de-jardin",
-    needle: "<p>Le dernier étage fait rêver : lumière, vue, calme. Mais il a aussi ses revers, souvent sous-estimés : chaleur l'été, isolation du toit, dépendance à l'ascenseur. Et il se paie nettement plus cher. Voici les avantages, les pièges et les points à contrôler avant d'acheter un appartement sous les toits.</p>",
+    needle: "</strong> : terrasse, balcon filant ou accès au toit sont plus fréquents au dernier niveau. Vérifiez dans le règlement de copropriété s'il s'agit d'une partie privative ou d'une partie commune à jouissance privative.</li>\n</ul>",
     insertion: "\n\n<p>Pour comparer les compromis opposés en matière d'étage, consultez aussi les précautions à prendre pour <a href=\"/blogs/guides/acheter-appartement-rez-de-jardin\">acheter un appartement en rez-de-jardin</a>.</p>",
   },
   {
@@ -24,7 +24,7 @@ export const LOT_2_LINKS = [
     from: "guides/lire-plan-cadastral-achat",
     href: "/blogs/guides/acheter-duplex-questions-a-poser",
     anchorText: "questions à poser avant d'acheter un duplex",
-    needle: "<p>Si la surface réelle est inférieure de plus de 5% à la surface Carrez annoncée, l'acheteur peut demander une réduction de prix dans l'année suivant l'acte. C'est un point à vérifier dans votre <a href=\"/blogs/guides/cout-total-achat-immobilier\">budget d'achat</a>.</p>",
+    needle: "<p>En l'absence totale de mention Carrez, l'ANIL rappelle que l'acquéreur peut demander la nullité au plus tard dans le mois suivant l'acte authentique. Pour le détail des méthodes de mesurage, consultez notre guide sur <a href=\"/blogs/guides/surface-carrez-habitable-dvf\">la surface Carrez, la surface habitable et la surface DVF</a>.</p>",
     insertion: "\n\n<p>Lorsque le lot se répartit sur plusieurs niveaux, complétez ce contrôle avec les <a href=\"/blogs/guides/acheter-duplex-questions-a-poser\">questions à poser avant d'acheter un duplex</a>.</p>",
   },
   {
@@ -45,7 +45,7 @@ export const LOT_2_LINKS = [
     from: "guides/visite-immobiliere-checklist-points-verifier",
     href: "/blogs/guides/acheter-maison-piscine-points-controle",
     anchorText: "points à contrôler avant d'acheter une maison avec piscine",
-    needle: "<h3 id=\"equipements-confort\">Équipements et éléments de confort</h3>",
+    needle: "</a> détaille les différences.</li>\n</ol>\n\n<p>Pour un appartement sous les toits, complétez cette liste avec les points propres à un <a href=\"/blogs/guides/acheter-appartement-dernier-etage\">achat au dernier étage</a>.</p>",
     insertion: "\n<p>Pour un bien doté d'un bassin, ajoutez à la visite les <a href=\"/blogs/guides/acheter-maison-piscine-points-controle\">points à contrôler avant d'acheter une maison avec piscine</a>.</p>",
   },
   {
@@ -80,7 +80,7 @@ export const LOT_2_LINKS = [
     from: "guides/visite-immobiliere-checklist-points-verifier",
     href: "/blogs/guides/checklist-contre-visite-immobiliere",
     anchorText: "checklist de contre-visite immobilière",
-    needle: "<p><strong>Absolument, et c'est recommandé</strong>. Demandez une seconde visite à un moment différent (matin/soir, jour de semaine/week-end) pour évaluer la luminosité, le bruit et l'ambiance du quartier. La plupart des vendeurs acceptent facilement.</p>",
+    needle: "<li><strong>Faites chiffrer les travaux</strong> par deux ou trois entreprises lorsque le montant est significatif ; une contre-visite avec un artisan permet de préciser le périmètre.</li>\n  <li><strong>Comparez avec les ventes réelles</strong> de biens comparables, pour vérifier si le prix tient déjà compte de l'état.</li>\n  <li><strong>Présentez une offre argumentée</strong>, en distinguant le prix net vendeur et les frais.</li>\n</ol>",
     insertion: "\n<p>Pour organiser ce second passage point par point, utilisez notre <a href=\"/blogs/guides/checklist-contre-visite-immobiliere\">checklist de contre-visite immobilière</a>.</p>",
   },
   {
@@ -297,7 +297,7 @@ export const LOT_2_LINKS = [
     from: "villes/prix-immobilier-paris-marche-plancher",
     href: "/blogs/villes/marche-immobilier-luxe-paris-2026",
     anchorText: "marché immobilier de luxe à Paris",
-    needle: "<h2 id=\"disparites-arrondissements\">Où consulter les prix par arrondissement et par quartier ?</h2>",
+    needle: "<a href=\"/blogs/quartiers/meilleurs-quartiers-acheter-paris\">meilleurs quartiers où acheter à Paris</a> et l'analyse des <a href=\"/blogs/quartiers/quartiers-investir-paris-2026\">quartiers où investir à Paris</a> complètent ce tableau avec des critères de vie et de location.</p>",
     insertion: "\n<p>Pour les biens haut de gamme, examinez séparément les critères du <a href=\"/blogs/villes/marche-immobilier-luxe-paris-2026\">marché immobilier de luxe à Paris</a>.</p>",
   },
   {
