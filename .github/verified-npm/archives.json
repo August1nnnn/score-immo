@@ -46,6 +46,13 @@
       "version": "13.0.6",
       "expires": "2026-11-30",
       "reason": "Build-time only: npm 11.21.1 to 12.2.1 all bundle glob 13.x and no fixed npm exists yet; AbortSignal is not used with untrusted input in CI installs. Remove when npm ships glob >=14.0.2."
+    },
+    {
+      "id": "GHSA-fc5q-39xc-vjpf",
+      "package": "picomatch",
+      "version": "4.0.4",
+      "expires": "2026-11-30",
+      "reason": "Build-time only: the verified npm toolchain bundles picomatch 4.0.4 and GHSA-fc5q-39xc-vjpf has no patched picomatch release yet (affects <=4.0.7); glob patterns come from the reviewed repository, never from site visitors. Remove when a fixed picomatch ships in npm."
     }
   ]
 }
