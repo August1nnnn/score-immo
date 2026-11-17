@@ -1,5 +1,5 @@
 {
-  "type": "new",
+  "type": "refresh",
   "target_query": "dans quel quartier investir à nantes",
   "cluster": [
     {
@@ -15,5 +15,8 @@
   "site": "score-immo",
   "language": "fr",
   "content_dir": "src/content/articles",
-  "generated": "202611011756"
+  "generated": "202611011756",
+  "converted_from": "new",
+  "done_at": "2026-11-17",
+  "result_url": "https://score-immo.fr/blogs/quartiers/meilleurs-quartiers-acheter-nantes"
 }
