@@ -1,0 +1,20 @@
+{
+  "type": "new",
+  "target_query": "analyse immo",
+  "cluster": [
+    {
+      "q": "analyse immo",
+      "imp": 34,
+      "pos": 4.9
+    }
+  ],
+  "related_ranking_urls": [],
+  "score": 34,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "202611011756",
+  "done_at": "2026-11-23",
+  "result_url": "https://score-immo.fr/blogs/guides/analyser-bien-immobilier-score-immo-recherche-manuelle",
+  "converted_to": "refresh (anti-cannibalisation : article existant analyser-bien-immobilier-score-immo-recherche-manuelle)"
+}
