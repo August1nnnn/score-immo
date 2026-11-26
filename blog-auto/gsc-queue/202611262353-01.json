@@ -1,0 +1,39 @@
+{
+  "type": "new",
+  "target_query": "syndic benevole copro",
+  "cluster": [
+    {
+      "q": "syndic benevole copro",
+      "imp": 241,
+      "pos": 38.4
+    },
+    {
+      "q": "syndic bénévole",
+      "imp": 106,
+      "pos": 31.4
+    },
+    {
+      "q": "syndic de copropriété bénévole",
+      "imp": 83,
+      "pos": 27.7
+    },
+    {
+      "q": "compte bancaire copropriété syndic bénévole",
+      "imp": 30,
+      "pos": 31.4
+    },
+    {
+      "q": "syndic bénévole petite copropriété",
+      "imp": 21,
+      "pos": 29.0
+    }
+  ],
+  "related_ranking_urls": [
+    "https://score-immo.fr/blogs/guides/syndic-benevole-avantages-limites-conditions-legales"
+  ],
+  "score": 481,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "202611262353"
+}

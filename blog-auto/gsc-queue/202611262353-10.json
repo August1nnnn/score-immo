@@ -1,0 +1,24 @@
+{
+  "type": "new",
+  "target_query": "prévision prix immobilier paris 2026",
+  "cluster": [
+    {
+      "q": "prévision prix immobilier paris 2026",
+      "imp": 58,
+      "pos": 26.9
+    },
+    {
+      "q": "prix immobilier paris 2026",
+      "imp": 52,
+      "pos": 30.4
+    }
+  ],
+  "related_ranking_urls": [
+    "https://score-immo.fr/blogs/villes/prix-immobilier-paris-marche-plancher"
+  ],
+  "score": 110,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "202611262353"
+}

@@ -1,0 +1,34 @@
+{
+  "type": "new",
+  "target_query": "devis rénovation appartement",
+  "cluster": [
+    {
+      "q": "devis rénovation appartement",
+      "imp": 88,
+      "pos": 24.8
+    },
+    {
+      "q": "prix rénovation appartement",
+      "imp": 67,
+      "pos": 25.5
+    },
+    {
+      "q": "budget renovation appartement",
+      "imp": 59,
+      "pos": 35.6
+    },
+    {
+      "q": "prix renovation appartement",
+      "imp": 56,
+      "pos": 21.0
+    }
+  ],
+  "related_ranking_urls": [
+    "https://score-immo.fr/blogs/guides/acheter-appartement-travaux-budget-aides"
+  ],
+  "score": 270,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "202611262353"
+}

@@ -1,0 +1,29 @@
+{
+  "type": "new",
+  "target_query": "étude géotechnique",
+  "cluster": [
+    {
+      "q": "étude géotechnique",
+      "imp": 80,
+      "pos": 42.1
+    },
+    {
+      "q": "étude géotechnique g1",
+      "imp": 34,
+      "pos": 45.6
+    },
+    {
+      "q": "étude g1 obligatoire",
+      "imp": 25,
+      "pos": 49.7
+    }
+  ],
+  "related_ranking_urls": [
+    "https://score-immo.fr/blogs/guides/etude-de-sol-g1-obligatoire-achat-terrain"
+  ],
+  "score": 139,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "202611262353"
+}

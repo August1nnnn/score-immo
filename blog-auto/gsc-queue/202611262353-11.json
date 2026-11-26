@@ -1,0 +1,17 @@
+{
+  "type": "refresh",
+  "target_url": "https://score-immo.fr/blogs/quartiers/meilleurs-quartiers-acheter-lille",
+  "target_query": "quartier riche lille",
+  "cluster": [
+    {
+      "q": "quartier riche lille",
+      "imp": 37,
+      "pos": 17.9
+    }
+  ],
+  "score": 44.4,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "202611262353"
+}

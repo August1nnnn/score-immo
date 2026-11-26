@@ -1,0 +1,22 @@
+{
+  "type": "new",
+  "target_query": "analyse documents immobilier",
+  "cluster": [
+    {
+      "q": "analyse documents immobilier",
+      "imp": 72,
+      "pos": 17.2
+    },
+    {
+      "q": "analyse bien immobilier",
+      "imp": 28,
+      "pos": 5.7
+    }
+  ],
+  "related_ranking_urls": [],
+  "score": 100,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "202611262353"
+}

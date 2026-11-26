@@ -1,0 +1,29 @@
+{
+  "type": "new",
+  "target_query": "syndic bénévole comment faire",
+  "cluster": [
+    {
+      "q": "syndic bénévole comment faire",
+      "imp": 68,
+      "pos": 31.8
+    },
+    {
+      "q": "contrat de syndic bénévole",
+      "imp": 24,
+      "pos": 37.0
+    },
+    {
+      "q": "contrat de syndic bénévole modèle",
+      "imp": 23,
+      "pos": 34.5
+    }
+  ],
+  "related_ranking_urls": [
+    "https://score-immo.fr/blogs/guides/syndic-benevole-avantages-limites-conditions-legales"
+  ],
+  "score": 115,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "202611262353"
+}

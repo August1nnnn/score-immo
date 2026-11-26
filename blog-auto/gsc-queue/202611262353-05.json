@@ -1,0 +1,50 @@
+{
+  "type": "new",
+  "target_query": "prix immobilier bordeaux tendance",
+  "cluster": [
+    {
+      "q": "prix immobilier bordeaux tendance",
+      "imp": 43,
+      "pos": 44
+    },
+    {
+      "q": "prix immobilier bordeaux",
+      "imp": 33,
+      "pos": 39.4
+    },
+    {
+      "q": "prix immobilier lille",
+      "imp": 33,
+      "pos": 33.1
+    },
+    {
+      "q": "immobilier bordeaux tendance 2023",
+      "imp": 30,
+      "pos": 35.1
+    },
+    {
+      "q": "prix immobilier quartier bordeaux",
+      "imp": 30,
+      "pos": 42.4
+    },
+    {
+      "q": "prix immobilier bordeaux centre",
+      "imp": 28,
+      "pos": 41.0
+    },
+    {
+      "q": "immobilier lille prix",
+      "imp": 21,
+      "pos": 34.9
+    }
+  ],
+  "related_ranking_urls": [
+    "https://score-immo.fr/blogs/villes/prix-immobilier-bordeaux-quartiers-tendances",
+    "https://score-immo.fr/blogs/villes/prix-immobilier-lille-metropole-sous-cotee"
+  ],
+  "score": 218,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "202611262353"
+}

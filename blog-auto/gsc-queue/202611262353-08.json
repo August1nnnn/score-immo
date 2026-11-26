@@ -1,0 +1,27 @@
+{
+  "type": "refresh",
+  "target_url": "https://score-immo.fr/blogs/guides/diagnostic-assainissement-non-collectif-achat",
+  "target_query": "diagnostic assainissement",
+  "cluster": [
+    {
+      "q": "diagnostic assainissement",
+      "imp": 48,
+      "pos": 14.1
+    },
+    {
+      "q": "prix diagnostic assainissement",
+      "imp": 38,
+      "pos": 25.5
+    },
+    {
+      "q": "diagnostic assainissement collectif",
+      "imp": 26,
+      "pos": 35.8
+    }
+  ],
+  "score": 121.6,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "202611262353"
+}

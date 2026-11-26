@@ -1,0 +1,29 @@
+{
+  "type": "new",
+  "target_query": "compte bancaire syndic bénévole",
+  "cluster": [
+    {
+      "q": "compte bancaire syndic bénévole",
+      "imp": 43,
+      "pos": 38.8
+    },
+    {
+      "q": "devenir syndic bénévole",
+      "imp": 22,
+      "pos": 28.5
+    },
+    {
+      "q": "syndic benevole",
+      "imp": 20,
+      "pos": 35
+    }
+  ],
+  "related_ranking_urls": [
+    "https://score-immo.fr/blogs/guides/syndic-benevole-avantages-limites-conditions-legales"
+  ],
+  "score": 85,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "202611262353"
+}

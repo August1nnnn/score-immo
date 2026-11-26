@@ -1,0 +1,44 @@
+{
+  "type": "new",
+  "target_query": "étude de sol g1",
+  "cluster": [
+    {
+      "q": "étude de sol g1",
+      "imp": 60,
+      "pos": 32.5
+    },
+    {
+      "q": "etude de sol g1",
+      "imp": 44,
+      "pos": 33.4
+    },
+    {
+      "q": "etude g1",
+      "imp": 43,
+      "pos": 44.7
+    },
+    {
+      "q": "étude de sol g1 vente terrain paris",
+      "imp": 41,
+      "pos": 33.9
+    },
+    {
+      "q": "étude de sol g1 vente terrain lyon",
+      "imp": 29,
+      "pos": 45.4
+    },
+    {
+      "q": "étude de sol g1 vente terrain strasbourg",
+      "imp": 20,
+      "pos": 35.5
+    }
+  ],
+  "related_ranking_urls": [
+    "https://score-immo.fr/blogs/guides/etude-de-sol-g1-obligatoire-achat-terrain"
+  ],
+  "score": 237,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "202611262353"
+}

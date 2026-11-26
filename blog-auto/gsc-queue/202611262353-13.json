@@ -1,0 +1,17 @@
+{
+  "type": "refresh",
+  "target_url": "https://score-immo.fr/blogs/guides/diagnostic-amiante-plomb-2026-obligations-impact-prix",
+  "target_query": "diagnostic plomb prix",
+  "cluster": [
+    {
+      "q": "diagnostic plomb prix",
+      "imp": 22,
+      "pos": 15.8
+    }
+  ],
+  "score": 26.4,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "202611262353"
+}

@@ -1,0 +1,44 @@
+{
+  "type": "new",
+  "target_query": "estimation travaux appartement",
+  "cluster": [
+    {
+      "q": "estimation travaux appartement",
+      "imp": 100,
+      "pos": 26.4
+    },
+    {
+      "q": "devis travaux appartement",
+      "imp": 52,
+      "pos": 31.2
+    },
+    {
+      "q": "devis travaux renovation appartement",
+      "imp": 52,
+      "pos": 22.9
+    },
+    {
+      "q": "devis renovation appartement",
+      "imp": 45,
+      "pos": 23.0
+    },
+    {
+      "q": "travaux rénovation appartement",
+      "imp": 30,
+      "pos": 24.1
+    },
+    {
+      "q": "devis travaux rénovation appartement",
+      "imp": 24,
+      "pos": 25
+    }
+  ],
+  "related_ranking_urls": [
+    "https://score-immo.fr/blogs/guides/acheter-appartement-travaux-budget-aides"
+  ],
+  "score": 303,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "202611262353"
+}

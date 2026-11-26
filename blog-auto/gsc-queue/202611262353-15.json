@@ -1,0 +1,30 @@
+{
+  "type": "new",
+  "target_query": "prix m2 lyon",
+  "cluster": [
+    {
+      "q": "prix m2 lyon",
+      "imp": 36,
+      "pos": 23.8
+    },
+    {
+      "q": "prix immobilier lyon",
+      "imp": 27,
+      "pos": 22.4
+    },
+    {
+      "q": "prix m2 bordeaux",
+      "imp": 21,
+      "pos": 46.1
+    }
+  ],
+  "related_ranking_urls": [
+    "https://score-immo.fr/blogs/villes/prix-immobilier-bordeaux-quartiers-tendances",
+    "https://score-immo.fr/blogs/villes/prix-immobilier-lyon-analyse-arrondissement"
+  ],
+  "score": 84,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "202611262353"
+}

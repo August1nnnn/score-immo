@@ -1,0 +1,34 @@
+{
+  "type": "new",
+  "target_query": "rénovation complète appartement",
+  "cluster": [
+    {
+      "q": "rénovation complète appartement",
+      "imp": 42,
+      "pos": 21.7
+    },
+    {
+      "q": "coût rénovation appartement",
+      "imp": 33,
+      "pos": 24.1
+    },
+    {
+      "q": "projet de rénovation appartement",
+      "imp": 27,
+      "pos": 27.8
+    },
+    {
+      "q": "cout renovation appartement",
+      "imp": 22,
+      "pos": 22
+    }
+  ],
+  "related_ranking_urls": [
+    "https://score-immo.fr/blogs/guides/acheter-appartement-travaux-budget-aides"
+  ],
+  "score": 124,
+  "site": "score-immo",
+  "language": "fr",
+  "content_dir": "src/content/articles",
+  "generated": "202611262353"
+}
