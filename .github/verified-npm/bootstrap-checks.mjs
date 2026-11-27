@@ -37,3 +37,24 @@ test('rejects any other advisory or version',()=>{
  assert.equal(isAcceptedAdvisory(acceptance,query,'GHSA-other-0000-0000',Date.parse('2026-11-15T00:00:00Z')),false);
  assert.equal(isAcceptedAdvisory(acceptance,{...query,version:'10.2.6'},'GHSA-g3hv-75wg-m249',Date.parse('2026-11-15T00:00:00Z')),false);
 });
+
+const scoped={name:'@isaacs/nonrecursive-glob-match',version:'1.1.0',url:'https://registry.npmjs.org/@isaacs/nonrecursive-glob-match/-/nonrecursive-glob-match-1.1.0.tgz',integrity:'sha512-'+createHash('sha512').update(bytes).digest('base64')};
+test('accepts the exact official URL of a scoped archive',()=>assert.doesNotThrow(()=>verifyArchive(scoped,bytes)));
+test('fails a scoped archive served from another path',()=>{
+ assert.throws(()=>verifyArchive({...scoped,url:'https://registry.npmjs.org/@isaacs/nonrecursive-glob-match/-/@isaacs/nonrecursive-glob-match-1.1.0.tgz'},bytes),/metadata/);
+ assert.throws(()=>verifyArchive({...scoped,name:'../npm'},bytes),/metadata/);
+});
+
+test('rejects a bundled upgrade that npm does not resolve',async()=>{
+ const root=await fs.mkdtemp(path.join(os.tmpdir(),'security-npm-upgrade-test-'));
+ try{
+  const write=async(dir,name,version)=>{await fs.mkdir(dir,{recursive:true});await fs.writeFile(path.join(dir,'package.json'),JSON.stringify({name,version}));};
+  await write(path.join(root,'node_modules/npm'),'npm','11.21.1');
+  await write(path.join(root,'node_modules/npm/node_modules/minimatch'),'minimatch','11.0.9');
+  const cli=path.join(root,'node_modules/npm/bin/npm-cli.js');await fs.mkdir(path.dirname(cli));await fs.writeFile(cli,'// fixed fixture CLI');
+  const base={npm_cli_sha256:createHash('sha256').update(await fs.readFile(cli)).digest('hex'),archives:[{name:'npm',version:'11.21.1'}],bundled_replacements:{}};
+  await assert.doesNotReject(async()=>verifyInstalled(root,{...base,dependency_tree_sha256:await dependencyTreeDigest(root),bundled_upgrades:[{name:'minimatch',version:'11.0.9'}]}));
+  await write(path.join(root,'node_modules/npm/node_modules/minimatch'),'minimatch','10.2.5');
+  await assert.rejects(async()=>verifyInstalled(root,{...base,dependency_tree_sha256:await dependencyTreeDigest(root),bundled_upgrades:[{name:'minimatch',version:'11.0.9'}]}),/upgrade is not effective/);
+ }finally{await fs.rm(root,{recursive:true,force:true});}
+});

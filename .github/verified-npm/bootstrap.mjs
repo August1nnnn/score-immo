@@ -1,5 +1,7 @@
-// Official npm CLI with two integrity-locked, official patch dependencies.
-// npm overrides do not replace bundled dependencies; the explicit overlay below does.
+// Official npm CLI with integrity-locked, official replacement dependencies.
+// npm overrides do not replace bundled dependencies; the explicit overlays below do.
+// bundled_upgrades are extracted inside npm's own node_modules so their dependencies
+// keep resolving to npm's bundled tree (minimatch>=11.0.1, glob>=14.0.2 fixes).
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
@@ -12,10 +14,12 @@ import {fileURLToPath} from 'node:url';
 
 const here=path.dirname(fileURLToPath(import.meta.url));
 const compromised=new Set(['7dd78d5f4f13459a83dff9abbba62edbaf6f2d102bf257fd712f4d9f2746ed8d','f2edaaff3d9b701fb4d14c9f285f8c0bad90fc3bcc1fa07d47f4718edaba34a5','d7a7a0fb5d7e2731d771e9484ebcdef71d5f0c3e0a2948782bc83ee0ea699ef4','86a1ecba089c4a8d3bbe2734c612ba341d813e043cf9e8a862cd5c57a36bbe6b']);
+const UPGRADES=['minimatch','glob','path-scurry','@isaacs/nonrecursive-glob-match'];
 const digest=(bytes,algorithm='sha256',encoding='hex')=>createHash(algorithm).update(bytes).digest(encoding);
 
 export function verifyArchive(item,bytes){
- const expected=`https://registry.npmjs.org/${item.name}/-/${item.name}-${item.version}.tgz`;
+ if(typeof item.name!=='string'||!/^(@[a-z0-9][a-z0-9._-]*\/)?[a-z0-9][a-z0-9._-]*$/.test(item.name))throw Error('Invalid locked archive metadata');
+ const expected=`https://registry.npmjs.org/${item.name}/-/${item.name.split('/').pop()}-${item.version}.tgz`;
  if(item.url!==expected||!/^sha512-[A-Za-z0-9+/]+=*$/.test(item.integrity))throw Error('Invalid locked archive metadata');
  if(bytes.length>32*1024*1024||'sha512-'+digest(bytes,'sha512','base64')!==item.integrity)throw Error('Archive integrity verification failed');
 }
@@ -69,6 +73,11 @@ export async function verifyInstalled(root,manifest){
   const resolved=require.resolve(name+'/package.json');
   if(resolved!==path.join(root,'node_modules',name,'package.json')||require(name+'/package.json').version!==versions.to)throw Error('Bundled dependency overlay is not effective');
  }
+ for(const item of manifest.bundled_upgrades||[]){
+  const resolved=require.resolve(item.name+'/package.json');
+  // Read from disk, not the require cache, so each verification sees the installed files.
+  if(resolved!==path.join(npm,'node_modules',item.name,'package.json')||JSON.parse(await fs.readFile(resolved,'utf8')).version!==item.version)throw Error('Bundled dependency upgrade is not effective');
+ }
  return cli;
 }
 
@@ -88,7 +97,7 @@ async function auditInstalled(root,acceptedAdvisories){
   for(const entry of entries)if(entry.isDirectory()&&entry.name!=='.bin')await walk(path.join(directory,entry.name));
  }
  await walk(path.join(root,'node_modules'));
- if(packages.size!==144)throw Error('Unexpected physical npm dependency inventory');
+ if(packages.size!==145)throw Error('Unexpected physical npm dependency inventory');
  const items=[...packages.values()];let controlFound=false;
  const accepted=[];
  for(let i=0;i<items.length;i+=99){
@@ -114,7 +123,7 @@ export async function main(){
  if(process.env.NODE_TLS_REJECT_UNAUTHORIZED==='0')throw Error('TLS verification must remain enabled');
  if(tls.getCACertificates('default').some(pem=>compromised.has(digest(new X509Certificate(pem).raw))))throw Error('Compromised certificate root remains in effective Node trust');
  const raw=await fs.readFile(path.join(here,'archives.json')),manifest=JSON.parse(raw);
- if(manifest.schema!==1||JSON.stringify(manifest.archives.map(x=>x.name))!==JSON.stringify(['npm','ip-address','undici']))throw Error('Invalid toolchain manifest');
+ if(manifest.schema!==1||JSON.stringify(manifest.archives.map(x=>x.name))!==JSON.stringify(['npm','ip-address','undici'])||JSON.stringify((manifest.bundled_upgrades||[]).map(x=>x.name))!==JSON.stringify(UPGRADES))throw Error('Invalid toolchain manifest');
  // A fresh private runner temporary directory avoids dirtying a source checkout
  // or sharing writable executable caches between unrelated jobs.
  const cacheParent=process.env.SECURITY_NPM_CACHE?path.resolve(process.env.SECURITY_NPM_CACHE):await fs.mkdtemp(path.join(process.env.RUNNER_TEMP||os.tmpdir(),'.verified-npm-'));
@@ -139,6 +148,19 @@ export async function main(){
     if((await packageJson(bundled)).version!==versions.from)throw Error('Unexpected bundled version');
     await fs.rm(bundled,{recursive:true});
    }
+   for(const item of manifest.bundled_upgrades){
+    const archive=await request(item.url);verifyArchive(item,archive);
+    const bundled=path.join(stage,'node_modules/npm/node_modules',item.name);
+    let current=null;try{current=(await packageJson(bundled)).version;}catch(error){if(error.code!=='ENOENT')throw error;}
+    if(current!==item.from)throw Error('Unexpected bundled version');
+    if(current!==null)await fs.rm(bundled,{recursive:true});
+    const file=path.join(stage,'upgrade-'+randomUUID()+'.tgz');
+    await fs.writeFile(file,archive);await fs.mkdir(bundled,{recursive:true});
+    // These exact official archives were reviewed and SHA512-locked before extraction.
+    const result=spawnSync('tar',['-xzf',file,'-C',bundled,'--strip-components=1'],{encoding:'utf8'});
+    if(result.status!==0)throw Error('Cannot extract verified official archive');
+    await fs.unlink(file);
+   }
    await verifyInstalled(stage,manifest);await fs.writeFile(path.join(stage,'manifest.sha256'),digest(raw)+'\n');await fs.rename(stage,target);
   }finally{await fs.rm(stage,{recursive:true,force:true});}
  }
@@ -153,7 +175,7 @@ export async function main(){
   await writeAtomic(path.join(bin,command),source,0o755);
  }
  if(process.env.GITHUB_PATH)await fs.appendFile(process.env.GITHUB_PATH,bin+'\n');
- const report={at:new Date().toISOString(),node:process.versions.node,npm:'11.21.1',overlay:{'ip-address':'10.7.4',undici:'6.29.1'},manifest_sha256:digest(raw),cli_sha256:digest(await fs.readFile(cli)),audit,bin};
+ const report={at:new Date().toISOString(),node:process.versions.node,npm:'11.21.1',overlay:{'ip-address':'10.7.4',undici:'6.29.1'},upgrades:Object.fromEntries(manifest.bundled_upgrades.map(x=>[x.name,x.version])),manifest_sha256:digest(raw),cli_sha256:digest(await fs.readFile(cli)),audit,bin};
  await writeAtomic(path.join(target,'verification.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));return report;
 }
 
