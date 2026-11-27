@@ -144,6 +144,7 @@ export function normalizePublishedRows(rows) {
 export function assertFreshLatestEdition(fiches, {
   referenceDate = new Date().toISOString().slice(0, 10),
   maxAgeDays = 62,
+  pause = null,
 } = {}) {
   if (!Array.isArray(fiches) || fiches.length === 0) throw new Error("Aucune edition a controler");
   const latestMonth = fiches.map((fiche) => fiche.mois).sort().at(-1);
@@ -152,6 +153,10 @@ export function assertFreshLatestEdition(fiches, {
   if (Number.isNaN(reference.valueOf())) throw new Error("Date de reference invalide");
   const ageDays = Math.floor((reference - editionDate) / 86_400_000);
   if (ageDays > maxAgeDays) {
+    // A declared pause (src/data/barometre-pause.json) is the only accepted reason for an old
+    // edition, and only if the newest edition is exactly the one recorded as last before the pause:
+    // a missing or partial edition still fails.
+    if (pause?.paused === true && pause.last_edition === latestMonth) return latestMonth;
     throw new Error(`La derniere edition ${latestMonth} est trop ancienne (${ageDays} jours)`);
   }
   return latestMonth;

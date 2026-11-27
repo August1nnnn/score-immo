@@ -168,3 +168,12 @@ test("le controle de fraicheur s'applique au workflow de synchronisation", () =>
     /trop ancienne/i,
   );
 });
+
+test('a declared pause only accepts the exact last edition recorded before it', () => {
+  const stale = [{ mois: '2026-09' }];
+  const pause = { paused: true, last_edition: '2026-09' };
+  assert.equal(assertFreshLatestEdition(stale, { referenceDate: '2026-11-27', maxAgeDays: 62, pause }), '2026-09');
+  assert.throws(() => assertFreshLatestEdition([{ mois: '2026-08' }], { referenceDate: '2026-11-27', maxAgeDays: 62, pause }));
+  assert.throws(() => assertFreshLatestEdition(stale, { referenceDate: '2026-11-27', maxAgeDays: 62, pause: { paused: false, last_edition: '2026-09' } }));
+  assert.throws(() => assertFreshLatestEdition(stale, { referenceDate: '2026-11-27', maxAgeDays: 62 }));
+});

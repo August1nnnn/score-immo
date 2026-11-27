@@ -15,6 +15,7 @@ import { buildFicheSignal, axisBarHeight } from '@/lib/barometre-signal.ts';
 import { buildEditionExport } from '@/lib/barometre-edition-export.js';
 import { BRAND_NAME, ORGANIZATION_ID, SITE_URL, WEBSITE_ID } from '@/data/entity';
 import capitalesAout from '@/data/barometre-capitales-2026-08.json';
+import barometrePause from '@/data/barometre-pause.json';
 import dmSans800Url from '@fontsource/dm-sans/files/dm-sans-latin-800-normal.woff2?url';
 import inter400Url from '@fontsource/inter/files/inter-latin-400-normal.woff2?url';
 
@@ -239,7 +240,7 @@ const jsonLd: any[] = [
     <section class="bar-hero" aria-labelledby="bar-title">
       <div class="si-container bar-hero-grid">
         <header class="bar-hero-copy">
-          <p class="bar-edition">Édition {editionLabel} · Données mises à jour</p>
+          <p class="bar-edition">Édition {editionLabel} · {barometrePause.paused ? "Dernière édition publiée, prochaine édition dès la reprise des analyses" : "Données mises à jour"}</p>
           <h1 class="si-article-title" id="bar-title">Le Baromètre immobilier Score-Immo</h1>
           <p class="bar-short-answer">Cette édition décrit <strong>{total} annonces réellement analysées</strong> dans {regions} régions. Leur score moyen est de <strong>{avg}/100</strong>, avec une médiane de {insights.medianScore}/100.</p>
           <p class="bar-hero-limit">Il s'agit d'un échantillon descriptif d'annonces, pas d'un indice des prix ni d'une représentation du marché immobilier français.</p>

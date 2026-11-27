@@ -4,7 +4,7 @@
 // Writes one file per published fiche into src/content/barometre/<slug>.json.
 // The data is committed to the repo (same pattern as the blog articles collection),
 // so the Astro build stays purely static (no build-time external dependency).
-import { writeFileSync, readdirSync, rmSync, mkdirSync, existsSync } from 'node:fs';
+import { writeFileSync, readdirSync, rmSync, mkdirSync, existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import {
@@ -50,7 +50,9 @@ try {
     throw new Error(`Geographie invalide: ${rejectedRows.map((row) => row.slug).join(', ')}`);
   }
   fiches = normalizePublishedRows(rows);
-  assertFreshLatestEdition(fiches);
+  const pausePath = new URL('../src/data/barometre-pause.json', import.meta.url);
+  const pause = existsSync(pausePath) ? JSON.parse(readFileSync(pausePath, 'utf8')) : null;
+  assertFreshLatestEdition(fiches, { pause });
 } catch (error) {
   console.error(error instanceof Error ? error.message : String(error));
   process.exit(1);
