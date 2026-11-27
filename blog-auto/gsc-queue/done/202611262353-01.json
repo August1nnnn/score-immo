@@ -1,5 +1,5 @@
 {
-  "type": "new",
+  "type": "refresh",
   "target_query": "syndic benevole copro",
   "cluster": [
     {
@@ -35,5 +35,8 @@
   "site": "score-immo",
   "language": "fr",
   "content_dir": "src/content/articles",
-  "generated": "202611262353"
+  "generated": "202611262353",
+  "converted_from": "new",
+  "done_at": "2026-11-27T07:30:00+00:00",
+  "result_url": "https://score-immo.fr/blogs/guides/syndic-benevole-avantages-limites-conditions-legales"
 }
